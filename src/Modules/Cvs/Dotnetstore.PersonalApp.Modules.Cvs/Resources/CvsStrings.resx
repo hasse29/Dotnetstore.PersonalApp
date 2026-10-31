@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Cvs_Title" xml:space="preserve"><value>CVs</value></data>
+  <data name="Cvs_Subtitle" xml:space="preserve"><value>Write a CV for each kind of job you want to apply for.</value></data>
+  <data name="Cvs_New" xml:space="preserve"><value>New CV</value></data>
+  <data name="Cvs_ColTitle" xml:space="preserve"><value>TITLE</value></data>
+  <data name="Cvs_ColTargetJob" xml:space="preserve"><value>TARGET JOB</value></data>
+  <data name="Cvs_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Cvs_ConfirmDelete" xml:space="preserve"><value>Delete this CV?</value></data>
+  <data name="Cvs_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Cvs_NoSelection" xml:space="preserve"><value>No CV selected</value></data>
+  <data name="Cvs_NoSelectionHint" xml:space="preserve"><value>Pick a CV in the table to edit it, or create a new one.</value></data>
+  <data name="Cvs_Count" xml:space="preserve"><value>{0} CV(s)</value></data>
+  <data name="Cvs_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} CVs.</value></data>
+  <data name="Cvs_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="CvEditor_New" xml:space="preserve"><value>New CV</value></data>
+  <data name="CvEditor_Edit" xml:space="preserve"><value>Edit CV</value></data>
+  <data name="CvEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="CvField_Title" xml:space="preserve"><value>Title</value></data>
+  <data name="CvField_TitlePlaceholder" xml:space="preserve"><value>e.g. Backend developer</value></data>
+  <data name="CvField_TargetJob" xml:space="preserve"><value>Target job</value></data>
+  <data name="CvField_TargetJobPlaceholder" xml:space="preserve"><value>e.g. Senior .NET developer at a fintech company</value></data>
+  <data name="CvField_Summary" xml:space="preserve"><value>Summary</value></data>
+  <data name="Startup_CvsDatabase" xml:space="preserve"><value>Preparing CV database...</value></data>
+  <data name="Error_cv_not_found" xml:space="preserve"><value>CV not found.</value></data>
+  <data name="Error_cv_conflict" xml:space="preserve"><value>You already have a CV with this title.</value></data>
+  <data name="Error_cv_user_required" xml:space="preserve"><value>The CV must belong to a user.</value></data>
+  <data name="Error_cv_title_required" xml:space="preserve"><value>Title is required.</value></data>
+  <data name="Error_cv_title_too_long" xml:space="preserve"><value>Title can be at most 200 characters.</value></data>
+  <data name="Error_cv_target_job_too_long" xml:space="preserve"><value>Target job can be at most 200 characters.</value></data>
+  <data name="Error_cv_summary_too_long" xml:space="preserve"><value>Summary can be at most 4000 characters.</value></data>
+  <data name="Cvs_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="CvDetail_Back" xml:space="preserve"><value>Back to CVs</value></data>
+  <data name="CvDetail_Present" xml:space="preserve"><value>present</value></data>
+  <data name="CvDetail_Summary" xml:space="preserve"><value>Summary</value></data>
+  <data name="CvDetail_NoSummary" xml:space="preserve"><value>No summary yet. Edit the CV from the list to add one.</value></data>
+  <data name="CvDetail_DateOfBirth" xml:space="preserve"><value>Date of birth</value></data>
+  <data name="CvDetail_ChangePhoto" xml:space="preserve"><value>Change photo</value></data>
+  <data name="CvDetail_RemovePhoto" xml:space="preserve"><value>Remove</value></data>
+  <data name="CvDetail_ChoosePhotoTitle" xml:space="preserve"><value>Choose a photo</value></data>
+  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>The photo was not changed (cancelled, or the file is larger than 2 MB).</value></data>
+  <data name="CvDetail_DriverLicence" xml:space="preserve"><value>Driver licence</value></data>
+  <data name="CvDetail_NoDriverLicence" xml:space="preserve"><value>No driver licence</value></data>
+  <data name="CvDetail_UserMissing" xml:space="preserve"><value>(user no longer exists)</value></data>
+  <data name="CvSection_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="CvSection_Empty" xml:space="preserve"><value>Nothing added yet.</value></data>
+  <data name="CvSection_Work" xml:space="preserve"><value>Work experience</value></data>
+  <data name="CvSection_Education" xml:space="preserve"><value>Education</value></data>
+  <data name="CvSection_Courses" xml:space="preserve"><value>Courses</value></data>
+  <data name="CvSection_Languages" xml:space="preserve"><value>Languages</value></data>
+  <data name="CvSection_AddWork" xml:space="preserve"><value>Add job</value></data>
+  <data name="CvSection_AddEducation" xml:space="preserve"><value>Add education</value></data>
+  <data name="CvSection_AddCourse" xml:space="preserve"><value>Add course</value></data>
+  <data name="CvSection_AddLanguage" xml:space="preserve"><value>Add language</value></data>
+  <data name="CvLevel_Basic" xml:space="preserve"><value>Basic</value></data>
+  <data name="CvLevel_Good" xml:space="preserve"><value>Good</value></data>
+  <data name="CvLevel_Fluent" xml:space="preserve"><value>Fluent</value></data>
+  <data name="CvLevel_Native" xml:space="preserve"><value>Native</value></data>
+  <data name="CvWorkEditor_New" xml:space="preserve"><value>New job</value></data>
+  <data name="CvWorkEditor_Edit" xml:space="preserve"><value>Edit job</value></data>
+  <data name="CvEducationEditor_New" xml:space="preserve"><value>New education</value></data>
+  <data name="CvEducationEditor_Edit" xml:space="preserve"><value>Edit education</value></data>
+  <data name="CvCourseEditor_New" xml:space="preserve"><value>New course</value></data>
+  <data name="CvCourseEditor_Edit" xml:space="preserve"><value>Edit course</value></data>
+  <data name="CvLanguageEditor_New" xml:space="preserve"><value>New language</value></data>
+  <data name="CvLanguageEditor_Edit" xml:space="preserve"><value>Edit language</value></data>
+  <data name="CvLicenceEditor_Title" xml:space="preserve"><value>Driver licence</value></data>
+  <data name="CvLicenceEditor_Hint" xml:space="preserve"><value>Tick every category you hold. Leave all unticked for no driver licence.</value></data>
+  <data name="CvSectionEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="CvSectionEditor_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="CvSectionEditor_ConfirmDelete" xml:space="preserve"><value>Delete this entry?</value></data>
+  <data name="CvSectionEditor_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="CvField_Employer" xml:space="preserve"><value>Employer</value></data>
+  <data name="CvField_Role" xml:space="preserve"><value>Role</value></data>
+  <data name="CvField_School" xml:space="preserve"><value>School</value></data>
+  <data name="CvField_Programme" xml:space="preserve"><value>Programme or degree</value></data>
+  <data name="CvField_StartDate" xml:space="preserve"><value>Start date</value></data>
+  <data name="CvField_EndDate" xml:space="preserve"><value>End date</value></data>
+  <data name="CvField_Ongoing" xml:space="preserve"><value>Ongoing</value></data>
+  <data name="CvField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="CvField_CourseName" xml:space="preserve"><value>Course</value></data>
+  <data name="CvField_Provider" xml:space="preserve"><value>Provider</value></data>
+  <data name="CvField_CompletedYear" xml:space="preserve"><value>Year completed</value></data>
+  <data name="CvField_Language" xml:space="preserve"><value>Language</value></data>
+  <data name="CvField_Level" xml:space="preserve"><value>Level</value></data>
+  <data name="Error_cv_item_not_found" xml:space="preserve"><value>The entry was not found.</value></data>
+  <data name="Error_cv_employer_required" xml:space="preserve"><value>Employer is required.</value></data>
+  <data name="Error_cv_employer_too_long" xml:space="preserve"><value>Employer can be at most 200 characters.</value></data>
+  <data name="Error_cv_role_required" xml:space="preserve"><value>Role is required.</value></data>
+  <data name="Error_cv_role_too_long" xml:space="preserve"><value>Role can be at most 200 characters.</value></data>
+  <data name="Error_cv_school_required" xml:space="preserve"><value>School is required.</value></data>
+  <data name="Error_cv_school_too_long" xml:space="preserve"><value>School can be at most 200 characters.</value></data>
+  <data name="Error_cv_programme_required" xml:space="preserve"><value>Programme or degree is required.</value></data>
+  <data name="Error_cv_programme_too_long" xml:space="preserve"><value>Programme or degree can be at most 200 characters.</value></data>
+  <data name="Error_cv_start_date_required" xml:space="preserve"><value>Start date is required.</value></data>
+  <data name="Error_cv_end_date_required" xml:space="preserve"><value>End date is required unless this is ongoing.</value></data>
+  <data name="Error_cv_end_before_start" xml:space="preserve"><value>End date cannot be before the start date.</value></data>
+  <data name="Error_cv_description_too_long" xml:space="preserve"><value>Description can be at most 2000 characters.</value></data>
+  <data name="Error_cv_course_name_required" xml:space="preserve"><value>Course name is required.</value></data>
+  <data name="Error_cv_course_name_too_long" xml:space="preserve"><value>Course name can be at most 200 characters.</value></data>
+  <data name="Error_cv_provider_too_long" xml:space="preserve"><value>Provider can be at most 200 characters.</value></data>
+  <data name="Error_cv_course_year_invalid" xml:space="preserve"><value>The year must be between 1950 and this year.</value></data>
+  <data name="Error_cv_language_required" xml:space="preserve"><value>Language is required.</value></data>
+  <data name="Error_cv_language_too_long" xml:space="preserve"><value>Language can be at most 100 characters.</value></data>
+  <data name="Error_cv_language_level_invalid" xml:space="preserve"><value>Choose a language level.</value></data>
+  <data name="Error_cv_language_conflict" xml:space="preserve"><value>This language is already on the CV.</value></data>
+  <data name="Error_cv_driver_licence_invalid" xml:space="preserve"><value>Unknown driver licence category.</value></data>
+  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>The photo can be at most 2 MB.</value></data>
+  <data name="Error_cv_photo_invalid" xml:space="preserve"><value>The photo must be a PNG or JPEG image.</value></data>
+  <data name="CvDetail_Technologies" xml:space="preserve"><value>Technologies</value></data>
+  <data name="CvDetail_NoTechnologies" xml:space="preserve"><value>No technologies yet. Add them to a job under work experience.</value></data>
+  <data name="CvField_Technologies" xml:space="preserve"><value>Technologies</value></data>
+  <data name="CvField_TechnologiesPlaceholder" xml:space="preserve"><value>e.g. C#, .NET, PostgreSQL, Docker</value></data>
+  <data name="Error_cv_technologies_too_many" xml:space="preserve"><value>A job can have at most 20 technologies.</value></data>
+  <data name="Error_cv_technology_too_long" xml:space="preserve"><value>A technology can be at most 30 characters.</value></data>
+  <data name="CvDetail_Export" xml:space="preserve"><value>Export to Word</value></data>
+  <data name="CvDetail_ExportTitle" xml:space="preserve"><value>Export CV to Word</value></data>
+  <data name="CvDetail_Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="CvDetail_NoContact" xml:space="preserve"><value>No contact details chosen yet.</value></data>
+  <data name="CvContactEditor_Title" xml:space="preserve"><value>Contact details</value></data>
+  <data name="CvContactEditor_Hint" xml:space="preserve"><value>Choose which of your addresses, phone numbers and email addresses this CV shows.</value></data>
+  <data name="CvContactEditor_Empty" xml:space="preserve"><value>You have no addresses, phone numbers or email addresses yet. Add them on your user page.</value></data>
+  <data name="CvContactKind_Address" xml:space="preserve"><value>Address</value></data>
+  <data name="CvContactKind_Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="CvContactKind_Email" xml:space="preserve"><value>Email</value></data>
+  <data name="CvField_LinkedIn" xml:space="preserve"><value>LinkedIn</value></data>
+  <data name="CvField_LinkedInPlaceholder" xml:space="preserve"><value>linkedin.com/in/your-name</value></data>
+  <data name="Error_cv_linkedin_invalid" xml:space="preserve"><value>The LinkedIn link must be an address on linkedin.com.</value></data>
+</root>

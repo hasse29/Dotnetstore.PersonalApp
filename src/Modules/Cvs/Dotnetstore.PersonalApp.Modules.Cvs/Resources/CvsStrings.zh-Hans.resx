@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Cvs_Title" xml:space="preserve"><value>简历</value></data>
+  <data name="Cvs_Subtitle" xml:space="preserve"><value>为每一种想申请的职位撰写一份简历。</value></data>
+  <data name="Cvs_New" xml:space="preserve"><value>新建简历</value></data>
+  <data name="Cvs_ColTitle" xml:space="preserve"><value>标题</value></data>
+  <data name="Cvs_ColTargetJob" xml:space="preserve"><value>目标职位</value></data>
+  <data name="Cvs_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Cvs_ConfirmDelete" xml:space="preserve"><value>删除此简历？</value></data>
+  <data name="Cvs_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Cvs_NoSelection" xml:space="preserve"><value>未选择简历</value></data>
+  <data name="Cvs_NoSelectionHint" xml:space="preserve"><value>请在表格中选择一份简历进行编辑，或新建一份。</value></data>
+  <data name="Cvs_Count" xml:space="preserve"><value>{0} 份简历</value></data>
+  <data name="Cvs_ShowingPartial" xml:space="preserve"><value>显示 {1} 份中的 {0} 份简历。</value></data>
+  <data name="Cvs_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="CvEditor_New" xml:space="preserve"><value>新建简历</value></data>
+  <data name="CvEditor_Edit" xml:space="preserve"><value>编辑简历</value></data>
+  <data name="CvEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="CvField_Title" xml:space="preserve"><value>标题</value></data>
+  <data name="CvField_TitlePlaceholder" xml:space="preserve"><value>例如：后端开发工程师</value></data>
+  <data name="CvField_TargetJob" xml:space="preserve"><value>目标职位</value></data>
+  <data name="CvField_TargetJobPlaceholder" xml:space="preserve"><value>例如：金融科技公司的高级 .NET 开发工程师</value></data>
+  <data name="CvField_Summary" xml:space="preserve"><value>摘要</value></data>
+  <data name="Startup_CvsDatabase" xml:space="preserve"><value>正在准备简历数据库...</value></data>
+  <data name="Error_cv_not_found" xml:space="preserve"><value>未找到该简历。</value></data>
+  <data name="Error_cv_conflict" xml:space="preserve"><value>你已经有一份同名的简历。</value></data>
+  <data name="Error_cv_user_required" xml:space="preserve"><value>简历必须属于某个用户。</value></data>
+  <data name="Error_cv_title_required" xml:space="preserve"><value>必须填写标题。</value></data>
+  <data name="Error_cv_title_too_long" xml:space="preserve"><value>标题最多 200 个字符。</value></data>
+  <data name="Error_cv_target_job_too_long" xml:space="preserve"><value>目标职位最多 200 个字符。</value></data>
+  <data name="Error_cv_summary_too_long" xml:space="preserve"><value>摘要最多 4000 个字符。</value></data>
+  <data name="Cvs_Open" xml:space="preserve"><value>打开</value></data>
+  <data name="CvDetail_Back" xml:space="preserve"><value>返回简历列表</value></data>
+  <data name="CvDetail_Present" xml:space="preserve"><value>至今</value></data>
+  <data name="CvDetail_Summary" xml:space="preserve"><value>摘要</value></data>
+  <data name="CvDetail_NoSummary" xml:space="preserve"><value>暂无摘要。请在列表中编辑该简历来添加。</value></data>
+  <data name="CvDetail_DateOfBirth" xml:space="preserve"><value>出生日期</value></data>
+  <data name="CvDetail_ChangePhoto" xml:space="preserve"><value>更换照片</value></data>
+  <data name="CvDetail_RemovePhoto" xml:space="preserve"><value>移除</value></data>
+  <data name="CvDetail_ChoosePhotoTitle" xml:space="preserve"><value>选择照片</value></data>
+  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>照片未更改（已取消，或文件大于 2 MB）。</value></data>
+  <data name="CvDetail_DriverLicence" xml:space="preserve"><value>驾驶证</value></data>
+  <data name="CvDetail_NoDriverLicence" xml:space="preserve"><value>无驾驶证</value></data>
+  <data name="CvDetail_UserMissing" xml:space="preserve"><value>（用户已不存在）</value></data>
+  <data name="CvSection_Edit" xml:space="preserve"><value>编辑</value></data>
+  <data name="CvSection_Empty" xml:space="preserve"><value>尚未添加任何内容。</value></data>
+  <data name="CvSection_Work" xml:space="preserve"><value>工作经历</value></data>
+  <data name="CvSection_Education" xml:space="preserve"><value>教育经历</value></data>
+  <data name="CvSection_Courses" xml:space="preserve"><value>课程</value></data>
+  <data name="CvSection_Languages" xml:space="preserve"><value>语言</value></data>
+  <data name="CvSection_AddWork" xml:space="preserve"><value>添加工作</value></data>
+  <data name="CvSection_AddEducation" xml:space="preserve"><value>添加教育经历</value></data>
+  <data name="CvSection_AddCourse" xml:space="preserve"><value>添加课程</value></data>
+  <data name="CvSection_AddLanguage" xml:space="preserve"><value>添加语言</value></data>
+  <data name="CvLevel_Basic" xml:space="preserve"><value>基础</value></data>
+  <data name="CvLevel_Good" xml:space="preserve"><value>良好</value></data>
+  <data name="CvLevel_Fluent" xml:space="preserve"><value>流利</value></data>
+  <data name="CvLevel_Native" xml:space="preserve"><value>母语</value></data>
+  <data name="CvWorkEditor_New" xml:space="preserve"><value>新建工作</value></data>
+  <data name="CvWorkEditor_Edit" xml:space="preserve"><value>编辑工作</value></data>
+  <data name="CvEducationEditor_New" xml:space="preserve"><value>新建教育经历</value></data>
+  <data name="CvEducationEditor_Edit" xml:space="preserve"><value>编辑教育经历</value></data>
+  <data name="CvCourseEditor_New" xml:space="preserve"><value>新建课程</value></data>
+  <data name="CvCourseEditor_Edit" xml:space="preserve"><value>编辑课程</value></data>
+  <data name="CvLanguageEditor_New" xml:space="preserve"><value>新建语言</value></data>
+  <data name="CvLanguageEditor_Edit" xml:space="preserve"><value>编辑语言</value></data>
+  <data name="CvLicenceEditor_Title" xml:space="preserve"><value>驾驶证</value></data>
+  <data name="CvLicenceEditor_Hint" xml:space="preserve"><value>勾选你持有的所有准驾类别。全部不勾选表示没有驾驶证。</value></data>
+  <data name="CvSectionEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="CvSectionEditor_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="CvSectionEditor_ConfirmDelete" xml:space="preserve"><value>删除此条目？</value></data>
+  <data name="CvSectionEditor_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="CvField_Employer" xml:space="preserve"><value>雇主</value></data>
+  <data name="CvField_Role" xml:space="preserve"><value>职位</value></data>
+  <data name="CvField_School" xml:space="preserve"><value>学校</value></data>
+  <data name="CvField_Programme" xml:space="preserve"><value>专业或学位</value></data>
+  <data name="CvField_StartDate" xml:space="preserve"><value>开始日期</value></data>
+  <data name="CvField_EndDate" xml:space="preserve"><value>结束日期</value></data>
+  <data name="CvField_Ongoing" xml:space="preserve"><value>进行中</value></data>
+  <data name="CvField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="CvField_CourseName" xml:space="preserve"><value>课程</value></data>
+  <data name="CvField_Provider" xml:space="preserve"><value>主办方</value></data>
+  <data name="CvField_CompletedYear" xml:space="preserve"><value>完成年份</value></data>
+  <data name="CvField_Language" xml:space="preserve"><value>语言</value></data>
+  <data name="CvField_Level" xml:space="preserve"><value>水平</value></data>
+  <data name="Error_cv_item_not_found" xml:space="preserve"><value>未找到该条目。</value></data>
+  <data name="Error_cv_employer_required" xml:space="preserve"><value>必须填写雇主。</value></data>
+  <data name="Error_cv_employer_too_long" xml:space="preserve"><value>雇主最多 200 个字符。</value></data>
+  <data name="Error_cv_role_required" xml:space="preserve"><value>必须填写职位。</value></data>
+  <data name="Error_cv_role_too_long" xml:space="preserve"><value>职位最多 200 个字符。</value></data>
+  <data name="Error_cv_school_required" xml:space="preserve"><value>必须填写学校。</value></data>
+  <data name="Error_cv_school_too_long" xml:space="preserve"><value>学校最多 200 个字符。</value></data>
+  <data name="Error_cv_programme_required" xml:space="preserve"><value>必须填写专业或学位。</value></data>
+  <data name="Error_cv_programme_too_long" xml:space="preserve"><value>专业或学位最多 200 个字符。</value></data>
+  <data name="Error_cv_start_date_required" xml:space="preserve"><value>必须填写开始日期。</value></data>
+  <data name="Error_cv_end_date_required" xml:space="preserve"><value>除非进行中，否则必须填写结束日期。</value></data>
+  <data name="Error_cv_end_before_start" xml:space="preserve"><value>结束日期不能早于开始日期。</value></data>
+  <data name="Error_cv_description_too_long" xml:space="preserve"><value>描述最多 2000 个字符。</value></data>
+  <data name="Error_cv_course_name_required" xml:space="preserve"><value>必须填写课程名称。</value></data>
+  <data name="Error_cv_course_name_too_long" xml:space="preserve"><value>课程名称最多 200 个字符。</value></data>
+  <data name="Error_cv_provider_too_long" xml:space="preserve"><value>主办方最多 200 个字符。</value></data>
+  <data name="Error_cv_course_year_invalid" xml:space="preserve"><value>年份必须在 1950 年到今年之间。</value></data>
+  <data name="Error_cv_language_required" xml:space="preserve"><value>必须填写语言。</value></data>
+  <data name="Error_cv_language_too_long" xml:space="preserve"><value>语言最多 100 个字符。</value></data>
+  <data name="Error_cv_language_level_invalid" xml:space="preserve"><value>请选择语言水平。</value></data>
+  <data name="Error_cv_language_conflict" xml:space="preserve"><value>该语言已在简历中。</value></data>
+  <data name="Error_cv_driver_licence_invalid" xml:space="preserve"><value>未知的准驾类别。</value></data>
+  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>照片最大 2 MB。</value></data>
+  <data name="Error_cv_photo_invalid" xml:space="preserve"><value>照片必须是 PNG 或 JPEG 图片。</value></data>
+  <data name="CvDetail_Technologies" xml:space="preserve"><value>技术</value></data>
+  <data name="CvDetail_NoTechnologies" xml:space="preserve"><value>暂无技术。请在工作经历的某份工作中添加。</value></data>
+  <data name="CvField_Technologies" xml:space="preserve"><value>技术</value></data>
+  <data name="CvField_TechnologiesPlaceholder" xml:space="preserve"><value>例如：C#, .NET, PostgreSQL, Docker</value></data>
+  <data name="Error_cv_technologies_too_many" xml:space="preserve"><value>每份工作最多 20 项技术。</value></data>
+  <data name="Error_cv_technology_too_long" xml:space="preserve"><value>每项技术最多 30 个字符。</value></data>
+  <data name="CvDetail_Export" xml:space="preserve"><value>导出到 Word</value></data>
+  <data name="CvDetail_ExportTitle" xml:space="preserve"><value>将简历导出到 Word</value></data>
+  <data name="CvDetail_Contact" xml:space="preserve"><value>联系方式</value></data>
+  <data name="CvDetail_NoContact" xml:space="preserve"><value>尚未选择联系方式。</value></data>
+  <data name="CvContactEditor_Title" xml:space="preserve"><value>联系方式</value></data>
+  <data name="CvContactEditor_Hint" xml:space="preserve"><value>选择这份简历要显示的地址、电话号码和电子邮件地址。</value></data>
+  <data name="CvContactEditor_Empty" xml:space="preserve"><value>您还没有地址、电话号码或电子邮件地址。请在用户页面添加。</value></data>
+  <data name="CvContactKind_Address" xml:space="preserve"><value>地址</value></data>
+  <data name="CvContactKind_Phone" xml:space="preserve"><value>电话</value></data>
+  <data name="CvContactKind_Email" xml:space="preserve"><value>电子邮件</value></data>
+  <data name="CvField_LinkedIn" xml:space="preserve"><value>LinkedIn</value></data>
+  <data name="CvField_LinkedInPlaceholder" xml:space="preserve"><value>linkedin.com/in/your-name</value></data>
+  <data name="Error_cv_linkedin_invalid" xml:space="preserve"><value>LinkedIn 链接必须是 linkedin.com 上的地址。</value></data>
+</root>

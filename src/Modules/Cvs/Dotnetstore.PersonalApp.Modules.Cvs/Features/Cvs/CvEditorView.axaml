@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="460"
+             x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CvEditorView"
+             x:DataType="cvs:CvEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding EditorTitle}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_Title}" Classes="label"/>
+                <TextBox Text="{Binding Title}" PlaceholderText="{loc:Tr CvField_TitlePlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_TargetJob}" Classes="label"/>
+                <TextBox Text="{Binding TargetJob}" PlaceholderText="{loc:Tr CvField_TargetJobPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_LinkedIn}" Classes="label"/>
+                <TextBox Text="{Binding LinkedIn}" PlaceholderText="{loc:Tr CvField_LinkedInPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_Summary}" Classes="label"/>
+                <TextBox Text="{Binding Summary}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="140" MaxHeight="260"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr CvEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

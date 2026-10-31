@@ -28,6 +28,7 @@
   <data name="UserDetail_Information" xml:space="preserve"><value>信息</value></data>
   <data name="UserDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
   <data name="UserDetail_TabPhoneNumbers" xml:space="preserve"><value>电话号码</value></data>
+  <data name="UserDetail_TabCvs" xml:space="preserve"><value>简历</value></data>
   <data name="UserDetail_TabEmailAddresses" xml:space="preserve"><value>电子邮件地址</value></data>
   <data name="UserDetail_TabAddresses" xml:space="preserve"><value>地址</value></data>
   <data name="UserDetail_CreatedAt" xml:space="preserve"><value>创建时间</value></data>

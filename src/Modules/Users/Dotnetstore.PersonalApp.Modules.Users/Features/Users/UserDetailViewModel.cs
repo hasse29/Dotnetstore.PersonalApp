@@ -1,12 +1,13 @@
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Addresses;
+using Dotnetstore.PersonalApp.Shared.Cvs;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
 
-internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null) : ViewModelBase
+internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, IUserCvsPanelFactory? cvsFactory = null) : ViewModelBase
 {
     public UserDto User { get; } = user;
 
@@ -18,6 +19,9 @@ internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddresses
 
     /// <summary>The phone numbers tab, provided by the PhoneNumbers module; null when that module is not installed.</summary>
     public ViewModelBase? PhoneNumbers { get; } = phoneNumbersFactory?.Create(user.Id);
+
+    /// <summary>The user's CVs tab, provided by the Cvs module; null when that module is not installed.</summary>
+    public ViewModelBase? Cvs { get; } = cvsFactory?.Create(user.Id);
 
     public string Initials => string.Concat(
         User.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)

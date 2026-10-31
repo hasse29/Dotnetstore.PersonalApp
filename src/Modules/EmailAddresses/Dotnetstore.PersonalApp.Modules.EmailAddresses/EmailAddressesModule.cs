@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.EmailAddresses.Features.EmailAddressTypes;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses.Persistence;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses.Resources;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses.Startup;
+using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -44,6 +45,7 @@ public static class EmailAddressesModule
 
         services.AddSingleton<DeleteEmailAddressesForObject.Handler>();
         services.AddSingleton<IObjectEmailAddressesPanelFactory, ObjectEmailAddressesPanelFactory>();
+        services.AddSingleton<IContactInfoSource, EmailContactSource>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();

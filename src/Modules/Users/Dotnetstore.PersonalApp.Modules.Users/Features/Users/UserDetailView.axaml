@@ -85,6 +85,9 @@
         <TabItem Header="{loc:Tr UserDetail_TabPhoneNumbers}" IsVisible="{Binding PhoneNumbers, Converter={x:Static ObjectConverters.IsNotNull}}">
             <ContentControl Content="{Binding PhoneNumbers}" Margin="0,20,0,0"/>
         </TabItem>
+        <TabItem Header="{loc:Tr UserDetail_TabCvs}" IsVisible="{Binding Cvs, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <ContentControl Content="{Binding Cvs}" Margin="0,20,0,0"/>
+        </TabItem>
         </TabControl>
     </Grid>
 

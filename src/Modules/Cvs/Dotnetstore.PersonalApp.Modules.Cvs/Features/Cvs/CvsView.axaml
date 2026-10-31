@@ -1,0 +1,117 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="560"
+             x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CvsView"
+             x:DataType="cvs:CvsViewModel">
+
+    <UserControl.Styles>
+        <!-- On the module's own page the content gets the usual page margin; as a tab it sits flush. -->
+        <Style Selector="Panel#Root.page">
+            <Setter Property="Margin" Value="28"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Panel x:Name="Root" Classes.page="{Binding IsPageLayout}">
+    <Grid RowDefinitions="Auto,*" RowSpacing="20" IsVisible="{Binding Detail, Converter={x:Static ObjectConverters.IsNull}}">
+
+        <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding IsPageLayout}">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{loc:Tr Cvs_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr Cvs_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr Cvs_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+            <!-- CV table -->
+            <Border Classes="card" VerticalAlignment="Top">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+
+                    <Grid ColumnDefinitions="*,Auto" Margin="16" IsVisible="{Binding !IsPageLayout}">
+                        <TextBlock Text="{loc:Tr Cvs_Title}" Classes="h2" VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                <TextBlock Text="{loc:Tr Cvs_New}"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
+                        <Grid ColumnDefinitions="*,*">
+                            <TextBlock Text="{loc:Tr Cvs_ColTitle}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr Cvs_ColTargetJob}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="2" Classes="table" MinHeight="120" ItemsSource="{Binding Cvs}"
+                             SelectedItem="{Binding SelectedCv}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="cvs:CvDto">
+                                <Grid ColumnDefinitions="*,*">
+                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding TargetJob}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="3" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr Cvs_Open}" Classes="subtle" Command="{Binding OpenDetailCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Cvs_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+
+                                <TextBlock Text="{loc:Tr Cvs_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Cvs_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Editor / empty state -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                      Data="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            <TextBlock Text="{loc:Tr Cvs_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr Cvs_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+    <ContentControl Content="{Binding Detail}"/>
+    </Panel>
+
+</UserControl>

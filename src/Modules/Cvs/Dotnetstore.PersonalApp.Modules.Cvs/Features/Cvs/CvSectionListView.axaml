@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="240"
+             x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CvSectionListView"
+             x:DataType="cvs:CvSectionListViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="12">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Text="{Binding Title}" Classes="h2" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Classes="subtle" Command="{Binding AddCommand}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Width="12" Height="12" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        <TextBlock Text="{Binding AddText}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <TextBlock Text="{Binding EmptyText}" Classes="muted" IsVisible="{Binding IsEmpty}"/>
+
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="cvs:CvSectionItem">
+                        <Border Padding="0,10" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Subtitle}" Classes="muted" TextWrapping="Wrap"
+                                               IsVisible="{Binding Subtitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                    <TextBlock Text="{Binding Meta}" Classes="caption"
+                                               IsVisible="{Binding Meta, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,4,0,0"
+                                               IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                    <ItemsControl ItemsSource="{Binding Tags}" IsVisible="{Binding HasTags}" Margin="0,6,0,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="x:String">
+                                                <Border Background="{DynamicResource SurfaceMutedBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}"
+                                                        BorderThickness="1" CornerRadius="10" Padding="8,2" Margin="0,0,6,6">
+                                                    <TextBlock Text="{Binding}" Classes="caption"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                                <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr CvSection_Edit}" Command="{Binding EditCommand}"
+                                        VerticalAlignment="Top"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+
+</UserControl>

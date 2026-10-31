@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.Addresses.Features.AddressTypes;
 using Dotnetstore.PersonalApp.Modules.Addresses.Persistence;
 using Dotnetstore.PersonalApp.Modules.Addresses.Resources;
 using Dotnetstore.PersonalApp.Modules.Addresses.Startup;
+using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -44,6 +45,7 @@ public static class AddressesModule
 
         services.AddSingleton<DeleteAddressesForObject.Handler>();
         services.AddSingleton<IObjectAddressesPanelFactory, ObjectAddressesPanelFactory>();
+        services.AddSingleton<IContactInfoSource, AddressContactSource>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();

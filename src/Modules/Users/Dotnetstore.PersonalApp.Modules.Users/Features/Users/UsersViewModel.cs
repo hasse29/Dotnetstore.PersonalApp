@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Addresses;
+using Dotnetstore.PersonalApp.Shared.Cvs;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
@@ -17,7 +18,8 @@ internal sealed partial class UsersViewModel(
     ILocalizationService localization,
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
-    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null) : ViewModelBase
+    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
+    IUserCvsPanelFactory? cvsFactory = null) : ViewModelBase
 {
     public ObservableCollection<UserDto> Users { get; } = [];
 
@@ -82,7 +84,7 @@ internal sealed partial class UsersViewModel(
             return;
         }
 
-        var detail = new UserDetailViewModel(user, addressesFactory, emailAddressesFactory, phoneNumbersFactory);
+        var detail = new UserDetailViewModel(user, addressesFactory, emailAddressesFactory, phoneNumbersFactory, cvsFactory);
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;

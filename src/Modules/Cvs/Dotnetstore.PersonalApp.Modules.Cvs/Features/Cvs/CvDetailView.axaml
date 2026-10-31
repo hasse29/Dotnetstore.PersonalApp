@@ -1,0 +1,156 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CvDetailView"
+             x:DataType="cvs:CvDetailViewModel">
+
+    <UserControl.Resources>
+        <cvs:BytesToBitmapConverter x:Key="PhotoConverter"/>
+    </UserControl.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="16">
+
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr CvDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Title}" Classes="h1"/>
+                <TextBlock Text="{Binding TargetJob}" Classes="muted"
+                           IsVisible="{Binding TargetJob, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+            </StackPanel>
+            <Button Grid.Column="2" Classes="primary" Command="{Binding ExportCommand}" VerticalAlignment="Center"
+                    IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    <TextBlock Text="{loc:Tr CvDetail_Export}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <TextBlock Grid.Row="1" Text="{Binding StatusMessage}" Classes="error" TextWrapping="Wrap"
+                   IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+        <!-- Overview -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"
+                      IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+            <Grid ColumnDefinitions="300,*" ColumnSpacing="20" Margin="0,0,12,0">
+
+                <StackPanel Spacing="20" VerticalAlignment="Top">
+                    <Border Classes="card" Padding="28">
+                        <StackPanel Spacing="14" HorizontalAlignment="Center">
+                            <Panel Width="132" Height="132">
+                                <Border Classes="avatar" Width="132" Height="132" CornerRadius="66"
+                                        IsVisible="{Binding HasNoPhoto}">
+                                    <TextBlock Text="{Binding Initials}" FontSize="44"/>
+                                </Border>
+                                <Border Width="132" Height="132" CornerRadius="66" ClipToBounds="True"
+                                        IsVisible="{Binding !HasNoPhoto}">
+                                    <Image Source="{Binding Photo, Converter={StaticResource PhotoConverter}}" Stretch="UniformToFill"/>
+                                </Border>
+                            </Panel>
+                            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                <Button Classes="subtle" Content="{loc:Tr CvDetail_ChangePhoto}" Command="{Binding ChoosePhotoCommand}"/>
+                                <Button Classes="link-danger" Content="{loc:Tr CvDetail_RemovePhoto}" Command="{Binding RemovePhotoCommand}"/>
+                            </StackPanel>
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{Binding FullName}" Classes="h2" HorizontalAlignment="Center"
+                                           TextAlignment="Center" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Username}" Classes="muted" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel IsVisible="{Binding DateOfBirth, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                <TextBlock Text="{loc:Tr CvDetail_DateOfBirth}" Classes="label" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding DateOfBirth}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Classes="card" Padding="24">
+                        <StackPanel Spacing="10">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="{loc:Tr CvDetail_Contact}" Classes="h2" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr CvSection_Edit}" Command="{Binding EditContactCommand}"/>
+                            </Grid>
+                            <TextBlock Text="{loc:Tr CvDetail_NoContact}" Classes="muted" TextWrapping="Wrap" IsVisible="{Binding HasNoContact}"/>
+                            <ItemsControl ItemsSource="{Binding ContactLines}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,0,0,4"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Classes="card" Padding="24">
+                        <StackPanel Spacing="10">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="{loc:Tr CvDetail_DriverLicence}" Classes="h2" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr CvSection_Edit}" Command="{Binding EditDriverLicenceCommand}"/>
+                            </Grid>
+                            <TextBlock Text="{Binding DriverLicence}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Spacing="20" VerticalAlignment="Top">
+                    <Border Classes="card" Padding="24">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{loc:Tr CvDetail_Technologies}" Classes="h2"/>
+                            <ItemsControl ItemsSource="{Binding Technologies}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="cvs:TechnologyChip">
+                                        <Border Background="{DynamicResource SurfaceMutedBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}"
+                                                BorderThickness="1" CornerRadius="12" Padding="10,3" Margin="0,0,8,8">
+                                            <TextBlock Text="{Binding Text}" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text="{loc:Tr CvDetail_NoTechnologies}" Classes="muted" TextWrapping="Wrap"
+                                       IsVisible="{Binding HasNoTechnologies}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Classes="card" Padding="24">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{loc:Tr CvDetail_Summary}" Classes="h2"/>
+                            <TextBlock Text="{Binding Summary}" TextWrapping="Wrap"
+                                       IsVisible="{Binding Summary, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                            <TextBlock Text="{loc:Tr CvDetail_NoSummary}" Classes="muted" TextWrapping="Wrap"
+                                       IsVisible="{Binding Summary, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <ItemsControl ItemsSource="{Binding Sections}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Spacing="20"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Editor, in place of the overview -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"
+                      IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <ContentControl Content="{Binding Editor}" MaxWidth="560" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

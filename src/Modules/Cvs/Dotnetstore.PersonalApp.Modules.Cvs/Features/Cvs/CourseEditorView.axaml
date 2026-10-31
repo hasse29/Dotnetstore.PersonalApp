@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             mc:Ignorable="d" d:DesignWidth="520" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CourseEditorView"
+             x:DataType="cvs:CourseEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_CourseName}" Classes="label"/>
+                <TextBox Text="{Binding Name}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_Provider}" Classes="label"/>
+                <TextBox Text="{Binding Provider}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr CvField_CompletedYear}" Classes="label"/>
+                <NumericUpDown Value="{Binding CompletedYear}" Minimum="1950" Maximum="2100" Increment="1" FormatString="0"
+                               HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,6,0,0">
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding CanDelete}">
+                    <Button Content="{loc:Tr CvSectionEditor_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                            IsVisible="{Binding !IsConfirmingDelete}"/>
+                    <TextBlock Text="{loc:Tr CvSectionEditor_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                               IsVisible="{Binding IsConfirmingDelete}"/>
+                    <Button Content="{loc:Tr CvSectionEditor_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                            IsVisible="{Binding IsConfirmingDelete}"/>
+                    <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                            IsVisible="{Binding IsConfirmingDelete}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                    <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                    <Button Content="{loc:Tr CvSectionEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
+
+</UserControl>

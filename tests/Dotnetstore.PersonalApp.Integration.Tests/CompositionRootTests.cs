@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Host;
 using Dotnetstore.PersonalApp.Host.ViewModels;
 using Dotnetstore.PersonalApp.Shared.Addresses;
+using Dotnetstore.PersonalApp.Shared.Cvs;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 using Dotnetstore.PersonalApp.Shared.Shell;
@@ -45,6 +46,16 @@ public sealed class CompositionRootTests
         using var services = CompositionRoot.BuildServices();
 
         var panel = services.GetRequiredService<IObjectPhoneNumbersPanelFactory>().Create(Guid.NewGuid());
+
+        Assert.NotNull(panel);
+    }
+
+    [Fact]
+    public void CvsModuleProvidesTheCvsPanelForOtherModules()
+    {
+        using var services = CompositionRoot.BuildServices();
+
+        var panel = services.GetRequiredService<IUserCvsPanelFactory>().Create(Guid.NewGuid());
 
         Assert.NotNull(panel);
     }

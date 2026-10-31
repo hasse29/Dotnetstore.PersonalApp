@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.PhoneNumbers.Features.PhoneNumberTypes;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers.Persistence;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers.Resources;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers.Startup;
+using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -44,6 +45,7 @@ public static class PhoneNumbersModule
 
         services.AddSingleton<DeletePhoneNumbersForObject.Handler>();
         services.AddSingleton<IObjectPhoneNumbersPanelFactory, ObjectPhoneNumbersPanelFactory>();
+        services.AddSingleton<IContactInfoSource, PhoneContactSource>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();

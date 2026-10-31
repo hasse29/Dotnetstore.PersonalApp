@@ -28,6 +28,7 @@
   <data name="UserDetail_Information" xml:space="preserve"><value>Information</value></data>
   <data name="UserDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="UserDetail_TabPhoneNumbers" xml:space="preserve"><value>Phone numbers</value></data>
+  <data name="UserDetail_TabCvs" xml:space="preserve"><value>CVs</value></data>
   <data name="UserDetail_TabEmailAddresses" xml:space="preserve"><value>Email addresses</value></data>
   <data name="UserDetail_TabAddresses" xml:space="preserve"><value>Addresses</value></data>
   <data name="UserDetail_CreatedAt" xml:space="preserve"><value>Created</value></data>

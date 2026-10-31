@@ -41,11 +41,11 @@ public sealed class EventPublisherTests
     }
 
     [Fact]
-    public void TheAddressEmailAndPhoneModulesListenForUserAndClientDeletions()
+    public void TheOwnedDataModulesListenForUserAndClientDeletions()
     {
         using var services = CompositionRoot.BuildServices();
 
-        Assert.Equal(3, services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count());
+        Assert.Equal(4, services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count());
         Assert.Equal(3, services.GetServices<IIntegrationEventConsumer<ClientDeleted>>().Count());
         Assert.IsType<InProcessEventPublisher>(services.GetRequiredService<IEventPublisher>());
     }

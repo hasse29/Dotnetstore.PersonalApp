@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Cvs_Title" xml:space="preserve"><value>CV</value></data>
+  <data name="Cvs_Subtitle" xml:space="preserve"><value>Skriv ett CV för varje typ av jobb du vill söka.</value></data>
+  <data name="Cvs_New" xml:space="preserve"><value>Nytt CV</value></data>
+  <data name="Cvs_ColTitle" xml:space="preserve"><value>TITEL</value></data>
+  <data name="Cvs_ColTargetJob" xml:space="preserve"><value>MÅLJOBB</value></data>
+  <data name="Cvs_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Cvs_ConfirmDelete" xml:space="preserve"><value>Ta bort detta CV?</value></data>
+  <data name="Cvs_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Cvs_NoSelection" xml:space="preserve"><value>Inget CV valt</value></data>
+  <data name="Cvs_NoSelectionHint" xml:space="preserve"><value>Välj ett CV i tabellen för att redigera det, eller skapa ett nytt.</value></data>
+  <data name="Cvs_Count" xml:space="preserve"><value>{0} CV</value></data>
+  <data name="Cvs_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} CV.</value></data>
+  <data name="Cvs_Saved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="CvEditor_New" xml:space="preserve"><value>Nytt CV</value></data>
+  <data name="CvEditor_Edit" xml:space="preserve"><value>Redigera CV</value></data>
+  <data name="CvEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="CvField_Title" xml:space="preserve"><value>Titel</value></data>
+  <data name="CvField_TitlePlaceholder" xml:space="preserve"><value>t.ex. Backendutvecklare</value></data>
+  <data name="CvField_TargetJob" xml:space="preserve"><value>Måljobb</value></data>
+  <data name="CvField_TargetJobPlaceholder" xml:space="preserve"><value>t.ex. Senior .NET-utvecklare på ett fintechbolag</value></data>
+  <data name="CvField_Summary" xml:space="preserve"><value>Sammanfattning</value></data>
+  <data name="Startup_CvsDatabase" xml:space="preserve"><value>Förbereder CV-databasen...</value></data>
+  <data name="Error_cv_not_found" xml:space="preserve"><value>CV:t hittades inte.</value></data>
+  <data name="Error_cv_conflict" xml:space="preserve"><value>Du har redan ett CV med den titeln.</value></data>
+  <data name="Error_cv_user_required" xml:space="preserve"><value>CV:t måste tillhöra en användare.</value></data>
+  <data name="Error_cv_title_required" xml:space="preserve"><value>Titel måste anges.</value></data>
+  <data name="Error_cv_title_too_long" xml:space="preserve"><value>Titeln får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_target_job_too_long" xml:space="preserve"><value>Måljobbet får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_summary_too_long" xml:space="preserve"><value>Sammanfattningen får vara högst 4000 tecken.</value></data>
+  <data name="Cvs_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="CvDetail_Back" xml:space="preserve"><value>Tillbaka till CV</value></data>
+  <data name="CvDetail_Present" xml:space="preserve"><value>nu</value></data>
+  <data name="CvDetail_Summary" xml:space="preserve"><value>Sammanfattning</value></data>
+  <data name="CvDetail_NoSummary" xml:space="preserve"><value>Ingen sammanfattning än. Redigera CV:t i listan för att lägga till en.</value></data>
+  <data name="CvDetail_DateOfBirth" xml:space="preserve"><value>Födelsedatum</value></data>
+  <data name="CvDetail_ChangePhoto" xml:space="preserve"><value>Byt foto</value></data>
+  <data name="CvDetail_RemovePhoto" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="CvDetail_ChoosePhotoTitle" xml:space="preserve"><value>Välj ett foto</value></data>
+  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>Fotot ändrades inte (avbrutet, eller så är filen större än 2 MB).</value></data>
+  <data name="CvDetail_DriverLicence" xml:space="preserve"><value>Körkort</value></data>
+  <data name="CvDetail_NoDriverLicence" xml:space="preserve"><value>Inget körkort</value></data>
+  <data name="CvDetail_UserMissing" xml:space="preserve"><value>(användaren finns inte längre)</value></data>
+  <data name="CvSection_Edit" xml:space="preserve"><value>Redigera</value></data>
+  <data name="CvSection_Empty" xml:space="preserve"><value>Inget tillagt än.</value></data>
+  <data name="CvSection_Work" xml:space="preserve"><value>Arbetslivserfarenhet</value></data>
+  <data name="CvSection_Education" xml:space="preserve"><value>Utbildning</value></data>
+  <data name="CvSection_Courses" xml:space="preserve"><value>Kurser</value></data>
+  <data name="CvSection_Languages" xml:space="preserve"><value>Språk</value></data>
+  <data name="CvSection_AddWork" xml:space="preserve"><value>Lägg till jobb</value></data>
+  <data name="CvSection_AddEducation" xml:space="preserve"><value>Lägg till utbildning</value></data>
+  <data name="CvSection_AddCourse" xml:space="preserve"><value>Lägg till kurs</value></data>
+  <data name="CvSection_AddLanguage" xml:space="preserve"><value>Lägg till språk</value></data>
+  <data name="CvLevel_Basic" xml:space="preserve"><value>Grundläggande</value></data>
+  <data name="CvLevel_Good" xml:space="preserve"><value>God</value></data>
+  <data name="CvLevel_Fluent" xml:space="preserve"><value>Flytande</value></data>
+  <data name="CvLevel_Native" xml:space="preserve"><value>Modersmål</value></data>
+  <data name="CvWorkEditor_New" xml:space="preserve"><value>Nytt jobb</value></data>
+  <data name="CvWorkEditor_Edit" xml:space="preserve"><value>Redigera jobb</value></data>
+  <data name="CvEducationEditor_New" xml:space="preserve"><value>Ny utbildning</value></data>
+  <data name="CvEducationEditor_Edit" xml:space="preserve"><value>Redigera utbildning</value></data>
+  <data name="CvCourseEditor_New" xml:space="preserve"><value>Ny kurs</value></data>
+  <data name="CvCourseEditor_Edit" xml:space="preserve"><value>Redigera kurs</value></data>
+  <data name="CvLanguageEditor_New" xml:space="preserve"><value>Nytt språk</value></data>
+  <data name="CvLanguageEditor_Edit" xml:space="preserve"><value>Redigera språk</value></data>
+  <data name="CvLicenceEditor_Title" xml:space="preserve"><value>Körkort</value></data>
+  <data name="CvLicenceEditor_Hint" xml:space="preserve"><value>Bocka i alla behörigheter du har. Lämna alla tomma för inget körkort.</value></data>
+  <data name="CvSectionEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="CvSectionEditor_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="CvSectionEditor_ConfirmDelete" xml:space="preserve"><value>Ta bort denna post?</value></data>
+  <data name="CvSectionEditor_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="CvField_Employer" xml:space="preserve"><value>Arbetsgivare</value></data>
+  <data name="CvField_Role" xml:space="preserve"><value>Roll</value></data>
+  <data name="CvField_School" xml:space="preserve"><value>Skola</value></data>
+  <data name="CvField_Programme" xml:space="preserve"><value>Program eller examen</value></data>
+  <data name="CvField_StartDate" xml:space="preserve"><value>Startdatum</value></data>
+  <data name="CvField_EndDate" xml:space="preserve"><value>Slutdatum</value></data>
+  <data name="CvField_Ongoing" xml:space="preserve"><value>Pågående</value></data>
+  <data name="CvField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="CvField_CourseName" xml:space="preserve"><value>Kurs</value></data>
+  <data name="CvField_Provider" xml:space="preserve"><value>Anordnare</value></data>
+  <data name="CvField_CompletedYear" xml:space="preserve"><value>Avslutad år</value></data>
+  <data name="CvField_Language" xml:space="preserve"><value>Språk</value></data>
+  <data name="CvField_Level" xml:space="preserve"><value>Nivå</value></data>
+  <data name="Error_cv_item_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_cv_employer_required" xml:space="preserve"><value>Arbetsgivare måste anges.</value></data>
+  <data name="Error_cv_employer_too_long" xml:space="preserve"><value>Arbetsgivaren får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_role_required" xml:space="preserve"><value>Roll måste anges.</value></data>
+  <data name="Error_cv_role_too_long" xml:space="preserve"><value>Rollen får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_school_required" xml:space="preserve"><value>Skola måste anges.</value></data>
+  <data name="Error_cv_school_too_long" xml:space="preserve"><value>Skolan får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_programme_required" xml:space="preserve"><value>Program eller examen måste anges.</value></data>
+  <data name="Error_cv_programme_too_long" xml:space="preserve"><value>Program eller examen får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_start_date_required" xml:space="preserve"><value>Startdatum måste anges.</value></data>
+  <data name="Error_cv_end_date_required" xml:space="preserve"><value>Slutdatum måste anges om det inte är pågående.</value></data>
+  <data name="Error_cv_end_before_start" xml:space="preserve"><value>Slutdatumet kan inte vara före startdatumet.</value></data>
+  <data name="Error_cv_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 2000 tecken.</value></data>
+  <data name="Error_cv_course_name_required" xml:space="preserve"><value>Kursnamn måste anges.</value></data>
+  <data name="Error_cv_course_name_too_long" xml:space="preserve"><value>Kursnamnet får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_provider_too_long" xml:space="preserve"><value>Anordnaren får vara högst 200 tecken.</value></data>
+  <data name="Error_cv_course_year_invalid" xml:space="preserve"><value>Året måste vara mellan 1950 och i år.</value></data>
+  <data name="Error_cv_language_required" xml:space="preserve"><value>Språk måste anges.</value></data>
+  <data name="Error_cv_language_too_long" xml:space="preserve"><value>Språket får vara högst 100 tecken.</value></data>
+  <data name="Error_cv_language_level_invalid" xml:space="preserve"><value>Välj en språknivå.</value></data>
+  <data name="Error_cv_language_conflict" xml:space="preserve"><value>Detta språk finns redan i CV:t.</value></data>
+  <data name="Error_cv_driver_licence_invalid" xml:space="preserve"><value>Okänd körkortsbehörighet.</value></data>
+  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>Fotot får vara högst 2 MB.</value></data>
+  <data name="Error_cv_photo_invalid" xml:space="preserve"><value>Fotot måste vara en PNG- eller JPEG-bild.</value></data>
+  <data name="CvDetail_Technologies" xml:space="preserve"><value>Teknik</value></data>
+  <data name="CvDetail_NoTechnologies" xml:space="preserve"><value>Ingen teknik än. Lägg till den på ett jobb under arbetslivserfarenhet.</value></data>
+  <data name="CvField_Technologies" xml:space="preserve"><value>Teknik</value></data>
+  <data name="CvField_TechnologiesPlaceholder" xml:space="preserve"><value>t.ex. C#, .NET, PostgreSQL, Docker</value></data>
+  <data name="Error_cv_technologies_too_many" xml:space="preserve"><value>Ett jobb kan ha högst 20 tekniker.</value></data>
+  <data name="Error_cv_technology_too_long" xml:space="preserve"><value>En teknik får vara högst 30 tecken.</value></data>
+  <data name="CvDetail_Export" xml:space="preserve"><value>Exportera till Word</value></data>
+  <data name="CvDetail_ExportTitle" xml:space="preserve"><value>Exportera CV till Word</value></data>
+  <data name="CvDetail_Contact" xml:space="preserve"><value>Kontakt</value></data>
+  <data name="CvDetail_NoContact" xml:space="preserve"><value>Inga kontaktuppgifter valda ännu.</value></data>
+  <data name="CvContactEditor_Title" xml:space="preserve"><value>Kontaktuppgifter</value></data>
+  <data name="CvContactEditor_Hint" xml:space="preserve"><value>Välj vilka av dina adresser, telefonnummer och e-postadresser som visas på det här CV:t.</value></data>
+  <data name="CvContactEditor_Empty" xml:space="preserve"><value>Du har inga adresser, telefonnummer eller e-postadresser ännu. Lägg till dem på din användarsida.</value></data>
+  <data name="CvContactKind_Address" xml:space="preserve"><value>Adress</value></data>
+  <data name="CvContactKind_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="CvContactKind_Email" xml:space="preserve"><value>E-post</value></data>
+  <data name="CvField_LinkedIn" xml:space="preserve"><value>LinkedIn</value></data>
+  <data name="CvField_LinkedInPlaceholder" xml:space="preserve"><value>linkedin.com/in/ditt-namn</value></data>
+  <data name="Error_cv_linkedin_invalid" xml:space="preserve"><value>LinkedIn-länken måste vara en adress på linkedin.com.</value></data>
+</root>

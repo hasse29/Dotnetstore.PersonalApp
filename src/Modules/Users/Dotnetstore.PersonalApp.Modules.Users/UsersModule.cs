@@ -8,6 +8,7 @@ using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Shell;
 using Dotnetstore.PersonalApp.Shared.Startup;
+using Dotnetstore.PersonalApp.Shared.Users;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ public static class UsersModule
 
         services.AddDbContextFactory<UsersDbContext>(options => options.UseSqlite($"Data Source={databasePath}"));
         services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
+        services.AddSingleton<IUserLookup, UserLookup>();
 
         services.AddSingleton<IValidator<CreateUser.Command>, CreateUser.Validator>();
         services.AddSingleton<IValidator<UpdateUser.Command>, UpdateUser.Validator>();

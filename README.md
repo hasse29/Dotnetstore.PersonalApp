@@ -18,6 +18,7 @@ A personal desktop app for keeping track of clients and the time you work for th
   - **Excel export** of one client's reports for a year, one sheet per month (`2026-01`, `2026-02`, ...) with date, hours and location.
   - **Kilometer summary** for a year, per client and month with totals, handy for tax reporting.
 - **Users and sign-in**: the first start creates the first user; every report belongs to the signed-in user.
+- **CVs**: each user can keep several CVs aimed at different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, a LinkedIn link and the contact details you choose per CV. A CV can be exported to Word.
 - **Languages**: English, Swedish and Simplified Chinese, switchable at any time.
 
 ## Install
@@ -58,6 +59,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
 | PhoneNumbers | Phone numbers for any object, with types | `phonenumbers.db` |
 | TimeReports | Time reports, work time types and exports | `timereports.db` |
+| Cvs | CVs with sections, contact selection and Word export | `cvs.db` |
 
 ```
 src/
