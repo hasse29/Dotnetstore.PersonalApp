@@ -105,6 +105,9 @@ dotnet run --project src/Dotnetstore.PersonalApp.Host
 dotnet test
 dotnet format --verify-no-changes
 
+# Windows installer (self-contained win-x64, Inno Setup 6; version from <Version> in Directory.Build.props)
+pwsh installer/build-installer.ps1   # -> artifacts/installer/Dotnetstore.PersonalApp-Setup-<version>.exe
+
 # EF migration for a module
 dotnet ef migrations add <Name> \
   --project src/Modules/<Module>/Dotnetstore.PersonalApp.Modules.<Module> \
