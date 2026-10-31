@@ -1,0 +1,40 @@
+using Dotnetstore.PersonalApp.Modules.EmailAddresses.Consumers;
+using Dotnetstore.PersonalApp.Modules.EmailAddresses.Features.EmailAddresses;
+using Dotnetstore.PersonalApp.Shared.Contracts.Events;
+
+namespace Dotnetstore.PersonalApp.Modules.EmailAddresses.Tests;
+
+public sealed class OwnerDeletedConsumerTests : IDisposable
+{
+    private readonly EmailAddressesFixture _fixture = new();
+
+    private static CancellationToken Ct => TestContext.Current.CancellationToken;
+
+    public void Dispose() => _fixture.Dispose();
+
+    [Fact]
+    public async Task UserDeletedRemovesTheUsersEmailAddressesOnly()
+    {
+        var user = Guid.NewGuid();
+        var other = Guid.NewGuid();
+        await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(user), Ct);
+        await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(user, email: "second@example.com"), Ct);
+        await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(other), Ct);
+
+        await new UserDeletedConsumer(_fixture.DeleteEmailAddressesForObject).ConsumeAsync(new UserDeleted(user), Ct);
+
+        Assert.Empty((await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(user), Ct)).Items);
+        Assert.Single((await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(other), Ct)).Items);
+    }
+
+    [Fact]
+    public async Task ClientDeletedRemovesTheClientsEmailAddresses()
+    {
+        var client = Guid.NewGuid();
+        await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(client), Ct);
+
+        await new ClientDeletedConsumer(_fixture.DeleteEmailAddressesForObject).ConsumeAsync(new ClientDeleted(client), Ct);
+
+        Assert.Empty((await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(client), Ct)).Items);
+    }
+}

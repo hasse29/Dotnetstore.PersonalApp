@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AddressTypes_Title" xml:space="preserve"><value>Adresstyper</value></data>
+  <data name="AddressTypes_Subtitle" xml:space="preserve"><value>Hantera vilka typer av adresser som användare, uppdragsgivare och andra kan ha.</value></data>
+  <data name="AddressTypes_New" xml:space="preserve"><value>Ny adresstyp</value></data>
+  <data name="AddressTypes_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller beskrivning</value></data>
+  <data name="AddressTypes_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="AddressTypes_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="AddressTypes_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="AddressTypes_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="AddressTypes_ConfirmDelete" xml:space="preserve"><value>Ta bort adresstypen?</value></data>
+  <data name="AddressTypes_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="AddressTypes_NoSelection" xml:space="preserve"><value>Ingen adresstyp vald</value></data>
+  <data name="AddressTypes_NoSelectionHint" xml:space="preserve"><value>Välj en adresstyp i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="AddressTypes_Count" xml:space="preserve"><value>{0} adresstyper</value></data>
+  <data name="AddressTypes_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} adresstyper. Förfina sökningen för att se fler.</value></data>
+  <data name="AddressTypes_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="AddressTypeEditor_New" xml:space="preserve"><value>Ny adresstyp</value></data>
+  <data name="AddressTypeEditor_Edit" xml:space="preserve"><value>Redigera adresstyp</value></data>
+  <data name="AddressTypeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="AddressTypeField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="AddressTypeField_NamePlaceholder" xml:space="preserve"><value>t.ex. Faktura</value></data>
+  <data name="AddressTypeField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="AddressesPanel_Title" xml:space="preserve"><value>Adresser</value></data>
+  <data name="AddressesPanel_New" xml:space="preserve"><value>Ny adress</value></data>
+  <data name="AddressesPanel_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="AddressesPanel_ColAddress" xml:space="preserve"><value>ADRESS</value></data>
+  <data name="AddressesPanel_ColCountry" xml:space="preserve"><value>LAND</value></data>
+  <data name="AddressesPanel_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="AddressesPanel_DeleteAll" xml:space="preserve"><value>Ta bort alla</value></data>
+  <data name="AddressesPanel_ConfirmDelete" xml:space="preserve"><value>Ta bort adressen?</value></data>
+  <data name="AddressesPanel_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="AddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>Ta bort alla adresser?</value></data>
+  <data name="AddressesPanel_YesDeleteAll" xml:space="preserve"><value>Ja, ta bort alla</value></data>
+  <data name="AddressesPanel_NoSelection" xml:space="preserve"><value>Ingen adress vald</value></data>
+  <data name="AddressesPanel_NoSelectionHint" xml:space="preserve"><value>Välj en adress i tabellen för att redigera, eller lägg till en ny.</value></data>
+  <data name="AddressesPanel_Count" xml:space="preserve"><value>{0} adresser</value></data>
+  <data name="AddressesPanel_Saved" xml:space="preserve"><value>Adressen av typen {0} sparades.</value></data>
+  <data name="AddressesPanel_Deleted" xml:space="preserve"><value>{0} adresser togs bort.</value></data>
+  <data name="AddressesPanel_NoTypes" xml:space="preserve"><value>Skapa först en adresstyp (se sidan Adresstyper).</value></data>
+  <data name="AddressEditor_New" xml:space="preserve"><value>Ny adress</value></data>
+  <data name="AddressEditor_Edit" xml:space="preserve"><value>Redigera adress</value></data>
+  <data name="AddressEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="AddressField_Type" xml:space="preserve"><value>Adresstyp</value></data>
+  <data name="AddressField_CareOf" xml:space="preserve"><value>C/O</value></data>
+  <data name="AddressField_Street1" xml:space="preserve"><value>Gatuadress</value></data>
+  <data name="AddressField_Street2" xml:space="preserve"><value>Gatuadress 2</value></data>
+  <data name="AddressField_PostalCode" xml:space="preserve"><value>Postnummer</value></data>
+  <data name="AddressField_City" xml:space="preserve"><value>Ort</value></data>
+  <data name="AddressField_State" xml:space="preserve"><value>Delstat / region</value></data>
+  <data name="AddressField_Country" xml:space="preserve"><value>Land</value></data>
+  <data name="Startup_AddressesDatabase" xml:space="preserve"><value>Förbereder adressdatabasen...</value></data>
+  <data name="Error_address_type_not_found" xml:space="preserve"><value>Adresstypen hittades inte.</value></data>
+  <data name="Error_address_type_conflict" xml:space="preserve"><value>Det finns redan en adresstyp med det namnet.</value></data>
+  <data name="Error_address_type_in_use" xml:space="preserve"><value>Adresstypen används av befintliga adresser och kan inte tas bort.</value></data>
+  <data name="Error_address_not_found" xml:space="preserve"><value>Adressen hittades inte.</value></data>
+  <data name="Error_address_object_required" xml:space="preserve"><value>Adressen måste tillhöra ett objekt.</value></data>
+  <data name="Error_address_type_required" xml:space="preserve"><value>Adresstyp måste anges.</value></data>
+  <data name="Error_address_care_of_too_long" xml:space="preserve"><value>C/O får vara högst 100 tecken.</value></data>
+  <data name="Error_address_street1_required" xml:space="preserve"><value>Gatuadress måste anges.</value></data>
+  <data name="Error_address_street1_too_long" xml:space="preserve"><value>Gatuadressen får vara högst 200 tecken.</value></data>
+  <data name="Error_address_street2_too_long" xml:space="preserve"><value>Gatuadress 2 får vara högst 200 tecken.</value></data>
+  <data name="Error_address_postal_code_required" xml:space="preserve"><value>Postnummer måste anges.</value></data>
+  <data name="Error_address_postal_code_too_long" xml:space="preserve"><value>Postnumret får vara högst 20 tecken.</value></data>
+  <data name="Error_address_city_required" xml:space="preserve"><value>Ort måste anges.</value></data>
+  <data name="Error_address_city_too_long" xml:space="preserve"><value>Orten får vara högst 100 tecken.</value></data>
+  <data name="Error_address_state_too_long" xml:space="preserve"><value>Delstaten/regionen får vara högst 100 tecken.</value></data>
+  <data name="Error_address_country_required" xml:space="preserve"><value>Land måste anges.</value></data>
+  <data name="Error_address_country_too_long" xml:space="preserve"><value>Landet får vara högst 100 tecken.</value></data>
+  <data name="Error_address_type_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_address_type_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_address_type_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+</root>

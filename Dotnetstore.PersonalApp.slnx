@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Dotnetstore.PersonalApp.Host/Dotnetstore.PersonalApp.Host.csproj" />
+    <Project Path="src/Dotnetstore.PersonalApp.Shared/Dotnetstore.PersonalApp.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/">
+    <Project Path="src/Modules/Addresses/Dotnetstore.PersonalApp.Modules.Addresses/Dotnetstore.PersonalApp.Modules.Addresses.csproj" />
+    <Project Path="src/Modules/EmailAddresses/Dotnetstore.PersonalApp.Modules.EmailAddresses/Dotnetstore.PersonalApp.Modules.EmailAddresses.csproj" />
+    <Project Path="src/Modules/Clients/Dotnetstore.PersonalApp.Modules.Clients/Dotnetstore.PersonalApp.Modules.Clients.csproj" />
+    <Project Path="src/Modules/TimeReports/Dotnetstore.PersonalApp.Modules.TimeReports/Dotnetstore.PersonalApp.Modules.TimeReports.csproj" />
+    <Project Path="src/Modules/PhoneNumbers/Dotnetstore.PersonalApp.Modules.PhoneNumbers/Dotnetstore.PersonalApp.Modules.PhoneNumbers.csproj" />
+    <Project Path="src/Modules/Users/Dotnetstore.PersonalApp.Modules.Users/Dotnetstore.PersonalApp.Modules.Users.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Dotnetstore.PersonalApp.Integration.Tests/Dotnetstore.PersonalApp.Integration.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Users.Tests/Dotnetstore.PersonalApp.Modules.Users.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Addresses.Tests/Dotnetstore.PersonalApp.Modules.Addresses.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.EmailAddresses.Tests/Dotnetstore.PersonalApp.Modules.EmailAddresses.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.PhoneNumbers.Tests/Dotnetstore.PersonalApp.Modules.PhoneNumbers.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Clients.Tests/Dotnetstore.PersonalApp.Modules.Clients.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.TimeReports.Tests/Dotnetstore.PersonalApp.Modules.TimeReports.Tests.csproj" />
+  </Folder>
+</Solution>

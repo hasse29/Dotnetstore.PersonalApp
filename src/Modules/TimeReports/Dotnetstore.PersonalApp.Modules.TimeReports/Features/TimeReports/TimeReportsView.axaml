@@ -1,0 +1,141 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:reports="using:Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports.TimeReportsView"
+             x:DataType="reports:TimeReportsViewModel">
+
+    <UserControl.Styles>
+        <!-- On the module's own page the content gets the usual page margin; as a tab it sits flush. -->
+        <Style Selector="Grid#Root.page">
+            <Setter Property="Margin" Value="28"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid x:Name="Root" Classes.page="{Binding IsPageLayout}" RowDefinitions="Auto,*" RowSpacing="20">
+
+        <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding IsPageLayout}">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{loc:Tr TimeReports_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr TimeReports_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr TimeReports_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+            <!-- Report table -->
+            <Border Classes="card" VerticalAlignment="Top">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="16">
+                        <ComboBox ItemsSource="{Binding FilterClients}" SelectedItem="{Binding SelectedFilter}"
+                                  HorizontalAlignment="Stretch" IsVisible="{Binding IsPageLayout}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="clients:ClientReference">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock Text="{loc:Tr TimeReports_Title}" Classes="h2" VerticalAlignment="Center"
+                                   IsVisible="{Binding !IsPageLayout}"/>
+                        <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}"
+                                IsVisible="{Binding !IsPageLayout}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                <TextBlock Text="{loc:Tr TimeReports_New}"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
+                        <Grid ColumnDefinitions="1.2*,1.5*,1.1*,1.4*,0.8*,0.8*,1.3*">
+                            <TextBlock Text="{loc:Tr TimeReports_ColDate}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr TimeReports_ColClient}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr TimeReports_ColType}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr TimeReports_ColTime}" Classes="column"/>
+                            <TextBlock Grid.Column="4" Text="{loc:Tr TimeReports_ColHours}" Classes="column"/>
+                            <TextBlock Grid.Column="5" Text="{loc:Tr TimeReports_ColKilometers}" Classes="column"/>
+                            <TextBlock Grid.Column="6" Text="{loc:Tr TimeReports_ColLocation}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="2" Classes="table" MinHeight="120" ItemsSource="{Binding Reports}"
+                             SelectedItem="{Binding SelectedReport}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="reports:TimeReportDto">
+                                <Grid ColumnDefinitions="1.2*,1.5*,1.1*,1.4*,0.8*,0.8*,1.3*">
+                                    <TextBlock Text="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding ClientName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding WorkTimeTypeName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding TimeRange}" Classes="muted"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding TotalHours, StringFormat='{}{0:0.##}'}" Classes="muted"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding DrivingKilometers, StringFormat='{}{0:0.#}'}" Classes="muted"/>
+                                    <TextBlock Grid.Column="6" Text="{Binding Location}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="3" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr TimeReports_Copy}" Classes="subtle" Command="{Binding CopyCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr TimeReports_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <TextBlock Text="{loc:Tr TimeReports_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr TimeReports_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="4" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="{loc:Tr TimeReports_ExportYear}" Classes="label" VerticalAlignment="Center"/>
+                            <NumericUpDown Value="{Binding ExportYear}" Minimum="2000" Maximum="2100" Increment="1" FormatString="0" Width="130"/>
+                            <Button Content="{loc:Tr TimeReports_Export}" Classes="subtle" Command="{Binding ExportCommand}"/>
+                            <Button Content="{loc:Tr TimeReports_ExportKilometers}" Classes="subtle" Command="{Binding ExportKilometersCommand}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Editor / empty state -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                      Data="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            <TextBlock Text="{loc:Tr TimeReports_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr TimeReports_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</UserControl>

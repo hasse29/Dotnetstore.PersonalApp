@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <!-- Required for `dotnet ef` when the Host is the startup project -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dotnetstore.PersonalApp.Shared\Dotnetstore.PersonalApp.Shared.csproj" />
+    <ProjectReference Include="..\Modules\Addresses\Dotnetstore.PersonalApp.Modules.Addresses\Dotnetstore.PersonalApp.Modules.Addresses.csproj" />
+    <ProjectReference Include="..\Modules\Clients\Dotnetstore.PersonalApp.Modules.Clients\Dotnetstore.PersonalApp.Modules.Clients.csproj" />
+    <ProjectReference Include="..\Modules\TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports.csproj" />
+    <ProjectReference Include="..\Modules\EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses.csproj" />
+    <ProjectReference Include="..\Modules\PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers.csproj" />
+    <ProjectReference Include="..\Modules\Users\Dotnetstore.PersonalApp.Modules.Users\Dotnetstore.PersonalApp.Modules.Users.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Dotnetstore.PersonalApp.Integration.Tests" />
+  </ItemGroup>
+
+</Project>

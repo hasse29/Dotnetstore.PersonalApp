@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:users="using:Dotnetstore.PersonalApp.Modules.Users.Features.Users"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="560"
+             x:Class="Dotnetstore.PersonalApp.Modules.Users.Features.Users.UserEditorView"
+             x:DataType="users:UserEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr Field_FirstName}" Classes="label"/>
+                    <TextBox Text="{Binding FirstName}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr Field_LastName}" Classes="label"/>
+                    <TextBox Text="{Binding LastName}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr Field_Username}" Classes="label"/>
+                <TextBox Text="{Binding Username}" PlaceholderText="{loc:Tr Field_UsernamePlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr Field_Password}" Classes="label"/>
+                <TextBox Text="{Binding Password}" PasswordChar="●" PlaceholderText="{Binding PasswordPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr Field_DateOfBirth}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding DateOfBirth}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr Editor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

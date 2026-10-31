@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Users_Title" xml:space="preserve"><value>Users</value></data>
+  <data name="Users_Subtitle" xml:space="preserve"><value>Manage the people who can sign in to this app.</value></data>
+  <data name="Users_New" xml:space="preserve"><value>New user</value></data>
+  <data name="Users_SearchPlaceholder" xml:space="preserve"><value>Search by name or email</value></data>
+  <data name="Users_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Users_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Users_ColUsername" xml:space="preserve"><value>USERNAME</value></data>
+  <data name="Users_ColBorn" xml:space="preserve"><value>BORN</value></data>
+  <data name="Users_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Users_ConfirmDelete" xml:space="preserve"><value>Delete this user?</value></data>
+  <data name="Users_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Users_NoSelection" xml:space="preserve"><value>No user selected</value></data>
+  <data name="Users_NoSelectionHint" xml:space="preserve"><value>Pick a user from the table to edit them, or create a new one.</value></data>
+  <data name="Users_Count" xml:space="preserve"><value>{0} user(s)</value></data>
+  <data name="Users_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} users. Refine the search to see more.</value></data>
+  <data name="Users_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="Users_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="UserDetail_Title" xml:space="preserve"><value>User details</value></data>
+  <data name="UserDetail_Subtitle" xml:space="preserve"><value>Everything we know about this user.</value></data>
+  <data name="UserDetail_Back" xml:space="preserve"><value>Back to users</value></data>
+  <data name="UserDetail_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="UserDetail_Information" xml:space="preserve"><value>Information</value></data>
+  <data name="UserDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="UserDetail_TabPhoneNumbers" xml:space="preserve"><value>Phone numbers</value></data>
+  <data name="UserDetail_TabEmailAddresses" xml:space="preserve"><value>Email addresses</value></data>
+  <data name="UserDetail_TabAddresses" xml:space="preserve"><value>Addresses</value></data>
+  <data name="UserDetail_CreatedAt" xml:space="preserve"><value>Created</value></data>
+  <data name="Editor_New" xml:space="preserve"><value>New user</value></data>
+  <data name="Editor_Edit" xml:space="preserve"><value>Edit user</value></data>
+  <data name="Editor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="Editor_PasswordKeep" xml:space="preserve"><value>Leave empty to keep current password</value></data>
+  <data name="Field_FirstName" xml:space="preserve"><value>First name</value></data>
+  <data name="Field_LastName" xml:space="preserve"><value>Last name</value></data>
+  <data name="Field_Username" xml:space="preserve"><value>Username (email address)</value></data>
+  <data name="Field_Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Field_ConfirmPassword" xml:space="preserve"><value>Confirm password</value></data>
+  <data name="Field_DateOfBirth" xml:space="preserve"><value>Date of birth</value></data>
+  <data name="Field_UsernamePlaceholder" xml:space="preserve"><value>name@example.com</value></data>
+  <data name="Login_Hero" xml:space="preserve"><value>Everything in one place.</value></data>
+  <data name="Login_HeroText" xml:space="preserve"><value>Sign in to manage your users and settings from a single, simple console.</value></data>
+  <data name="Login_Title" xml:space="preserve"><value>Welcome back</value></data>
+  <data name="Login_Subtitle" xml:space="preserve"><value>Sign in with your email address and password.</value></data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve"><value>Your password</value></data>
+  <data name="Login_SignIn" xml:space="preserve"><value>Sign in</value></data>
+  <data name="Setup_Hero" xml:space="preserve"><value>Let&apos;s get you set up.</value></data>
+  <data name="Setup_HeroText" xml:space="preserve"><value>There are no users yet. Create the first account, then sign in with it.</value></data>
+  <data name="Setup_Title" xml:space="preserve"><value>Create the first user</value></data>
+  <data name="Setup_Subtitle" xml:space="preserve"><value>This account will be used to sign in.</value></data>
+  <data name="Setup_PasswordPlaceholder" xml:space="preserve"><value>At least 8 characters</value></data>
+  <data name="Setup_Create" xml:space="preserve"><value>Create user</value></data>
+  <data name="Startup_UsersDatabase" xml:space="preserve"><value>Preparing users database...</value></data>
+  <data name="Error_user_not_found" xml:space="preserve"><value>User not found.</value></data>
+  <data name="Error_user_conflict" xml:space="preserve"><value>A user with this username already exists.</value></data>
+  <data name="Error_invalid_credentials" xml:space="preserve"><value>Invalid username or password.</value></data>
+  <data name="Error_credentials_required" xml:space="preserve"><value>Enter your username and password.</value></data>
+  <data name="Error_first_name_required" xml:space="preserve"><value>First name is required.</value></data>
+  <data name="Error_first_name_too_long" xml:space="preserve"><value>First name can be at most 100 characters.</value></data>
+  <data name="Error_last_name_required" xml:space="preserve"><value>Last name is required.</value></data>
+  <data name="Error_last_name_too_long" xml:space="preserve"><value>Last name can be at most 100 characters.</value></data>
+  <data name="Error_username_required" xml:space="preserve"><value>Username is required.</value></data>
+  <data name="Error_username_too_long" xml:space="preserve"><value>Username can be at most 254 characters.</value></data>
+  <data name="Error_username_invalid" xml:space="preserve"><value>Username must be a valid email address.</value></data>
+  <data name="Error_password_required" xml:space="preserve"><value>Password is required.</value></data>
+  <data name="Error_password_too_short" xml:space="preserve"><value>Password must be at least 8 characters.</value></data>
+  <data name="Error_password_too_long" xml:space="preserve"><value>Password can be at most 128 characters.</value></data>
+  <data name="Error_date_of_birth_future" xml:space="preserve"><value>Date of birth cannot be in the future.</value></data>
+  <data name="Error_date_of_birth_invalid" xml:space="preserve"><value>Date of birth is not valid.</value></data>
+  <data name="Error_date_of_birth_required" xml:space="preserve"><value>Date of birth is required.</value></data>
+  <data name="Error_passwords_mismatch" xml:space="preserve"><value>The passwords do not match.</value></data>
+</root>

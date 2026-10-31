@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AddressTypes_Title" xml:space="preserve"><value>Address types</value></data>
+  <data name="AddressTypes_Subtitle" xml:space="preserve"><value>Manage the kinds of addresses that users, clients and others can have.</value></data>
+  <data name="AddressTypes_New" xml:space="preserve"><value>New address type</value></data>
+  <data name="AddressTypes_SearchPlaceholder" xml:space="preserve"><value>Search by name or description</value></data>
+  <data name="AddressTypes_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="AddressTypes_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="AddressTypes_ColDescription" xml:space="preserve"><value>DESCRIPTION</value></data>
+  <data name="AddressTypes_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="AddressTypes_ConfirmDelete" xml:space="preserve"><value>Delete this address type?</value></data>
+  <data name="AddressTypes_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="AddressTypes_NoSelection" xml:space="preserve"><value>No address type selected</value></data>
+  <data name="AddressTypes_NoSelectionHint" xml:space="preserve"><value>Pick an address type from the table to edit it, or create a new one.</value></data>
+  <data name="AddressTypes_Count" xml:space="preserve"><value>{0} address type(s)</value></data>
+  <data name="AddressTypes_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} address types. Refine the search to see more.</value></data>
+  <data name="AddressTypes_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="AddressTypeEditor_New" xml:space="preserve"><value>New address type</value></data>
+  <data name="AddressTypeEditor_Edit" xml:space="preserve"><value>Edit address type</value></data>
+  <data name="AddressTypeEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="AddressTypeField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="AddressTypeField_NamePlaceholder" xml:space="preserve"><value>e.g. Billing</value></data>
+  <data name="AddressTypeField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="AddressesPanel_Title" xml:space="preserve"><value>Addresses</value></data>
+  <data name="AddressesPanel_New" xml:space="preserve"><value>New address</value></data>
+  <data name="AddressesPanel_ColType" xml:space="preserve"><value>TYPE</value></data>
+  <data name="AddressesPanel_ColAddress" xml:space="preserve"><value>ADDRESS</value></data>
+  <data name="AddressesPanel_ColCountry" xml:space="preserve"><value>COUNTRY</value></data>
+  <data name="AddressesPanel_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="AddressesPanel_DeleteAll" xml:space="preserve"><value>Delete all</value></data>
+  <data name="AddressesPanel_ConfirmDelete" xml:space="preserve"><value>Delete this address?</value></data>
+  <data name="AddressesPanel_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="AddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>Delete all addresses?</value></data>
+  <data name="AddressesPanel_YesDeleteAll" xml:space="preserve"><value>Yes, delete all</value></data>
+  <data name="AddressesPanel_NoSelection" xml:space="preserve"><value>No address selected</value></data>
+  <data name="AddressesPanel_NoSelectionHint" xml:space="preserve"><value>Pick an address in the table to edit it, or add a new one.</value></data>
+  <data name="AddressesPanel_Count" xml:space="preserve"><value>{0} address(es)</value></data>
+  <data name="AddressesPanel_Saved" xml:space="preserve"><value>Saved the {0} address.</value></data>
+  <data name="AddressesPanel_Deleted" xml:space="preserve"><value>Deleted {0} address(es).</value></data>
+  <data name="AddressesPanel_NoTypes" xml:space="preserve"><value>Create an address type first (see the Address types page).</value></data>
+  <data name="AddressEditor_New" xml:space="preserve"><value>New address</value></data>
+  <data name="AddressEditor_Edit" xml:space="preserve"><value>Edit address</value></data>
+  <data name="AddressEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="AddressField_Type" xml:space="preserve"><value>Address type</value></data>
+  <data name="AddressField_CareOf" xml:space="preserve"><value>C/O</value></data>
+  <data name="AddressField_Street1" xml:space="preserve"><value>Street</value></data>
+  <data name="AddressField_Street2" xml:space="preserve"><value>Street line 2</value></data>
+  <data name="AddressField_PostalCode" xml:space="preserve"><value>Postal code</value></data>
+  <data name="AddressField_City" xml:space="preserve"><value>City</value></data>
+  <data name="AddressField_State" xml:space="preserve"><value>State / region</value></data>
+  <data name="AddressField_Country" xml:space="preserve"><value>Country</value></data>
+  <data name="Startup_AddressesDatabase" xml:space="preserve"><value>Preparing addresses database...</value></data>
+  <data name="Error_address_type_not_found" xml:space="preserve"><value>Address type not found.</value></data>
+  <data name="Error_address_type_conflict" xml:space="preserve"><value>An address type with this name already exists.</value></data>
+  <data name="Error_address_type_in_use" xml:space="preserve"><value>This address type is used by existing addresses and cannot be deleted.</value></data>
+  <data name="Error_address_not_found" xml:space="preserve"><value>Address not found.</value></data>
+  <data name="Error_address_object_required" xml:space="preserve"><value>The address must belong to an object.</value></data>
+  <data name="Error_address_type_required" xml:space="preserve"><value>Address type is required.</value></data>
+  <data name="Error_address_care_of_too_long" xml:space="preserve"><value>C/O can be at most 100 characters.</value></data>
+  <data name="Error_address_street1_required" xml:space="preserve"><value>Street is required.</value></data>
+  <data name="Error_address_street1_too_long" xml:space="preserve"><value>Street can be at most 200 characters.</value></data>
+  <data name="Error_address_street2_too_long" xml:space="preserve"><value>Street line 2 can be at most 200 characters.</value></data>
+  <data name="Error_address_postal_code_required" xml:space="preserve"><value>Postal code is required.</value></data>
+  <data name="Error_address_postal_code_too_long" xml:space="preserve"><value>Postal code can be at most 20 characters.</value></data>
+  <data name="Error_address_city_required" xml:space="preserve"><value>City is required.</value></data>
+  <data name="Error_address_city_too_long" xml:space="preserve"><value>City can be at most 100 characters.</value></data>
+  <data name="Error_address_state_too_long" xml:space="preserve"><value>State can be at most 100 characters.</value></data>
+  <data name="Error_address_country_required" xml:space="preserve"><value>Country is required.</value></data>
+  <data name="Error_address_country_too_long" xml:space="preserve"><value>Country can be at most 100 characters.</value></data>
+  <data name="Error_address_type_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_address_type_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_address_type_description_too_long" xml:space="preserve"><value>Description can be at most 500 characters.</value></data>
+</root>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Users_Title" xml:space="preserve"><value>Användare</value></data>
+  <data name="Users_Subtitle" xml:space="preserve"><value>Hantera de personer som kan logga in i appen.</value></data>
+  <data name="Users_New" xml:space="preserve"><value>Ny användare</value></data>
+  <data name="Users_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller e-post</value></data>
+  <data name="Users_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Users_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Users_ColUsername" xml:space="preserve"><value>ANVÄNDARNAMN</value></data>
+  <data name="Users_ColBorn" xml:space="preserve"><value>FÖDD</value></data>
+  <data name="Users_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Users_ConfirmDelete" xml:space="preserve"><value>Ta bort användaren?</value></data>
+  <data name="Users_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Users_NoSelection" xml:space="preserve"><value>Ingen användare vald</value></data>
+  <data name="Users_NoSelectionHint" xml:space="preserve"><value>Välj en användare i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="Users_Count" xml:space="preserve"><value>{0} användare</value></data>
+  <data name="Users_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} användare. Förfina sökningen för att se fler.</value></data>
+  <data name="Users_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="Users_Details" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="UserDetail_Title" xml:space="preserve"><value>Användaruppgifter</value></data>
+  <data name="UserDetail_Subtitle" xml:space="preserve"><value>Allt vi vet om användaren.</value></data>
+  <data name="UserDetail_Back" xml:space="preserve"><value>Tillbaka till användare</value></data>
+  <data name="UserDetail_Edit" xml:space="preserve"><value>Redigera</value></data>
+  <data name="UserDetail_Information" xml:space="preserve"><value>Information</value></data>
+  <data name="UserDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="UserDetail_TabPhoneNumbers" xml:space="preserve"><value>Telefonnummer</value></data>
+  <data name="UserDetail_TabEmailAddresses" xml:space="preserve"><value>E-postadresser</value></data>
+  <data name="UserDetail_TabAddresses" xml:space="preserve"><value>Adresser</value></data>
+  <data name="UserDetail_CreatedAt" xml:space="preserve"><value>Skapad</value></data>
+  <data name="Editor_New" xml:space="preserve"><value>Ny användare</value></data>
+  <data name="Editor_Edit" xml:space="preserve"><value>Redigera användare</value></data>
+  <data name="Editor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="Editor_PasswordKeep" xml:space="preserve"><value>Lämna tomt för att behålla nuvarande lösenord</value></data>
+  <data name="Field_FirstName" xml:space="preserve"><value>Förnamn</value></data>
+  <data name="Field_LastName" xml:space="preserve"><value>Efternamn</value></data>
+  <data name="Field_Username" xml:space="preserve"><value>Användarnamn (e-postadress)</value></data>
+  <data name="Field_Password" xml:space="preserve"><value>Lösenord</value></data>
+  <data name="Field_ConfirmPassword" xml:space="preserve"><value>Bekräfta lösenord</value></data>
+  <data name="Field_DateOfBirth" xml:space="preserve"><value>Födelsedatum</value></data>
+  <data name="Field_UsernamePlaceholder" xml:space="preserve"><value>namn@exempel.se</value></data>
+  <data name="Login_Hero" xml:space="preserve"><value>Allt på ett ställe.</value></data>
+  <data name="Login_HeroText" xml:space="preserve"><value>Logga in för att hantera dina användare och inställningar från en enkel konsol.</value></data>
+  <data name="Login_Title" xml:space="preserve"><value>Välkommen tillbaka</value></data>
+  <data name="Login_Subtitle" xml:space="preserve"><value>Logga in med din e-postadress och ditt lösenord.</value></data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve"><value>Ditt lösenord</value></data>
+  <data name="Login_SignIn" xml:space="preserve"><value>Logga in</value></data>
+  <data name="Setup_Hero" xml:space="preserve"><value>Dags att komma igång.</value></data>
+  <data name="Setup_HeroText" xml:space="preserve"><value>Det finns inga användare ännu. Skapa det första kontot och logga sedan in med det.</value></data>
+  <data name="Setup_Title" xml:space="preserve"><value>Skapa den första användaren</value></data>
+  <data name="Setup_Subtitle" xml:space="preserve"><value>Det här kontot används för att logga in.</value></data>
+  <data name="Setup_PasswordPlaceholder" xml:space="preserve"><value>Minst 8 tecken</value></data>
+  <data name="Setup_Create" xml:space="preserve"><value>Skapa användare</value></data>
+  <data name="Startup_UsersDatabase" xml:space="preserve"><value>Förbereder användardatabasen...</value></data>
+  <data name="Error_user_not_found" xml:space="preserve"><value>Användaren hittades inte.</value></data>
+  <data name="Error_user_conflict" xml:space="preserve"><value>Det finns redan en användare med det användarnamnet.</value></data>
+  <data name="Error_invalid_credentials" xml:space="preserve"><value>Fel användarnamn eller lösenord.</value></data>
+  <data name="Error_credentials_required" xml:space="preserve"><value>Ange ditt användarnamn och lösenord.</value></data>
+  <data name="Error_first_name_required" xml:space="preserve"><value>Förnamn måste anges.</value></data>
+  <data name="Error_first_name_too_long" xml:space="preserve"><value>Förnamnet får vara högst 100 tecken.</value></data>
+  <data name="Error_last_name_required" xml:space="preserve"><value>Efternamn måste anges.</value></data>
+  <data name="Error_last_name_too_long" xml:space="preserve"><value>Efternamnet får vara högst 100 tecken.</value></data>
+  <data name="Error_username_required" xml:space="preserve"><value>Användarnamn måste anges.</value></data>
+  <data name="Error_username_too_long" xml:space="preserve"><value>Användarnamnet får vara högst 254 tecken.</value></data>
+  <data name="Error_username_invalid" xml:space="preserve"><value>Användarnamnet måste vara en giltig e-postadress.</value></data>
+  <data name="Error_password_required" xml:space="preserve"><value>Lösenord måste anges.</value></data>
+  <data name="Error_password_too_short" xml:space="preserve"><value>Lösenordet måste vara minst 8 tecken.</value></data>
+  <data name="Error_password_too_long" xml:space="preserve"><value>Lösenordet får vara högst 128 tecken.</value></data>
+  <data name="Error_date_of_birth_future" xml:space="preserve"><value>Födelsedatum kan inte vara i framtiden.</value></data>
+  <data name="Error_date_of_birth_invalid" xml:space="preserve"><value>Födelsedatumet är ogiltigt.</value></data>
+  <data name="Error_date_of_birth_required" xml:space="preserve"><value>Födelsedatum måste anges.</value></data>
+  <data name="Error_passwords_mismatch" xml:space="preserve"><value>Lösenorden matchar inte.</value></data>
+</root>

@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+        xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+             xmlns:shell="using:Dotnetstore.PersonalApp.Shared.Shell"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="720"
+             x:Class="Dotnetstore.PersonalApp.Host.Views.ShellView"
+             x:DataType="vm:ShellViewModel">
+
+    <Grid ColumnDefinitions="260,*" Background="{DynamicResource AppBackgroundBrush}">
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Background="{DynamicResource SidebarBrush}">
+            <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="16,20,16,16">
+
+                <StackPanel Orientation="Horizontal" Spacing="12" Margin="8,0,0,28">
+                    <Border Width="38" Height="38" CornerRadius="10" Background="{DynamicResource BrandGradientBrush}">
+                        <PathIcon Width="20" Height="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Data="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="PersonalApp" Foreground="White" FontSize="17" FontWeight="Bold"/>
+                        <TextBlock Text="{loc:Tr Common_AdminConsole}" Foreground="{DynamicResource SidebarMutedBrush}" FontSize="12"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Text="{loc:Tr Shell_Menu}" FontSize="11" FontWeight="SemiBold" Margin="12,0,0,8"
+                           Foreground="{DynamicResource SidebarMutedBrush}"/>
+
+                <ListBox Grid.Row="2" Classes="nav" ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="shell:IModulePage">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <PathIcon Width="18" Height="18" Data="{Binding IconData, Converter={StaticResource PathData}}"/>
+                                <TextBlock Text="{Binding Title}" FontWeight="Medium" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border Grid.Row="3" Background="{DynamicResource SidebarHoverBrush}" CornerRadius="12" Padding="12">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Border Classes="avatar">
+                            <TextBlock Text="{Binding Initials}"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding User.FullName}" Foreground="White" FontWeight="SemiBold"
+                                       TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding User.Username}" Foreground="{DynamicResource SidebarMutedBrush}" FontSize="12"
+                                       TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Main area -->
+        <Grid Grid.Column="1" RowDefinitions="64,*">
+            <Border Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}"
+                    BorderThickness="0,0,0,1" Padding="28,0">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                        <TextBlock Text="{loc:Tr Shell_Home}" Classes="muted"/>
+                        <TextBlock Text="/" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock Text="{Binding SelectedPage.Title}" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <loc:LanguageComboBox/>
+                    <Button Classes="subtle" Command="{Binding SignOutCommand}" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <PathIcon Width="16" Height="16"
+                                      Data="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                            <TextBlock Text="{loc:Tr Shell_SignOut}"/>
+                        </StackPanel>
+                    </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+        </Grid>
+    </Grid>
+
+</UserControl>

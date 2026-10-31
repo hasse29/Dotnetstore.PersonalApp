@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Clients_Title" xml:space="preserve"><value>Uppdragsgivare</value></data>
+  <data name="Clients_Subtitle" xml:space="preserve"><value>Hantera de företag du arbetar med.</value></data>
+  <data name="Clients_New" xml:space="preserve"><value>Ny uppdragsgivare</value></data>
+  <data name="Clients_SearchPlaceholder" xml:space="preserve"><value>Sök på namn, organisationsnummer eller e-post</value></data>
+  <data name="Clients_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Clients_ColName" xml:space="preserve"><value>FÖRETAG</value></data>
+  <data name="Clients_ColOrganizationNumber" xml:space="preserve"><value>ORG.NR</value></data>
+  <data name="Clients_ColEmail" xml:space="preserve"><value>E-POST</value></data>
+  <data name="Clients_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Clients_ConfirmDelete" xml:space="preserve"><value>Ta bort uppdragsgivaren?</value></data>
+  <data name="Clients_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Clients_NoSelection" xml:space="preserve"><value>Ingen uppdragsgivare vald</value></data>
+  <data name="Clients_NoSelectionHint" xml:space="preserve"><value>Välj en uppdragsgivare i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="Clients_Count" xml:space="preserve"><value>{0} uppdragsgivare</value></data>
+  <data name="Clients_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} uppdragsgivare. Förfina sökningen för att se fler.</value></data>
+  <data name="Clients_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="ClientEditor_New" xml:space="preserve"><value>Ny uppdragsgivare</value></data>
+  <data name="ClientEditor_Edit" xml:space="preserve"><value>Redigera uppdragsgivare</value></data>
+  <data name="ClientEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="ClientField_Name" xml:space="preserve"><value>Företagsnamn</value></data>
+  <data name="ClientField_OrganizationNumber" xml:space="preserve"><value>Organisationsnummer</value></data>
+  <data name="ClientField_OrganizationNumberPlaceholder" xml:space="preserve"><value>556677-8899</value></data>
+  <data name="ClientField_VatNumber" xml:space="preserve"><value>Momsregistreringsnummer</value></data>
+  <data name="ClientField_Email" xml:space="preserve"><value>E-post</value></data>
+  <data name="ClientField_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="ClientField_Website" xml:space="preserve"><value>Webbplats</value></data>
+  <data name="ClientField_WebsitePlaceholder" xml:space="preserve"><value>https://exempel.se</value></data>
+  <data name="ClientField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="Clients_Details" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="ClientDetail_Title" xml:space="preserve"><value>Uppdragsgivaruppgifter</value></data>
+  <data name="ClientDetail_Subtitle" xml:space="preserve"><value>Allt vi vet om uppdragsgivaren.</value></data>
+  <data name="ClientDetail_Back" xml:space="preserve"><value>Tillbaka till uppdragsgivare</value></data>
+  <data name="ClientDetail_Edit" xml:space="preserve"><value>Redigera</value></data>
+  <data name="ClientDetail_Information" xml:space="preserve"><value>Information</value></data>
+  <data name="ClientDetail_CreatedAt" xml:space="preserve"><value>Skapad</value></data>
+  <data name="ClientDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="ClientDetail_TabPhoneNumbers" xml:space="preserve"><value>Telefonnummer</value></data>
+  <data name="ClientDetail_TabTimeReports" xml:space="preserve"><value>Tidrapporter</value></data>
+  <data name="ClientDetail_TabEmailAddresses" xml:space="preserve"><value>E-postadresser</value></data>
+  <data name="ClientDetail_TabAddresses" xml:space="preserve"><value>Adresser</value></data>
+  <data name="Startup_ClientsDatabase" xml:space="preserve"><value>Förbereder uppdragsgivardatabasen...</value></data>
+  <data name="Error_client_not_found" xml:space="preserve"><value>Uppdragsgivaren hittades inte.</value></data>
+  <data name="Error_client_conflict" xml:space="preserve"><value>Det finns redan en uppdragsgivare med det organisationsnumret.</value></data>
+  <data name="Error_client_name_required" xml:space="preserve"><value>Företagsnamn måste anges.</value></data>
+  <data name="Error_client_name_too_long" xml:space="preserve"><value>Företagsnamnet får vara högst 200 tecken.</value></data>
+  <data name="Error_client_organization_number_required" xml:space="preserve"><value>Organisationsnummer måste anges.</value></data>
+  <data name="Error_client_organization_number_too_long" xml:space="preserve"><value>Organisationsnumret får vara högst 20 tecken.</value></data>
+  <data name="Error_client_organization_number_invalid" xml:space="preserve"><value>Organisationsnumret får bara innehålla bokstäver, siffror och bindestreck.</value></data>
+  <data name="Error_client_vat_number_too_long" xml:space="preserve"><value>Momsregistreringsnumret får vara högst 20 tecken.</value></data>
+  <data name="Error_client_email_invalid" xml:space="preserve"><value>E-postadressen är ogiltig.</value></data>
+  <data name="Error_client_email_too_long" xml:space="preserve"><value>E-postadressen får vara högst 254 tecken.</value></data>
+  <data name="Error_client_phone_too_long" xml:space="preserve"><value>Telefonnumret får vara högst 30 tecken.</value></data>
+  <data name="Error_client_website_invalid" xml:space="preserve"><value>Webbplatsen måste vara en giltig http- eller https-adress.</value></data>
+  <data name="Error_client_website_too_long" xml:space="preserve"><value>Webbplatsen får vara högst 2048 tecken.</value></data>
+  <data name="Error_client_notes_too_long" xml:space="preserve"><value>Anteckningarna får vara högst 2000 tecken.</value></data>
+</root>

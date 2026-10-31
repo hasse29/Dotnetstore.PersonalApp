@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:types="using:Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes"
+             xmlns:reports="using:Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports.TimeReportEditorView"
+             x:DataType="reports:TimeReportEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel IsVisible="{Binding IsClientPickerVisible}">
+                <TextBlock Text="{loc:Tr TimeReportField_Client}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="clients:ClientReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr TimeReportField_WorkTimeType}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding WorkTimeTypes}" SelectedItem="{Binding SelectedWorkTimeType}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="types:WorkTimeTypeDto">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr TimeReportField_Date}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr TimeReportField_StartTime}" Classes="label"/>
+                    <TimePicker SelectedTime="{Binding StartTime}" ClockIdentifier="24HourClock" MinuteIncrement="5"
+                                HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr TimeReportField_EndTime}" Classes="label"/>
+                    <TimePicker SelectedTime="{Binding EndTime}" ClockIdentifier="24HourClock" MinuteIncrement="5"
+                                HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr TimeReportField_TotalHours}" Classes="label"/>
+                    <NumericUpDown Value="{Binding TotalHours}" Minimum="0" Maximum="24" Increment="0.25" FormatString="0.00"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr TimeReportField_DrivingKilometers}" Classes="label"/>
+                    <NumericUpDown Value="{Binding DrivingKilometers}" Minimum="0" Maximum="10000" Increment="1" FormatString="0.0"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr TimeReportField_Location}" Classes="label"/>
+                <TextBox Text="{Binding Location}" PlaceholderText="{loc:Tr TimeReportField_LocationPlaceholder}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr TimeReportEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

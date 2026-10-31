@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Common_AdminConsole" xml:space="preserve"><value>Admin console</value></data>
+  <data name="Splash_Building" xml:space="preserve"><value>Building services...</value></data>
+  <data name="Splash_CheckingUsers" xml:space="preserve"><value>Checking for users...</value></data>
+  <data name="Startup_Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="Startup_Failed" xml:space="preserve"><value>Startup failed: {0}</value></data>
+  <data name="Shell_Menu" xml:space="preserve"><value>MENU</value></data>
+  <data name="Shell_Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Shell_SignOut" xml:space="preserve"><value>Sign out</value></data>
+</root>

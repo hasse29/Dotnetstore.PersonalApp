@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="TimeReports_Title" xml:space="preserve"><value>工时报告</value></data>
+  <data name="TimeReports_Subtitle" xml:space="preserve"><value>为每个委托方记录您的工作时间。</value></data>
+  <data name="TimeReports_New" xml:space="preserve"><value>新建工时报告</value></data>
+  <data name="TimeReports_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="TimeReports_ColClient" xml:space="preserve"><value>委托方</value></data>
+  <data name="TimeReports_ColTime" xml:space="preserve"><value>时间</value></data>
+  <data name="TimeReports_ColHours" xml:space="preserve"><value>小时</value></data>
+  <data name="TimeReports_ColKilometers" xml:space="preserve"><value>公里</value></data>
+  <data name="TimeReports_ColLocation" xml:space="preserve"><value>地点</value></data>
+  <data name="TimeReports_AllClients" xml:space="preserve"><value>所有委托方</value></data>
+  <data name="TimeReports_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="TimeReports_ConfirmDelete" xml:space="preserve"><value>删除此工时报告？</value></data>
+  <data name="TimeReports_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="TimeReports_NoSelection" xml:space="preserve"><value>未选择工时报告</value></data>
+  <data name="TimeReports_NoSelectionHint" xml:space="preserve"><value>在列表中选择一份报告进行编辑，或新建一份。</value></data>
+  <data name="TimeReports_Summary" xml:space="preserve"><value>{0} 份报告，{1} 小时，{2} 公里</value></data>
+  <data name="TimeReports_Saved" xml:space="preserve"><value>工时报告已保存。</value></data>
+  <data name="TimeReports_NoClients" xml:space="preserve"><value>请先添加委托方，然后才能记录工时。</value></data>
+  <data name="TimeReports_NotSignedIn" xml:space="preserve"><value>您必须登录才能记录工时。</value></data>
+  <data name="TimeReports_Export" xml:space="preserve"><value>导出到 Excel</value></data>
+  <data name="TimeReports_ExportYear" xml:space="preserve"><value>年份</value></data>
+  <data name="TimeReports_ExportSelectClient" xml:space="preserve"><value>请在筛选器中选择一个委托方以导出其工时报告。</value></data>
+  <data name="TimeReports_ExportDialogTitle" xml:space="preserve"><value>导出工时报告</value></data>
+  <data name="TimeReports_Exported" xml:space="preserve"><value>已将 {0} 份报告导出到 {1}。</value></data>
+  <data name="TimeReportExport_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="TimeReportExport_Hours" xml:space="preserve"><value>小时</value></data>
+  <data name="TimeReportExport_Location" xml:space="preserve"><value>地点</value></data>
+  <data name="TimeReportExport_Total" xml:space="preserve"><value>合计</value></data>
+  <data name="Error_time_report_year_invalid" xml:space="preserve"><value>年份必须在 2000 到 2100 之间。</value></data>
+  <data name="Error_time_report_export_empty" xml:space="preserve"><value>该委托方在此年份没有工时报告。</value></data>
+  <data name="TimeReports_ExportKilometers" xml:space="preserve"><value>导出里程汇总</value></data>
+  <data name="TimeReportExport_Client" xml:space="preserve"><value>委托方</value></data>
+  <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>（未知委托方）</value></data>
+  <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>驾驶里程（公里）{0}</value></data>
+  <data name="TimeReports_Copy" xml:space="preserve"><value>复制</value></data>
+  <data name="TimeReportEditor_Copy" xml:space="preserve"><value>新建工时报告（复制）</value></data>
+  <data name="TimeReports_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>请先添加工时类型，然后才能记录工时。</value></data>
+  <data name="TimeReportField_WorkTimeType" xml:space="preserve"><value>类型</value></data>
+  <data name="Error_time_report_work_time_type_required" xml:space="preserve"><value>请选择类型。</value></data>
+  <data name="Error_time_report_work_time_type_not_found" xml:space="preserve"><value>所选工时类型已不存在。</value></data>
+  <data name="WorkTimeTypes_Title" xml:space="preserve"><value>工时类型</value></data>
+  <data name="WorkTimeTypes_Subtitle" xml:space="preserve"><value>管理可以记录的时间类型，例如工作、病假或休假。</value></data>
+  <data name="WorkTimeTypes_New" xml:space="preserve"><value>新建工时类型</value></data>
+  <data name="WorkTimeTypes_SearchPlaceholder" xml:space="preserve"><value>按名称或描述搜索</value></data>
+  <data name="WorkTimeTypes_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="WorkTimeTypes_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="WorkTimeTypes_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="WorkTimeTypes_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="WorkTimeTypes_ConfirmDelete" xml:space="preserve"><value>删除此工时类型？</value></data>
+  <data name="WorkTimeTypes_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="WorkTimeTypes_NoSelection" xml:space="preserve"><value>未选择工时类型</value></data>
+  <data name="WorkTimeTypes_NoSelectionHint" xml:space="preserve"><value>从表格中选择工时类型进行编辑，或新建一个。</value></data>
+  <data name="WorkTimeTypes_Count" xml:space="preserve"><value>{0} 个工时类型</value></data>
+  <data name="WorkTimeTypes_ShowingPartial" xml:space="preserve"><value>显示 {1} 个工时类型中的 {0} 个。请缩小搜索范围以查看更多。</value></data>
+  <data name="WorkTimeTypes_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="WorkTimeTypeEditor_New" xml:space="preserve"><value>新建工时类型</value></data>
+  <data name="WorkTimeTypeEditor_Edit" xml:space="preserve"><value>编辑工时类型</value></data>
+  <data name="WorkTimeTypeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="WorkTimeTypeField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="WorkTimeTypeField_NamePlaceholder" xml:space="preserve"><value>例如：病假</value></data>
+  <data name="WorkTimeTypeField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="Error_work_time_type_not_found" xml:space="preserve"><value>未找到该工时类型。</value></data>
+  <data name="Error_work_time_type_conflict" xml:space="preserve"><value>已存在同名的工时类型。</value></data>
+  <data name="Error_work_time_type_in_use" xml:space="preserve"><value>该工时类型正被现有工时报告使用，无法删除。</value></data>
+  <data name="Error_work_time_type_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_work_time_type_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_work_time_type_description_too_long" xml:space="preserve"><value>描述最多 500 个字符。</value></data>
+  <data name="TimeReportEditor_New" xml:space="preserve"><value>新建工时报告</value></data>
+  <data name="TimeReportEditor_Edit" xml:space="preserve"><value>编辑工时报告</value></data>
+  <data name="TimeReportEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="TimeReportField_Client" xml:space="preserve"><value>委托方</value></data>
+  <data name="TimeReportField_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="TimeReportField_StartTime" xml:space="preserve"><value>开始时间</value></data>
+  <data name="TimeReportField_EndTime" xml:space="preserve"><value>结束时间</value></data>
+  <data name="TimeReportField_TotalHours" xml:space="preserve"><value>总工作小时数</value></data>
+  <data name="TimeReportField_Location" xml:space="preserve"><value>地点</value></data>
+  <data name="TimeReportField_LocationPlaceholder" xml:space="preserve"><value>工作地点</value></data>
+  <data name="TimeReportField_DrivingKilometers" xml:space="preserve"><value>驾驶里程（公里）</value></data>
+  <data name="Startup_TimeReportsDatabase" xml:space="preserve"><value>正在准备工时报告数据库</value></data>
+  <data name="Error_time_report_not_found" xml:space="preserve"><value>未找到该工时报告。</value></data>
+  <data name="Error_time_report_client_not_found" xml:space="preserve"><value>所选委托方已不存在。</value></data>
+  <data name="Error_time_report_user_required" xml:space="preserve"><value>您必须登录。</value></data>
+  <data name="Error_time_report_client_required" xml:space="preserve"><value>请选择委托方。</value></data>
+  <data name="Error_time_report_date_required" xml:space="preserve"><value>请选择日期。</value></data>
+  <data name="Error_time_report_start_time_required" xml:space="preserve"><value>请输入开始时间。</value></data>
+  <data name="Error_time_report_end_time_required" xml:space="preserve"><value>请输入结束时间。</value></data>
+  <data name="Error_time_report_end_before_start" xml:space="preserve"><value>结束时间必须晚于开始时间。</value></data>
+  <data name="Error_time_report_total_hours_required" xml:space="preserve"><value>请输入总工作小时数。</value></data>
+  <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>总小时数必须大于 0 且不超过 24。</value></data>
+  <data name="Error_time_report_location_too_long" xml:space="preserve"><value>地点最多 200 个字符。</value></data>
+  <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>驾驶里程必须在 0 到 10000 公里之间。</value></data>
+</root>

@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:users="using:Dotnetstore.PersonalApp.Modules.Users.Features.Users"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Users.Features.Users.UserDetailView"
+             x:DataType="users:UserDetailViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr UserDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{loc:Tr UserDetail_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr UserDetail_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="2" Classes="primary" Command="{Binding EditCommand}" Content="{loc:Tr UserDetail_Edit}"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <TabControl Grid.Row="1" Padding="0">
+        <TabItem Header="{loc:Tr UserDetail_TabInformation}">
+        <Grid ColumnDefinitions="300,*" ColumnSpacing="20" Margin="0,20,0,0">
+
+            <!-- Photo slot: shows initials until real photos are supported -->
+            <Border Classes="card" Padding="28" VerticalAlignment="Top">
+                <StackPanel Spacing="14" HorizontalAlignment="Center">
+                    <Border Classes="avatar" Width="112" Height="112" CornerRadius="56">
+                        <TextBlock Text="{Binding Initials}" FontSize="40"/>
+                    </Border>
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{Binding User.FullName}" Classes="h2" HorizontalAlignment="Center"
+                                   TextAlignment="Center" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding User.Username}" Classes="muted" HorizontalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Classes="card" Padding="28" VerticalAlignment="Top">
+                <StackPanel Spacing="18">
+                    <TextBlock Text="{loc:Tr UserDetail_Information}" Classes="h2"/>
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="24" RowSpacing="18">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr Field_FirstName}" Classes="label"/>
+                            <TextBlock Text="{Binding User.FirstName}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{loc:Tr Field_LastName}" Classes="label"/>
+                            <TextBlock Text="{Binding User.LastName}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <TextBlock Text="{loc:Tr Field_Username}" Classes="label"/>
+                            <TextBlock Text="{Binding User.Username}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="{loc:Tr Field_DateOfBirth}" Classes="label"/>
+                            <TextBlock Text="{Binding User.DateOfBirth, StringFormat='{}{0:yyyy-MM-dd}'}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr UserDetail_CreatedAt}" Classes="label"/>
+                        <TextBlock Text="{Binding User.CreatedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+        </TabItem>
+
+        <TabItem Header="{loc:Tr UserDetail_TabAddresses}" IsVisible="{Binding Addresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <ContentControl Content="{Binding Addresses}" Margin="0,20,0,0"/>
+        </TabItem>
+        <TabItem Header="{loc:Tr UserDetail_TabEmailAddresses}" IsVisible="{Binding EmailAddresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <ContentControl Content="{Binding EmailAddresses}" Margin="0,20,0,0"/>
+        </TabItem>
+        <TabItem Header="{loc:Tr UserDetail_TabPhoneNumbers}" IsVisible="{Binding PhoneNumbers, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <ContentControl Content="{Binding PhoneNumbers}" Margin="0,20,0,0"/>
+        </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

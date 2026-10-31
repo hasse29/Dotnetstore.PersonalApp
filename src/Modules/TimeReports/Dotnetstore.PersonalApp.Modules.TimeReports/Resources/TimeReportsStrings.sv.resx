@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="TimeReports_Title" xml:space="preserve"><value>Tidrapporter</value></data>
+  <data name="TimeReports_Subtitle" xml:space="preserve"><value>Rapportera tiden du arbetar åt varje uppdragsgivare.</value></data>
+  <data name="TimeReports_New" xml:space="preserve"><value>Ny tidrapport</value></data>
+  <data name="TimeReports_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="TimeReports_ColClient" xml:space="preserve"><value>Uppdragsgivare</value></data>
+  <data name="TimeReports_ColTime" xml:space="preserve"><value>Tid</value></data>
+  <data name="TimeReports_ColHours" xml:space="preserve"><value>Timmar</value></data>
+  <data name="TimeReports_ColKilometers" xml:space="preserve"><value>Km</value></data>
+  <data name="TimeReports_ColLocation" xml:space="preserve"><value>Plats</value></data>
+  <data name="TimeReports_AllClients" xml:space="preserve"><value>Alla uppdragsgivare</value></data>
+  <data name="TimeReports_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="TimeReports_ConfirmDelete" xml:space="preserve"><value>Ta bort tidrapporten?</value></data>
+  <data name="TimeReports_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="TimeReports_NoSelection" xml:space="preserve"><value>Ingen tidrapport vald</value></data>
+  <data name="TimeReports_NoSelectionHint" xml:space="preserve"><value>Välj en rapport i listan för att redigera den, eller skapa en ny.</value></data>
+  <data name="TimeReports_Summary" xml:space="preserve"><value>{0} rapporter, {1} timmar, {2} km</value></data>
+  <data name="TimeReports_Saved" xml:space="preserve"><value>Tidrapporten har sparats.</value></data>
+  <data name="TimeReports_NoClients" xml:space="preserve"><value>Lägg först till en uppdragsgivare, sedan kan du rapportera tid.</value></data>
+  <data name="TimeReports_NotSignedIn" xml:space="preserve"><value>Du måste vara inloggad för att rapportera tid.</value></data>
+  <data name="TimeReports_Export" xml:space="preserve"><value>Exportera till Excel</value></data>
+  <data name="TimeReports_ExportYear" xml:space="preserve"><value>År</value></data>
+  <data name="TimeReports_ExportSelectClient" xml:space="preserve"><value>Välj en uppdragsgivare i filtret för att exportera dess tidrapporter.</value></data>
+  <data name="TimeReports_ExportDialogTitle" xml:space="preserve"><value>Exportera tidrapporter</value></data>
+  <data name="TimeReports_Exported" xml:space="preserve"><value>Exporterade {0} rapporter till {1}.</value></data>
+  <data name="TimeReportExport_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="TimeReportExport_Hours" xml:space="preserve"><value>Timmar</value></data>
+  <data name="TimeReportExport_Location" xml:space="preserve"><value>Plats</value></data>
+  <data name="TimeReportExport_Total" xml:space="preserve"><value>Summa</value></data>
+  <data name="Error_time_report_year_invalid" xml:space="preserve"><value>Året måste vara mellan 2000 och 2100.</value></data>
+  <data name="Error_time_report_export_empty" xml:space="preserve"><value>Det finns inga tidrapporter för den här uppdragsgivaren och det här året.</value></data>
+  <data name="TimeReports_ExportKilometers" xml:space="preserve"><value>Exportera körsträckor</value></data>
+  <data name="TimeReportExport_Client" xml:space="preserve"><value>Uppdragsgivare</value></data>
+  <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>(okänd uppdragsgivare)</value></data>
+  <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>Körsträcka (km) {0}</value></data>
+  <data name="TimeReports_Copy" xml:space="preserve"><value>Kopiera</value></data>
+  <data name="TimeReportEditor_Copy" xml:space="preserve"><value>Ny tidrapport (kopia)</value></data>
+  <data name="TimeReports_ColType" xml:space="preserve"><value>Typ</value></data>
+  <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>Lägg först till en tidstyp, sedan kan du rapportera tid.</value></data>
+  <data name="TimeReportField_WorkTimeType" xml:space="preserve"><value>Typ</value></data>
+  <data name="Error_time_report_work_time_type_required" xml:space="preserve"><value>Typ måste anges.</value></data>
+  <data name="Error_time_report_work_time_type_not_found" xml:space="preserve"><value>Den valda tidstypen finns inte längre.</value></data>
+  <data name="WorkTimeTypes_Title" xml:space="preserve"><value>Tidstyper</value></data>
+  <data name="WorkTimeTypes_Subtitle" xml:space="preserve"><value>Hantera vilka typer av tid du kan rapportera, till exempel arbete, sjukdom eller semester.</value></data>
+  <data name="WorkTimeTypes_New" xml:space="preserve"><value>Ny tidstyp</value></data>
+  <data name="WorkTimeTypes_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller beskrivning</value></data>
+  <data name="WorkTimeTypes_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="WorkTimeTypes_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="WorkTimeTypes_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="WorkTimeTypes_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="WorkTimeTypes_ConfirmDelete" xml:space="preserve"><value>Ta bort tidstypen?</value></data>
+  <data name="WorkTimeTypes_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="WorkTimeTypes_NoSelection" xml:space="preserve"><value>Ingen tidstyp vald</value></data>
+  <data name="WorkTimeTypes_NoSelectionHint" xml:space="preserve"><value>Välj en tidstyp i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="WorkTimeTypes_Count" xml:space="preserve"><value>{0} tidstyper</value></data>
+  <data name="WorkTimeTypes_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} tidstyper. Förfina sökningen för att se fler.</value></data>
+  <data name="WorkTimeTypes_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="WorkTimeTypeEditor_New" xml:space="preserve"><value>Ny tidstyp</value></data>
+  <data name="WorkTimeTypeEditor_Edit" xml:space="preserve"><value>Redigera tidstyp</value></data>
+  <data name="WorkTimeTypeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="WorkTimeTypeField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="WorkTimeTypeField_NamePlaceholder" xml:space="preserve"><value>t.ex. Sjuk</value></data>
+  <data name="WorkTimeTypeField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="Error_work_time_type_not_found" xml:space="preserve"><value>Tidstypen hittades inte.</value></data>
+  <data name="Error_work_time_type_conflict" xml:space="preserve"><value>Det finns redan en tidstyp med det namnet.</value></data>
+  <data name="Error_work_time_type_in_use" xml:space="preserve"><value>Tidstypen används av befintliga tidrapporter och kan inte tas bort.</value></data>
+  <data name="Error_work_time_type_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_work_time_type_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_work_time_type_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+  <data name="TimeReportEditor_New" xml:space="preserve"><value>Ny tidrapport</value></data>
+  <data name="TimeReportEditor_Edit" xml:space="preserve"><value>Redigera tidrapport</value></data>
+  <data name="TimeReportEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="TimeReportField_Client" xml:space="preserve"><value>Uppdragsgivare</value></data>
+  <data name="TimeReportField_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="TimeReportField_StartTime" xml:space="preserve"><value>Starttid</value></data>
+  <data name="TimeReportField_EndTime" xml:space="preserve"><value>Sluttid</value></data>
+  <data name="TimeReportField_TotalHours" xml:space="preserve"><value>Totalt arbetade timmar</value></data>
+  <data name="TimeReportField_Location" xml:space="preserve"><value>Plats</value></data>
+  <data name="TimeReportField_LocationPlaceholder" xml:space="preserve"><value>Var du arbetade</value></data>
+  <data name="TimeReportField_DrivingKilometers" xml:space="preserve"><value>Körsträcka (km)</value></data>
+  <data name="Startup_TimeReportsDatabase" xml:space="preserve"><value>Förbereder tidrapportdatabasen</value></data>
+  <data name="Error_time_report_not_found" xml:space="preserve"><value>Tidrapporten hittades inte.</value></data>
+  <data name="Error_time_report_client_not_found" xml:space="preserve"><value>Den valda uppdragsgivaren finns inte längre.</value></data>
+  <data name="Error_time_report_user_required" xml:space="preserve"><value>Du måste vara inloggad.</value></data>
+  <data name="Error_time_report_client_required" xml:space="preserve"><value>Uppdragsgivare måste anges.</value></data>
+  <data name="Error_time_report_date_required" xml:space="preserve"><value>Datum måste anges.</value></data>
+  <data name="Error_time_report_start_time_required" xml:space="preserve"><value>Starttid måste anges.</value></data>
+  <data name="Error_time_report_end_time_required" xml:space="preserve"><value>Sluttid måste anges.</value></data>
+  <data name="Error_time_report_end_before_start" xml:space="preserve"><value>Sluttiden måste vara efter starttiden.</value></data>
+  <data name="Error_time_report_total_hours_required" xml:space="preserve"><value>Totalt antal timmar måste anges.</value></data>
+  <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>Totalt antal timmar måste vara över 0 och högst 24.</value></data>
+  <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Platsen får vara högst 200 tecken.</value></data>
+  <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Körsträckan måste vara mellan 0 och 10000 km.</value></data>
+</root>

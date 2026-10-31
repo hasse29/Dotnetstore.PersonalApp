@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AddressTypes_Title" xml:space="preserve"><value>地址类型</value></data>
+  <data name="AddressTypes_Subtitle" xml:space="preserve"><value>管理用户、委托方等可以拥有的地址类型。</value></data>
+  <data name="AddressTypes_New" xml:space="preserve"><value>新建地址类型</value></data>
+  <data name="AddressTypes_SearchPlaceholder" xml:space="preserve"><value>按名称或描述搜索</value></data>
+  <data name="AddressTypes_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="AddressTypes_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="AddressTypes_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="AddressTypes_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="AddressTypes_ConfirmDelete" xml:space="preserve"><value>删除此地址类型？</value></data>
+  <data name="AddressTypes_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="AddressTypes_NoSelection" xml:space="preserve"><value>未选择地址类型</value></data>
+  <data name="AddressTypes_NoSelectionHint" xml:space="preserve"><value>从表格中选择地址类型进行编辑，或新建一个。</value></data>
+  <data name="AddressTypes_Count" xml:space="preserve"><value>{0} 个地址类型</value></data>
+  <data name="AddressTypes_ShowingPartial" xml:space="preserve"><value>显示 {1} 个地址类型中的 {0} 个。请缩小搜索范围以查看更多。</value></data>
+  <data name="AddressTypes_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="AddressTypeEditor_New" xml:space="preserve"><value>新建地址类型</value></data>
+  <data name="AddressTypeEditor_Edit" xml:space="preserve"><value>编辑地址类型</value></data>
+  <data name="AddressTypeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="AddressTypeField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="AddressTypeField_NamePlaceholder" xml:space="preserve"><value>例如：账单地址</value></data>
+  <data name="AddressTypeField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="AddressesPanel_Title" xml:space="preserve"><value>地址</value></data>
+  <data name="AddressesPanel_New" xml:space="preserve"><value>新建地址</value></data>
+  <data name="AddressesPanel_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="AddressesPanel_ColAddress" xml:space="preserve"><value>地址</value></data>
+  <data name="AddressesPanel_ColCountry" xml:space="preserve"><value>国家/地区</value></data>
+  <data name="AddressesPanel_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="AddressesPanel_DeleteAll" xml:space="preserve"><value>全部删除</value></data>
+  <data name="AddressesPanel_ConfirmDelete" xml:space="preserve"><value>删除此地址？</value></data>
+  <data name="AddressesPanel_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="AddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>删除所有地址？</value></data>
+  <data name="AddressesPanel_YesDeleteAll" xml:space="preserve"><value>是，全部删除</value></data>
+  <data name="AddressesPanel_NoSelection" xml:space="preserve"><value>未选择地址</value></data>
+  <data name="AddressesPanel_NoSelectionHint" xml:space="preserve"><value>从表格中选择地址进行编辑，或添加新地址。</value></data>
+  <data name="AddressesPanel_Count" xml:space="preserve"><value>{0} 个地址</value></data>
+  <data name="AddressesPanel_Saved" xml:space="preserve"><value>已保存{0}地址。</value></data>
+  <data name="AddressesPanel_Deleted" xml:space="preserve"><value>已删除 {0} 个地址。</value></data>
+  <data name="AddressesPanel_NoTypes" xml:space="preserve"><value>请先创建地址类型（见“地址类型”页面）。</value></data>
+  <data name="AddressEditor_New" xml:space="preserve"><value>新建地址</value></data>
+  <data name="AddressEditor_Edit" xml:space="preserve"><value>编辑地址</value></data>
+  <data name="AddressEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="AddressField_Type" xml:space="preserve"><value>地址类型</value></data>
+  <data name="AddressField_CareOf" xml:space="preserve"><value>C/O（转交）</value></data>
+  <data name="AddressField_Street1" xml:space="preserve"><value>街道地址</value></data>
+  <data name="AddressField_Street2" xml:space="preserve"><value>街道地址第 2 行</value></data>
+  <data name="AddressField_PostalCode" xml:space="preserve"><value>邮政编码</value></data>
+  <data name="AddressField_City" xml:space="preserve"><value>城市</value></data>
+  <data name="AddressField_State" xml:space="preserve"><value>州/省</value></data>
+  <data name="AddressField_Country" xml:space="preserve"><value>国家/地区</value></data>
+  <data name="Startup_AddressesDatabase" xml:space="preserve"><value>正在准备地址数据库...</value></data>
+  <data name="Error_address_type_not_found" xml:space="preserve"><value>未找到该地址类型。</value></data>
+  <data name="Error_address_type_conflict" xml:space="preserve"><value>已存在同名的地址类型。</value></data>
+  <data name="Error_address_type_in_use" xml:space="preserve"><value>该地址类型正被现有地址使用，无法删除。</value></data>
+  <data name="Error_address_not_found" xml:space="preserve"><value>未找到该地址。</value></data>
+  <data name="Error_address_object_required" xml:space="preserve"><value>地址必须属于某个对象。</value></data>
+  <data name="Error_address_type_required" xml:space="preserve"><value>请选择地址类型。</value></data>
+  <data name="Error_address_care_of_too_long" xml:space="preserve"><value>C/O 最多 100 个字符。</value></data>
+  <data name="Error_address_street1_required" xml:space="preserve"><value>请输入街道地址。</value></data>
+  <data name="Error_address_street1_too_long" xml:space="preserve"><value>街道地址最多 200 个字符。</value></data>
+  <data name="Error_address_street2_too_long" xml:space="preserve"><value>街道地址第 2 行最多 200 个字符。</value></data>
+  <data name="Error_address_postal_code_required" xml:space="preserve"><value>请输入邮政编码。</value></data>
+  <data name="Error_address_postal_code_too_long" xml:space="preserve"><value>邮政编码最多 20 个字符。</value></data>
+  <data name="Error_address_city_required" xml:space="preserve"><value>请输入城市。</value></data>
+  <data name="Error_address_city_too_long" xml:space="preserve"><value>城市最多 100 个字符。</value></data>
+  <data name="Error_address_state_too_long" xml:space="preserve"><value>州/省最多 100 个字符。</value></data>
+  <data name="Error_address_country_required" xml:space="preserve"><value>请输入国家/地区。</value></data>
+  <data name="Error_address_country_too_long" xml:space="preserve"><value>国家/地区最多 100 个字符。</value></data>
+  <data name="Error_address_type_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_address_type_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_address_type_description_too_long" xml:space="preserve"><value>描述最多 500 个字符。</value></data>
+</root>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="TimeReports_Title" xml:space="preserve"><value>Time reports</value></data>
+  <data name="TimeReports_Subtitle" xml:space="preserve"><value>Report the time you work for each client.</value></data>
+  <data name="TimeReports_New" xml:space="preserve"><value>New time report</value></data>
+  <data name="TimeReports_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="TimeReports_ColClient" xml:space="preserve"><value>Client</value></data>
+  <data name="TimeReports_ColTime" xml:space="preserve"><value>Time</value></data>
+  <data name="TimeReports_ColHours" xml:space="preserve"><value>Hours</value></data>
+  <data name="TimeReports_ColKilometers" xml:space="preserve"><value>Km</value></data>
+  <data name="TimeReports_ColLocation" xml:space="preserve"><value>Location</value></data>
+  <data name="TimeReports_AllClients" xml:space="preserve"><value>All clients</value></data>
+  <data name="TimeReports_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="TimeReports_ConfirmDelete" xml:space="preserve"><value>Delete this time report?</value></data>
+  <data name="TimeReports_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="TimeReports_NoSelection" xml:space="preserve"><value>No time report selected</value></data>
+  <data name="TimeReports_NoSelectionHint" xml:space="preserve"><value>Select a report in the list to edit it, or create a new one.</value></data>
+  <data name="TimeReports_Summary" xml:space="preserve"><value>{0} reports, {1} hours, {2} km</value></data>
+  <data name="TimeReports_Saved" xml:space="preserve"><value>Time report saved.</value></data>
+  <data name="TimeReports_NoClients" xml:space="preserve"><value>Add a client first, then you can report time.</value></data>
+  <data name="TimeReports_NotSignedIn" xml:space="preserve"><value>You must be signed in to report time.</value></data>
+  <data name="TimeReports_Export" xml:space="preserve"><value>Export to Excel</value></data>
+  <data name="TimeReports_ExportYear" xml:space="preserve"><value>Year</value></data>
+  <data name="TimeReports_ExportSelectClient" xml:space="preserve"><value>Select a client in the filter to export its time reports.</value></data>
+  <data name="TimeReports_ExportDialogTitle" xml:space="preserve"><value>Export time reports</value></data>
+  <data name="TimeReports_Exported" xml:space="preserve"><value>Exported {0} reports to {1}.</value></data>
+  <data name="TimeReportExport_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="TimeReportExport_Hours" xml:space="preserve"><value>Hours</value></data>
+  <data name="TimeReportExport_Location" xml:space="preserve"><value>Location</value></data>
+  <data name="TimeReportExport_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Error_time_report_year_invalid" xml:space="preserve"><value>The year must be between 2000 and 2100.</value></data>
+  <data name="Error_time_report_export_empty" xml:space="preserve"><value>There are no time reports for this client and year.</value></data>
+  <data name="TimeReports_ExportKilometers" xml:space="preserve"><value>Export km summary</value></data>
+  <data name="TimeReportExport_Client" xml:space="preserve"><value>Client</value></data>
+  <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>(unknown client)</value></data>
+  <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>Driving (km) {0}</value></data>
+  <data name="TimeReports_Copy" xml:space="preserve"><value>Copy</value></data>
+  <data name="TimeReportEditor_Copy" xml:space="preserve"><value>New time report (copy)</value></data>
+  <data name="TimeReports_ColType" xml:space="preserve"><value>Type</value></data>
+  <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>Add a work time type first, then you can report time.</value></data>
+  <data name="TimeReportField_WorkTimeType" xml:space="preserve"><value>Type</value></data>
+  <data name="Error_time_report_work_time_type_required" xml:space="preserve"><value>Type is required.</value></data>
+  <data name="Error_time_report_work_time_type_not_found" xml:space="preserve"><value>The selected work time type no longer exists.</value></data>
+  <data name="WorkTimeTypes_Title" xml:space="preserve"><value>Work time types</value></data>
+  <data name="WorkTimeTypes_Subtitle" xml:space="preserve"><value>Manage the kinds of time you can report, such as work, sick leave or vacation.</value></data>
+  <data name="WorkTimeTypes_New" xml:space="preserve"><value>New work time type</value></data>
+  <data name="WorkTimeTypes_SearchPlaceholder" xml:space="preserve"><value>Search by name or description</value></data>
+  <data name="WorkTimeTypes_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="WorkTimeTypes_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="WorkTimeTypes_ColDescription" xml:space="preserve"><value>DESCRIPTION</value></data>
+  <data name="WorkTimeTypes_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="WorkTimeTypes_ConfirmDelete" xml:space="preserve"><value>Delete this work time type?</value></data>
+  <data name="WorkTimeTypes_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="WorkTimeTypes_NoSelection" xml:space="preserve"><value>No work time type selected</value></data>
+  <data name="WorkTimeTypes_NoSelectionHint" xml:space="preserve"><value>Pick a work time type from the table to edit it, or create a new one.</value></data>
+  <data name="WorkTimeTypes_Count" xml:space="preserve"><value>{0} work time type(s)</value></data>
+  <data name="WorkTimeTypes_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} work time types. Refine the search to see more.</value></data>
+  <data name="WorkTimeTypes_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="WorkTimeTypeEditor_New" xml:space="preserve"><value>New work time type</value></data>
+  <data name="WorkTimeTypeEditor_Edit" xml:space="preserve"><value>Edit work time type</value></data>
+  <data name="WorkTimeTypeEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="WorkTimeTypeField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="WorkTimeTypeField_NamePlaceholder" xml:space="preserve"><value>e.g. Sick</value></data>
+  <data name="WorkTimeTypeField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Error_work_time_type_not_found" xml:space="preserve"><value>Work time type not found.</value></data>
+  <data name="Error_work_time_type_conflict" xml:space="preserve"><value>A work time type with this name already exists.</value></data>
+  <data name="Error_work_time_type_in_use" xml:space="preserve"><value>This work time type is used by existing time reports and cannot be deleted.</value></data>
+  <data name="Error_work_time_type_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_work_time_type_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_work_time_type_description_too_long" xml:space="preserve"><value>Description can be at most 500 characters.</value></data>
+  <data name="TimeReportEditor_New" xml:space="preserve"><value>New time report</value></data>
+  <data name="TimeReportEditor_Edit" xml:space="preserve"><value>Edit time report</value></data>
+  <data name="TimeReportEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="TimeReportField_Client" xml:space="preserve"><value>Client</value></data>
+  <data name="TimeReportField_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="TimeReportField_StartTime" xml:space="preserve"><value>Start time</value></data>
+  <data name="TimeReportField_EndTime" xml:space="preserve"><value>End time</value></data>
+  <data name="TimeReportField_TotalHours" xml:space="preserve"><value>Total hours worked</value></data>
+  <data name="TimeReportField_Location" xml:space="preserve"><value>Location</value></data>
+  <data name="TimeReportField_LocationPlaceholder" xml:space="preserve"><value>Where you worked</value></data>
+  <data name="TimeReportField_DrivingKilometers" xml:space="preserve"><value>Driving (km)</value></data>
+  <data name="Startup_TimeReportsDatabase" xml:space="preserve"><value>Preparing the time reports database</value></data>
+  <data name="Error_time_report_not_found" xml:space="preserve"><value>Time report not found.</value></data>
+  <data name="Error_time_report_client_not_found" xml:space="preserve"><value>The selected client no longer exists.</value></data>
+  <data name="Error_time_report_user_required" xml:space="preserve"><value>You must be signed in.</value></data>
+  <data name="Error_time_report_client_required" xml:space="preserve"><value>Client is required.</value></data>
+  <data name="Error_time_report_date_required" xml:space="preserve"><value>Date is required.</value></data>
+  <data name="Error_time_report_start_time_required" xml:space="preserve"><value>Start time is required.</value></data>
+  <data name="Error_time_report_end_time_required" xml:space="preserve"><value>End time is required.</value></data>
+  <data name="Error_time_report_end_before_start" xml:space="preserve"><value>End time must be after the start time.</value></data>
+  <data name="Error_time_report_total_hours_required" xml:space="preserve"><value>Total hours is required.</value></data>
+  <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>Total hours must be more than 0 and at most 24.</value></data>
+  <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Location can be at most 200 characters.</value></data>
+  <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Driving must be between 0 and 10000 km.</value></data>
+</root>

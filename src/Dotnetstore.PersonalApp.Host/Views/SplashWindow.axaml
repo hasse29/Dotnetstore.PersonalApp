@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+        xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+        x:Class="Dotnetstore.PersonalApp.Host.Views.SplashWindow"
+        x:DataType="vm:SplashViewModel"
+        Width="480" Height="280"
+        WindowStartupLocation="CenterScreen"
+        WindowDecorations="None"
+        CanResize="False"
+        ShowInTaskbar="False"
+        Background="{DynamicResource BrandGradientBrush}"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Dotnetstore.PersonalApp">
+
+    <Design.DataContext>
+        <vm:SplashViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*,Auto,Auto" Margin="36" RowSpacing="14">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="14">
+            <Border Width="60" Height="60" CornerRadius="16" Background="#26FFFFFF" HorizontalAlignment="Center">
+                <PathIcon Width="30" Height="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Data="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </Border>
+            <TextBlock Text="PersonalApp" FontSize="30" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock Text="{loc:Tr Common_AdminConsole}" Foreground="#CCFFFFFF" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <ProgressBar Grid.Row="1" Minimum="0" Maximum="100" Value="{Binding Progress}" Height="6"
+                     Foreground="White" Background="#33FFFFFF" CornerRadius="3"/>
+        <TextBlock Grid.Row="2" Text="{Binding Status}" Foreground="#E6FFFFFF" FontSize="12" TextTrimming="CharacterEllipsis"/>
+    </Grid>
+
+</Window>

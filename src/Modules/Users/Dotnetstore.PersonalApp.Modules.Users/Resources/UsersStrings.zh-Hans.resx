@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Users_Title" xml:space="preserve"><value>用户</value></data>
+  <data name="Users_Subtitle" xml:space="preserve"><value>管理可以登录此应用的人员。</value></data>
+  <data name="Users_New" xml:space="preserve"><value>新建用户</value></data>
+  <data name="Users_SearchPlaceholder" xml:space="preserve"><value>按姓名或邮箱搜索</value></data>
+  <data name="Users_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Users_ColName" xml:space="preserve"><value>姓名</value></data>
+  <data name="Users_ColUsername" xml:space="preserve"><value>用户名</value></data>
+  <data name="Users_ColBorn" xml:space="preserve"><value>出生日期</value></data>
+  <data name="Users_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Users_ConfirmDelete" xml:space="preserve"><value>删除此用户？</value></data>
+  <data name="Users_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Users_NoSelection" xml:space="preserve"><value>未选择用户</value></data>
+  <data name="Users_NoSelectionHint" xml:space="preserve"><value>从表格中选择用户进行编辑，或新建一个。</value></data>
+  <data name="Users_Count" xml:space="preserve"><value>{0} 位用户</value></data>
+  <data name="Users_ShowingPartial" xml:space="preserve"><value>显示 {1} 位用户中的 {0} 位。请缩小搜索范围以查看更多。</value></data>
+  <data name="Users_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="Users_Details" xml:space="preserve"><value>详情</value></data>
+  <data name="UserDetail_Title" xml:space="preserve"><value>用户详情</value></data>
+  <data name="UserDetail_Subtitle" xml:space="preserve"><value>关于此用户的全部信息。</value></data>
+  <data name="UserDetail_Back" xml:space="preserve"><value>返回用户列表</value></data>
+  <data name="UserDetail_Edit" xml:space="preserve"><value>编辑</value></data>
+  <data name="UserDetail_Information" xml:space="preserve"><value>信息</value></data>
+  <data name="UserDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
+  <data name="UserDetail_TabPhoneNumbers" xml:space="preserve"><value>电话号码</value></data>
+  <data name="UserDetail_TabEmailAddresses" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="UserDetail_TabAddresses" xml:space="preserve"><value>地址</value></data>
+  <data name="UserDetail_CreatedAt" xml:space="preserve"><value>创建时间</value></data>
+  <data name="Editor_New" xml:space="preserve"><value>新建用户</value></data>
+  <data name="Editor_Edit" xml:space="preserve"><value>编辑用户</value></data>
+  <data name="Editor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="Editor_PasswordKeep" xml:space="preserve"><value>留空则保持当前密码</value></data>
+  <data name="Field_FirstName" xml:space="preserve"><value>名</value></data>
+  <data name="Field_LastName" xml:space="preserve"><value>姓</value></data>
+  <data name="Field_Username" xml:space="preserve"><value>用户名（邮箱地址）</value></data>
+  <data name="Field_Password" xml:space="preserve"><value>密码</value></data>
+  <data name="Field_ConfirmPassword" xml:space="preserve"><value>确认密码</value></data>
+  <data name="Field_DateOfBirth" xml:space="preserve"><value>出生日期</value></data>
+  <data name="Field_UsernamePlaceholder" xml:space="preserve"><value>name@example.com</value></data>
+  <data name="Login_Hero" xml:space="preserve"><value>一切尽在一处。</value></data>
+  <data name="Login_HeroText" xml:space="preserve"><value>登录后即可在一个简单的控制台中管理用户和设置。</value></data>
+  <data name="Login_Title" xml:space="preserve"><value>欢迎回来</value></data>
+  <data name="Login_Subtitle" xml:space="preserve"><value>使用邮箱地址和密码登录。</value></data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve"><value>您的密码</value></data>
+  <data name="Login_SignIn" xml:space="preserve"><value>登录</value></data>
+  <data name="Setup_Hero" xml:space="preserve"><value>让我们开始设置吧。</value></data>
+  <data name="Setup_HeroText" xml:space="preserve"><value>目前还没有用户。请创建第一个账户，然后使用它登录。</value></data>
+  <data name="Setup_Title" xml:space="preserve"><value>创建第一个用户</value></data>
+  <data name="Setup_Subtitle" xml:space="preserve"><value>此账户将用于登录。</value></data>
+  <data name="Setup_PasswordPlaceholder" xml:space="preserve"><value>至少 8 个字符</value></data>
+  <data name="Setup_Create" xml:space="preserve"><value>创建用户</value></data>
+  <data name="Startup_UsersDatabase" xml:space="preserve"><value>正在准备用户数据库...</value></data>
+  <data name="Error_user_not_found" xml:space="preserve"><value>未找到该用户。</value></data>
+  <data name="Error_user_conflict" xml:space="preserve"><value>已存在使用此用户名的用户。</value></data>
+  <data name="Error_invalid_credentials" xml:space="preserve"><value>用户名或密码错误。</value></data>
+  <data name="Error_credentials_required" xml:space="preserve"><value>请输入用户名和密码。</value></data>
+  <data name="Error_first_name_required" xml:space="preserve"><value>请输入名。</value></data>
+  <data name="Error_first_name_too_long" xml:space="preserve"><value>名最多 100 个字符。</value></data>
+  <data name="Error_last_name_required" xml:space="preserve"><value>请输入姓。</value></data>
+  <data name="Error_last_name_too_long" xml:space="preserve"><value>姓最多 100 个字符。</value></data>
+  <data name="Error_username_required" xml:space="preserve"><value>请输入用户名。</value></data>
+  <data name="Error_username_too_long" xml:space="preserve"><value>用户名最多 254 个字符。</value></data>
+  <data name="Error_username_invalid" xml:space="preserve"><value>用户名必须是有效的邮箱地址。</value></data>
+  <data name="Error_password_required" xml:space="preserve"><value>请输入密码。</value></data>
+  <data name="Error_password_too_short" xml:space="preserve"><value>密码至少需要 8 个字符。</value></data>
+  <data name="Error_password_too_long" xml:space="preserve"><value>密码最多 128 个字符。</value></data>
+  <data name="Error_date_of_birth_future" xml:space="preserve"><value>出生日期不能晚于今天。</value></data>
+  <data name="Error_date_of_birth_invalid" xml:space="preserve"><value>出生日期无效。</value></data>
+  <data name="Error_date_of_birth_required" xml:space="preserve"><value>请选择出生日期。</value></data>
+  <data name="Error_passwords_mismatch" xml:space="preserve"><value>两次输入的密码不一致。</value></data>
+</root>

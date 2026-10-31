@@ -1,0 +1,45 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <!-- Real culture data is required: the app is localized (en, sv, zh-CN) and formats dates per culture -->
+        <InvariantGlobalization>false</InvariantGlobalization>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Code analysis">
+        <AnalysisLevel>latest-all</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningLevel>9999</WarningLevel>
+        <WarningsAsErrors />
+        <!-- CA2007: this is an application; view models must resume on the UI thread, so ConfigureAwait is not enforced -->
+        <NoWarn>$(NoWarn);CA2007</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Deterministic / CI-friendly builds">
+        <Deterministic>true</Deterministic>
+        <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Package / assembly metadata">
+        <Authors>Hans Sjödin</Authors>
+        <Company>Dotnetstore</Company>
+        <Product>Dotnetstore.PersonalApp</Product>
+        <Copyright>Copyright (c) $([System.DateTime]::Now.Year) Hans Sjödin</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)LICENSE')">
+        <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" Visible="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(MSBuildProjectName).Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>
