@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Versions live in Directory.Packages.props (central package management).
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      avalonia:
+        patterns: ["Avalonia*"]
+      efcore-and-extensions:
+        patterns: ["Microsoft.EntityFrameworkCore*", "Microsoft.Extensions.*"]
