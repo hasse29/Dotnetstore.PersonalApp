@@ -96,4 +96,5 @@
   <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>总小时数必须大于 0 且不超过 24。</value></data>
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>地点最多 200 个字符。</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>驾驶里程必须在 0 到 10000 公里之间。</value></data>
+  <data name="TimeReports_Reports" xml:space="preserve"><value>报告</value></data>
 </root>

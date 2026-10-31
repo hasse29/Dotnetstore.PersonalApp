@@ -29,13 +29,15 @@
                 <TextBlock Grid.Row="1" Text="{loc:Tr Shell_Menu}" FontSize="11" FontWeight="SemiBold" Margin="12,0,0,8"
                            Foreground="{DynamicResource SidebarMutedBrush}"/>
 
-                <ListBox Grid.Row="2" Classes="nav" ItemsSource="{Binding Pages}" SelectedItem="{Binding SelectedPage}">
+                <ListBox Grid.Row="2" Classes="nav" ItemsSource="{Binding Entries}" SelectedItem="{Binding SelectedEntry}">
                     <ListBox.ItemTemplate>
-                        <DataTemplate x:DataType="shell:IModulePage">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
+                        <DataTemplate x:DataType="vm:NavEntry">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12" Margin="{Binding Indent}">
                                 <PathIcon Width="18" Height="18" Data="{Binding IconData, Converter={StaticResource PathData}}"/>
-                                <TextBlock Text="{Binding Title}" FontWeight="Medium" VerticalAlignment="Center"/>
-                            </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding Title}" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <PathIcon Grid.Column="2" Width="14" Height="14" IsVisible="{Binding IsHeader}"
+                                          Data="{Binding ChevronData, Converter={StaticResource PathData}}"/>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

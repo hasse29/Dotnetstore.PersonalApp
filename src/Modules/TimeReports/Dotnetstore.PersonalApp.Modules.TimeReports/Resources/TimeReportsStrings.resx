@@ -96,4 +96,5 @@
   <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>Total hours must be more than 0 and at most 24.</value></data>
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Location can be at most 200 characters.</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Driving must be between 0 and 10000 km.</value></data>
+  <data name="TimeReports_Reports" xml:space="preserve"><value>Reports</value></data>
 </root>

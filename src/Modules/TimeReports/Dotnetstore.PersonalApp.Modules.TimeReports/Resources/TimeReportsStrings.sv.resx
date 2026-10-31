@@ -96,4 +96,5 @@
   <data name="Error_time_report_total_hours_invalid" xml:space="preserve"><value>Totalt antal timmar måste vara över 0 och högst 24.</value></data>
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Platsen får vara högst 200 tecken.</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Körsträckan måste vara mellan 0 och 10000 km.</value></data>
+  <data name="TimeReports_Reports" xml:space="preserve"><value>Rapporter</value></data>
 </root>
