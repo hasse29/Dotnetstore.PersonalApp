@@ -12,4 +12,7 @@
   <data name="Shell_Menu" xml:space="preserve"><value>菜单</value></data>
   <data name="Shell_Home" xml:space="preserve"><value>首页</value></data>
   <data name="Shell_SignOut" xml:space="preserve"><value>退出登录</value></data>
+  <data name="Modules_Title" xml:space="preserve"><value>模块</value></data>
+  <data name="Modules_Subtitle" xml:space="preserve"><value>开启或关闭模块。已关闭的模块会从菜单中隐藏，其数据会保留。</value></data>
+  <data name="Modules_Required" xml:space="preserve"><value>始终开启</value></data>
 </root>

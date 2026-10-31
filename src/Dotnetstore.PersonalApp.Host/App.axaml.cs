@@ -47,8 +47,10 @@ internal sealed partial class App : Application
         localizer.SetCulture(settings.Culture ?? localizer.Match(CultureInfo.CurrentUICulture));
         localizer.CultureChanged += (_, _) =>
         {
-            settings.Culture = localizer.Culture.Name;
-            settings.Save(AppPaths.DataDirectory);
+            // Reload so a change made elsewhere (e.g. disabled modules) is not overwritten.
+            var current = UserSettings.Load(AppPaths.DataDirectory);
+            current.Culture = localizer.Culture.Name;
+            current.Save(AppPaths.DataDirectory);
         };
     }
 

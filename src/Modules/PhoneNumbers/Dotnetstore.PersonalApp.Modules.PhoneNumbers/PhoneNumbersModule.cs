@@ -50,6 +50,7 @@ public static class PhoneNumbersModule
 
         services.AddTransient<PhoneNumberTypesViewModel>();
         services.AddSingleton<IModulePage, PhoneNumbersPage>();
+        services.AddSingleton(new ModuleInfo("phonenumbers", "PhoneNumbersPanel_Title"));
         services.AddSingleton<IStartupTask, MigratePhoneNumbersDatabaseTask>();
 
         return services;

@@ -158,6 +158,7 @@ Do NOT:
 - Style classes: `Border.card`, `TextBlock.h1/h2/muted/caption/label/error/column`, `Button.primary/subtle/danger/link-danger`, `ListBox.nav` (sidebar), `ListBox.table` (table-like list), `Border.avatar`.
 - Page layout: modules render only the page content (a `Margin="28"` grid with an `h1` title, a `muted` subtitle and cards). The Host shell supplies sidebar, breadcrumb bar and sign-out.
 - `IModulePage.IconData` is 24x24 SVG path data (Material icons work) rendered with `PathIcon` in the sidebar.
+- IModulePage.Group (optional ModulePageGroup) nests a page under a collapsible sidebar header; pages from different modules join the same group by Key. Address/email/phone type pages share SettingsGroup; TimeReports and WorkTimeTypes share a "Time reports" group.
 - Auth pages use a split layout: brand gradient panel on the left, form on the right.
 
 ## Localization (en, sv, zh-CN)

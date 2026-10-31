@@ -33,6 +33,7 @@ public static class ClientsModule
 
         services.AddTransient<ClientsViewModel>();
         services.AddSingleton<IModulePage, ClientsPage>();
+        services.AddSingleton(new ModuleInfo("clients", "Clients_Title"));
         services.AddSingleton<IStartupTask, MigrateClientsDatabaseTask>();
 
         return services;

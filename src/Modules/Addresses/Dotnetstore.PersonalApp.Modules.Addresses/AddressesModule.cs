@@ -50,6 +50,7 @@ public static class AddressesModule
 
         services.AddTransient<AddressTypesViewModel>();
         services.AddSingleton<IModulePage, AddressesPage>();
+        services.AddSingleton(new ModuleInfo("addresses", "AddressesPanel_Title"));
         services.AddSingleton<IStartupTask, MigrateAddressesDatabaseTask>();
 
         return services;

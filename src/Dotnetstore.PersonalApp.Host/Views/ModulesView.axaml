@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Host.Views.ModulesView"
+             x:DataType="vm:ModulesViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+        <StackPanel Spacing="4">
+            <TextBlock Text="{loc:Tr Modules_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr Modules_Subtitle}" Classes="muted"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Classes="card" VerticalAlignment="Top" MaxWidth="560" HorizontalAlignment="Left">
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ModuleItemViewModel">
+                        <Grid ColumnDefinitions="*,Auto" Margin="16,12">
+                            <StackPanel VerticalAlignment="Center" Spacing="2">
+                                <TextBlock Text="{Binding Title}" FontWeight="Medium"/>
+                                <TextBlock Text="{loc:Tr Modules_Required}" Classes="caption"
+                                           IsVisible="{Binding !CanDisable}"/>
+                            </StackPanel>
+                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsEnabled}" IsEnabled="{Binding CanDisable}"
+                                          OnContent="" OffContent=""/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </Grid>
+
+</UserControl>

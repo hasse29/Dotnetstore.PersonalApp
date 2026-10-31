@@ -17,18 +17,23 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     private readonly IAuthenticationPages _authentication;
     private readonly IEnumerable<IModulePage> _pages;
     private readonly CurrentUserAccessor? _currentUser;
+    private readonly ModuleSettings? _moduleSettings;
     private Action? _showCurrent;
 
-    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null)
+    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null, ModuleSettings? moduleSettings = null)
     {
         _currentUser = currentUser;
         _authentication = authentication;
         _pages = pages;
+        _moduleSettings = moduleSettings;
         localization.CultureChanged += (_, _) => Dispatcher.UIThread.Post(() => _showCurrent?.Invoke());
     }
 
     [ObservableProperty]
     public partial ViewModelBase? Content { get; set; }
+
+    // The shell listens to module settings, so a replaced shell must unhook itself.
+    partial void OnContentChanging(ViewModelBase? oldValue, ViewModelBase? newValue) => (oldValue as IDisposable)?.Dispose();
 
     public async Task InitializeAsync(CancellationToken cancellationToken)
     {
@@ -67,6 +72,6 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     {
         _showCurrent = () => ShowShell(user);
         SetCurrentUser(user);
-        Content = new ShellViewModel(_pages, user, ShowLogin);
+        Content = new ShellViewModel(_pages, user, ShowLogin, _moduleSettings);
     }
 }

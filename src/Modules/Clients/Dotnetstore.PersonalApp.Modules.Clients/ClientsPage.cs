@@ -8,6 +8,8 @@ namespace Dotnetstore.PersonalApp.Modules.Clients;
 
 internal sealed class ClientsPage(IServiceProvider services) : IModulePage
 {
+    public string? ModuleKey => "clients";
+
     public string Title => Localizer.Instance.Get("Clients_Title");
 
     // Material "business" icon

@@ -48,6 +48,7 @@ public static class TimeReportsModule
         services.AddSingleton<ITimeReportsPanelFactory>(sp => sp.GetRequiredService<TimeReportsPanelFactory>());
 
         services.AddSingleton<IModulePage, TimeReportsPage>();
+        services.AddSingleton(new ModuleInfo("timereports", "TimeReports_Title"));
         services.AddSingleton<IStartupTask, MigrateTimeReportsDatabaseTask>();
 
         return services;

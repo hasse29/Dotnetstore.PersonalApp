@@ -9,6 +9,9 @@ internal sealed class UserSettings
 
     public string? Culture { get; set; }
 
+    /// <summary>Keys of modules whose menu pages are hidden.</summary>
+    public List<string> DisabledModules { get; set; } = [];
+
     private static string FilePath(string directory) => Path.Combine(directory, "settings.json");
 
     public static UserSettings Load(string directory)

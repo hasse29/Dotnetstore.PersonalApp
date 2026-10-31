@@ -14,6 +14,7 @@ using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Localization;
+using Dotnetstore.PersonalApp.Shared.Shell;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dotnetstore.PersonalApp.Host;
@@ -34,6 +35,9 @@ internal static class CompositionRoot
         services.AddSingleton<IFileSaveService, AvaloniaFileSaveService>();
         services.AddSingleton<CurrentUserAccessor>();
         services.AddSingleton<ICurrentUser>(sp => sp.GetRequiredService<CurrentUserAccessor>());
+        services.AddSingleton(new ModuleSettings(dataDirectory));
+        services.AddSingleton<IModulePage, ModulesPage>();
+        services.AddTransient<ModulesViewModel>();
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<StartupRunner>();
         services.AddSingleton<IEventPublisher, InProcessEventPublisher>();

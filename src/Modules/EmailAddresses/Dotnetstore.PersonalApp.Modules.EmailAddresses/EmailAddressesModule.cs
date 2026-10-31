@@ -50,6 +50,7 @@ public static class EmailAddressesModule
 
         services.AddTransient<EmailAddressTypesViewModel>();
         services.AddSingleton<IModulePage, EmailAddressesPage>();
+        services.AddSingleton(new ModuleInfo("emailaddresses", "EmailAddressesPanel_Title"));
         services.AddSingleton<IStartupTask, MigrateEmailAddressesDatabaseTask>();
 
         return services;

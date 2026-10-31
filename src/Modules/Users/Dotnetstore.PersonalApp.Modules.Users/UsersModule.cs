@@ -39,6 +39,7 @@ public static class UsersModule
 
         services.AddTransient<UsersViewModel>();
         services.AddSingleton<IModulePage, UsersPage>();
+        services.AddSingleton(new ModuleInfo("users", "Users_Title", CanDisable: false));
         services.AddSingleton<IStartupTask, MigrateUsersDatabaseTask>();
 
         return services;

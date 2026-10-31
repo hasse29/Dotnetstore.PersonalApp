@@ -8,6 +8,8 @@ namespace Dotnetstore.PersonalApp.Modules.Users;
 
 internal sealed class UsersPage(IServiceProvider services) : IModulePage
 {
+    public string? ModuleKey => "users";
+
     public string Title => Localizer.Instance.Get("Users_Title");
 
     // Material "group" icon
