@@ -5,15 +5,27 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+# A newer push supersedes a run that is still going for the same branch or pull request.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build Dotnetstore.PersonalApp.slnx --configuration Release
       - name: Test
-        run: dotnet test --configuration Release --no-build
+        run: dotnet test --solution Dotnetstore.PersonalApp.slnx --configuration Release --no-build
+      # Catches runtime-identifier or self-contained publish breakage that build and test do not.
+      - name: Publish (self-contained win-x64)
+        run: dotnet publish src/Dotnetstore.PersonalApp.Host/Dotnetstore.PersonalApp.Host.csproj --configuration Release --runtime win-x64 --self-contained true --output artifacts/publish
