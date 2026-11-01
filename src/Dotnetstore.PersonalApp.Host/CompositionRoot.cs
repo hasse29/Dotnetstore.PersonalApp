@@ -8,6 +8,7 @@ using Dotnetstore.PersonalApp.Modules.Addresses;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Modules.Clients;
 using Dotnetstore.PersonalApp.Modules.Cvs;
+using Dotnetstore.PersonalApp.Modules.Email;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
@@ -35,6 +36,7 @@ internal static class CompositionRoot
         services.AddSingleton<ILocalizationService>(Localizer.Instance);
         services.AddSingleton<IFileSaveService, AvaloniaFileSaveService>();
         services.AddSingleton<IFileOpenService, AvaloniaFileOpenService>();
+        services.AddSingleton<IFilePickService, AvaloniaFilePickService>();
         services.AddSingleton<CurrentUserAccessor>();
         services.AddSingleton<ICurrentUser>(sp => sp.GetRequiredService<CurrentUserAccessor>());
         services.AddSingleton(new ModuleSettings(dataDirectory));
@@ -50,6 +52,7 @@ internal static class CompositionRoot
         services.AddEmailAddressesModule(Path.Combine(dataDirectory, "emailaddresses.db"));
         services.AddPhoneNumbersModule(Path.Combine(dataDirectory, "phonenumbers.db"));
         services.AddCvsModule(Path.Combine(dataDirectory, "cvs.db"));
+        services.AddEmailModule(Path.Combine(dataDirectory, "email.db"));
         services.AddUsersModule(Path.Combine(dataDirectory, "users.db"));
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });

@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:msg="using:Dotnetstore.PersonalApp.Modules.Email.Features.Messages"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.Email.Features.Messages.ComposeView"
+             x:DataType="msg:ComposeViewModel">
+
+    <UserControl.Styles>
+        <!-- On its own page the content gets the usual page margin; embedded in the inbox it sits flush. -->
+        <Style Selector="Grid#Root.page">
+            <Setter Property="Margin" Value="28"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid x:Name="Root" RowDefinitions="Auto,*" RowSpacing="20" Classes.page="{Binding IsPage}">
+
+        <StackPanel Spacing="4" IsVisible="{Binding IsPage}">
+            <TextBlock Text="{loc:Tr Compose_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr Compose_Subtitle}" Classes="muted"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Classes="card" Padding="24" VerticalAlignment="Top" MaxWidth="760" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="14">
+                <TextBlock Text="{loc:Tr Compose_NoAccounts}" Classes="muted" TextWrapping="Wrap" IsVisible="{Binding HasNoAccounts}"/>
+
+                <StackPanel Spacing="14" IsVisible="{Binding !HasNoAccounts}">
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr Compose_From}" Classes="label"/>
+                        <ComboBox ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" HorizontalAlignment="Stretch">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="msg:AccountChoice">
+                                    <TextBlock Text="{Binding Label}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr Compose_To}" Classes="label"/>
+                        <TextBox Text="{Binding To}" PlaceholderText="{loc:Tr Compose_ToPlaceholder}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr Compose_Cc}" Classes="label"/>
+                        <TextBox Text="{Binding Cc}" PlaceholderText="{loc:Tr Compose_ToPlaceholder}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr Compose_Subject}" Classes="label"/>
+                        <TextBox Text="{Binding Subject}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr Compose_Body}" Classes="label"/>
+                        <TextBox Text="{Binding Body}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="200" MaxHeight="360"/>
+                        <CheckBox IsChecked="{Binding IsHtml}" Content="{loc:Tr Compose_Html}" Margin="0,6,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <Button Classes="subtle" Content="{loc:Tr Compose_Attach}" Command="{Binding AddAttachmentsCommand}" HorizontalAlignment="Left"/>
+                        <ItemsControl ItemsSource="{Binding Attachments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="msg:ComposeAttachment">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                            <Run Text="{Binding FileName}"/>
+                                            <Run Text="{Binding SizeText, StringFormat=' ({0})'}" Foreground="{DynamicResource TextMutedBrush}"/>
+                                        </TextBlock>
+                                        <Button Grid.Column="1" Classes="link-danger" Content="{loc:Tr Compose_RemoveAttachment}"
+                                                Command="{Binding RemoveCommand}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+                        <TextBlock Text="{Binding StatusMessage}" VerticalAlignment="Center" TextWrapping="Wrap"
+                                   Classes.error="{Binding StatusIsError}" Classes.caption="{Binding !StatusIsError}"/>
+                        <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr Common_Cancel}" Command="{Binding CancelCommand}"
+                                IsVisible="{Binding IsEmbedded}"/>
+                        <Button Grid.Column="2" Classes="subtle" Content="{loc:Tr Compose_SaveDraft}" Command="{Binding SaveDraftCommand}"/>
+                        <Button Grid.Column="3" Classes="primary" Content="{loc:Tr Compose_Send}" Command="{Binding SendCommand}"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

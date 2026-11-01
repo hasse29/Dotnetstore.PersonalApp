@@ -1,0 +1,108 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:msg="using:Dotnetstore.PersonalApp.Modules.Email.Features.Messages"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.Email.Features.Messages.SentView"
+             x:DataType="msg:SentViewModel">
+
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="20" Margin="28">
+
+        <StackPanel Spacing="4">
+            <TextBlock Text="{loc:Tr Sent_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr Sent_Subtitle}" Classes="muted"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Classes="card" Padding="16" IsVisible="{Binding HasNoAccounts}">
+            <TextBlock Text="{loc:Tr Compose_NoAccounts}" Classes="muted" TextWrapping="Wrap"/>
+        </Border>
+
+        <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="16" IsVisible="{Binding !HasNoAccounts}">
+
+            <Grid ColumnDefinitions="320,*" ColumnSpacing="12">
+                <ComboBox ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="msg:AccountChoice">
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Grid.Column="1" Text="{Binding StatusMessage}" VerticalAlignment="Center" TextWrapping="Wrap"
+                           Classes.error="{Binding StatusIsError}" Classes.caption="{Binding !StatusIsError}"/>
+            </Grid>
+
+            <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="20">
+
+                <Border Classes="card">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                                BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                            <TextBlock Text="{loc:Tr Inbox_ColMessage}" Classes="column"/>
+                        </Border>
+                        <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="msg:SentMessageDto">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{Binding Subject}" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding To}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding SentAt, StringFormat={}{0:g}}" Classes="caption"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Column="1" Classes="card" Padding="24">
+                    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right"
+                                    IsVisible="{Binding OpenMessage, Converter={x:Static ObjectConverters.IsNotNull}}">
+                            <Button Content="{loc:Tr Inbox_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                    IsVisible="{Binding !IsConfirmingDelete}"/>
+                            <TextBlock Text="{loc:Tr Inbox_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                       IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr Email_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                        </StackPanel>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                                      IsVisible="{Binding OpenMessage, Converter={x:Static ObjectConverters.IsNotNull}}">
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="{Binding OpenMessage.Subject}" Classes="h2" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding OpenMessage.To}" Classes="muted" TextWrapping="Wrap"/>
+                                <TextBlock Classes="caption" TextWrapping="Wrap" IsVisible="{Binding OpenMessage.Cc, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                    <Run Text="{loc:Tr Inbox_CcLabel}"/>
+                                    <Run Text="{Binding OpenMessage.Cc}"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding OpenMessage.SentAt, StringFormat={}{0:f}}" Classes="caption"/>
+                                <msg:FormattedBodyPanel Blocks="{Binding FormattedBlocks}" Margin="0,8,0,0" IsVisible="{Binding HasHtml}"/>
+                                <SelectableTextBlock Text="{Binding OpenMessage.Body}" TextWrapping="Wrap" Margin="0,8,0,0"
+                                                     IsVisible="{Binding !HasHtml}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <ItemsControl Grid.Row="2" ItemsSource="{Binding AttachmentRows}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="msg:AttachmentRow">
+                                    <Button Classes="subtle" Command="{Binding SaveCommand}" HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding Label}"/>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <TextBlock Grid.RowSpan="3" Text="{loc:Tr Inbox_NoSelection}" Classes="muted"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   IsVisible="{Binding OpenMessage, Converter={x:Static ObjectConverters.IsNull}}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>

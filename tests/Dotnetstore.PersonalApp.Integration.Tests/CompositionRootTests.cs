@@ -71,6 +71,14 @@ public sealed class CompositionRootTests
     }
 
     [Fact]
+    public void EmailModuleAddsItsAccountsPageToTheShell()
+    {
+        using var services = CompositionRoot.BuildServices();
+
+        Assert.Contains(services.GetServices<IModulePage>(), page => page.ModuleKey == "email");
+    }
+
+    [Fact]
     public void EveryModulePageCreatesItsViewModel()
     {
         using var services = CompositionRoot.BuildServices();

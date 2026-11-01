@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:email="using:Dotnetstore.PersonalApp.Modules.Email.Features.EmailAccounts"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.Email.Features.EmailAccounts.EmailAccountEditorView"
+             x:DataType="email:EmailAccountEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding EditorTitle}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Name}" Classes="label"/>
+                <TextBox Text="{Binding Name}" PlaceholderText="{loc:Tr EmailField_NamePlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding CanChooseScope}" Spacing="2">
+                <CheckBox IsChecked="{Binding IsSystemAccount}" Content="{loc:Tr EmailField_System}"/>
+                <TextBlock Text="{loc:Tr EmailField_SystemHint}" Classes="caption" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Protocol}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Protocols}" SelectedItem="{Binding SelectedProtocol}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="email:ProtocolChoice">
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,100" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr EmailField_Host}" Classes="label"/>
+                    <TextBox Text="{Binding Host}" PlaceholderText="{loc:Tr EmailField_HostPlaceholder}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr EmailField_Port}" Classes="label"/>
+                    <TextBox Text="{Binding PortText}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Security}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Securities}" SelectedItem="{Binding SelectedSecurity}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="email:SecurityChoice">
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Address}" Classes="label"/>
+                <TextBox Text="{Binding EmailAddress}" PlaceholderText="{loc:Tr EmailField_AddressPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Username}" Classes="label"/>
+                <TextBox Text="{Binding Username}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr EmailField_Password}" Classes="label"/>
+                <TextBox Text="{Binding Password}" PasswordChar="●" PlaceholderText="{Binding PasswordPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel Spacing="6">
+                <Button Content="{loc:Tr EmailEditor_TestConnection}" Classes="subtle" HorizontalAlignment="Left"
+                        Command="{Binding TestConnectionCommand}"/>
+                <TextBlock Text="{Binding TestMessage}" TextWrapping="Wrap"
+                           Classes.error="{Binding !TestSucceeded}" Classes.muted="{Binding TestSucceeded}"
+                           IsVisible="{Binding TestMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <TextBlock Text="{loc:Tr EmailEditor_Testing}" Classes="muted" IsVisible="{Binding IsTesting}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr EmailEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

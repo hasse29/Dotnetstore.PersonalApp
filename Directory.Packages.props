@@ -14,11 +14,13 @@
     <PackageVersion Include="ClosedXML" Version="0.105.1" />
     <PackageVersion Include="DocumentFormat.OpenXml" Version="3.1.1" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="MailKit" Version="4.17.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
     <PackageVersion Include="FluentValidation" Version="12.2.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.14" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14" />
     <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="10.0.14" />
+    <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.9" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.2" />
     <!-- Transitive pins: patched versions of packages with known vulnerabilities -->
     <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.14" />

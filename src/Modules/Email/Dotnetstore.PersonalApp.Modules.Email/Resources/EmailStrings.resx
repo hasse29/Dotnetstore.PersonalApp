@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Email_Title" xml:space="preserve"><value>Email accounts</value></data>
+  <data name="Email_Subtitle" xml:space="preserve"><value>Add the SMTP and POP3 accounts used to send and receive mail. System accounts are shared by everyone.</value></data>
+  <data name="Email_New" xml:space="preserve"><value>New account</value></data>
+  <data name="Email_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Email_ColType" xml:space="preserve"><value>TYPE</value></data>
+  <data name="Email_ColServer" xml:space="preserve"><value>SERVER</value></data>
+  <data name="Email_ColScope" xml:space="preserve"><value>OWNER</value></data>
+  <data name="Email_ScopePersonal" xml:space="preserve"><value>Personal</value></data>
+  <data name="Email_ScopeSystem" xml:space="preserve"><value>System</value></data>
+  <data name="Email_ProtocolSmtp" xml:space="preserve"><value>SMTP (send)</value></data>
+  <data name="Email_ProtocolPop3" xml:space="preserve"><value>POP3 (receive)</value></data>
+  <data name="Email_SecurityNone" xml:space="preserve"><value>None</value></data>
+  <data name="Email_SecurityStartTls" xml:space="preserve"><value>STARTTLS</value></data>
+  <data name="Email_SecuritySsl" xml:space="preserve"><value>SSL/TLS</value></data>
+  <data name="Email_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Email_ConfirmDelete" xml:space="preserve"><value>Delete this account?</value></data>
+  <data name="Email_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Email_NoSelection" xml:space="preserve"><value>No account selected</value></data>
+  <data name="Email_NoSelectionHint" xml:space="preserve"><value>Pick an account in the table to edit it, or create a new one.</value></data>
+  <data name="Email_Count" xml:space="preserve"><value>{0} account(s)</value></data>
+  <data name="Email_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} accounts.</value></data>
+  <data name="Email_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="EmailEditor_New" xml:space="preserve"><value>New email account</value></data>
+  <data name="EmailEditor_Edit" xml:space="preserve"><value>Edit email account</value></data>
+  <data name="EmailEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="EmailField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="EmailField_NamePlaceholder" xml:space="preserve"><value>e.g. Work outgoing</value></data>
+  <data name="EmailField_System" xml:space="preserve"><value>System account</value></data>
+  <data name="EmailField_SystemHint" xml:space="preserve"><value>Shared by all users. This cannot be changed later.</value></data>
+  <data name="EmailField_Protocol" xml:space="preserve"><value>Type</value></data>
+  <data name="EmailField_Host" xml:space="preserve"><value>Server</value></data>
+  <data name="EmailField_HostPlaceholder" xml:space="preserve"><value>e.g. smtp.example.com</value></data>
+  <data name="EmailField_Port" xml:space="preserve"><value>Port</value></data>
+  <data name="EmailField_Security" xml:space="preserve"><value>Security</value></data>
+  <data name="EmailField_Address" xml:space="preserve"><value>Email address</value></data>
+  <data name="EmailField_AddressPlaceholder" xml:space="preserve"><value>e.g. anna@example.com</value></data>
+  <data name="EmailField_Username" xml:space="preserve"><value>Username</value></data>
+  <data name="EmailField_Password" xml:space="preserve"><value>Password</value></data>
+  <data name="EmailField_PasswordPlaceholder" xml:space="preserve"><value>Leave empty if the server needs no login</value></data>
+  <data name="EmailField_PasswordKeep" xml:space="preserve"><value>Leave empty to keep the current password</value></data>
+  <data name="Startup_EmailDatabase" xml:space="preserve"><value>Preparing email database...</value></data>
+  <data name="Error_email_account_not_found" xml:space="preserve"><value>Account not found.</value></data>
+  <data name="Error_email_account_conflict" xml:space="preserve"><value>You already have an account with this name.</value></data>
+  <data name="Error_email_account_user_required" xml:space="preserve"><value>Nobody is signed in.</value></data>
+  <data name="Error_email_account_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_email_account_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_email_account_protocol_invalid" xml:space="preserve"><value>Type must be SMTP or POP3.</value></data>
+  <data name="Error_email_account_host_required" xml:space="preserve"><value>Server is required.</value></data>
+  <data name="Error_email_account_host_too_long" xml:space="preserve"><value>Server can be at most 255 characters.</value></data>
+  <data name="Error_email_account_host_invalid" xml:space="preserve"><value>The server name is not valid.</value></data>
+  <data name="Error_email_account_port_invalid" xml:space="preserve"><value>Port must be a number between 1 and 65535.</value></data>
+  <data name="Error_email_account_security_invalid" xml:space="preserve"><value>The connection security is not valid.</value></data>
+  <data name="Error_email_account_address_required" xml:space="preserve"><value>Email address is required.</value></data>
+  <data name="Error_email_account_address_too_long" xml:space="preserve"><value>Email address can be at most 254 characters.</value></data>
+  <data name="Error_email_account_address_invalid" xml:space="preserve"><value>The email address is not valid.</value></data>
+  <data name="Error_email_account_username_too_long" xml:space="preserve"><value>Username can be at most 200 characters.</value></data>
+  <data name="Error_email_account_password_too_long" xml:space="preserve"><value>Password can be at most 500 characters.</value></data>
+  <data name="Email_Module" xml:space="preserve"><value>Email</value></data>
+  <data name="EmailEditor_TestConnection" xml:space="preserve"><value>Test connection</value></data>
+  <data name="EmailEditor_Testing" xml:space="preserve"><value>Testing...</value></data>
+  <data name="EmailEditor_TestOk" xml:space="preserve"><value>Connected and logged in successfully.</value></data>
+  <data name="Inbox_Title" xml:space="preserve"><value>Inbox</value></data>
+  <data name="Inbox_Subtitle" xml:space="preserve"><value>Mail downloaded from your POP3 accounts. Fetching leaves the mail on the server.</value></data>
+  <data name="Inbox_NoAccounts" xml:space="preserve"><value>There is no POP3 account yet. Add one under Email accounts.</value></data>
+  <data name="Inbox_Fetch" xml:space="preserve"><value>Fetch mail</value></data>
+  <data name="Inbox_Fetching" xml:space="preserve"><value>Fetching mail...</value></data>
+  <data name="Inbox_Fetched" xml:space="preserve"><value>Fetched {0} new message(s).</value></data>
+  <data name="Inbox_Count" xml:space="preserve"><value>{0} message(s)</value></data>
+  <data name="Inbox_ColMessage" xml:space="preserve"><value>MESSAGES</value></data>
+  <data name="Inbox_NoSelection" xml:space="preserve"><value>Select a message to read it.</value></data>
+  <data name="Compose_Title" xml:space="preserve"><value>New message</value></data>
+  <data name="Compose_Subtitle" xml:space="preserve"><value>Send a plain text message through one of your SMTP accounts.</value></data>
+  <data name="Compose_NoAccounts" xml:space="preserve"><value>There is no SMTP account yet. Add one under Email accounts.</value></data>
+  <data name="Compose_From" xml:space="preserve"><value>From</value></data>
+  <data name="Compose_To" xml:space="preserve"><value>To</value></data>
+  <data name="Compose_ToPlaceholder" xml:space="preserve"><value>Separate several addresses with commas</value></data>
+  <data name="Compose_Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="Compose_Body" xml:space="preserve"><value>Message</value></data>
+  <data name="Compose_Send" xml:space="preserve"><value>Send</value></data>
+  <data name="Compose_Sending" xml:space="preserve"><value>Sending...</value></data>
+  <data name="Compose_Sent" xml:space="preserve"><value>Message sent to {0} recipient(s).</value></data>
+  <data name="Error_email_authentication_failed" xml:space="preserve"><value>The server rejected the username or password.</value></data>
+  <data name="Error_email_tls_failed" xml:space="preserve"><value>The secure connection could not be set up. Check the security setting and port.</value></data>
+  <data name="Error_email_connection_failed" xml:space="preserve"><value>Could not connect to the server. Check the server name, port and your network.</value></data>
+  <data name="Error_email_server_error" xml:space="preserve"><value>The server answered with an error.</value></data>
+  <data name="Error_email_password_unreadable" xml:space="preserve"><value>The stored password cannot be read here. Enter it again.</value></data>
+  <data name="Error_email_recipient_required" xml:space="preserve"><value>Enter at least one recipient.</value></data>
+  <data name="Error_email_recipient_invalid" xml:space="preserve"><value>One of the recipient addresses is not valid.</value></data>
+  <data name="Error_email_too_many_recipients" xml:space="preserve"><value>There can be at most 50 recipients.</value></data>
+  <data name="Error_email_subject_too_long" xml:space="preserve"><value>Subject can be at most 500 characters.</value></data>
+  <data name="Error_email_body_too_long" xml:space="preserve"><value>The message can be at most 100000 characters.</value></data>
+  <data name="Error_email_account_not_smtp" xml:space="preserve"><value>Only SMTP accounts can send mail.</value></data>
+  <data name="Error_email_account_not_pop3" xml:space="preserve"><value>Only POP3 accounts can fetch mail.</value></data>
+  <data name="Error_email_message_not_found" xml:space="preserve"><value>Message not found.</value></data>
+  <data name="Inbox_AutoRefresh" xml:space="preserve"><value>Check every 5 minutes</value></data>
+  <data name="Inbox_Reply" xml:space="preserve"><value>Reply</value></data>
+  <data name="Inbox_Forward" xml:space="preserve"><value>Forward</value></data>
+  <data name="Inbox_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Inbox_ConfirmDelete" xml:space="preserve"><value>Delete this message here? The copy on the server stays.</value></data>
+  <data name="Inbox_SaveAttachment" xml:space="preserve"><value>Save attachment</value></data>
+  <data name="Inbox_AttachmentSaved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="Inbox_ReplySent" xml:space="preserve"><value>Message sent.</value></data>
+  <data name="Reply_Header" xml:space="preserve"><value>On {0}, {1} wrote:</value></data>
+  <data name="Forward_Header" xml:space="preserve"><value>---------- Forwarded message ----------
+From: {0}
+Date: {1}
+Subject: {2}</value></data>
+  <data name="Sent_Title" xml:space="preserve"><value>Sent mail</value></data>
+  <data name="Sent_Subtitle" xml:space="preserve"><value>Copies of the messages you sent through your SMTP accounts.</value></data>
+  <data name="Sent_Count" xml:space="preserve"><value>{0} sent message(s)</value></data>
+  <data name="Compose_Html" xml:space="preserve"><value>Send as HTML (the text is HTML source)</value></data>
+  <data name="Compose_Attach" xml:space="preserve"><value>Attach files...</value></data>
+  <data name="Compose_AttachTitle" xml:space="preserve"><value>Attach files</value></data>
+  <data name="Compose_RemoveAttachment" xml:space="preserve"><value>Remove</value></data>
+  <data name="Error_email_too_many_attachments" xml:space="preserve"><value>There can be at most 20 attachments.</value></data>
+  <data name="Error_email_attachment_too_large" xml:space="preserve"><value>An attachment is larger than 10 MB.</value></data>
+  <data name="Error_email_attachments_too_large" xml:space="preserve"><value>The attachments are larger than 25 MB together.</value></data>
+  <data name="Error_email_attachment_not_found" xml:space="preserve"><value>Attachment not found.</value></data>
+  <data name="Compose_Cc" xml:space="preserve"><value>Cc</value></data>
+  <data name="Compose_SaveDraft" xml:space="preserve"><value>Save draft</value></data>
+  <data name="Compose_DraftSaved" xml:space="preserve"><value>Draft saved.</value></data>
+  <data name="Inbox_ReplyAll" xml:space="preserve"><value>Reply all</value></data>
+  <data name="Inbox_ToLabel" xml:space="preserve"><value>To: </value></data>
+  <data name="Inbox_CcLabel" xml:space="preserve"><value>Cc: </value></data>
+  <data name="Inbox_ShowPlain" xml:space="preserve"><value>Show plain text</value></data>
+  <data name="Inbox_ShowFormatted" xml:space="preserve"><value>Show formatted</value></data>
+  <data name="Drafts_Title" xml:space="preserve"><value>Drafts</value></data>
+  <data name="Drafts_Subtitle" xml:space="preserve"><value>Messages you have started but not sent. Pick one to keep writing.</value></data>
+  <data name="Drafts_Col" xml:space="preserve"><value>Draft</value></data>
+  <data name="Drafts_NoSelection" xml:space="preserve"><value>Select a draft to continue writing it.</value></data>
+  <data name="Drafts_Count" xml:space="preserve"><value>{0} draft(s)</value></data>
+  <data name="Drafts_Delete" xml:space="preserve"><value>Delete draft</value></data>
+  <data name="Drafts_ConfirmDelete" xml:space="preserve"><value>Delete this draft for good?</value></data>
+  <data name="Error_email_draft_empty" xml:space="preserve"><value>There is nothing to save yet.</value></data>
+  <data name="Error_email_draft_not_found" xml:space="preserve"><value>The draft no longer exists.</value></data>
+  <data name="Inbox_LoadMore" xml:space="preserve"><value>Load older messages</value></data>
+  <data name="Compose_FilesSkipped" xml:space="preserve"><value>Not attached (too large, over {1}, or unreadable): {0}</value></data>
+  <data name="Error_email_account_password_required" xml:space="preserve"><value>Enter the password again when the server, port or username is changed.</value></data>
+</root>

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Email_Title" xml:space="preserve"><value>E-postkonton</value></data>
+  <data name="Email_Subtitle" xml:space="preserve"><value>Lägg till de SMTP- och POP3-konton som används för att skicka och ta emot e-post. Systemkonton delas av alla.</value></data>
+  <data name="Email_New" xml:space="preserve"><value>Nytt konto</value></data>
+  <data name="Email_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Email_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="Email_ColServer" xml:space="preserve"><value>SERVER</value></data>
+  <data name="Email_ColScope" xml:space="preserve"><value>ÄGARE</value></data>
+  <data name="Email_ScopePersonal" xml:space="preserve"><value>Personligt</value></data>
+  <data name="Email_ScopeSystem" xml:space="preserve"><value>System</value></data>
+  <data name="Email_ProtocolSmtp" xml:space="preserve"><value>SMTP (skicka)</value></data>
+  <data name="Email_ProtocolPop3" xml:space="preserve"><value>POP3 (ta emot)</value></data>
+  <data name="Email_SecurityNone" xml:space="preserve"><value>Ingen</value></data>
+  <data name="Email_SecurityStartTls" xml:space="preserve"><value>STARTTLS</value></data>
+  <data name="Email_SecuritySsl" xml:space="preserve"><value>SSL/TLS</value></data>
+  <data name="Email_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Email_ConfirmDelete" xml:space="preserve"><value>Ta bort kontot?</value></data>
+  <data name="Email_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Email_NoSelection" xml:space="preserve"><value>Inget konto valt</value></data>
+  <data name="Email_NoSelectionHint" xml:space="preserve"><value>Välj ett konto i tabellen för att ändra det, eller skapa ett nytt.</value></data>
+  <data name="Email_Count" xml:space="preserve"><value>{0} konto/n</value></data>
+  <data name="Email_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} konton.</value></data>
+  <data name="Email_Saved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="EmailEditor_New" xml:space="preserve"><value>Nytt e-postkonto</value></data>
+  <data name="EmailEditor_Edit" xml:space="preserve"><value>Ändra e-postkonto</value></data>
+  <data name="EmailEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="EmailField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="EmailField_NamePlaceholder" xml:space="preserve"><value>t.ex. Jobb utgående</value></data>
+  <data name="EmailField_System" xml:space="preserve"><value>Systemkonto</value></data>
+  <data name="EmailField_SystemHint" xml:space="preserve"><value>Delas av alla användare. Kan inte ändras senare.</value></data>
+  <data name="EmailField_Protocol" xml:space="preserve"><value>Typ</value></data>
+  <data name="EmailField_Host" xml:space="preserve"><value>Server</value></data>
+  <data name="EmailField_HostPlaceholder" xml:space="preserve"><value>t.ex. smtp.example.com</value></data>
+  <data name="EmailField_Port" xml:space="preserve"><value>Port</value></data>
+  <data name="EmailField_Security" xml:space="preserve"><value>Säkerhet</value></data>
+  <data name="EmailField_Address" xml:space="preserve"><value>E-postadress</value></data>
+  <data name="EmailField_AddressPlaceholder" xml:space="preserve"><value>t.ex. anna@example.com</value></data>
+  <data name="EmailField_Username" xml:space="preserve"><value>Användarnamn</value></data>
+  <data name="EmailField_Password" xml:space="preserve"><value>Lösenord</value></data>
+  <data name="EmailField_PasswordPlaceholder" xml:space="preserve"><value>Lämna tomt om servern inte kräver inloggning</value></data>
+  <data name="EmailField_PasswordKeep" xml:space="preserve"><value>Lämna tomt för att behålla nuvarande lösenord</value></data>
+  <data name="Startup_EmailDatabase" xml:space="preserve"><value>Förbereder e-postdatabasen...</value></data>
+  <data name="Error_email_account_not_found" xml:space="preserve"><value>Kontot hittades inte.</value></data>
+  <data name="Error_email_account_conflict" xml:space="preserve"><value>Det finns redan ett konto med det namnet.</value></data>
+  <data name="Error_email_account_user_required" xml:space="preserve"><value>Ingen är inloggad.</value></data>
+  <data name="Error_email_account_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_email_account_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_email_account_protocol_invalid" xml:space="preserve"><value>Typen måste vara SMTP eller POP3.</value></data>
+  <data name="Error_email_account_host_required" xml:space="preserve"><value>Server måste anges.</value></data>
+  <data name="Error_email_account_host_too_long" xml:space="preserve"><value>Servern får vara högst 255 tecken.</value></data>
+  <data name="Error_email_account_host_invalid" xml:space="preserve"><value>Servernamnet är inte giltigt.</value></data>
+  <data name="Error_email_account_port_invalid" xml:space="preserve"><value>Porten måste vara ett tal mellan 1 och 65535.</value></data>
+  <data name="Error_email_account_security_invalid" xml:space="preserve"><value>Anslutningssäkerheten är inte giltig.</value></data>
+  <data name="Error_email_account_address_required" xml:space="preserve"><value>E-postadress måste anges.</value></data>
+  <data name="Error_email_account_address_too_long" xml:space="preserve"><value>E-postadressen får vara högst 254 tecken.</value></data>
+  <data name="Error_email_account_address_invalid" xml:space="preserve"><value>E-postadressen är inte giltig.</value></data>
+  <data name="Error_email_account_username_too_long" xml:space="preserve"><value>Användarnamnet får vara högst 200 tecken.</value></data>
+  <data name="Error_email_account_password_too_long" xml:space="preserve"><value>Lösenordet får vara högst 500 tecken.</value></data>
+  <data name="Email_Module" xml:space="preserve"><value>E-post</value></data>
+  <data name="EmailEditor_TestConnection" xml:space="preserve"><value>Testa anslutning</value></data>
+  <data name="EmailEditor_Testing" xml:space="preserve"><value>Testar...</value></data>
+  <data name="EmailEditor_TestOk" xml:space="preserve"><value>Anslutningen och inloggningen lyckades.</value></data>
+  <data name="Inbox_Title" xml:space="preserve"><value>Inkorg</value></data>
+  <data name="Inbox_Subtitle" xml:space="preserve"><value>Post som hämtats från dina POP3-konton. Hämtningen lämnar kvar posten på servern.</value></data>
+  <data name="Inbox_NoAccounts" xml:space="preserve"><value>Det finns inget POP3-konto än. Lägg till ett under E-postkonton.</value></data>
+  <data name="Inbox_Fetch" xml:space="preserve"><value>Hämta e-post</value></data>
+  <data name="Inbox_Fetching" xml:space="preserve"><value>Hämtar e-post...</value></data>
+  <data name="Inbox_Fetched" xml:space="preserve"><value>Hämtade {0} nya meddelanden.</value></data>
+  <data name="Inbox_Count" xml:space="preserve"><value>{0} meddelande/n</value></data>
+  <data name="Inbox_ColMessage" xml:space="preserve"><value>MEDDELANDEN</value></data>
+  <data name="Inbox_NoSelection" xml:space="preserve"><value>Välj ett meddelande för att läsa det.</value></data>
+  <data name="Compose_Title" xml:space="preserve"><value>Nytt meddelande</value></data>
+  <data name="Compose_Subtitle" xml:space="preserve"><value>Skicka ett textmeddelande via ett av dina SMTP-konton.</value></data>
+  <data name="Compose_NoAccounts" xml:space="preserve"><value>Det finns inget SMTP-konto än. Lägg till ett under E-postkonton.</value></data>
+  <data name="Compose_From" xml:space="preserve"><value>Från</value></data>
+  <data name="Compose_To" xml:space="preserve"><value>Till</value></data>
+  <data name="Compose_ToPlaceholder" xml:space="preserve"><value>Skilj flera adresser åt med komma</value></data>
+  <data name="Compose_Subject" xml:space="preserve"><value>Ämne</value></data>
+  <data name="Compose_Body" xml:space="preserve"><value>Meddelande</value></data>
+  <data name="Compose_Send" xml:space="preserve"><value>Skicka</value></data>
+  <data name="Compose_Sending" xml:space="preserve"><value>Skickar...</value></data>
+  <data name="Compose_Sent" xml:space="preserve"><value>Meddelandet skickades till {0} mottagare.</value></data>
+  <data name="Error_email_authentication_failed" xml:space="preserve"><value>Servern avvisade användarnamnet eller lösenordet.</value></data>
+  <data name="Error_email_tls_failed" xml:space="preserve"><value>Den säkra anslutningen kunde inte upprättas. Kontrollera säkerhetsinställningen och porten.</value></data>
+  <data name="Error_email_connection_failed" xml:space="preserve"><value>Kunde inte ansluta till servern. Kontrollera servernamn, port och nätverk.</value></data>
+  <data name="Error_email_server_error" xml:space="preserve"><value>Servern svarade med ett fel.</value></data>
+  <data name="Error_email_password_unreadable" xml:space="preserve"><value>Det sparade lösenordet kan inte läsas här. Ange det igen.</value></data>
+  <data name="Error_email_recipient_required" xml:space="preserve"><value>Ange minst en mottagare.</value></data>
+  <data name="Error_email_recipient_invalid" xml:space="preserve"><value>En av mottagaradresserna är inte giltig.</value></data>
+  <data name="Error_email_too_many_recipients" xml:space="preserve"><value>Det får vara högst 50 mottagare.</value></data>
+  <data name="Error_email_subject_too_long" xml:space="preserve"><value>Ämnet får vara högst 500 tecken.</value></data>
+  <data name="Error_email_body_too_long" xml:space="preserve"><value>Meddelandet får vara högst 100000 tecken.</value></data>
+  <data name="Error_email_account_not_smtp" xml:space="preserve"><value>Endast SMTP-konton kan skicka e-post.</value></data>
+  <data name="Error_email_account_not_pop3" xml:space="preserve"><value>Endast POP3-konton kan hämta e-post.</value></data>
+  <data name="Error_email_message_not_found" xml:space="preserve"><value>Meddelandet hittades inte.</value></data>
+  <data name="Inbox_AutoRefresh" xml:space="preserve"><value>Kontrollera var 5:e minut</value></data>
+  <data name="Inbox_Reply" xml:space="preserve"><value>Svara</value></data>
+  <data name="Inbox_Forward" xml:space="preserve"><value>Vidarebefordra</value></data>
+  <data name="Inbox_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Inbox_ConfirmDelete" xml:space="preserve"><value>Ta bort meddelandet här? Kopian på servern finns kvar.</value></data>
+  <data name="Inbox_SaveAttachment" xml:space="preserve"><value>Spara bilaga</value></data>
+  <data name="Inbox_AttachmentSaved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="Inbox_ReplySent" xml:space="preserve"><value>Meddelandet skickades.</value></data>
+  <data name="Reply_Header" xml:space="preserve"><value>Den {0} skrev {1}:</value></data>
+  <data name="Forward_Header" xml:space="preserve"><value>---------- Vidarebefordrat meddelande ----------
+Från: {0}
+Datum: {1}
+Ämne: {2}</value></data>
+  <data name="Sent_Title" xml:space="preserve"><value>Skickat</value></data>
+  <data name="Sent_Subtitle" xml:space="preserve"><value>Kopior av meddelanden som du skickat via dina SMTP-konton.</value></data>
+  <data name="Sent_Count" xml:space="preserve"><value>{0} skickade meddelande/n</value></data>
+  <data name="Compose_Html" xml:space="preserve"><value>Skicka som HTML (texten är HTML-kod)</value></data>
+  <data name="Compose_Attach" xml:space="preserve"><value>Bifoga filer...</value></data>
+  <data name="Compose_AttachTitle" xml:space="preserve"><value>Bifoga filer</value></data>
+  <data name="Compose_RemoveAttachment" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Error_email_too_many_attachments" xml:space="preserve"><value>Det får vara högst 20 bilagor.</value></data>
+  <data name="Error_email_attachment_too_large" xml:space="preserve"><value>En bilaga är större än 10 MB.</value></data>
+  <data name="Error_email_attachments_too_large" xml:space="preserve"><value>Bilagorna är tillsammans större än 25 MB.</value></data>
+  <data name="Error_email_attachment_not_found" xml:space="preserve"><value>Bilagan hittades inte.</value></data>
+  <data name="Compose_Cc" xml:space="preserve"><value>Kopia</value></data>
+  <data name="Compose_SaveDraft" xml:space="preserve"><value>Spara utkast</value></data>
+  <data name="Compose_DraftSaved" xml:space="preserve"><value>Utkastet sparades.</value></data>
+  <data name="Inbox_ReplyAll" xml:space="preserve"><value>Svara alla</value></data>
+  <data name="Inbox_ToLabel" xml:space="preserve"><value>Till: </value></data>
+  <data name="Inbox_CcLabel" xml:space="preserve"><value>Kopia: </value></data>
+  <data name="Inbox_ShowPlain" xml:space="preserve"><value>Visa som ren text</value></data>
+  <data name="Inbox_ShowFormatted" xml:space="preserve"><value>Visa formaterat</value></data>
+  <data name="Drafts_Title" xml:space="preserve"><value>Utkast</value></data>
+  <data name="Drafts_Subtitle" xml:space="preserve"><value>Meddelanden du har påbörjat men inte skickat. Välj ett för att skriva vidare.</value></data>
+  <data name="Drafts_Col" xml:space="preserve"><value>Utkast</value></data>
+  <data name="Drafts_NoSelection" xml:space="preserve"><value>Välj ett utkast för att skriva vidare på det.</value></data>
+  <data name="Drafts_Count" xml:space="preserve"><value>{0} utkast</value></data>
+  <data name="Drafts_Delete" xml:space="preserve"><value>Ta bort utkast</value></data>
+  <data name="Drafts_ConfirmDelete" xml:space="preserve"><value>Ta bort utkastet för gott?</value></data>
+  <data name="Error_email_draft_empty" xml:space="preserve"><value>Det finns inget att spara ännu.</value></data>
+  <data name="Error_email_draft_not_found" xml:space="preserve"><value>Utkastet finns inte längre.</value></data>
+  <data name="Inbox_LoadMore" xml:space="preserve"><value>Ladda äldre meddelanden</value></data>
+  <data name="Compose_FilesSkipped" xml:space="preserve"><value>Bifogades inte (för stor, över {1}, eller kunde inte läsas): {0}</value></data>
+  <data name="Error_email_account_password_required" xml:space="preserve"><value>Ange lösenordet igen när server, port eller användarnamn ändras.</value></data>
+</root>

@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:msg="using:Dotnetstore.PersonalApp.Modules.Email.Features.Messages"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.Email.Features.Messages.DraftsView"
+             x:DataType="msg:DraftsViewModel">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="20" Margin="28">
+
+        <StackPanel Spacing="4">
+            <TextBlock Text="{loc:Tr Drafts_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr Drafts_Subtitle}" Classes="muted"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" RowDefinitions="Auto,*" RowSpacing="16">
+
+            <Grid ColumnDefinitions="Auto,Auto,Auto,*" ColumnSpacing="8">
+                <Button Classes="link-danger" Content="{loc:Tr Drafts_Delete}" Command="{Binding RequestDeleteCommand}"
+                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                <TextBlock Text="{loc:Tr Drafts_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                           IsVisible="{Binding IsConfirmingDelete}"/>
+                <Button Grid.Column="1" Content="{loc:Tr Email_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                        IsVisible="{Binding IsConfirmingDelete}"/>
+                <Button Grid.Column="2" Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                        IsVisible="{Binding IsConfirmingDelete}"/>
+                <TextBlock Grid.Column="3" Text="{Binding StatusMessage}" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Right"
+                           Classes.error="{Binding StatusIsError}" Classes.caption="{Binding !StatusIsError}"/>
+            </Grid>
+
+            <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="20">
+
+                <Border Classes="card">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                                BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                            <TextBlock Text="{loc:Tr Drafts_Col}" Classes="column"/>
+                        </Border>
+                        <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Drafts}" SelectedItem="{Binding SelectedDraft}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="msg:DraftDto">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{Binding Subject}" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding To}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding UpdatedAt, StringFormat={}{0:g}}" Classes="caption"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Column="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  IsVisible="{Binding Composer, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <ContentControl Content="{Binding Composer}" VerticalAlignment="Top"/>
+                    </ScrollViewer>
+                    <Border Classes="card" Padding="24" IsVisible="{Binding Composer, Converter={x:Static ObjectConverters.IsNull}}">
+                        <TextBlock Text="{loc:Tr Drafts_NoSelection}" Classes="muted" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>
