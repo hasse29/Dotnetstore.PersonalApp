@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_ScheduleDatabase" xml:space="preserve"><value>Preparing schedule database...</value></data>
+  <data name="Schedule_Title" xml:space="preserve"><value>Schedule</value></data>
+  <data name="Schedule_Subtitle" xml:space="preserve"><value>Your recurring weekly lessons, for example mathematics every Monday at 8:00.</value></data>
+  <data name="Schedule_New" xml:space="preserve"><value>New lesson</value></data>
+  <data name="Schedule_ColDay" xml:space="preserve"><value>DAY</value></data>
+  <data name="Schedule_ColTime" xml:space="preserve"><value>TIME</value></data>
+  <data name="Schedule_ColSubject" xml:space="preserve"><value>SUBJECT</value></data>
+  <data name="Schedule_ColSchool" xml:space="preserve"><value>SCHOOL</value></data>
+  <data name="Schedule_ColRoom" xml:space="preserve"><value>ROOM</value></data>
+  <data name="Schedule_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Schedule_ConfirmDelete" xml:space="preserve"><value>Delete the lesson?</value></data>
+  <data name="Schedule_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Schedule_NoSelection" xml:space="preserve"><value>No lesson selected</value></data>
+  <data name="Schedule_NoSelectionHint" xml:space="preserve"><value>Select a lesson in the table to edit, or add a new one.</value></data>
+  <data name="Schedule_NeedSubjectsAndSchools" xml:space="preserve"><value>Create at least one subject and one school first.</value></data>
+  <data name="Schedule_Count" xml:space="preserve"><value>{0} lesson(s) a week</value></data>
+  <data name="Schedule_Saved" xml:space="preserve"><value>Lesson saved.</value></data>
+  <data name="ScheduleEditor_New" xml:space="preserve"><value>New lesson</value></data>
+  <data name="ScheduleEditor_Edit" xml:space="preserve"><value>Edit lesson</value></data>
+  <data name="ScheduleEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="ScheduleField_Day" xml:space="preserve"><value>Day</value></data>
+  <data name="ScheduleField_StartTime" xml:space="preserve"><value>Start time</value></data>
+  <data name="ScheduleField_EndTime" xml:space="preserve"><value>End time</value></data>
+  <data name="ScheduleField_Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="ScheduleField_School" xml:space="preserve"><value>School</value></data>
+  <data name="ScheduleField_Room" xml:space="preserve"><value>Room</value></data>
+  <data name="ScheduleField_RoomPlaceholder" xml:space="preserve"><value>e.g. B204</value></data>
+  <data name="ScheduleField_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="Error_schedule_entry_not_found" xml:space="preserve"><value>Lesson not found.</value></data>
+  <data name="Error_schedule_subject_not_found" xml:space="preserve"><value>Subject not found.</value></data>
+  <data name="Error_schedule_school_not_found" xml:space="preserve"><value>School not found.</value></data>
+  <data name="Error_schedule_day_invalid" xml:space="preserve"><value>Choose a day of the week.</value></data>
+  <data name="Error_schedule_time_required" xml:space="preserve"><value>Day, start time and end time are required.</value></data>
+  <data name="Error_schedule_end_before_start" xml:space="preserve"><value>The lesson must end after it starts.</value></data>
+  <data name="Error_schedule_subject_required" xml:space="preserve"><value>A subject is required.</value></data>
+  <data name="Error_schedule_school_required" xml:space="preserve"><value>A school is required.</value></data>
+  <data name="Error_schedule_room_too_long" xml:space="preserve"><value>Room can be at most 100 characters.</value></data>
+  <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>Notes can be at most 500 characters.</value></data>
+  <data name="Error_schedule_overlap" xml:space="preserve"><value>You already have a lesson at that time.</value></data>
+</root>

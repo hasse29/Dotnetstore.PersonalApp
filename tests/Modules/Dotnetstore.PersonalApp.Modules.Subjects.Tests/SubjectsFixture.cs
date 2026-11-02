@@ -23,12 +23,14 @@ internal sealed class SubjectsFixture : IDisposable
         Create = new CreateSubject.Handler(DbFactory, new CreateSubject.Validator(), Clock);
         Update = new UpdateSubject.Handler(DbFactory, new UpdateSubject.Validator());
         List = new ListSubjects.Handler(DbFactory);
-        Delete = new DeleteSubject.Handler(DbFactory);
+        Delete = new DeleteSubject.Handler(DbFactory, Events);
         ListTaught = new ListTeacherSubjects.Handler(DbFactory);
         AddTaught = new AddTeacherSubject.Handler(DbFactory, Clock);
         RemoveTaught = new RemoveTeacherSubject.Handler(DbFactory);
         DeleteForUser = new DeleteTeacherSubjectsForUser.Handler(DbFactory);
     }
+
+    public RecordingEventPublisher Events { get; } = new();
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 2, 12, 0, 0, TimeSpan.Zero));
 

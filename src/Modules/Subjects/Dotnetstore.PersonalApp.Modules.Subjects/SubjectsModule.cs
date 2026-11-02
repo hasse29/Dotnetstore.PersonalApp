@@ -38,6 +38,7 @@ public static class SubjectsModule
         services.AddSingleton<RemoveTeacherSubject.Handler>();
         services.AddSingleton<DeleteTeacherSubjectsForUser.Handler>();
         services.AddSingleton<IUserSubjectsPanelFactory, UserSubjectsPanelFactory>();
+        services.AddSingleton<ISubjectLookup, SubjectLookup>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
 

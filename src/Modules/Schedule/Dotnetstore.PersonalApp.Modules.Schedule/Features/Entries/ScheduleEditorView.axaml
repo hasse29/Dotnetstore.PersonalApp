@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:entries="using:Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:subjects="using:Dotnetstore.PersonalApp.Shared.Subjects"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="560"
+             x:Class="Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries.ScheduleEditorView"
+             x:DataType="entries:ScheduleEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_Day}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Days}" SelectedItem="{Binding SelectedDay}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="entries:DayOption">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ScheduleField_StartTime}" Classes="label"/>
+                    <TimePicker SelectedTime="{Binding StartTime}" ClockIdentifier="24HourClock" MinuteIncrement="5"
+                                HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ScheduleField_EndTime}" Classes="label"/>
+                    <TimePicker SelectedTime="{Binding EndTime}" ClockIdentifier="24HourClock" MinuteIncrement="5"
+                                HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_Subject}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Subjects}" SelectedItem="{Binding SelectedSubject}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="subjects:SubjectReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_School}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Schools}" SelectedItem="{Binding SelectedSchool}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="clients:ClientReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_Room}" Classes="label"/>
+                <TextBox Text="{Binding Room}" PlaceholderText="{loc:Tr ScheduleField_RoomPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_Notes}" Classes="label"/>
+                <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="70" MaxHeight="130"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr ScheduleEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

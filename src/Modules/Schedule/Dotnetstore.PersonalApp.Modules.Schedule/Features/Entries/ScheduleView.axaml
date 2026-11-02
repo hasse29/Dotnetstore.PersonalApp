@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:entries="using:Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries.ScheduleView"
+             x:DataType="entries:ScheduleViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{loc:Tr Schedule_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr Schedule_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr Schedule_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+            <!-- week table -->
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,*,Auto">
+
+                    <Border Grid.Row="0" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*">
+                            <TextBlock Text="{loc:Tr Schedule_ColDay}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr Schedule_ColTime}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr Schedule_ColSubject}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr Schedule_ColSchool}" Classes="column"/>
+                            <TextBlock Grid.Column="4" Text="{loc:Tr Schedule_ColRoom}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Rows}" SelectedItem="{Binding SelectedRow}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="entries:ScheduleRow">
+                                <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*">
+                                    <TextBlock Text="{Binding DayName}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding TimeRange}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding SubjectName}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding SchoolName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding Room}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="2" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr Schedule_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <TextBlock Text="{loc:Tr Schedule_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Schedule_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Editor / empty state -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                      Data="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            <TextBlock Text="{loc:Tr Schedule_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr Schedule_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -7,6 +7,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Clients](#clients) | `clients.db` | Client companies, contact persons | Clients (landing page) |
 | [Students](#students) | `students.db` | Students of a school (client) | Students (and a tab on the Client detail page) |
 | [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | Subjects; Subjects tab on the User detail page |
+| [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | Schedule |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -44,6 +45,16 @@ A teacher can teach several subjects, and several teachers can teach the same on
 - **TeacherSubject**: `UserId` + `SubjectId`, unique per pair. `UserId` is a Users id, so there is no foreign key. Error codes `teacher_subject_*`.
 - **UI**: a Subjects tab on the User detail page via `IUserSubjectsPanelFactory` (`Shared/Subjects`; optional, so the tab disappears if the module is absent). It lists what the teacher teaches and offers the catalogue subjects they do not teach yet.
 - Consumes `UserDeleted` and removes the user's assignments.
+- Publishes `SubjectDeleted` and implements `ISubjectLookup` (`Shared/Subjects`) so other modules can pick a subject and show its name.
+
+## Schedule
+
+A teacher's recurring weekly lessons, for example mathematics every Monday at 08:00.
+
+- **ScheduleEntry**: `UserId` (the signed-in teacher, so each teacher only sees and changes their own lessons), `Day` (`DayOfWeek`), `StartTime` and `EndTime` (`TimeOnly`; the end must be after the start, no lessons past midnight), `SubjectId`, `ClientId` (the school), optional `Room` and `Notes`. The teacher, subject and school live in other modules, so there are no foreign keys.
+- **Rules**: the subject must exist (`ISubjectLookup`) and the school must exist (`IClientLookup`); a teacher cannot have two overlapping lessons on the same day (back to back is fine, `schedule_overlap`). Error codes `schedule_*`.
+- **UI**: own sidebar page (`ModuleKey` `schedule`) with the lessons in week order (Monday first), names resolved through the lookups, and an editor. Adding a lesson needs at least one subject and one school.
+- Consumes `UserDeleted` (the teacher's lessons), `ClientDeleted` (the school's lessons) and `SubjectDeleted` (lessons in that subject).
 
 ## Users
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_ScheduleDatabase" xml:space="preserve"><value>正在准备课表数据库...</value></data>
+  <data name="Schedule_Title" xml:space="preserve"><value>课表</value></data>
+  <data name="Schedule_Subtitle" xml:space="preserve"><value>您每周固定的课程，例如每周一 8:00 的数学课。</value></data>
+  <data name="Schedule_New" xml:space="preserve"><value>新建课程</value></data>
+  <data name="Schedule_ColDay" xml:space="preserve"><value>星期</value></data>
+  <data name="Schedule_ColTime" xml:space="preserve"><value>时间</value></data>
+  <data name="Schedule_ColSubject" xml:space="preserve"><value>科目</value></data>
+  <data name="Schedule_ColSchool" xml:space="preserve"><value>学校</value></data>
+  <data name="Schedule_ColRoom" xml:space="preserve"><value>教室</value></data>
+  <data name="Schedule_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Schedule_ConfirmDelete" xml:space="preserve"><value>删除该课程？</value></data>
+  <data name="Schedule_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Schedule_NoSelection" xml:space="preserve"><value>未选择课程</value></data>
+  <data name="Schedule_NoSelectionHint" xml:space="preserve"><value>在表格中选择课程进行编辑，或添加新课程。</value></data>
+  <data name="Schedule_NeedSubjectsAndSchools" xml:space="preserve"><value>请先至少创建一个科目和一所学校。</value></data>
+  <data name="Schedule_Count" xml:space="preserve"><value>每周 {0} 节课</value></data>
+  <data name="Schedule_Saved" xml:space="preserve"><value>课程已保存。</value></data>
+  <data name="ScheduleEditor_New" xml:space="preserve"><value>新建课程</value></data>
+  <data name="ScheduleEditor_Edit" xml:space="preserve"><value>编辑课程</value></data>
+  <data name="ScheduleEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="ScheduleField_Day" xml:space="preserve"><value>星期</value></data>
+  <data name="ScheduleField_StartTime" xml:space="preserve"><value>开始时间</value></data>
+  <data name="ScheduleField_EndTime" xml:space="preserve"><value>结束时间</value></data>
+  <data name="ScheduleField_Subject" xml:space="preserve"><value>科目</value></data>
+  <data name="ScheduleField_School" xml:space="preserve"><value>学校</value></data>
+  <data name="ScheduleField_Room" xml:space="preserve"><value>教室</value></data>
+  <data name="ScheduleField_RoomPlaceholder" xml:space="preserve"><value>例如：B204</value></data>
+  <data name="ScheduleField_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="Error_schedule_entry_not_found" xml:space="preserve"><value>未找到该课程。</value></data>
+  <data name="Error_schedule_subject_not_found" xml:space="preserve"><value>未找到该科目。</value></data>
+  <data name="Error_schedule_school_not_found" xml:space="preserve"><value>未找到该学校。</value></data>
+  <data name="Error_schedule_day_invalid" xml:space="preserve"><value>请选择星期几。</value></data>
+  <data name="Error_schedule_time_required" xml:space="preserve"><value>必须填写星期、开始时间和结束时间。</value></data>
+  <data name="Error_schedule_end_before_start" xml:space="preserve"><value>课程必须在开始之后结束。</value></data>
+  <data name="Error_schedule_subject_required" xml:space="preserve"><value>必须选择科目。</value></data>
+  <data name="Error_schedule_school_required" xml:space="preserve"><value>必须选择学校。</value></data>
+  <data name="Error_schedule_room_too_long" xml:space="preserve"><value>教室最多 100 个字符。</value></data>
+  <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>备注最多 500 个字符。</value></data>
+  <data name="Error_schedule_overlap" xml:space="preserve"><value>您在该时间已有课程。</value></data>
+</root>

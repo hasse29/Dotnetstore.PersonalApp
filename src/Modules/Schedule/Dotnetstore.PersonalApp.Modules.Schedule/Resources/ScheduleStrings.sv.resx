@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_ScheduleDatabase" xml:space="preserve"><value>Förbereder schemadatabasen...</value></data>
+  <data name="Schedule_Title" xml:space="preserve"><value>Schema</value></data>
+  <data name="Schedule_Subtitle" xml:space="preserve"><value>Dina återkommande lektioner varje vecka, till exempel matematik varje måndag kl. 8.00.</value></data>
+  <data name="Schedule_New" xml:space="preserve"><value>Ny lektion</value></data>
+  <data name="Schedule_ColDay" xml:space="preserve"><value>DAG</value></data>
+  <data name="Schedule_ColTime" xml:space="preserve"><value>TID</value></data>
+  <data name="Schedule_ColSubject" xml:space="preserve"><value>ÄMNE</value></data>
+  <data name="Schedule_ColSchool" xml:space="preserve"><value>SKOLA</value></data>
+  <data name="Schedule_ColRoom" xml:space="preserve"><value>SAL</value></data>
+  <data name="Schedule_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Schedule_ConfirmDelete" xml:space="preserve"><value>Ta bort lektionen?</value></data>
+  <data name="Schedule_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Schedule_NoSelection" xml:space="preserve"><value>Ingen lektion vald</value></data>
+  <data name="Schedule_NoSelectionHint" xml:space="preserve"><value>Välj en lektion i tabellen för att redigera, eller lägg till en ny.</value></data>
+  <data name="Schedule_NeedSubjectsAndSchools" xml:space="preserve"><value>Skapa minst ett ämne och en skola först.</value></data>
+  <data name="Schedule_Count" xml:space="preserve"><value>{0} lektion(er) i veckan</value></data>
+  <data name="Schedule_Saved" xml:space="preserve"><value>Lektionen sparades.</value></data>
+  <data name="ScheduleEditor_New" xml:space="preserve"><value>Ny lektion</value></data>
+  <data name="ScheduleEditor_Edit" xml:space="preserve"><value>Redigera lektion</value></data>
+  <data name="ScheduleEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="ScheduleField_Day" xml:space="preserve"><value>Dag</value></data>
+  <data name="ScheduleField_StartTime" xml:space="preserve"><value>Starttid</value></data>
+  <data name="ScheduleField_EndTime" xml:space="preserve"><value>Sluttid</value></data>
+  <data name="ScheduleField_Subject" xml:space="preserve"><value>Ämne</value></data>
+  <data name="ScheduleField_School" xml:space="preserve"><value>Skola</value></data>
+  <data name="ScheduleField_Room" xml:space="preserve"><value>Sal</value></data>
+  <data name="ScheduleField_RoomPlaceholder" xml:space="preserve"><value>t.ex. B204</value></data>
+  <data name="ScheduleField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="Error_schedule_entry_not_found" xml:space="preserve"><value>Lektionen hittades inte.</value></data>
+  <data name="Error_schedule_subject_not_found" xml:space="preserve"><value>Ämnet hittades inte.</value></data>
+  <data name="Error_schedule_school_not_found" xml:space="preserve"><value>Skolan hittades inte.</value></data>
+  <data name="Error_schedule_day_invalid" xml:space="preserve"><value>Välj en veckodag.</value></data>
+  <data name="Error_schedule_time_required" xml:space="preserve"><value>Dag, starttid och sluttid krävs.</value></data>
+  <data name="Error_schedule_end_before_start" xml:space="preserve"><value>Lektionen måste sluta efter att den börjat.</value></data>
+  <data name="Error_schedule_subject_required" xml:space="preserve"><value>Ett ämne krävs.</value></data>
+  <data name="Error_schedule_school_required" xml:space="preserve"><value>En skola krävs.</value></data>
+  <data name="Error_schedule_room_too_long" xml:space="preserve"><value>Sal får vara högst 100 tecken.</value></data>
+  <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>Anteckningar får vara högst 500 tecken.</value></data>
+  <data name="Error_schedule_overlap" xml:space="preserve"><value>Du har redan en lektion vid den tiden.</value></data>
+</root>

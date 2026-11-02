@@ -1,4 +1,5 @@
 using Dotnetstore.PersonalApp.Modules.Subjects.Features.Subjects;
+using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 
 namespace Dotnetstore.PersonalApp.Modules.Subjects.Tests;
 
@@ -82,6 +83,7 @@ public sealed class SubjectHandlerTests : IDisposable
 
         result.IsSuccess.ShouldBeTrue();
         again.Error.Code.ShouldBe("subject_not_found");
+        _fixture.Events.Published.ShouldBe([new SubjectDeleted(math.Id)]);
         (await _fixture.ListTaught.HandleAsync(new Features.TeacherSubjects.ListTeacherSubjects.Query(teacher), Ct)).ShouldBeEmpty();
     }
 }

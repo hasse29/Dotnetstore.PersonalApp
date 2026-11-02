@@ -14,6 +14,7 @@ A personal desktop app for keeping track of clients, the time you work for them,
 - **Clients**: companies with a unique organization number, a photo, and any number of **contact persons** (each with photo, addresses, email addresses and phone numbers). Companies have addresses, email addresses and phone numbers too.
 - **Students**: a client is a school. Each school has any number of students (photo, name, class, notes) with their own addresses, email addresses and phone numbers. Students have their own page across all schools, with a school filter, and a tab on each school.
 - **Subjects**: a catalogue of subjects. A teacher can teach several, picked on the user's page; several teachers can share a subject.
+- **Schedule**: a teacher's recurring weekly lessons, for example mathematics every Monday at 08:00, each with a subject, a school, a time and an optional room. Overlapping lessons are rejected.
 - **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.
   - Copy a report to create similar ones on another date.
   - **Work time types** (Work, Sick, Vacation, Parental leave, or your own) have their own page.
@@ -60,6 +61,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Clients | Client companies and contact persons | `clients.db` |
 | Students | Students of each school | `students.db` |
 | Subjects | Subjects and which teacher teaches what | `subjects.db` |
+| Schedule | A teacher's recurring weekly lessons | `schedule.db` |
 | Users | Users and sign-in | `users.db` |
 | Addresses | Addresses for any object, with address types | `addresses.db` |
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
