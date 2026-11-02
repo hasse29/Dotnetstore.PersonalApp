@@ -15,6 +15,7 @@ internal static class ListScheduleEntries
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
             var entries = await db.ScheduleEntries.AsNoTracking()
+                .Include(e => e.Students)
                 .Where(e => e.UserId == query.UserId)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);

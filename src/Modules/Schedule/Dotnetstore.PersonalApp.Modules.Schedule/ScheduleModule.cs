@@ -30,10 +30,12 @@ public static class ScheduleModule
         services.AddSingleton<DeleteScheduleEntry.Handler>();
         services.AddSingleton<ListScheduleEntries.Handler>();
         services.AddSingleton<DeleteScheduleEntriesFor.Handler>();
+        services.AddSingleton<RemoveStudentFromEntries.Handler>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<SubjectDeleted>, SubjectDeletedConsumer>();
+        services.AddSingleton<IIntegrationEventConsumer<StudentDeleted>, StudentDeletedConsumer>();
 
         services.AddSingleton<IModulePage, SchedulePage>();
         services.AddSingleton(new ModuleInfo("schedule", "Schedule_Title"));

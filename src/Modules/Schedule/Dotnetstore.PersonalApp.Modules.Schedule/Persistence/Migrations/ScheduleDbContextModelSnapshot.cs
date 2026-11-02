@@ -62,6 +62,35 @@ namespace Dotnetstore.PersonalApp.Modules.Schedule.Persistence.Migrations
 
                     b.ToTable("ScheduleEntries", (string)null);
                 });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Schedule.Domain.ScheduleEntryStudent", b =>
+                {
+                    b.Property<Guid>("EntryId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EntryId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("ScheduleEntryStudents", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Schedule.Domain.ScheduleEntryStudent", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Schedule.Domain.ScheduleEntry", null)
+                        .WithMany("Students")
+                        .HasForeignKey("EntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Schedule.Domain.ScheduleEntry", b =>
+                {
+                    b.Navigation("Students");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -2,6 +2,7 @@ using System.Globalization;
 using Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
 using Dotnetstore.PersonalApp.Shared.Clients;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +24,12 @@ internal sealed class ScheduleFixture : IDisposable
         using var db = DbFactory.CreateDbContext();
         db.Database.EnsureCreated();
 
-        Create = new CreateScheduleEntry.Handler(DbFactory, new CreateScheduleEntry.Validator(), Subjects, Schools, Clock);
-        Update = new UpdateScheduleEntry.Handler(DbFactory, new UpdateScheduleEntry.Validator(), Subjects, Schools);
+        Create = new CreateScheduleEntry.Handler(DbFactory, new CreateScheduleEntry.Validator(), Subjects, Schools, Students, Clock);
+        Update = new UpdateScheduleEntry.Handler(DbFactory, new UpdateScheduleEntry.Validator(), Subjects, Schools, Students);
         Delete = new DeleteScheduleEntry.Handler(DbFactory);
         List = new ListScheduleEntries.Handler(DbFactory);
         DeleteFor = new DeleteScheduleEntriesFor.Handler(DbFactory);
+        RemoveStudent = new RemoveStudentFromEntries.Handler(DbFactory);
     }
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 2, 12, 0, 0, TimeSpan.Zero));
@@ -37,6 +39,8 @@ internal sealed class ScheduleFixture : IDisposable
     public FakeSubjects Subjects { get; } = new();
 
     public FakeSchools Schools { get; } = new();
+
+    public FakeStudents Students { get; } = new();
 
     public CreateScheduleEntry.Handler Create { get; }
 
@@ -48,6 +52,8 @@ internal sealed class ScheduleFixture : IDisposable
 
     public DeleteScheduleEntriesFor.Handler DeleteFor { get; }
 
+    public RemoveStudentFromEntries.Handler RemoveStudent { get; }
+
     public Task<Dotnetstore.PersonalApp.Shared.Results.Result<ScheduleEntryDto>> CreateAsync(
         Guid userId,
         DayOfWeek day,
@@ -55,9 +61,10 @@ internal sealed class ScheduleFixture : IDisposable
         string end,
         SubjectReference subject,
         ClientReference school,
-        CancellationToken cancellationToken) =>
+        CancellationToken cancellationToken,
+        IReadOnlyList<Guid>? studentIds = null) =>
         Create.HandleAsync(
-            new CreateScheduleEntry.Command(userId, day, TimeOnly.Parse(start, CultureInfo.InvariantCulture), TimeOnly.Parse(end, CultureInfo.InvariantCulture), subject.Id, school.Id, null, null),
+            new CreateScheduleEntry.Command(userId, day, TimeOnly.Parse(start, CultureInfo.InvariantCulture), TimeOnly.Parse(end, CultureInfo.InvariantCulture), subject.Id, school.Id, null, null, studentIds ?? []),
             cancellationToken);
 
     public void Dispose() => _connection.Dispose();
@@ -93,6 +100,21 @@ internal sealed class ScheduleFixture : IDisposable
 
         public Task<IReadOnlyList<ClientReference>> ListAsync(CancellationToken cancellationToken) =>
             Task.FromResult<IReadOnlyList<ClientReference>>([.. _items.OrderBy(c => c.Name)]);
+    }
+
+    internal sealed class FakeStudents : IStudentLookup
+    {
+        private readonly List<StudentReference> _items = [];
+
+        public StudentReference Add(ClientReference school, string name, string? className = null)
+        {
+            var student = new StudentReference(Guid.NewGuid(), school.Id, name, className);
+            _items.Add(student);
+            return student;
+        }
+
+        public Task<IReadOnlyList<StudentReference>> ListForSchoolAsync(Guid clientId, CancellationToken cancellationToken) =>
+            Task.FromResult<IReadOnlyList<StudentReference>>([.. _items.Where(s => s.ClientId == clientId).OrderBy(s => s.Name)]);
     }
 
     private sealed class TestDbFactory(DbContextOptions<ScheduleDbContext> options) : IDbContextFactory<ScheduleDbContext>

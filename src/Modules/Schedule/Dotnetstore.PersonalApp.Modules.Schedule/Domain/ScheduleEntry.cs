@@ -24,5 +24,7 @@ internal sealed class ScheduleEntry
 
     public string? Notes { get; set; }
 
+    public List<ScheduleEntryStudent> Students { get; set; } = [];
+
     public DateTimeOffset CreatedAt { get; set; }
 }

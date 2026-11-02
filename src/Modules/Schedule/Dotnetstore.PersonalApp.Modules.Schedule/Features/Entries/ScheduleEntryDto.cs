@@ -10,8 +10,9 @@ internal sealed record ScheduleEntryDto(
     Guid SubjectId,
     Guid ClientId,
     string? Room,
-    string? Notes)
+    string? Notes,
+    IReadOnlyList<Guid> StudentIds)
 {
     public static ScheduleEntryDto From(ScheduleEntry entry) =>
-        new(entry.Id, entry.Day, entry.StartTime, entry.EndTime, entry.SubjectId, entry.ClientId, entry.Room, entry.Notes);
+        new(entry.Id, entry.Day, entry.StartTime, entry.EndTime, entry.SubjectId, entry.ClientId, entry.Room, entry.Notes, [.. entry.Students.Select(s => s.StudentId)]);
 }

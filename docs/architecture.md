@@ -55,7 +55,7 @@ Delivery is synchronous with no outbox, so a crash between a delete and its cons
 | `UserDeleted` | Users | Addresses, EmailAddresses, PhoneNumbers, Cvs, Email, Subjects, Schedule |
 | `ClientDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers, Students, Schedule |
 | `ContactPersonDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers |
-| `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers |
+| `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers, Schedule |
 | `SubjectDeleted` | Subjects | Schedule |
 | `UserPhotoChanged` | Users | Host (`UserPhotoNotifier`) |
 

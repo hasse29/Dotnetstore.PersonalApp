@@ -31,25 +31,27 @@
 
                     <Border Grid.Row="0" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                             BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
-                        <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*">
+                        <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*,0.8*">
                             <TextBlock Text="{loc:Tr Schedule_ColDay}" Classes="column"/>
                             <TextBlock Grid.Column="1" Text="{loc:Tr Schedule_ColTime}" Classes="column"/>
                             <TextBlock Grid.Column="2" Text="{loc:Tr Schedule_ColSubject}" Classes="column"/>
                             <TextBlock Grid.Column="3" Text="{loc:Tr Schedule_ColSchool}" Classes="column"/>
                             <TextBlock Grid.Column="4" Text="{loc:Tr Schedule_ColRoom}" Classes="column"/>
+                            <TextBlock Grid.Column="5" Text="{loc:Tr Schedule_ColStudents}" Classes="column"/>
                         </Grid>
                     </Border>
 
                     <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Rows}" SelectedItem="{Binding SelectedRow}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="entries:ScheduleRow">
-                                <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*">
+                                <Grid ColumnDefinitions="1.2*,1.2*,1.5*,1.5*,*,0.8*">
                                     <TextBlock Text="{Binding DayName}" FontWeight="SemiBold"
                                                Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="1" Text="{Binding TimeRange}"/>
                                     <TextBlock Grid.Column="2" Text="{Binding SubjectName}" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="3" Text="{Binding SchoolName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="4" Text="{Binding Room}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="5" Text="{Binding StudentCount}" Classes="muted"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 
 namespace Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
@@ -16,6 +17,7 @@ internal sealed partial class ScheduleViewModel(
     DeleteScheduleEntry.Handler delete,
     ISubjectLookup subjectLookup,
     IClientLookup clientLookup,
+    IStudentLookup studentLookup,
     ILocalizationService localization) : ViewModelBase
 {
     private IReadOnlyList<SubjectReference> _subjects = [];
@@ -114,7 +116,7 @@ internal sealed partial class ScheduleViewModel(
     {
         DetachEditor();
         var editor = new ScheduleEditorViewModel(
-            existing, userId, DayOption.All(localization), _subjects, _schools, create, update, localization);
+            existing, userId, DayOption.All(localization), _subjects, _schools, studentLookup, create, update, localization);
         Editor = editor;
         editor.Saved += OnEditorSaved;
         editor.Cancelled += OnEditorCancelled;

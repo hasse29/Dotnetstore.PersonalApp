@@ -35,6 +35,7 @@ The app is used from a teacher's perspective: a **client is a school**, a user i
 - **Page**: the module also has its own sidebar page (`ModuleKey` `students`) with the students of every school, a school column and a school filter (names and filter come from `IClientLookup`). The same `StudentsViewModel` serves both: a null `clientId` means the page, where the editor has a school picker for new students.
 - **Detail page**: each student opens a detail page with their photo and tabs that reuse the Addresses / Email addresses / Phone numbers panel factories with the student's id as `ObjectId`, e.g. for guardians' contact details.
 - **Photo**: PNG/JPEG up to 6 MB with a 96x96 thumbnail, like users, clients and contact persons (see Cross-cutting: photos). `Get/SetStudentPhoto`, `StudentPhotoPanelFactory`; lists carry only the thumbnail.
+- **Lookup**: implements `IStudentLookup` (`Shared/Students`) so the Schedule module can list the students of a school.
 - **Deleting**: deleting a student publishes `StudentDeleted`. The module consumes `ClientDeleted`, deletes the school's students and publishes one `StudentDeleted` per student; Addresses, EmailAddresses and PhoneNumbers consume `StudentDeleted` and remove the student's entries.
 
 ## Subjects
@@ -51,10 +52,10 @@ A teacher can teach several subjects, and several teachers can teach the same on
 
 A teacher's recurring weekly lessons, for example mathematics every Monday at 08:00.
 
-- **ScheduleEntry**: `UserId` (the signed-in teacher, so each teacher only sees and changes their own lessons), `Day` (`DayOfWeek`), `StartTime` and `EndTime` (`TimeOnly`; the end must be after the start, no lessons past midnight), `SubjectId`, `ClientId` (the school), optional `Room` and `Notes`. The teacher, subject and school live in other modules, so there are no foreign keys.
-- **Rules**: the subject must exist (`ISubjectLookup`) and the school must exist (`IClientLookup`); a teacher cannot have two overlapping lessons on the same day (back to back is fine, `schedule_overlap`). Error codes `schedule_*`.
-- **UI**: own sidebar page (`ModuleKey` `schedule`) with the lessons in week order (Monday first), names resolved through the lookups, and an editor. Adding a lesson needs at least one subject and one school.
-- Consumes `UserDeleted` (the teacher's lessons), `ClientDeleted` (the school's lessons) and `SubjectDeleted` (lessons in that subject).
+- **ScheduleEntry**: `UserId` (the signed-in teacher, so each teacher only sees and changes their own lessons), `Day` (`DayOfWeek`), `StartTime` and `EndTime` (`TimeOnly`; the end must be after the start, no lessons past midnight), `SubjectId`, `ClientId` (the school), optional `Room` and `Notes`, and the students who attend (`ScheduleEntryStudent`, entry + `StudentId`). The teacher, subject, school and students live in other modules, so there are no foreign keys to them.
+- **Rules**: the subject must exist (`ISubjectLookup`) and the school must exist (`IClientLookup`); the students must belong to that school (`IStudentLookup`, `schedule_student_not_found`); a teacher cannot have two overlapping lessons on the same day (back to back is fine, `schedule_overlap`). Error codes `schedule_*`.
+- **UI**: own sidebar page (`ModuleKey` `schedule`) with the lessons in week order (Monday first), names resolved through the lookups, and an editor where the students of the chosen school are ticked (changing the school clears the ticks). Adding a lesson needs at least one subject and one school.
+- Consumes `UserDeleted` (the teacher's lessons), `ClientDeleted` (the school's lessons) `SubjectDeleted` (lessons in that subject) and `StudentDeleted` (takes the student off their lessons; the lessons stay).
 
 ## Users
 

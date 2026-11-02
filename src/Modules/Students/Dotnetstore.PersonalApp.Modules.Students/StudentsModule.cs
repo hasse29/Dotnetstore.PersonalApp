@@ -37,6 +37,7 @@ public static class StudentsModule
         services.AddSingleton<StudentsViewModelFactory>();
 
         services.AddSingleton<IClientStudentsPanelFactory, StudentsPanelFactory>();
+        services.AddSingleton<IStudentLookup, StudentLookup>();
 
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
 

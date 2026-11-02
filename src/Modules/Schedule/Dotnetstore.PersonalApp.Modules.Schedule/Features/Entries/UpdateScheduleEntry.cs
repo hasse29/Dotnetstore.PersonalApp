@@ -1,6 +1,8 @@
+using Dotnetstore.PersonalApp.Modules.Schedule.Domain;
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Results;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +21,8 @@ internal static class UpdateScheduleEntry
         Guid SubjectId,
         Guid ClientId,
         string? Room,
-        string? Notes);
+        string? Notes,
+        IReadOnlyList<Guid> StudentIds);
 
     public sealed class Validator : AbstractValidator<Command>
     {
@@ -31,6 +34,7 @@ internal static class UpdateScheduleEntry
             RuleFor(c => c.ClientId).SchoolRules();
             RuleFor(c => c.Room).RoomRules();
             RuleFor(c => c.Notes).NotesRules();
+            RuleFor(c => c.StudentIds).StudentRules();
         }
     }
 
@@ -38,7 +42,8 @@ internal static class UpdateScheduleEntry
         IDbContextFactory<ScheduleDbContext> dbFactory,
         IValidator<Command> validator,
         ISubjectLookup subjects,
-        IClientLookup clients)
+        IClientLookup clients,
+        IStudentLookup students)
     {
         public async Task<Result<ScheduleEntryDto>> HandleAsync(Command command, CancellationToken cancellationToken)
         {
@@ -51,6 +56,7 @@ internal static class UpdateScheduleEntry
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
             var entry = await db.ScheduleEntries
+                .Include(e => e.Students)
                 .FirstOrDefaultAsync(e => e.Id == command.Id && e.UserId == command.UserId, cancellationToken)
                 .ConfigureAwait(false);
             if (entry is null)
@@ -59,8 +65,8 @@ internal static class UpdateScheduleEntry
             }
 
             var problem = await ScheduleRules.CheckAsync(
-                db, subjects, clients, command.UserId, command.Day, command.StartTime, command.EndTime,
-                command.SubjectId, command.ClientId, ignoreEntryId: entry.Id, cancellationToken).ConfigureAwait(false);
+                db, subjects, clients, students, command.UserId, command.Day, command.StartTime, command.EndTime,
+                command.SubjectId, command.ClientId, command.StudentIds, ignoreEntryId: entry.Id, cancellationToken).ConfigureAwait(false);
             if (problem is { } error)
             {
                 return error;
@@ -73,6 +79,12 @@ internal static class UpdateScheduleEntry
             entry.ClientId = command.ClientId;
             entry.Room = ScheduleRules.NormalizeOptional(command.Room);
             entry.Notes = ScheduleRules.NormalizeOptional(command.Notes);
+            entry.Students.RemoveAll(s => !command.StudentIds.Contains(s.StudentId));
+            foreach (var id in command.StudentIds.Except(entry.Students.Select(s => s.StudentId)))
+            {
+                entry.Students.Add(new ScheduleEntryStudent { EntryId = entry.Id, StudentId = id });
+            }
+
             await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             return ScheduleEntryDto.From(entry);

@@ -43,4 +43,9 @@
   <data name="Error_schedule_room_too_long" xml:space="preserve"><value>Sal får vara högst 100 tecken.</value></data>
   <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>Anteckningar får vara högst 500 tecken.</value></data>
   <data name="Error_schedule_overlap" xml:space="preserve"><value>Du har redan en lektion vid den tiden.</value></data>
+  <data name="Schedule_ColStudents" xml:space="preserve"><value>ELEVER</value></data>
+  <data name="ScheduleField_Students" xml:space="preserve"><value>Elever</value></data>
+  <data name="ScheduleField_StudentsHint" xml:space="preserve"><value>Välj en skola för att se dess elever.</value></data>
+  <data name="Error_schedule_student_not_found" xml:space="preserve"><value>En elev hittades inte på den skolan.</value></data>
+  <data name="Error_schedule_too_many_students" xml:space="preserve"><value>En lektion kan ha högst 200 elever.</value></data>
 </root>

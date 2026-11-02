@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Results;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 using FluentValidation;
 using FluentValidation.Results;
@@ -16,6 +17,7 @@ internal static class ScheduleRules
 {
     public const int MaxRoomLength = 100;
     public const int MaxNotesLength = 500;
+    public const int MaxStudents = 200;
 
     public static IRuleBuilderOptions<T, DayOfWeek> DayRules<T>(this IRuleBuilder<T, DayOfWeek> rule) =>
         rule.IsInEnum().WithErrorCode("schedule_day_invalid").WithMessage("Choose a day of the week.");
@@ -36,6 +38,9 @@ internal static class ScheduleRules
     public static IRuleBuilderOptions<T, TimeOnly> EndRules<T>(this IRuleBuilder<T, TimeOnly> rule, Func<T, TimeOnly> start) =>
         rule.Must((command, end) => end > start(command)).WithErrorCode("schedule_end_before_start").WithMessage("The lesson must end after it starts.");
 
+    public static IRuleBuilderOptions<T, IReadOnlyList<Guid>> StudentRules<T>(this IRuleBuilder<T, IReadOnlyList<Guid>> rule) =>
+        rule.Must(ids => ids.Count <= MaxStudents).WithErrorCode("schedule_too_many_students").WithMessage("Too many students.");
+
     /// <summary>Optional text fields: trimmed, and empty becomes null.</summary>
     public static string? NormalizeOptional(string? value) =>
         string.IsNullOrWhiteSpace(value) ? null : value.Trim();
@@ -47,19 +52,21 @@ internal static class ScheduleRules
     }
 
     /// <summary>
-    /// The checks that need data from elsewhere: the subject and school must exist, and the teacher cannot be in two lessons at once.
+    /// The checks that need data from elsewhere: the subject and school must exist, the students must belong to that school, and the teacher cannot be in two lessons at once.
     /// Returns null when the entry is fine. <paramref name="ignoreEntryId"/> is the entry being edited.
     /// </summary>
     public static async Task<Error?> CheckAsync(
         ScheduleDbContext db,
         ISubjectLookup subjects,
         IClientLookup clients,
+        IStudentLookup students,
         Guid userId,
         DayOfWeek day,
         TimeOnly start,
         TimeOnly end,
         Guid subjectId,
         Guid clientId,
+        IReadOnlyList<Guid> studentIds,
         Guid? ignoreEntryId,
         CancellationToken cancellationToken)
     {
@@ -71,6 +78,15 @@ internal static class ScheduleRules
         if (!await clients.ExistsAsync(clientId, cancellationToken).ConfigureAwait(false))
         {
             return Error.NotFound("schedule_school_not_found", "School not found.");
+        }
+
+        if (studentIds.Count > 0)
+        {
+            var ofSchool = (await students.ListForSchoolAsync(clientId, cancellationToken).ConfigureAwait(false)).Select(s => s.Id).ToHashSet();
+            if (!studentIds.All(ofSchool.Contains))
+            {
+                return Error.NotFound("schedule_student_not_found", "A student was not found at that school.");
+            }
         }
 
         // A teacher has a handful of lessons a day, so comparing the times in memory keeps the query trivial.

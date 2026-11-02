@@ -6,7 +6,7 @@
              xmlns:entries="using:Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries"
              xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
              xmlns:subjects="using:Dotnetstore.PersonalApp.Shared.Subjects"
-             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="560"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="720"
              x:Class="Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries.ScheduleEditorView"
              x:DataType="entries:ScheduleEditorViewModel">
 
@@ -58,6 +58,21 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ScheduleField_Students}" Classes="label"/>
+                <TextBlock Text="{loc:Tr ScheduleField_StudentsHint}" Classes="muted" TextWrapping="Wrap"
+                           IsVisible="{Binding SelectedSchool, Converter={x:Static ObjectConverters.IsNull}}"/>
+                <ScrollViewer MaxHeight="180" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Students}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="entries:StudentChoice">
+                                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </StackPanel>
 
             <StackPanel>

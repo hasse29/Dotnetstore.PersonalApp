@@ -1,9 +1,11 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Results;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 
 namespace Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
@@ -15,6 +17,8 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
 
     private readonly ScheduleEntryDto? _existing;
     private readonly Guid _userId;
+    private readonly IStudentLookup _studentLookup;
+    private HashSet<Guid> _attending = [];
     private readonly CreateScheduleEntry.Handler _create;
     private readonly UpdateScheduleEntry.Handler _update;
     private readonly ILocalizationService _localization;
@@ -25,12 +29,14 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
         IReadOnlyList<DayOption> days,
         IReadOnlyList<SubjectReference> subjects,
         IReadOnlyList<ClientReference> schools,
+        IStudentLookup studentLookup,
         CreateScheduleEntry.Handler create,
         UpdateScheduleEntry.Handler update,
         ILocalizationService localization)
     {
         _existing = existing;
         _userId = userId;
+        _studentLookup = studentLookup;
         Days = days;
         Subjects = subjects;
         Schools = schools;
@@ -50,6 +56,7 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
             StartTime = existing.StartTime.ToTimeSpan();
             EndTime = existing.EndTime.ToTimeSpan();
             SelectedSubject = subjects.FirstOrDefault(s => s.Id == existing.SubjectId);
+            _attending = [.. existing.StudentIds];
             SelectedSchool = schools.FirstOrDefault(c => c.Id == existing.ClientId);
             Room = existing.Room ?? string.Empty;
             Notes = existing.Notes ?? string.Empty;
@@ -68,6 +75,9 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
 
     public IReadOnlyList<ClientReference> Schools { get; }
 
+    /// <summary>The students of the chosen school, to tick the ones who attend.</summary>
+    public ObservableCollection<StudentChoice> Students { get; } = [];
+
     [ObservableProperty]
     public partial DayOption? SelectedDay { get; set; }
 
@@ -83,6 +93,12 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
     [ObservableProperty]
     public partial ClientReference? SelectedSchool { get; set; }
 
+    partial void OnSelectedSchoolChanged(ClientReference? value)
+    {
+        // Students belong to one school, so changing the school drops the ticks (except on the first load of an existing lesson).
+        LoadStudentsCommand.Execute(null);
+    }
+
     [ObservableProperty]
     public partial string Room { get; set; } = string.Empty;
 
@@ -91,6 +107,30 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial string? ErrorMessage { get; set; }
+
+    [RelayCommand]
+    private async Task LoadStudentsAsync(CancellationToken cancellationToken)
+    {
+        Students.Clear();
+        if (SelectedSchool is not { } school)
+        {
+            return;
+        }
+
+        var students = await _studentLookup.ListForSchoolAsync(school.Id, cancellationToken);
+        if (SelectedSchool != school)
+        {
+            return;
+        }
+
+        foreach (var student in students)
+        {
+            var name = string.IsNullOrWhiteSpace(student.ClassName) ? student.Name : $"{student.Name} ({student.ClassName})";
+            Students.Add(new StudentChoice(student.Id, name, _attending.Contains(student.Id)));
+        }
+
+        _attending = [];
+    }
 
     [RelayCommand]
     private async Task SaveAsync(CancellationToken cancellationToken)
@@ -115,15 +155,16 @@ internal sealed partial class ScheduleEditorViewModel : ViewModelBase
             return;
         }
 
+        var attending = Students.Where(s => s.IsSelected).Select(s => s.Id).ToList();
         var startTime = TimeOnly.FromTimeSpan(start);
         var endTime = TimeOnly.FromTimeSpan(end);
 
         var result = _existing is null
             ? await _create.HandleAsync(
-                new CreateScheduleEntry.Command(_userId, day.Day, startTime, endTime, subject.Id, school.Id, Room, Notes),
+                new CreateScheduleEntry.Command(_userId, day.Day, startTime, endTime, subject.Id, school.Id, Room, Notes, attending),
                 cancellationToken)
             : await _update.HandleAsync(
-                new UpdateScheduleEntry.Command(_existing.Id, _userId, day.Day, startTime, endTime, subject.Id, school.Id, Room, Notes),
+                new UpdateScheduleEntry.Command(_existing.Id, _userId, day.Day, startTime, endTime, subject.Id, school.Id, Room, Notes, attending),
                 cancellationToken);
 
         if (result.IsSuccess)

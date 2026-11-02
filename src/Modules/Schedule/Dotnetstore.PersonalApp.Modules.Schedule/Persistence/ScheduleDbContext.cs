@@ -7,6 +7,8 @@ internal sealed class ScheduleDbContext(DbContextOptions<ScheduleDbContext> opti
 {
     public DbSet<ScheduleEntry> ScheduleEntries => Set<ScheduleEntry>();
 
+    public DbSet<ScheduleEntryStudent> ScheduleEntryStudents => Set<ScheduleEntryStudent>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ScheduleDbContext).Assembly);

@@ -17,6 +17,8 @@ internal sealed class ScheduleEntryConfiguration : IEntityTypeConfiguration<Sche
         builder.Property(e => e.Notes).HasMaxLength(500);
         builder.Property(e => e.CreatedAt).IsRequired();
 
+        builder.HasMany(e => e.Students).WithOne().HasForeignKey(s => s.EntryId).OnDelete(DeleteBehavior.Cascade);
+
         builder.HasIndex(e => new { e.UserId, e.Day });
         builder.HasIndex(e => e.ClientId);
         builder.HasIndex(e => e.SubjectId);

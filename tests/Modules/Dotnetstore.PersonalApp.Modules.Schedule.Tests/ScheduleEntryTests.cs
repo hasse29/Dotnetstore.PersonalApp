@@ -21,7 +21,7 @@ public sealed class ScheduleEntryTests : IDisposable
         var school = _fixture.Schools.Add("Northside School");
 
         var result = await _fixture.Create.HandleAsync(
-            new CreateScheduleEntry.Command(_teacher, DayOfWeek.Monday, new TimeOnly(8, 0), new TimeOnly(8, 45), math.Id, school.Id, "  B204 ", " "),
+            new CreateScheduleEntry.Command(_teacher, DayOfWeek.Monday, new TimeOnly(8, 0), new TimeOnly(8, 45), math.Id, school.Id, "  B204 ", " ", []),
             Ct);
 
         result.IsSuccess.ShouldBeTrue();
@@ -104,10 +104,10 @@ public sealed class ScheduleEntryTests : IDisposable
         var entry = (await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "09:00", math, school, Ct)).Value;
 
         var moved = await _fixture.Update.HandleAsync(
-            new UpdateScheduleEntry.Command(entry.Id, _teacher, DayOfWeek.Monday, new TimeOnly(8, 30), new TimeOnly(9, 30), physics.Id, school.Id, "A1", "Bring lab coats"),
+            new UpdateScheduleEntry.Command(entry.Id, _teacher, DayOfWeek.Monday, new TimeOnly(8, 30), new TimeOnly(9, 30), physics.Id, school.Id, "A1", "Bring lab coats", []),
             Ct);
         var stranger = await _fixture.Update.HandleAsync(
-            new UpdateScheduleEntry.Command(entry.Id, Guid.NewGuid(), DayOfWeek.Monday, new TimeOnly(8, 30), new TimeOnly(9, 30), physics.Id, school.Id, null, null),
+            new UpdateScheduleEntry.Command(entry.Id, Guid.NewGuid(), DayOfWeek.Monday, new TimeOnly(8, 30), new TimeOnly(9, 30), physics.Id, school.Id, null, null, []),
             Ct);
 
         moved.IsSuccess.ShouldBeTrue();
@@ -162,7 +162,7 @@ public sealed class ScheduleEntryTests : IDisposable
         var school = _fixture.Schools.Add("Northside School");
         await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "08:45", math, school, Ct);
         var screen = new ScheduleViewModel(
-            _teacher, _fixture.List, _fixture.Create, _fixture.Update, _fixture.Delete, _fixture.Subjects, _fixture.Schools, new Localizer());
+            _teacher, _fixture.List, _fixture.Create, _fixture.Update, _fixture.Delete, _fixture.Subjects, _fixture.Schools, _fixture.Students, new Localizer());
 
         await screen.LoadCommand.ExecuteAsync(null);
 
@@ -184,12 +184,85 @@ public sealed class ScheduleEntryTests : IDisposable
     }
 
     [Fact]
+    public async Task StudentsOfTheSchoolCanAttendALessonAndBeChangedLater()
+    {
+        var math = _fixture.Subjects.Add("Mathematics");
+        var school = _fixture.Schools.Add("Northside School");
+        var anna = _fixture.Students.Add(school, "Anna Berg", "7A");
+        var olle = _fixture.Students.Add(school, "Olle Dahl", "7A");
+        var created = await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "09:00", math, school, Ct, [anna.Id, anna.Id]);
+
+        created.Value.StudentIds.ShouldBe([anna.Id]);
+
+        var updated = await _fixture.Update.HandleAsync(
+            new UpdateScheduleEntry.Command(created.Value.Id, _teacher, DayOfWeek.Monday, new TimeOnly(8, 0), new TimeOnly(9, 0), math.Id, school.Id, null, null, [olle.Id]),
+            Ct);
+
+        updated.Value.StudentIds.ShouldBe([olle.Id]);
+        (await _fixture.List.HandleAsync(new ListScheduleEntries.Query(_teacher), Ct)).ShouldHaveSingleItem().StudentIds.ShouldBe([olle.Id]);
+    }
+
+    [Fact]
+    public async Task OnlyStudentsOfTheLessonsSchoolCanAttend()
+    {
+        var math = _fixture.Subjects.Add("Mathematics");
+        var north = _fixture.Schools.Add("Northside School");
+        var south = _fixture.Schools.Add("Southside School");
+        var southStudent = _fixture.Students.Add(south, "Sara Ek");
+
+        var wrongSchool = await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "09:00", math, north, Ct, [southStudent.Id]);
+        var unknown = await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "09:00", math, north, Ct, [Guid.NewGuid()]);
+
+        wrongSchool.Error.Code.ShouldBe("schedule_student_not_found");
+        unknown.Error.Code.ShouldBe("schedule_student_not_found");
+    }
+
+    [Fact]
+    public async Task ADeletedStudentLeavesTheLessonButNotTheOthers()
+    {
+        var math = _fixture.Subjects.Add("Mathematics");
+        var school = _fixture.Schools.Add("Northside School");
+        var anna = _fixture.Students.Add(school, "Anna Berg");
+        var olle = _fixture.Students.Add(school, "Olle Dahl");
+        await _fixture.CreateAsync(_teacher, DayOfWeek.Monday, "08:00", "09:00", math, school, Ct, [anna.Id, olle.Id]);
+
+        await new StudentDeletedConsumer(_fixture.RemoveStudent).ConsumeAsync(new StudentDeleted(anna.Id), Ct);
+
+        (await _fixture.List.HandleAsync(new ListScheduleEntries.Query(_teacher), Ct)).ShouldHaveSingleItem().StudentIds.ShouldBe([olle.Id]);
+    }
+
+    [Fact]
+    public async Task TheEditorListsTheSchoolsStudentsAndSavesTheTickedOnes()
+    {
+        var math = _fixture.Subjects.Add("Mathematics");
+        var north = _fixture.Schools.Add("Northside School");
+        var south = _fixture.Schools.Add("Southside School");
+        var anna = _fixture.Students.Add(north, "Anna Berg", "7A");
+        _fixture.Students.Add(south, "Sara Ek");
+        var editor = new ScheduleEditorViewModel(
+            null, _teacher, DayOption.All(new Localizer()), [math], [north, south], _fixture.Students, _fixture.Create, _fixture.Update, new Localizer());
+        var saved = new List<ScheduleEntryDto>();
+        editor.Saved += (_, entry) => saved.Add(entry);
+
+        editor.SelectedSubject = math;
+        editor.SelectedSchool = north;
+        await editor.LoadStudentsCommand.ExecuteAsync(null);
+
+        editor.Students.Select(s => s.Name).ShouldBe(["Anna Berg (7A)"]);
+
+        editor.Students[0].IsSelected = true;
+        await editor.SaveCommand.ExecuteAsync(null);
+
+        saved.ShouldHaveSingleItem().StudentIds.ShouldBe([anna.Id]);
+    }
+
+    [Fact]
     public async Task TheEditorExplainsWhatIsMissing()
     {
         var math = _fixture.Subjects.Add("Mathematics");
         var school = _fixture.Schools.Add("Northside School");
         var editor = new ScheduleEditorViewModel(
-            null, _teacher, DayOption.All(new Localizer()), [math], [school], _fixture.Create, _fixture.Update, new Localizer());
+            null, _teacher, DayOption.All(new Localizer()), [math], [school], _fixture.Students, _fixture.Create, _fixture.Update, new Localizer());
 
         await editor.SaveCommand.ExecuteAsync(null);
 

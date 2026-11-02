@@ -29,4 +29,6 @@ internal sealed record ScheduleRow(ScheduleEntryDto Entry, string DayName, strin
     public string TimeRange => $"{Entry.StartTime:HH:mm}–{Entry.EndTime:HH:mm}";
 
     public string? Room => Entry.Room;
+
+    public int StudentCount => Entry.StudentIds.Count;
 }

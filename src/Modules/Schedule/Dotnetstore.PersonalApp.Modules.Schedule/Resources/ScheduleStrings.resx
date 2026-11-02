@@ -43,4 +43,9 @@
   <data name="Error_schedule_room_too_long" xml:space="preserve"><value>Room can be at most 100 characters.</value></data>
   <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>Notes can be at most 500 characters.</value></data>
   <data name="Error_schedule_overlap" xml:space="preserve"><value>You already have a lesson at that time.</value></data>
+  <data name="Schedule_ColStudents" xml:space="preserve"><value>STUDENTS</value></data>
+  <data name="ScheduleField_Students" xml:space="preserve"><value>Students</value></data>
+  <data name="ScheduleField_StudentsHint" xml:space="preserve"><value>Choose a school to see its students.</value></data>
+  <data name="Error_schedule_student_not_found" xml:space="preserve"><value>A student was not found at that school.</value></data>
+  <data name="Error_schedule_too_many_students" xml:space="preserve"><value>A lesson can have at most 200 students.</value></data>
 </root>

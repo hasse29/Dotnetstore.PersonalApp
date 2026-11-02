@@ -43,4 +43,9 @@
   <data name="Error_schedule_room_too_long" xml:space="preserve"><value>教室最多 100 个字符。</value></data>
   <data name="Error_schedule_notes_too_long" xml:space="preserve"><value>备注最多 500 个字符。</value></data>
   <data name="Error_schedule_overlap" xml:space="preserve"><value>您在该时间已有课程。</value></data>
+  <data name="Schedule_ColStudents" xml:space="preserve"><value>学生</value></data>
+  <data name="ScheduleField_Students" xml:space="preserve"><value>学生</value></data>
+  <data name="ScheduleField_StudentsHint" xml:space="preserve"><value>选择学校以查看其学生。</value></data>
+  <data name="Error_schedule_student_not_found" xml:space="preserve"><value>在该学校未找到某位学生。</value></data>
+  <data name="Error_schedule_too_many_students" xml:space="preserve"><value>一节课最多 200 名学生。</value></data>
 </root>
