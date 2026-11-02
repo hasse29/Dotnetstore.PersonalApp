@@ -48,4 +48,15 @@ public sealed class OwnerDeletedConsumerTests : IDisposable
 
         (await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(person), Ct)).Items.ShouldBeEmpty();
     }
+
+    [Fact]
+    public async Task StudentDeletedRemovesTheStudentsEntries()
+    {
+        var student = Guid.NewGuid();
+        await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(student), Ct);
+
+        await new StudentDeletedConsumer(_fixture.DeletePhoneNumbersForObject).ConsumeAsync(new StudentDeleted(student), Ct);
+
+        (await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(student), Ct)).Items.ShouldBeEmpty();
+    }
 }

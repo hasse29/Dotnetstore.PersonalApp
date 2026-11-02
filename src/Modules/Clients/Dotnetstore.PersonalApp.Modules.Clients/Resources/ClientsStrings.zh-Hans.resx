@@ -88,4 +88,5 @@
   <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>姓最多 100 个字符。</value></data>
   <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>职位最多 100 个字符。</value></data>
   <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>备注最多 2000 个字符。</value></data>
+  <data name="ClientDetail_TabStudents" xml:space="preserve"><value>学生</value></data>
 </root>

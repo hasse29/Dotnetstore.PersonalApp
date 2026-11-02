@@ -5,6 +5,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | Module | Database | Owns | Sidebar |
 | --- | --- | --- | --- |
 | [Clients](#clients) | `clients.db` | Client companies, contact persons | Clients (landing page) |
+| [Students](#students) | `students.db` | Students of a school (client) | Students (and a tab on the Client detail page) |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -22,6 +23,17 @@ Companies with a unique, normalized organization number. Error codes `client_*`.
 **Contact persons.** A client has any number of `ContactPerson` (`ClientId` FK with cascade, first/last name, optional job title and notes; error codes `contact_person_*`), managed in a Contact persons tab on the Client detail page. A person's detail page reuses the Addresses / Email addresses / Phone numbers panel factories with the person's id as `ObjectId`, so those modules need no schema change. Deleting a person publishes `ContactPersonDeleted`; deleting a client publishes one per person before `ClientDeleted`. Addresses, EmailAddresses and PhoneNumbers each consume `ContactPersonDeleted` and remove the person's entries.
 
 Clients implements `IClientLookup` (client names for TimeReports) and `IContactPersonLookup` (recipients for emailed exports), both in `Shared/Clients`.
+
+## Students
+
+The app is used from a teacher's perspective: a **client is a school**, a user is a teacher, and a teacher works at many schools (reports time per client). Each school has any number of students.
+
+- **Student**: `ClientId` (the school), first/last name, optional `ClassName` and `Notes`, and an optional photo. `ClientId` is an id from the Clients module, so there is no foreign key; instead `CreateStudent` asks `IClientLookup.ExistsAsync` (`Shared/Clients`) and fails with `student_school_not_found` for an unknown school (skipped when the Clients module is absent). A student cannot move to another school. Error codes `student_*`.
+- **Tab**: Students is a tab on the Client detail page, built through `IClientStudentsPanelFactory` (`Shared/Students`; optional, so the tab disappears if the module is absent).
+- **Page**: the module also has its own sidebar page (`ModuleKey` `students`) with the students of every school, a school column and a school filter (names and filter come from `IClientLookup`). The same `StudentsViewModel` serves both: a null `clientId` means the page, where the editor has a school picker for new students.
+- **Detail page**: each student opens a detail page with their photo and tabs that reuse the Addresses / Email addresses / Phone numbers panel factories with the student's id as `ObjectId`, e.g. for guardians' contact details.
+- **Photo**: PNG/JPEG up to 6 MB with a 96x96 thumbnail, like users, clients and contact persons (see Cross-cutting: photos). `Get/SetStudentPhoto`, `StudentPhotoPanelFactory`; lists carry only the thumbnail.
+- **Deleting**: deleting a student publishes `StudentDeleted`. The module consumes `ClientDeleted`, deletes the school's students and publishes one `StudentDeleted` per student; Addresses, EmailAddresses and PhoneNumbers consume `StudentDeleted` and remove the student's entries.
 
 ## Users
 
@@ -93,7 +105,7 @@ An account is personal (`OwnerId` = the user) or a system account shared by ever
 
 ## Cross-cutting: photos
 
-Users, clients and contact persons can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
+Users, clients, contact persons and students can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
 
 - `Get<X>Photo` / `Set<X>Photo` handlers read and write only that column, so lists and updates never load it.
 - Shared pieces in `Shared/Photos`: `PhotoRules`, `PhotoThumbnail`, `BytesToBitmapConverter`, `PhotoPanelViewModel` / `PhotoPanelView` (round photo or initials with Change/Remove buttons on the User and Client detail pages) and `AvatarView`. Each module hands the panel its load/save delegates through its `<X>PhotoPanelFactory`; the file dialog is `IFileOpenService`.

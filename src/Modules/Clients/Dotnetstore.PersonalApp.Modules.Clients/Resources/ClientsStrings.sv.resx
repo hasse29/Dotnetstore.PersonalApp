@@ -88,4 +88,5 @@
   <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>Efternamn får vara högst 100 tecken.</value></data>
   <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>Titel får vara högst 100 tecken.</value></data>
   <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>Anteckningar får vara högst 2000 tecken.</value></data>
+  <data name="ClientDetail_TabStudents" xml:space="preserve"><value>Elever</value></data>
 </root>

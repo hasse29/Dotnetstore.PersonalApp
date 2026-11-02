@@ -1,0 +1,145 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
+             xmlns:students="using:Dotnetstore.PersonalApp.Modules.Students.Features.Students"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="480"
+             x:Class="Dotnetstore.PersonalApp.Modules.Students.Features.Students.StudentsView"
+             x:DataType="students:StudentsViewModel">
+
+    <UserControl.Styles>
+        <!-- On the module's own page the content gets the usual page margin; as a tab it sits flush. -->
+        <Style Selector="Panel#Root.page">
+            <Setter Property="Margin" Value="28"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Panel x:Name="Root" Classes.page="{Binding IsPageLayout}">
+        <Grid RowDefinitions="Auto,*" RowSpacing="16"
+              IsVisible="{Binding Detail, Converter={x:Static ObjectConverters.IsNull}}">
+
+            <!-- Page header: title, school filter and New button -->
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12" IsVisible="{Binding IsPageLayout}">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{loc:Tr Students_Title}" Classes="h1"/>
+                    <TextBlock Text="{loc:Tr Students_PageSubtitle}" Classes="muted"/>
+                </StackPanel>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Schools}" SelectedItem="{Binding SelectedSchoolFilter}"
+                          MinWidth="220" VerticalAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="clients:ClientReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Grid.Column="2" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        <TextBlock Text="{loc:Tr Students_New}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- Tab header: subtitle and New button -->
+            <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding !IsPageLayout}">
+                <TextBlock Text="{loc:Tr Students_Subtitle}" Classes="muted" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        <TextBlock Text="{loc:Tr Students_New}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+                <Border Classes="card">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <Border Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                                BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                            <Panel>
+                                <Grid ColumnDefinitions="32,*,*" ColumnSpacing="12" IsVisible="{Binding !IsPageLayout}">
+                                    <TextBlock Grid.Column="1" Text="{loc:Tr Students_ColName}" Classes="column"/>
+                                    <TextBlock Grid.Column="2" Text="{loc:Tr Students_ColClassName}" Classes="column"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="32,*,100,*" ColumnSpacing="12" IsVisible="{Binding IsPageLayout}">
+                                    <TextBlock Grid.Column="1" Text="{loc:Tr Students_ColName}" Classes="column"/>
+                                    <TextBlock Grid.Column="2" Text="{loc:Tr Students_ColClassName}" Classes="column"/>
+                                    <TextBlock Grid.Column="3" Text="{loc:Tr Students_ColSchool}" Classes="column"/>
+                                </Grid>
+                            </Panel>
+                        </Border>
+
+                        <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="students:StudentDto">
+                                    <!-- Rows carry a school name only on the page, which is what tells the two layouts apart. -->
+                                    <Panel>
+                                        <Grid ColumnDefinitions="32,*,*" ColumnSpacing="12"
+                                              IsVisible="{Binding SchoolName, Converter={x:Static ObjectConverters.IsNull}}">
+                                            <photos:AvatarView Size="32" Initials="{Binding Initials}" Photo="{Binding Thumbnail}"/>
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding FullName}" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding ClassName}" Classes="muted"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </Grid>
+                                        <Grid ColumnDefinitions="32,*,100,*" ColumnSpacing="12"
+                                              IsVisible="{Binding SchoolName, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                            <photos:AvatarView Size="32" Initials="{Binding Initials}" Photo="{Binding Thumbnail}"/>
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding FullName}" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding ClassName}" Classes="muted"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{Binding SchoolName}" Classes="muted"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </Grid>
+                                    </Panel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Border Grid.Row="2" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center"/>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                    <Button Content="{loc:Tr Students_Details}" Classes="subtle" Command="{Binding OpenDetailCommand}"
+                                            IsVisible="{Binding !IsConfirmingDelete}"/>
+                                    <Button Content="{loc:Tr Students_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                            IsVisible="{Binding !IsConfirmingDelete}"/>
+                                    <TextBlock Text="{loc:Tr Students_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                               IsVisible="{Binding IsConfirmingDelete}"/>
+                                    <Button Content="{loc:Tr Students_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                            IsVisible="{Binding IsConfirmingDelete}"/>
+                                    <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                            IsVisible="{Binding IsConfirmingDelete}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                        <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                                IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                                <TextBlock Text="{loc:Tr Students_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{loc:Tr Students_NoSelectionHint}"
+                                           Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <ContentControl Content="{Binding Detail}"/>
+    </Panel>
+
+</UserControl>

@@ -8,4 +8,8 @@ public interface IClientLookup
 {
     /// <summary>All clients ordered by name.</summary>
     Task<IReadOnlyList<ClientReference>> ListAsync(CancellationToken cancellationToken);
+
+    /// <summary>Whether a client with this id exists. The default reads the whole list; Clients overrides it with a single query.</summary>
+    async Task<bool> ExistsAsync(Guid clientId, CancellationToken cancellationToken) =>
+        (await ListAsync(cancellationToken).ConfigureAwait(false)).Any(c => c.Id == clientId);
 }

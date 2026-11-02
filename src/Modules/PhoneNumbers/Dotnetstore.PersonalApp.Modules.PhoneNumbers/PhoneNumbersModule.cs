@@ -50,6 +50,7 @@ public static class PhoneNumbersModule
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ContactPersonDeleted>, ContactPersonDeletedConsumer>();
+        services.AddSingleton<IIntegrationEventConsumer<StudentDeleted>, StudentDeletedConsumer>();
 
         services.AddTransient<PhoneNumberTypesViewModel>();
         services.AddSingleton<IModulePage, PhoneNumbersPage>();

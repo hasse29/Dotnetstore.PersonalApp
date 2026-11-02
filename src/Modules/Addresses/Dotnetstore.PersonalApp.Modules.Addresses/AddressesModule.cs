@@ -50,6 +50,7 @@ public static class AddressesModule
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ContactPersonDeleted>, ContactPersonDeletedConsumer>();
+        services.AddSingleton<IIntegrationEventConsumer<StudentDeleted>, StudentDeletedConsumer>();
 
         services.AddTransient<AddressTypesViewModel>();
         services.AddSingleton<IModulePage, AddressesPage>();

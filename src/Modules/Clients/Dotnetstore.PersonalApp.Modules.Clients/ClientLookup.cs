@@ -16,4 +16,11 @@ internal sealed class ClientLookup(IDbContextFactory<ClientsDbContext> dbFactory
             .ToListAsync(cancellationToken)
             .ConfigureAwait(false);
     }
+
+    public async Task<bool> ExistsAsync(Guid clientId, CancellationToken cancellationToken)
+    {
+        await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
+
+        return await db.Clients.AnyAsync(c => c.Id == clientId, cancellationToken).ConfigureAwait(false);
+    }
 }

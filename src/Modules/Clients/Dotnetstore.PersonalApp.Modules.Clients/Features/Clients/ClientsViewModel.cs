@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.TimeReports;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
@@ -22,7 +23,8 @@ internal sealed partial class ClientsViewModel(
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     ITimeReportsPanelFactory? timeReportsFactory = null,
-    ClientPhotoPanelFactory? photoFactory = null) : ViewModelBase
+    ClientPhotoPanelFactory? photoFactory = null,
+    IClientStudentsPanelFactory? studentsFactory = null) : ViewModelBase
 {
     private bool _restoringSelection;
 
@@ -107,7 +109,8 @@ internal sealed partial class ClientsViewModel(
         }
 
         var detail = new ClientDetailViewModel(client, addressesFactory, emailAddressesFactory, phoneNumbersFactory, timeReportsFactory, contactPersonsFactory.Create(client.Id),
-            photoFactory is null ? null : initials => photoFactory.Create(client.Id, initials));
+            photoFactory is null ? null : initials => photoFactory.Create(client.Id, initials),
+            studentsFactory?.Create(client.Id));
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;

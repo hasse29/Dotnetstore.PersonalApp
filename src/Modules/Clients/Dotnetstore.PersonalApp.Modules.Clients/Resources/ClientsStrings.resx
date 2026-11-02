@@ -88,4 +88,5 @@
   <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>Last name can be at most 100 characters.</value></data>
   <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>Job title can be at most 100 characters.</value></data>
   <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>Notes can be at most 2000 characters.</value></data>
+  <data name="ClientDetail_TabStudents" xml:space="preserve"><value>Students</value></data>
 </root>

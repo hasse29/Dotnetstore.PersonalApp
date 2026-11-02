@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Students_Title" xml:space="preserve"><value>Students</value></data>
+  <data name="Students_PageSubtitle" xml:space="preserve"><value>The students at all your schools.</value></data>
+  <data name="Students_ColSchool" xml:space="preserve"><value>SCHOOL</value></data>
+  <data name="Students_AllSchools" xml:space="preserve"><value>All schools</value></data>
+  <data name="StudentField_School" xml:space="preserve"><value>School</value></data>
+  <data name="Error_student_school_not_found" xml:space="preserve"><value>School not found.</value></data>
+  <data name="Error_student_school_required" xml:space="preserve"><value>Choose a school.</value></data>
+  <data name="Startup_StudentsDatabase" xml:space="preserve"><value>Preparing students database...</value></data>
+  <data name="Students_Subtitle" xml:space="preserve"><value>The students at this school.</value></data>
+  <data name="Students_New" xml:space="preserve"><value>New student</value></data>
+  <data name="Students_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Students_ColClassName" xml:space="preserve"><value>CLASS</value></data>
+  <data name="Students_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Students_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Students_ConfirmDelete" xml:space="preserve"><value>Delete the student?</value></data>
+  <data name="Students_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Students_NoSelection" xml:space="preserve"><value>No student selected</value></data>
+  <data name="Students_NoSelectionHint" xml:space="preserve"><value>Select a student in the table to edit, or create a new one.</value></data>
+  <data name="Students_Count" xml:space="preserve"><value>{0} students</value></data>
+  <data name="Students_Saved" xml:space="preserve"><value>{0} was saved.</value></data>
+  <data name="StudentEditor_New" xml:space="preserve"><value>New student</value></data>
+  <data name="StudentEditor_Edit" xml:space="preserve"><value>Edit student</value></data>
+  <data name="StudentEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="StudentField_FirstName" xml:space="preserve"><value>First name</value></data>
+  <data name="StudentField_LastName" xml:space="preserve"><value>Last name</value></data>
+  <data name="StudentField_ClassName" xml:space="preserve"><value>Class</value></data>
+  <data name="StudentField_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="StudentDetail_Back" xml:space="preserve"><value>Back to students</value></data>
+  <data name="StudentDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="StudentDetail_TabAddresses" xml:space="preserve"><value>Addresses</value></data>
+  <data name="StudentDetail_TabEmailAddresses" xml:space="preserve"><value>Email addresses</value></data>
+  <data name="StudentDetail_TabPhoneNumbers" xml:space="preserve"><value>Phone numbers</value></data>
+  <data name="Error_student_not_found" xml:space="preserve"><value>Student not found.</value></data>
+  <data name="Error_student_first_name_required" xml:space="preserve"><value>First name is required.</value></data>
+  <data name="Error_student_first_name_too_long" xml:space="preserve"><value>First name can be at most 100 characters.</value></data>
+  <data name="Error_student_last_name_required" xml:space="preserve"><value>Last name is required.</value></data>
+  <data name="Error_student_last_name_too_long" xml:space="preserve"><value>Last name can be at most 100 characters.</value></data>
+  <data name="Error_student_class_name_too_long" xml:space="preserve"><value>Class can be at most 100 characters.</value></data>
+  <data name="Error_student_notes_too_long" xml:space="preserve"><value>Notes can be at most 2000 characters.</value></data>
+</root>

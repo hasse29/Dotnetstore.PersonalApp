@@ -22,3 +22,9 @@ internal sealed class ContactPersonDeletedConsumer(DeletePhoneNumbersForObject.H
     public async Task ConsumeAsync(ContactPersonDeleted integrationEvent, CancellationToken cancellationToken) =>
         await deleteAll.HandleAsync(new DeletePhoneNumbersForObject.Command(integrationEvent.ContactPersonId), cancellationToken).ConfigureAwait(false);
 }
+
+internal sealed class StudentDeletedConsumer(DeletePhoneNumbersForObject.Handler deleteAll) : IIntegrationEventConsumer<StudentDeleted>
+{
+    public async Task ConsumeAsync(StudentDeleted integrationEvent, CancellationToken cancellationToken) =>
+        await deleteAll.HandleAsync(new DeletePhoneNumbersForObject.Command(integrationEvent.StudentId), cancellationToken).ConfigureAwait(false);
+}

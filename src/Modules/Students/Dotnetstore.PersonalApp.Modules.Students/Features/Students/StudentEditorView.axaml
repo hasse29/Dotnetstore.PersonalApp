@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:students="using:Dotnetstore.PersonalApp.Modules.Students.Features.Students"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Students.Features.Students.StudentEditorView"
+             x:DataType="students:StudentEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel IsVisible="{Binding ShowSchoolPicker}">
+                <TextBlock Text="{loc:Tr StudentField_School}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Schools}" SelectedItem="{Binding SelectedSchool}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="clients:ClientReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StudentField_FirstName}" Classes="label"/>
+                    <TextBox Text="{Binding FirstName}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr StudentField_LastName}" Classes="label"/>
+                    <TextBox Text="{Binding LastName}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr StudentField_ClassName}" Classes="label"/>
+                <TextBox Text="{Binding ClassName}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr StudentField_Notes}" Classes="label"/>
+                <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" MaxHeight="140"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr StudentEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

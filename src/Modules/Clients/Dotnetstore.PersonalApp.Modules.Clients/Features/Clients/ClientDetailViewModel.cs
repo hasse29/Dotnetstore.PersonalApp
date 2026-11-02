@@ -9,7 +9,7 @@ using Dotnetstore.PersonalApp.Shared.TimeReports;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
 
-internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, ITimeReportsPanelFactory? timeReportsFactory = null, ContactPersonsViewModel? contactPersons = null, Func<string, PhotoPanelViewModel?>? photoFactory = null) : ViewModelBase
+internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, ITimeReportsPanelFactory? timeReportsFactory = null, ContactPersonsViewModel? contactPersons = null, Func<string, PhotoPanelViewModel?>? photoFactory = null, ViewModelBase? students = null) : ViewModelBase
 {
     public ClientDto Client { get; } = client;
 
@@ -18,6 +18,9 @@ internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAdd
 
     /// <summary>The client's contact persons tab.</summary>
     public ContactPersonsViewModel? ContactPersons { get; } = contactPersons;
+
+    /// <summary>The school's students tab, provided by the Students module; null when that module is not installed.</summary>
+    public ViewModelBase? Students { get; } = students;
 
     /// <summary>The client's addresses tab, provided by the Addresses module; null when that module is not installed.</summary>
     public ViewModelBase? Addresses { get; } = addressesFactory?.Create(client.Id);

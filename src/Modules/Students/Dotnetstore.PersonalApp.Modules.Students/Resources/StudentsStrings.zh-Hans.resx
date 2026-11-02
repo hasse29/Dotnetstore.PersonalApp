@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Students_Title" xml:space="preserve"><value>学生</value></data>
+  <data name="Students_PageSubtitle" xml:space="preserve"><value>你所有学校的学生。</value></data>
+  <data name="Students_ColSchool" xml:space="preserve"><value>学校</value></data>
+  <data name="Students_AllSchools" xml:space="preserve"><value>所有学校</value></data>
+  <data name="StudentField_School" xml:space="preserve"><value>学校</value></data>
+  <data name="Error_student_school_not_found" xml:space="preserve"><value>未找到该学校。</value></data>
+  <data name="Error_student_school_required" xml:space="preserve"><value>请选择学校。</value></data>
+  <data name="Startup_StudentsDatabase" xml:space="preserve"><value>正在准备学生数据库...</value></data>
+  <data name="Students_Subtitle" xml:space="preserve"><value>这所学校的学生。</value></data>
+  <data name="Students_New" xml:space="preserve"><value>新建学生</value></data>
+  <data name="Students_ColName" xml:space="preserve"><value>姓名</value></data>
+  <data name="Students_ColClassName" xml:space="preserve"><value>班级</value></data>
+  <data name="Students_Details" xml:space="preserve"><value>详情</value></data>
+  <data name="Students_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Students_ConfirmDelete" xml:space="preserve"><value>删除该学生？</value></data>
+  <data name="Students_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Students_NoSelection" xml:space="preserve"><value>未选择学生</value></data>
+  <data name="Students_NoSelectionHint" xml:space="preserve"><value>在表格中选择学生进行编辑，或新建一个。</value></data>
+  <data name="Students_Count" xml:space="preserve"><value>{0} 名学生</value></data>
+  <data name="Students_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="StudentEditor_New" xml:space="preserve"><value>新建学生</value></data>
+  <data name="StudentEditor_Edit" xml:space="preserve"><value>编辑学生</value></data>
+  <data name="StudentEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="StudentField_FirstName" xml:space="preserve"><value>名</value></data>
+  <data name="StudentField_LastName" xml:space="preserve"><value>姓</value></data>
+  <data name="StudentField_ClassName" xml:space="preserve"><value>班级</value></data>
+  <data name="StudentField_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="StudentDetail_Back" xml:space="preserve"><value>返回学生列表</value></data>
+  <data name="StudentDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
+  <data name="StudentDetail_TabAddresses" xml:space="preserve"><value>地址</value></data>
+  <data name="StudentDetail_TabEmailAddresses" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="StudentDetail_TabPhoneNumbers" xml:space="preserve"><value>电话号码</value></data>
+  <data name="Error_student_not_found" xml:space="preserve"><value>未找到该学生。</value></data>
+  <data name="Error_student_first_name_required" xml:space="preserve"><value>必须填写名。</value></data>
+  <data name="Error_student_first_name_too_long" xml:space="preserve"><value>名最多 100 个字符。</value></data>
+  <data name="Error_student_last_name_required" xml:space="preserve"><value>必须填写姓。</value></data>
+  <data name="Error_student_last_name_too_long" xml:space="preserve"><value>姓最多 100 个字符。</value></data>
+  <data name="Error_student_class_name_too_long" xml:space="preserve"><value>班级最多 100 个字符。</value></data>
+  <data name="Error_student_notes_too_long" xml:space="preserve"><value>备注最多 2000 个字符。</value></data>
+</root>
