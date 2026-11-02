@@ -49,6 +49,7 @@ public static class EmailAddressesModule
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
+        services.AddSingleton<IIntegrationEventConsumer<ContactPersonDeleted>, ContactPersonDeletedConsumer>();
 
         services.AddTransient<EmailAddressTypesViewModel>();
         services.AddSingleton<IModulePage, EmailAddressesPage>();

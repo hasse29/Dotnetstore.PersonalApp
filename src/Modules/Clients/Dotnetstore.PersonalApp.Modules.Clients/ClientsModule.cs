@@ -1,4 +1,5 @@
 using Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
+using Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons;
 using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Dotnetstore.PersonalApp.Modules.Clients.Resources;
 using Dotnetstore.PersonalApp.Modules.Clients.Startup;
@@ -28,6 +29,14 @@ public static class ClientsModule
         services.AddSingleton<ListClients.Handler>();
         services.AddSingleton<UpdateClient.Handler>();
         services.AddSingleton<DeleteClient.Handler>();
+
+        services.AddSingleton<IValidator<CreateContactPerson.Command>, CreateContactPerson.Validator>();
+        services.AddSingleton<IValidator<UpdateContactPerson.Command>, UpdateContactPerson.Validator>();
+        services.AddSingleton<ListContactPersons.Handler>();
+        services.AddSingleton<CreateContactPerson.Handler>();
+        services.AddSingleton<UpdateContactPerson.Handler>();
+        services.AddSingleton<DeleteContactPerson.Handler>();
+        services.AddSingleton<ContactPersonsViewModelFactory>();
 
         services.AddSingleton<IClientLookup, ClientLookup>();
 

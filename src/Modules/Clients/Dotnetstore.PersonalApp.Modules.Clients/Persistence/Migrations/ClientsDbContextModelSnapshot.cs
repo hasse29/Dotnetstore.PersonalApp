@@ -63,6 +63,52 @@ namespace Dotnetstore.PersonalApp.Modules.Clients.Persistence.Migrations
 
                     b.ToTable("Clients", (string)null);
                 });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Clients.Domain.ContactPerson", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("JobTitle")
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("ContactPersons", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Clients.Domain.ContactPerson", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Clients.Domain.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 #pragma warning restore 612, 618
         }
     }

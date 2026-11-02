@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:persons="using:Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons.ContactPersonDetailView"
+             x:DataType="persons:ContactPersonDetailViewModel">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="20">
+
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr ContactPersonDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Person.FullName}" Classes="h2"/>
+                <TextBlock Text="{Binding Person.JobTitle}" Classes="muted"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Row="1" Padding="0">
+            <TabItem Header="{loc:Tr ContactPersonDetail_TabInformation}">
+                <Border Classes="card" Padding="28" Margin="0,20,0,0" VerticalAlignment="Top">
+                    <StackPanel Spacing="18">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+                            <StackPanel>
+                                <TextBlock Text="{loc:Tr ContactPersonField_FirstName}" Classes="label"/>
+                                <TextBlock Text="{Binding Person.FirstName}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{loc:Tr ContactPersonField_LastName}" Classes="label"/>
+                                <TextBlock Text="{Binding Person.LastName}"/>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ContactPersonField_JobTitle}" Classes="label"/>
+                            <TextBlock Text="{Binding Person.JobTitle}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr ContactPersonField_Notes}" Classes="label"/>
+                            <TextBlock Text="{Binding Person.Notes}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="{loc:Tr ClientDetail_TabAddresses}"
+                     IsVisible="{Binding Addresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding Addresses}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ClientDetail_TabEmailAddresses}"
+                     IsVisible="{Binding EmailAddresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding EmailAddresses}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ClientDetail_TabPhoneNumbers}"
+                     IsVisible="{Binding PhoneNumbers, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding PhoneNumbers}" Margin="0,20,0,0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

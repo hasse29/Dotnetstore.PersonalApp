@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
@@ -16,6 +17,7 @@ internal sealed partial class ClientsViewModel(
     UpdateClient.Handler update,
     DeleteClient.Handler delete,
     ILocalizationService localization,
+    ContactPersonsViewModelFactory contactPersonsFactory,
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
@@ -84,7 +86,7 @@ internal sealed partial class ClientsViewModel(
             return;
         }
 
-        var detail = new ClientDetailViewModel(client, addressesFactory, emailAddressesFactory, phoneNumbersFactory, timeReportsFactory);
+        var detail = new ClientDetailViewModel(client, addressesFactory, emailAddressesFactory, phoneNumbersFactory, timeReportsFactory, contactPersonsFactory.Create(client.Id));
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;

@@ -16,6 +16,13 @@ internal static class DeleteClient
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
+            // The contact persons go with the client (cascade), so their ids are read first to tell the other modules.
+            var contactPersonIds = await db.ContactPersons
+                .Where(p => p.ClientId == command.Id)
+                .Select(p => p.Id)
+                .ToListAsync(cancellationToken)
+                .ConfigureAwait(false);
+
             var deleted = await db.Clients
                 .Where(c => c.Id == command.Id)
                 .ExecuteDeleteAsync(cancellationToken)
@@ -24,6 +31,11 @@ internal static class DeleteClient
             if (deleted == 0)
             {
                 return Error.NotFound("client_not_found", "Client not found.");
+            }
+
+            foreach (var contactPersonId in contactPersonIds)
+            {
+                await events.PublishAsync(new ContactPersonDeleted(contactPersonId), cancellationToken).ConfigureAwait(false);
             }
 
             await events.PublishAsync(new ClientDeleted(command.Id), cancellationToken).ConfigureAwait(false);

@@ -59,4 +59,33 @@
   <data name="Error_client_website_invalid" xml:space="preserve"><value>Webbplatsen måste vara en giltig http- eller https-adress.</value></data>
   <data name="Error_client_website_too_long" xml:space="preserve"><value>Webbplatsen får vara högst 2048 tecken.</value></data>
   <data name="Error_client_notes_too_long" xml:space="preserve"><value>Anteckningarna får vara högst 2000 tecken.</value></data>
+  <data name="ClientDetail_TabContactPersons" xml:space="preserve"><value>Kontaktpersoner</value></data>
+  <data name="ContactPersons_Subtitle" xml:space="preserve"><value>De personer du har kontakt med på företaget.</value></data>
+  <data name="ContactPersons_New" xml:space="preserve"><value>Ny kontaktperson</value></data>
+  <data name="ContactPersons_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="ContactPersons_ColJobTitle" xml:space="preserve"><value>TITEL</value></data>
+  <data name="ContactPersons_Details" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="ContactPersons_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="ContactPersons_ConfirmDelete" xml:space="preserve"><value>Ta bort kontaktpersonen?</value></data>
+  <data name="ContactPersons_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="ContactPersons_NoSelection" xml:space="preserve"><value>Ingen kontaktperson vald</value></data>
+  <data name="ContactPersons_NoSelectionHint" xml:space="preserve"><value>Välj en kontaktperson i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="ContactPersons_Count" xml:space="preserve"><value>{0} kontaktpersoner</value></data>
+  <data name="ContactPersons_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="ContactPersonEditor_New" xml:space="preserve"><value>Ny kontaktperson</value></data>
+  <data name="ContactPersonEditor_Edit" xml:space="preserve"><value>Redigera kontaktperson</value></data>
+  <data name="ContactPersonEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="ContactPersonField_FirstName" xml:space="preserve"><value>Förnamn</value></data>
+  <data name="ContactPersonField_LastName" xml:space="preserve"><value>Efternamn</value></data>
+  <data name="ContactPersonField_JobTitle" xml:space="preserve"><value>Titel</value></data>
+  <data name="ContactPersonField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="ContactPersonDetail_Back" xml:space="preserve"><value>Tillbaka till kontaktpersoner</value></data>
+  <data name="ContactPersonDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="Error_contact_person_not_found" xml:space="preserve"><value>Kontaktpersonen hittades inte.</value></data>
+  <data name="Error_contact_person_first_name_required" xml:space="preserve"><value>Förnamn krävs.</value></data>
+  <data name="Error_contact_person_first_name_too_long" xml:space="preserve"><value>Förnamn får vara högst 100 tecken.</value></data>
+  <data name="Error_contact_person_last_name_required" xml:space="preserve"><value>Efternamn krävs.</value></data>
+  <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>Efternamn får vara högst 100 tecken.</value></data>
+  <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>Titel får vara högst 100 tecken.</value></data>
+  <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>Anteckningar får vara högst 2000 tecken.</value></data>
 </root>

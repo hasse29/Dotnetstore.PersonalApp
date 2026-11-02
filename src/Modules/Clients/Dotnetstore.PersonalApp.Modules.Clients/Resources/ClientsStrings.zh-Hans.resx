@@ -59,4 +59,33 @@
   <data name="Error_client_website_invalid" xml:space="preserve"><value>网站必须是有效的 http 或 https 地址。</value></data>
   <data name="Error_client_website_too_long" xml:space="preserve"><value>网站最多 2048 个字符。</value></data>
   <data name="Error_client_notes_too_long" xml:space="preserve"><value>备注最多 2000 个字符。</value></data>
+  <data name="ClientDetail_TabContactPersons" xml:space="preserve"><value>联系人</value></data>
+  <data name="ContactPersons_Subtitle" xml:space="preserve"><value>您在该公司的联系人。</value></data>
+  <data name="ContactPersons_New" xml:space="preserve"><value>新建联系人</value></data>
+  <data name="ContactPersons_ColName" xml:space="preserve"><value>姓名</value></data>
+  <data name="ContactPersons_ColJobTitle" xml:space="preserve"><value>职位</value></data>
+  <data name="ContactPersons_Details" xml:space="preserve"><value>详情</value></data>
+  <data name="ContactPersons_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="ContactPersons_ConfirmDelete" xml:space="preserve"><value>删除该联系人？</value></data>
+  <data name="ContactPersons_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="ContactPersons_NoSelection" xml:space="preserve"><value>未选择联系人</value></data>
+  <data name="ContactPersons_NoSelectionHint" xml:space="preserve"><value>在表格中选择联系人进行编辑，或新建一个。</value></data>
+  <data name="ContactPersons_Count" xml:space="preserve"><value>{0} 位联系人</value></data>
+  <data name="ContactPersons_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="ContactPersonEditor_New" xml:space="preserve"><value>新建联系人</value></data>
+  <data name="ContactPersonEditor_Edit" xml:space="preserve"><value>编辑联系人</value></data>
+  <data name="ContactPersonEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="ContactPersonField_FirstName" xml:space="preserve"><value>名</value></data>
+  <data name="ContactPersonField_LastName" xml:space="preserve"><value>姓</value></data>
+  <data name="ContactPersonField_JobTitle" xml:space="preserve"><value>职位</value></data>
+  <data name="ContactPersonField_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="ContactPersonDetail_Back" xml:space="preserve"><value>返回联系人</value></data>
+  <data name="ContactPersonDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
+  <data name="Error_contact_person_not_found" xml:space="preserve"><value>未找到联系人。</value></data>
+  <data name="Error_contact_person_first_name_required" xml:space="preserve"><value>必须填写名。</value></data>
+  <data name="Error_contact_person_first_name_too_long" xml:space="preserve"><value>名最多 100 个字符。</value></data>
+  <data name="Error_contact_person_last_name_required" xml:space="preserve"><value>必须填写姓。</value></data>
+  <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>姓最多 100 个字符。</value></data>
+  <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>职位最多 100 个字符。</value></data>
+  <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>备注最多 2000 个字符。</value></data>
 </root>

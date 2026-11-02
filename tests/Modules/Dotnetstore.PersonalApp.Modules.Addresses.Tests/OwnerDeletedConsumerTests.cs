@@ -37,4 +37,15 @@ public sealed class OwnerDeletedConsumerTests : IDisposable
 
         Assert.Empty((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(client), Ct)).Items);
     }
+
+    [Fact]
+    public async Task ContactPersonDeletedRemovesTheContactPersonsEntries()
+    {
+        var person = Guid.NewGuid();
+        await _fixture.CreateAddress.HandleAsync(_fixture.ValidAddress(person), Ct);
+
+        await new ContactPersonDeletedConsumer(_fixture.DeleteAddressesForObject).ConsumeAsync(new ContactPersonDeleted(person), Ct);
+
+        Assert.Empty((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(person), Ct)).Items);
+    }
 }

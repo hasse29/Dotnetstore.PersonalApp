@@ -59,4 +59,33 @@
   <data name="Error_client_website_invalid" xml:space="preserve"><value>Website must be a valid http or https address.</value></data>
   <data name="Error_client_website_too_long" xml:space="preserve"><value>Website can be at most 2048 characters.</value></data>
   <data name="Error_client_notes_too_long" xml:space="preserve"><value>Notes can be at most 2000 characters.</value></data>
+  <data name="ClientDetail_TabContactPersons" xml:space="preserve"><value>Contact persons</value></data>
+  <data name="ContactPersons_Subtitle" xml:space="preserve"><value>The people you deal with at this company.</value></data>
+  <data name="ContactPersons_New" xml:space="preserve"><value>New contact person</value></data>
+  <data name="ContactPersons_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="ContactPersons_ColJobTitle" xml:space="preserve"><value>JOB TITLE</value></data>
+  <data name="ContactPersons_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="ContactPersons_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="ContactPersons_ConfirmDelete" xml:space="preserve"><value>Delete the contact person?</value></data>
+  <data name="ContactPersons_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="ContactPersons_NoSelection" xml:space="preserve"><value>No contact person selected</value></data>
+  <data name="ContactPersons_NoSelectionHint" xml:space="preserve"><value>Select a contact person in the table to edit, or create a new one.</value></data>
+  <data name="ContactPersons_Count" xml:space="preserve"><value>{0} contact persons</value></data>
+  <data name="ContactPersons_Saved" xml:space="preserve"><value>{0} was saved.</value></data>
+  <data name="ContactPersonEditor_New" xml:space="preserve"><value>New contact person</value></data>
+  <data name="ContactPersonEditor_Edit" xml:space="preserve"><value>Edit contact person</value></data>
+  <data name="ContactPersonEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="ContactPersonField_FirstName" xml:space="preserve"><value>First name</value></data>
+  <data name="ContactPersonField_LastName" xml:space="preserve"><value>Last name</value></data>
+  <data name="ContactPersonField_JobTitle" xml:space="preserve"><value>Job title</value></data>
+  <data name="ContactPersonField_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="ContactPersonDetail_Back" xml:space="preserve"><value>Back to contact persons</value></data>
+  <data name="ContactPersonDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="Error_contact_person_not_found" xml:space="preserve"><value>Contact person not found.</value></data>
+  <data name="Error_contact_person_first_name_required" xml:space="preserve"><value>First name is required.</value></data>
+  <data name="Error_contact_person_first_name_too_long" xml:space="preserve"><value>First name can be at most 100 characters.</value></data>
+  <data name="Error_contact_person_last_name_required" xml:space="preserve"><value>Last name is required.</value></data>
+  <data name="Error_contact_person_last_name_too_long" xml:space="preserve"><value>Last name can be at most 100 characters.</value></data>
+  <data name="Error_contact_person_job_title_too_long" xml:space="preserve"><value>Job title can be at most 100 characters.</value></data>
+  <data name="Error_contact_person_notes_too_long" xml:space="preserve"><value>Notes can be at most 2000 characters.</value></data>
 </root>

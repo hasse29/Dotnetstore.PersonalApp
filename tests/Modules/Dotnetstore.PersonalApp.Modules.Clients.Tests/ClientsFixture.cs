@@ -1,4 +1,5 @@
 using Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
+using Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons;
 using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,10 @@ internal sealed class ClientsFixture : IDisposable
         List = new ListClients.Handler(DbFactory);
         Update = new UpdateClient.Handler(DbFactory, updateValidator);
         Delete = new DeleteClient.Handler(DbFactory, Events);
+        CreateContactPerson = new CreateContactPerson.Handler(DbFactory, new CreateContactPerson.Validator(), Clock);
+        UpdateContactPerson = new UpdateContactPerson.Handler(DbFactory, new UpdateContactPerson.Validator());
+        ListContactPersons = new ListContactPersons.Handler(DbFactory);
+        DeleteContactPerson = new DeleteContactPerson.Handler(DbFactory, Events);
     }
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 10, 31, 12, 0, 0, TimeSpan.Zero));
@@ -41,6 +46,14 @@ internal sealed class ClientsFixture : IDisposable
     public UpdateClient.Handler Update { get; }
 
     public DeleteClient.Handler Delete { get; }
+
+    public CreateContactPerson.Handler CreateContactPerson { get; }
+
+    public UpdateContactPerson.Handler UpdateContactPerson { get; }
+
+    public ListContactPersons.Handler ListContactPersons { get; }
+
+    public DeleteContactPerson.Handler DeleteContactPerson { get; }
 
     public static CreateClient.Command ValidCommand(string organizationNumber = "556677-8899", string name = "Acme AB") =>
         new(name, organizationNumber, "SE556677889901", "info@acme.example", "+46 8 123 456", "https://acme.example", "Key account");

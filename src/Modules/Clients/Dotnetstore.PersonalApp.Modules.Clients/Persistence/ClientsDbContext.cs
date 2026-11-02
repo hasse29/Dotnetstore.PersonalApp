@@ -7,6 +7,8 @@ internal sealed class ClientsDbContext(DbContextOptions<ClientsDbContext> option
 {
     public DbSet<Client> Clients => Set<Client>();
 
+    public DbSet<ContactPerson> ContactPersons => Set<ContactPerson>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientsDbContext).Assembly);
