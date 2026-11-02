@@ -113,6 +113,8 @@
                             <NumericUpDown Value="{Binding ExportYear}" Minimum="2000" Maximum="2100" Increment="1" FormatString="0" Width="130"/>
                             <Button Content="{loc:Tr TimeReports_Export}" Classes="subtle" Command="{Binding ExportCommand}"/>
                             <Button Content="{loc:Tr TimeReports_ExportKilometers}" Classes="subtle" Command="{Binding ExportKilometersCommand}"/>
+                            <Button Content="{loc:Tr TimeReports_EmailExport}" Classes="subtle" Command="{Binding EmailExportCommand}"
+                                    IsVisible="{Binding CanEmail}"/>
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -122,9 +124,10 @@
             <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+                    <ContentControl Content="{Binding Mail}" VerticalAlignment="Top"/>
 
                     <Border Classes="card" Padding="28" VerticalAlignment="Top"
-                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                            IsVisible="{Binding ShowEmptyState}">
                         <StackPanel Spacing="8" HorizontalAlignment="Center">
                             <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
                                       Data="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>

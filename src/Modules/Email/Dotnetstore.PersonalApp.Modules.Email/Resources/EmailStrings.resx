@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -142,4 +142,5 @@ Subject: {2}</value></data>
   <data name="Inbox_LoadMore" xml:space="preserve"><value>Load older messages</value></data>
   <data name="Compose_FilesSkipped" xml:space="preserve"><value>Not attached (too large, over {1}, or unreadable): {0}</value></data>
   <data name="Error_email_account_password_required" xml:space="preserve"><value>Enter the password again when the server, port or username is changed.</value></data>
+  <data name="Error_email_no_system_smtp" xml:space="preserve"><value>No system SMTP account is registered. Add one under Email accounts.</value></data>
 </root>

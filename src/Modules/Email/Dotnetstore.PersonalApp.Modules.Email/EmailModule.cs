@@ -7,6 +7,7 @@ using Dotnetstore.PersonalApp.Modules.Email.Resources;
 using Dotnetstore.PersonalApp.Modules.Email.Security;
 using Dotnetstore.PersonalApp.Modules.Email.Startup;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
+using Dotnetstore.PersonalApp.Shared.Email;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Shell;
@@ -48,6 +49,7 @@ public static class EmailModule
         services.AddSingleton<IMailGateway, MailKitGateway>();
         services.AddSingleton<IValidator<SendEmail.Command>, SendEmail.Validator>();
         services.AddSingleton<SendEmail.Handler>();
+        services.AddSingleton<ISystemMailSender, SystemMailSender>();
         services.AddSingleton<FetchEmail.Handler>();
         services.AddSingleton<ListEmailMessages.Handler>();
         services.AddSingleton<GetEmailMessage.Handler>();

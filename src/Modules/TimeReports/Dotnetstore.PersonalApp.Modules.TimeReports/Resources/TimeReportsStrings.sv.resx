@@ -97,4 +97,20 @@
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Platsen får vara högst 200 tecken.</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Körsträckan måste vara mellan 0 och 10000 km.</value></data>
   <data name="TimeReports_Reports" xml:space="preserve"><value>Rapporter</value></data>
+  <data name="TimeReports_EmailExport" xml:space="preserve"><value>Skicka export</value></data>
+  <data name="TimeReports_MailSent" xml:space="preserve"><value>Exporten skickades till {0}.</value></data>
+  <data name="SendTimeReport_Title" xml:space="preserve"><value>Skicka tidrapporter: {0} {1}</value></data>
+  <data name="SendTimeReport_Recipient" xml:space="preserve"><value>Skicka till</value></data>
+  <data name="SendTimeReport_Address" xml:space="preserve"><value>E-postadress</value></data>
+  <data name="SendTimeReport_NoAddresses" xml:space="preserve"><value>Inga e-postadresser är registrerade för mottagaren.</value></data>
+  <data name="SendTimeReport_SelectAddress" xml:space="preserve"><value>Välj en e-postadress att skicka till.</value></data>
+  <data name="SendTimeReport_Subject" xml:space="preserve"><value>Ämne</value></data>
+  <data name="SendTimeReport_Body" xml:space="preserve"><value>Meddelande</value></data>
+  <data name="SendTimeReport_Send" xml:space="preserve"><value>Skicka</value></data>
+  <data name="SendTimeReport_DefaultSubject" xml:space="preserve"><value>Tidrapporter {0} {1}</value></data>
+  <data name="SendTimeReport_DefaultBody" xml:space="preserve"><value>Hej,
+
+Här kommer tidrapporterna för {0} för {1}.
+
+Med vänlig hälsning</value></data>
 </root>

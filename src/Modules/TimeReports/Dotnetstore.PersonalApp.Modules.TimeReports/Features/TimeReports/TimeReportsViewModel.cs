@@ -5,6 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes;
 using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Clients;
+using Dotnetstore.PersonalApp.Shared.Contacts;
+using Dotnetstore.PersonalApp.Shared.Email;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Results;
@@ -29,7 +31,10 @@ internal sealed partial class TimeReportsViewModel(
     ListWorkTimeTypes.Handler workTimeTypes,
     IClientLookup clientLookup,
     ILocalizationService localization,
-    TimeProvider clock) : ViewModelBase
+    TimeProvider clock,
+    ISystemMailSender? mailSender = null,
+    IContactPersonLookup? contactPersons = null,
+    IEnumerable<IContactInfoSource>? contactSources = null) : ViewModelBase
 {
     private IReadOnlyList<ClientReference> _clients = [];
     private IReadOnlyList<WorkTimeTypeDto> _workTimeTypes = [];
@@ -58,7 +63,18 @@ internal sealed partial class TimeReportsViewModel(
     public partial decimal? ExportYear { get; set; } = clock.GetLocalNow().Year;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowEmptyState))]
     public partial TimeReportEditorViewModel? Editor { get; set; }
+
+    /// <summary>The send-by-email form, shown in place of the editor.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowEmptyState))]
+    public partial SendTimeReportViewModel? Mail { get; set; }
+
+    public bool ShowEmptyState => Editor is null && Mail is null;
+
+    /// <summary>False when the Email module is not installed.</summary>
+    public bool CanEmail => mailSender is not null;
 
     [ObservableProperty]
     public partial string? StatusMessage { get; set; }
@@ -215,6 +231,65 @@ internal sealed partial class TimeReportsViewModel(
         await SaveExportAsync(result.Value.FileName, result.Value.Content, result.Value.ReportCount, cancellationToken);
     }
 
+    /// <summary>Opens the form for mailing the export of the chosen client and year to the client or one of its contact persons.</summary>
+    [RelayCommand]
+    private async Task EmailExportAsync(CancellationToken cancellationToken)
+    {
+        if (mailSender is null)
+        {
+            return;
+        }
+
+        if (currentUser.User is not { } user)
+        {
+            StatusMessage = localization.Get("TimeReports_NotSignedIn");
+            return;
+        }
+
+        var client = fixedClientId is { } fixedId
+            ? _clients.FirstOrDefault(c => c.Id == fixedId)
+            : SelectedFilter is { } filter && filter != _allClients ? filter : null;
+        if (client is null)
+        {
+            StatusMessage = localization.Get("TimeReports_ExportSelectClient");
+            return;
+        }
+
+        if (ExportYear is not { } year)
+        {
+            StatusMessage = localization.Describe(Error.Validation("time_report_year_invalid", "The year is not valid."));
+            return;
+        }
+
+        var mail = new SendTimeReportViewModel(
+            user.Id, client.Id, client.Name, (int)year, export, mailSender, contactPersons, [.. contactSources ?? []], localization);
+        await mail.InitializeAsync(cancellationToken);
+
+        CloseEditor();
+        mail.Sent += OnMailSent;
+        mail.Closed += OnMailClosed;
+        Mail = mail;
+    }
+
+    private void OnMailSent(object? sender, string address)
+    {
+        CloseMail();
+        StatusMessage = localization.Format("TimeReports_MailSent", address);
+    }
+
+    private void OnMailClosed(object? sender, EventArgs e) => CloseMail();
+
+    private void CloseMail()
+    {
+        if (Mail is { } mail)
+        {
+            mail.Sent -= OnMailSent;
+            mail.Closed -= OnMailClosed;
+        }
+
+        Mail = null;
+    }
+
     /// <summary>Driving per client and month for the chosen year, whatever the client filter says.</summary>
     [RelayCommand]
     private async Task ExportKilometersAsync(CancellationToken cancellationToken)
@@ -281,6 +356,7 @@ internal sealed partial class TimeReportsViewModel(
 
     private void OpenEditor(TimeReportEditorViewModel editor)
     {
+        CloseMail();
         DetachEditor();
         Editor = editor;
         editor.Saved += OnEditorSaved;

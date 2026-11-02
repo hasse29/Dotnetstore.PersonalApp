@@ -97,4 +97,20 @@
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>地点最多 200 个字符。</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>驾驶里程必须在 0 到 10000 公里之间。</value></data>
   <data name="TimeReports_Reports" xml:space="preserve"><value>报告</value></data>
+  <data name="TimeReports_EmailExport" xml:space="preserve"><value>邮件发送导出</value></data>
+  <data name="TimeReports_MailSent" xml:space="preserve"><value>导出文件已发送到 {0}。</value></data>
+  <data name="SendTimeReport_Title" xml:space="preserve"><value>邮件发送工时报告：{0} {1}</value></data>
+  <data name="SendTimeReport_Recipient" xml:space="preserve"><value>收件人</value></data>
+  <data name="SendTimeReport_Address" xml:space="preserve"><value>邮箱地址</value></data>
+  <data name="SendTimeReport_NoAddresses" xml:space="preserve"><value>该收件人没有登记邮箱地址。</value></data>
+  <data name="SendTimeReport_SelectAddress" xml:space="preserve"><value>请选择要发送到的邮箱地址。</value></data>
+  <data name="SendTimeReport_Subject" xml:space="preserve"><value>主题</value></data>
+  <data name="SendTimeReport_Body" xml:space="preserve"><value>内容</value></data>
+  <data name="SendTimeReport_Send" xml:space="preserve"><value>发送</value></data>
+  <data name="SendTimeReport_DefaultSubject" xml:space="preserve"><value>工时报告 {0} {1}</value></data>
+  <data name="SendTimeReport_DefaultBody" xml:space="preserve"><value>您好，
+
+附件是 {0} 在 {1} 年的工时报告。
+
+此致</value></data>
 </root>

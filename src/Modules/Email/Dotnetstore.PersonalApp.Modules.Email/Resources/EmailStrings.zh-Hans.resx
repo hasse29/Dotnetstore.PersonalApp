@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -142,4 +142,5 @@
   <data name="Inbox_LoadMore" xml:space="preserve"><value>加载更早的邮件</value></data>
   <data name="Compose_FilesSkipped" xml:space="preserve"><value>未添加（文件过大，超过 {1}，或无法读取）：{0}</value></data>
   <data name="Error_email_account_password_required" xml:space="preserve"><value>更改服务器、端口或用户名时，请重新输入密码。</value></data>
+  <data name="Error_email_no_system_smtp" xml:space="preserve"><value>未登记系统 SMTP 账户。请在“邮箱账户”中添加。</value></data>
 </root>

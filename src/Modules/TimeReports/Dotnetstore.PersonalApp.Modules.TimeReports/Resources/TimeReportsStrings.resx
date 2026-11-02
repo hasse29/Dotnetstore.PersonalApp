@@ -97,4 +97,20 @@
   <data name="Error_time_report_location_too_long" xml:space="preserve"><value>Location can be at most 200 characters.</value></data>
   <data name="Error_time_report_driving_invalid" xml:space="preserve"><value>Driving must be between 0 and 10000 km.</value></data>
   <data name="TimeReports_Reports" xml:space="preserve"><value>Reports</value></data>
+  <data name="TimeReports_EmailExport" xml:space="preserve"><value>Email export</value></data>
+  <data name="TimeReports_MailSent" xml:space="preserve"><value>The export was emailed to {0}.</value></data>
+  <data name="SendTimeReport_Title" xml:space="preserve"><value>Email time reports: {0} {1}</value></data>
+  <data name="SendTimeReport_Recipient" xml:space="preserve"><value>Send to</value></data>
+  <data name="SendTimeReport_Address" xml:space="preserve"><value>Email address</value></data>
+  <data name="SendTimeReport_NoAddresses" xml:space="preserve"><value>No email addresses are registered for this recipient.</value></data>
+  <data name="SendTimeReport_SelectAddress" xml:space="preserve"><value>Choose an email address to send to.</value></data>
+  <data name="SendTimeReport_Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="SendTimeReport_Body" xml:space="preserve"><value>Message</value></data>
+  <data name="SendTimeReport_Send" xml:space="preserve"><value>Send</value></data>
+  <data name="SendTimeReport_DefaultSubject" xml:space="preserve"><value>Time reports {0} {1}</value></data>
+  <data name="SendTimeReport_DefaultBody" xml:space="preserve"><value>Hello,
+
+Attached are the time reports for {0} for {1}.
+
+Best regards</value></data>
 </root>

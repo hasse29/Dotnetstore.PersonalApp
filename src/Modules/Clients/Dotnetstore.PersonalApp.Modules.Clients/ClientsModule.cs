@@ -39,6 +39,7 @@ public static class ClientsModule
         services.AddSingleton<ContactPersonsViewModelFactory>();
 
         services.AddSingleton<IClientLookup, ClientLookup>();
+        services.AddSingleton<IContactPersonLookup, ContactPersonLookup>();
 
         services.AddTransient<ClientsViewModel>();
         services.AddSingleton<IModulePage, ClientsPage>();

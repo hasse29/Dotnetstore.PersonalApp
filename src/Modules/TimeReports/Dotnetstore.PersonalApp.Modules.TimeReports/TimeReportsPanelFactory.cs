@@ -2,6 +2,8 @@ using Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes;
 using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Clients;
+using Dotnetstore.PersonalApp.Shared.Contacts;
+using Dotnetstore.PersonalApp.Shared.Email;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
@@ -21,7 +23,10 @@ internal sealed class TimeReportsPanelFactory(
     ListWorkTimeTypes.Handler workTimeTypes,
     IClientLookup clients,
     ILocalizationService localization,
-    TimeProvider clock) : ITimeReportsPanelFactory
+    TimeProvider clock,
+    IEnumerable<IContactInfoSource> contactSources,
+    ISystemMailSender? mailSender = null,
+    IContactPersonLookup? contactPersons = null) : ITimeReportsPanelFactory
 {
     /// <summary>The all-clients view used by the module's own page.</summary>
     public TimeReportsViewModel CreateForAllClients() => Build(null);
@@ -29,5 +34,5 @@ internal sealed class TimeReportsPanelFactory(
     public ViewModelBase CreateForClient(Guid clientId) => Build(clientId);
 
     private TimeReportsViewModel Build(Guid? clientId) =>
-        new(clientId, currentUser, list, create, update, delete, export, exportKilometers, fileSaver, workTimeTypes, clients, localization, clock);
+        new(clientId, currentUser, list, create, update, delete, export, exportKilometers, fileSaver, workTimeTypes, clients, localization, clock, mailSender, contactPersons, contactSources);
 }
