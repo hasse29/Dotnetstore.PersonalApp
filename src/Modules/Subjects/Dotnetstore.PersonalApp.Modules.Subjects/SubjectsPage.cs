@@ -11,6 +11,8 @@ internal sealed class SubjectsPage(IServiceProvider services) : IModulePage
 {
     public string? ModuleKey => "subjects";
 
+    public ModulePageGroup? Group => SchoolGroup.Create();
+
     public string Title => Localizer.Instance.Get("Subjects_Title");
 
     // Material "menu_book" icon

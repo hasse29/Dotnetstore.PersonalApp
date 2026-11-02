@@ -9,6 +9,8 @@ internal sealed class StudentsPage(StudentsViewModelFactory factory) : IModulePa
 {
     public string? ModuleKey => "students";
 
+    public ModulePageGroup? Group => SchoolGroup.Create();
+
     public string Title => Localizer.Instance.Get("Students_Title");
 
     // Material "school" icon

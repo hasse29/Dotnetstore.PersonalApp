@@ -23,6 +23,8 @@ internal sealed class SchedulePage(
 {
     public string? ModuleKey => "schedule";
 
+    public ModulePageGroup? Group => SchoolGroup.Create();
+
     public string Title => Localizer.Instance.Get("Schedule_Title");
 
     // Material "calendar_month" icon

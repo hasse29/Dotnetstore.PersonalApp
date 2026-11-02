@@ -41,7 +41,7 @@ installer/                           Inno Setup script and build script
 - Handlers are `internal static class <Op>` wrappers holding `Command`/`Query`, an optional `Validator`, and a `Handler` that takes `IDbContextFactory<TDbContext>` (a context per operation, since view models are long-lived) and returns `Result<T>` (`Shared.Results`).
 - Handlers never return display text: they return an `Error` with a stable `Code` (validation rules use `WithErrorCode`). Error codes are prefixed per module (`user_*`, `client_*`, ...).
 - A module exposes `Add<Module>Module(this IServiceCollection, ...)`, registers an `IModulePage` for navigation, an `IStartupTask` that applies its EF migrations, and its resource strings.
-- `IModulePage.IconData` is 24x24 SVG path data (Material icons work). `IModulePage.Group` (optional `ModulePageGroup`) nests a page under a collapsible sidebar header; pages from different modules join the same group by key. Address/email/phone type pages share the Settings group; TimeReports and WorkTimeTypes share "Time reports".
+- `IModulePage.IconData` is 24x24 SVG path data (Material icons work). `IModulePage.Group` (optional `ModulePageGroup`) nests a page under a collapsible sidebar header; pages from different modules join the same group by key. Address/email/phone type pages share the Settings group; TimeReports and WorkTimeTypes share "Time reports"; Students, Subjects and Schedule share "School" (`SchoolGroup` in `Shared/Shell`).
 - Migrations live in `Persistence/Migrations`. The Host is the startup project and `<Module>DbContextFactory` is the design-time factory.
 
 ## Integration events

@@ -6,6 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
   <data name="Shell_Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Shell_School" xml:space="preserve"><value>School</value></data>
   <data name="Photo_Change" xml:space="preserve"><value>Change photo</value></data>
   <data name="Photo_Remove" xml:space="preserve"><value>Remove</value></data>
   <data name="Photo_ChooseTitle" xml:space="preserve"><value>Choose a photo</value></data>
