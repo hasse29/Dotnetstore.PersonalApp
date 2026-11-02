@@ -52,7 +52,7 @@ Delivery is synchronous with no outbox, so a crash between a delete and its cons
 
 | Event | Published by | Consumed by |
 | --- | --- | --- |
-| `UserDeleted` | Users | Addresses, EmailAddresses, PhoneNumbers, Cvs, Email |
+| `UserDeleted` | Users | Addresses, EmailAddresses, PhoneNumbers, Cvs, Email, Subjects |
 | `ClientDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers, Students |
 | `ContactPersonDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers |
 | `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers |

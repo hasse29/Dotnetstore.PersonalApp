@@ -6,6 +6,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | --- | --- | --- | --- |
 | [Clients](#clients) | `clients.db` | Client companies, contact persons | Clients (landing page) |
 | [Students](#students) | `students.db` | Students of a school (client) | Students (and a tab on the Client detail page) |
+| [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | Subjects; Subjects tab on the User detail page |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -34,6 +35,15 @@ The app is used from a teacher's perspective: a **client is a school**, a user i
 - **Detail page**: each student opens a detail page with their photo and tabs that reuse the Addresses / Email addresses / Phone numbers panel factories with the student's id as `ObjectId`, e.g. for guardians' contact details.
 - **Photo**: PNG/JPEG up to 6 MB with a 96x96 thumbnail, like users, clients and contact persons (see Cross-cutting: photos). `Get/SetStudentPhoto`, `StudentPhotoPanelFactory`; lists carry only the thumbnail.
 - **Deleting**: deleting a student publishes `StudentDeleted`. The module consumes `ClientDeleted`, deletes the school's students and publishes one `StudentDeleted` per student; Addresses, EmailAddresses and PhoneNumbers consume `StudentDeleted` and remove the student's entries.
+
+## Subjects
+
+A teacher can teach several subjects, and several teachers can teach the same one.
+
+- **Subject**: a user-managed catalogue entry shared by every teacher (unique case-insensitive `Name`, optional `Description`; nothing is seeded). Own CRUD page in the sidebar (`ModuleKey` `subjects`). Error codes `subject_*`. Deleting a subject also takes it off every teacher.
+- **TeacherSubject**: `UserId` + `SubjectId`, unique per pair. `UserId` is a Users id, so there is no foreign key. Error codes `teacher_subject_*`.
+- **UI**: a Subjects tab on the User detail page via `IUserSubjectsPanelFactory` (`Shared/Subjects`; optional, so the tab disappears if the module is absent). It lists what the teacher teaches and offers the catalogue subjects they do not teach yet.
+- Consumes `UserDeleted` and removes the user's assignments.
 
 ## Users
 

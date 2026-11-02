@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Shared.Cvs;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Subjects;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
@@ -20,7 +21,8 @@ internal sealed partial class UsersViewModel(
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     IUserCvsPanelFactory? cvsFactory = null,
-    UserPhotoPanelFactory? photoFactory = null) : ViewModelBase
+    UserPhotoPanelFactory? photoFactory = null,
+    IUserSubjectsPanelFactory? subjectsFactory = null) : ViewModelBase
 {
     private bool _restoringSelection;
 
@@ -105,7 +107,8 @@ internal sealed partial class UsersViewModel(
         }
 
         var detail = new UserDetailViewModel(user, addressesFactory, emailAddressesFactory, phoneNumbersFactory, cvsFactory,
-            photoFactory is null ? null : initials => photoFactory.Create(user.Id, initials));
+            photoFactory is null ? null : initials => photoFactory.Create(user.Id, initials),
+            subjectsFactory);
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_SubjectsDatabase" xml:space="preserve"><value>Preparing subjects database...</value></data>
+  <data name="Subjects_Title" xml:space="preserve"><value>Subjects</value></data>
+  <data name="Subjects_Subtitle" xml:space="preserve"><value>The subjects teachers can teach. Choose which ones a teacher teaches on the user's page.</value></data>
+  <data name="Subjects_New" xml:space="preserve"><value>New subject</value></data>
+  <data name="Subjects_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Subjects_SearchPlaceholder" xml:space="preserve"><value>Search subjects...</value></data>
+  <data name="Subjects_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Subjects_ColDescription" xml:space="preserve"><value>DESCRIPTION</value></data>
+  <data name="Subjects_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Subjects_ConfirmDelete" xml:space="preserve"><value>Delete the subject? Teachers who teach it lose it.</value></data>
+  <data name="Subjects_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Subjects_NoSelection" xml:space="preserve"><value>No subject selected</value></data>
+  <data name="Subjects_NoSelectionHint" xml:space="preserve"><value>Select a subject in the table to edit, or create a new one.</value></data>
+  <data name="Subjects_Count" xml:space="preserve"><value>{0} subject(s)</value></data>
+  <data name="Subjects_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} subjects. Refine the search to see more.</value></data>
+  <data name="Subjects_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="SubjectEditor_New" xml:space="preserve"><value>New subject</value></data>
+  <data name="SubjectEditor_Edit" xml:space="preserve"><value>Edit subject</value></data>
+  <data name="SubjectEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="SubjectField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="SubjectField_NamePlaceholder" xml:space="preserve"><value>e.g. Mathematics</value></data>
+  <data name="SubjectField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="UserSubjects_Subtitle" xml:space="preserve"><value>The subjects this teacher teaches.</value></data>
+  <data name="UserSubjects_Pick" xml:space="preserve"><value>Choose a subject...</value></data>
+  <data name="UserSubjects_Add" xml:space="preserve"><value>Add</value></data>
+  <data name="UserSubjects_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="UserSubjects_NoCatalogue" xml:space="preserve"><value>There are no subjects yet. Create some on the Subjects page first.</value></data>
+  <data name="UserSubjects_Count" xml:space="preserve"><value>{0} subject(s) taught</value></data>
+  <data name="Error_subject_not_found" xml:space="preserve"><value>Subject not found.</value></data>
+  <data name="Error_subject_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_subject_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_subject_description_too_long" xml:space="preserve"><value>Description can be at most 500 characters.</value></data>
+  <data name="Error_subject_conflict" xml:space="preserve"><value>A subject with that name already exists.</value></data>
+  <data name="Error_teacher_subject_conflict" xml:space="preserve"><value>The teacher already teaches this subject.</value></data>
+  <data name="Error_teacher_subject_not_found" xml:space="preserve"><value>The teacher does not teach this subject.</value></data>
+</root>

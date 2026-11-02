@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:subjects="using:Dotnetstore.PersonalApp.Modules.Subjects.Features.Subjects"
+             xmlns:teacher="using:Dotnetstore.PersonalApp.Modules.Subjects.Features.TeacherSubjects"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="400"
+             x:Class="Dotnetstore.PersonalApp.Modules.Subjects.Features.TeacherSubjects.UserSubjectsView"
+             x:DataType="teacher:UserSubjectsViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="16">
+            <TextBlock Text="{loc:Tr UserSubjects_Subtitle}" Classes="muted" TextWrapping="Wrap"/>
+
+            <!-- Add a subject from the catalogue -->
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8" IsVisible="{Binding HasCatalogue}">
+                <ComboBox ItemsSource="{Binding Available}" SelectedItem="{Binding SelectedAvailable}"
+                          PlaceholderText="{loc:Tr UserSubjects_Pick}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="subjects:SubjectDto">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Grid.Column="1" Classes="primary" Content="{loc:Tr UserSubjects_Add}" Command="{Binding AddCommand}"/>
+            </Grid>
+            <TextBlock Text="{loc:Tr UserSubjects_NoCatalogue}" Classes="muted" TextWrapping="Wrap"
+                       IsVisible="{Binding !HasCatalogue}"/>
+
+            <!-- Subjects taught -->
+            <ItemsControl ItemsSource="{Binding Taught}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="subjects:SubjectDto">
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,4">
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="{Binding Description}" Classes="muted" TextWrapping="Wrap"
+                                           IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                            </StackPanel>
+                            <Button Grid.Column="1" Content="{loc:Tr UserSubjects_Remove}" Classes="link-danger"
+                                    Command="{Binding $parent[ItemsControl].((teacher:UserSubjectsViewModel)DataContext).RemoveCommand}"
+                                    CommandParameter="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="{Binding StatusMessage}" Classes="caption"/>
+        </StackPanel>
+    </Border>
+
+</UserControl>

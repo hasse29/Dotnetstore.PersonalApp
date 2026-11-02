@@ -45,7 +45,7 @@ public sealed class EventPublisherTests
     {
         using var services = CompositionRoot.BuildServices();
 
-        (services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count()).ShouldBe(5);
+        (services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count()).ShouldBe(6);
         (services.GetServices<IIntegrationEventConsumer<ClientDeleted>>().Count()).ShouldBe(4);
         (services.GetServices<IIntegrationEventConsumer<StudentDeleted>>().Count()).ShouldBe(3);
         (services.GetRequiredService<IEventPublisher>()).ShouldBeOfType<InProcessEventPublisher>();
