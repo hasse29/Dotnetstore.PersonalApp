@@ -7,18 +7,20 @@
 ![Avalonia 12](https://img.shields.io/badge/Avalonia-12-8B44AC)
 ![Platform: Windows](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)
 
-A personal desktop app for keeping track of clients and the time you work for them. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
+A personal desktop app for keeping track of clients, the time you work for them, your CVs and your mail. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
 
 ## Features
 
-- **Clients**: companies with a unique organization number, plus their addresses, email addresses and phone numbers.
-- **Time reports**: report date, start and end time, worked hours, work time type, location and driving distance per client.
-  - Copy a report to quickly create similar ones on another date.
-  - **Work time types** (Work, Sick, Vacation, Parental leave, or your own) are managed on their own page.
-  - **Excel export** of one client's reports for a year, one sheet per month (`2026-01`, `2026-02`, ...) with date, hours and location.
-  - **Kilometer summary** for a year, per client and month with totals, handy for tax reporting.
-- **Users and sign-in**: the first start creates the first user; every report belongs to the signed-in user.
-- **CVs**: each user can keep several CVs aimed at different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, a LinkedIn link and the contact details you choose per CV. A CV can be exported to Word.
+- **Clients**: companies with a unique organization number, a photo, and any number of **contact persons** (each with photo, addresses, email addresses and phone numbers). Companies have addresses, email addresses and phone numbers too.
+- **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.
+  - Copy a report to create similar ones on another date.
+  - **Work time types** (Work, Sick, Vacation, Parental leave, or your own) have their own page.
+  - **Excel export** of one client's reports for a year, one sheet per month.
+  - **Kilometer summary** for a year, per client and month with totals, for tax reporting.
+  - **Email the export** to the client or a contact person.
+- **CVs**: several CVs per user for different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, LinkedIn link and the contact details you choose per CV. Export to Word.
+- **Email**: SMTP and POP3 accounts (personal or shared system accounts), inbox with auto-refresh, reply, reply all, forward, drafts, sent mail, attachments and formatted HTML mail.
+- **Users and sign-in**: the first start creates the first user; users have a photo that shows in the sidebar and top bar.
 - **Languages**: English, Swedish and Simplified Chinese, switchable at any time.
 
 ## Install
@@ -49,34 +51,41 @@ The result is `artifacts/installer/Dotnetstore.PersonalApp-Setup-<version>.exe`.
 
 ## Architecture
 
-One process, strict module boundaries. Each module owns its views, view models, handlers, data and domain logic, organized as vertical slices. Modules reference only `Shared`, never each other, and talk through contracts and integration events defined there.
+One process, strict module boundaries. Each module owns its views, view models, handlers, data and domain logic as vertical slices. Modules reference only `Shared`, never each other, and talk through contracts and integration events defined there.
 
 | Module | Purpose | Database |
 | --- | --- | --- |
+| Clients | Client companies and contact persons | `clients.db` |
 | Users | Users and sign-in | `users.db` |
-| Clients | Client companies | `clients.db` |
 | Addresses | Addresses for any object, with address types | `addresses.db` |
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
 | PhoneNumbers | Phone numbers for any object, with types | `phonenumbers.db` |
-| TimeReports | Time reports, work time types and exports | `timereports.db` |
-| Cvs | CVs with sections, contact selection and Word export | `cvs.db` |
+| TimeReports | Time reports, work time types, exports | `timereports.db` |
+| Cvs | CVs with sections, contact selection, Word export | `cvs.db` |
+| Email | Mail accounts, inbox, sending, drafts | `email.db` |
 
 ```
 src/
   Dotnetstore.PersonalApp.Host/      Avalonia app, shell, composition root
-  Dotnetstore.PersonalApp.Shared/    Contracts, Result, localization, events
+  Dotnetstore.PersonalApp.Shared/    Contracts, events, Result, localization
   Modules/<Module>/...               One project per module
-tests/                               xUnit v3 tests (Shouldly assertions) per module plus integration tests
+tests/                               xUnit v3 tests (Shouldly) per module plus integration tests
 installer/                           Inno Setup script and build script
+docs/                                Architecture and module documentation
 ```
 
-**Tech stack:** .NET 10, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, ClosedXML for Excel, xUnit v3 with Shouldly.
+**Tech stack:** .NET 10, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, SkiaSharp, MailKit, ClosedXML, Open XML SDK, xUnit v3 with Shouldly.
 
-More detail on conventions, module design and decisions is in [CLAUDE.md](CLAUDE.md).
+## Documentation
+
+- [docs/architecture.md](docs/architecture.md): boundaries, conventions, events, startup, localization, design system, testing.
+- [docs/modules.md](docs/modules.md): what each module does and its rules.
+- [CLAUDE.md](CLAUDE.md): instructions for AI-assisted development.
 
 ## Known limitations
 
-- Windows only for now (the installer and testing target Windows).
+- Windows only (the installer, and Email's password protection through DPAPI).
 - Integration events use a small in-process dispatcher without an outbox, so a crash between a delete and its follow-up can leave orphaned rows.
-- Time reports cannot span midnight, and there is no lockout after repeated failed sign-ins.
+- Time reports cannot span midnight. There are no roles, and no lockout after repeated failed sign-ins.
+- Photos saved before thumbnails existed show initials in lists until uploaded again.
 - Swedish and Chinese translations are machine-assisted and have not had a native review.
