@@ -19,7 +19,7 @@ public sealed class ContactPersonLookupTests : IDisposable
 
         var people = await new ContactPersonLookup(_fixture.ListContactPersons).ListAsync(clientId, Ct);
 
-        Assert.Equal([anna.Id, zoe.Id], people.Select(p => p.Id));
-        Assert.Equal(["Anna Andersson", "Zoe Berg"], people.Select(p => p.Name));
+        people.Select(p => p.Id).ShouldBe([anna.Id, zoe.Id]);
+        people.Select(p => p.Name).ShouldBe(["Anna Andersson", "Zoe Berg"]);
     }
 }

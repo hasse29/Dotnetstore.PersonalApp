@@ -17,11 +17,11 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(TimeReportsFixture.ValidCommand(_user, client.Id), TestContext.Current.CancellationToken);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Acme AB", result.Value.ClientName);
-        Assert.Equal(8m, result.Value.TotalHours);
-        Assert.Equal(42.5m, result.Value.DrivingKilometers);
-        Assert.Equal("08:00–16:30", result.Value.TimeRange);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ClientName.ShouldBe("Acme AB");
+        result.Value.TotalHours.ShouldBe(8m);
+        result.Value.DrivingKilometers.ShouldBe(42.5m);
+        result.Value.TimeRange.ShouldBe("08:00–16:30");
     }
 
     [Fact]
@@ -32,8 +32,8 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(5m, result.Value.TotalHours);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.TotalHours.ShouldBe(5m);
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_end_before_start", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_end_before_start");
     }
 
     [Theory]
@@ -57,7 +57,7 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_total_hours_invalid", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_total_hours_invalid");
     }
 
     [Fact]
@@ -68,7 +68,7 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_driving_invalid", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_driving_invalid");
     }
 
     [Fact]
@@ -81,8 +81,8 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, ct);
 
-        Assert.Equal("Sick", result.Value.WorkTimeTypeName);
-        Assert.Equal("Sick", Assert.Single((await _fixture.List.HandleAsync(new ListTimeReports.Query(_user), ct)).Items).WorkTimeTypeName);
+        result.Value.WorkTimeTypeName.ShouldBe("Sick");
+        (await _fixture.List.HandleAsync(new ListTimeReports.Query(_user), ct)).Items.ShouldHaveSingleItem().WorkTimeTypeName.ShouldBe("Sick");
     }
 
     [Fact]
@@ -93,7 +93,7 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_work_time_type_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_work_time_type_not_found");
     }
 
     [Fact]
@@ -101,7 +101,7 @@ public sealed class TimeReportHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(TimeReportsFixture.ValidCommand(_user, Guid.NewGuid()), TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_client_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_client_not_found");
     }
 
     [Fact]
@@ -117,11 +117,11 @@ public sealed class TimeReportHandlerTests : IDisposable
         var all = await _fixture.List.HandleAsync(new ListTimeReports.Query(_user), ct);
         var forAcme = await _fixture.List.HandleAsync(new ListTimeReports.Query(_user, acme.Id), ct);
 
-        Assert.Equal(2, all.TotalCount);
-        Assert.Equal(10m, all.TotalHours);
-        Assert.Equal(52.5m, all.TotalKilometers);
-        Assert.Single(forAcme.Items);
-        Assert.Equal(8m, forAcme.TotalHours);
+        all.TotalCount.ShouldBe(2);
+        all.TotalHours.ShouldBe(10m);
+        all.TotalKilometers.ShouldBe(52.5m);
+        forAcme.Items.ShouldHaveSingleItem();
+        forAcme.TotalHours.ShouldBe(8m);
     }
 
     [Fact]
@@ -136,9 +136,9 @@ public sealed class TimeReportHandlerTests : IDisposable
         var byOwner = await _fixture.Update.HandleAsync(update, ct);
         var byOther = await _fixture.Update.HandleAsync(update with { UserId = Guid.NewGuid() }, ct);
 
-        Assert.Equal(7.5m, byOwner.Value.TotalHours);
-        Assert.Equal("Remote", byOwner.Value.Location);
-        Assert.Equal("time_report_not_found", byOther.Error.Code);
+        byOwner.Value.TotalHours.ShouldBe(7.5m);
+        byOwner.Value.Location.ShouldBe("Remote");
+        byOther.Error.Code.ShouldBe("time_report_not_found");
     }
 
     [Fact]
@@ -151,9 +151,9 @@ public sealed class TimeReportHandlerTests : IDisposable
         var byOther = await _fixture.Delete.HandleAsync(new DeleteTimeReport.Command(created.Id, Guid.NewGuid()), ct);
         var byOwner = await _fixture.Delete.HandleAsync(new DeleteTimeReport.Command(created.Id, _user), ct);
 
-        Assert.False(byOther.IsSuccess);
-        Assert.True(byOwner.IsSuccess);
-        Assert.Equal(0, (await _fixture.List.HandleAsync(new ListTimeReports.Query(_user), ct)).TotalCount);
+        byOther.IsSuccess.ShouldBeFalse();
+        byOwner.IsSuccess.ShouldBeTrue();
+        (await _fixture.List.HandleAsync(new ListTimeReports.Query(_user), ct)).TotalCount.ShouldBe(0);
     }
 
     [Fact]
@@ -167,6 +167,6 @@ public sealed class TimeReportHandlerTests : IDisposable
 
         var response = await list.HandleAsync(new ListTimeReports.Query(_user), ct);
 
-        Assert.Null(Assert.Single(response.Items).ClientName);
+        response.Items.ShouldHaveSingleItem().ClientName.ShouldBeNull();
     }
 }

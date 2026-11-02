@@ -18,9 +18,9 @@ public sealed class StartupRunnerTests
 
         await runner.RunAsync(new SyncProgress(reports.Add), TestContext.Current.CancellationToken);
 
-        Assert.Equal(["one", "two"], order);
-        Assert.Equal([0, 0.5, 1], reports.Select(r => r.Fraction));
-        Assert.Equal("Ready", reports[^1].Message);
+        order.ShouldBe(["one", "two"]);
+        reports.Select(r => r.Fraction).ShouldBe([0, 0.5, 1]);
+        reports[^1].Message.ShouldBe("Ready");
     }
 
     private sealed class SyncProgress(Action<StartupProgress> report) : IProgress<StartupProgress>

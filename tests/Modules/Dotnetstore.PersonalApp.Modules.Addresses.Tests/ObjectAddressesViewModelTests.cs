@@ -39,9 +39,9 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
 
         await viewModel.LoadCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.Addresses);
-        Assert.True(viewModel.HasAddresses);
-        Assert.Equal("1 address(es)", viewModel.StatusMessage);
+        viewModel.Addresses.ShouldHaveSingleItem();
+        viewModel.HasAddresses.ShouldBeTrue();
+        viewModel.StatusMessage.ShouldBe("1 address(es)");
     }
 
     [Fact]
@@ -51,16 +51,16 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<AddressEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<AddressEditorViewModel>();
         editor.Street1 = "Storgatan 1";
         editor.PostalCode = "111 22";
         editor.City = "Lund";
         editor.Country = "Sweden";
         await editor.SaveCommand.ExecuteAsync(null);
 
-        var address = Assert.Single(viewModel.Addresses);
-        Assert.Equal(_owner, address.ObjectId);
-        Assert.Null(viewModel.Editor);
+        var address = viewModel.Addresses.ShouldHaveSingleItem();
+        address.ObjectId.ShouldBe(_owner);
+        viewModel.Editor.ShouldBeNull();
     }
 
     [Fact]
@@ -69,12 +69,12 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
         var viewModel = CreateViewModel();
         await viewModel.LoadCommand.ExecuteAsync(null);
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<AddressEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<AddressEditorViewModel>();
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Street is required.", editor.ErrorMessage);
-        Assert.NotNull(viewModel.Editor);
+        editor.ErrorMessage.ShouldBe("Street is required.");
+        viewModel.Editor.ShouldNotBeNull();
     }
 
     [Fact]
@@ -86,9 +86,9 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
 
         viewModel.SelectedAddress = viewModel.Addresses[0];
 
-        var editor = Assert.IsType<AddressEditorViewModel>(viewModel.Editor);
-        Assert.Equal("Delivery", editor.SelectedType?.Name);
-        Assert.Equal("Drottninggatan 1", editor.Street1);
+        var editor = viewModel.Editor.ShouldBeOfType<AddressEditorViewModel>();
+        (editor.SelectedType?.Name).ShouldBe("Delivery");
+        editor.Street1.ShouldBe("Drottninggatan 1");
     }
 
     [Fact]
@@ -101,11 +101,11 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
         viewModel.SelectedAddress = viewModel.Addresses[0];
 
         viewModel.RequestDeleteCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDelete);
+        viewModel.IsConfirmingDelete.ShouldBeTrue();
         await viewModel.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.Addresses);
-        Assert.True(viewModel.IsIdle);
+        viewModel.Addresses.ShouldHaveSingleItem();
+        viewModel.IsIdle.ShouldBeTrue();
     }
 
     [Fact]
@@ -119,14 +119,14 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.RequestDeleteAllCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDeleteAll);
+        viewModel.IsConfirmingDeleteAll.ShouldBeTrue();
         await viewModel.ConfirmDeleteAllCommand.ExecuteAsync(null);
 
-        Assert.Empty(viewModel.Addresses);
-        Assert.False(viewModel.HasAddresses);
-        Assert.Equal("Deleted 2 address(es).", viewModel.StatusMessage);
+        viewModel.Addresses.ShouldBeEmpty();
+        viewModel.HasAddresses.ShouldBeFalse();
+        viewModel.StatusMessage.ShouldBe("Deleted 2 address(es).");
         var remaining = await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct);
-        Assert.Single(remaining.Items);
+        remaining.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -139,7 +139,7 @@ public sealed class ObjectAddressesViewModelTests : IDisposable
         viewModel.RequestDeleteAllCommand.Execute(null);
         viewModel.CancelDeleteCommand.Execute(null);
 
-        Assert.True(viewModel.IsIdle);
-        Assert.Single(viewModel.Addresses);
+        viewModel.IsIdle.ShouldBeTrue();
+        viewModel.Addresses.ShouldHaveSingleItem();
     }
 }

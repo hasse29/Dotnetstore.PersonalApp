@@ -22,8 +22,8 @@ public sealed class TimeReportsLocalizationTests
     {
         var english = Keys("en");
 
-        Assert.NotEmpty(english);
-        Assert.Empty(english.Except(Keys(culture)));
-        Assert.Empty(Keys(culture).Except(english));
+        english.ShouldNotBeEmpty();
+        english.Except(Keys(culture)).ShouldBeEmpty();
+        Keys(culture).Except(english).ShouldBeEmpty();
     }
 }

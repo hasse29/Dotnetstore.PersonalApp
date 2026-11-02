@@ -29,7 +29,7 @@ public sealed class EventPublisherTests
 
         await new InProcessEventPublisher(provider).PublishAsync(new UserDeleted(userId), TestContext.Current.CancellationToken);
 
-        Assert.Equal(["first:" + userId, "second:" + userId], log);
+        log.ShouldBe(["first:" + userId, "second:" + userId]);
     }
 
     [Fact]
@@ -45,8 +45,8 @@ public sealed class EventPublisherTests
     {
         using var services = CompositionRoot.BuildServices();
 
-        Assert.Equal(5, services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count());
-        Assert.Equal(3, services.GetServices<IIntegrationEventConsumer<ClientDeleted>>().Count());
-        Assert.IsType<InProcessEventPublisher>(services.GetRequiredService<IEventPublisher>());
+        (services.GetServices<IIntegrationEventConsumer<UserDeleted>>().Count()).ShouldBe(5);
+        (services.GetServices<IIntegrationEventConsumer<ClientDeleted>>().Count()).ShouldBe(3);
+        (services.GetRequiredService<IEventPublisher>()).ShouldBeOfType<InProcessEventPublisher>();
     }
 }

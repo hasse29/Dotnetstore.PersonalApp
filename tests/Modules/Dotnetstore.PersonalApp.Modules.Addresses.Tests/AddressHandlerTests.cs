@@ -19,12 +19,12 @@ public sealed class AddressHandlerTests : IDisposable
 
         var result = await _fixture.CreateAddress.HandleAsync(command, Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Billing", result.Value.AddressTypeName);
-        Assert.Equal("Drottninggatan 1", result.Value.Street1);
-        Assert.Null(result.Value.CareOf);
-        Assert.Null(result.Value.State);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.AddressTypeName.ShouldBe("Billing");
+        result.Value.Street1.ShouldBe("Drottninggatan 1");
+        result.Value.CareOf.ShouldBeNull();
+        result.Value.State.ShouldBeNull();
     }
 
     [Theory]
@@ -38,7 +38,7 @@ public sealed class AddressHandlerTests : IDisposable
 
         var result = await _fixture.CreateAddress.HandleAsync(command, Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -48,9 +48,9 @@ public sealed class AddressHandlerTests : IDisposable
         var noType = await _fixture.CreateAddress.HandleAsync(_fixture.ValidAddress(_owner) with { AddressTypeId = Guid.Empty }, Ct);
         var unknownType = await _fixture.CreateAddress.HandleAsync(_fixture.ValidAddress(_owner, Guid.NewGuid()), Ct);
 
-        Assert.Equal("address_object_required", noObject.Error.Code);
-        Assert.Equal("address_type_required", noType.Error.Code);
-        Assert.Equal("address_type_not_found", unknownType.Error.Code);
+        noObject.Error.Code.ShouldBe("address_object_required");
+        noType.Error.Code.ShouldBe("address_type_required");
+        unknownType.Error.Code.ShouldBe("address_type_not_found");
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public sealed class AddressHandlerTests : IDisposable
     {
         var result = await _fixture.CreateAddress.HandleAsync(_fixture.ValidAddress(_owner) with { PostalCode = new string('1', 21) }, Ct);
 
-        Assert.Equal("address_postal_code_too_long", result.Error.Code);
+        result.Error.Code.ShouldBe("address_postal_code_too_long");
     }
 
     [Fact]
@@ -73,9 +73,9 @@ public sealed class AddressHandlerTests : IDisposable
         var mine = await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(_owner), Ct);
         var theirs = await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct);
 
-        Assert.Equal(3, mine.TotalCount);
-        Assert.Equal(["Malmö", "Uppsala", "Lund"], mine.Items.Select(a => a.City));
-        Assert.Single(theirs.Items);
+        mine.TotalCount.ShouldBe(3);
+        mine.Items.Select(a => a.City).ShouldBe(["Malmö", "Uppsala", "Lund"]);
+        theirs.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -89,9 +89,9 @@ public sealed class AddressHandlerTests : IDisposable
         var page = await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(_owner, PageSize: 2), Ct);
         var huge = await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(_owner, PageSize: 10_000), Ct);
 
-        Assert.Equal(2, page.Items.Count);
-        Assert.Equal(3, page.TotalCount);
-        Assert.Equal(3, huge.Items.Count);
+        page.Items.Count.ShouldBe(2);
+        page.TotalCount.ShouldBe(3);
+        huge.Items.Count.ShouldBe(3);
     }
 
     [Fact]
@@ -102,8 +102,8 @@ public sealed class AddressHandlerTests : IDisposable
         var found = await _fixture.GetAddress.HandleAsync(new GetAddress.Query(created.Id), Ct);
         var missing = await _fixture.GetAddress.HandleAsync(new GetAddress.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("Billing", found.Value.AddressTypeName);
-        Assert.Equal("address_not_found", missing.Error.Code);
+        found.Value.AddressTypeName.ShouldBe("Billing");
+        missing.Error.Code.ShouldBe("address_not_found");
     }
 
     [Fact]
@@ -114,12 +114,12 @@ public sealed class AddressHandlerTests : IDisposable
         var result = await _fixture.UpdateAddress.HandleAsync(
             new UpdateAddress.Command(created.Id, _fixture.DeliveryTypeId, null, "Storgatan 5", null, "222 22", "Lund", "Skåne", "Sweden"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Delivery", result.Value.AddressTypeName);
-        Assert.Equal("Lund", result.Value.City);
-        Assert.Null(result.Value.CareOf);
-        Assert.Equal("Skåne", result.Value.State);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.AddressTypeName.ShouldBe("Delivery");
+        result.Value.City.ShouldBe("Lund");
+        result.Value.CareOf.ShouldBeNull();
+        result.Value.State.ShouldBe("Skåne");
     }
 
     [Fact]
@@ -132,8 +132,8 @@ public sealed class AddressHandlerTests : IDisposable
         var unknownType = await _fixture.UpdateAddress.HandleAsync(
             new UpdateAddress.Command(created.Id, Guid.NewGuid(), null, "S", null, "1", "C", null, "X"), Ct);
 
-        Assert.Equal("address_not_found", unknownAddress.Error.Code);
-        Assert.Equal("address_type_not_found", unknownType.Error.Code);
+        unknownAddress.Error.Code.ShouldBe("address_not_found");
+        unknownType.Error.Code.ShouldBe("address_type_not_found");
     }
 
     [Fact]
@@ -144,8 +144,8 @@ public sealed class AddressHandlerTests : IDisposable
         var first = await _fixture.DeleteAddress.HandleAsync(new DeleteAddress.Command(created.Id), Ct);
         var second = await _fixture.DeleteAddress.HandleAsync(new DeleteAddress.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("address_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("address_not_found");
     }
 
     [Fact]
@@ -159,9 +159,9 @@ public sealed class AddressHandlerTests : IDisposable
         var result = await _fixture.DeleteAddressesForObject.HandleAsync(new DeleteAddressesForObject.Command(_owner), Ct);
         var again = await _fixture.DeleteAddressesForObject.HandleAsync(new DeleteAddressesForObject.Command(_owner), Ct);
 
-        Assert.Equal(2, result.Value);
-        Assert.Equal(0, again.Value);
-        Assert.Equal(1, (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct)).TotalCount);
+        result.Value.ShouldBe(2);
+        again.Value.ShouldBe(0);
+        (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct)).TotalCount.ShouldBe(1);
     }
 
     [Fact]
@@ -169,7 +169,7 @@ public sealed class AddressHandlerTests : IDisposable
     {
         var result = await _fixture.DeleteAddressesForObject.HandleAsync(new DeleteAddressesForObject.Command(Guid.Empty), Ct);
 
-        Assert.Equal("address_object_required", result.Error.Code);
+        result.Error.Code.ShouldBe("address_object_required");
     }
 
     [Fact]
@@ -181,7 +181,7 @@ public sealed class AddressHandlerTests : IDisposable
         await _fixture.DeleteAddress.HandleAsync(new DeleteAddress.Command(address.Id), Ct);
         var allowed = await _fixture.Delete.HandleAsync(new DeleteAddressType.Command(address.AddressTypeId), Ct);
 
-        Assert.Equal("address_type_in_use", blocked.Error.Code);
-        Assert.True(allowed.IsSuccess);
+        blocked.Error.Code.ShouldBe("address_type_in_use");
+        allowed.IsSuccess.ShouldBeTrue();
     }
 }

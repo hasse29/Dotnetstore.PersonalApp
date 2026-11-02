@@ -32,14 +32,14 @@ public sealed class CvSectionHandlerTests : IDisposable
 
         var detail = (await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cv.Id, _user), Ct)).Value;
 
-        Assert.Equal("Anna Berg", detail.User?.FullName);
-        Assert.Equal("Acme", Assert.Single(detail.WorkExperiences).Employer);
-        Assert.Null(detail.WorkExperiences[0].EndDate);
-        Assert.Equal("MSc", Assert.Single(detail.Educations).Programme);
-        Assert.Equal(2022, Assert.Single(detail.Courses).CompletedYear);
-        Assert.Equal(LanguageLevel.Native, Assert.Single(detail.Languages).Level);
-        Assert.Equal(["B", "BE"], detail.DriverLicence);
-        Assert.Equal(Png, detail.Photo);
+        (detail.User?.FullName).ShouldBe("Anna Berg");
+        detail.WorkExperiences.ShouldHaveSingleItem().Employer.ShouldBe("Acme");
+        detail.WorkExperiences[0].EndDate.ShouldBeNull();
+        detail.Educations.ShouldHaveSingleItem().Programme.ShouldBe("MSc");
+        detail.Courses.ShouldHaveSingleItem().CompletedYear.ShouldBe(2022);
+        detail.Languages.ShouldHaveSingleItem().Level.ShouldBe(LanguageLevel.Native);
+        detail.DriverLicence.ShouldBe(["B", "BE"]);
+        detail.Photo.ShouldBe(Png);
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public sealed class CvSectionHandlerTests : IDisposable
 
         var result = await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cv.Id, Guid.NewGuid()), Ct);
 
-        Assert.Equal("cv_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("cv_not_found");
     }
 
     [Fact]
@@ -64,9 +64,9 @@ public sealed class CvSectionHandlerTests : IDisposable
         var backwards = await _fixture.SaveWork.HandleAsync(
             new SaveWorkExperience.Command(cv.Id, _user, job.Id, "Acme", "Lead", new DateOnly(2022, 1, 1), new DateOnly(2020, 1, 1), null, []), Ct);
 
-        Assert.Equal("Lead", changed.Value.Role);
-        Assert.Null(changed.Value.Description);
-        Assert.Equal("cv_end_before_start", backwards.Error.Code);
+        changed.Value.Role.ShouldBe("Lead");
+        changed.Value.Description.ShouldBeNull();
+        backwards.Error.Code.ShouldBe("cv_end_before_start");
     }
 
     [Theory]
@@ -79,7 +79,7 @@ public sealed class CvSectionHandlerTests : IDisposable
         var result = await _fixture.SaveWork.HandleAsync(
             new SaveWorkExperience.Command(cv.Id, _user, null, employer, role, new DateOnly(2020, 1, 1), null, null, []), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -94,9 +94,9 @@ public sealed class CvSectionHandlerTests : IDisposable
         var wrongCv = await _fixture.SaveCourse.HandleAsync(new SaveCourse.Command(other.Id, _user, course.Id, "Moved", null, null), Ct);
         var delete = await _fixture.DeleteItem.HandleAsync(new DeleteCvSectionItem.Command(cv.Id, intruder, CvSection.Course, course.Id), Ct);
 
-        Assert.Equal("cv_not_found", foreign.Error.Code);
-        Assert.Equal("cv_item_not_found", wrongCv.Error.Code);
-        Assert.Equal("cv_not_found", delete.Error.Code);
+        foreign.Error.Code.ShouldBe("cv_not_found");
+        wrongCv.Error.Code.ShouldBe("cv_item_not_found");
+        delete.Error.Code.ShouldBe("cv_not_found");
     }
 
     [Theory]
@@ -108,7 +108,7 @@ public sealed class CvSectionHandlerTests : IDisposable
 
         var result = await _fixture.SaveCourse.HandleAsync(new SaveCourse.Command(cv.Id, _user, null, "Azure", null, year), Ct);
 
-        Assert.Equal("cv_course_year_invalid", result.Error.Code);
+        result.Error.Code.ShouldBe("cv_course_year_invalid");
     }
 
     [Fact]
@@ -119,7 +119,7 @@ public sealed class CvSectionHandlerTests : IDisposable
 
         var duplicate = await _fixture.SaveLanguage.HandleAsync(new SaveLanguageSkill.Command(cv.Id, _user, null, "english", LanguageLevel.Good), Ct);
 
-        Assert.Equal("cv_language_conflict", duplicate.Error.Code);
+        duplicate.Error.Code.ShouldBe("cv_language_conflict");
     }
 
     [Fact]
@@ -131,8 +131,8 @@ public sealed class CvSectionHandlerTests : IDisposable
         var wrongSection = await _fixture.DeleteItem.HandleAsync(new DeleteCvSectionItem.Command(cv.Id, _user, CvSection.Education, course.Id), Ct);
         var deleted = await _fixture.DeleteItem.HandleAsync(new DeleteCvSectionItem.Command(cv.Id, _user, CvSection.Course, course.Id), Ct);
 
-        Assert.Equal("cv_item_not_found", wrongSection.Error.Code);
-        Assert.True(deleted.IsSuccess);
+        wrongSection.Error.Code.ShouldBe("cv_item_not_found");
+        deleted.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -144,7 +144,7 @@ public sealed class CvSectionHandlerTests : IDisposable
         await _fixture.DeleteForUser.HandleAsync(new DeleteCvsForUser.Command(_user), Ct);
 
         await using var db = await _fixture.DbFactory.CreateDbContextAsync(Ct);
-        Assert.Empty(db.Courses);
+        db.Courses.ShouldBeEmpty();
     }
 
     [Fact]
@@ -156,8 +156,8 @@ public sealed class CvSectionHandlerTests : IDisposable
         await _fixture.SetLicence.HandleAsync(new SetDriverLicence.Command(cv.Id, _user, ["B"]), Ct);
         var cleared = await _fixture.SetLicence.HandleAsync(new SetDriverLicence.Command(cv.Id, _user, []), Ct);
 
-        Assert.Equal("cv_driver_licence_invalid", unknown.Error.Code);
-        Assert.Empty(cleared.Value);
+        unknown.Error.Code.ShouldBe("cv_driver_licence_invalid");
+        cleared.Value.ShouldBeEmpty();
     }
 
     [Fact]
@@ -170,11 +170,11 @@ public sealed class CvSectionHandlerTests : IDisposable
         var jpeg = await _fixture.SetPhoto.HandleAsync(new SetCvPhoto.Command(cv.Id, _user, [0xFF, 0xD8, 0xFF, 0xE0]), Ct);
         var removed = await _fixture.SetPhoto.HandleAsync(new SetCvPhoto.Command(cv.Id, _user, null), Ct);
 
-        Assert.Equal("cv_photo_invalid", text.Error.Code);
-        Assert.Equal("cv_photo_too_large", big.Error.Code);
-        Assert.True(jpeg.IsSuccess);
-        Assert.True(removed.IsSuccess);
-        Assert.Null((await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cv.Id, _user), Ct)).Value.Photo);
+        text.Error.Code.ShouldBe("cv_photo_invalid");
+        big.Error.Code.ShouldBe("cv_photo_too_large");
+        jpeg.IsSuccess.ShouldBeTrue();
+        removed.IsSuccess.ShouldBeTrue();
+        (await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cv.Id, _user), Ct)).Value.Photo.ShouldBeNull();
     }
 
     [Fact]
@@ -185,9 +185,9 @@ public sealed class CvSectionHandlerTests : IDisposable
         var result = await _fixture.SaveWork.HandleAsync(
             new SaveWorkExperience.Command(cv.Id, _user, null, "Acme", "Developer", new DateOnly(2020, 1, 1), null, null, [" C# ", "c#", ".NET", "", "SQL, Docker"]), Ct);
 
-        Assert.Equal(["C#", ".NET", "SQL", "Docker"], result.Value.Technologies);
+        result.Value.Technologies.ShouldBe(["C#", ".NET", "SQL", "Docker"]);
         var detail = (await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cv.Id, _user), Ct)).Value;
-        Assert.Equal(["C#", ".NET", "SQL", "Docker"], detail.WorkExperiences[0].Technologies);
+        detail.WorkExperiences[0].Technologies.ShouldBe(["C#", ".NET", "SQL", "Docker"]);
     }
 
     [Fact]
@@ -201,7 +201,7 @@ public sealed class CvSectionHandlerTests : IDisposable
         var tooLong = await _fixture.SaveWork.HandleAsync(
             new SaveWorkExperience.Command(cv.Id, _user, null, "Acme", "Developer", new DateOnly(2020, 1, 1), null, null, [new string('x', 31)]), Ct);
 
-        Assert.Equal("cv_technologies_too_many", tooMany.Error.Code);
-        Assert.Equal("cv_technology_too_long", tooLong.Error.Code);
+        tooMany.Error.Code.ShouldBe("cv_technologies_too_many");
+        tooLong.Error.Code.ShouldBe("cv_technology_too_long");
     }
 }

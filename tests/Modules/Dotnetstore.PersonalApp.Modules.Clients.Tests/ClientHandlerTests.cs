@@ -18,12 +18,12 @@ public sealed class ClientHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Acme AB", result.Value.Name);
-        Assert.Equal("5566778899", result.Value.OrganizationNumber);
-        Assert.Null(result.Value.Notes);
-        Assert.Null(result.Value.Phone);
-        Assert.Equal(new DateTimeOffset(2026, 10, 31, 12, 0, 0, TimeSpan.Zero), result.Value.CreatedAt);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Name.ShouldBe("Acme AB");
+        result.Value.OrganizationNumber.ShouldBe("5566778899");
+        result.Value.Notes.ShouldBeNull();
+        result.Value.Phone.ShouldBeNull();
+        result.Value.CreatedAt.ShouldBe(new DateTimeOffset(2026, 10, 31, 12, 0, 0, TimeSpan.Zero));
     }
 
     [Fact]
@@ -31,9 +31,9 @@ public sealed class ClientHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreateClient.Command("Acme AB", "556677-8899", null, null, null, null, null), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Null(result.Value.Email);
-        Assert.Null(result.Value.Website);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Email.ShouldBeNull();
+        result.Value.Website.ShouldBeNull();
     }
 
     [Theory]
@@ -47,8 +47,8 @@ public sealed class ClientHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreateClient.Command(name, organizationNumber, null, email, null, website, null), Ct);
 
-        Assert.False(result.IsSuccess);
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.IsSuccess.ShouldBeFalse();
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -56,7 +56,7 @@ public sealed class ClientHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(ClientsFixture.ValidCommand(name: new string('x', 201)), Ct);
 
-        Assert.Equal("client_name_too_long", result.Error.Code);
+        result.Error.Code.ShouldBe("client_name_too_long");
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public sealed class ClientHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(ClientsFixture.ValidCommand("ab- 123", "Other AB"), Ct);
 
-        Assert.Equal("client_conflict", result.Error.Code);
+        result.Error.Code.ShouldBe("client_conflict");
     }
 
     [Fact]
@@ -77,8 +77,8 @@ public sealed class ClientHandlerTests : IDisposable
         var found = await _fixture.Get.HandleAsync(new GetClient.Query(created.Id), Ct);
         var missing = await _fixture.Get.HandleAsync(new GetClient.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("Acme AB", found.Value.Name);
-        Assert.Equal("client_not_found", missing.Error.Code);
+        found.Value.Name.ShouldBe("Acme AB");
+        missing.Error.Code.ShouldBe("client_not_found");
     }
 
     [Fact]
@@ -92,10 +92,10 @@ public sealed class ClientHandlerTests : IDisposable
         var byOrganization = await _fixture.List.HandleAsync(new ListClients.Query("222"), Ct);
         var byEmail = await _fixture.List.HandleAsync(new ListClients.Query("alpha.example"), Ct);
 
-        Assert.Equal(["Alpha AB", "Zeta AB"], all.Items.Select(c => c.Name));
-        Assert.Equal("Zeta AB", Assert.Single(byName.Items).Name);
-        Assert.Equal("Alpha AB", Assert.Single(byOrganization.Items).Name);
-        Assert.Equal("Alpha AB", Assert.Single(byEmail.Items).Name);
+        all.Items.Select(c => c.Name).ShouldBe(["Alpha AB", "Zeta AB"]);
+        byName.Items.ShouldHaveSingleItem().Name.ShouldBe("Zeta AB");
+        byOrganization.Items.ShouldHaveSingleItem().Name.ShouldBe("Alpha AB");
+        byEmail.Items.ShouldHaveSingleItem().Name.ShouldBe("Alpha AB");
     }
 
     [Fact]
@@ -109,9 +109,9 @@ public sealed class ClientHandlerTests : IDisposable
         var response = await _fixture.List.HandleAsync(new ListClients.Query(PageSize: 2), Ct);
         var huge = await _fixture.List.HandleAsync(new ListClients.Query(PageSize: 10_000), Ct);
 
-        Assert.Equal(2, response.Items.Count);
-        Assert.Equal(3, response.TotalCount);
-        Assert.Equal(3, huge.Items.Count);
+        response.Items.Count.ShouldBe(2);
+        response.TotalCount.ShouldBe(3);
+        huge.Items.Count.ShouldBe(3);
     }
 
     [Fact]
@@ -122,11 +122,11 @@ public sealed class ClientHandlerTests : IDisposable
         var result = await _fixture.Update.HandleAsync(
             new UpdateClient.Command(created.Id, "Acme Group AB", "556677-8899", null, "", "", "https://acme.example", null), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Acme Group AB", result.Value.Name);
-        Assert.Null(result.Value.VatNumber);
-        Assert.Null(result.Value.Email);
-        Assert.Equal("https://acme.example", result.Value.Website);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Name.ShouldBe("Acme Group AB");
+        result.Value.VatNumber.ShouldBeNull();
+        result.Value.Email.ShouldBeNull();
+        result.Value.Website.ShouldBe("https://acme.example");
     }
 
     [Fact]
@@ -140,8 +140,8 @@ public sealed class ClientHandlerTests : IDisposable
         var own = await _fixture.Update.HandleAsync(
             new UpdateClient.Command(other.Id, "Two Renamed AB", "222", null, null, null, null, null), Ct);
 
-        Assert.Equal("client_conflict", clash.Error.Code);
-        Assert.True(own.IsSuccess);
+        clash.Error.Code.ShouldBe("client_conflict");
+        own.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -150,7 +150,7 @@ public sealed class ClientHandlerTests : IDisposable
         var result = await _fixture.Update.HandleAsync(
             new UpdateClient.Command(Guid.NewGuid(), "Acme AB", "556677-8899", null, null, null, null, null), Ct);
 
-        Assert.Equal("client_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("client_not_found");
     }
 
     [Fact]
@@ -161,8 +161,8 @@ public sealed class ClientHandlerTests : IDisposable
         var first = await _fixture.Delete.HandleAsync(new DeleteClient.Command(created.Id), Ct);
         var second = await _fixture.Delete.HandleAsync(new DeleteClient.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("client_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("client_not_found");
     }
 
     [Fact]
@@ -173,7 +173,7 @@ public sealed class ClientHandlerTests : IDisposable
         await _fixture.Delete.HandleAsync(new DeleteClient.Command(created.Id), Ct);
         await _fixture.Delete.HandleAsync(new DeleteClient.Command(created.Id), Ct);
 
-        var published = Assert.Single(_fixture.Events.Published);
-        Assert.Equal(new ClientDeleted(created.Id), published);
+        var published = _fixture.Events.Published.ShouldHaveSingleItem();
+        published.ShouldBe(new ClientDeleted(created.Id));
     }
 }

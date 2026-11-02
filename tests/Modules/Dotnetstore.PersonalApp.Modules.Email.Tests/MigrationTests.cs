@@ -16,7 +16,7 @@ public sealed class MigrationTests
         await using var db = new EmailDbContext(options);
         await db.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
-        Assert.Empty(await db.Accounts.ToListAsync(TestContext.Current.CancellationToken));
-        Assert.False(db.Database.HasPendingModelChanges());
+        (await db.Accounts.ToListAsync(TestContext.Current.CancellationToken)).ShouldBeEmpty();
+        db.Database.HasPendingModelChanges().ShouldBeFalse();
     }
 }

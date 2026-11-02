@@ -44,9 +44,9 @@ public sealed class MailViewModelTests : IDisposable
 
         await editor.TestConnectionCommand.ExecuteAsync(null);
 
-        Assert.True(editor.TestSucceeded);
-        Assert.Equal("Connected and logged in successfully.", editor.TestMessage);
-        Assert.False(editor.IsTesting);
+        editor.TestSucceeded.ShouldBeTrue();
+        editor.TestMessage.ShouldBe("Connected and logged in successfully.");
+        editor.IsTesting.ShouldBeFalse();
     }
 
     [Fact]
@@ -57,8 +57,8 @@ public sealed class MailViewModelTests : IDisposable
 
         await editor.TestConnectionCommand.ExecuteAsync(null);
 
-        Assert.False(editor.TestSucceeded);
-        Assert.Equal("The server rejected the username or password. (535 bad login)", editor.TestMessage);
+        editor.TestSucceeded.ShouldBeFalse();
+        editor.TestMessage.ShouldBe("The server rejected the username or password. (535 bad login)");
     }
 
     [Fact]
@@ -69,9 +69,9 @@ public sealed class MailViewModelTests : IDisposable
 
         await editor.TestConnectionCommand.ExecuteAsync(null);
 
-        Assert.False(editor.TestSucceeded);
-        Assert.Equal("Port must be a number between 1 and 65535.", editor.TestMessage);
-        Assert.Empty(_fixture.Gateway.Connections);
+        editor.TestSucceeded.ShouldBeFalse();
+        editor.TestMessage.ShouldBe("Port must be a number between 1 and 65535.");
+        _fixture.Gateway.Connections.ShouldBeEmpty();
     }
 
     [Fact]
@@ -85,13 +85,13 @@ public sealed class MailViewModelTests : IDisposable
         await inbox.LoadCommand.ExecuteAsync(null);
         await inbox.FetchCommand.ExecuteAsync(null);
 
-        Assert.Single(inbox.Accounts);
-        Assert.Equal("Hello", Assert.Single(inbox.Messages).Subject);
-        Assert.Equal("Fetched 1 new message(s).", inbox.StatusMessage);
+        inbox.Accounts.ShouldHaveSingleItem();
+        inbox.Messages.ShouldHaveSingleItem().Subject.ShouldBe("Hello");
+        inbox.StatusMessage.ShouldBe("Fetched 1 new message(s).");
 
         inbox.SelectedMessage = inbox.Messages[0];
         await Task.Delay(100, Ct);
-        Assert.Equal("Body", inbox.OpenMessage?.Body);
+        (inbox.OpenMessage?.Body).ShouldBe("Body");
     }
 
     [Fact]
@@ -102,8 +102,8 @@ public sealed class MailViewModelTests : IDisposable
 
         await inbox.LoadCommand.ExecuteAsync(null);
 
-        Assert.True(inbox.HasNoAccounts);
-        Assert.False(inbox.FetchCommand.CanExecute(null));
+        inbox.HasNoAccounts.ShouldBeTrue();
+        inbox.FetchCommand.CanExecute(null).ShouldBeFalse();
     }
 
     [Fact]
@@ -116,9 +116,9 @@ public sealed class MailViewModelTests : IDisposable
 
         await inbox.FetchCommand.ExecuteAsync(null);
 
-        Assert.True(inbox.StatusIsError);
-        Assert.StartsWith("Could not connect to the server.", inbox.StatusMessage, StringComparison.Ordinal);
-        Assert.False(inbox.IsFetching);
+        inbox.StatusIsError.ShouldBeTrue();
+        inbox.StatusMessage.ShouldStartWith("Could not connect to the server.", Case.Sensitive);
+        inbox.IsFetching.ShouldBeFalse();
     }
 
     [Fact]
@@ -134,11 +134,11 @@ public sealed class MailViewModelTests : IDisposable
 
         await compose.SendCommand.ExecuteAsync(null);
 
-        Assert.Single(compose.Accounts);
-        Assert.Equal("Message sent to 1 recipient(s).", compose.StatusMessage);
-        Assert.False(compose.StatusIsError);
-        Assert.Equal(string.Empty, compose.To);
-        Assert.Equal("Hi", Assert.Single(_fixture.Gateway.Sent).Subject);
+        compose.Accounts.ShouldHaveSingleItem();
+        compose.StatusMessage.ShouldBe("Message sent to 1 recipient(s).");
+        compose.StatusIsError.ShouldBeFalse();
+        compose.To.ShouldBe(string.Empty);
+        _fixture.Gateway.Sent.ShouldHaveSingleItem().Subject.ShouldBe("Hi");
     }
 
     [Fact]
@@ -152,8 +152,8 @@ public sealed class MailViewModelTests : IDisposable
 
         await compose.SendCommand.ExecuteAsync(null);
 
-        Assert.True(compose.StatusIsError);
-        Assert.Equal("One of the recipient addresses is not valid.", compose.StatusMessage);
-        Assert.Equal("Hi", compose.Subject);
+        compose.StatusIsError.ShouldBeTrue();
+        compose.StatusMessage.ShouldBe("One of the recipient addresses is not valid.");
+        compose.Subject.ShouldBe("Hi");
     }
 }

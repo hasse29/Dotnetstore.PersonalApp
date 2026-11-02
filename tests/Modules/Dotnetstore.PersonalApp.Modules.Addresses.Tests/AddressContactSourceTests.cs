@@ -18,10 +18,10 @@ public sealed class AddressContactSourceTests : IDisposable
 
         var entries = await new AddressContactSource(_fixture.DbFactory).ListAsync(owner, TestContext.Current.CancellationToken);
 
-        var entry = Assert.Single(entries);
-        Assert.Equal(created.Value.Id, entry.Id);
-        Assert.Equal(ContactKind.Address, entry.Kind);
-        Assert.Equal("Billing", entry.TypeName);
-        Assert.Equal("Ada Lovelace, Drottninggatan 1, Floor 3, 111 51 Stockholm, Sweden", entry.Value);
+        var entry = entries.ShouldHaveSingleItem();
+        entry.Id.ShouldBe(created.Value.Id);
+        entry.Kind.ShouldBe(ContactKind.Address);
+        entry.TypeName.ShouldBe("Billing");
+        entry.Value.ShouldBe("Ada Lovelace, Drottninggatan 1, Floor 3, 111 51 Stockholm, Sweden");
     }
 }

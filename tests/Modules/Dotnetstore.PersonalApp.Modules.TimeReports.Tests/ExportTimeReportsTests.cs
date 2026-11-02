@@ -13,7 +13,7 @@ public sealed class ExportTimeReportsTests : IDisposable
     private async Task AddAsync(Guid userId, Guid clientId, DateOnly date)
     {
         var command = TimeReportsFixture.ValidCommand(userId, clientId) with { Date = date };
-        Assert.True((await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken)).IsSuccess);
+        (await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken)).IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -30,16 +30,16 @@ public sealed class ExportTimeReportsTests : IDisposable
 
         var result = await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, acme.Id, 2026), TestContext.Current.CancellationToken);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(3, result.Value.ReportCount);
-        Assert.Equal("TimeReports Acme AB 2026.xlsx", result.Value.FileName);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ReportCount.ShouldBe(3);
+        result.Value.FileName.ShouldBe("TimeReports Acme AB 2026.xlsx");
         using var workbook = new XLWorkbook(new MemoryStream(result.Value.Content));
-        Assert.Equal(["2026-10", "2026-11"], workbook.Worksheets.Select(s => s.Name));
+        workbook.Worksheets.Select(s => s.Name).ShouldBe(["2026-10", "2026-11"]);
         var october = workbook.Worksheet("2026-10");
-        Assert.Equal(new DateTime(2026, 10, 2), october.Cell(4, 1).GetDateTime());
-        Assert.Equal(8m, october.Cell(4, 2).GetValue<decimal>());
-        Assert.Equal("Stockholm", october.Cell(4, 3).GetString());
-        Assert.Equal("SUM(B4:B5)", october.Cell(6, 2).FormulaA1);
+        october.Cell(4, 1).GetDateTime().ShouldBe(new DateTime(2026, 10, 2));
+        (october.Cell(4, 2).GetValue<decimal>()).ShouldBe(8m);
+        october.Cell(4, 3).GetString().ShouldBe("Stockholm");
+        october.Cell(6, 2).FormulaA1.ShouldBe("SUM(B4:B5)");
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public sealed class ExportTimeReportsTests : IDisposable
 
         var result = await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, acme.Id, 2026), TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_export_empty", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_export_empty");
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public sealed class ExportTimeReportsTests : IDisposable
         var acme = _fixture.Clients.Add("Acme AB");
         var ct = TestContext.Current.CancellationToken;
 
-        Assert.Equal("time_report_client_not_found", (await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, Guid.NewGuid(), 2026), ct)).Error.Code);
-        Assert.Equal("time_report_year_invalid", (await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, acme.Id, 1900), ct)).Error.Code);
+        (await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, Guid.NewGuid(), 2026), ct)).Error.Code.ShouldBe("time_report_client_not_found");
+        (await _fixture.Export.HandleAsync(new ExportTimeReports.Query(_user, acme.Id, 1900), ct)).Error.Code.ShouldBe("time_report_year_invalid");
     }
 }

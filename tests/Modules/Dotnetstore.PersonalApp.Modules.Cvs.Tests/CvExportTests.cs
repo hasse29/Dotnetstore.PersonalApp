@@ -38,17 +38,17 @@ public sealed class CvExportTests : IDisposable
 
         var result = await _fixture.Export.HandleAsync(new ExportCvToWord.Query(id, _user), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("CV - Anna Berg - Backend.docx", result.Value.FileName);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.FileName.ShouldBe("CV - Anna Berg - Backend.docx");
         using var stream = new MemoryStream(result.Value.Content);
         using var document = WordprocessingDocument.Open(stream, false);
         var text = document.MainDocumentPart!.Document!.Body!.InnerText;
         foreach (var expected in new[] { "Anna Berg", "Senior developer", "Line one", "Developer, Acme", "2020-01 – present", "C#", "MSc, KTH", "Azure — Microsoft — 2022", "Swedish — Native", "Work experience", "Languages" })
         {
-            Assert.Contains(expected, text, StringComparison.Ordinal);
+            text.ShouldContain(expected, Case.Sensitive);
         }
 
-        Assert.Single(document.MainDocumentPart.ImageParts);
+        document.MainDocumentPart.ImageParts.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -58,10 +58,10 @@ public sealed class CvExportTests : IDisposable
 
         var result = await _fixture.Export.HandleAsync(new ExportCvToWord.Query(cv.Id, _user), Ct);
 
-        Assert.True(result.IsSuccess);
+        result.IsSuccess.ShouldBeTrue();
         using var stream = new MemoryStream(result.Value.Content);
         using var document = WordprocessingDocument.Open(stream, false);
-        Assert.Empty(document.MainDocumentPart!.ImageParts);
+        (document.MainDocumentPart!.ImageParts).ShouldBeEmpty();
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public sealed class CvExportTests : IDisposable
 
         var result = await _fixture.Export.HandleAsync(new ExportCvToWord.Query(id, Guid.NewGuid()), Ct);
 
-        Assert.Equal("cv_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("cv_not_found");
     }
 
     [Fact]
@@ -83,14 +83,14 @@ public sealed class CvExportTests : IDisposable
 
         await viewModel.ExportCommand.ExecuteAsync(null);
 
-        Assert.Equal("CV - Anna Berg - Backend.docx", _fixture.FileSave.SavedName);
-        Assert.NotEmpty(_fixture.FileSave.SavedContent!);
+        _fixture.FileSave.SavedName.ShouldBe("CV - Anna Berg - Backend.docx");
+        (_fixture.FileSave.SavedContent!).ShouldNotBeEmpty();
     }
 
     [Theory]
     [InlineData("iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACNbyblAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=", 3, 5)]
     public void ImageSizeReadsPngDimensions(string base64, int width, int height) =>
-        Assert.Equal((width, height), ImageSize.TryRead(Convert.FromBase64String(base64)));
+        ImageSize.TryRead(Convert.FromBase64String(base64)).ShouldBe((width, height));
 
     [Fact]
     public void ImageSizeReadsJpegDimensions()
@@ -98,6 +98,6 @@ public sealed class CvExportTests : IDisposable
         // SOI, then an APP0 segment of length 4, then SOF0 (height 7, width 9).
         byte[] jpeg = [0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x04, 0x00, 0x00, 0xFF, 0xC0, 0x00, 0x0B, 0x08, 0x00, 0x07, 0x00, 0x09, 0x01, 0x01, 0x11, 0x00];
 
-        Assert.Equal((9, 7), ImageSize.TryRead(jpeg));
+        ImageSize.TryRead(jpeg).ShouldBe((9, 7));
     }
 }

@@ -24,9 +24,9 @@ public sealed class AddressesLocalizationTests
     {
         var english = Keys("en");
 
-        Assert.NotEmpty(english);
-        Assert.Empty(english.Except(Keys(culture)));
-        Assert.Empty(Keys(culture).Except(english));
+        english.ShouldNotBeEmpty();
+        english.Except(Keys(culture)).ShouldBeEmpty();
+        Keys(culture).Except(english).ShouldBeEmpty();
     }
 
     [Theory]
@@ -39,6 +39,6 @@ public sealed class AddressesLocalizationTests
         localizer.AddResources(AddressesStrings.ResourceManager);
         localizer.SetCulture(culture);
 
-        Assert.Equal(expected, localizer.Describe(Error.NotFound("address_type_not_found", "Address type not found.")));
+        localizer.Describe(Error.NotFound("address_type_not_found", "Address type not found.")).ShouldBe(expected);
     }
 }

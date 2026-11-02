@@ -23,11 +23,11 @@ public sealed class ContactPersonHandlerTests : IDisposable
         var result = await _fixture.CreateContactPerson.HandleAsync(
             new CreateContactPerson.Command(clientId, "  Anna ", " Svensson ", "  ", null), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Anna Svensson", result.Value.FullName);
-        Assert.Equal("AS", result.Value.Initials);
-        Assert.Null(result.Value.JobTitle);
-        Assert.Equal(clientId, result.Value.ClientId);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.FullName.ShouldBe("Anna Svensson");
+        result.Value.Initials.ShouldBe("AS");
+        result.Value.JobTitle.ShouldBeNull();
+        result.Value.ClientId.ShouldBe(clientId);
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public sealed class ContactPersonHandlerTests : IDisposable
         var result = await _fixture.CreateContactPerson.HandleAsync(
             new CreateContactPerson.Command(Guid.NewGuid(), "Anna", "Svensson", null, null), Ct);
 
-        Assert.Equal("client_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("client_not_found");
     }
 
     [Theory]
@@ -48,7 +48,7 @@ public sealed class ContactPersonHandlerTests : IDisposable
 
         var result = await _fixture.CreateContactPerson.HandleAsync(new CreateContactPerson.Command(clientId, first, last, null, null), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public sealed class ContactPersonHandlerTests : IDisposable
 
         var people = await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(acme), Ct);
 
-        Assert.Equal(["Zoe Berg", "Anna Åberg"], people.Select(p => p.FullName));
+        people.Select(p => p.FullName).ShouldBe(["Zoe Berg", "Anna Åberg"]);
     }
 
     [Fact]
@@ -73,9 +73,9 @@ public sealed class ContactPersonHandlerTests : IDisposable
 
         var result = await _fixture.UpdateContactPerson.HandleAsync(new UpdateContactPerson.Command(person.Id, "Anna", "Berg", "CFO", "Prefers email"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Berg", result.Value.LastName);
-        Assert.Equal("CFO", result.Value.JobTitle);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.LastName.ShouldBe("Berg");
+        result.Value.JobTitle.ShouldBe("CFO");
     }
 
     [Fact]
@@ -83,7 +83,7 @@ public sealed class ContactPersonHandlerTests : IDisposable
     {
         var result = await _fixture.UpdateContactPerson.HandleAsync(new UpdateContactPerson.Command(Guid.NewGuid(), "A", "B", null, null), Ct);
 
-        Assert.Equal("contact_person_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("contact_person_not_found");
     }
 
     [Fact]
@@ -95,10 +95,10 @@ public sealed class ContactPersonHandlerTests : IDisposable
         var result = await _fixture.DeleteContactPerson.HandleAsync(new DeleteContactPerson.Command(person.Id), Ct);
         var again = await _fixture.DeleteContactPerson.HandleAsync(new DeleteContactPerson.Command(person.Id), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("contact_person_not_found", again.Error.Code);
-        Assert.Equal(new ContactPersonDeleted(person.Id), Assert.Single(_fixture.Events.Published));
-        Assert.Empty(await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(clientId), Ct));
+        result.IsSuccess.ShouldBeTrue();
+        again.Error.Code.ShouldBe("contact_person_not_found");
+        _fixture.Events.Published.ShouldHaveSingleItem().ShouldBe(new ContactPersonDeleted(person.Id));
+        (await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(clientId), Ct)).ShouldBeEmpty();
     }
 
     [Fact]
@@ -110,12 +110,10 @@ public sealed class ContactPersonHandlerTests : IDisposable
 
         await _fixture.Delete.HandleAsync(new DeleteClient.Command(clientId), Ct);
 
-        Assert.Empty(await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(clientId), Ct));
+        (await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(clientId), Ct)).ShouldBeEmpty();
 
         // Each person is announced before the client itself, so consumers never see a client without its people gone.
-        Assert.Equal(new ClientDeleted(clientId), _fixture.Events.Published[^1]);
-        Assert.Equivalent(
-            new object[] { new ContactPersonDeleted(anna.Id), new ContactPersonDeleted(bo.Id) },
-            _fixture.Events.Published[..^1]);
+        _fixture.Events.Published[^1].ShouldBe(new ClientDeleted(clientId));
+        _fixture.Events.Published[..^1].ShouldBe(new object[] { new ContactPersonDeleted(anna.Id), new ContactPersonDeleted(bo.Id) }, ignoreOrder: true);
     }
 }

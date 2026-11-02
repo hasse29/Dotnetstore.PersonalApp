@@ -39,9 +39,9 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
 
         await viewModel.LoadCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.PhoneNumbers);
-        Assert.True(viewModel.HasPhoneNumbers);
-        Assert.Equal("1 phone number(s)", viewModel.StatusMessage);
+        viewModel.PhoneNumbers.ShouldHaveSingleItem();
+        viewModel.HasPhoneNumbers.ShouldBeTrue();
+        viewModel.StatusMessage.ShouldBe("1 phone number(s)");
     }
 
     [Fact]
@@ -51,13 +51,13 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<PhoneNumberEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<PhoneNumberEditorViewModel>();
         editor.Number = "+46 8 123 456";
         await editor.SaveCommand.ExecuteAsync(null);
 
-        var address = Assert.Single(viewModel.PhoneNumbers);
-        Assert.Equal(_owner, address.ObjectId);
-        Assert.Null(viewModel.Editor);
+        var address = viewModel.PhoneNumbers.ShouldHaveSingleItem();
+        address.ObjectId.ShouldBe(_owner);
+        viewModel.Editor.ShouldBeNull();
     }
 
     [Fact]
@@ -66,12 +66,12 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
         var viewModel = CreateViewModel();
         await viewModel.LoadCommand.ExecuteAsync(null);
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<PhoneNumberEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<PhoneNumberEditorViewModel>();
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Phone number is required.", editor.ErrorMessage);
-        Assert.NotNull(viewModel.Editor);
+        editor.ErrorMessage.ShouldBe("Phone number is required.");
+        viewModel.Editor.ShouldNotBeNull();
     }
 
     [Fact]
@@ -83,9 +83,9 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
 
         viewModel.SelectedPhoneNumber = viewModel.PhoneNumbers[0];
 
-        var editor = Assert.IsType<PhoneNumberEditorViewModel>(viewModel.Editor);
-        Assert.Equal("Work", editor.SelectedType?.Name);
-        Assert.Equal("+46 8 123 456", editor.Number);
+        var editor = viewModel.Editor.ShouldBeOfType<PhoneNumberEditorViewModel>();
+        (editor.SelectedType?.Name).ShouldBe("Work");
+        editor.Number.ShouldBe("+46 8 123 456");
     }
 
     [Fact]
@@ -98,11 +98,11 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
         viewModel.SelectedPhoneNumber = viewModel.PhoneNumbers[0];
 
         viewModel.RequestDeleteCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDelete);
+        viewModel.IsConfirmingDelete.ShouldBeTrue();
         await viewModel.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.PhoneNumbers);
-        Assert.True(viewModel.IsIdle);
+        viewModel.PhoneNumbers.ShouldHaveSingleItem();
+        viewModel.IsIdle.ShouldBeTrue();
     }
 
     [Fact]
@@ -116,14 +116,14 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.RequestDeleteAllCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDeleteAll);
+        viewModel.IsConfirmingDeleteAll.ShouldBeTrue();
         await viewModel.ConfirmDeleteAllCommand.ExecuteAsync(null);
 
-        Assert.Empty(viewModel.PhoneNumbers);
-        Assert.False(viewModel.HasPhoneNumbers);
-        Assert.Equal("Deleted 2 phone number(s).", viewModel.StatusMessage);
+        viewModel.PhoneNumbers.ShouldBeEmpty();
+        viewModel.HasPhoneNumbers.ShouldBeFalse();
+        viewModel.StatusMessage.ShouldBe("Deleted 2 phone number(s).");
         var remaining = await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(other), Ct);
-        Assert.Single(remaining.Items);
+        remaining.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -136,7 +136,7 @@ public sealed class ObjectPhoneNumbersViewModelTests : IDisposable
         viewModel.RequestDeleteAllCommand.Execute(null);
         viewModel.CancelDeleteCommand.Execute(null);
 
-        Assert.True(viewModel.IsIdle);
-        Assert.Single(viewModel.PhoneNumbers);
+        viewModel.IsIdle.ShouldBeTrue();
+        viewModel.PhoneNumbers.ShouldHaveSingleItem();
     }
 }

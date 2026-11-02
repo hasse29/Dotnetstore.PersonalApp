@@ -25,8 +25,8 @@ public sealed class ModuleSettingsTests : IDisposable
 
         var reloaded = new ModuleSettings(_directory);
 
-        Assert.False(reloaded.IsEnabled("clients"));
-        Assert.True(reloaded.IsEnabled("users"));
+        reloaded.IsEnabled("clients").ShouldBeFalse();
+        reloaded.IsEnabled("users").ShouldBeTrue();
     }
 
     [Fact]
@@ -38,12 +38,12 @@ public sealed class ModuleSettingsTests : IDisposable
 
         settings.SetEnabled("a", false);
 
-        Assert.DoesNotContain(shell.Entries, entry => entry.Title == "A");
-        Assert.Equal("B", shell.SelectedPage?.Title);
+        shell.Entries.ShouldNotContain(entry => entry.Title == "A");
+        (shell.SelectedPage?.Title).ShouldBe("B");
 
         settings.SetEnabled("a", true);
 
-        Assert.Contains(shell.Entries, entry => entry.Title == "A");
+        shell.Entries.ShouldContain(entry => entry.Title == "A");
     }
 
     private sealed class TestPage(string title, string? moduleKey) : IModulePage

@@ -34,8 +34,8 @@ public sealed class UserPhotoTests : IDisposable
         var set = await Set.HandleAsync(new SetUserPhoto.Command(id, Png), Ct);
         var read = await Get.HandleAsync(new GetUserPhoto.Query(id), Ct);
 
-        Assert.True(set.IsSuccess);
-        Assert.Equal(Png, read.Value);
+        set.IsSuccess.ShouldBeTrue();
+        read.Value.ShouldBe(Png);
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public sealed class UserPhotoTests : IDisposable
 
         await Set.HandleAsync(new SetUserPhoto.Command(id, null), Ct);
 
-        Assert.Null((await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value);
+        (await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value.ShouldBeNull();
     }
 
     [Fact]
@@ -57,9 +57,9 @@ public sealed class UserPhotoTests : IDisposable
         var notAnImage = await Set.HandleAsync(new SetUserPhoto.Command(id, [1, 2, 3, 4]), Ct);
         var tooLarge = await Set.HandleAsync(new SetUserPhoto.Command(id, [.. Png, .. new byte[PhotoRules.MaxBytes]]), Ct);
 
-        Assert.Equal("photo_invalid", notAnImage.Error.Code);
-        Assert.Equal("photo_too_large", tooLarge.Error.Code);
-        Assert.Null((await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value);
+        notAnImage.Error.Code.ShouldBe("photo_invalid");
+        tooLarge.Error.Code.ShouldBe("photo_too_large");
+        (await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value.ShouldBeNull();
     }
 
     [Fact]
@@ -68,8 +68,8 @@ public sealed class UserPhotoTests : IDisposable
         var set = await Set.HandleAsync(new SetUserPhoto.Command(Guid.NewGuid(), Png), Ct);
         var get = await Get.HandleAsync(new GetUserPhoto.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("user_not_found", set.Error.Code);
-        Assert.Equal("user_not_found", get.Error.Code);
+        set.Error.Code.ShouldBe("user_not_found");
+        get.Error.Code.ShouldBe("user_not_found");
     }
 
     [Fact]
@@ -81,8 +81,8 @@ public sealed class UserPhotoTests : IDisposable
         var updated = await _fixture.Update.HandleAsync(
             new UpdateUser.Command(created.Id, "Grace", created.LastName, created.Username, null, created.DateOfBirth), Ct);
 
-        Assert.True(updated.IsSuccess);
-        Assert.Equal(Png, (await Get.HandleAsync(new GetUserPhoto.Query(created.Id), Ct)).Value);
+        updated.IsSuccess.ShouldBeTrue();
+        (await Get.HandleAsync(new GetUserPhoto.Query(created.Id), Ct)).Value.ShouldBe(Png);
     }
 
     [Fact]
@@ -94,17 +94,17 @@ public sealed class UserPhotoTests : IDisposable
         var panel = new UserPhotoPanelFactory(Get, Set, new Localizer(), picker).Create(id, "AL")!;
 
         await panel.LoadCommand.ExecuteAsync(null);
-        Assert.Equal(Png, panel.Photo.ToArray());
-        Assert.False(panel.HasNoPhoto);
+        panel.Photo.ToArray().ShouldBe(Png);
+        panel.HasNoPhoto.ShouldBeFalse();
 
         picker.Next = new PickedFile("me.jpg", Jpeg);
         await panel.ChoosePhotoCommand.ExecuteAsync(null);
-        Assert.Equal(Jpeg, panel.Photo.ToArray());
-        Assert.Equal(Jpeg, (await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value);
+        panel.Photo.ToArray().ShouldBe(Jpeg);
+        (await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value.ShouldBe(Jpeg);
 
         await panel.RemovePhotoCommand.ExecuteAsync(null);
-        Assert.True(panel.HasNoPhoto);
-        Assert.Null((await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value);
+        panel.HasNoPhoto.ShouldBeTrue();
+        (await Get.HandleAsync(new GetUserPhoto.Query(id), Ct)).Value.ShouldBeNull();
     }
 
     [Fact]
@@ -118,8 +118,8 @@ public sealed class UserPhotoTests : IDisposable
 
         await panel.ChoosePhotoCommand.ExecuteAsync(null);
 
-        Assert.Equal(Png, panel.Photo.ToArray());
-        Assert.False(string.IsNullOrEmpty(panel.StatusMessage));
+        panel.Photo.ToArray().ShouldBe(Png);
+        string.IsNullOrEmpty(panel.StatusMessage).ShouldBeFalse();
     }
 
     [Fact]
@@ -130,8 +130,8 @@ public sealed class UserPhotoTests : IDisposable
 
         await panel.ChoosePhotoCommand.ExecuteAsync(null);
 
-        Assert.True(panel.HasNoPhoto);
-        Assert.False(string.IsNullOrEmpty(panel.StatusMessage));
+        panel.HasNoPhoto.ShouldBeTrue();
+        string.IsNullOrEmpty(panel.StatusMessage).ShouldBeFalse();
     }
 
     [Fact]
@@ -139,7 +139,7 @@ public sealed class UserPhotoTests : IDisposable
     {
         var id = await CreateUserAsync();
 
-        Assert.Null(new UserPhotoPanelFactory(Get, Set, new Localizer()).Create(id, "AL"));
+        (new UserPhotoPanelFactory(Get, Set, new Localizer()).Create(id, "AL")).ShouldBeNull();
     }
 
     private sealed class FakeFileOpen : IFileOpenService
@@ -157,12 +157,12 @@ public sealed class UserPhotoTests : IDisposable
         await Set.HandleAsync(new SetUserPhoto.Command(id, Png), Ct);
         var listed = (await _fixture.List.HandleAsync(new ListUsers.Query(), Ct)).Items.Single();
 
-        Assert.NotNull(listed.Thumbnail);
+        listed.Thumbnail.ShouldNotBeNull();
         using var thumbnail = SKBitmap.Decode(listed.Thumbnail);
-        Assert.Equal((PhotoThumbnail.Size, PhotoThumbnail.Size), (thumbnail.Width, thumbnail.Height));
+        (thumbnail.Width, thumbnail.Height).ShouldBe((PhotoThumbnail.Size, PhotoThumbnail.Size));
 
         await Set.HandleAsync(new SetUserPhoto.Command(id, null), Ct);
-        Assert.Null((await _fixture.List.HandleAsync(new ListUsers.Query(), Ct)).Items.Single().Thumbnail);
+        (await _fixture.List.HandleAsync(new ListUsers.Query(), Ct)).Items.Single().Thumbnail.ShouldBeNull();
     }
 
     [Fact]
@@ -172,7 +172,7 @@ public sealed class UserPhotoTests : IDisposable
 
         var result = await Set.HandleAsync(new SetUserPhoto.Command(id, [0x89, 0x50, 0x4E, 0x47, 0x00, 0x00]), Ct);
 
-        Assert.Equal("photo_invalid", result.Error.Code);
+        result.Error.Code.ShouldBe("photo_invalid");
     }
 
     [Fact]
@@ -182,9 +182,9 @@ public sealed class UserPhotoTests : IDisposable
 
         await Set.HandleAsync(new SetUserPhoto.Command(id, Png), Ct);
 
-        Assert.Contains(new UserPhotoChanged(id), _fixture.Events.Published);
+        _fixture.Events.Published.ShouldContain(new UserPhotoChanged(id));
         var lookup = new UserLookup(_fixture.DbFactory);
-        Assert.NotNull(await lookup.GetThumbnailAsync(id, Ct));
-        Assert.Null(await lookup.GetThumbnailAsync(Guid.NewGuid(), Ct));
+        (await lookup.GetThumbnailAsync(id, Ct)).ShouldNotBeNull();
+        (await lookup.GetThumbnailAsync(Guid.NewGuid(), Ct)).ShouldBeNull();
     }
 }

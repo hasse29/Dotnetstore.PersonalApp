@@ -41,7 +41,7 @@ public sealed class ClientDetailViewModelTests
 
         var viewModel = new ClientDetailViewModel(client, null, null, null, new FakeTimeReportsFactory());
 
-        Assert.Equal(client.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.TimeReports).ObjectId);
+        (viewModel.TimeReports.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(client.Id);
     }
 
     private static ClientDto Acme() =>
@@ -50,7 +50,7 @@ public sealed class ClientDetailViewModelTests
     [Fact]
     public void InitialsComeFromTheFirstTwoWordsOfTheName()
     {
-        Assert.Equal("AT", new ClientDetailViewModel(Acme()).Initials);
+        (new ClientDetailViewModel(Acme()).Initials).ShouldBe("AT");
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public sealed class ClientDetailViewModelTests
 
         var viewModel = new ClientDetailViewModel(client, new FakeFactory());
 
-        Assert.Equal(client.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.Addresses).ObjectId);
+        (viewModel.Addresses.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(client.Id);
     }
 
     [Fact]
@@ -70,7 +70,7 @@ public sealed class ClientDetailViewModelTests
 
         var viewModel = new ClientDetailViewModel(client, null, new FakeEmailFactory());
 
-        Assert.Equal(client.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.EmailAddresses).ObjectId);
+        (viewModel.EmailAddresses.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(client.Id);
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public sealed class ClientDetailViewModelTests
 
         var viewModel = new ClientDetailViewModel(client, null, null, new FakePhoneFactory());
 
-        Assert.Equal(client.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.PhoneNumbers).ObjectId);
+        (viewModel.PhoneNumbers.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(client.Id);
     }
 
     [Fact]
@@ -88,9 +88,9 @@ public sealed class ClientDetailViewModelTests
     {
         var viewModel = new ClientDetailViewModel(Acme());
 
-        Assert.Null(viewModel.Addresses);
-        Assert.Null(viewModel.EmailAddresses);
-        Assert.Null(viewModel.PhoneNumbers);
+        viewModel.Addresses.ShouldBeNull();
+        viewModel.EmailAddresses.ShouldBeNull();
+        viewModel.PhoneNumbers.ShouldBeNull();
     }
 
     [Fact]
@@ -105,7 +105,7 @@ public sealed class ClientDetailViewModelTests
         viewModel.BackCommand.Execute(null);
         viewModel.EditCommand.Execute(null);
 
-        Assert.Equal(1, closed);
-        Assert.Equal(1, editRequested);
+        closed.ShouldBe(1);
+        editRequested.ShouldBe(1);
     }
 }

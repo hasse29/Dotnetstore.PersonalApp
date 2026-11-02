@@ -29,17 +29,17 @@ public sealed class ContactPersonPhotoTests : IDisposable
     {
         var person = await CreatePersonAsync();
 
-        Assert.True((await Set.HandleAsync(new SetContactPersonPhoto.Command(person.Id, Png), Ct)).IsSuccess);
+        (await Set.HandleAsync(new SetContactPersonPhoto.Command(person.Id, Png), Ct)).IsSuccess.ShouldBeTrue();
 
-        Assert.Equal(Png, (await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value);
+        (await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value.ShouldBe(Png);
         var listed = (await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(person.ClientId), Ct)).Single();
-        Assert.NotNull(listed.Thumbnail);
+        listed.Thumbnail.ShouldNotBeNull();
         using var thumbnail = SKBitmap.Decode(listed.Thumbnail);
-        Assert.Equal(PhotoThumbnail.Size, thumbnail.Width);
+        thumbnail.Width.ShouldBe(PhotoThumbnail.Size);
 
         await Set.HandleAsync(new SetContactPersonPhoto.Command(person.Id, null), Ct);
-        Assert.Null((await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value);
-        Assert.Null((await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(person.ClientId), Ct)).Single().Thumbnail);
+        (await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value.ShouldBeNull();
+        (await _fixture.ListContactPersons.HandleAsync(new ListContactPersons.Query(person.ClientId), Ct)).Single().Thumbnail.ShouldBeNull();
     }
 
     [Fact]
@@ -50,8 +50,8 @@ public sealed class ContactPersonPhotoTests : IDisposable
         var notAnImage = await Set.HandleAsync(new SetContactPersonPhoto.Command(person.Id, [1, 2, 3, 4]), Ct);
         var unknown = await Set.HandleAsync(new SetContactPersonPhoto.Command(Guid.NewGuid(), Png), Ct);
 
-        Assert.Equal("photo_invalid", notAnImage.Error.Code);
-        Assert.Equal("contact_person_not_found", unknown.Error.Code);
+        notAnImage.Error.Code.ShouldBe("photo_invalid");
+        unknown.Error.Code.ShouldBe("contact_person_not_found");
     }
 
     [Fact]
@@ -62,6 +62,6 @@ public sealed class ContactPersonPhotoTests : IDisposable
 
         await _fixture.UpdateContactPerson.HandleAsync(new UpdateContactPerson.Command(person.Id, "Anna", "Berg", "CFO", null), Ct);
 
-        Assert.Equal(Png, (await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value);
+        (await Get.HandleAsync(new GetContactPersonPhoto.Query(person.Id), Ct)).Value.ShouldBe(Png);
     }
 }

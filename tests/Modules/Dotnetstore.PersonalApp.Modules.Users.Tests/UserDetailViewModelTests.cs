@@ -12,7 +12,7 @@ public sealed class UserDetailViewModelTests
     {
         var viewModel = new UserDetailViewModel(Ada());
 
-        Assert.Equal("AL", viewModel.Initials);
+        viewModel.Initials.ShouldBe("AL");
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public sealed class UserDetailViewModelTests
         viewModel.BackCommand.Execute(null);
         viewModel.EditCommand.Execute(null);
 
-        Assert.Equal(1, closed);
-        Assert.Equal(1, editRequested);
+        closed.ShouldBe(1);
+        editRequested.ShouldBe(1);
     }
 }

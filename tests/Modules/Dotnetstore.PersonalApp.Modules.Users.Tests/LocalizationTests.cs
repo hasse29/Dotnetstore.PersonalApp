@@ -30,9 +30,9 @@ public sealed class LocalizationTests
         var english = Keys(UsersStrings.ResourceManager, "en");
         var translated = Keys(UsersStrings.ResourceManager, culture);
 
-        Assert.NotEmpty(english);
-        Assert.Empty(english.Except(translated));
-        Assert.Empty(translated.Except(english));
+        english.ShouldNotBeEmpty();
+        english.Except(translated).ShouldBeEmpty();
+        translated.Except(english).ShouldBeEmpty();
     }
 
     [Theory]
@@ -41,13 +41,13 @@ public sealed class LocalizationTests
     [InlineData("zh-CN", "登录")]
     public void LooksUpTextInTheCurrentLanguage(string culture, string expected)
     {
-        Assert.Equal(expected, CreateLocalizer(culture).Get("Login_SignIn"));
+        CreateLocalizer(culture).Get("Login_SignIn").ShouldBe(expected);
     }
 
     [Fact]
     public void FormatsWithTheCurrentCulture()
     {
-        Assert.Equal("4 användare", CreateLocalizer("sv").Format("Users_Count", 4));
+        CreateLocalizer("sv").Format("Users_Count", 4).ShouldBe("4 användare");
     }
 
     [Fact]
@@ -55,9 +55,9 @@ public sealed class LocalizationTests
     {
         var localizer = CreateLocalizer("fr");
 
-        Assert.Equal("en", localizer.Culture.Name);
-        Assert.Equal("No_Such_Key", localizer.Get("No_Such_Key"));
-        Assert.Null(localizer.Find("No_Such_Key"));
+        localizer.Culture.Name.ShouldBe("en");
+        localizer.Get("No_Such_Key").ShouldBe("No_Such_Key");
+        localizer.Find("No_Such_Key").ShouldBeNull();
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public sealed class LocalizationTests
         localizer.SetCulture("sv");
         localizer.SetCulture("sv");
 
-        Assert.Equal(1, raised);
+        raised.ShouldBe(1);
     }
 
     [Theory]
@@ -80,13 +80,13 @@ public sealed class LocalizationTests
     [InlineData("zh-CN", "用户名或密码错误。")]
     public void DescribesErrorsByCode(string culture, string expected)
     {
-        Assert.Equal(expected, CreateLocalizer(culture).Describe(Error.InvalidCredentials()));
+        CreateLocalizer(culture).Describe(Error.InvalidCredentials()).ShouldBe(expected);
     }
 
     [Fact]
     public void DescribeFallsBackToTheErrorMessageForUnknownCodes()
     {
-        Assert.Equal("Something odd", CreateLocalizer("sv").Describe(new Error("odd_code", "Something odd")));
+        CreateLocalizer("sv").Describe(new Error("odd_code", "Something odd")).ShouldBe("Something odd");
     }
 
     [Theory]
@@ -96,6 +96,6 @@ public sealed class LocalizationTests
     [InlineData("de-DE", "en")]
     public void MatchesTheSystemLanguageToASupportedOne(string system, string expected)
     {
-        Assert.Equal(expected, new Localizer().Match(CultureInfo.GetCultureInfo(system)));
+        (new Localizer().Match(CultureInfo.GetCultureInfo(system))).ShouldBe(expected);
     }
 }

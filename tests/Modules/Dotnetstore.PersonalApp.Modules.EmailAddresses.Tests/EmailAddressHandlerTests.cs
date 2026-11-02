@@ -17,10 +17,10 @@ public sealed class EmailAddressHandlerTests : IDisposable
     {
         var result = await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(_owner, email: "  ada@example.com "), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Billing", result.Value.EmailAddressTypeName);
-        Assert.Equal("ada@example.com", result.Value.Email);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.EmailAddressTypeName.ShouldBe("Billing");
+        result.Value.Email.ShouldBe("ada@example.com");
     }
 
     [Theory]
@@ -32,7 +32,7 @@ public sealed class EmailAddressHandlerTests : IDisposable
     {
         var result = await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(_owner, email: email), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var result = await _fixture.CreateEmailAddress.HandleAsync(
             _fixture.ValidEmailAddress(_owner, email: new string('a', 250) + "@x.se"), Ct);
 
-        Assert.Equal("email_address_email_too_long", result.Error.Code);
+        result.Error.Code.ShouldBe("email_address_email_too_long");
     }
 
     [Fact]
@@ -51,9 +51,9 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var noType = await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(_owner) with { EmailAddressTypeId = Guid.Empty }, Ct);
         var unknownType = await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(_owner, Guid.NewGuid()), Ct);
 
-        Assert.Equal("email_address_object_required", noObject.Error.Code);
-        Assert.Equal("email_address_type_required", noType.Error.Code);
-        Assert.Equal("email_address_type_not_found", unknownType.Error.Code);
+        noObject.Error.Code.ShouldBe("email_address_object_required");
+        noType.Error.Code.ShouldBe("email_address_type_required");
+        unknownType.Error.Code.ShouldBe("email_address_type_not_found");
     }
 
     [Fact]
@@ -65,8 +65,8 @@ public sealed class EmailAddressHandlerTests : IDisposable
             _fixture.ValidEmailAddress(_owner, _fixture.WorkTypeId, "ADA@example.com"), Ct);
         var otherObject = await _fixture.CreateEmailAddress.HandleAsync(_fixture.ValidEmailAddress(Guid.NewGuid()), Ct);
 
-        Assert.Equal("email_address_conflict", duplicate.Error.Code);
-        Assert.True(otherObject.IsSuccess);
+        duplicate.Error.Code.ShouldBe("email_address_conflict");
+        otherObject.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -81,9 +81,9 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var mine = await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(_owner), Ct);
         var theirs = await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(other), Ct);
 
-        Assert.Equal(3, mine.TotalCount);
-        Assert.Equal(["a@example.com", "b@example.com", "c@example.com"], mine.Items.Select(e => e.Email));
-        Assert.Single(theirs.Items);
+        mine.TotalCount.ShouldBe(3);
+        mine.Items.Select(e => e.Email).ShouldBe(["a@example.com", "b@example.com", "c@example.com"]);
+        theirs.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -97,9 +97,9 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var page = await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(_owner, PageSize: 2), Ct);
         var huge = await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(_owner, PageSize: 10_000), Ct);
 
-        Assert.Equal(2, page.Items.Count);
-        Assert.Equal(3, page.TotalCount);
-        Assert.Equal(3, huge.Items.Count);
+        page.Items.Count.ShouldBe(2);
+        page.TotalCount.ShouldBe(3);
+        huge.Items.Count.ShouldBe(3);
     }
 
     [Fact]
@@ -110,8 +110,8 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var found = await _fixture.GetEmailAddress.HandleAsync(new GetEmailAddress.Query(created.Id), Ct);
         var missing = await _fixture.GetEmailAddress.HandleAsync(new GetEmailAddress.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("Billing", found.Value.EmailAddressTypeName);
-        Assert.Equal("email_address_not_found", missing.Error.Code);
+        found.Value.EmailAddressTypeName.ShouldBe("Billing");
+        missing.Error.Code.ShouldBe("email_address_not_found");
     }
 
     [Fact]
@@ -122,10 +122,10 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var result = await _fixture.UpdateEmailAddress.HandleAsync(
             new UpdateEmailAddress.Command(created.Id, _fixture.WorkTypeId, "ada@work.example"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Work", result.Value.EmailAddressTypeName);
-        Assert.Equal("ada@work.example", result.Value.Email);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.EmailAddressTypeName.ShouldBe("Work");
+        result.Value.Email.ShouldBe("ada@work.example");
     }
 
     [Fact]
@@ -137,8 +137,8 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var clash = await _fixture.UpdateEmailAddress.HandleAsync(new UpdateEmailAddress.Command(two.Id, two.EmailAddressTypeId, "ONE@example.com"), Ct);
         var own = await _fixture.UpdateEmailAddress.HandleAsync(new UpdateEmailAddress.Command(two.Id, two.EmailAddressTypeId, "TWO@example.com"), Ct);
 
-        Assert.Equal("email_address_conflict", clash.Error.Code);
-        Assert.True(own.IsSuccess);
+        clash.Error.Code.ShouldBe("email_address_conflict");
+        own.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -151,8 +151,8 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var unknownType = await _fixture.UpdateEmailAddress.HandleAsync(
             new UpdateEmailAddress.Command(created.Id, Guid.NewGuid(), "x@example.com"), Ct);
 
-        Assert.Equal("email_address_not_found", unknownAddress.Error.Code);
-        Assert.Equal("email_address_type_not_found", unknownType.Error.Code);
+        unknownAddress.Error.Code.ShouldBe("email_address_not_found");
+        unknownType.Error.Code.ShouldBe("email_address_type_not_found");
     }
 
     [Fact]
@@ -163,8 +163,8 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var first = await _fixture.DeleteEmailAddress.HandleAsync(new DeleteEmailAddress.Command(created.Id), Ct);
         var second = await _fixture.DeleteEmailAddress.HandleAsync(new DeleteEmailAddress.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("email_address_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("email_address_not_found");
     }
 
     [Fact]
@@ -178,9 +178,9 @@ public sealed class EmailAddressHandlerTests : IDisposable
         var result = await _fixture.DeleteEmailAddressesForObject.HandleAsync(new DeleteEmailAddressesForObject.Command(_owner), Ct);
         var again = await _fixture.DeleteEmailAddressesForObject.HandleAsync(new DeleteEmailAddressesForObject.Command(_owner), Ct);
 
-        Assert.Equal(2, result.Value);
-        Assert.Equal(0, again.Value);
-        Assert.Equal(1, (await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(other), Ct)).TotalCount);
+        result.Value.ShouldBe(2);
+        again.Value.ShouldBe(0);
+        (await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(other), Ct)).TotalCount.ShouldBe(1);
     }
 
     [Fact]
@@ -188,7 +188,7 @@ public sealed class EmailAddressHandlerTests : IDisposable
     {
         var result = await _fixture.DeleteEmailAddressesForObject.HandleAsync(new DeleteEmailAddressesForObject.Command(Guid.Empty), Ct);
 
-        Assert.Equal("email_address_object_required", result.Error.Code);
+        result.Error.Code.ShouldBe("email_address_object_required");
     }
 
     [Fact]
@@ -200,7 +200,7 @@ public sealed class EmailAddressHandlerTests : IDisposable
         await _fixture.DeleteEmailAddress.HandleAsync(new DeleteEmailAddress.Command(address.Id), Ct);
         var allowed = await _fixture.Delete.HandleAsync(new DeleteEmailAddressType.Command(address.EmailAddressTypeId), Ct);
 
-        Assert.Equal("email_address_type_in_use", blocked.Error.Code);
-        Assert.True(allowed.IsSuccess);
+        blocked.Error.Code.ShouldBe("email_address_type_in_use");
+        allowed.IsSuccess.ShouldBeTrue();
     }
 }

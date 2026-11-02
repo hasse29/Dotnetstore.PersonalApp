@@ -35,9 +35,9 @@ public sealed class ReviewFixTests : IDisposable
         var same = await _fixture.Test.HandleAsync(
             new TestEmailConnection.Command(_user, account.Id, MailProtocol.Smtp, "SMTP.example.com", 587, ConnectionSecurity.StartTls, "anna", null), Ct);
 
-        Assert.Equal("email_account_password_required", elsewhere.Error.Code);
-        Assert.Equal("email_account_password_required", otherLogin.Error.Code);
-        Assert.True(same.IsSuccess);
+        elsewhere.Error.Code.ShouldBe("email_account_password_required");
+        otherLogin.Error.Code.ShouldBe("email_account_password_required");
+        same.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -52,9 +52,9 @@ public sealed class ReviewFixTests : IDisposable
         var movedWithPassword = await _fixture.Update.HandleAsync(Change("new.example.com", "typed"), Ct);
         var renamed = await _fixture.Update.HandleAsync(Change("new.example.com", null), Ct);
 
-        Assert.Equal("email_account_password_required", moved.Error.Code);
-        Assert.True(movedWithPassword.IsSuccess);
-        Assert.True(renamed.IsSuccess);
+        moved.Error.Code.ShouldBe("email_account_password_required");
+        movedWithPassword.IsSuccess.ShouldBeTrue();
+        renamed.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -64,10 +64,10 @@ public sealed class ReviewFixTests : IDisposable
         var first = new string('a', 250) + "1";
         var second = new string('a', 250) + "2";
 
-        Assert.Equal(shortUid, MailLimits.NormalizeUid(shortUid));
-        Assert.NotEqual(MailLimits.NormalizeUid(first), MailLimits.NormalizeUid(second));
-        Assert.True(MailLimits.NormalizeUid(first).Length <= MailLimits.MaxUidLength);
-        Assert.Equal(MailLimits.NormalizeUid(first), MailLimits.NormalizeUid(first));
+        MailLimits.NormalizeUid(shortUid).ShouldBe(shortUid);
+        MailLimits.NormalizeUid(second).ShouldNotBe(MailLimits.NormalizeUid(first));
+        (MailLimits.NormalizeUid(first).Length <= MailLimits.MaxUidLength).ShouldBeTrue();
+        MailLimits.NormalizeUid(first).ShouldBe(MailLimits.NormalizeUid(first));
     }
 
     [Fact]
@@ -81,8 +81,8 @@ public sealed class ReviewFixTests : IDisposable
         var first = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
         var second = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
 
-        Assert.Equal(2, first.Value);
-        Assert.Equal(0, second.Value);
+        first.Value.ShouldBe(2);
+        second.Value.ShouldBe(0);
     }
 
     [Fact]
@@ -94,10 +94,10 @@ public sealed class ReviewFixTests : IDisposable
         var again = await _fixture.SaveDraft.HandleAsync(
             new SaveDraft.Command(_user, saved.Id, null, "bo@example.com", string.Empty, "S", "two", false, [new AttachmentInput("b.txt", [2])]), Ct);
 
-        Assert.True(again.IsSuccess);
+        again.IsSuccess.ShouldBeTrue();
         var full = (await _fixture.GetDraft.HandleAsync(new GetDraft.Query(saved.Id, _user), Ct)).Value;
-        Assert.Equal("two", full.Body);
-        Assert.Equal("b.txt", Assert.Single(full.Attachments).FileName);
+        full.Body.ShouldBe("two");
+        full.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("b.txt");
     }
 
     [Fact]
@@ -106,8 +106,8 @@ public sealed class ReviewFixTests : IDisposable
         var blocks = HtmlFormatter.Format("<form><table><tr><th>Name</th><th>Qty</th></tr></table><p>Inside form</p></form>");
 
         var text = string.Concat(blocks.SelectMany(b => b.Runs).Select(r => r.Text));
-        Assert.Contains("Name  Qty", text, StringComparison.Ordinal);
-        Assert.Contains("Inside form", text, StringComparison.Ordinal);
+        text.ShouldContain("Name  Qty", Case.Sensitive);
+        text.ShouldContain("Inside form", Case.Sensitive);
     }
 
     private InboxViewModel CreateInbox() =>
@@ -128,16 +128,16 @@ public sealed class ReviewFixTests : IDisposable
         await Task.Delay(150, Ct);
         inbox.RequestDeleteCommand.Execute(null);
         var open = inbox.OpenMessage;
-        Assert.NotNull(open);
+        open.ShouldNotBeNull();
 
         _fixture.Gateway.Mailbox.Add(new FetchedMessage("u2", "Cy <cy@example.com>", "Two", DateTimeOffset.UnixEpoch.AddMinutes(5), "B", []));
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
         await Task.Delay(150, Ct);
 
-        Assert.Equal(2, inbox.Messages.Count);
-        Assert.Same(open, inbox.OpenMessage);
-        Assert.True(inbox.IsConfirmingDelete);
-        Assert.Equal(open.Id, inbox.SelectedMessage?.Id);
+        inbox.Messages.Count.ShouldBe(2);
+        inbox.OpenMessage.ShouldBeSameAs(open);
+        inbox.IsConfirmingDelete.ShouldBeTrue();
+        (inbox.SelectedMessage?.Id).ShouldBe(open.Id);
     }
 
     [Fact]
@@ -155,13 +155,13 @@ public sealed class ReviewFixTests : IDisposable
         await inbox.FetchCommand.ExecuteAsync(null);
         await Task.Delay(150, Ct);
 
-        Assert.Equal(ListEmailMessages.MaxPageSize, inbox.Messages.Count);
-        Assert.True(inbox.HasMore);
+        inbox.Messages.Count.ShouldBe(ListEmailMessages.MaxPageSize);
+        inbox.HasMore.ShouldBeTrue();
 
         await inbox.LoadMoreCommand.ExecuteAsync(null);
 
-        Assert.Equal(60, inbox.Messages.Count);
-        Assert.False(inbox.HasMore);
+        inbox.Messages.Count.ShouldBe(60);
+        inbox.HasMore.ShouldBeFalse();
     }
 
     [Fact]
@@ -174,7 +174,7 @@ public sealed class ReviewFixTests : IDisposable
 
         await composer.AddAttachmentsCommand.ExecuteAsync(null);
 
-        Assert.True(composer.StatusIsError);
-        Assert.Contains("huge.bin", composer.StatusMessage, StringComparison.Ordinal);
+        composer.StatusIsError.ShouldBeTrue();
+        composer.StatusMessage!.ShouldContain("huge.bin", Case.Sensitive);
     }
 }

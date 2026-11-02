@@ -17,7 +17,7 @@ public sealed class CompositionRootTests
     {
         using var services = CompositionRoot.BuildServices();
 
-        Assert.NotNull(services.GetRequiredService<MainWindowViewModel>());
+        (services.GetRequiredService<MainWindowViewModel>()).ShouldNotBeNull();
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public sealed class CompositionRootTests
 
         var panel = services.GetRequiredService<IObjectAddressesPanelFactory>().Create(Guid.NewGuid());
 
-        Assert.NotNull(panel);
+        panel.ShouldNotBeNull();
     }
 
     [Fact]
@@ -37,7 +37,7 @@ public sealed class CompositionRootTests
 
         var panel = services.GetRequiredService<IObjectEmailAddressesPanelFactory>().Create(Guid.NewGuid());
 
-        Assert.NotNull(panel);
+        panel.ShouldNotBeNull();
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public sealed class CompositionRootTests
 
         var panel = services.GetRequiredService<IObjectPhoneNumbersPanelFactory>().Create(Guid.NewGuid());
 
-        Assert.NotNull(panel);
+        panel.ShouldNotBeNull();
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public sealed class CompositionRootTests
 
         var panel = services.GetRequiredService<IUserCvsPanelFactory>().Create(Guid.NewGuid());
 
-        Assert.NotNull(panel);
+        panel.ShouldNotBeNull();
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public sealed class CompositionRootTests
 
         var panel = services.GetRequiredService<ITimeReportsPanelFactory>().CreateForClient(Guid.NewGuid());
 
-        Assert.NotNull(panel);
+        panel.ShouldNotBeNull();
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public sealed class CompositionRootTests
     {
         using var services = CompositionRoot.BuildServices();
 
-        Assert.Contains(services.GetServices<IModulePage>(), page => page.ModuleKey == "email");
+        services.GetServices<IModulePage>().ShouldContain(page => page.ModuleKey == "email");
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public sealed class CompositionRootTests
 
         foreach (var page in services.GetServices<IModulePage>())
         {
-            Assert.NotNull(page.CreateViewModel());
+            page.CreateViewModel().ShouldNotBeNull();
         }
     }
 }

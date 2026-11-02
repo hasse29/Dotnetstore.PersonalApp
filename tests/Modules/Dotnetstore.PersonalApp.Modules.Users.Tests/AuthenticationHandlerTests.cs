@@ -23,11 +23,11 @@ public sealed class AuthenticationHandlerTests : IDisposable
     [Fact]
     public async Task HasUsersIsFalseUntilAUserIsCreated()
     {
-        Assert.False(await _hasUsers.HandleAsync(Ct));
+        (await _hasUsers.HandleAsync(Ct)).ShouldBeFalse();
 
         await _fixture.Create.HandleAsync(UsersFixture.ValidCommand(), Ct);
 
-        Assert.True(await _hasUsers.HandleAsync(Ct));
+        (await _hasUsers.HandleAsync(Ct)).ShouldBeTrue();
     }
 
     [Fact]
@@ -37,9 +37,9 @@ public sealed class AuthenticationHandlerTests : IDisposable
 
         var result = await _login.HandleAsync(new Login.Command(" ADA@example.com ", "correct horse battery"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("ada@example.com", result.Value.Username);
-        Assert.Equal("Ada Lovelace", result.Value.FullName);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Username.ShouldBe("ada@example.com");
+        result.Value.FullName.ShouldBe("Ada Lovelace");
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public sealed class AuthenticationHandlerTests : IDisposable
 
         var result = await _login.HandleAsync(new Login.Command("ada@example.com", "wrong password"), Ct);
 
-        Assert.Equal("invalid_credentials", result.Error.Code);
+        result.Error.Code.ShouldBe("invalid_credentials");
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public sealed class AuthenticationHandlerTests : IDisposable
         var unknown = await _login.HandleAsync(new Login.Command("nobody@example.com", "correct horse battery"), Ct);
         var wrong = await _login.HandleAsync(new Login.Command("ada@example.com", "wrong password"), Ct);
 
-        Assert.Equal(wrong.Error, unknown.Error);
+        unknown.Error.ShouldBe(wrong.Error);
     }
 
     [Theory]
@@ -70,6 +70,6 @@ public sealed class AuthenticationHandlerTests : IDisposable
     {
         var result = await _login.HandleAsync(new Login.Command(username, password), Ct);
 
-        Assert.Equal("credentials_required", result.Error.Code);
+        result.Error.Code.ShouldBe("credentials_required");
     }
 }

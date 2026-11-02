@@ -20,7 +20,7 @@ public sealed class MainWindowFlowTests
 
         await viewModel.InitializeAsync(Ct);
 
-        Assert.IsType<FakeFirstUserPage>(viewModel.Content);
+        viewModel.Content.ShouldBeOfType<FakeFirstUserPage>();
     }
 
     [Fact]
@@ -31,7 +31,7 @@ public sealed class MainWindowFlowTests
 
         await viewModel.InitializeAsync(Ct);
 
-        Assert.IsType<FakeLoginPage>(viewModel.Content);
+        viewModel.Content.ShouldBeOfType<FakeLoginPage>();
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public sealed class MainWindowFlowTests
 
         ((FakeFirstUserPage)viewModel.Content!).Complete();
 
-        Assert.IsType<FakeLoginPage>(viewModel.Content);
+        viewModel.Content.ShouldBeOfType<FakeLoginPage>();
     }
 
     [Fact]
@@ -55,13 +55,13 @@ public sealed class MainWindowFlowTests
 
         ((FakeLoginPage)viewModel.Content!).LogIn(Ada);
 
-        var shell = Assert.IsType<ShellViewModel>(viewModel.Content);
-        Assert.Equal(Ada, shell.User);
-        Assert.IsType<FakePageViewModel>(shell.CurrentPage);
+        var shell = viewModel.Content.ShouldBeOfType<ShellViewModel>();
+        shell.User.ShouldBe(Ada);
+        shell.CurrentPage.ShouldBeOfType<FakePageViewModel>();
 
         shell.SignOutCommand.Execute(null);
 
-        Assert.IsType<FakeLoginPage>(viewModel.Content);
+        viewModel.Content.ShouldBeOfType<FakeLoginPage>();
     }
 
     private sealed class FakeAuthenticationPages(bool hasUsers) : IAuthenticationPages

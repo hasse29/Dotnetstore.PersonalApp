@@ -13,7 +13,7 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
     {
         var response = await _fixture.ListTypes.HandleAsync(new ListWorkTimeTypes.Query(), TestContext.Current.CancellationToken);
 
-        Assert.Equal(["Parental leave", "Sick", "Vacation", "Work"], response.Items.Select(t => t.Name));
+        response.Items.Select(t => t.Name).ShouldBe(["Parental leave", "Sick", "Vacation", "Work"]);
     }
 
     [Fact]
@@ -21,8 +21,8 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
     {
         var result = await _fixture.CreateType.HandleAsync(new CreateWorkTimeType.Command(" Training ", "Courses"), TestContext.Current.CancellationToken);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Training", result.Value.Name);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Name.ShouldBe("Training");
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
     {
         var result = await _fixture.CreateType.HandleAsync(new CreateWorkTimeType.Command("sick", null), TestContext.Current.CancellationToken);
 
-        Assert.Equal("work_time_type_conflict", result.Error.Code);
+        result.Error.Code.ShouldBe("work_time_type_conflict");
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
     {
         var result = await _fixture.CreateType.HandleAsync(new CreateWorkTimeType.Command(" ", null), TestContext.Current.CancellationToken);
 
-        Assert.Equal("work_time_type_name_required", result.Error.Code);
+        result.Error.Code.ShouldBe("work_time_type_name_required");
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
 
         var result = await _fixture.UpdateType.HandleAsync(new UpdateWorkTimeType.Command(sick.Id, "Ill", null), ct);
 
-        Assert.Equal("Ill", result.Value.Name);
+        result.Value.Name.ShouldBe("Ill");
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
 
         var result = await _fixture.DeleteType.HandleAsync(new DeleteWorkTimeType.Command(Persistence.WorkTimeTypeSeed.WorkId), ct);
 
-        Assert.Equal("work_time_type_in_use", result.Error.Code);
+        result.Error.Code.ShouldBe("work_time_type_in_use");
     }
 
     [Fact]
@@ -72,6 +72,6 @@ public sealed class WorkTimeTypeHandlerTests : IDisposable
 
         var result = await _fixture.DeleteType.HandleAsync(new DeleteWorkTimeType.Command(sick.Id), ct);
 
-        Assert.True(result.IsSuccess);
+        result.IsSuccess.ShouldBeTrue();
     }
 }

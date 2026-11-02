@@ -24,10 +24,10 @@ public sealed class EmailMessageHandlerTests : IDisposable
 
         var result = await _fixture.Test.HandleAsync(command, Ct);
 
-        Assert.True(result.IsSuccess);
-        var server = Assert.Single(_fixture.Gateway.Connections);
-        Assert.Equal("smtp.example.com", server.Host);
-        Assert.Equal("typed", server.Password);
+        result.IsSuccess.ShouldBeTrue();
+        var server = _fixture.Gateway.Connections.ShouldHaveSingleItem();
+        server.Host.ShouldBe("smtp.example.com");
+        server.Password.ShouldBe("typed");
     }
 
     [Fact]
@@ -39,7 +39,7 @@ public sealed class EmailMessageHandlerTests : IDisposable
             new TestEmailConnection.Command(_user, account.Id, MailProtocol.Smtp, "smtp.example.com", 587, ConnectionSecurity.StartTls, "anna", null),
             Ct);
 
-        Assert.Equal("s3cret", Assert.Single(_fixture.Gateway.Connections).Password);
+        _fixture.Gateway.Connections.ShouldHaveSingleItem().Password.ShouldBe("s3cret");
     }
 
     [Fact]
@@ -51,8 +51,8 @@ public sealed class EmailMessageHandlerTests : IDisposable
             new TestEmailConnection.Command(_user, foreign.Id, MailProtocol.Smtp, "smtp.example.com", 587, ConnectionSecurity.StartTls, "anna", null),
             Ct);
 
-        Assert.Equal("email_account_not_found", result.Error.Code);
-        Assert.Empty(_fixture.Gateway.Connections);
+        result.Error.Code.ShouldBe("email_account_not_found");
+        _fixture.Gateway.Connections.ShouldBeEmpty();
     }
 
     [Fact]
@@ -66,10 +66,10 @@ public sealed class EmailMessageHandlerTests : IDisposable
             new TestEmailConnection.Command(_user, null, MailProtocol.Smtp, "smtp.example.com", 0, ConnectionSecurity.StartTls, "anna", "x"),
             Ct);
 
-        Assert.Equal("email_authentication_failed", failed.Error.Code);
-        Assert.Equal("535 bad login", failed.Error.Message);
-        Assert.Equal("email_account_port_invalid", invalid.Error.Code);
-        Assert.Single(_fixture.Gateway.Connections);
+        failed.Error.Code.ShouldBe("email_authentication_failed");
+        failed.Error.Message.ShouldBe("535 bad login");
+        invalid.Error.Code.ShouldBe("email_account_port_invalid");
+        _fixture.Gateway.Connections.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -81,12 +81,12 @@ public sealed class EmailMessageHandlerTests : IDisposable
             new SendEmail.Command(_user, account.Id, "bo@example.com; cy@example.com,BO@example.com", "Hi", "Text"),
             Ct);
 
-        Assert.Equal(2, result.Value);
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.Equal("anna@example.com", sent.From);
-        Assert.Equal(["bo@example.com", "cy@example.com"], sent.To);
-        Assert.Equal("Hi", sent.Subject);
-        Assert.Equal("s3cret", Assert.Single(_fixture.Gateway.Connections).Password);
+        result.Value.ShouldBe(2);
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.From.ShouldBe("anna@example.com");
+        sent.To.ShouldBe(["bo@example.com", "cy@example.com"]);
+        sent.Subject.ShouldBe("Hi");
+        _fixture.Gateway.Connections.ShouldHaveSingleItem().Password.ShouldBe("s3cret");
     }
 
     [Fact]
@@ -101,10 +101,10 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var viaForeign = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, foreign.Id, "bo@example.com", "Hi", "x"), Ct);
         var viaPop3 = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, pop3.Id, "bo@example.com", "Hi", "x"), Ct);
 
-        Assert.True(viaSystem.IsSuccess);
-        Assert.Equal("email_account_not_found", viaForeign.Error.Code);
-        Assert.Equal("email_account_not_smtp", viaPop3.Error.Code);
-        Assert.Single(_fixture.Gateway.Sent);
+        viaSystem.IsSuccess.ShouldBeTrue();
+        viaForeign.Error.Code.ShouldBe("email_account_not_found");
+        viaPop3.Error.Code.ShouldBe("email_account_not_smtp");
+        _fixture.Gateway.Sent.ShouldHaveSingleItem();
     }
 
     [Theory]
@@ -117,8 +117,8 @@ public sealed class EmailMessageHandlerTests : IDisposable
 
         var result = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, to, "Hi", "x"), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
-        Assert.Empty(_fixture.Gateway.Sent);
+        result.Error.Code.ShouldBe(expectedCode);
+        _fixture.Gateway.Sent.ShouldBeEmpty();
     }
 
     [Fact]
@@ -131,9 +131,9 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var longSubject = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", new string('a', 501), "x"), Ct);
         var longBody = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", new string('a', 100_001)), Ct);
 
-        Assert.Equal("email_too_many_recipients", tooMany.Error.Code);
-        Assert.Equal("email_subject_too_long", longSubject.Error.Code);
-        Assert.Equal("email_body_too_long", longBody.Error.Code);
+        tooMany.Error.Code.ShouldBe("email_too_many_recipients");
+        longSubject.Error.Code.ShouldBe("email_subject_too_long");
+        longBody.Error.Code.ShouldBe("email_body_too_long");
     }
 
     [Fact]
@@ -144,7 +144,7 @@ public sealed class EmailMessageHandlerTests : IDisposable
 
         var result = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "x"), Ct);
 
-        Assert.Equal("email_connection_failed", result.Error.Code);
+        result.Error.Code.ShouldBe("email_connection_failed");
     }
 
     [Fact]
@@ -159,12 +159,12 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var third = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
         var list = await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(_user, account.Id), Ct);
 
-        Assert.Equal(3, first.Value);
-        Assert.Equal(1, second.Value);
-        Assert.Equal(0, third.Value);
-        Assert.Equal(4, list.Value.TotalCount);
-        Assert.Equal(["d", "b", "c", "a"], list.Value.Items.Select(m => m.Subject["Hello ".Length..]));
-        Assert.All(list.Value.Items, m => Assert.Equal(string.Empty, m.Body));
+        first.Value.ShouldBe(3);
+        second.Value.ShouldBe(1);
+        third.Value.ShouldBe(0);
+        list.Value.TotalCount.ShouldBe(4);
+        list.Value.Items.Select(m => m.Subject["Hello ".Length..]).ShouldBe(["d", "b", "c", "a"]);
+        list.Value.Items.ShouldAllBe(m => m.Body == string.Empty);
     }
 
     [Fact]
@@ -176,9 +176,9 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var first = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
         var second = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
 
-        Assert.Equal(FetchEmail.MaxPerFetch, first.Value);
-        Assert.Equal(10, second.Value);
-        Assert.Equal(60, await _fixture.MessageCountAsync());
+        first.Value.ShouldBe(FetchEmail.MaxPerFetch);
+        second.Value.ShouldBe(10);
+        (await _fixture.MessageCountAsync()).ShouldBe(60);
     }
 
     [Fact]
@@ -193,9 +193,9 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var viaForeign = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, foreign.Id), Ct);
         var failed = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, pop3.Id), Ct);
 
-        Assert.Equal("email_account_not_pop3", viaSmtp.Error.Code);
-        Assert.Equal("email_account_not_found", viaForeign.Error.Code);
-        Assert.Equal("email_tls_failed", failed.Error.Code);
+        viaSmtp.Error.Code.ShouldBe("email_account_not_pop3");
+        viaForeign.Error.Code.ShouldBe("email_account_not_found");
+        failed.Error.Code.ShouldBe("email_tls_failed");
     }
 
     [Fact]
@@ -211,8 +211,8 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var systemList = await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(someoneElse, system.Id), Ct);
         var personalList = await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(someoneElse, personal.Id), Ct);
 
-        Assert.Equal(1, systemList.Value.TotalCount);
-        Assert.Equal("email_account_not_found", personalList.Error.Code);
+        systemList.Value.TotalCount.ShouldBe(1);
+        personalList.Error.Code.ShouldBe("email_account_not_found");
     }
 
     [Fact]
@@ -227,9 +227,9 @@ public sealed class EmailMessageHandlerTests : IDisposable
         var foreign = await _fixture.GetMessage.HandleAsync(new GetEmailMessage.Query(summary.Id, Guid.NewGuid()), Ct);
         var missing = await _fixture.GetMessage.HandleAsync(new GetEmailMessage.Query(Guid.NewGuid(), _user), Ct);
 
-        Assert.Equal("Body a", own.Value.Body);
-        Assert.Equal("email_message_not_found", foreign.Error.Code);
-        Assert.Equal("email_message_not_found", missing.Error.Code);
+        own.Value.Body.ShouldBe("Body a");
+        foreign.Error.Code.ShouldBe("email_message_not_found");
+        missing.Error.Code.ShouldBe("email_message_not_found");
     }
 
     [Fact]
@@ -241,7 +241,7 @@ public sealed class EmailMessageHandlerTests : IDisposable
 
         await _fixture.Delete.HandleAsync(new DeleteEmailAccount.Command(account.Id, _user), Ct);
 
-        Assert.Equal(0, await _fixture.MessageCountAsync());
+        (await _fixture.MessageCountAsync()).ShouldBe(0);
     }
 
     [Fact]
@@ -255,6 +255,6 @@ public sealed class EmailMessageHandlerTests : IDisposable
 
         await _fixture.DeleteForUser.HandleAsync(new DeleteEmailAccountsForUser.Command(_user), Ct);
 
-        Assert.Equal(1, await _fixture.MessageCountAsync());
+        (await _fixture.MessageCountAsync()).ShouldBe(1);
     }
 }

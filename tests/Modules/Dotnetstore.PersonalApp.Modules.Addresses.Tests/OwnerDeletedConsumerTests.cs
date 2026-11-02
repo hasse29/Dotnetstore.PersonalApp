@@ -23,8 +23,8 @@ public sealed class OwnerDeletedConsumerTests : IDisposable
 
         await new UserDeletedConsumer(_fixture.DeleteAddressesForObject).ConsumeAsync(new UserDeleted(user), Ct);
 
-        Assert.Empty((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(user), Ct)).Items);
-        Assert.Single((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct)).Items);
+        (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(user), Ct)).Items.ShouldBeEmpty();
+        (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(other), Ct)).Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -35,7 +35,7 @@ public sealed class OwnerDeletedConsumerTests : IDisposable
 
         await new ClientDeletedConsumer(_fixture.DeleteAddressesForObject).ConsumeAsync(new ClientDeleted(client), Ct);
 
-        Assert.Empty((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(client), Ct)).Items);
+        (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(client), Ct)).Items.ShouldBeEmpty();
     }
 
     [Fact]
@@ -46,6 +46,6 @@ public sealed class OwnerDeletedConsumerTests : IDisposable
 
         await new ContactPersonDeletedConsumer(_fixture.DeleteAddressesForObject).ConsumeAsync(new ContactPersonDeleted(person), Ct);
 
-        Assert.Empty((await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(person), Ct)).Items);
+        (await _fixture.ListAddresses.HandleAsync(new ListAddresses.Query(person), Ct)).Items.ShouldBeEmpty();
     }
 }

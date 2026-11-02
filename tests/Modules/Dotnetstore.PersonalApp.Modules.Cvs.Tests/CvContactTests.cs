@@ -27,22 +27,22 @@ public sealed class CvContactTests : IDisposable
     [InlineData("https://notlinkedin.com/in/anna", null)]
     [InlineData("https://linkedin.com.evil.example/in/anna", null)]
     public void NormalizeLinkedInAcceptsOnlyLinkedInAddresses(string? input, string? expected) =>
-        Assert.Equal(expected, CvRules.NormalizeLinkedIn(input));
+        CvRules.NormalizeLinkedIn(input).ShouldBe(expected);
 
     [Fact]
     public async Task LinkedInIsSavedNormalizedAndInvalidOnesAreRejected()
     {
         var created = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(_userId) with { LinkedIn = "linkedin.com/in/anna" }, CancellationToken.None);
-        Assert.Equal("https://linkedin.com/in/anna", created.Value.LinkedIn);
+        created.Value.LinkedIn.ShouldBe("https://linkedin.com/in/anna");
 
         var rejected = await _fixture.Update.HandleAsync(
             new UpdateCv.Command(created.Value.Id, _userId, "Backend developer", null, null, "https://example.com/anna"), CancellationToken.None);
-        Assert.False(rejected.IsSuccess);
-        Assert.Equal("cv_linkedin_invalid", rejected.Error.Code);
+        rejected.IsSuccess.ShouldBeFalse();
+        rejected.Error.Code.ShouldBe("cv_linkedin_invalid");
 
         var cleared = await _fixture.Update.HandleAsync(
             new UpdateCv.Command(created.Value.Id, _userId, "Backend developer", null, null, null), CancellationToken.None);
-        Assert.Null(cleared.Value.LinkedIn);
+        cleared.Value.LinkedIn.ShouldBeNull();
     }
 
     [Fact]
@@ -53,12 +53,12 @@ public sealed class CvContactTests : IDisposable
         _fixture.Contacts.Add(_userId, ContactKind.Phone, "Mobile", "0701234567");
 
         var set = await _fixture.SetContacts.HandleAsync(new SetCvContacts.Command(cvId, _userId, [email.Id]), CancellationToken.None);
-        Assert.True(set.IsSuccess);
+        set.IsSuccess.ShouldBeTrue();
 
         var detail = (await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cvId, _userId), CancellationToken.None)).Value;
-        Assert.Equal(2, detail.AvailableContacts.Count);
-        Assert.Equal([email.Id], detail.SelectedContactIds);
-        Assert.Equal("anna@example.com", Assert.Single(detail.SelectedContacts).Value);
+        detail.AvailableContacts.Count.ShouldBe(2);
+        detail.SelectedContactIds.ShouldBe([email.Id]);
+        detail.SelectedContacts.ShouldHaveSingleItem().Value.ShouldBe("anna@example.com");
     }
 
     [Fact]
@@ -69,8 +69,8 @@ public sealed class CvContactTests : IDisposable
 
         var set = await _fixture.SetContacts.HandleAsync(new SetCvContacts.Command(cvId, _userId, [foreign.Id, Guid.NewGuid()]), CancellationToken.None);
 
-        Assert.True(set.IsSuccess);
-        Assert.Empty(set.Value);
+        set.IsSuccess.ShouldBeTrue();
+        set.Value.ShouldBeEmpty();
     }
 
     [Fact]
@@ -84,7 +84,7 @@ public sealed class CvContactTests : IDisposable
         await _fixture.SetContacts.HandleAsync(new SetCvContacts.Command(cvId, _userId, [second.Id]), CancellationToken.None);
 
         var detail = (await _fixture.GetDetail.HandleAsync(new GetCvDetail.Query(cvId, _userId), CancellationToken.None)).Value;
-        Assert.Equal([second.Id], detail.SelectedContactIds);
+        detail.SelectedContactIds.ShouldBe([second.Id]);
     }
 
     [Fact]
@@ -94,8 +94,8 @@ public sealed class CvContactTests : IDisposable
 
         var set = await _fixture.SetContacts.HandleAsync(new SetCvContacts.Command(cvId, Guid.NewGuid(), []), CancellationToken.None);
 
-        Assert.False(set.IsSuccess);
-        Assert.Equal("cv_not_found", set.Error.Code);
+        set.IsSuccess.ShouldBeFalse();
+        set.Error.Code.ShouldBe("cv_not_found");
     }
 
     [Fact]
@@ -108,8 +108,8 @@ public sealed class CvContactTests : IDisposable
         var viewModel = new CvDetailViewModel(created.Value, _userId, _fixture.DetailServices);
         await viewModel.LoadAsync(CancellationToken.None);
 
-        Assert.Equal(["Mobile: 0701234567", "LinkedIn: https://linkedin.com/in/anna"], viewModel.ContactLines);
-        Assert.False(viewModel.HasNoContact);
+        viewModel.ContactLines.ShouldBe(["Mobile: 0701234567", "LinkedIn: https://linkedin.com/in/anna"]);
+        viewModel.HasNoContact.ShouldBeFalse();
     }
 
     [Fact]
@@ -121,10 +121,10 @@ public sealed class CvContactTests : IDisposable
 
         var export = await _fixture.Export.HandleAsync(new ExportCvToWord.Query(cvId, _userId), CancellationToken.None);
 
-        Assert.True(export.IsSuccess);
+        export.IsSuccess.ShouldBeTrue();
         using var zip = new System.IO.Compression.ZipArchive(new MemoryStream(export.Value.Content));
         await using var entry = await zip.GetEntry("word/document.xml")!.OpenAsync(TestContext.Current.CancellationToken);
         using var reader = new StreamReader(entry);
-        Assert.Contains("anna@example.com", await reader.ReadToEndAsync(TestContext.Current.CancellationToken), StringComparison.Ordinal);
+        (await reader.ReadToEndAsync(TestContext.Current.CancellationToken)).ShouldContain("anna@example.com", Case.Sensitive);
     }
 }

@@ -32,8 +32,8 @@ public sealed class CvsViewModelTests : IDisposable
 
         await viewModel.LoadCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.Cvs);
-        Assert.Equal("1 CV(s)", viewModel.StatusMessage);
+        viewModel.Cvs.ShouldHaveSingleItem();
+        viewModel.StatusMessage.ShouldBe("1 CV(s)");
     }
 
     [Fact]
@@ -41,14 +41,14 @@ public sealed class CvsViewModelTests : IDisposable
     {
         var viewModel = CreateViewModel();
         viewModel.NewCommand.Execute(null);
-        Assert.NotNull(viewModel.Editor);
+        viewModel.Editor.ShouldNotBeNull();
 
         viewModel.Editor.Title = "Data engineer";
         await viewModel.Editor.SaveCommand.ExecuteAsync(null);
         await Task.Delay(100, Ct);
 
-        Assert.Null(viewModel.Editor);
-        Assert.Equal("Data engineer", Assert.Single(viewModel.Cvs).Title);
+        viewModel.Editor.ShouldBeNull();
+        viewModel.Cvs.ShouldHaveSingleItem().Title.ShouldBe("Data engineer");
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public sealed class CvsViewModelTests : IDisposable
 
         await viewModel.Editor!.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Title is required.", viewModel.Editor.ErrorMessage);
+        viewModel.Editor.ErrorMessage.ShouldBe("Title is required.");
     }
 
     [Fact]
@@ -71,10 +71,10 @@ public sealed class CvsViewModelTests : IDisposable
         viewModel.SelectedCv = viewModel.Cvs[0];
 
         viewModel.RequestDeleteCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDelete);
+        viewModel.IsConfirmingDelete.ShouldBeTrue();
         await viewModel.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Empty(viewModel.Cvs);
-        Assert.Null(viewModel.Editor);
+        viewModel.Cvs.ShouldBeEmpty();
+        viewModel.Editor.ShouldBeNull();
     }
 }

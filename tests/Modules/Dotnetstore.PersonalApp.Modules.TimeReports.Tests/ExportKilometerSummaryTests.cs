@@ -13,7 +13,7 @@ public sealed class ExportKilometerSummaryTests : IDisposable
     private async Task AddAsync(Guid userId, Guid clientId, DateOnly date, decimal km)
     {
         var command = TimeReportsFixture.ValidCommand(userId, clientId) with { Date = date, DrivingKilometers = km };
-        Assert.True((await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken)).IsSuccess);
+        (await _fixture.Create.HandleAsync(command, TestContext.Current.CancellationToken)).IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -30,20 +30,20 @@ public sealed class ExportKilometerSummaryTests : IDisposable
 
         var result = await _fixture.ExportKilometers.HandleAsync(new ExportKilometerSummary.Query(_user, 2026), TestContext.Current.CancellationToken);
 
-        Assert.True(result.IsSuccess);
+        result.IsSuccess.ShouldBeTrue();
         using var workbook = new XLWorkbook(new MemoryStream(result.Value.Content));
-        var sheet = Assert.Single(workbook.Worksheets);
-        Assert.Equal("2026", sheet.Name);
-        Assert.Equal("Acme AB", sheet.Cell(4, 1).GetString());
-        Assert.Equal(15.5m, sheet.Cell(4, 2).GetValue<decimal>());
-        Assert.Equal(20m, sheet.Cell(4, 4).GetValue<decimal>());
-        Assert.Equal("Beta AB", sheet.Cell(5, 1).GetString());
-        Assert.Equal(7m, sheet.Cell(5, 4).GetValue<decimal>());
+        var sheet = workbook.Worksheets.ShouldHaveSingleItem();
+        sheet.Name.ShouldBe("2026");
+        sheet.Cell(4, 1).GetString().ShouldBe("Acme AB");
+        (sheet.Cell(4, 2).GetValue<decimal>()).ShouldBe(15.5m);
+        (sheet.Cell(4, 4).GetValue<decimal>()).ShouldBe(20m);
+        sheet.Cell(5, 1).GetString().ShouldBe("Beta AB");
+        (sheet.Cell(5, 4).GetValue<decimal>()).ShouldBe(7m);
 
         // Formulas are not calculated in the file, so evaluate them the way Excel would.
-        Assert.Equal(35.5m, (decimal)sheet.Cell(4, 14).Value.GetNumber());
-        Assert.Equal(42.5m, (decimal)sheet.Cell(6, 14).Value.GetNumber());
-        Assert.Equal(27m, (decimal)sheet.Cell(6, 4).Value.GetNumber());
+        ((decimal)sheet.Cell(4, 14).Value.GetNumber()).ShouldBe(35.5m);
+        ((decimal)sheet.Cell(6, 14).Value.GetNumber()).ShouldBe(42.5m);
+        ((decimal)sheet.Cell(6, 4).Value.GetNumber()).ShouldBe(27m);
     }
 
     [Fact]
@@ -51,6 +51,6 @@ public sealed class ExportKilometerSummaryTests : IDisposable
     {
         var result = await _fixture.ExportKilometers.HandleAsync(new ExportKilometerSummary.Query(_user, 2026), TestContext.Current.CancellationToken);
 
-        Assert.Equal("time_report_export_empty", result.Error.Code);
+        result.Error.Code.ShouldBe("time_report_export_empty");
     }
 }

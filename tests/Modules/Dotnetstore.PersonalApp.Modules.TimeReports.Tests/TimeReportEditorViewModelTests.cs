@@ -20,13 +20,13 @@ public sealed class TimeReportEditorViewModelTests : IDisposable
         var editor = new TimeReportEditorViewModel(
             original, true, user, null, [client], types, new DateOnly(2026, 10, 31), _fixture.Create, _fixture.Update, new Localizer());
 
-        Assert.Equal(original.Date.AddDays(1).ToDateTime(TimeOnly.MinValue), editor.Date);
-        Assert.Equal(original.TotalHours, editor.TotalHours);
-        Assert.Equal(original.Location, editor.Location);
+        editor.Date.ShouldBe(original.Date.AddDays(1).ToDateTime(TimeOnly.MinValue));
+        editor.TotalHours.ShouldBe(original.TotalHours);
+        editor.Location.ShouldBe(original.Location);
 
         await editor.SaveCommand.ExecuteAsync(null);
 
         var all = await _fixture.List.HandleAsync(new ListTimeReports.Query(user), ct);
-        Assert.Equal(2, all.TotalCount);
+        all.TotalCount.ShouldBe(2);
     }
 }

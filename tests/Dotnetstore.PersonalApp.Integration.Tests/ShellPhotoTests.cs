@@ -24,8 +24,8 @@ public sealed class ShellPhotoTests
 
         await shell.LoadUserPhotoCommand.ExecuteAsync(null);
 
-        Assert.Equal(new byte[] { 1, 2, 3 }, shell.UserPhoto);
-        Assert.Equal("AL", shell.Initials);
+        shell.UserPhoto.ShouldBe(new byte[] { 1, 2, 3 });
+        shell.Initials.ShouldBe("AL");
     }
 
     [Fact]
@@ -35,7 +35,7 @@ public sealed class ShellPhotoTests
 
         await shell.LoadUserPhotoCommand.ExecuteAsync(null);
 
-        Assert.Null(shell.UserPhoto);
+        shell.UserPhoto.ShouldBeNull();
     }
 
     [Fact]
@@ -47,6 +47,6 @@ public sealed class ShellPhotoTests
 
         await notifier.ConsumeAsync(new UserPhotoChanged(User.Id), TestContext.Current.CancellationToken);
 
-        Assert.Equal(User.Id, changed);
+        changed.ShouldBe(User.Id);
     }
 }

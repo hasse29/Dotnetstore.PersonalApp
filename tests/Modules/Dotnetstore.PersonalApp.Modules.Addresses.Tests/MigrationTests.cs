@@ -17,7 +17,7 @@ public sealed class MigrationTests
         await db.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
         var names = await db.AddressTypes.OrderBy(t => t.Name).Select(t => t.Name).ToListAsync(TestContext.Current.CancellationToken);
-        Assert.Equal(["Billing", "Delivery", "Home", "Visiting"], names);
-        Assert.False(db.Database.HasPendingModelChanges());
+        names.ShouldBe(["Billing", "Delivery", "Home", "Visiting"]);
+        db.Database.HasPendingModelChanges().ShouldBeFalse();
     }
 }

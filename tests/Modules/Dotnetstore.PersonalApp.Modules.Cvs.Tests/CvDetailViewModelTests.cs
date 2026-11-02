@@ -27,13 +27,13 @@ public sealed class CvDetailViewModelTests : IDisposable
     {
         var viewModel = await OpenAsync();
 
-        Assert.Equal("Anna Berg", viewModel.FullName);
-        Assert.Equal("AB", viewModel.Initials);
-        Assert.Equal("1990-05-17", viewModel.DateOfBirth);
-        Assert.Equal("Ten years of experience.", viewModel.Summary);
-        Assert.Equal("No driver licence", viewModel.DriverLicence);
-        Assert.True(viewModel.HasNoPhoto);
-        Assert.All(viewModel.Sections, s => Assert.True(s.IsEmpty));
+        viewModel.FullName.ShouldBe("Anna Berg");
+        viewModel.Initials.ShouldBe("AB");
+        viewModel.DateOfBirth.ShouldBe("1990-05-17");
+        viewModel.Summary.ShouldBe("Ten years of experience.");
+        viewModel.DriverLicence.ShouldBe("No driver licence");
+        viewModel.HasNoPhoto.ShouldBeTrue();
+        viewModel.Sections.ShouldAllBe(s => s.IsEmpty);
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public sealed class CvDetailViewModelTests : IDisposable
         var viewModel = await OpenAsync();
 
         viewModel.Work.AddCommand.Execute(null);
-        var editor = Assert.IsType<PeriodEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<PeriodEditorViewModel>();
         editor.Organisation = "Acme";
         editor.Position = "Developer";
         editor.StartDate = new DateTime(2020, 1, 1);
@@ -50,11 +50,11 @@ public sealed class CvDetailViewModelTests : IDisposable
         await editor.SaveCommand.ExecuteAsync(null);
         await Task.Delay(200, Ct);
 
-        Assert.Null(viewModel.Editor);
-        var item = Assert.Single(viewModel.Work.Items);
-        Assert.Equal("Developer", item.Title);
-        Assert.Equal("Acme", item.Subtitle);
-        Assert.Equal("2020-01 – present", item.Meta);
+        viewModel.Editor.ShouldBeNull();
+        var item = viewModel.Work.Items.ShouldHaveSingleItem();
+        item.Title.ShouldBe("Developer");
+        item.Subtitle.ShouldBe("Acme");
+        item.Meta.ShouldBe("2020-01 – present");
     }
 
     [Fact]
@@ -62,12 +62,12 @@ public sealed class CvDetailViewModelTests : IDisposable
     {
         var viewModel = await OpenAsync();
         viewModel.Work.AddCommand.Execute(null);
-        var editor = Assert.IsType<PeriodEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<PeriodEditorViewModel>();
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Start date is required.", editor.ErrorMessage);
-        Assert.Same(editor, viewModel.Editor);
+        editor.ErrorMessage.ShouldBe("Start date is required.");
+        viewModel.Editor.ShouldBeSameAs(editor);
     }
 
     [Fact]
@@ -75,20 +75,20 @@ public sealed class CvDetailViewModelTests : IDisposable
     {
         var viewModel = await OpenAsync();
         viewModel.Languages.AddCommand.Execute(null);
-        var add = Assert.IsType<LanguageEditorViewModel>(viewModel.Editor);
+        var add = viewModel.Editor.ShouldBeOfType<LanguageEditorViewModel>();
         add.Language = "English";
         await add.SaveCommand.ExecuteAsync(null);
         await Task.Delay(200, Ct);
 
         viewModel.Languages.Items[0].EditCommand.Execute(null);
-        var edit = Assert.IsType<LanguageEditorViewModel>(viewModel.Editor);
-        Assert.True(edit.CanDelete);
+        var edit = viewModel.Editor.ShouldBeOfType<LanguageEditorViewModel>();
+        edit.CanDelete.ShouldBeTrue();
         edit.RequestDeleteCommand.Execute(null);
         await edit.ConfirmDeleteCommand.ExecuteAsync(null);
         await Task.Delay(200, Ct);
 
-        Assert.Null(viewModel.Editor);
-        Assert.Empty(viewModel.Languages.Items);
+        viewModel.Editor.ShouldBeNull();
+        viewModel.Languages.Items.ShouldBeEmpty();
     }
 
     [Fact]
@@ -97,13 +97,13 @@ public sealed class CvDetailViewModelTests : IDisposable
         var viewModel = await OpenAsync();
 
         viewModel.EditDriverLicenceCommand.Execute(null);
-        var editor = Assert.IsType<DriverLicenceEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<DriverLicenceEditorViewModel>();
         editor.Options.Single(o => o.Code == "B").IsSelected = true;
         editor.Options.Single(o => o.Code == "BE").IsSelected = true;
         await editor.SaveCommand.ExecuteAsync(null);
         await Task.Delay(200, Ct);
 
-        Assert.Equal("B, BE", viewModel.DriverLicence);
+        viewModel.DriverLicence.ShouldBe("B, BE");
     }
 
     [Fact]
@@ -113,10 +113,10 @@ public sealed class CvDetailViewModelTests : IDisposable
         _fixture.FileOpen.Next = new PickedFile("me.png", new byte[] { 0x89, 0x50, 0x4E, 0x47, 1, 2, 3 });
 
         await viewModel.ChoosePhotoCommand.ExecuteAsync(null);
-        Assert.False(viewModel.HasNoPhoto);
+        viewModel.HasNoPhoto.ShouldBeFalse();
 
         await viewModel.RemovePhotoCommand.ExecuteAsync(null);
-        Assert.True(viewModel.HasNoPhoto);
+        viewModel.HasNoPhoto.ShouldBeTrue();
     }
 
     [Fact]
@@ -127,8 +127,8 @@ public sealed class CvDetailViewModelTests : IDisposable
 
         await viewModel.ChoosePhotoCommand.ExecuteAsync(null);
 
-        Assert.True(viewModel.HasNoPhoto);
-        Assert.NotNull(viewModel.StatusMessage);
+        viewModel.HasNoPhoto.ShouldBeTrue();
+        viewModel.StatusMessage.ShouldNotBeNull();
     }
 
     [Fact]
@@ -138,9 +138,9 @@ public sealed class CvDetailViewModelTests : IDisposable
         await AddJobAsync(viewModel, "Acme", "C#, SQL");
         await AddJobAsync(viewModel, "Globex", "c#, Docker");
 
-        Assert.Equal(["C# ×2", "Docker", "SQL"], viewModel.Technologies.Select(t => t.Text));
-        Assert.False(viewModel.HasNoTechnologies);
-        Assert.Equal(["C#", "SQL"], viewModel.Work.Items.Single(i => i.Subtitle == "Acme").Tags);
+        viewModel.Technologies.Select(t => t.Text).ShouldBe(["C# ×2", "Docker", "SQL"]);
+        viewModel.HasNoTechnologies.ShouldBeFalse();
+        viewModel.Work.Items.Single(i => i.Subtitle == "Acme").Tags.ShouldBe(["C#", "SQL"]);
     }
 
     [Fact]
@@ -149,16 +149,16 @@ public sealed class CvDetailViewModelTests : IDisposable
         var viewModel = await OpenAsync();
 
         viewModel.Work.AddCommand.Execute(null);
-        Assert.True(Assert.IsType<PeriodEditorViewModel>(viewModel.Editor).ShowTechnologies);
+        (viewModel.Editor.ShouldBeOfType<PeriodEditorViewModel>().ShowTechnologies).ShouldBeTrue();
 
         viewModel.Education.AddCommand.Execute(null);
-        Assert.False(Assert.IsType<PeriodEditorViewModel>(viewModel.Editor).ShowTechnologies);
+        (viewModel.Editor.ShouldBeOfType<PeriodEditorViewModel>().ShowTechnologies).ShouldBeFalse();
     }
 
     private static async Task AddJobAsync(CvDetailViewModel viewModel, string employer, string technologies)
     {
         viewModel.Work.AddCommand.Execute(null);
-        var editor = Assert.IsType<PeriodEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<PeriodEditorViewModel>();
         editor.Organisation = employer;
         editor.Position = "Developer";
         editor.StartDate = new DateTime(2020, 1, 1);

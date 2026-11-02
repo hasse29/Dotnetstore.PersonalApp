@@ -55,19 +55,19 @@ public sealed class MailboxFeatureTests : IDisposable
             new SendEmail.Command(_user, account.Id, "bo@example.com", "Report", "<b>Hi</b>", true, [new AttachmentInput("report.pdf", [9, 9])]),
             Ct);
 
-        Assert.True(result.IsSuccess);
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.True(sent.IsHtml);
-        var attachment = Assert.Single(sent.Attachments);
-        Assert.Equal("application/pdf", attachment.ContentType);
+        result.IsSuccess.ShouldBeTrue();
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.IsHtml.ShouldBeTrue();
+        var attachment = sent.Attachments.ShouldHaveSingleItem();
+        attachment.ContentType.ShouldBe("application/pdf");
 
         var list = (await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, account.Id), Ct)).Value;
         var full = (await _fixture.GetSent.HandleAsync(new GetSentMessage.Query(list.Items[0].Id, _user), Ct)).Value;
-        Assert.Equal(string.Empty, list.Items[0].Body);
-        Assert.Equal("<b>Hi</b>", full.Body);
-        Assert.True(full.IsHtml);
-        Assert.Equal("bo@example.com", full.To);
-        Assert.Equal(("report.pdf", 2), (Assert.Single(full.Attachments).FileName, Assert.Single(full.Attachments).Size));
+        list.Items[0].Body.ShouldBe(string.Empty);
+        full.Body.ShouldBe("<b>Hi</b>");
+        full.IsHtml.ShouldBeTrue();
+        full.To.ShouldBe("bo@example.com");
+        (full.Attachments.ShouldHaveSingleItem().FileName, full.Attachments.ShouldHaveSingleItem().Size).ShouldBe(("report.pdf", 2));
     }
 
     [Fact]
@@ -79,7 +79,7 @@ public sealed class MailboxFeatureTests : IDisposable
         await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "x"), Ct);
 
         var list = (await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, account.Id), Ct)).Value;
-        Assert.Equal(0, list.TotalCount);
+        list.TotalCount.ShouldBe(0);
     }
 
     [Fact]
@@ -99,10 +99,10 @@ public sealed class MailboxFeatureTests : IDisposable
         var tooBig = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "x", false, big), Ct);
         var tooBigTogether = await _fixture.Send.HandleAsync(new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "x", false, together), Ct);
 
-        Assert.Equal("email_too_many_attachments", tooMany.Error.Code);
-        Assert.Equal("email_attachment_too_large", tooBig.Error.Code);
-        Assert.Equal("email_attachments_too_large", tooBigTogether.Error.Code);
-        Assert.Empty(_fixture.Gateway.Sent);
+        tooMany.Error.Code.ShouldBe("email_too_many_attachments");
+        tooBig.Error.Code.ShouldBe("email_attachment_too_large");
+        tooBigTogether.Error.Code.ShouldBe("email_attachments_too_large");
+        _fixture.Gateway.Sent.ShouldBeEmpty();
     }
 
     [Fact]
@@ -118,11 +118,11 @@ public sealed class MailboxFeatureTests : IDisposable
         var deletedByStranger = await _fixture.DeleteSent.HandleAsync(new DeleteSentMessage.Command(id, stranger), Ct);
         var deleted = await _fixture.DeleteSent.HandleAsync(new DeleteSentMessage.Command(id, _user), Ct);
 
-        Assert.Equal("email_account_not_found", listed.Error.Code);
-        Assert.Equal("email_message_not_found", got.Error.Code);
-        Assert.Equal("email_message_not_found", deletedByStranger.Error.Code);
-        Assert.True(deleted.IsSuccess);
-        Assert.Equal(0, (await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, mine.Id), Ct)).Value.TotalCount);
+        listed.Error.Code.ShouldBe("email_account_not_found");
+        got.Error.Code.ShouldBe("email_message_not_found");
+        deletedByStranger.Error.Code.ShouldBe("email_message_not_found");
+        deleted.IsSuccess.ShouldBeTrue();
+        (await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, mine.Id), Ct)).Value.TotalCount.ShouldBe(0);
     }
 
     [Fact]
@@ -138,12 +138,12 @@ public sealed class MailboxFeatureTests : IDisposable
         var stranger = await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(message.Attachments[0].Id, Guid.NewGuid()), Ct);
         var missing = await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(Guid.NewGuid(), _user), Ct);
 
-        Assert.Equal(["a.pdf", "b.pdf"], message.Attachments.Select(a => a.FileName));
-        Assert.Equal(4, message.Attachments[0].Size);
-        Assert.Equal([1, 2, 3, 4], content.Value.Content);
-        Assert.Equal("application/pdf", content.Value.ContentType);
-        Assert.Equal("email_attachment_not_found", stranger.Error.Code);
-        Assert.Equal("email_attachment_not_found", missing.Error.Code);
+        message.Attachments.Select(a => a.FileName).ShouldBe(["a.pdf", "b.pdf"]);
+        message.Attachments[0].Size.ShouldBe(4);
+        content.Value.Content.ShouldBe([1, 2, 3, 4]);
+        content.Value.ContentType.ShouldBe("application/pdf");
+        stranger.Error.Code.ShouldBe("email_attachment_not_found");
+        missing.Error.Code.ShouldBe("email_attachment_not_found");
     }
 
     [Fact]
@@ -156,7 +156,7 @@ public sealed class MailboxFeatureTests : IDisposable
 
         var message = (await _fixture.GetMessage.HandleAsync(new GetEmailMessage.Query(summary.Id, _user), Ct)).Value;
 
-        Assert.Equal("a.pdf", Assert.Single(message.Attachments).FileName);
+        message.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("a.pdf");
     }
 
     [Fact]
@@ -172,10 +172,10 @@ public sealed class MailboxFeatureTests : IDisposable
         var refetched = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
         var again = await _fixture.DeleteMessage.HandleAsync(new DeleteEmailMessage.Command(toDelete.Id, _user), Ct);
 
-        Assert.True(deleted.IsSuccess);
-        Assert.Equal(0, refetched.Value);
-        Assert.Equal("email_message_not_found", again.Error.Code);
-        Assert.Equal(1, await _fixture.MessageCountAsync());
+        deleted.IsSuccess.ShouldBeTrue();
+        refetched.Value.ShouldBe(0);
+        again.Error.Code.ShouldBe("email_message_not_found");
+        (await _fixture.MessageCountAsync()).ShouldBe(1);
     }
 
     [Fact]
@@ -191,17 +191,17 @@ public sealed class MailboxFeatureTests : IDisposable
         await _fixture.DeleteMessage.HandleAsync(new DeleteEmailMessage.Command(summary.Id, _user), Ct);
         var attachment = await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(attachmentId, _user), Ct);
 
-        Assert.Equal("email_message_not_found", stranger.Error.Code);
-        Assert.Equal("email_attachment_not_found", attachment.Error.Code);
+        stranger.Error.Code.ShouldBe("email_message_not_found");
+        attachment.Error.Code.ShouldBe("email_attachment_not_found");
     }
 
     [Fact]
     public void MessageRulesPickTheAddressAndAvoidDoublePrefixes()
     {
-        Assert.Equal("bo@example.com", MessageRules.ExtractAddress("Bo <bo@example.com>"));
-        Assert.Equal("bo@example.com", MessageRules.ExtractAddress("bo@example.com"));
-        Assert.Equal("Re: Hi", MessageRules.WithPrefix("Re: ", "Hi"));
-        Assert.Equal("RE: Hi", MessageRules.WithPrefix("Re: ", "RE: Hi"));
+        MessageRules.ExtractAddress("Bo <bo@example.com>").ShouldBe("bo@example.com");
+        MessageRules.ExtractAddress("bo@example.com").ShouldBe("bo@example.com");
+        MessageRules.WithPrefix("Re: ", "Hi").ShouldBe("Re: Hi");
+        MessageRules.WithPrefix("Re: ", "RE: Hi").ShouldBe("RE: Hi");
     }
 
     [Fact]
@@ -215,13 +215,13 @@ public sealed class MailboxFeatureTests : IDisposable
 
         await inbox.ReplyCommand.ExecuteAsync(null);
 
-        var composer = Assert.IsType<ComposeViewModel>(inbox.Composer);
-        Assert.Equal("bo@example.com", composer.To);
-        Assert.Equal("Re: Hello a", composer.Subject);
-        Assert.Contains("> Line one\n> Line two", composer.Body, StringComparison.Ordinal);
-        Assert.Contains("Bo <bo@example.com> wrote:", composer.Body, StringComparison.Ordinal);
-        Assert.Equal("anna@example.com", composer.SelectedAccount?.EmailAddress);
-        Assert.True(composer.IsEmbedded);
+        var composer = inbox.Composer.ShouldBeOfType<ComposeViewModel>();
+        composer.To.ShouldBe("bo@example.com");
+        composer.Subject.ShouldBe("Re: Hello a");
+        composer.Body.ShouldContain("> Line one\n> Line two", Case.Sensitive);
+        composer.Body.ShouldContain("Bo <bo@example.com> wrote:", Case.Sensitive);
+        (composer.SelectedAccount?.EmailAddress).ShouldBe("anna@example.com");
+        composer.IsEmbedded.ShouldBeTrue();
     }
 
     [Fact]
@@ -233,16 +233,16 @@ public sealed class MailboxFeatureTests : IDisposable
         var inbox = await OpenFirstMessageAsync();
 
         await inbox.ForwardCommand.ExecuteAsync(null);
-        var composer = Assert.IsType<ComposeViewModel>(inbox.Composer);
+        var composer = inbox.Composer.ShouldBeOfType<ComposeViewModel>();
         composer.To = "cy@example.com";
         await composer.SendCommand.ExecuteAsync(null);
 
-        Assert.Null(inbox.Composer);
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.Equal("Fwd: Hello a", sent.Subject);
-        Assert.Contains("Forwarded message", sent.Body, StringComparison.Ordinal);
-        Assert.Equal("a.pdf", Assert.Single(sent.Attachments).FileName);
-        Assert.Equal("Message sent.", inbox.StatusMessage);
+        inbox.Composer.ShouldBeNull();
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.Subject.ShouldBe("Fwd: Hello a");
+        sent.Body.ShouldContain("Forwarded message", Case.Sensitive);
+        sent.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("a.pdf");
+        inbox.StatusMessage.ShouldBe("Message sent.");
     }
 
     [Fact]
@@ -256,8 +256,8 @@ public sealed class MailboxFeatureTests : IDisposable
 
         inbox.Composer!.CancelCommand.Execute(null);
 
-        Assert.Null(inbox.Composer);
-        Assert.NotNull(inbox.OpenMessage);
+        inbox.Composer.ShouldBeNull();
+        inbox.OpenMessage.ShouldNotBeNull();
     }
 
     [Fact]
@@ -268,13 +268,13 @@ public sealed class MailboxFeatureTests : IDisposable
         var inbox = await OpenFirstMessageAsync();
 
         inbox.RequestDeleteCommand.Execute(null);
-        Assert.True(inbox.IsConfirmingDelete);
+        inbox.IsConfirmingDelete.ShouldBeTrue();
         await inbox.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Single(inbox.Messages);
-        Assert.Null(inbox.OpenMessage);
-        Assert.False(inbox.IsConfirmingDelete);
-        Assert.Equal(1, await _fixture.MessageCountAsync());
+        inbox.Messages.ShouldHaveSingleItem();
+        inbox.OpenMessage.ShouldBeNull();
+        inbox.IsConfirmingDelete.ShouldBeFalse();
+        (await _fixture.MessageCountAsync()).ShouldBe(1);
     }
 
     [Fact]
@@ -284,13 +284,13 @@ public sealed class MailboxFeatureTests : IDisposable
         _fixture.Gateway.Mailbox.Add(Incoming("a", Pdf()));
         var inbox = await OpenFirstMessageAsync();
 
-        var row = Assert.Single(inbox.AttachmentRows);
+        var row = inbox.AttachmentRows.ShouldHaveSingleItem();
         row.SaveCommand.Execute(null);
         await Task.Delay(100, Ct);
 
-        Assert.Equal("a.pdf (4 B)", row.Label);
-        Assert.Equal("a.pdf", _fixture.FileSave.SavedName);
-        Assert.Equal([1, 2, 3, 4], _fixture.FileSave.SavedContent);
+        row.Label.ShouldBe("a.pdf (4 B)");
+        _fixture.FileSave.SavedName.ShouldBe("a.pdf");
+        _fixture.FileSave.SavedContent.ShouldBe([1, 2, 3, 4]);
     }
 
     [Fact]
@@ -303,16 +303,16 @@ public sealed class MailboxFeatureTests : IDisposable
         inbox.AutoRefresh = false;
         _fixture.Gateway.Mailbox.Add(Incoming("a"));
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
-        Assert.Empty(inbox.Messages);
-        Assert.Empty(_fixture.Gateway.Connections);
+        inbox.Messages.ShouldBeEmpty();
+        _fixture.Gateway.Connections.ShouldBeEmpty();
 
         inbox.AutoRefresh = true;
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
-        Assert.Single(inbox.Messages);
+        inbox.Messages.ShouldHaveSingleItem();
 
         var status = inbox.StatusMessage;
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
-        Assert.Equal(status, inbox.StatusMessage);
+        inbox.StatusMessage.ShouldBe(status);
     }
 
     [Fact]
@@ -326,12 +326,12 @@ public sealed class MailboxFeatureTests : IDisposable
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
         await Task.Delay(100, Ct);
 
-        Assert.Equal(2, inbox.Messages.Count);
-        Assert.Equal("Hello a", inbox.OpenMessage?.Subject);
+        inbox.Messages.Count.ShouldBe(2);
+        (inbox.OpenMessage?.Subject).ShouldBe("Hello a");
 
         _fixture.Gateway.Failure = new MailGatewayException("email_connection_failed", "down");
         await inbox.AutoRefreshCommand.ExecuteAsync(null);
-        Assert.True(inbox.StatusIsError);
+        inbox.StatusIsError.ShouldBeTrue();
     }
 
     [Fact]
@@ -349,11 +349,11 @@ public sealed class MailboxFeatureTests : IDisposable
         compose.Body = "<p>x</p>";
         await compose.SendCommand.ExecuteAsync(null);
 
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.True(sent.IsHtml);
-        Assert.Equal("two.txt", Assert.Single(sent.Attachments).FileName);
-        Assert.Empty(compose.Attachments);
-        Assert.False(compose.IsHtml);
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.IsHtml.ShouldBeTrue();
+        sent.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("two.txt");
+        compose.Attachments.ShouldBeEmpty();
+        compose.IsHtml.ShouldBeFalse();
     }
 
     [Fact]
@@ -365,16 +365,16 @@ public sealed class MailboxFeatureTests : IDisposable
 
         await sent.LoadCommand.ExecuteAsync(null);
         await Task.Delay(100, Ct);
-        sent.SelectedMessage = Assert.Single(sent.Messages);
+        sent.SelectedMessage = sent.Messages.ShouldHaveSingleItem();
         await Task.Delay(100, Ct);
 
-        Assert.Equal("1 sent message(s)", sent.StatusMessage);
-        Assert.Equal("Text", sent.OpenMessage?.Body);
-        Assert.Equal("r.txt (1 B)", Assert.Single(sent.AttachmentRows).Label);
+        sent.StatusMessage.ShouldBe("1 sent message(s)");
+        (sent.OpenMessage?.Body).ShouldBe("Text");
+        sent.AttachmentRows.ShouldHaveSingleItem().Label.ShouldBe("r.txt (1 B)");
 
         sent.RequestDeleteCommand.Execute(null);
         await sent.ConfirmDeleteCommand.ExecuteAsync(null);
-        Assert.Empty(sent.Messages);
-        Assert.Null(sent.OpenMessage);
+        sent.Messages.ShouldBeEmpty();
+        sent.OpenMessage.ShouldBeNull();
     }
 }

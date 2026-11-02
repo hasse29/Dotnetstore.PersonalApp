@@ -17,7 +17,7 @@ public sealed class UserSettingsTests : IDisposable
     [Fact]
     public void LoadsDefaultsWhenNothingHasBeenSaved()
     {
-        Assert.Null(UserSettings.Load(_directory).Culture);
+        UserSettings.Load(_directory).Culture.ShouldBeNull();
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public sealed class UserSettingsTests : IDisposable
     {
         new UserSettings { Culture = "sv" }.Save(_directory);
 
-        Assert.Equal("sv", UserSettings.Load(_directory).Culture);
+        UserSettings.Load(_directory).Culture.ShouldBe("sv");
     }
 
     [Fact]
@@ -34,6 +34,6 @@ public sealed class UserSettingsTests : IDisposable
         Directory.CreateDirectory(_directory);
         File.WriteAllText(Path.Combine(_directory, "settings.json"), "{ not json");
 
-        Assert.Null(UserSettings.Load(_directory).Culture);
+        UserSettings.Load(_directory).Culture.ShouldBeNull();
     }
 }

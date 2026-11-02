@@ -26,11 +26,11 @@ public sealed class ClientPhotoTests : IDisposable
     {
         var id = await CreateClientAsync();
 
-        Assert.True((await Set.HandleAsync(new SetClientPhoto.Command(id, Png), Ct)).IsSuccess);
-        Assert.Equal(Png, (await Get.HandleAsync(new GetClientPhoto.Query(id), Ct)).Value);
+        (await Set.HandleAsync(new SetClientPhoto.Command(id, Png), Ct)).IsSuccess.ShouldBeTrue();
+        (await Get.HandleAsync(new GetClientPhoto.Query(id), Ct)).Value.ShouldBe(Png);
 
         await Set.HandleAsync(new SetClientPhoto.Command(id, null), Ct);
-        Assert.Null((await Get.HandleAsync(new GetClientPhoto.Query(id), Ct)).Value);
+        (await Get.HandleAsync(new GetClientPhoto.Query(id), Ct)).Value.ShouldBeNull();
     }
 
     [Fact]
@@ -41,8 +41,8 @@ public sealed class ClientPhotoTests : IDisposable
         var notAnImage = await Set.HandleAsync(new SetClientPhoto.Command(id, [1, 2, 3, 4]), Ct);
         var tooLarge = await Set.HandleAsync(new SetClientPhoto.Command(id, [.. Png, .. new byte[PhotoRules.MaxBytes]]), Ct);
 
-        Assert.Equal("photo_invalid", notAnImage.Error.Code);
-        Assert.Equal("photo_too_large", tooLarge.Error.Code);
+        notAnImage.Error.Code.ShouldBe("photo_invalid");
+        tooLarge.Error.Code.ShouldBe("photo_too_large");
     }
 
     [Fact]
@@ -51,8 +51,8 @@ public sealed class ClientPhotoTests : IDisposable
         var set = await Set.HandleAsync(new SetClientPhoto.Command(Guid.NewGuid(), Png), Ct);
         var get = await Get.HandleAsync(new GetClientPhoto.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("client_not_found", set.Error.Code);
-        Assert.Equal("client_not_found", get.Error.Code);
+        set.Error.Code.ShouldBe("client_not_found");
+        get.Error.Code.ShouldBe("client_not_found");
     }
 
     [Fact]
@@ -65,9 +65,9 @@ public sealed class ClientPhotoTests : IDisposable
             new UpdateClient.Command(created.Id, "Renamed AB", created.OrganizationNumber, null, null, null, null, null), Ct);
         var listed = await _fixture.List.HandleAsync(new ListClients.Query(), Ct);
 
-        Assert.True(updated.IsSuccess);
-        Assert.Single(listed.Items);
-        Assert.Equal(Png, (await Get.HandleAsync(new GetClientPhoto.Query(created.Id), Ct)).Value);
+        updated.IsSuccess.ShouldBeTrue();
+        listed.Items.ShouldHaveSingleItem();
+        (await Get.HandleAsync(new GetClientPhoto.Query(created.Id), Ct)).Value.ShouldBe(Png);
     }
 
     [Fact]
@@ -78,9 +78,9 @@ public sealed class ClientPhotoTests : IDisposable
         await Set.HandleAsync(new SetClientPhoto.Command(id, Png), Ct);
         var listed = (await _fixture.List.HandleAsync(new ListClients.Query(), Ct)).Items.Single();
 
-        Assert.NotNull(listed.Thumbnail);
+        listed.Thumbnail.ShouldNotBeNull();
         using var thumbnail = SKBitmap.Decode(listed.Thumbnail);
-        Assert.Equal((PhotoThumbnail.Size, PhotoThumbnail.Size), (thumbnail.Width, thumbnail.Height));
+        (thumbnail.Width, thumbnail.Height).ShouldBe((PhotoThumbnail.Size, PhotoThumbnail.Size));
     }
 
     [Fact]
@@ -90,6 +90,6 @@ public sealed class ClientPhotoTests : IDisposable
 
         var result = await Set.HandleAsync(new SetClientPhoto.Command(id, [0x89, 0x50, 0x4E, 0x47, 0x00, 0x00]), Ct);
 
-        Assert.Equal("photo_invalid", result.Error.Code);
+        result.Error.Code.ShouldBe("photo_invalid");
     }
 }

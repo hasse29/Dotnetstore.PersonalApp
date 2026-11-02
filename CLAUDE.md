@@ -15,7 +15,7 @@
 - **HybridCache** (+ Redis if distributed caching is ever needed)
 - **Auth** — none (desktop app; revisit if a remote backend is added)
 - **FluentValidation**, **Serilog**
-- **xUnit v3** (+ `Avalonia.Headless.XUnit` for UI tests)
+- **xUnit v3** (+ `Avalonia.Headless.XUnit` for UI tests); assertions use **Shouldly** (`x.ShouldBe(...)`), never `Assert.*`
 - Central package management: add versions to `Directory.Packages.props`, reference without a version in the csproj
 
 ## Architecture

@@ -16,13 +16,13 @@ public sealed class UserHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(UsersFixture.ValidCommand("Ada@Example.COM"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("ada@example.com", result.Value.Username);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Username.ShouldBe("ada@example.com");
 
         await using var db = await _fixture.DbFactory.CreateDbContextAsync(Ct);
         var stored = db.Users.Single();
-        Assert.NotEqual("correct horse battery", stored.PasswordHash);
-        Assert.NotEmpty(stored.PasswordHash);
+        stored.PasswordHash.ShouldNotBe("correct horse battery");
+        stored.PasswordHash.ShouldNotBeEmpty();
     }
 
     [Theory]
@@ -36,8 +36,8 @@ public sealed class UserHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreateUser.Command(first, last, username, password, new DateOnly(1990, 1, 1)), Ct);
 
-        Assert.False(result.IsSuccess);
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.IsSuccess.ShouldBeFalse();
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public sealed class UserHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(command, Ct);
 
-        Assert.Equal("date_of_birth_future", result.Error.Code);
+        result.Error.Code.ShouldBe("date_of_birth_future");
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public sealed class UserHandlerTests : IDisposable
 
         var result = await _fixture.Create.HandleAsync(UsersFixture.ValidCommand("ADA@example.com"), Ct);
 
-        Assert.Equal("user_conflict", result.Error.Code);
+        result.Error.Code.ShouldBe("user_conflict");
     }
 
     [Fact]
@@ -65,7 +65,7 @@ public sealed class UserHandlerTests : IDisposable
     {
         var result = await _fixture.Get.HandleAsync(new GetUser.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("user_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("user_not_found");
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public sealed class UserHandlerTests : IDisposable
 
         var result = await _fixture.Get.HandleAsync(new GetUser.Query(created.Id), Ct);
 
-        Assert.Equal("Ada Lovelace", result.Value.FullName);
+        result.Value.FullName.ShouldBe("Ada Lovelace");
     }
 
     [Fact]
@@ -87,9 +87,9 @@ public sealed class UserHandlerTests : IDisposable
         var all = await _fixture.List.HandleAsync(new ListUsers.Query(), Ct);
         var filtered = await _fixture.List.HandleAsync(new ListUsers.Query("turing"), Ct);
 
-        Assert.Equal(["Lovelace", "Turing"], all.Items.Select(u => u.LastName));
-        Assert.Equal(1, filtered.TotalCount);
-        Assert.Equal("Alan", filtered.Items[0].FirstName);
+        all.Items.Select(u => u.LastName).ShouldBe(["Lovelace", "Turing"]);
+        filtered.TotalCount.ShouldBe(1);
+        filtered.Items[0].FirstName.ShouldBe("Alan");
     }
 
     [Fact]
@@ -97,8 +97,8 @@ public sealed class UserHandlerTests : IDisposable
     {
         var response = await _fixture.List.HandleAsync(new ListUsers.Query(PageSize: 10_000), Ct);
 
-        Assert.Empty(response.Items);
-        Assert.Equal(0, response.TotalCount);
+        response.Items.ShouldBeEmpty();
+        response.TotalCount.ShouldBe(0);
     }
 
     [Fact]
@@ -114,10 +114,10 @@ public sealed class UserHandlerTests : IDisposable
         var result = await _fixture.Update.HandleAsync(
             new UpdateUser.Command(created.Id, "Augusta", "King", "augusta@example.com", null, new DateOnly(1950, 12, 10)), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Augusta King", result.Value.FullName);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.FullName.ShouldBe("Augusta King");
         await using var verify = await _fixture.DbFactory.CreateDbContextAsync(Ct);
-        Assert.Equal(originalHash, verify.Users.Single().PasswordHash);
+        verify.Users.Single().PasswordHash.ShouldBe(originalHash);
     }
 
     [Fact]
@@ -134,7 +134,7 @@ public sealed class UserHandlerTests : IDisposable
             new UpdateUser.Command(created.Id, "Ada", "Lovelace", "ada@example.com", "a brand new password", new DateOnly(1990, 12, 10)), Ct);
 
         await using var verify = await _fixture.DbFactory.CreateDbContextAsync(Ct);
-        Assert.NotEqual(originalHash, verify.Users.Single().PasswordHash);
+        verify.Users.Single().PasswordHash.ShouldNotBe(originalHash);
     }
 
     [Fact]
@@ -146,7 +146,7 @@ public sealed class UserHandlerTests : IDisposable
         var result = await _fixture.Update.HandleAsync(
             new UpdateUser.Command(other.Id, "Alan", "Turing", "ada@example.com", null, new DateOnly(1912, 6, 23)), Ct);
 
-        Assert.Equal("user_conflict", result.Error.Code);
+        result.Error.Code.ShouldBe("user_conflict");
     }
 
     [Fact]
@@ -155,7 +155,7 @@ public sealed class UserHandlerTests : IDisposable
         var result = await _fixture.Update.HandleAsync(
             new UpdateUser.Command(Guid.NewGuid(), "Ada", "Lovelace", "ada@example.com", null, new DateOnly(1990, 1, 1)), Ct);
 
-        Assert.Equal("user_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("user_not_found");
     }
 
     [Fact]
@@ -166,8 +166,8 @@ public sealed class UserHandlerTests : IDisposable
         var first = await _fixture.Delete.HandleAsync(new DeleteUser.Command(created.Id), Ct);
         var second = await _fixture.Delete.HandleAsync(new DeleteUser.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("user_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("user_not_found");
     }
 
     [Fact]
@@ -178,7 +178,7 @@ public sealed class UserHandlerTests : IDisposable
         await _fixture.Delete.HandleAsync(new DeleteUser.Command(created.Id), Ct);
         await _fixture.Delete.HandleAsync(new DeleteUser.Command(created.Id), Ct);
 
-        var published = Assert.Single(_fixture.Events.Published);
-        Assert.Equal(new UserDeleted(created.Id), published);
+        var published = _fixture.Events.Published.ShouldHaveSingleItem();
+        published.ShouldBe(new UserDeleted(created.Id));
     }
 }

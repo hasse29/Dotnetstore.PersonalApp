@@ -18,11 +18,11 @@ public sealed class CvHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreateCv.Command(_user, "  Backend developer ", "  ", " Summary "), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_user, result.Value.UserId);
-        Assert.Equal("Backend developer", result.Value.Title);
-        Assert.Null(result.Value.TargetJob);
-        Assert.Equal("Summary", result.Value.Summary);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.UserId.ShouldBe(_user);
+        result.Value.Title.ShouldBe("Backend developer");
+        result.Value.TargetJob.ShouldBeNull();
+        result.Value.Summary.ShouldBe("Summary");
     }
 
     [Theory]
@@ -32,7 +32,7 @@ public sealed class CvHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(_user, title), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -43,10 +43,10 @@ public sealed class CvHandlerTests : IDisposable
         var longSummary = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(_user) with { Summary = new string('a', 4001) }, Ct);
         var noUser = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(Guid.Empty), Ct);
 
-        Assert.Equal("cv_title_too_long", longTitle.Error.Code);
-        Assert.Equal("cv_target_job_too_long", longJob.Error.Code);
-        Assert.Equal("cv_summary_too_long", longSummary.Error.Code);
-        Assert.Equal("cv_user_required", noUser.Error.Code);
+        longTitle.Error.Code.ShouldBe("cv_title_too_long");
+        longJob.Error.Code.ShouldBe("cv_target_job_too_long");
+        longSummary.Error.Code.ShouldBe("cv_summary_too_long");
+        noUser.Error.Code.ShouldBe("cv_user_required");
     }
 
     [Fact]
@@ -57,9 +57,9 @@ public sealed class CvHandlerTests : IDisposable
         var duplicate = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(_user, "backend"), Ct);
         var otherUser = await _fixture.Create.HandleAsync(CvsFixture.ValidCv(Guid.NewGuid(), "Backend"), Ct);
 
-        Assert.True(other.IsSuccess);
-        Assert.Equal("cv_conflict", duplicate.Error.Code);
-        Assert.True(otherUser.IsSuccess);
+        other.IsSuccess.ShouldBeTrue();
+        duplicate.Error.Code.ShouldBe("cv_conflict");
+        otherUser.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -71,8 +71,8 @@ public sealed class CvHandlerTests : IDisposable
 
         var response = await _fixture.List.HandleAsync(new ListCvs.Query(_user), Ct);
 
-        Assert.Equal(2, response.TotalCount);
-        Assert.Equal(["alpha", "Zebra"], response.Items.Select(c => c.Title));
+        response.TotalCount.ShouldBe(2);
+        response.Items.Select(c => c.Title).ShouldBe(["alpha", "Zebra"]);
     }
 
     [Fact]
@@ -84,10 +84,10 @@ public sealed class CvHandlerTests : IDisposable
         var renamed = await _fixture.Update.HandleAsync(new UpdateCv.Command(first.Id, _user, "ONE", "Job", null), Ct);
         var clash = await _fixture.Update.HandleAsync(new UpdateCv.Command(first.Id, _user, "two", "Job", null), Ct);
 
-        Assert.True(renamed.IsSuccess);
-        Assert.Equal("ONE", renamed.Value.Title);
-        Assert.Null(renamed.Value.Summary);
-        Assert.Equal("cv_conflict", clash.Error.Code);
+        renamed.IsSuccess.ShouldBeTrue();
+        renamed.Value.Title.ShouldBe("ONE");
+        renamed.Value.Summary.ShouldBeNull();
+        clash.Error.Code.ShouldBe("cv_conflict");
     }
 
     [Fact]
@@ -100,10 +100,10 @@ public sealed class CvHandlerTests : IDisposable
         var update = await _fixture.Update.HandleAsync(new UpdateCv.Command(cv.Id, intruder, "Mine now", null, null), Ct);
         var delete = await _fixture.Delete.HandleAsync(new DeleteCv.Command(cv.Id, intruder), Ct);
 
-        Assert.Equal("cv_not_found", get.Error.Code);
-        Assert.Equal("cv_not_found", update.Error.Code);
-        Assert.Equal("cv_not_found", delete.Error.Code);
-        Assert.True((await _fixture.Get.HandleAsync(new GetCv.Query(cv.Id, _user), Ct)).IsSuccess);
+        get.Error.Code.ShouldBe("cv_not_found");
+        update.Error.Code.ShouldBe("cv_not_found");
+        delete.Error.Code.ShouldBe("cv_not_found");
+        (await _fixture.Get.HandleAsync(new GetCv.Query(cv.Id, _user), Ct)).IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -114,8 +114,8 @@ public sealed class CvHandlerTests : IDisposable
         var result = await _fixture.Delete.HandleAsync(new DeleteCv.Command(cv.Id, _user), Ct);
         var again = await _fixture.Delete.HandleAsync(new DeleteCv.Command(cv.Id, _user), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("cv_not_found", again.Error.Code);
+        result.IsSuccess.ShouldBeTrue();
+        again.Error.Code.ShouldBe("cv_not_found");
     }
 
     [Fact]
@@ -128,7 +128,7 @@ public sealed class CvHandlerTests : IDisposable
 
         await new UserDeletedConsumer(_fixture.DeleteForUser).ConsumeAsync(new UserDeleted(_user), Ct);
 
-        Assert.Empty((await _fixture.List.HandleAsync(new ListCvs.Query(_user), Ct)).Items);
-        Assert.Single((await _fixture.List.HandleAsync(new ListCvs.Query(other), Ct)).Items);
+        (await _fixture.List.HandleAsync(new ListCvs.Query(_user), Ct)).Items.ShouldBeEmpty();
+        (await _fixture.List.HandleAsync(new ListCvs.Query(other), Ct)).Items.ShouldHaveSingleItem();
     }
 }

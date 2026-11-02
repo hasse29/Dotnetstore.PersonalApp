@@ -27,13 +27,13 @@ public sealed class SystemMailSenderTests : IDisposable
 
         var result = await Sender().SendAsync(Mail(), Ct);
 
-        Assert.True(result.IsSuccess);
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.Equal("system@example.com", sent.From);
-        Assert.Equal(["bo@example.com"], sent.To);
-        var attachment = Assert.Single(sent.Attachments);
-        Assert.Equal("report.xlsx", attachment.FileName);
-        Assert.Equal(new byte[] { 1, 2, 3 }, attachment.Content);
+        result.IsSuccess.ShouldBeTrue();
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.From.ShouldBe("system@example.com");
+        sent.To.ShouldBe(["bo@example.com"]);
+        var attachment = sent.Attachments.ShouldHaveSingleItem();
+        attachment.FileName.ShouldBe("report.xlsx");
+        attachment.Content.ShouldBe(new byte[] { 1, 2, 3 });
     }
 
     [Fact]
@@ -44,8 +44,8 @@ public sealed class SystemMailSenderTests : IDisposable
 
         var result = await Sender().SendAsync(Mail(), Ct);
 
-        Assert.Equal("email_no_system_smtp", result.Error.Code);
-        Assert.Empty(_fixture.Gateway.Sent);
+        result.Error.Code.ShouldBe("email_no_system_smtp");
+        _fixture.Gateway.Sent.ShouldBeEmpty();
     }
 
     [Fact]
@@ -55,8 +55,8 @@ public sealed class SystemMailSenderTests : IDisposable
 
         var result = await Sender(signedIn: false).SendAsync(Mail(), Ct);
 
-        Assert.False(result.IsSuccess);
-        Assert.Empty(_fixture.Gateway.Sent);
+        result.IsSuccess.ShouldBeFalse();
+        _fixture.Gateway.Sent.ShouldBeEmpty();
     }
 
     private sealed class FakeCurrentUser(AuthenticatedUser? user) : ICurrentUser

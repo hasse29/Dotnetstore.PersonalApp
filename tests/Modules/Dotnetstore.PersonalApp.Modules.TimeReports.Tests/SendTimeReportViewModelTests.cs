@@ -49,8 +49,8 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         var viewModel = await OpenAsync();
 
-        Assert.Equal("info@acme.example", viewModel.SelectedAddress?.Address);
-        Assert.False(viewModel.HasNoAddresses);
+        (viewModel.SelectedAddress?.Address).ShouldBe("info@acme.example");
+        viewModel.HasNoAddresses.ShouldBeFalse();
     }
 
     [Fact]
@@ -61,8 +61,8 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         var viewModel = await OpenAsync();
 
-        Assert.Equal(2, viewModel.Addresses.Count);
-        Assert.Null(viewModel.SelectedAddress);
+        viewModel.Addresses.Count.ShouldBe(2);
+        viewModel.SelectedAddress.ShouldBeNull();
     }
 
     [Fact]
@@ -72,9 +72,9 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         await viewModel.SendCommand.ExecuteAsync(null);
 
-        Assert.True(viewModel.HasNoAddresses);
-        Assert.NotNull(viewModel.ErrorMessage);
-        Assert.Empty(_mailSender.Sent);
+        viewModel.HasNoAddresses.ShouldBeTrue();
+        viewModel.ErrorMessage.ShouldNotBeNull();
+        _mailSender.Sent.ShouldBeEmpty();
     }
 
     [Fact]
@@ -85,9 +85,9 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         var viewModel = await OpenAsync();
 
-        Assert.Equal([_acme.Name, "Anna Svensson"], viewModel.Recipients.Select(r => r.Name));
-        Assert.Equal(_acme.Id, viewModel.SelectedRecipient?.Id);
-        Assert.Contains(anna, viewModel.Recipients.Select(r => r.Id));
+        viewModel.Recipients.Select(r => r.Name).ShouldBe([_acme.Name, "Anna Svensson"]);
+        (viewModel.SelectedRecipient?.Id).ShouldBe(_acme.Id);
+        viewModel.Recipients.Select(r => r.Id).ShouldContain(anna);
     }
 
     [Fact]
@@ -101,8 +101,8 @@ public sealed class SendTimeReportViewModelTests : IDisposable
         var viewModel = await OpenAsync();
         viewModel.SelectedRecipient = viewModel.Recipients.Single(r => r.Id == anna);
 
-        Assert.Equal(["anna@acme.example"], viewModel.Addresses.Select(a => a.Address));
-        Assert.Equal("anna@acme.example", viewModel.SelectedAddress?.Address);
+        viewModel.Addresses.Select(a => a.Address).ShouldBe(["anna@acme.example"]);
+        (viewModel.SelectedAddress?.Address).ShouldBe("anna@acme.example");
     }
 
     [Fact]
@@ -117,14 +117,14 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         await viewModel.SendCommand.ExecuteAsync(null);
 
-        var mail = Assert.Single(_mailSender.Sent);
-        Assert.Equal("billing@acme.example", mail.To);
-        Assert.Equal("Time reports Acme AB 2026", mail.Subject);
-        var attachment = Assert.Single(mail.Attachments);
-        Assert.Equal("TimeReports Acme AB 2026.xlsx", attachment.FileName);
-        Assert.False(attachment.Content.IsEmpty);
-        Assert.Equal("billing@acme.example", sentTo);
-        Assert.Null(viewModel.ErrorMessage);
+        var mail = _mailSender.Sent.ShouldHaveSingleItem();
+        mail.To.ShouldBe("billing@acme.example");
+        mail.Subject.ShouldBe("Time reports Acme AB 2026");
+        var attachment = mail.Attachments.ShouldHaveSingleItem();
+        attachment.FileName.ShouldBe("TimeReports Acme AB 2026.xlsx");
+        attachment.Content.IsEmpty.ShouldBeFalse();
+        sentTo.ShouldBe("billing@acme.example");
+        viewModel.ErrorMessage.ShouldBeNull();
     }
 
     [Fact]
@@ -135,8 +135,8 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         await viewModel.SendCommand.ExecuteAsync(null);
 
-        Assert.Empty(_mailSender.Sent);
-        Assert.NotNull(viewModel.ErrorMessage);
+        _mailSender.Sent.ShouldBeEmpty();
+        viewModel.ErrorMessage.ShouldNotBeNull();
     }
 
     [Fact]
@@ -150,8 +150,8 @@ public sealed class SendTimeReportViewModelTests : IDisposable
 
         await viewModel.SendCommand.ExecuteAsync(null);
 
-        Assert.False(sent);
-        Assert.NotNull(viewModel.ErrorMessage);
+        sent.ShouldBeFalse();
+        viewModel.ErrorMessage.ShouldNotBeNull();
     }
 
     private sealed class FakeMailSender : ISystemMailSender

@@ -16,7 +16,7 @@ public sealed class MigrationTests
         await using var db = new CvsDbContext(options);
         await db.Database.MigrateAsync(TestContext.Current.CancellationToken);
 
-        Assert.Empty(await db.Cvs.ToListAsync(TestContext.Current.CancellationToken));
-        Assert.False(db.Database.HasPendingModelChanges());
+        (await db.Cvs.ToListAsync(TestContext.Current.CancellationToken)).ShouldBeEmpty();
+        db.Database.HasPendingModelChanges().ShouldBeFalse();
     }
 }

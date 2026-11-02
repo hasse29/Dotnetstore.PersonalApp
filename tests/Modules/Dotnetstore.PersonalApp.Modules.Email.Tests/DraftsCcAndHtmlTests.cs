@@ -35,8 +35,8 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
             Message("Bo <bo@example.com>", "anna@example.com, cy@example.com, BO@example.com", "di@example.com; Cy@example.com, anna@example.com"),
             "Anna@Example.com");
 
-        Assert.Equal("bo@example.com, cy@example.com", to);
-        Assert.Equal("di@example.com", cc);
+        to.ShouldBe("bo@example.com, cy@example.com");
+        cc.ShouldBe("di@example.com");
     }
 
     [Fact]
@@ -44,8 +44,8 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
     {
         var (to, cc) = InboxViewModel.ReplyAllRecipients(Message("Bo <bo@example.com>", string.Empty, string.Empty), "anna@example.com");
 
-        Assert.Equal("bo@example.com", to);
-        Assert.Equal(string.Empty, cc);
+        to.ShouldBe("bo@example.com");
+        cc.ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -57,13 +57,13 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
             new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "Text", false, null, "cy@example.com, bo@example.com"),
             Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(2, result.Value);
-        var sent = Assert.Single(_fixture.Gateway.Sent);
-        Assert.Equal(["cy@example.com"], sent.Cc);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ShouldBe(2);
+        var sent = _fixture.Gateway.Sent.ShouldHaveSingleItem();
+        sent.Cc.ShouldBe(["cy@example.com"]);
 
-        var stored = Assert.Single((await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, account.Id), Ct)).Value.Items);
-        Assert.Equal("cy@example.com", stored.Cc);
+        var stored = (await _fixture.ListSent.HandleAsync(new ListSentMessages.Query(_user, account.Id), Ct)).Value.Items.ShouldHaveSingleItem();
+        stored.Cc.ShouldBe("cy@example.com");
     }
 
     [Fact]
@@ -75,8 +75,8 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
             new SendEmail.Command(_user, account.Id, "bo@example.com", "Hi", "Text", false, null, "not an address"),
             Ct);
 
-        Assert.False(result.IsSuccess);
-        Assert.Empty(_fixture.Gateway.Sent);
+        result.IsSuccess.ShouldBeFalse();
+        _fixture.Gateway.Sent.ShouldBeEmpty();
     }
 
     [Fact]
@@ -89,11 +89,11 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
 
         await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
 
-        var summary = Assert.Single((await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(_user, account.Id), Ct)).Value.Items);
+        var summary = (await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(_user, account.Id), Ct)).Value.Items.ShouldHaveSingleItem();
         var message = (await _fixture.GetMessage.HandleAsync(new GetEmailMessage.Query(summary.Id, _user), Ct)).Value;
-        Assert.Equal("anna@example.com, cy@example.com", message.To);
-        Assert.Equal("di@example.com", message.Cc);
-        Assert.Equal("<p>Rich</p>", message.HtmlBody);
+        message.To.ShouldBe("anna@example.com, cy@example.com");
+        message.Cc.ShouldBe("di@example.com");
+        message.HtmlBody.ShouldBe("<p>Rich</p>");
     }
 
     [Fact]
@@ -103,12 +103,12 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
 
         var second = await _fixture.SaveDraft.HandleAsync(Draft(first.Id, body: "Changed", attachments: [new AttachmentInput("b.txt", [2, 2])]), Ct);
 
-        Assert.True(second.IsSuccess);
-        Assert.Equal(first.Id, second.Value.Id);
-        Assert.Single((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items);
+        second.IsSuccess.ShouldBeTrue();
+        second.Value.Id.ShouldBe(first.Id);
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items.ShouldHaveSingleItem();
         var full = (await _fixture.GetDraft.HandleAsync(new GetDraft.Query(first.Id, _user), Ct)).Value;
-        Assert.Equal("Changed", full.Body);
-        Assert.Equal("b.txt", Assert.Single(full.Attachments).FileName);
+        full.Body.ShouldBe("Changed");
+        full.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("b.txt");
     }
 
     [Fact]
@@ -116,7 +116,7 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
     {
         var result = await _fixture.SaveDraft.HandleAsync(new SaveDraft.Command(_user, null, null, string.Empty, string.Empty, string.Empty, string.Empty, false, null), Ct);
 
-        Assert.Equal("email_draft_empty", result.Error.Code);
+        result.Error.Code.ShouldBe("email_draft_empty");
     }
 
     [Fact]
@@ -126,12 +126,12 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
         var draft = (await _fixture.SaveDraft.HandleAsync(Draft(attachments: [new AttachmentInput("a.txt", [1])]), Ct)).Value;
         var attachment = (await _fixture.GetDraft.HandleAsync(new GetDraft.Query(draft.Id, _user), Ct)).Value.Attachments[0];
 
-        Assert.Empty((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(other), Ct)).Items);
-        Assert.Equal("email_draft_not_found", (await _fixture.GetDraft.HandleAsync(new GetDraft.Query(draft.Id, other), Ct)).Error.Code);
-        Assert.Equal("email_draft_not_found", (await _fixture.SaveDraft.HandleAsync(Draft(draft.Id, user: other), Ct)).Error.Code);
-        Assert.Equal("email_draft_not_found", (await _fixture.DeleteDraft.HandleAsync(new DeleteDraft.Command(draft.Id, other), Ct)).Error.Code);
-        Assert.False((await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(attachment.Id, other), Ct)).IsSuccess);
-        Assert.True((await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(attachment.Id, _user), Ct)).IsSuccess);
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(other), Ct)).Items.ShouldBeEmpty();
+        (await _fixture.GetDraft.HandleAsync(new GetDraft.Query(draft.Id, other), Ct)).Error.Code.ShouldBe("email_draft_not_found");
+        (await _fixture.SaveDraft.HandleAsync(Draft(draft.Id, user: other), Ct)).Error.Code.ShouldBe("email_draft_not_found");
+        (await _fixture.DeleteDraft.HandleAsync(new DeleteDraft.Command(draft.Id, other), Ct)).Error.Code.ShouldBe("email_draft_not_found");
+        (await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(attachment.Id, other), Ct)).IsSuccess.ShouldBeFalse();
+        (await _fixture.GetAttachment.HandleAsync(new GetEmailAttachment.Query(attachment.Id, _user), Ct)).IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -139,9 +139,9 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
     {
         var draft = (await _fixture.SaveDraft.HandleAsync(Draft(), Ct)).Value;
 
-        Assert.True((await _fixture.DeleteDraft.HandleAsync(new DeleteDraft.Command(draft.Id, _user), Ct)).IsSuccess);
+        (await _fixture.DeleteDraft.HandleAsync(new DeleteDraft.Command(draft.Id, _user), Ct)).IsSuccess.ShouldBeTrue();
 
-        Assert.Empty((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items);
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items.ShouldBeEmpty();
     }
 
     [Fact]
@@ -151,7 +151,7 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
 
         await _fixture.DeleteForUser.HandleAsync(new DeleteEmailAccountsForUser.Command(_user), Ct);
 
-        Assert.Empty((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items);
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items.ShouldBeEmpty();
     }
 
     private ComposeViewModel CreateCompose() =>
@@ -169,15 +169,15 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
 
         await composer.SaveDraftCommand.ExecuteAsync(null);
 
-        Assert.NotNull(composer.DraftId);
-        Assert.Equal("Draft saved.", composer.StatusMessage);
-        Assert.Single((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items);
+        composer.DraftId.ShouldNotBeNull();
+        composer.StatusMessage.ShouldBe("Draft saved.");
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items.ShouldHaveSingleItem();
 
         await composer.SendCommand.ExecuteAsync(null);
 
-        Assert.Null(composer.DraftId);
-        Assert.Empty((await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items);
-        Assert.Single(_fixture.Gateway.Sent);
+        composer.DraftId.ShouldBeNull();
+        (await _fixture.ListDrafts.HandleAsync(new ListDrafts.Query(_user), Ct)).Items.ShouldBeEmpty();
+        _fixture.Gateway.Sent.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -191,14 +191,14 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
         drafts.SelectedDraft = drafts.Drafts[0];
         await Task.Delay(200, Ct);
 
-        Assert.NotNull(drafts.Composer);
-        Assert.Equal("bo@example.com", drafts.Composer.To);
-        Assert.Equal("a.txt", Assert.Single(drafts.Composer.Attachments).FileName);
+        drafts.Composer.ShouldNotBeNull();
+        drafts.Composer.To.ShouldBe("bo@example.com");
+        drafts.Composer.Attachments.ShouldHaveSingleItem().FileName.ShouldBe("a.txt");
 
         await drafts.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Empty(drafts.Drafts);
-        Assert.Null(drafts.Composer);
+        drafts.Drafts.ShouldBeEmpty();
+        drafts.Composer.ShouldBeNull();
     }
 
     [Fact]
@@ -206,12 +206,12 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
     {
         var blocks = HtmlFormatter.Format("<h1>Title</h1><p>Hello <b>bold</b> and <i>italic</i> <a href=\"https://example.com\">link</a></p><ul><li>One</li><li>Two</li></ul>");
 
-        Assert.Equal(4, blocks.Count);
-        Assert.Equal(1, blocks[0].HeadingLevel);
-        Assert.Contains(blocks[1].Runs, r => r.Bold && r.Text == "bold");
-        Assert.Contains(blocks[1].Runs, r => r.Italic && r.Text == "italic");
-        Assert.Contains(blocks[1].Runs, r => r.Href == "https://example.com" && r.Underline);
-        Assert.StartsWith("• One", blocks[2].Runs[0].Text, StringComparison.Ordinal);
+        blocks.Count.ShouldBe(4);
+        blocks[0].HeadingLevel.ShouldBe(1);
+        blocks[1].Runs.ShouldContain(r => r.Bold && r.Text == "bold");
+        blocks[1].Runs.ShouldContain(r => r.Italic && r.Text == "italic");
+        blocks[1].Runs.ShouldContain(r => r.Href == "https://example.com" && r.Underline);
+        (blocks[2].Runs[0].Text).ShouldStartWith("• One", Case.Sensitive);
     }
 
     [Fact]
@@ -221,18 +221,18 @@ public sealed class DraftsCcAndHtmlTests : IDisposable
             "<style>p { color: red }</style><script>alert(1)</script><p>Safe</p><img src=\"https://tracker.example/p.gif\" alt=\"Logo\"><a href=\"javascript:alert(1)\">bad</a>");
 
         var text = string.Concat(blocks.SelectMany(b => b.Runs).Select(r => r.Text));
-        Assert.Contains("Safe", text, StringComparison.Ordinal);
-        Assert.Contains("[Logo]", text, StringComparison.Ordinal);
-        Assert.DoesNotContain("alert", text, StringComparison.Ordinal);
-        Assert.DoesNotContain("color", text, StringComparison.Ordinal);
-        Assert.DoesNotContain("tracker.example", text, StringComparison.Ordinal);
-        Assert.All(blocks.SelectMany(b => b.Runs), r => Assert.Null(r.Href));
+        text.ShouldContain("Safe", Case.Sensitive);
+        text.ShouldContain("[Logo]", Case.Sensitive);
+        text.ShouldNotContain("alert", Case.Sensitive);
+        text.ShouldNotContain("color", Case.Sensitive);
+        text.ShouldNotContain("tracker.example", Case.Sensitive);
+        blocks.SelectMany(b => b.Runs).ShouldAllBe(r => r.Href == null);
     }
 
     [Fact]
     public void FormatterOfNothingIsEmpty()
     {
-        Assert.Empty(HtmlFormatter.Format(null));
-        Assert.Empty(HtmlFormatter.Format("   "));
+        HtmlFormatter.Format(null).ShouldBeEmpty();
+        HtmlFormatter.Format("   ").ShouldBeEmpty();
     }
 }

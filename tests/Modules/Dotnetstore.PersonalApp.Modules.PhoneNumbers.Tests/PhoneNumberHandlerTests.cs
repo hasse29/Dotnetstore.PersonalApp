@@ -17,10 +17,10 @@ public sealed class PhoneNumberHandlerTests : IDisposable
     {
         var result = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner, number: "  +46 (0)8 123 45 "), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Mobile", result.Value.PhoneNumberTypeName);
-        Assert.Equal("+46 (0)8 123 45", result.Value.Number);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.PhoneNumberTypeName.ShouldBe("Mobile");
+        result.Value.Number.ShouldBe("+46 (0)8 123 45");
     }
 
     [Theory]
@@ -32,7 +32,7 @@ public sealed class PhoneNumberHandlerTests : IDisposable
     {
         var result = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner, number: number), Ct);
 
-        Assert.True(result.IsSuccess);
+        result.IsSuccess.ShouldBeTrue();
     }
 
     [Theory]
@@ -47,7 +47,7 @@ public sealed class PhoneNumberHandlerTests : IDisposable
     {
         var result = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner, number: number), Ct);
 
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public sealed class PhoneNumberHandlerTests : IDisposable
     {
         var result = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner, number: new string('1', 31)), Ct);
 
-        Assert.Equal("phone_number_number_too_long", result.Error.Code);
+        result.Error.Code.ShouldBe("phone_number_number_too_long");
     }
 
     [Fact]
@@ -65,9 +65,9 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var noType = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner) with { PhoneNumberTypeId = Guid.Empty }, Ct);
         var unknownType = await _fixture.CreatePhoneNumber.HandleAsync(_fixture.ValidPhoneNumber(_owner, Guid.NewGuid()), Ct);
 
-        Assert.Equal("phone_number_object_required", noObject.Error.Code);
-        Assert.Equal("phone_number_type_required", noType.Error.Code);
-        Assert.Equal("phone_number_type_not_found", unknownType.Error.Code);
+        noObject.Error.Code.ShouldBe("phone_number_object_required");
+        noType.Error.Code.ShouldBe("phone_number_type_required");
+        unknownType.Error.Code.ShouldBe("phone_number_type_not_found");
     }
 
     [Fact]
@@ -81,9 +81,9 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var otherObject = await _fixture.CreatePhoneNumber.HandleAsync(
             _fixture.ValidPhoneNumber(Guid.NewGuid(), number: "+46 8 123 456"), Ct);
 
-        Assert.Equal("phone_number_conflict", duplicate.Error.Code);
-        Assert.True(withoutPlus.IsSuccess);
-        Assert.True(otherObject.IsSuccess);
+        duplicate.Error.Code.ShouldBe("phone_number_conflict");
+        withoutPlus.IsSuccess.ShouldBeTrue();
+        otherObject.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -98,9 +98,9 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var mine = await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(_owner), Ct);
         var theirs = await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(other), Ct);
 
-        Assert.Equal(3, mine.TotalCount);
-        Assert.Equal(["070 111 11 11", "070 222 22 22", "08 123 456"], mine.Items.Select(p => p.Number));
-        Assert.Single(theirs.Items);
+        mine.TotalCount.ShouldBe(3);
+        mine.Items.Select(p => p.Number).ShouldBe(["070 111 11 11", "070 222 22 22", "08 123 456"]);
+        theirs.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -114,9 +114,9 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var page = await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(_owner, PageSize: 2), Ct);
         var huge = await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(_owner, PageSize: 10_000), Ct);
 
-        Assert.Equal(2, page.Items.Count);
-        Assert.Equal(3, page.TotalCount);
-        Assert.Equal(3, huge.Items.Count);
+        page.Items.Count.ShouldBe(2);
+        page.TotalCount.ShouldBe(3);
+        huge.Items.Count.ShouldBe(3);
     }
 
     [Fact]
@@ -127,8 +127,8 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var found = await _fixture.GetPhoneNumber.HandleAsync(new GetPhoneNumber.Query(created.Id), Ct);
         var missing = await _fixture.GetPhoneNumber.HandleAsync(new GetPhoneNumber.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("Mobile", found.Value.PhoneNumberTypeName);
-        Assert.Equal("phone_number_not_found", missing.Error.Code);
+        found.Value.PhoneNumberTypeName.ShouldBe("Mobile");
+        missing.Error.Code.ShouldBe("phone_number_not_found");
     }
 
     [Fact]
@@ -139,10 +139,10 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var result = await _fixture.UpdatePhoneNumber.HandleAsync(
             new UpdatePhoneNumber.Command(created.Id, _fixture.WorkTypeId, "08 555 12 34"), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal(_owner, result.Value.ObjectId);
-        Assert.Equal("Work", result.Value.PhoneNumberTypeName);
-        Assert.Equal("08 555 12 34", result.Value.Number);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.ObjectId.ShouldBe(_owner);
+        result.Value.PhoneNumberTypeName.ShouldBe("Work");
+        result.Value.Number.ShouldBe("08 555 12 34");
     }
 
     [Fact]
@@ -154,8 +154,8 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var clash = await _fixture.UpdatePhoneNumber.HandleAsync(new UpdatePhoneNumber.Command(two.Id, two.PhoneNumberTypeId, "070-111-1111"), Ct);
         var own = await _fixture.UpdatePhoneNumber.HandleAsync(new UpdatePhoneNumber.Command(two.Id, two.PhoneNumberTypeId, "070-222-2222"), Ct);
 
-        Assert.Equal("phone_number_conflict", clash.Error.Code);
-        Assert.True(own.IsSuccess);
+        clash.Error.Code.ShouldBe("phone_number_conflict");
+        own.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -168,8 +168,8 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var unknownType = await _fixture.UpdatePhoneNumber.HandleAsync(
             new UpdatePhoneNumber.Command(created.Id, Guid.NewGuid(), "070 123 45 67"), Ct);
 
-        Assert.Equal("phone_number_not_found", unknownNumber.Error.Code);
-        Assert.Equal("phone_number_type_not_found", unknownType.Error.Code);
+        unknownNumber.Error.Code.ShouldBe("phone_number_not_found");
+        unknownType.Error.Code.ShouldBe("phone_number_type_not_found");
     }
 
     [Fact]
@@ -180,8 +180,8 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var first = await _fixture.DeletePhoneNumber.HandleAsync(new DeletePhoneNumber.Command(created.Id), Ct);
         var second = await _fixture.DeletePhoneNumber.HandleAsync(new DeletePhoneNumber.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("phone_number_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("phone_number_not_found");
     }
 
     [Fact]
@@ -195,9 +195,9 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         var result = await _fixture.DeletePhoneNumbersForObject.HandleAsync(new DeletePhoneNumbersForObject.Command(_owner), Ct);
         var again = await _fixture.DeletePhoneNumbersForObject.HandleAsync(new DeletePhoneNumbersForObject.Command(_owner), Ct);
 
-        Assert.Equal(2, result.Value);
-        Assert.Equal(0, again.Value);
-        Assert.Equal(1, (await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(other), Ct)).TotalCount);
+        result.Value.ShouldBe(2);
+        again.Value.ShouldBe(0);
+        (await _fixture.ListPhoneNumbers.HandleAsync(new ListPhoneNumbers.Query(other), Ct)).TotalCount.ShouldBe(1);
     }
 
     [Fact]
@@ -205,7 +205,7 @@ public sealed class PhoneNumberHandlerTests : IDisposable
     {
         var result = await _fixture.DeletePhoneNumbersForObject.HandleAsync(new DeletePhoneNumbersForObject.Command(Guid.Empty), Ct);
 
-        Assert.Equal("phone_number_object_required", result.Error.Code);
+        result.Error.Code.ShouldBe("phone_number_object_required");
     }
 
     [Fact]
@@ -217,7 +217,7 @@ public sealed class PhoneNumberHandlerTests : IDisposable
         await _fixture.DeletePhoneNumber.HandleAsync(new DeletePhoneNumber.Command(phone.Id), Ct);
         var allowed = await _fixture.Delete.HandleAsync(new DeletePhoneNumberType.Command(phone.PhoneNumberTypeId), Ct);
 
-        Assert.Equal("phone_number_type_in_use", blocked.Error.Code);
-        Assert.True(allowed.IsSuccess);
+        blocked.Error.Code.ShouldBe("phone_number_type_in_use");
+        allowed.IsSuccess.ShouldBeTrue();
     }
 }

@@ -38,8 +38,8 @@ public sealed class UserDetailAddressesTabTests
 
         var viewModel = new UserDetailViewModel(user, new FakeFactory());
 
-        var addresses = Assert.IsType<FakeAddressesViewModel>(viewModel.Addresses);
-        Assert.Equal(user.Id, addresses.ObjectId);
+        var addresses = viewModel.Addresses.ShouldBeOfType<FakeAddressesViewModel>();
+        addresses.ObjectId.ShouldBe(user.Id);
     }
 
     [Fact]
@@ -49,8 +49,8 @@ public sealed class UserDetailAddressesTabTests
 
         var viewModel = new UserDetailViewModel(user, null, new FakeEmailFactory());
 
-        Assert.Equal(user.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.EmailAddresses).ObjectId);
-        Assert.Null(viewModel.Addresses);
+        (viewModel.EmailAddresses.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(user.Id);
+        viewModel.Addresses.ShouldBeNull();
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public sealed class UserDetailAddressesTabTests
 
         var viewModel = new UserDetailViewModel(user, null, null, new FakePhoneFactory());
 
-        Assert.Equal(user.Id, Assert.IsType<FakeAddressesViewModel>(viewModel.PhoneNumbers).ObjectId);
+        (viewModel.PhoneNumbers.ShouldBeOfType<FakeAddressesViewModel>().ObjectId).ShouldBe(user.Id);
     }
 
     [Fact]
@@ -68,8 +68,8 @@ public sealed class UserDetailAddressesTabTests
     {
         var viewModel = new UserDetailViewModel(Ada());
 
-        Assert.Null(viewModel.Addresses);
-        Assert.Null(viewModel.EmailAddresses);
-        Assert.Null(viewModel.PhoneNumbers);
+        viewModel.Addresses.ShouldBeNull();
+        viewModel.EmailAddresses.ShouldBeNull();
+        viewModel.PhoneNumbers.ShouldBeNull();
     }
 }

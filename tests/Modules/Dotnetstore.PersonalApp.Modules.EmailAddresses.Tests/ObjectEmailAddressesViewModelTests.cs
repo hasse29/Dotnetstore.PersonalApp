@@ -39,9 +39,9 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
 
         await viewModel.LoadCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.EmailAddresses);
-        Assert.True(viewModel.HasEmailAddresses);
-        Assert.Equal("1 email address(es)", viewModel.StatusMessage);
+        viewModel.EmailAddresses.ShouldHaveSingleItem();
+        viewModel.HasEmailAddresses.ShouldBeTrue();
+        viewModel.StatusMessage.ShouldBe("1 email address(es)");
     }
 
     [Fact]
@@ -51,13 +51,13 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<EmailAddressEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<EmailAddressEditorViewModel>();
         editor.Email = "ada@example.com";
         await editor.SaveCommand.ExecuteAsync(null);
 
-        var address = Assert.Single(viewModel.EmailAddresses);
-        Assert.Equal(_owner, address.ObjectId);
-        Assert.Null(viewModel.Editor);
+        var address = viewModel.EmailAddresses.ShouldHaveSingleItem();
+        address.ObjectId.ShouldBe(_owner);
+        viewModel.Editor.ShouldBeNull();
     }
 
     [Fact]
@@ -66,12 +66,12 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
         var viewModel = CreateViewModel();
         await viewModel.LoadCommand.ExecuteAsync(null);
         viewModel.NewCommand.Execute(null);
-        var editor = Assert.IsType<EmailAddressEditorViewModel>(viewModel.Editor);
+        var editor = viewModel.Editor.ShouldBeOfType<EmailAddressEditorViewModel>();
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Email address is required.", editor.ErrorMessage);
-        Assert.NotNull(viewModel.Editor);
+        editor.ErrorMessage.ShouldBe("Email address is required.");
+        viewModel.Editor.ShouldNotBeNull();
     }
 
     [Fact]
@@ -83,9 +83,9 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
 
         viewModel.SelectedEmailAddress = viewModel.EmailAddresses[0];
 
-        var editor = Assert.IsType<EmailAddressEditorViewModel>(viewModel.Editor);
-        Assert.Equal("Work", editor.SelectedType?.Name);
-        Assert.Equal("ada@example.com", editor.Email);
+        var editor = viewModel.Editor.ShouldBeOfType<EmailAddressEditorViewModel>();
+        (editor.SelectedType?.Name).ShouldBe("Work");
+        editor.Email.ShouldBe("ada@example.com");
     }
 
     [Fact]
@@ -98,11 +98,11 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
         viewModel.SelectedEmailAddress = viewModel.EmailAddresses[0];
 
         viewModel.RequestDeleteCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDelete);
+        viewModel.IsConfirmingDelete.ShouldBeTrue();
         await viewModel.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Single(viewModel.EmailAddresses);
-        Assert.True(viewModel.IsIdle);
+        viewModel.EmailAddresses.ShouldHaveSingleItem();
+        viewModel.IsIdle.ShouldBeTrue();
     }
 
     [Fact]
@@ -116,14 +116,14 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
         await viewModel.LoadCommand.ExecuteAsync(null);
 
         viewModel.RequestDeleteAllCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDeleteAll);
+        viewModel.IsConfirmingDeleteAll.ShouldBeTrue();
         await viewModel.ConfirmDeleteAllCommand.ExecuteAsync(null);
 
-        Assert.Empty(viewModel.EmailAddresses);
-        Assert.False(viewModel.HasEmailAddresses);
-        Assert.Equal("Deleted 2 email address(es).", viewModel.StatusMessage);
+        viewModel.EmailAddresses.ShouldBeEmpty();
+        viewModel.HasEmailAddresses.ShouldBeFalse();
+        viewModel.StatusMessage.ShouldBe("Deleted 2 email address(es).");
         var remaining = await _fixture.ListEmailAddresses.HandleAsync(new ListEmailAddresses.Query(other), Ct);
-        Assert.Single(remaining.Items);
+        remaining.Items.ShouldHaveSingleItem();
     }
 
     [Fact]
@@ -136,7 +136,7 @@ public sealed class ObjectEmailAddressesViewModelTests : IDisposable
         viewModel.RequestDeleteAllCommand.Execute(null);
         viewModel.CancelDeleteCommand.Execute(null);
 
-        Assert.True(viewModel.IsIdle);
-        Assert.Single(viewModel.EmailAddresses);
+        viewModel.IsIdle.ShouldBeTrue();
+        viewModel.EmailAddresses.ShouldHaveSingleItem();
     }
 }

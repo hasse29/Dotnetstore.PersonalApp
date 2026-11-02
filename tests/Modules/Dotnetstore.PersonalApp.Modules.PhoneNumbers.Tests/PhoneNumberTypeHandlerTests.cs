@@ -15,7 +15,7 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
     {
         var all = await _fixture.List.HandleAsync(new ListPhoneNumberTypes.Query(), Ct);
 
-        Assert.Equal(["Home", "Mobile", "Work"], all.Items.Select(t => t.Name));
+        all.Items.Select(t => t.Name).ShouldBe(["Home", "Mobile", "Work"]);
     }
 
     [Fact]
@@ -23,10 +23,10 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreatePhoneNumberType.Command("  Postal  ", "   "), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Postal", result.Value.Name);
-        Assert.Null(result.Value.Description);
-        Assert.Equal(new DateTimeOffset(2026, 10, 31, 12, 0, 0, TimeSpan.Zero), result.Value.CreatedAt);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Name.ShouldBe("Postal");
+        result.Value.Description.ShouldBeNull();
+        result.Value.CreatedAt.ShouldBe(new DateTimeOffset(2026, 10, 31, 12, 0, 0, TimeSpan.Zero));
     }
 
     [Theory]
@@ -36,8 +36,8 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreatePhoneNumberType.Command(name, null), Ct);
 
-        Assert.False(result.IsSuccess);
-        Assert.Equal(expectedCode, result.Error.Code);
+        result.IsSuccess.ShouldBeFalse();
+        result.Error.Code.ShouldBe(expectedCode);
     }
 
     [Fact]
@@ -46,8 +46,8 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var name = await _fixture.Create.HandleAsync(new CreatePhoneNumberType.Command(new string('x', 101), null), Ct);
         var description = await _fixture.Create.HandleAsync(new CreatePhoneNumberType.Command("Long", new string('x', 501)), Ct);
 
-        Assert.Equal("phone_number_type_name_too_long", name.Error.Code);
-        Assert.Equal("phone_number_type_description_too_long", description.Error.Code);
+        name.Error.Code.ShouldBe("phone_number_type_name_too_long");
+        description.Error.Code.ShouldBe("phone_number_type_description_too_long");
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
     {
         var result = await _fixture.Create.HandleAsync(new CreatePhoneNumberType.Command("  mOBILE ", null), Ct);
 
-        Assert.Equal("phone_number_type_conflict", result.Error.Code);
+        result.Error.Code.ShouldBe("phone_number_type_conflict");
     }
 
     [Fact]
@@ -66,8 +66,8 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var found = await _fixture.Get.HandleAsync(new GetPhoneNumberType.Query(created.Id), Ct);
         var missing = await _fixture.Get.HandleAsync(new GetPhoneNumberType.Query(Guid.NewGuid()), Ct);
 
-        Assert.Equal("PO box", found.Value.Description);
-        Assert.Equal("phone_number_type_not_found", missing.Error.Code);
+        found.Value.Description.ShouldBe("PO box");
+        missing.Error.Code.ShouldBe("phone_number_type_not_found");
     }
 
     [Fact]
@@ -76,8 +76,8 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var byName = await _fixture.List.HandleAsync(new ListPhoneNumberTypes.Query("mob"), Ct);
         var byDescription = await _fixture.List.HandleAsync(new ListPhoneNumberTypes.Query("landline"), Ct);
 
-        Assert.Equal("Mobile", Assert.Single(byName.Items).Name);
-        Assert.Equal("Home", Assert.Single(byDescription.Items).Name);
+        byName.Items.ShouldHaveSingleItem().Name.ShouldBe("Mobile");
+        byDescription.Items.ShouldHaveSingleItem().Name.ShouldBe("Home");
     }
 
     [Fact]
@@ -86,9 +86,9 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var page = await _fixture.List.HandleAsync(new ListPhoneNumberTypes.Query(PageSize: 2), Ct);
         var huge = await _fixture.List.HandleAsync(new ListPhoneNumberTypes.Query(PageSize: 10_000), Ct);
 
-        Assert.Equal(2, page.Items.Count);
-        Assert.Equal(3, page.TotalCount);
-        Assert.Equal(3, huge.Items.Count);
+        page.Items.Count.ShouldBe(2);
+        page.TotalCount.ShouldBe(3);
+        huge.Items.Count.ShouldBe(3);
     }
 
     [Fact]
@@ -98,9 +98,9 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
 
         var result = await _fixture.Update.HandleAsync(new UpdatePhoneNumberType.Command(created.Id, "Mailing", ""), Ct);
 
-        Assert.True(result.IsSuccess);
-        Assert.Equal("Mailing", result.Value.Name);
-        Assert.Null(result.Value.Description);
+        result.IsSuccess.ShouldBeTrue();
+        result.Value.Name.ShouldBe("Mailing");
+        result.Value.Description.ShouldBeNull();
     }
 
     [Fact]
@@ -111,8 +111,8 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var clash = await _fixture.Update.HandleAsync(new UpdatePhoneNumberType.Command(created.Id, "mobile", null), Ct);
         var own = await _fixture.Update.HandleAsync(new UpdatePhoneNumberType.Command(created.Id, "POSTAL", null), Ct);
 
-        Assert.Equal("phone_number_type_conflict", clash.Error.Code);
-        Assert.True(own.IsSuccess);
+        clash.Error.Code.ShouldBe("phone_number_type_conflict");
+        own.IsSuccess.ShouldBeTrue();
     }
 
     [Fact]
@@ -120,7 +120,7 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
     {
         var result = await _fixture.Update.HandleAsync(new UpdatePhoneNumberType.Command(Guid.NewGuid(), "Postal", null), Ct);
 
-        Assert.Equal("phone_number_type_not_found", result.Error.Code);
+        result.Error.Code.ShouldBe("phone_number_type_not_found");
     }
 
     [Fact]
@@ -131,7 +131,7 @@ public sealed class PhoneNumberTypeHandlerTests : IDisposable
         var first = await _fixture.Delete.HandleAsync(new DeletePhoneNumberType.Command(created.Id), Ct);
         var second = await _fixture.Delete.HandleAsync(new DeletePhoneNumberType.Command(created.Id), Ct);
 
-        Assert.True(first.IsSuccess);
-        Assert.Equal("phone_number_type_not_found", second.Error.Code);
+        first.IsSuccess.ShouldBeTrue();
+        second.Error.Code.ShouldBe("phone_number_type_not_found");
     }
 }

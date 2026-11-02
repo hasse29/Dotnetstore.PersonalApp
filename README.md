@@ -66,11 +66,11 @@ src/
   Dotnetstore.PersonalApp.Host/      Avalonia app, shell, composition root
   Dotnetstore.PersonalApp.Shared/    Contracts, Result, localization, events
   Modules/<Module>/...               One project per module
-tests/                               xUnit v3 tests per module plus integration tests
+tests/                               xUnit v3 tests (Shouldly assertions) per module plus integration tests
 installer/                           Inno Setup script and build script
 ```
 
-**Tech stack:** .NET 10, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, ClosedXML for Excel, xUnit v3.
+**Tech stack:** .NET 10, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, ClosedXML for Excel, xUnit v3 with Shouldly.
 
 More detail on conventions, module design and decisions is in [CLAUDE.md](CLAUDE.md).
 

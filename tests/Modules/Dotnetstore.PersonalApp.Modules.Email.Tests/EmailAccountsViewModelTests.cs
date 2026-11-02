@@ -37,12 +37,12 @@ public sealed class EmailAccountsViewModelTests : IDisposable
 
         await viewModel.LoadCommand.ExecuteAsync(null);
 
-        Assert.Equal(["Mine", "Shared"], viewModel.Accounts.Select(a => a.Name));
-        Assert.Equal("Personal", viewModel.Accounts[0].ScopeText);
-        Assert.Equal("System", viewModel.Accounts[1].ScopeText);
-        Assert.Equal("SMTP (send)", viewModel.Accounts[0].ProtocolText);
-        Assert.Equal("smtp.example.com:587", viewModel.Accounts[0].Server);
-        Assert.Equal("2 account(s)", viewModel.StatusMessage);
+        viewModel.Accounts.Select(a => a.Name).ShouldBe(["Mine", "Shared"]);
+        viewModel.Accounts[0].ScopeText.ShouldBe("Personal");
+        viewModel.Accounts[1].ScopeText.ShouldBe("System");
+        viewModel.Accounts[0].ProtocolText.ShouldBe("SMTP (send)");
+        viewModel.Accounts[0].Server.ShouldBe("smtp.example.com:587");
+        viewModel.StatusMessage.ShouldBe("2 account(s)");
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public sealed class EmailAccountsViewModelTests : IDisposable
     {
         var viewModel = CreateViewModel();
         viewModel.NewCommand.Execute(null);
-        Assert.NotNull(viewModel.Editor);
+        viewModel.Editor.ShouldNotBeNull();
 
         viewModel.Editor.Name = "Work outgoing";
         viewModel.Editor.Host = "smtp.example.com";
@@ -58,8 +58,8 @@ public sealed class EmailAccountsViewModelTests : IDisposable
         await viewModel.Editor.SaveCommand.ExecuteAsync(null);
         await Task.Delay(100, Ct);
 
-        Assert.Null(viewModel.Editor);
-        Assert.Equal("Work outgoing", Assert.Single(viewModel.Accounts).Name);
+        viewModel.Editor.ShouldBeNull();
+        viewModel.Accounts.ShouldHaveSingleItem().Name.ShouldBe("Work outgoing");
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public sealed class EmailAccountsViewModelTests : IDisposable
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Name is required.", editor.ErrorMessage);
+        editor.ErrorMessage.ShouldBe("Name is required.");
     }
 
     [Fact]
@@ -83,24 +83,24 @@ public sealed class EmailAccountsViewModelTests : IDisposable
 
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.Equal("Port must be a number between 1 and 65535.", editor.ErrorMessage);
+        editor.ErrorMessage.ShouldBe("Port must be a number between 1 and 65535.");
     }
 
     [Fact]
     public void PortFollowsProtocolAndSecurityUntilTheUserTypesAnother()
     {
         var editor = CreateEditor();
-        Assert.Equal("587", editor.PortText);
+        editor.PortText.ShouldBe("587");
 
         editor.SelectedSecurity = editor.Securities.First(s => s.Value == ConnectionSecurity.SslOnConnect);
-        Assert.Equal("465", editor.PortText);
+        editor.PortText.ShouldBe("465");
 
         editor.SelectedProtocol = editor.Protocols.First(p => p.Value == MailProtocol.Pop3);
-        Assert.Equal("995", editor.PortText);
+        editor.PortText.ShouldBe("995");
 
         editor.PortText = "2525";
         editor.SelectedSecurity = editor.Securities.First(s => s.Value == ConnectionSecurity.None);
-        Assert.Equal("2525", editor.PortText);
+        editor.PortText.ShouldBe("2525");
     }
 
     [Fact]
@@ -112,10 +112,10 @@ public sealed class EmailAccountsViewModelTests : IDisposable
         editor.Name = "Renamed";
         await editor.SaveCommand.ExecuteAsync(null);
 
-        Assert.False(editor.CanChooseScope);
-        Assert.Equal("Leave empty to keep the current password", editor.PasswordPlaceholder);
-        Assert.Null(editor.ErrorMessage);
-        Assert.Equal("protected:s3cret", await _fixture.StoredPasswordAsync(created.Id));
+        editor.CanChooseScope.ShouldBeFalse();
+        editor.PasswordPlaceholder.ShouldBe("Leave empty to keep the current password");
+        editor.ErrorMessage.ShouldBeNull();
+        (await _fixture.StoredPasswordAsync(created.Id)).ShouldBe("protected:s3cret");
     }
 
     [Fact]
@@ -127,10 +127,10 @@ public sealed class EmailAccountsViewModelTests : IDisposable
         viewModel.SelectedAccount = viewModel.Accounts[0];
 
         viewModel.RequestDeleteCommand.Execute(null);
-        Assert.True(viewModel.IsConfirmingDelete);
+        viewModel.IsConfirmingDelete.ShouldBeTrue();
         await viewModel.ConfirmDeleteCommand.ExecuteAsync(null);
 
-        Assert.Empty(viewModel.Accounts);
-        Assert.False(viewModel.IsConfirmingDelete);
+        viewModel.Accounts.ShouldBeEmpty();
+        viewModel.IsConfirmingDelete.ShouldBeFalse();
     }
 }
