@@ -14,6 +14,7 @@ using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
 using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
+using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Shell;
@@ -45,6 +46,8 @@ internal static class CompositionRoot
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<StartupRunner>();
         services.AddSingleton<IEventPublisher, InProcessEventPublisher>();
+        services.AddSingleton<UserPhotoNotifier>();
+        services.AddSingleton<IIntegrationEventConsumer<UserPhotoChanged>>(sp => sp.GetRequiredService<UserPhotoNotifier>());
 
         services.AddClientsModule(Path.Combine(dataDirectory, "clients.db"));
         services.AddTimeReportsModule(Path.Combine(dataDirectory, "timereports.db"));

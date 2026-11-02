@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
              xmlns:persons="using:Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons"
              mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="480"
              x:Class="Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons.ContactPersonsView"
@@ -28,19 +29,20 @@
                     <Grid RowDefinitions="Auto,*,Auto">
                         <Border Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                                 BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
-                            <Grid ColumnDefinitions="*,*">
-                                <TextBlock Text="{loc:Tr ContactPersons_ColName}" Classes="column"/>
-                                <TextBlock Grid.Column="1" Text="{loc:Tr ContactPersons_ColJobTitle}" Classes="column"/>
+                            <Grid ColumnDefinitions="32,*,*" ColumnSpacing="12">
+                                <TextBlock Grid.Column="1" Text="{loc:Tr ContactPersons_ColName}" Classes="column"/>
+                                <TextBlock Grid.Column="2" Text="{loc:Tr ContactPersons_ColJobTitle}" Classes="column"/>
                             </Grid>
                         </Border>
 
                         <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate x:DataType="persons:ContactPersonDto">
-                                    <Grid ColumnDefinitions="*,*">
-                                        <TextBlock Text="{Binding FullName}" FontWeight="SemiBold"
+                                    <Grid ColumnDefinitions="32,*,*" ColumnSpacing="12">
+                                        <photos:AvatarView Size="32" Initials="{Binding Initials}" Photo="{Binding Thumbnail}"/>
+                                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding FullName}" FontWeight="SemiBold"
                                                    Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding JobTitle}" Classes="muted"
+                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding JobTitle}" Classes="muted"
                                                    TextTrimming="CharacterEllipsis"/>
                                     </Grid>
                                 </DataTemplate>

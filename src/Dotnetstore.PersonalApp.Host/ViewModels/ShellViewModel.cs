@@ -1,9 +1,13 @@
 using System.Collections.ObjectModel;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
+using Dotnetstore.PersonalApp.Shared.Photos;
 using Dotnetstore.PersonalApp.Shared.Shell;
+using Dotnetstore.PersonalApp.Shared.Users;
+using Dotnetstore.PersonalApp.Host.Events;
 
 namespace Dotnetstore.PersonalApp.Host.ViewModels;
 
@@ -12,14 +16,18 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
 {
     private readonly Action _signOut;
     private readonly ModuleSettings? _moduleSettings;
+    private readonly IUserPhotoLookup? _userPhotos;
+    private readonly UserPhotoNotifier? _photoNotifier;
     private readonly IReadOnlyList<IModulePage> _allPages;
     private List<NavEntry> _allEntries;
     private readonly HashSet<string> _expandedGroups = [];
     private bool _rebuilding;
 
-    public ShellViewModel(IEnumerable<IModulePage> pages, AuthenticatedUser user, Action signOut, ModuleSettings? moduleSettings = null)
+    public ShellViewModel(IEnumerable<IModulePage> pages, AuthenticatedUser user, Action signOut, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null)
     {
         _moduleSettings = moduleSettings;
+        _userPhotos = userPhotos;
+        _photoNotifier = photoNotifier;
         _signOut = signOut;
         User = user;
         _allPages = [.. pages];
@@ -32,10 +40,20 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
         {
             _moduleSettings.Changed += OnModulesChanged;
         }
+
+        if (_photoNotifier is not null)
+        {
+            _photoNotifier.Changed += OnUserPhotoChanged;
+        }
     }
 
     public void Dispose()
     {
+        if (_photoNotifier is not null)
+        {
+            _photoNotifier.Changed -= OnUserPhotoChanged;
+        }
+
         if (_moduleSettings is not null)
         {
             _moduleSettings.Changed -= OnModulesChanged;
@@ -62,10 +80,11 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
 
     public AuthenticatedUser User { get; }
 
-    public string Initials => string.Concat(
-        User.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Take(2)
-            .Select(part => char.ToUpperInvariant(part[0])));
+    /// <summary>The signed-in user's thumbnail for the top bar and sidebar; null shows the initials.</summary>
+    [ObservableProperty]
+    public partial byte[]? UserPhoto { get; set; }
+
+    public string Initials => PhotoInitials.From(User.FullName);
 
     public IReadOnlyList<IModulePage> Pages { get; private set; }
 
@@ -173,6 +192,24 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
             .OrderBy(x => x.item.Order)
             .ThenBy(x => x.index)
             .SelectMany(x => new[] { x.item.Header }.Concat(x.item.Children))];
+    }
+
+    [RelayCommand(AllowConcurrentExecutions = true)]
+    private async Task LoadUserPhotoAsync(CancellationToken cancellationToken)
+    {
+        if (_userPhotos is not null)
+        {
+            UserPhoto = await _userPhotos.GetThumbnailAsync(User.Id, cancellationToken);
+        }
+    }
+
+    // Raised on the publisher's thread, so hop to the UI thread before touching bound state.
+    private void OnUserPhotoChanged(object? sender, Guid userId)
+    {
+        if (userId == User.Id)
+        {
+            Dispatcher.UIThread.Post(() => LoadUserPhotoCommand.Execute(null));
+        }
     }
 
     [RelayCommand]

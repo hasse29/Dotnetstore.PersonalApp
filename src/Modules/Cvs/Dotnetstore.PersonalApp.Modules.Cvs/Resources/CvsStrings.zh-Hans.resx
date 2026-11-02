@@ -42,7 +42,7 @@
   <data name="CvDetail_ChangePhoto" xml:space="preserve"><value>更换照片</value></data>
   <data name="CvDetail_RemovePhoto" xml:space="preserve"><value>移除</value></data>
   <data name="CvDetail_ChoosePhotoTitle" xml:space="preserve"><value>选择照片</value></data>
-  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>照片未更改（已取消，或文件大于 2 MB）。</value></data>
+  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>照片未更改（已取消，或文件大于 6 MB）。</value></data>
   <data name="CvDetail_DriverLicence" xml:space="preserve"><value>驾驶证</value></data>
   <data name="CvDetail_NoDriverLicence" xml:space="preserve"><value>无驾驶证</value></data>
   <data name="CvDetail_UserMissing" xml:space="preserve"><value>（用户已不存在）</value></data>
@@ -109,7 +109,7 @@
   <data name="Error_cv_language_level_invalid" xml:space="preserve"><value>请选择语言水平。</value></data>
   <data name="Error_cv_language_conflict" xml:space="preserve"><value>该语言已在简历中。</value></data>
   <data name="Error_cv_driver_licence_invalid" xml:space="preserve"><value>未知的准驾类别。</value></data>
-  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>照片最大 2 MB。</value></data>
+  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>照片最大 6 MB。</value></data>
   <data name="Error_cv_photo_invalid" xml:space="preserve"><value>照片必须是 PNG 或 JPEG 图片。</value></data>
   <data name="CvDetail_Technologies" xml:space="preserve"><value>技术</value></data>
   <data name="CvDetail_NoTechnologies" xml:space="preserve"><value>暂无技术。请在工作经历的某份工作中添加。</value></data>

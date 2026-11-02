@@ -12,3 +12,11 @@ public interface IUserLookup
     /// <returns>The user, or null when no user has this id.</returns>
     Task<UserReference?> GetAsync(Guid id, CancellationToken cancellationToken);
 }
+
+
+/// <summary>Implemented by the Users module so that the shell can show the signed-in user's picture without referencing it.</summary>
+public interface IUserPhotoLookup
+{
+    /// <returns>The small thumbnail, or null when the user has no photo.</returns>
+    Task<byte[]?> GetThumbnailAsync(Guid userId, CancellationToken cancellationToken);
+}

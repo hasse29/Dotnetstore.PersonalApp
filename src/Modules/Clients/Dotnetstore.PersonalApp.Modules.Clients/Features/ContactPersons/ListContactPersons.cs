@@ -16,7 +16,7 @@ internal static class ListContactPersons
             return await db.ContactPersons.AsNoTracking()
                 .Where(p => p.ClientId == query.ClientId)
                 .OrderBy(p => p.LastName).ThenBy(p => p.FirstName)
-                .Select(p => new ContactPersonDto(p.Id, p.ClientId, p.FirstName, p.LastName, p.JobTitle, p.Notes, p.CreatedAt))
+                .Select(p => new ContactPersonDto(p.Id, p.ClientId, p.FirstName, p.LastName, p.JobTitle, p.Notes, p.CreatedAt, p.PhotoThumbnail))
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
         }

@@ -24,7 +24,9 @@ public static class UsersModule
 
         services.AddDbContextFactory<UsersDbContext>(options => options.UseSqlite($"Data Source={databasePath}"));
         services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
-        services.AddSingleton<IUserLookup, UserLookup>();
+        services.AddSingleton<UserLookup>();
+        services.AddSingleton<IUserLookup>(sp => sp.GetRequiredService<UserLookup>());
+        services.AddSingleton<IUserPhotoLookup>(sp => sp.GetRequiredService<UserLookup>());
 
         services.AddSingleton<IValidator<CreateUser.Command>, CreateUser.Validator>();
         services.AddSingleton<IValidator<UpdateUser.Command>, UpdateUser.Validator>();
@@ -34,6 +36,9 @@ public static class UsersModule
         services.AddSingleton<ListUsers.Handler>();
         services.AddSingleton<UpdateUser.Handler>();
         services.AddSingleton<DeleteUser.Handler>();
+        services.AddSingleton<GetUserPhoto.Handler>();
+        services.AddSingleton<SetUserPhoto.Handler>();
+        services.AddSingleton<UserPhotoPanelFactory>();
 
         services.AddSingleton<Login.Handler>();
         services.AddSingleton<HasUsers.Handler>();

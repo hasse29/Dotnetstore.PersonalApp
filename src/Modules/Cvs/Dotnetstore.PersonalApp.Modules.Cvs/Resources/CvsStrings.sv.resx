@@ -42,7 +42,7 @@
   <data name="CvDetail_ChangePhoto" xml:space="preserve"><value>Byt foto</value></data>
   <data name="CvDetail_RemovePhoto" xml:space="preserve"><value>Ta bort</value></data>
   <data name="CvDetail_ChoosePhotoTitle" xml:space="preserve"><value>Välj ett foto</value></data>
-  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>Fotot ändrades inte (avbrutet, eller så är filen större än 2 MB).</value></data>
+  <data name="CvDetail_PhotoNotChanged" xml:space="preserve"><value>Fotot ändrades inte (avbrutet, eller så är filen större än 6 MB).</value></data>
   <data name="CvDetail_DriverLicence" xml:space="preserve"><value>Körkort</value></data>
   <data name="CvDetail_NoDriverLicence" xml:space="preserve"><value>Inget körkort</value></data>
   <data name="CvDetail_UserMissing" xml:space="preserve"><value>(användaren finns inte längre)</value></data>
@@ -109,7 +109,7 @@
   <data name="Error_cv_language_level_invalid" xml:space="preserve"><value>Välj en språknivå.</value></data>
   <data name="Error_cv_language_conflict" xml:space="preserve"><value>Detta språk finns redan i CV:t.</value></data>
   <data name="Error_cv_driver_licence_invalid" xml:space="preserve"><value>Okänd körkortsbehörighet.</value></data>
-  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>Fotot får vara högst 2 MB.</value></data>
+  <data name="Error_cv_photo_too_large" xml:space="preserve"><value>Fotot får vara högst 6 MB.</value></data>
   <data name="Error_cv_photo_invalid" xml:space="preserve"><value>Fotot måste vara en PNG- eller JPEG-bild.</value></data>
   <data name="CvDetail_Technologies" xml:space="preserve"><value>Teknik</value></data>
   <data name="CvDetail_NoTechnologies" xml:space="preserve"><value>Ingen teknik än. Lägg till den på ett jobb under arbetslivserfarenhet.</value></data>

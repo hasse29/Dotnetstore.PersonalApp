@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
-/// <summary>Sets or, with a null photo, removes the picture on the user's own CV. Only PNG and JPEG up to 2 MB are accepted.</summary>
+/// <summary>Sets or, with a null photo, removes the picture on the user's own CV. Only PNG and JPEG up to 6 MB are accepted.</summary>
 internal static class SetCvPhoto
 {
-    public const int MaxPhotoBytes = 2 * 1024 * 1024;
+    public const int MaxPhotoBytes = 6 * 1024 * 1024;
 
     private static readonly byte[] PngSignature = [0x89, 0x50, 0x4E, 0x47];
     private static readonly byte[] JpegSignature = [0xFF, 0xD8, 0xFF];
@@ -22,7 +22,7 @@ internal static class SetCvPhoto
             {
                 if (photo.Length > MaxPhotoBytes)
                 {
-                    return Error.Validation("cv_photo_too_large", "The photo is larger than 2 MB.");
+                    return Error.Validation("cv_photo_too_large", "The photo is larger than 6 MB.");
                 }
 
                 if (!photo.AsSpan().StartsWith(PngSignature) && !photo.AsSpan().StartsWith(JpegSignature))

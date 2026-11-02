@@ -9,7 +9,8 @@ internal sealed record ContactPersonDto(
     string LastName,
     string? JobTitle,
     string? Notes,
-    DateTimeOffset CreatedAt)
+    DateTimeOffset CreatedAt,
+    byte[]? Thumbnail = null)
 {
     public string FullName => $"{FirstName} {LastName}";
 
@@ -22,5 +23,6 @@ internal sealed record ContactPersonDto(
         person.LastName,
         person.JobTitle,
         person.Notes,
-        person.CreatedAt);
+        person.CreatedAt,
+        person.PhotoThumbnail);
 }

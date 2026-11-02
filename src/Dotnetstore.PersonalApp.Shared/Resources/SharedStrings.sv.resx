@@ -6,4 +6,10 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="Common_Cancel" xml:space="preserve"><value>Avbryt</value></data>
   <data name="Shell_Settings" xml:space="preserve"><value>Inställningar</value></data>
+  <data name="Photo_Change" xml:space="preserve"><value>Byt foto</value></data>
+  <data name="Photo_Remove" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Photo_ChooseTitle" xml:space="preserve"><value>Välj ett foto</value></data>
+  <data name="Photo_NotChanged" xml:space="preserve"><value>Fotot ändrades inte (avbrutet, eller så är filen större än 6 MB).</value></data>
+  <data name="Error_photo_too_large" xml:space="preserve"><value>Fotot får vara högst 6 MB.</value></data>
+  <data name="Error_photo_invalid" xml:space="preserve"><value>Fotot måste vara en PNG- eller JPEG-bild.</value></data>
 </root>

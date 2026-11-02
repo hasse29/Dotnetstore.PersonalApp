@@ -4,13 +4,17 @@ using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Photos;
 using Dotnetstore.PersonalApp.Shared.TimeReports;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
 
-internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, ITimeReportsPanelFactory? timeReportsFactory = null, ContactPersonsViewModel? contactPersons = null) : ViewModelBase
+internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, ITimeReportsPanelFactory? timeReportsFactory = null, ContactPersonsViewModel? contactPersons = null, Func<string, PhotoPanelViewModel?>? photoFactory = null) : ViewModelBase
 {
     public ClientDto Client { get; } = client;
+
+    /// <summary>The logo/photo with its Change and Remove buttons; null when the host has no file dialog.</summary>
+    public PhotoPanelViewModel? Photo { get; } = photoFactory?.Invoke(InitialsOf(client.Name));
 
     /// <summary>The client's contact persons tab.</summary>
     public ContactPersonsViewModel? ContactPersons { get; } = contactPersons;
@@ -28,8 +32,10 @@ internal sealed partial class ClientDetailViewModel(ClientDto client, IObjectAdd
     public ViewModelBase? TimeReports { get; } = timeReportsFactory?.CreateForClient(client.Id);
 
     /// <summary>Shown in the logo slot until real logos are supported.</summary>
-    public string Initials => string.Concat(
-        Client.Name.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    public string Initials => InitialsOf(Client.Name);
+
+    private static string InitialsOf(string name) => string.Concat(
+        name.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .Take(2)
             .Select(part => char.ToUpperInvariant(part[0])));
 

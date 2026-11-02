@@ -15,5 +15,10 @@ internal sealed class ContactPerson
 
     public string? Notes { get; set; }
 
+    public byte[]? Photo { get; set; }
+
+    /// <summary>A small square copy of <see cref="Photo"/> for lists.</summary>
+    public byte[]? PhotoThumbnail { get; set; }
+
     public DateTimeOffset CreatedAt { get; set; }
 }

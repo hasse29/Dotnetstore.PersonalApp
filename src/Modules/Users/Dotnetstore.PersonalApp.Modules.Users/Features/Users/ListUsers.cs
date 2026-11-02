@@ -35,7 +35,7 @@ internal static class ListUsers
                 .OrderBy(u => u.LastName).ThenBy(u => u.FirstName)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(u => new UserDto(u.Id, u.FirstName, u.LastName, u.Username, u.DateOfBirth, u.CreatedAt))
+                .Select(u => new UserDto(u.Id, u.FirstName, u.LastName, u.Username, u.DateOfBirth, u.CreatedAt, u.PhotoThumbnail))
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 

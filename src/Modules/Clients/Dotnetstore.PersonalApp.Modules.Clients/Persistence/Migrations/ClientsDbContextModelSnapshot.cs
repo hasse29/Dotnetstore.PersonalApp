@@ -48,6 +48,12 @@ namespace Dotnetstore.PersonalApp.Modules.Clients.Persistence.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PhotoThumbnail")
+                        .HasColumnType("BLOB");
+
                     b.Property<string>("VatNumber")
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
@@ -93,6 +99,12 @@ namespace Dotnetstore.PersonalApp.Modules.Clients.Persistence.Migrations
                     b.Property<string>("Notes")
                         .HasMaxLength(2000)
                         .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PhotoThumbnail")
+                        .HasColumnType("BLOB");
 
                     b.HasKey("Id");
 

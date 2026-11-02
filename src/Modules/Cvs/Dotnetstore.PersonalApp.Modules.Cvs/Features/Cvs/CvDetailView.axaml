@@ -4,12 +4,13 @@
              xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:cvs="using:Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
              x:Class="Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs.CvDetailView"
              x:DataType="cvs:CvDetailViewModel">
 
     <UserControl.Resources>
-        <cvs:BytesToBitmapConverter x:Key="PhotoConverter"/>
+        <photos:BytesToBitmapConverter x:Key="PhotoConverter"/>
     </UserControl.Resources>
 
     <Grid RowDefinitions="Auto,Auto,*" RowSpacing="16">

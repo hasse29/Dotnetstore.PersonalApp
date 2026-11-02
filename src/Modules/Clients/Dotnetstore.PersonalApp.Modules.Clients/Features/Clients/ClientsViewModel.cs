@@ -21,8 +21,11 @@ internal sealed partial class ClientsViewModel(
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
-    ITimeReportsPanelFactory? timeReportsFactory = null) : ViewModelBase
+    ITimeReportsPanelFactory? timeReportsFactory = null,
+    ClientPhotoPanelFactory? photoFactory = null) : ViewModelBase
 {
+    private bool _restoringSelection;
+
     public ObservableCollection<ClientDto> Clients { get; } = [];
 
     [ObservableProperty]
@@ -48,6 +51,11 @@ internal sealed partial class ClientsViewModel(
 
     partial void OnSelectedClientChanged(ClientDto? value)
     {
+        if (_restoringSelection)
+        {
+            return;
+        }
+
         IsConfirmingDelete = false;
         if (value is not null)
         {
@@ -60,10 +68,22 @@ internal sealed partial class ClientsViewModel(
     {
         var response = await list.HandleAsync(new ListClients.Query(Search), cancellationToken);
 
-        Clients.Clear();
-        foreach (var client in response.Items)
+        // Reloading must not reopen the editor, so the selection is put back without the change handler acting on it.
+        var selectedId = SelectedClient?.Id;
+        _restoringSelection = true;
+        try
         {
-            Clients.Add(client);
+            Clients.Clear();
+            foreach (var client in response.Items)
+            {
+                Clients.Add(client);
+            }
+
+            SelectedClient = Clients.FirstOrDefault(c => c.Id == selectedId);
+        }
+        finally
+        {
+            _restoringSelection = false;
         }
 
         StatusMessage = response.TotalCount > response.Items.Count
@@ -86,7 +106,8 @@ internal sealed partial class ClientsViewModel(
             return;
         }
 
-        var detail = new ClientDetailViewModel(client, addressesFactory, emailAddressesFactory, phoneNumbersFactory, timeReportsFactory, contactPersonsFactory.Create(client.Id));
+        var detail = new ClientDetailViewModel(client, addressesFactory, emailAddressesFactory, phoneNumbersFactory, timeReportsFactory, contactPersonsFactory.Create(client.Id),
+            photoFactory is null ? null : initials => photoFactory.Create(client.Id, initials));
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;
@@ -102,6 +123,9 @@ internal sealed partial class ClientsViewModel(
         }
 
         Detail = null;
+
+        // The photo may have changed, and the list shows its thumbnail.
+        LoadCommand.Execute(null);
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]

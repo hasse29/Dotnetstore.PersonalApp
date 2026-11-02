@@ -35,7 +35,7 @@ internal static class ListClients
                 .OrderBy(c => c.Name)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(c => new ClientDto(c.Id, c.Name, c.OrganizationNumber, c.VatNumber, c.Email, c.Phone, c.Website, c.Notes, c.CreatedAt))
+                .Select(c => new ClientDto(c.Id, c.Name, c.OrganizationNumber, c.VatNumber, c.Email, c.Phone, c.Website, c.Notes, c.CreatedAt, c.PhotoThumbnail))
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 

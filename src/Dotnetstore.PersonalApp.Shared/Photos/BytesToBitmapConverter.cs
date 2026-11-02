@@ -2,14 +2,20 @@ using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia.Media.Imaging;
 
-namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
+namespace Dotnetstore.PersonalApp.Shared.Photos;
 
-/// <summary>Turns the photo's bytes into an image for the view, so the view model never holds a UI type.</summary>
-internal sealed class BytesToBitmapConverter : IValueConverter
+/// <summary>Turns a photo's bytes into an image for the view, so view models never hold a UI type.</summary>
+public sealed class BytesToBitmapConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is not byte[] { Length: > 0 } bytes)
+        var bytes = value switch
+        {
+            byte[] array => array,
+            ReadOnlyMemory<byte> memory => memory.ToArray(),
+            _ => [],
+        };
+        if (bytes.Length == 0)
         {
             return null;
         }

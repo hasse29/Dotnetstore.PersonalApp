@@ -14,6 +14,8 @@ internal sealed class ContactPersonConfiguration : IEntityTypeConfiguration<Cont
         builder.Property(c => c.LastName).HasMaxLength(100).IsRequired();
         builder.Property(c => c.JobTitle).HasMaxLength(100);
         builder.Property(c => c.Notes).HasMaxLength(2000);
+        builder.Property(c => c.Photo);
+        builder.Property(c => c.PhotoThumbnail);
         builder.Property(c => c.CreatedAt).IsRequired();
         builder.HasOne<Client>().WithMany().HasForeignKey(c => c.ClientId).OnDelete(DeleteBehavior.Cascade);
         builder.HasIndex(c => c.ClientId);

@@ -17,6 +17,8 @@ internal sealed class ClientConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(c => c.Phone).HasMaxLength(30);
         builder.Property(c => c.Website).HasMaxLength(2048);
         builder.Property(c => c.Notes).HasMaxLength(2000);
+        builder.Property(c => c.Photo);
+        builder.Property(c => c.PhotoThumbnail);
         builder.Property(c => c.CreatedAt).IsRequired();
         builder.HasIndex(c => c.OrganizationNumber).IsUnique();
     }

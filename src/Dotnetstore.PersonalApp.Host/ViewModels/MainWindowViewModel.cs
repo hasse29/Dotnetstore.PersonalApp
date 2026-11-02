@@ -5,6 +5,8 @@ using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Shell;
+using Dotnetstore.PersonalApp.Shared.Users;
+using Dotnetstore.PersonalApp.Host.Events;
 
 namespace Dotnetstore.PersonalApp.Host.ViewModels;
 
@@ -18,14 +20,18 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     private readonly IEnumerable<IModulePage> _pages;
     private readonly CurrentUserAccessor? _currentUser;
     private readonly ModuleSettings? _moduleSettings;
+    private readonly IUserPhotoLookup? _userPhotos;
+    private readonly UserPhotoNotifier? _photoNotifier;
     private Action? _showCurrent;
 
-    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null, ModuleSettings? moduleSettings = null)
+    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null)
     {
         _currentUser = currentUser;
         _authentication = authentication;
         _pages = pages;
         _moduleSettings = moduleSettings;
+        _userPhotos = userPhotos;
+        _photoNotifier = photoNotifier;
         localization.CultureChanged += (_, _) => Dispatcher.UIThread.Post(() => _showCurrent?.Invoke());
     }
 
@@ -72,6 +78,6 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     {
         _showCurrent = () => ShowShell(user);
         SetCurrentUser(user);
-        Content = new ShellViewModel(_pages, user, ShowLogin, _moduleSettings);
+        Content = new ShellViewModel(_pages, user, ShowLogin, _moduleSettings, _userPhotos, _photoNotifier);
     }
 }

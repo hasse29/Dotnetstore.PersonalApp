@@ -4,12 +4,16 @@ using Dotnetstore.PersonalApp.Shared.Cvs;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Photos;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
 
-internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, IUserCvsPanelFactory? cvsFactory = null) : ViewModelBase
+internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddressesPanelFactory? addressesFactory = null, IObjectEmailAddressesPanelFactory? emailAddressesFactory = null, IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null, IUserCvsPanelFactory? cvsFactory = null, Func<string, PhotoPanelViewModel?>? photoFactory = null) : ViewModelBase
 {
     public UserDto User { get; } = user;
+
+    /// <summary>The photo with its Change and Remove buttons; null when the host has no file dialog.</summary>
+    public PhotoPanelViewModel? Photo { get; } = photoFactory?.Invoke(InitialsOf(user.FullName));
 
     /// <summary>The user's addresses tab, provided by the Addresses module; null when that module is not installed.</summary>
     public ViewModelBase? Addresses { get; } = addressesFactory?.Create(user.Id);
@@ -23,8 +27,10 @@ internal sealed partial class UserDetailViewModel(UserDto user, IObjectAddresses
     /// <summary>The user's CVs tab, provided by the Cvs module; null when that module is not installed.</summary>
     public ViewModelBase? Cvs { get; } = cvsFactory?.Create(user.Id);
 
-    public string Initials => string.Concat(
-        User.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    public string Initials => InitialsOf(User.FullName);
+
+    private static string InitialsOf(string fullName) => string.Concat(
+        fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .Take(2)
             .Select(part => char.ToUpperInvariant(part[0])));
 

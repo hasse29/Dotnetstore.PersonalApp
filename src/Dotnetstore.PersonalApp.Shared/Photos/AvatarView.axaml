@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
+             x:Class="Dotnetstore.PersonalApp.Shared.Photos.AvatarView">
+
+    <UserControl.Resources>
+        <photos:BytesToBitmapConverter x:Key="PhotoConverter"/>
+    </UserControl.Resources>
+
+    <Panel x:Name="Root">
+        <Border x:Name="Fallback" Classes="avatar">
+            <TextBlock x:Name="InitialsText"/>
+        </Border>
+        <Border x:Name="PictureBorder" ClipToBounds="True">
+            <Image x:Name="Picture" Stretch="UniformToFill"/>
+        </Border>
+    </Panel>
+
+</UserControl>

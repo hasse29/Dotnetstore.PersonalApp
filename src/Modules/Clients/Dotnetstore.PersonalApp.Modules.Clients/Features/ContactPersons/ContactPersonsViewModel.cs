@@ -19,8 +19,11 @@ internal sealed partial class ContactPersonsViewModel(
     ILocalizationService localization,
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
-    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null) : ViewModelBase
+    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
+    ContactPersonPhotoPanelFactory? photoFactory = null) : ViewModelBase
 {
+    private bool _restoringSelection;
+
     public ObservableCollection<ContactPersonDto> People { get; } = [];
 
     [ObservableProperty]
@@ -43,6 +46,11 @@ internal sealed partial class ContactPersonsViewModel(
 
     partial void OnSelectedPersonChanged(ContactPersonDto? value)
     {
+        if (_restoringSelection)
+        {
+            return;
+        }
+
         IsConfirmingDelete = false;
         if (value is not null)
         {
@@ -55,10 +63,22 @@ internal sealed partial class ContactPersonsViewModel(
     {
         var people = await list.HandleAsync(new ListContactPersons.Query(clientId), cancellationToken);
 
-        People.Clear();
-        foreach (var person in people)
+        // Reloading must not reopen the editor, so the selection is put back without the change handler acting on it.
+        var selectedId = SelectedPerson?.Id;
+        _restoringSelection = true;
+        try
         {
-            People.Add(person);
+            People.Clear();
+            foreach (var person in people)
+            {
+                People.Add(person);
+            }
+
+            SelectedPerson = People.FirstOrDefault(p => p.Id == selectedId);
+        }
+        finally
+        {
+            _restoringSelection = false;
         }
 
         StatusMessage = localization.Format("ContactPersons_Count", people.Count);
@@ -79,7 +99,8 @@ internal sealed partial class ContactPersonsViewModel(
             return;
         }
 
-        var detail = new ContactPersonDetailViewModel(person, addressesFactory, emailAddressesFactory, phoneNumbersFactory);
+        var detail = new ContactPersonDetailViewModel(person, addressesFactory, emailAddressesFactory, phoneNumbersFactory,
+            photoFactory is null ? null : initials => photoFactory.Create(person.Id, initials));
         detail.Closed += OnDetailClosed;
         Detail = detail;
     }
@@ -92,6 +113,9 @@ internal sealed partial class ContactPersonsViewModel(
         }
 
         Detail = null;
+
+        // The photo may have changed, and the list shows its thumbnail.
+        LoadCommand.Execute(null);
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]

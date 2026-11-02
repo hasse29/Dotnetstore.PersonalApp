@@ -29,6 +29,9 @@ public static class ClientsModule
         services.AddSingleton<ListClients.Handler>();
         services.AddSingleton<UpdateClient.Handler>();
         services.AddSingleton<DeleteClient.Handler>();
+        services.AddSingleton<GetClientPhoto.Handler>();
+        services.AddSingleton<SetClientPhoto.Handler>();
+        services.AddSingleton<ClientPhotoPanelFactory>();
 
         services.AddSingleton<IValidator<CreateContactPerson.Command>, CreateContactPerson.Validator>();
         services.AddSingleton<IValidator<UpdateContactPerson.Command>, UpdateContactPerson.Validator>();
@@ -37,6 +40,9 @@ public static class ClientsModule
         services.AddSingleton<UpdateContactPerson.Handler>();
         services.AddSingleton<DeleteContactPerson.Handler>();
         services.AddSingleton<ContactPersonsViewModelFactory>();
+        services.AddSingleton<GetContactPersonPhoto.Handler>();
+        services.AddSingleton<SetContactPersonPhoto.Handler>();
+        services.AddSingleton<ContactPersonPhotoPanelFactory>();
 
         services.AddSingleton<IClientLookup, ClientLookup>();
         services.AddSingleton<IContactPersonLookup, ContactPersonLookup>();

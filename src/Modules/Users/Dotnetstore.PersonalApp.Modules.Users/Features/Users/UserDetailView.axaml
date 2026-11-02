@@ -29,10 +29,12 @@
         <TabItem Header="{loc:Tr UserDetail_TabInformation}">
         <Grid ColumnDefinitions="300,*" ColumnSpacing="20" Margin="0,20,0,0">
 
-            <!-- Photo slot: shows initials until real photos are supported -->
+            <!-- Photo: the shared panel, or the initials when the host has no file dialog -->
             <Border Classes="card" Padding="28" VerticalAlignment="Top">
                 <StackPanel Spacing="14" HorizontalAlignment="Center">
-                    <Border Classes="avatar" Width="112" Height="112" CornerRadius="56">
+                    <ContentControl Content="{Binding Photo}" HorizontalAlignment="Center"/>
+                    <Border Classes="avatar" Width="112" Height="112" CornerRadius="56"
+                            IsVisible="{Binding Photo, Converter={x:Static ObjectConverters.IsNull}}">
                         <TextBlock Text="{Binding Initials}" FontSize="40"/>
                     </Border>
                     <StackPanel Spacing="2">

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
         xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
              xmlns:shell="using:Dotnetstore.PersonalApp.Shared.Shell"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="720"
              x:Class="Dotnetstore.PersonalApp.Host.Views.ShellView"
@@ -44,9 +45,7 @@
 
                 <Border Grid.Row="3" Background="{DynamicResource SidebarHoverBrush}" CornerRadius="12" Padding="12">
                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                        <Border Classes="avatar">
-                            <TextBlock Text="{Binding Initials}"/>
-                        </Border>
+                        <photos:AvatarView Size="38" Initials="{Binding Initials}" Photo="{Binding UserPhoto}"/>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                             <TextBlock Text="{Binding User.FullName}" Foreground="White" FontWeight="SemiBold"
                                        TextTrimming="CharacterEllipsis"/>
@@ -71,6 +70,11 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                        <photos:AvatarView Size="34" Initials="{Binding Initials}" Photo="{Binding UserPhoto}"/>
+                        <TextBlock Text="{Binding User.FullName}" FontWeight="SemiBold" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    </StackPanel>
                     <loc:LanguageComboBox/>
                     <Button Classes="subtle" Command="{Binding SignOutCommand}" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Spacing="8">

@@ -14,8 +14,9 @@ internal sealed class ContactPersonsViewModelFactory(
     ILocalizationService localization,
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
-    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null)
+    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
+    ContactPersonPhotoPanelFactory? photoFactory = null)
 {
     public ContactPersonsViewModel Create(Guid clientId) =>
-        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory);
+        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory, photoFactory);
 }

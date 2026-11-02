@@ -6,4 +6,10 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="Common_Cancel" xml:space="preserve"><value>取消</value></data>
   <data name="Shell_Settings" xml:space="preserve"><value>设置</value></data>
+  <data name="Photo_Change" xml:space="preserve"><value>更换照片</value></data>
+  <data name="Photo_Remove" xml:space="preserve"><value>移除</value></data>
+  <data name="Photo_ChooseTitle" xml:space="preserve"><value>选择照片</value></data>
+  <data name="Photo_NotChanged" xml:space="preserve"><value>照片未更改（已取消，或文件大于 6 MB）。</value></data>
+  <data name="Error_photo_too_large" xml:space="preserve"><value>照片最大 6 MB。</value></data>
+  <data name="Error_photo_invalid" xml:space="preserve"><value>照片必须是 PNG 或 JPEG 图片。</value></data>
 </root>

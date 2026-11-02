@@ -19,8 +19,11 @@ internal sealed partial class UsersViewModel(
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
-    IUserCvsPanelFactory? cvsFactory = null) : ViewModelBase
+    IUserCvsPanelFactory? cvsFactory = null,
+    UserPhotoPanelFactory? photoFactory = null) : ViewModelBase
 {
+    private bool _restoringSelection;
+
     public ObservableCollection<UserDto> Users { get; } = [];
 
     [ObservableProperty]
@@ -46,6 +49,11 @@ internal sealed partial class UsersViewModel(
 
     partial void OnSelectedUserChanged(UserDto? value)
     {
+        if (_restoringSelection)
+        {
+            return;
+        }
+
         IsConfirmingDelete = false;
         if (value is not null)
         {
@@ -58,10 +66,22 @@ internal sealed partial class UsersViewModel(
     {
         var response = await list.HandleAsync(new ListUsers.Query(Search), cancellationToken);
 
-        Users.Clear();
-        foreach (var user in response.Items)
+        // Reloading must not reopen the editor, so the selection is put back without the change handler acting on it.
+        var selectedId = SelectedUser?.Id;
+        _restoringSelection = true;
+        try
         {
-            Users.Add(user);
+            Users.Clear();
+            foreach (var user in response.Items)
+            {
+                Users.Add(user);
+            }
+
+            SelectedUser = Users.FirstOrDefault(u => u.Id == selectedId);
+        }
+        finally
+        {
+            _restoringSelection = false;
         }
 
         StatusMessage = response.TotalCount > response.Items.Count
@@ -84,7 +104,8 @@ internal sealed partial class UsersViewModel(
             return;
         }
 
-        var detail = new UserDetailViewModel(user, addressesFactory, emailAddressesFactory, phoneNumbersFactory, cvsFactory);
+        var detail = new UserDetailViewModel(user, addressesFactory, emailAddressesFactory, phoneNumbersFactory, cvsFactory,
+            photoFactory is null ? null : initials => photoFactory.Create(user.Id, initials));
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;
@@ -100,6 +121,9 @@ internal sealed partial class UsersViewModel(
         }
 
         Detail = null;
+
+        // The photo may have changed, and the list shows its thumbnail.
+        LoadCommand.Execute(null);
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]

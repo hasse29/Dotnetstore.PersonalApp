@@ -43,6 +43,12 @@ namespace Dotnetstore.PersonalApp.Modules.Users.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PhotoThumbnail")
+                        .HasColumnType("BLOB");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(254)
