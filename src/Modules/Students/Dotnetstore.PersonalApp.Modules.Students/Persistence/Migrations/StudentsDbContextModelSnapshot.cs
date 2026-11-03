@@ -59,6 +59,42 @@ namespace Dotnetstore.PersonalApp.Modules.Students.Persistence.Migrations
 
                     b.ToTable("Students", (string)null);
                 });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Students.Domain.StudentNote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId", "Date");
+
+                    b.ToTable("StudentNotes", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Students.Domain.StudentNote", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Students.Domain.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 #pragma warning restore 612, 618
         }
     }

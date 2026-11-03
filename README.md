@@ -12,7 +12,7 @@ A personal desktop app for keeping track of clients, the time you work for them,
 ## Features
 
 - **Clients**: companies with a unique organization number, a photo, and any number of **contact persons** (each with photo, addresses, email addresses and phone numbers). Companies have addresses, email addresses and phone numbers too.
-- **Students**: a client is a school. Each school has any number of students (photo, name, class, notes) with their own addresses, email addresses and phone numbers. Students have their own page across all schools, with a school filter, and a tab on each school.
+- **Students**: a client is a school. Each school has any number of students (photo, name, class, notes) with their own addresses, email addresses and phone numbers, and a running, dated log of notes (latest entry first). Students have their own page across all schools, with a school filter, and a tab on each school.
 - **Subjects**: a catalogue of subjects. A teacher can teach several, picked on the user's page; several teachers can share a subject.
 - **Schedule**: a teacher's recurring weekly lessons, for example mathematics every Monday at 08:00, each with a subject, a school, a time, an optional room and the students who attend. Overlapping lessons are rejected.
 - **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.

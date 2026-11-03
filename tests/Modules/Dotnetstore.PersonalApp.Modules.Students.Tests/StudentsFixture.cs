@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Students.Features.Notes;
 using Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 using Dotnetstore.PersonalApp.Modules.Students.Persistence;
 using Microsoft.Data.Sqlite;
@@ -24,7 +25,19 @@ internal sealed class StudentsFixture : IDisposable
         List = new ListStudents.Handler(DbFactory);
         Delete = new DeleteStudent.Handler(DbFactory, Events);
         DeleteForClient = new DeleteStudentsForClient.Handler(DbFactory, Events);
+        AddNote = new AddStudentNote.Handler(DbFactory, new AddStudentNote.Validator(), Clock);
+        UpdateNote = new UpdateStudentNote.Handler(DbFactory, new UpdateStudentNote.Validator());
+        ListNotes = new ListStudentNotes.Handler(DbFactory);
+        DeleteNote = new DeleteStudentNote.Handler(DbFactory);
     }
+
+    public AddStudentNote.Handler AddNote { get; }
+
+    public UpdateStudentNote.Handler UpdateNote { get; }
+
+    public ListStudentNotes.Handler ListNotes { get; }
+
+    public DeleteStudentNote.Handler DeleteNote { get; }
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 2, 12, 0, 0, TimeSpan.Zero));
 

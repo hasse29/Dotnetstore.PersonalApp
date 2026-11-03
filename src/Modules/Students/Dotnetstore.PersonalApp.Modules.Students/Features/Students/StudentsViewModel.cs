@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Dotnetstore.PersonalApp.Modules.Students.Features.Notes;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
@@ -25,7 +26,8 @@ internal sealed partial class StudentsViewModel(
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     StudentPhotoPanelFactory? photoFactory = null,
-    IClientLookup? clients = null) : ViewModelBase
+    IClientLookup? clients = null,
+    StudentNotesViewModelFactory? notesFactory = null) : ViewModelBase
 {
     private bool _restoringSelection;
     private Dictionary<Guid, string> _schoolNames = [];
@@ -133,7 +135,8 @@ internal sealed partial class StudentsViewModel(
         }
 
         var detail = new StudentDetailViewModel(student, addressesFactory, emailAddressesFactory, phoneNumbersFactory,
-            photoFactory is null ? null : initials => photoFactory.Create(student.Id, initials));
+            photoFactory is null ? null : initials => photoFactory.Create(student.Id, initials),
+            notesFactory?.Create(student.Id));
         detail.Closed += OnDetailClosed;
         Detail = detail;
     }

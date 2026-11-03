@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:notes="using:Dotnetstore.PersonalApp.Modules.Students.Features.Notes"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Students.Features.Notes.StudentNotesView"
+             x:DataType="notes:StudentNotesViewModel">
+
+    <Grid ColumnDefinitions="*,380" ColumnSpacing="20">
+
+        <!-- the notes, latest first -->
+        <Border Classes="card">
+            <Grid RowDefinitions="*,Auto">
+                <ListBox Classes="table" ItemsSource="{Binding Notes}" SelectedItem="{Binding SelectedNote}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="notes:StudentNoteDto">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="{Binding Date, StringFormat={}{0:d}}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border Grid.Row="1" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Content="{loc:Tr StudentNotes_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                    IsVisible="{Binding !IsConfirmingDelete}"/>
+                            <TextBlock Text="{loc:Tr StudentNotes_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                       IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr StudentNotes_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- add / edit an entry -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <Border Classes="card" Padding="24" VerticalAlignment="Top">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="{Binding FormTitle}" Classes="h2"/>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr StudentNotes_Date}" Classes="label"/>
+                        <CalendarDatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr StudentNotes_Text}" Classes="label"/>
+                        <TextBox Text="{Binding Text}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="140" MaxHeight="260"/>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                               IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+                    <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                        <Button Content="{loc:Tr StudentNotes_NewEntry}" Classes="subtle" Command="{Binding ClearFormCommand}"
+                                IsVisible="{Binding IsEditing}"/>
+                        <Button Content="{loc:Tr StudentNotes_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

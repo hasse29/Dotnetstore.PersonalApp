@@ -7,6 +7,8 @@ internal sealed class StudentsDbContext(DbContextOptions<StudentsDbContext> opti
 {
     public DbSet<Student> Students => Set<Student>();
 
+    public DbSet<StudentNote> StudentNotes => Set<StudentNote>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(StudentsDbContext).Assembly);

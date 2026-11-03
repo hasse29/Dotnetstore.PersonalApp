@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.Input;
+using Dotnetstore.PersonalApp.Modules.Students.Features.Notes;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
@@ -12,7 +13,8 @@ internal sealed partial class StudentDetailViewModel(
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
-    Func<string, PhotoPanelViewModel?>? photoFactory = null) : ViewModelBase
+    Func<string, PhotoPanelViewModel?>? photoFactory = null,
+    StudentNotesViewModel? notes = null) : ViewModelBase
 {
     public StudentDto Student { get; } = student;
 
@@ -27,6 +29,9 @@ internal sealed partial class StudentDetailViewModel(
 
     /// <summary>The phone numbers tab, provided by the PhoneNumbers module; null when that module is not installed.</summary>
     public ViewModelBase? PhoneNumbers { get; } = phoneNumbersFactory?.Create(student.Id);
+
+    /// <summary>The running, dated notes about the student.</summary>
+    public StudentNotesViewModel? Notes { get; } = notes;
 
     public event EventHandler? Closed;
 

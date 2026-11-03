@@ -54,6 +54,11 @@
                 </Border>
             </TabItem>
 
+            <TabItem Header="{loc:Tr StudentDetail_TabNotes}"
+                     IsVisible="{Binding Notes, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding Notes}" Margin="0,20,0,0"/>
+            </TabItem>
+
             <TabItem Header="{loc:Tr StudentDetail_TabAddresses}"
                      IsVisible="{Binding Addresses, Converter={x:Static ObjectConverters.IsNotNull}}">
                 <ContentControl Content="{Binding Addresses}" Margin="0,20,0,0"/>

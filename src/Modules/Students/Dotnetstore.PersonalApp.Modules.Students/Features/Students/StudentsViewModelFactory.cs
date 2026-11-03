@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Students.Features.Notes;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
@@ -17,7 +18,8 @@ internal sealed class StudentsViewModelFactory(
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     StudentPhotoPanelFactory? photoFactory = null,
-    IClientLookup? clients = null)
+    IClientLookup? clients = null,
+    StudentNotesViewModelFactory? notesFactory = null)
 {
     /// <summary>The tab on one school's detail page.</summary>
     public StudentsViewModel Create(Guid clientId) => Build(clientId);
@@ -26,5 +28,5 @@ internal sealed class StudentsViewModelFactory(
     public StudentsViewModel CreateForPage() => Build(null);
 
     private StudentsViewModel Build(Guid? clientId) =>
-        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory, photoFactory, clients);
+        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory, photoFactory, clients, notesFactory);
 }

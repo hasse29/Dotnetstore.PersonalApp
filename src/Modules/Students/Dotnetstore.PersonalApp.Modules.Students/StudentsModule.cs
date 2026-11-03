@@ -1,4 +1,5 @@
 using Dotnetstore.PersonalApp.Modules.Students.Consumers;
+using Dotnetstore.PersonalApp.Modules.Students.Features.Notes;
 using Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 using Dotnetstore.PersonalApp.Modules.Students.Persistence;
 using Dotnetstore.PersonalApp.Modules.Students.Resources;
@@ -26,6 +27,9 @@ public static class StudentsModule
         services.AddSingleton<IValidator<CreateStudent.Command>, CreateStudent.Validator>();
         services.AddSingleton<IValidator<UpdateStudent.Command>, UpdateStudent.Validator>();
 
+        services.AddSingleton<IValidator<AddStudentNote.Command>, AddStudentNote.Validator>();
+        services.AddSingleton<IValidator<UpdateStudentNote.Command>, UpdateStudentNote.Validator>();
+
         services.AddSingleton<ListStudents.Handler>();
         services.AddSingleton<CreateStudent.Handler>();
         services.AddSingleton<UpdateStudent.Handler>();
@@ -33,6 +37,11 @@ public static class StudentsModule
         services.AddSingleton<DeleteStudentsForClient.Handler>();
         services.AddSingleton<GetStudentPhoto.Handler>();
         services.AddSingleton<SetStudentPhoto.Handler>();
+        services.AddSingleton<ListStudentNotes.Handler>();
+        services.AddSingleton<AddStudentNote.Handler>();
+        services.AddSingleton<UpdateStudentNote.Handler>();
+        services.AddSingleton<DeleteStudentNote.Handler>();
+        services.AddSingleton<StudentNotesViewModelFactory>();
         services.AddSingleton<StudentPhotoPanelFactory>();
         services.AddSingleton<StudentsViewModelFactory>();
 
