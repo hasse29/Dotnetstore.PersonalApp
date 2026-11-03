@@ -1,7 +1,9 @@
+using Dotnetstore.PersonalApp.Shared.Shell;
+
 namespace Dotnetstore.PersonalApp.Host;
 
 /// <summary>Which modules the user has switched off; persisted in <c>settings.json</c> and observed by the shell.</summary>
-internal sealed class ModuleSettings(string directory)
+internal sealed class ModuleSettings(string directory) : IModuleAvailability
 {
     private readonly HashSet<string> _disabled = new(UserSettings.Load(directory).DisabledModules, StringComparer.Ordinal);
 

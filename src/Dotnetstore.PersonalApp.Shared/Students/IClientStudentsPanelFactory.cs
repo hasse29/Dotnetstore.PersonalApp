@@ -8,5 +8,6 @@ namespace Dotnetstore.PersonalApp.Shared.Students;
 /// </summary>
 public interface IClientStudentsPanelFactory
 {
-    ViewModelBase Create(Guid clientId);
+    /// <summary>Null while the School module is switched off, which hides the tab.</summary>
+    ViewModelBase? Create(Guid clientId);
 }

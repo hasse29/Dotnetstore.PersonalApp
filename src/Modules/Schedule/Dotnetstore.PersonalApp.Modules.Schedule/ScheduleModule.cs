@@ -38,7 +38,6 @@ public static class ScheduleModule
         services.AddSingleton<IIntegrationEventConsumer<StudentDeleted>, StudentDeletedConsumer>();
 
         services.AddSingleton<IModulePage, SchedulePage>();
-        services.AddSingleton(new ModuleInfo("schedule", "Schedule_Title"));
         services.AddSingleton<IStartupTask, MigrateScheduleDatabaseTask>();
 
         return services;

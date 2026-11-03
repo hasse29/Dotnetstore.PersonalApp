@@ -21,6 +21,23 @@ public sealed class CompositionRootTests
     }
 
     [Fact]
+    public void EveryPageBelongsToAListedModuleAndSchoolIsOneEntry()
+    {
+        using var services = CompositionRoot.BuildServices();
+
+        var listed = services.GetServices<ModuleInfo>().Select(m => m.Key).ToList();
+        var used = services.GetServices<IModulePage>().Select(p => p.ModuleKey).OfType<string>().Distinct().ToList();
+
+        listed.ShouldBeUnique();
+        listed.ShouldContain(SchoolGroup.ModuleKey);
+        listed.ShouldNotContain("students");
+        listed.ShouldNotContain("subjects");
+        listed.ShouldNotContain("schedule");
+        listed.ShouldNotContain("grades");
+        used.Except(listed).ShouldBeEmpty();
+    }
+
+    [Fact]
     public void AddressesModuleProvidesTheAddressesPanelForOtherModules()
     {
         using var services = CompositionRoot.BuildServices();

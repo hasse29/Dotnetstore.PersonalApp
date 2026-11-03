@@ -45,6 +45,9 @@ internal static class CompositionRoot
         services.AddSingleton<CurrentUserAccessor>();
         services.AddSingleton<ICurrentUser>(sp => sp.GetRequiredService<CurrentUserAccessor>());
         services.AddSingleton(new ModuleSettings(dataDirectory));
+        services.AddSingleton<IModuleAvailability>(sp => sp.GetRequiredService<ModuleSettings>());
+        // Students, Subjects, Schedule, Grades and Tests are one "School" module in the list, so it is described here rather than by each of them.
+        services.AddSingleton(new ModuleInfo(SchoolGroup.ModuleKey, "Shell_School"));
         services.AddSingleton<IModulePage, ModulesPage>();
         services.AddTransient<ModulesViewModel>();
         services.AddSingleton<MainWindowViewModel>();

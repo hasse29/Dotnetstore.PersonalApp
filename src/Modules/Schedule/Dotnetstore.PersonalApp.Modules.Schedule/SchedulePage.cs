@@ -21,7 +21,7 @@ internal sealed class SchedulePage(
     IStudentLookup students,
     ILocalizationService localization) : IModulePage
 {
-    public string? ModuleKey => "schedule";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

@@ -51,7 +51,6 @@ public static class StudentsModule
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
 
         services.AddSingleton<IModulePage, StudentsPage>();
-        services.AddSingleton(new ModuleInfo("students", "Students_Title"));
         services.AddSingleton<IStartupTask, MigrateStudentsDatabaseTask>();
 
         return services;

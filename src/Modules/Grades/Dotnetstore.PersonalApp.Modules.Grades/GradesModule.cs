@@ -62,7 +62,6 @@ public static class GradesModule
         services.AddSingleton<IModulePage, GradesPage>();
         services.AddSingleton<IModulePage, GradeScalesPage>();
         services.AddSingleton<IModulePage, TestsPage>();
-        services.AddSingleton(new ModuleInfo("grades", "Grades_Title"));
         services.AddSingleton<IStartupTask, MigrateGradesDatabaseTask>();
 
         return services;

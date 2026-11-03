@@ -9,7 +9,7 @@ namespace Dotnetstore.PersonalApp.Modules.Subjects;
 /// <summary>The catalogue of subjects; which teacher teaches what is managed on the user's detail page.</summary>
 internal sealed class SubjectsPage(IServiceProvider services) : IModulePage
 {
-    public string? ModuleKey => "subjects";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

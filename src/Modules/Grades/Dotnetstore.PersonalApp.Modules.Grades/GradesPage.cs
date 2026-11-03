@@ -9,7 +9,7 @@ namespace Dotnetstore.PersonalApp.Modules.Grades;
 /// <summary>The signed-in teacher's grades for all students.</summary>
 internal sealed class GradesPage(GradesViewModelFactory factory, ICurrentUser currentUser) : IModulePage
 {
-    public string? ModuleKey => "grades";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

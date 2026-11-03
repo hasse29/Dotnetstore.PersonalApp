@@ -7,7 +7,7 @@ namespace Dotnetstore.PersonalApp.Modules.Students;
 
 internal sealed class StudentsPage(StudentsViewModelFactory factory) : IModulePage
 {
-    public string? ModuleKey => "students";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

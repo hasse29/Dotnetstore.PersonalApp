@@ -9,7 +9,7 @@ namespace Dotnetstore.PersonalApp.Modules.Grades;
 /// <summary>The signed-in teacher's tests, with each student's score and grade.</summary>
 internal sealed class TestsPage(TestsViewModelFactory factory, ICurrentUser currentUser) : IModulePage
 {
-    public string? ModuleKey => "grades";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

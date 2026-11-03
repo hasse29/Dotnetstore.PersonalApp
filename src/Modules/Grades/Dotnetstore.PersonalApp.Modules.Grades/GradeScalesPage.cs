@@ -9,7 +9,7 @@ namespace Dotnetstore.PersonalApp.Modules.Grades;
 /// <summary>The grading systems in use, e.g. Sweden's A-F or Germany's 1-6, with their grades.</summary>
 internal sealed class GradeScalesPage(IServiceProvider services) : IModulePage
 {
-    public string? ModuleKey => "grades";
+    public string? ModuleKey => SchoolGroup.ModuleKey;
 
     public ModulePageGroup? Group => SchoolGroup.Create();
 

@@ -8,5 +8,6 @@ namespace Dotnetstore.PersonalApp.Shared.Subjects;
 /// </summary>
 public interface IUserSubjectsPanelFactory
 {
-    ViewModelBase Create(Guid userId);
+    /// <summary>Null while the School module is switched off, which hides the tab.</summary>
+    ViewModelBase? Create(Guid userId);
 }

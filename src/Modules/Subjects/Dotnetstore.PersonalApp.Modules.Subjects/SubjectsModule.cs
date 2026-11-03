@@ -44,7 +44,6 @@ public static class SubjectsModule
 
         services.AddTransient<SubjectsViewModel>();
         services.AddSingleton<IModulePage, SubjectsPage>();
-        services.AddSingleton(new ModuleInfo("subjects", "Subjects_Title"));
         services.AddSingleton<IStartupTask, MigrateSubjectsDatabaseTask>();
 
         return services;
