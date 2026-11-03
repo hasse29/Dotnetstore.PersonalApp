@@ -81,4 +81,48 @@
   <data name="Error_grade_comment_too_long" xml:space="preserve"><value>评语最多 500 个字符。</value></data>
   <data name="Error_grade_student_not_found" xml:space="preserve"><value>未找到学生。</value></data>
   <data name="Error_grade_subject_not_found" xml:space="preserve"><value>未找到科目。</value></data>
+  <data name="Tests_Title" xml:space="preserve"><value>测验</value></data>
+  <data name="Tests_Subtitle" xml:space="preserve"><value>您安排的测验，以及每位学生的分数和成绩。</value></data>
+  <data name="Tests_New" xml:space="preserve"><value>新建测验</value></data>
+  <data name="Tests_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="Tests_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="Tests_ColMaxScore" xml:space="preserve"><value>满分</value></data>
+  <data name="Tests_ColResults" xml:space="preserve"><value>结果</value></data>
+  <data name="Tests_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Tests_ConfirmDelete" xml:space="preserve"><value>删除该测验及其结果？</value></data>
+  <data name="Tests_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Tests_NoSelection" xml:space="preserve"><value>未选择测验</value></data>
+  <data name="Tests_NoSelectionHint" xml:space="preserve"><value>在表格中选择测验以编辑并录入结果，或新建一个。</value></data>
+  <data name="Tests_Count" xml:space="preserve"><value>{0} 个测验</value></data>
+  <data name="Tests_Saved" xml:space="preserve"><value>测验 {0} 已保存。</value></data>
+  <data name="TestEditor_New" xml:space="preserve"><value>新建测验</value></data>
+  <data name="TestEditor_Edit" xml:space="preserve"><value>编辑测验</value></data>
+  <data name="TestEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="TestField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="TestField_NamePlaceholder" xml:space="preserve"><value>例如：第三章小测</value></data>
+  <data name="TestField_Date" xml:space="preserve"><value>测验日期</value></data>
+  <data name="TestField_MaxScore" xml:space="preserve"><value>满分</value></data>
+  <data name="TestResults_Title" xml:space="preserve"><value>结果</value></data>
+  <data name="TestResults_ColStudent" xml:space="preserve"><value>学生</value></data>
+  <data name="TestResults_ColScore" xml:space="preserve"><value>分数</value></data>
+  <data name="TestResults_ColGrade" xml:space="preserve"><value>成绩</value></data>
+  <data name="TestResults_Count" xml:space="preserve"><value>{0} 个结果</value></data>
+  <data name="TestResults_Saved" xml:space="preserve"><value>{0} 的结果已保存。</value></data>
+  <data name="TestResults_Delete" xml:space="preserve"><value>删除结果</value></data>
+  <data name="TestResults_Clear" xml:space="preserve"><value>新建结果</value></data>
+  <data name="TestResults_Save" xml:space="preserve"><value>保存结果</value></data>
+  <data name="TestResultField_Student" xml:space="preserve"><value>学生</value></data>
+  <data name="TestResultField_Score" xml:space="preserve"><value>分数（满分 {0}）</value></data>
+  <data name="TestResultField_Scale" xml:space="preserve"><value>评分标准</value></data>
+  <data name="TestResultField_Grade" xml:space="preserve"><value>成绩</value></data>
+  <data name="Error_test_not_found" xml:space="preserve"><value>未找到测验。</value></data>
+  <data name="Error_test_name_required" xml:space="preserve"><value>名称为必填项。</value></data>
+  <data name="Error_test_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_test_max_score_invalid" xml:space="preserve"><value>满分必须大于 0。</value></data>
+  <data name="Error_test_max_score_below_results" xml:space="preserve"><value>已有学生的分数高于此值。</value></data>
+  <data name="Error_test_result_not_found" xml:space="preserve"><value>未找到结果。</value></data>
+  <data name="Error_test_result_student_required" xml:space="preserve"><value>请选择学生。</value></data>
+  <data name="Error_test_result_student_not_found" xml:space="preserve"><value>未找到学生。</value></data>
+  <data name="Error_test_result_score_invalid" xml:space="preserve"><value>请输入不小于 0 的分数。</value></data>
+  <data name="Error_test_result_score_exceeds_max" xml:space="preserve"><value>分数高于满分。</value></data>
 </root>

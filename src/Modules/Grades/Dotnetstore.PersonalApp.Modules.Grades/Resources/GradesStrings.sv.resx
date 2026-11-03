@@ -81,4 +81,48 @@
   <data name="Error_grade_comment_too_long" xml:space="preserve"><value>Kommentaren får vara högst 500 tecken.</value></data>
   <data name="Error_grade_student_not_found" xml:space="preserve"><value>Eleven hittades inte.</value></data>
   <data name="Error_grade_subject_not_found" xml:space="preserve"><value>Ämnet hittades inte.</value></data>
+  <data name="Tests_Title" xml:space="preserve"><value>Prov</value></data>
+  <data name="Tests_Subtitle" xml:space="preserve"><value>Proven du har gett, med varje elevs poäng och betyg.</value></data>
+  <data name="Tests_New" xml:space="preserve"><value>Nytt prov</value></data>
+  <data name="Tests_ColDate" xml:space="preserve"><value>DATUM</value></data>
+  <data name="Tests_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Tests_ColMaxScore" xml:space="preserve"><value>MAXPOÄNG</value></data>
+  <data name="Tests_ColResults" xml:space="preserve"><value>RESULTAT</value></data>
+  <data name="Tests_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Tests_ConfirmDelete" xml:space="preserve"><value>Ta bort provet och dess resultat?</value></data>
+  <data name="Tests_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Tests_NoSelection" xml:space="preserve"><value>Inget prov valt</value></data>
+  <data name="Tests_NoSelectionHint" xml:space="preserve"><value>Välj ett prov i tabellen för att redigera det och ange resultat, eller skapa ett nytt.</value></data>
+  <data name="Tests_Count" xml:space="preserve"><value>{0} prov</value></data>
+  <data name="Tests_Saved" xml:space="preserve"><value>Provet {0} sparades.</value></data>
+  <data name="TestEditor_New" xml:space="preserve"><value>Nytt prov</value></data>
+  <data name="TestEditor_Edit" xml:space="preserve"><value>Redigera prov</value></data>
+  <data name="TestEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="TestField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="TestField_NamePlaceholder" xml:space="preserve"><value>Till exempel Kapitel 3</value></data>
+  <data name="TestField_Date" xml:space="preserve"><value>Provdatum</value></data>
+  <data name="TestField_MaxScore" xml:space="preserve"><value>Maxpoäng</value></data>
+  <data name="TestResults_Title" xml:space="preserve"><value>Resultat</value></data>
+  <data name="TestResults_ColStudent" xml:space="preserve"><value>ELEV</value></data>
+  <data name="TestResults_ColScore" xml:space="preserve"><value>POÄNG</value></data>
+  <data name="TestResults_ColGrade" xml:space="preserve"><value>BETYG</value></data>
+  <data name="TestResults_Count" xml:space="preserve"><value>{0} resultat</value></data>
+  <data name="TestResults_Saved" xml:space="preserve"><value>Resultatet för {0} sparades.</value></data>
+  <data name="TestResults_Delete" xml:space="preserve"><value>Ta bort resultat</value></data>
+  <data name="TestResults_Clear" xml:space="preserve"><value>Nytt resultat</value></data>
+  <data name="TestResults_Save" xml:space="preserve"><value>Spara resultat</value></data>
+  <data name="TestResultField_Student" xml:space="preserve"><value>Elev</value></data>
+  <data name="TestResultField_Score" xml:space="preserve"><value>Poäng (max {0})</value></data>
+  <data name="TestResultField_Scale" xml:space="preserve"><value>Betygsskala</value></data>
+  <data name="TestResultField_Grade" xml:space="preserve"><value>Betyg</value></data>
+  <data name="Error_test_not_found" xml:space="preserve"><value>Provet hittades inte.</value></data>
+  <data name="Error_test_name_required" xml:space="preserve"><value>Namn krävs.</value></data>
+  <data name="Error_test_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_test_max_score_invalid" xml:space="preserve"><value>Maxpoängen måste vara större än 0.</value></data>
+  <data name="Error_test_max_score_below_results" xml:space="preserve"><value>En elev har redan högre poäng än så här.</value></data>
+  <data name="Error_test_result_not_found" xml:space="preserve"><value>Resultatet hittades inte.</value></data>
+  <data name="Error_test_result_student_required" xml:space="preserve"><value>Välj en elev.</value></data>
+  <data name="Error_test_result_student_not_found" xml:space="preserve"><value>Eleven hittades inte.</value></data>
+  <data name="Error_test_result_score_invalid" xml:space="preserve"><value>Ange en poäng på 0 eller mer.</value></data>
+  <data name="Error_test_result_score_exceeds_max" xml:space="preserve"><value>Poängen är högre än maxpoängen.</value></data>
 </root>

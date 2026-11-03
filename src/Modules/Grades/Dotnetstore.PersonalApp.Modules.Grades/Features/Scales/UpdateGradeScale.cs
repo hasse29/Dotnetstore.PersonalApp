@@ -51,7 +51,8 @@ internal static class UpdateGradeScale
             if (removed.Count > 0)
             {
                 var removedIds = removed.Select(i => i.Id).ToList();
-                if (await db.Grades.AnyAsync(g => removedIds.Contains(g.ScaleItemId), cancellationToken).ConfigureAwait(false))
+                if (await db.Grades.AnyAsync(g => removedIds.Contains(g.ScaleItemId), cancellationToken).ConfigureAwait(false)
+                    || await db.TestResults.AnyAsync(r => r.ScaleItemId != null && removedIds.Contains(r.ScaleItemId.Value), cancellationToken).ConfigureAwait(false))
                 {
                     return Error.Conflict("grade_item_in_use", "A grade that is in use cannot be removed.");
                 }

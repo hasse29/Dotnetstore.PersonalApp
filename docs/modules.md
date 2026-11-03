@@ -8,7 +8,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Students](#students) | `students.db` | Students of a school (client) | Students (and a tab on the Client detail page) |
 | [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | Subjects; Subjects tab on the User detail page |
 | [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | Schedule |
-| [Grades](#grades) | `grades.db` | Grade scales per country and the grades given to students | Grades, Grade scales; Grades tab on the Student detail page |
+| [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | Grades, Grade scales, Tests; Grades tab on the Student detail page |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -68,7 +68,10 @@ Grade scales per country, and the grades a teacher gives students. Countries gra
 - **Editing a scale**: the scale and its steps are saved together. Steps keep their id when edited so grades keep pointing at them; a step left out is removed unless a grade uses it (`grade_item_in_use`), and a scale with grades cannot be deleted (`grade_scale_in_use`). Nothing is seeded, so the first scale is created by the teacher.
 - **Grade**: `UserId` (the teacher who gave it, so each teacher only sees and changes their own), `StudentId`, `SubjectId`, `ScaleItemId` (the step on a scale, with a restricting FK inside the module), `Date`, optional `Comment`. The student and subject live in other modules, so there are no foreign keys to them; create and update ask `IStudentLookup` and `ISubjectLookup` (`grade_student_not_found`, `grade_subject_not_found`). A grade stays with its student. Lists show the latest date first.
 - **UI**: two pages in the School group, both under `ModuleKey` `grades`: Grades (every student's grades, with a student picker in the editor) and Grade scales (a scale editor with an editable list of steps). The same `GradesViewModel` also serves the Grades tab on the Student detail page (`StudentGradesPanelFactory`), where the student is fixed. Error codes `grade_*`.
-- Consumes `UserDeleted` (the grades that teacher gave), `StudentDeleted` and `SubjectDeleted`.
+- **Test**: a test the teacher gave: `UserId` (owner, so each teacher only sees their own), `Name` (≤100), `Date` (the day it was taken) and `MaxScore` (a number above 0, at most 100000). The maximum cannot be lowered below a score already given (`test_max_score_below_results`).
+- **TestResult**: one student's result on a test: `StudentId` (other module, so no foreign key; checked through `IStudentLookup`), `Score` (0 up to the test's maximum) and an optional `ScaleItemId` (the grade, a step on any scale, with a restricting FK inside the module so a scale step in use cannot be removed and a scale in use cannot be deleted). A student has at most one result per test: saving again replaces it. Deleting a test deletes its results (cascade). Scores are typed as text and accept a decimal point or comma (`ScoreText`).
+- **Tests page**: a third page in the School group (`TestsPage`, `ModuleKey` `grades`): the test list, an editor for name/date/maximum score and, for a saved test, the results panel (student picker, score, scale and grade). Error codes `test_*`; a missing grade step reuses `grade_item_not_found`.
+- Consumes `UserDeleted` (the grades and tests that teacher gave), `StudentDeleted` (their grades and test results) and `SubjectDeleted`.
 
 ## Users
 

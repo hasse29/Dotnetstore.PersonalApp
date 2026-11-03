@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dotnetstore.PersonalApp.Modules.Grades.Features.Grades;
 
-/// <summary>Cleans up after another module deleted a teacher, a student or a subject that grades refer to.</summary>
+/// <summary>Cleans up after another module deleted a teacher, a student or a subject that grades, tests and test results refer to.</summary>
 internal static class DeleteGradesFor
 {
     public sealed record Command(Guid? UserId = null, Guid? StudentId = null, Guid? SubjectId = null);
@@ -18,6 +18,17 @@ internal static class DeleteGradesFor
                 .Where(g => (command.UserId != null && g.UserId == command.UserId)
                     || (command.StudentId != null && g.StudentId == command.StudentId)
                     || (command.SubjectId != null && g.SubjectId == command.SubjectId))
+                .ExecuteDeleteAsync(cancellationToken)
+                .ConfigureAwait(false);
+
+            // A teacher's tests take their results with them (cascade); a student's results go on their own.
+            await db.Tests
+                .Where(t => command.UserId != null && t.UserId == command.UserId)
+                .ExecuteDeleteAsync(cancellationToken)
+                .ConfigureAwait(false);
+
+            await db.TestResults
+                .Where(r => command.StudentId != null && r.StudentId == command.StudentId)
                 .ExecuteDeleteAsync(cancellationToken)
                 .ConfigureAwait(false);
         }

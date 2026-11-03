@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Grades.Consumers;
 using Dotnetstore.PersonalApp.Modules.Grades.Features.Grades;
 using Dotnetstore.PersonalApp.Modules.Grades.Features.Scales;
+using Dotnetstore.PersonalApp.Modules.Grades.Features.Tests;
 using Dotnetstore.PersonalApp.Modules.Grades.Persistence;
 using Dotnetstore.PersonalApp.Modules.Grades.Resources;
 using Dotnetstore.PersonalApp.Modules.Grades.Startup;
@@ -28,6 +29,9 @@ public static class GradesModule
         services.AddSingleton<IValidator<UpdateGradeScale.Command>, UpdateGradeScale.Validator>();
         services.AddSingleton<IValidator<CreateGrade.Command>, CreateGrade.Validator>();
         services.AddSingleton<IValidator<UpdateGrade.Command>, UpdateGrade.Validator>();
+        services.AddSingleton<IValidator<CreateTest.Command>, CreateTest.Validator>();
+        services.AddSingleton<IValidator<UpdateTest.Command>, UpdateTest.Validator>();
+        services.AddSingleton<IValidator<SaveTestResult.Command>, SaveTestResult.Validator>();
 
         services.AddSingleton<ListGradeScales.Handler>();
         services.AddSingleton<CreateGradeScale.Handler>();
@@ -38,9 +42,17 @@ public static class GradesModule
         services.AddSingleton<UpdateGrade.Handler>();
         services.AddSingleton<DeleteGrade.Handler>();
         services.AddSingleton<DeleteGradesFor.Handler>();
+        services.AddSingleton<ListTests.Handler>();
+        services.AddSingleton<CreateTest.Handler>();
+        services.AddSingleton<UpdateTest.Handler>();
+        services.AddSingleton<DeleteTest.Handler>();
+        services.AddSingleton<ListTestResults.Handler>();
+        services.AddSingleton<SaveTestResult.Handler>();
+        services.AddSingleton<DeleteTestResult.Handler>();
 
         services.AddSingleton<GradeScalesViewModel>();
         services.AddSingleton<GradesViewModelFactory>();
+        services.AddSingleton<TestsViewModelFactory>();
         services.AddSingleton<IStudentGradesPanelFactory, StudentGradesPanelFactory>();
 
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
@@ -49,6 +61,7 @@ public static class GradesModule
 
         services.AddSingleton<IModulePage, GradesPage>();
         services.AddSingleton<IModulePage, GradeScalesPage>();
+        services.AddSingleton<IModulePage, TestsPage>();
         services.AddSingleton(new ModuleInfo("grades", "Grades_Title"));
         services.AddSingleton<IStartupTask, MigrateGradesDatabaseTask>();
 

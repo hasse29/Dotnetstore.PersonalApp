@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Grades.Features.Grades;
 using Dotnetstore.PersonalApp.Modules.Grades.Features.Scales;
+using Dotnetstore.PersonalApp.Modules.Grades.Features.Tests;
 using Dotnetstore.PersonalApp.Modules.Grades.Persistence;
 using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
@@ -32,6 +33,13 @@ internal sealed class GradesFixture : IDisposable
         DeleteGrade = new DeleteGrade.Handler(DbFactory);
         ListGrades = new ListGrades.Handler(DbFactory);
         DeleteGradesFor = new DeleteGradesFor.Handler(DbFactory);
+        CreateTest = new CreateTest.Handler(DbFactory, new CreateTest.Validator(), Clock);
+        UpdateTest = new UpdateTest.Handler(DbFactory, new UpdateTest.Validator());
+        DeleteTest = new DeleteTest.Handler(DbFactory);
+        ListTests = new ListTests.Handler(DbFactory);
+        SaveTestResult = new SaveTestResult.Handler(DbFactory, new SaveTestResult.Validator(), Students, Clock);
+        DeleteTestResult = new DeleteTestResult.Handler(DbFactory);
+        ListTestResults = new ListTestResults.Handler(DbFactory);
     }
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 2, 12, 0, 0, TimeSpan.Zero));
@@ -59,6 +67,20 @@ internal sealed class GradesFixture : IDisposable
     public ListGrades.Handler ListGrades { get; }
 
     public DeleteGradesFor.Handler DeleteGradesFor { get; }
+
+    public CreateTest.Handler CreateTest { get; }
+
+    public UpdateTest.Handler UpdateTest { get; }
+
+    public DeleteTest.Handler DeleteTest { get; }
+
+    public ListTests.Handler ListTests { get; }
+
+    public SaveTestResult.Handler SaveTestResult { get; }
+
+    public DeleteTestResult.Handler DeleteTestResult { get; }
+
+    public ListTestResults.Handler ListTestResults { get; }
 
     /// <summary>Sweden's A-F: E is the lowest passing grade, F is a fail.</summary>
     public static IReadOnlyList<GradeScaleItemInput> SwedishSteps { get; } =

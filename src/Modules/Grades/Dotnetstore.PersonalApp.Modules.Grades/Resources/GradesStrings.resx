@@ -81,4 +81,48 @@
   <data name="Error_grade_comment_too_long" xml:space="preserve"><value>Comment can be at most 500 characters.</value></data>
   <data name="Error_grade_student_not_found" xml:space="preserve"><value>Student not found.</value></data>
   <data name="Error_grade_subject_not_found" xml:space="preserve"><value>Subject not found.</value></data>
+  <data name="Tests_Title" xml:space="preserve"><value>Tests</value></data>
+  <data name="Tests_Subtitle" xml:space="preserve"><value>The tests you have given, with each student's score and grade.</value></data>
+  <data name="Tests_New" xml:space="preserve"><value>New test</value></data>
+  <data name="Tests_ColDate" xml:space="preserve"><value>DATE</value></data>
+  <data name="Tests_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Tests_ColMaxScore" xml:space="preserve"><value>MAX SCORE</value></data>
+  <data name="Tests_ColResults" xml:space="preserve"><value>RESULTS</value></data>
+  <data name="Tests_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Tests_ConfirmDelete" xml:space="preserve"><value>Delete the test and its results?</value></data>
+  <data name="Tests_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Tests_NoSelection" xml:space="preserve"><value>No test selected</value></data>
+  <data name="Tests_NoSelectionHint" xml:space="preserve"><value>Select a test in the table to edit it and enter results, or create a new one.</value></data>
+  <data name="Tests_Count" xml:space="preserve"><value>{0} tests</value></data>
+  <data name="Tests_Saved" xml:space="preserve"><value>Test {0} was saved.</value></data>
+  <data name="TestEditor_New" xml:space="preserve"><value>New test</value></data>
+  <data name="TestEditor_Edit" xml:space="preserve"><value>Edit test</value></data>
+  <data name="TestEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="TestField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="TestField_NamePlaceholder" xml:space="preserve"><value>For example Chapter 3 quiz</value></data>
+  <data name="TestField_Date" xml:space="preserve"><value>Date taken</value></data>
+  <data name="TestField_MaxScore" xml:space="preserve"><value>Maximum score</value></data>
+  <data name="TestResults_Title" xml:space="preserve"><value>Results</value></data>
+  <data name="TestResults_ColStudent" xml:space="preserve"><value>STUDENT</value></data>
+  <data name="TestResults_ColScore" xml:space="preserve"><value>SCORE</value></data>
+  <data name="TestResults_ColGrade" xml:space="preserve"><value>GRADE</value></data>
+  <data name="TestResults_Count" xml:space="preserve"><value>{0} results</value></data>
+  <data name="TestResults_Saved" xml:space="preserve"><value>Result for {0} was saved.</value></data>
+  <data name="TestResults_Delete" xml:space="preserve"><value>Delete result</value></data>
+  <data name="TestResults_Clear" xml:space="preserve"><value>New result</value></data>
+  <data name="TestResults_Save" xml:space="preserve"><value>Save result</value></data>
+  <data name="TestResultField_Student" xml:space="preserve"><value>Student</value></data>
+  <data name="TestResultField_Score" xml:space="preserve"><value>Score (max {0})</value></data>
+  <data name="TestResultField_Scale" xml:space="preserve"><value>Grade scale</value></data>
+  <data name="TestResultField_Grade" xml:space="preserve"><value>Grade</value></data>
+  <data name="Error_test_not_found" xml:space="preserve"><value>Test not found.</value></data>
+  <data name="Error_test_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_test_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_test_max_score_invalid" xml:space="preserve"><value>Maximum score must be more than 0.</value></data>
+  <data name="Error_test_max_score_below_results" xml:space="preserve"><value>A student already has a higher score than this.</value></data>
+  <data name="Error_test_result_not_found" xml:space="preserve"><value>Result not found.</value></data>
+  <data name="Error_test_result_student_required" xml:space="preserve"><value>Choose a student.</value></data>
+  <data name="Error_test_result_student_not_found" xml:space="preserve"><value>Student not found.</value></data>
+  <data name="Error_test_result_score_invalid" xml:space="preserve"><value>Enter a score of 0 or more.</value></data>
+  <data name="Error_test_result_score_exceeds_max" xml:space="preserve"><value>The score is higher than the maximum score.</value></data>
 </root>

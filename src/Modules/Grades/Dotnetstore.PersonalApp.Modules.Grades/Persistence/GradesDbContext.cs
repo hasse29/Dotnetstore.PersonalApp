@@ -11,6 +11,10 @@ internal sealed class GradesDbContext(DbContextOptions<GradesDbContext> options)
 
     public DbSet<Grade> Grades => Set<Grade>();
 
+    public DbSet<Test> Tests => Set<Test>();
+
+    public DbSet<TestResult> TestResults => Set<TestResult>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(GradesDbContext).Assembly);

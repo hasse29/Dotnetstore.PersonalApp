@@ -14,7 +14,8 @@ internal static class DeleteGradeScale
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
-            if (await db.Grades.AnyAsync(g => g.ScaleItem.ScaleId == command.Id, cancellationToken).ConfigureAwait(false))
+            if (await db.Grades.AnyAsync(g => g.ScaleItem.ScaleId == command.Id, cancellationToken).ConfigureAwait(false)
+                || await db.TestResults.AnyAsync(r => r.ScaleItem != null && r.ScaleItem.ScaleId == command.Id, cancellationToken).ConfigureAwait(false))
             {
                 return Error.Conflict("grade_scale_in_use", "Grades have been given on this scale, so it cannot be deleted.");
             }

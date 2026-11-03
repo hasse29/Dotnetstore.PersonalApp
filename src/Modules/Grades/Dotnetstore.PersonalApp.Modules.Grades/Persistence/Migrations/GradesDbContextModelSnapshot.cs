@@ -116,6 +116,69 @@ namespace Dotnetstore.PersonalApp.Modules.Grades.Persistence.Migrations
                     b.ToTable("GradeScaleItems", (string)null);
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.Test", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("MaxScore")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tests", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.TestResult", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ScaleItemId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Score")
+                        .HasColumnType("REAL");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TestId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScaleItemId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("TestId", "StudentId")
+                        .IsUnique();
+
+                    b.ToTable("TestResults", (string)null);
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.Grade", b =>
                 {
                     b.HasOne("Dotnetstore.PersonalApp.Modules.Grades.Domain.GradeScaleItem", "ScaleItem")
@@ -136,9 +199,32 @@ namespace Dotnetstore.PersonalApp.Modules.Grades.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.TestResult", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Grades.Domain.GradeScaleItem", "ScaleItem")
+                        .WithMany()
+                        .HasForeignKey("ScaleItemId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Grades.Domain.Test", "Test")
+                        .WithMany("Results")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ScaleItem");
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.GradeScale", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Grades.Domain.Test", b =>
+                {
+                    b.Navigation("Results");
                 });
 #pragma warning restore 612, 618
         }
