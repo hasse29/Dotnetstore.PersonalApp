@@ -7,14 +7,15 @@
 ![Avalonia 12](https://img.shields.io/badge/Avalonia-12-8B44AC)
 ![Platform: Windows](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)
 
-A personal desktop app for keeping track of clients, the time you work for them, your CVs and your mail. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
+A personal desktop app for keeping track of clients, the time you work for them, your CVs and your mail. It is built from a teacher's point of view: a client is a school, and a user is a teacher who can work at several schools. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
 
 ## Features
 
 - **Clients**: companies with a unique organization number, a photo, and any number of **contact persons** (each with photo, addresses, email addresses and phone numbers). Companies have addresses, email addresses and phone numbers too.
 - **Students**: a client is a school. Each school has any number of students (photo, name, class, notes) with their own addresses, email addresses and phone numbers, and a running, dated log of notes (latest entry first). Students have their own page across all schools, with a school filter, and a tab on each school.
 - **Subjects**: a catalogue of subjects. A teacher can teach several, picked on the user's page; several teachers can share a subject.
-- **Grades**: grade scales per country (for example A-F in Sweden or 1-6 in Germany, defined by you) and the grades you give your students per subject, on a Grades page and a tab on each student. Tests record a name, date and maximum score, then each student's result and grade.
+- **Grades and tests**: grade scales per country (for example A-F in Sweden or 1-6 in Germany, defined by you) and the grades you give your students per subject, on a Grades page and a tab on each student.
+- **Tests**: a test has a name, a date and a maximum score. Then you set each student's score and grade on it.
 - **Schedule**: a teacher's recurring weekly lessons, for example mathematics every Monday at 08:00, each with a subject, a school, a time, an optional room and the students who attend. Overlapping lessons are rejected.
 - **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.
   - Copy a report to create similar ones on another date.
@@ -25,6 +26,7 @@ A personal desktop app for keeping track of clients, the time you work for them,
 - **CVs**: several CVs per user for different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, LinkedIn link and the contact details you choose per CV. Export to Word.
 - **Email**: SMTP and POP3 accounts (personal or shared system accounts), inbox with auto-refresh, reply, reply all, forward, drafts, sent mail, attachments and formatted HTML mail.
 - **Users and sign-in**: the first start creates the first user; users have a photo that shows in the sidebar and top bar.
+- **Modules**: switch parts of the app on and off in Settings. The School features (Students, Subjects, Schedule, Grades, Grade scales and Tests) are one switch; turning it off hides the School menu and the school tabs on clients and users.
 - **Languages**: English, Swedish and Simplified Chinese, switchable at any time.
 
 ## Install
@@ -63,7 +65,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Students | Students of each school | `students.db` |
 | Subjects | Subjects and which teacher teaches what | `subjects.db` |
 | Schedule | A teacher's recurring weekly lessons | `schedule.db` |
-| Grades | Grade scales per country and students' grades | `grades.db` |
+| Grades | Grade scales per country, students' grades, tests and their results | `grades.db` |
 | Users | Users and sign-in | `users.db` |
 | Addresses | Addresses for any object, with address types | `addresses.db` |
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |

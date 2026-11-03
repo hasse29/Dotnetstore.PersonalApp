@@ -5,10 +5,10 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | Module | Database | Owns | Sidebar |
 | --- | --- | --- | --- |
 | [Clients](#clients) | `clients.db` | Client companies, contact persons | Clients (landing page) |
-| [Students](#students) | `students.db` | Students of a school (client) | Students (and a tab on the Client detail page) |
-| [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | Subjects; Subjects tab on the User detail page |
-| [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | Schedule |
-| [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | Grades, Grade scales, Tests; Grades tab on the Student detail page |
+| [Students](#students) | `students.db` | Students of a school (client) | School > Students (and a tab on the Client detail page) |
+| [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | School > Subjects; Subjects tab on the User detail page |
+| [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | School > Schedule |
+| [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | School > Grades, Grade scales, Tests; Grades tab on the Student detail page |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -16,6 +16,8 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [TimeReports](#timereports) | `timereports.db` | Time reports, work time types, exports | Time reports group |
 | [Cvs](#cvs) | `cvs.db` | CVs and their sections | CVs |
 | [Email](#email) | `email.db` | Mail accounts, messages, drafts | Email group |
+
+**School.** The app is used from a teacher's point of view: a client is a school and a user is a teacher. Students, Subjects, Schedule and Grades are separate projects but one switch in the Modules settings page ("School", `SchoolGroup.ModuleKey`). Switching it off hides the whole School sidebar group and the school tabs on other pages (Students on a client, Subjects on a user); the data is kept. See [architecture.md](architecture.md) for how the tabs find out (`IModuleAvailability`).
 
 `AddClientsModule` is registered before `AddUsersModule` in `CompositionRoot`, so Clients is the first page.
 

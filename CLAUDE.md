@@ -5,7 +5,7 @@
 ## Documentation
 
 - [docs/architecture.md](docs/architecture.md): layout, boundaries, module conventions, integration events, startup/auth, localization, design system, testing. Read before structural work.
-- [docs/modules.md](docs/modules.md): what each module owns and its rules (Clients, Users, Addresses, EmailAddresses, PhoneNumbers, TimeReports, Cvs, Email, photos). Read before changing a module.
+- [docs/modules.md](docs/modules.md): what each module owns and its rules (Clients, Students, Subjects, Schedule, Grades and tests, Users, Addresses, EmailAddresses, PhoneNumbers, TimeReports, Cvs, Email, photos). Read before changing a module.
 - [README.md](README.md): user-facing overview, install and build.
 
 Keep these in sync when you change a module's behavior, add a module, or change a convention. Do not copy their content here.
