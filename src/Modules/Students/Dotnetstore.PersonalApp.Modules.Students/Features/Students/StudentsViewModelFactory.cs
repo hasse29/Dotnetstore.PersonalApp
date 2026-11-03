@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Students;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -19,7 +20,8 @@ internal sealed class StudentsViewModelFactory(
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     StudentPhotoPanelFactory? photoFactory = null,
     IClientLookup? clients = null,
-    StudentNotesViewModelFactory? notesFactory = null)
+    StudentNotesViewModelFactory? notesFactory = null,
+    IStudentGradesPanelFactory? gradesFactory = null)
 {
     /// <summary>The tab on one school's detail page.</summary>
     public StudentsViewModel Create(Guid clientId) => Build(clientId);
@@ -28,5 +30,5 @@ internal sealed class StudentsViewModelFactory(
     public StudentsViewModel CreateForPage() => Build(null);
 
     private StudentsViewModel Build(Guid? clientId) =>
-        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory, photoFactory, clients, notesFactory);
+        new(clientId, list, create, update, delete, localization, addressesFactory, emailAddressesFactory, phoneNumbersFactory, photoFactory, clients, notesFactory, gradesFactory);
 }

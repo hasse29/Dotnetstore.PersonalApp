@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_GradesDatabase" xml:space="preserve"><value>正在准备成绩数据库...</value></data>
+  <data name="GradeScales_Title" xml:space="preserve"><value>评分标准</value></data>
+  <data name="GradeScales_Subtitle" xml:space="preserve"><value>您使用的评分制度，例如瑞典的 A-F 或德国的 1-6。</value></data>
+  <data name="GradeScales_New" xml:space="preserve"><value>新建标准</value></data>
+  <data name="GradeScales_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="GradeScales_ColCountry" xml:space="preserve"><value>国家</value></data>
+  <data name="GradeScales_ColGrades" xml:space="preserve"><value>等级</value></data>
+  <data name="GradeScales_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="GradeScales_ConfirmDelete" xml:space="preserve"><value>删除此标准？</value></data>
+  <data name="GradeScales_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="GradeScales_NoSelection" xml:space="preserve"><value>未选择标准</value></data>
+  <data name="GradeScales_NoSelectionHint" xml:space="preserve"><value>在表格中选择一个标准进行编辑，或新建一个。</value></data>
+  <data name="GradeScales_Count" xml:space="preserve"><value>{0} 个标准</value></data>
+  <data name="GradeScales_Saved" xml:space="preserve"><value>{0} 已保存。</value></data>
+  <data name="GradeScaleEditor_New" xml:space="preserve"><value>新建评分标准</value></data>
+  <data name="GradeScaleEditor_Edit" xml:space="preserve"><value>编辑评分标准</value></data>
+  <data name="GradeScaleEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="GradeScaleEditor_AddItem" xml:space="preserve"><value>添加等级</value></data>
+  <data name="GradeScaleField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="GradeScaleField_NamePlaceholder" xml:space="preserve"><value>例如 A-F</value></data>
+  <data name="GradeScaleField_Country" xml:space="preserve"><value>国家</value></data>
+  <data name="GradeScaleField_CountryPlaceholder" xml:space="preserve"><value>例如 瑞典</value></data>
+  <data name="GradeScaleField_Description" xml:space="preserve"><value>说明</value></data>
+  <data name="GradeScaleField_Items" xml:space="preserve"><value>等级</value></data>
+  <data name="GradeScaleField_ItemsHint" xml:space="preserve"><value>等级数值越高成绩越好。勾选视为及格的等级。</value></data>
+  <data name="GradeItem_Label" xml:space="preserve"><value>标签</value></data>
+  <data name="GradeItem_Rank" xml:space="preserve"><value>数值</value></data>
+  <data name="GradeItem_Passing" xml:space="preserve"><value>及格</value></data>
+  <data name="GradeItem_Remove" xml:space="preserve"><value>移除</value></data>
+  <data name="GradeItem_DescriptionPlaceholder" xml:space="preserve"><value>说明（可选）</value></data>
+  <data name="Grades_Title" xml:space="preserve"><value>成绩</value></data>
+  <data name="Grades_Subtitle" xml:space="preserve"><value>您给学生评定的成绩。</value></data>
+  <data name="Grades_TabSubtitle" xml:space="preserve"><value>您给该学生评定的成绩。</value></data>
+  <data name="Grades_New" xml:space="preserve"><value>新建成绩</value></data>
+  <data name="Grades_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="Grades_ColGrade" xml:space="preserve"><value>成绩</value></data>
+  <data name="Grades_ColSubject" xml:space="preserve"><value>科目</value></data>
+  <data name="Grades_ColScale" xml:space="preserve"><value>标准</value></data>
+  <data name="Grades_ColStudent" xml:space="preserve"><value>学生</value></data>
+  <data name="Grades_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Grades_ConfirmDelete" xml:space="preserve"><value>删除此成绩？</value></data>
+  <data name="Grades_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Grades_NoSelection" xml:space="preserve"><value>未选择成绩</value></data>
+  <data name="Grades_NoSelectionHint" xml:space="preserve"><value>在表格中选择一个成绩进行编辑，或新建一个。</value></data>
+  <data name="Grades_Count" xml:space="preserve"><value>{0} 个成绩</value></data>
+  <data name="Grades_Saved" xml:space="preserve"><value>成绩 {0} 已保存。</value></data>
+  <data name="Grades_NeedSubjectAndScale" xml:space="preserve"><value>请先添加科目（学校 &gt; 科目）和评分标准（学校 &gt; 评分标准）。</value></data>
+  <data name="GradeEditor_New" xml:space="preserve"><value>新建成绩</value></data>
+  <data name="GradeEditor_Edit" xml:space="preserve"><value>编辑成绩</value></data>
+  <data name="GradeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="GradeField_Student" xml:space="preserve"><value>学生</value></data>
+  <data name="GradeField_Subject" xml:space="preserve"><value>科目</value></data>
+  <data name="GradeField_Scale" xml:space="preserve"><value>评分标准</value></data>
+  <data name="GradeField_Grade" xml:space="preserve"><value>成绩</value></data>
+  <data name="GradeField_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="GradeField_Comment" xml:space="preserve"><value>评语</value></data>
+  <data name="Error_grade_scale_not_found" xml:space="preserve"><value>未找到评分标准。</value></data>
+  <data name="Error_grade_scale_name_required" xml:space="preserve"><value>请填写名称。</value></data>
+  <data name="Error_grade_scale_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_grade_scale_country_too_long" xml:space="preserve"><value>国家最多 100 个字符。</value></data>
+  <data name="Error_grade_scale_description_too_long" xml:space="preserve"><value>说明最多 500 个字符。</value></data>
+  <data name="Error_grade_scale_items_required" xml:space="preserve"><value>请至少添加一个等级。</value></data>
+  <data name="Error_grade_scale_too_many_items" xml:space="preserve"><value>一个标准最多有 50 个等级。</value></data>
+  <data name="Error_grade_item_label_required" xml:space="preserve"><value>每个等级都需要标签。</value></data>
+  <data name="Error_grade_item_label_too_long" xml:space="preserve"><value>标签最多 20 个字符。</value></data>
+  <data name="Error_grade_item_description_too_long" xml:space="preserve"><value>等级说明最多 200 个字符。</value></data>
+  <data name="Error_grade_item_label_duplicate" xml:space="preserve"><value>有两个等级的标签相同。</value></data>
+  <data name="Error_grade_item_not_found" xml:space="preserve"><value>未找到等级。</value></data>
+  <data name="Error_grade_item_in_use" xml:space="preserve"><value>已评定给学生的等级不能从标准中移除。</value></data>
+  <data name="Error_grade_scale_in_use" xml:space="preserve"><value>已使用此标准评定成绩，因此无法删除。</value></data>
+  <data name="Error_grade_not_found" xml:space="preserve"><value>未找到成绩。</value></data>
+  <data name="Error_grade_student_required" xml:space="preserve"><value>请选择学生。</value></data>
+  <data name="Error_grade_subject_required" xml:space="preserve"><value>请选择科目。</value></data>
+  <data name="Error_grade_item_required" xml:space="preserve"><value>请选择成绩。</value></data>
+  <data name="Error_grade_comment_too_long" xml:space="preserve"><value>评语最多 500 个字符。</value></data>
+  <data name="Error_grade_student_not_found" xml:space="preserve"><value>未找到学生。</value></data>
+  <data name="Error_grade_subject_not_found" xml:space="preserve"><value>未找到科目。</value></data>
+</root>

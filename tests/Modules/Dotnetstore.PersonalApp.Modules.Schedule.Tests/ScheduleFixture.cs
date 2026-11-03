@@ -113,6 +113,9 @@ internal sealed class ScheduleFixture : IDisposable
             return student;
         }
 
+        public Task<IReadOnlyList<StudentReference>> ListAsync(CancellationToken cancellationToken) =>
+            Task.FromResult<IReadOnlyList<StudentReference>>([.. _items.OrderBy(s => s.Name)]);
+
         public Task<IReadOnlyList<StudentReference>> ListForSchoolAsync(Guid clientId, CancellationToken cancellationToken) =>
             Task.FromResult<IReadOnlyList<StudentReference>>([.. _items.Where(s => s.ClientId == clientId).OrderBy(s => s.Name)]);
     }

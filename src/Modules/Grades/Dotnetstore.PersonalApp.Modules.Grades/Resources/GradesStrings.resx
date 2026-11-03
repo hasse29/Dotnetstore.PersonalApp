@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_GradesDatabase" xml:space="preserve"><value>Preparing grades database...</value></data>
+  <data name="GradeScales_Title" xml:space="preserve"><value>Grade scales</value></data>
+  <data name="GradeScales_Subtitle" xml:space="preserve"><value>The grading systems you use, for example A-F in Sweden or 1-6 in Germany.</value></data>
+  <data name="GradeScales_New" xml:space="preserve"><value>New scale</value></data>
+  <data name="GradeScales_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="GradeScales_ColCountry" xml:space="preserve"><value>COUNTRY</value></data>
+  <data name="GradeScales_ColGrades" xml:space="preserve"><value>GRADES</value></data>
+  <data name="GradeScales_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="GradeScales_ConfirmDelete" xml:space="preserve"><value>Delete the scale?</value></data>
+  <data name="GradeScales_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="GradeScales_NoSelection" xml:space="preserve"><value>No scale selected</value></data>
+  <data name="GradeScales_NoSelectionHint" xml:space="preserve"><value>Select a scale in the table to edit, or create a new one.</value></data>
+  <data name="GradeScales_Count" xml:space="preserve"><value>{0} scales</value></data>
+  <data name="GradeScales_Saved" xml:space="preserve"><value>{0} was saved.</value></data>
+  <data name="GradeScaleEditor_New" xml:space="preserve"><value>New grade scale</value></data>
+  <data name="GradeScaleEditor_Edit" xml:space="preserve"><value>Edit grade scale</value></data>
+  <data name="GradeScaleEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="GradeScaleEditor_AddItem" xml:space="preserve"><value>Add grade</value></data>
+  <data name="GradeScaleField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="GradeScaleField_NamePlaceholder" xml:space="preserve"><value>For example A-F</value></data>
+  <data name="GradeScaleField_Country" xml:space="preserve"><value>Country</value></data>
+  <data name="GradeScaleField_CountryPlaceholder" xml:space="preserve"><value>For example Sweden</value></data>
+  <data name="GradeScaleField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="GradeScaleField_Items" xml:space="preserve"><value>Grades</value></data>
+  <data name="GradeScaleField_ItemsHint" xml:space="preserve"><value>Higher rank means a better grade. Tick the grades that count as passed.</value></data>
+  <data name="GradeItem_Label" xml:space="preserve"><value>LABEL</value></data>
+  <data name="GradeItem_Rank" xml:space="preserve"><value>RANK</value></data>
+  <data name="GradeItem_Passing" xml:space="preserve"><value>PASS</value></data>
+  <data name="GradeItem_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="GradeItem_DescriptionPlaceholder" xml:space="preserve"><value>Description (optional)</value></data>
+  <data name="Grades_Title" xml:space="preserve"><value>Grades</value></data>
+  <data name="Grades_Subtitle" xml:space="preserve"><value>The grades you have given your students.</value></data>
+  <data name="Grades_TabSubtitle" xml:space="preserve"><value>The grades you have given this student.</value></data>
+  <data name="Grades_New" xml:space="preserve"><value>New grade</value></data>
+  <data name="Grades_ColDate" xml:space="preserve"><value>DATE</value></data>
+  <data name="Grades_ColGrade" xml:space="preserve"><value>GRADE</value></data>
+  <data name="Grades_ColSubject" xml:space="preserve"><value>SUBJECT</value></data>
+  <data name="Grades_ColScale" xml:space="preserve"><value>SCALE</value></data>
+  <data name="Grades_ColStudent" xml:space="preserve"><value>STUDENT</value></data>
+  <data name="Grades_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Grades_ConfirmDelete" xml:space="preserve"><value>Delete the grade?</value></data>
+  <data name="Grades_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Grades_NoSelection" xml:space="preserve"><value>No grade selected</value></data>
+  <data name="Grades_NoSelectionHint" xml:space="preserve"><value>Select a grade in the table to edit, or give a new one.</value></data>
+  <data name="Grades_Count" xml:space="preserve"><value>{0} grades</value></data>
+  <data name="Grades_Saved" xml:space="preserve"><value>Grade {0} was saved.</value></data>
+  <data name="Grades_NeedSubjectAndScale" xml:space="preserve"><value>Add a subject (School &gt; Subjects) and a grade scale (School &gt; Grade scales) first.</value></data>
+  <data name="GradeEditor_New" xml:space="preserve"><value>New grade</value></data>
+  <data name="GradeEditor_Edit" xml:space="preserve"><value>Edit grade</value></data>
+  <data name="GradeEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="GradeField_Student" xml:space="preserve"><value>Student</value></data>
+  <data name="GradeField_Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="GradeField_Scale" xml:space="preserve"><value>Grade scale</value></data>
+  <data name="GradeField_Grade" xml:space="preserve"><value>Grade</value></data>
+  <data name="GradeField_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="GradeField_Comment" xml:space="preserve"><value>Comment</value></data>
+  <data name="Error_grade_scale_not_found" xml:space="preserve"><value>Grade scale not found.</value></data>
+  <data name="Error_grade_scale_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_grade_scale_name_too_long" xml:space="preserve"><value>Name can be at most 100 characters.</value></data>
+  <data name="Error_grade_scale_country_too_long" xml:space="preserve"><value>Country can be at most 100 characters.</value></data>
+  <data name="Error_grade_scale_description_too_long" xml:space="preserve"><value>Description can be at most 500 characters.</value></data>
+  <data name="Error_grade_scale_items_required" xml:space="preserve"><value>Add at least one grade.</value></data>
+  <data name="Error_grade_scale_too_many_items" xml:space="preserve"><value>A scale can have at most 50 grades.</value></data>
+  <data name="Error_grade_item_label_required" xml:space="preserve"><value>Every grade needs a label.</value></data>
+  <data name="Error_grade_item_label_too_long" xml:space="preserve"><value>A label can be at most 20 characters.</value></data>
+  <data name="Error_grade_item_description_too_long" xml:space="preserve"><value>A grade description can be at most 200 characters.</value></data>
+  <data name="Error_grade_item_label_duplicate" xml:space="preserve"><value>Two grades have the same label.</value></data>
+  <data name="Error_grade_item_not_found" xml:space="preserve"><value>Grade not found.</value></data>
+  <data name="Error_grade_item_in_use" xml:space="preserve"><value>A grade that has been given to a student cannot be removed from the scale.</value></data>
+  <data name="Error_grade_scale_in_use" xml:space="preserve"><value>Grades have been given on this scale, so it cannot be deleted.</value></data>
+  <data name="Error_grade_not_found" xml:space="preserve"><value>Grade not found.</value></data>
+  <data name="Error_grade_student_required" xml:space="preserve"><value>Choose a student.</value></data>
+  <data name="Error_grade_subject_required" xml:space="preserve"><value>Choose a subject.</value></data>
+  <data name="Error_grade_item_required" xml:space="preserve"><value>Choose a grade.</value></data>
+  <data name="Error_grade_comment_too_long" xml:space="preserve"><value>Comment can be at most 500 characters.</value></data>
+  <data name="Error_grade_student_not_found" xml:space="preserve"><value>Student not found.</value></data>
+  <data name="Error_grade_subject_not_found" xml:space="preserve"><value>Subject not found.</value></data>
+</root>

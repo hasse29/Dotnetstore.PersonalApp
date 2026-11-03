@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_GradesDatabase" xml:space="preserve"><value>Förbereder betygsdatabasen...</value></data>
+  <data name="GradeScales_Title" xml:space="preserve"><value>Betygsskalor</value></data>
+  <data name="GradeScales_Subtitle" xml:space="preserve"><value>De betygssystem du använder, till exempel A-F i Sverige eller 1-6 i Tyskland.</value></data>
+  <data name="GradeScales_New" xml:space="preserve"><value>Ny skala</value></data>
+  <data name="GradeScales_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="GradeScales_ColCountry" xml:space="preserve"><value>LAND</value></data>
+  <data name="GradeScales_ColGrades" xml:space="preserve"><value>BETYG</value></data>
+  <data name="GradeScales_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="GradeScales_ConfirmDelete" xml:space="preserve"><value>Ta bort skalan?</value></data>
+  <data name="GradeScales_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="GradeScales_NoSelection" xml:space="preserve"><value>Ingen skala vald</value></data>
+  <data name="GradeScales_NoSelectionHint" xml:space="preserve"><value>Välj en skala i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="GradeScales_Count" xml:space="preserve"><value>{0} skalor</value></data>
+  <data name="GradeScales_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="GradeScaleEditor_New" xml:space="preserve"><value>Ny betygsskala</value></data>
+  <data name="GradeScaleEditor_Edit" xml:space="preserve"><value>Redigera betygsskala</value></data>
+  <data name="GradeScaleEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="GradeScaleEditor_AddItem" xml:space="preserve"><value>Lägg till betyg</value></data>
+  <data name="GradeScaleField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="GradeScaleField_NamePlaceholder" xml:space="preserve"><value>Till exempel A-F</value></data>
+  <data name="GradeScaleField_Country" xml:space="preserve"><value>Land</value></data>
+  <data name="GradeScaleField_CountryPlaceholder" xml:space="preserve"><value>Till exempel Sverige</value></data>
+  <data name="GradeScaleField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="GradeScaleField_Items" xml:space="preserve"><value>Betyg</value></data>
+  <data name="GradeScaleField_ItemsHint" xml:space="preserve"><value>Högre rang betyder bättre betyg. Kryssa i de betyg som räknas som godkända.</value></data>
+  <data name="GradeItem_Label" xml:space="preserve"><value>BETYG</value></data>
+  <data name="GradeItem_Rank" xml:space="preserve"><value>RANG</value></data>
+  <data name="GradeItem_Passing" xml:space="preserve"><value>GODK.</value></data>
+  <data name="GradeItem_Remove" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="GradeItem_DescriptionPlaceholder" xml:space="preserve"><value>Beskrivning (valfri)</value></data>
+  <data name="Grades_Title" xml:space="preserve"><value>Betyg</value></data>
+  <data name="Grades_Subtitle" xml:space="preserve"><value>De betyg du har satt på dina elever.</value></data>
+  <data name="Grades_TabSubtitle" xml:space="preserve"><value>De betyg du har satt på eleven.</value></data>
+  <data name="Grades_New" xml:space="preserve"><value>Nytt betyg</value></data>
+  <data name="Grades_ColDate" xml:space="preserve"><value>DATUM</value></data>
+  <data name="Grades_ColGrade" xml:space="preserve"><value>BETYG</value></data>
+  <data name="Grades_ColSubject" xml:space="preserve"><value>ÄMNE</value></data>
+  <data name="Grades_ColScale" xml:space="preserve"><value>SKALA</value></data>
+  <data name="Grades_ColStudent" xml:space="preserve"><value>ELEV</value></data>
+  <data name="Grades_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Grades_ConfirmDelete" xml:space="preserve"><value>Ta bort betyget?</value></data>
+  <data name="Grades_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Grades_NoSelection" xml:space="preserve"><value>Inget betyg valt</value></data>
+  <data name="Grades_NoSelectionHint" xml:space="preserve"><value>Välj ett betyg i tabellen för att redigera, eller sätt ett nytt.</value></data>
+  <data name="Grades_Count" xml:space="preserve"><value>{0} betyg</value></data>
+  <data name="Grades_Saved" xml:space="preserve"><value>Betyget {0} sparades.</value></data>
+  <data name="Grades_NeedSubjectAndScale" xml:space="preserve"><value>Lägg först till ett ämne (Skola &gt; Ämnen) och en betygsskala (Skola &gt; Betygsskalor).</value></data>
+  <data name="GradeEditor_New" xml:space="preserve"><value>Nytt betyg</value></data>
+  <data name="GradeEditor_Edit" xml:space="preserve"><value>Redigera betyg</value></data>
+  <data name="GradeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="GradeField_Student" xml:space="preserve"><value>Elev</value></data>
+  <data name="GradeField_Subject" xml:space="preserve"><value>Ämne</value></data>
+  <data name="GradeField_Scale" xml:space="preserve"><value>Betygsskala</value></data>
+  <data name="GradeField_Grade" xml:space="preserve"><value>Betyg</value></data>
+  <data name="GradeField_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="GradeField_Comment" xml:space="preserve"><value>Kommentar</value></data>
+  <data name="Error_grade_scale_not_found" xml:space="preserve"><value>Betygsskalan hittades inte.</value></data>
+  <data name="Error_grade_scale_name_required" xml:space="preserve"><value>Namn krävs.</value></data>
+  <data name="Error_grade_scale_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_grade_scale_country_too_long" xml:space="preserve"><value>Landet får vara högst 100 tecken.</value></data>
+  <data name="Error_grade_scale_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+  <data name="Error_grade_scale_items_required" xml:space="preserve"><value>Lägg till minst ett betyg.</value></data>
+  <data name="Error_grade_scale_too_many_items" xml:space="preserve"><value>En skala kan ha högst 50 betyg.</value></data>
+  <data name="Error_grade_item_label_required" xml:space="preserve"><value>Varje betyg måste ha en beteckning.</value></data>
+  <data name="Error_grade_item_label_too_long" xml:space="preserve"><value>En beteckning får vara högst 20 tecken.</value></data>
+  <data name="Error_grade_item_description_too_long" xml:space="preserve"><value>En betygsbeskrivning får vara högst 200 tecken.</value></data>
+  <data name="Error_grade_item_label_duplicate" xml:space="preserve"><value>Två betyg har samma beteckning.</value></data>
+  <data name="Error_grade_item_not_found" xml:space="preserve"><value>Betyget hittades inte.</value></data>
+  <data name="Error_grade_item_in_use" xml:space="preserve"><value>Ett betyg som satts på en elev kan inte tas bort från skalan.</value></data>
+  <data name="Error_grade_scale_in_use" xml:space="preserve"><value>Betyg har satts med den här skalan, så den kan inte tas bort.</value></data>
+  <data name="Error_grade_not_found" xml:space="preserve"><value>Betyget hittades inte.</value></data>
+  <data name="Error_grade_student_required" xml:space="preserve"><value>Välj en elev.</value></data>
+  <data name="Error_grade_subject_required" xml:space="preserve"><value>Välj ett ämne.</value></data>
+  <data name="Error_grade_item_required" xml:space="preserve"><value>Välj ett betyg.</value></data>
+  <data name="Error_grade_comment_too_long" xml:space="preserve"><value>Kommentaren får vara högst 500 tecken.</value></data>
+  <data name="Error_grade_student_not_found" xml:space="preserve"><value>Eleven hittades inte.</value></data>
+  <data name="Error_grade_subject_not_found" xml:space="preserve"><value>Ämnet hittades inte.</value></data>
+</root>

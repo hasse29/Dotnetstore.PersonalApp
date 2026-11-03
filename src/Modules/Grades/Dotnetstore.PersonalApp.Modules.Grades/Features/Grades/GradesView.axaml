@@ -1,0 +1,107 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:grades="using:Dotnetstore.PersonalApp.Modules.Grades.Features.Grades"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Grades.Features.Grades.GradesView"
+             x:DataType="grades:GradesViewModel">
+
+    <UserControl.Styles>
+        <!-- On the module's own page the content gets the usual page margin; as a tab it sits flush. -->
+        <Style Selector="Grid#Root.page">
+            <Setter Property="Margin" Value="28"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid x:Name="Root" Classes.page="{Binding IsPageLayout}" RowDefinitions="Auto,*" RowSpacing="20">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4" IsVisible="{Binding IsPageLayout}">
+                <TextBlock Text="{loc:Tr Grades_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr Grades_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <TextBlock Text="{loc:Tr Grades_TabSubtitle}" Classes="muted" VerticalAlignment="Center"
+                       IsVisible="{Binding !IsPageLayout}"/>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr Grades_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+            <!-- grade table -->
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,*,Auto">
+
+                    <Border Grid.Row="0" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="1.2*,0.8*,1.5*,1.5*,1.5*">
+                            <TextBlock Text="{loc:Tr Grades_ColDate}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr Grades_ColGrade}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr Grades_ColSubject}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr Grades_ColScale}" Classes="column"/>
+                            <TextBlock Grid.Column="4" Text="{loc:Tr Grades_ColStudent}" Classes="column"
+                                       IsVisible="{Binding IsPageLayout}"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Rows}" SelectedItem="{Binding SelectedRow}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="grades:GradeRow">
+                                <Grid ColumnDefinitions="1.2*,0.8*,1.5*,1.5*,1.5*">
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:d}}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding GradeLabel}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding SubjectName}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding ScaleName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding StudentName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="2" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr Grades_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <TextBlock Text="{loc:Tr Grades_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Grades_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Editor / empty state -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                      Data="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            <TextBlock Text="{loc:Tr Grades_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr Grades_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</UserControl>

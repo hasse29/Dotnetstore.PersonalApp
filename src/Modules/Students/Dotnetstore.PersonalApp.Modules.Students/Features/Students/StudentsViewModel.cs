@@ -8,6 +8,7 @@ using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
+using Dotnetstore.PersonalApp.Shared.Students;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -27,7 +28,8 @@ internal sealed partial class StudentsViewModel(
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     StudentPhotoPanelFactory? photoFactory = null,
     IClientLookup? clients = null,
-    StudentNotesViewModelFactory? notesFactory = null) : ViewModelBase
+    StudentNotesViewModelFactory? notesFactory = null,
+    IStudentGradesPanelFactory? gradesFactory = null) : ViewModelBase
 {
     private bool _restoringSelection;
     private Dictionary<Guid, string> _schoolNames = [];
@@ -136,7 +138,7 @@ internal sealed partial class StudentsViewModel(
 
         var detail = new StudentDetailViewModel(student, addressesFactory, emailAddressesFactory, phoneNumbersFactory,
             photoFactory is null ? null : initials => photoFactory.Create(student.Id, initials),
-            notesFactory?.Create(student.Id));
+            notesFactory?.Create(student.Id), gradesFactory);
         detail.Closed += OnDetailClosed;
         Detail = detail;
     }

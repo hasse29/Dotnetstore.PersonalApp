@@ -5,6 +5,7 @@ using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 using Dotnetstore.PersonalApp.Shared.Photos;
+using Dotnetstore.PersonalApp.Shared.Students;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -14,7 +15,8 @@ internal sealed partial class StudentDetailViewModel(
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
     Func<string, PhotoPanelViewModel?>? photoFactory = null,
-    StudentNotesViewModel? notes = null) : ViewModelBase
+    StudentNotesViewModel? notes = null,
+    IStudentGradesPanelFactory? gradesFactory = null) : ViewModelBase
 {
     public StudentDto Student { get; } = student;
 
@@ -32,6 +34,9 @@ internal sealed partial class StudentDetailViewModel(
 
     /// <summary>The running, dated notes about the student.</summary>
     public StudentNotesViewModel? Notes { get; } = notes;
+
+    /// <summary>The grades tab, provided by the Grades module; null when that module is not installed.</summary>
+    public ViewModelBase? Grades { get; } = gradesFactory?.Create(student.Id);
 
     public event EventHandler? Closed;
 

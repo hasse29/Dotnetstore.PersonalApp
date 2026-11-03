@@ -17,4 +17,22 @@ internal sealed class StudentLookup(IDbContextFactory<StudentsDbContext> dbFacto
             .ToListAsync(cancellationToken)
             .ConfigureAwait(false);
     }
+
+    public async Task<IReadOnlyList<StudentReference>> ListAsync(CancellationToken cancellationToken)
+    {
+        await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
+
+        return await db.Students.AsNoTracking()
+            .OrderBy(s => s.LastName).ThenBy(s => s.FirstName)
+            .Select(s => new StudentReference(s.Id, s.ClientId, s.FirstName + " " + s.LastName, s.ClassName))
+            .ToListAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
+    public async Task<bool> ExistsAsync(Guid studentId, CancellationToken cancellationToken)
+    {
+        await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
+
+        return await db.Students.AnyAsync(s => s.Id == studentId, cancellationToken).ConfigureAwait(false);
+    }
 }

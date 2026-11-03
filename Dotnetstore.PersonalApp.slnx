@@ -23,6 +23,7 @@
     <Project Path="src/Modules/Students/Dotnetstore.PersonalApp.Modules.Students/Dotnetstore.PersonalApp.Modules.Students.csproj" />
     <Project Path="src/Modules/Subjects/Dotnetstore.PersonalApp.Modules.Subjects/Dotnetstore.PersonalApp.Modules.Subjects.csproj" />
     <Project Path="src/Modules/Schedule/Dotnetstore.PersonalApp.Modules.Schedule/Dotnetstore.PersonalApp.Modules.Schedule.csproj" />
+    <Project Path="src/Modules/Grades/Dotnetstore.PersonalApp.Modules.Grades/Dotnetstore.PersonalApp.Modules.Grades.csproj" />
     <Project Path="src/Modules/Users/Dotnetstore.PersonalApp.Modules.Users/Dotnetstore.PersonalApp.Modules.Users.csproj" />
   </Folder>
   <Folder Name="/tests/">
@@ -36,6 +37,7 @@
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Students.Tests/Dotnetstore.PersonalApp.Modules.Students.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Subjects.Tests/Dotnetstore.PersonalApp.Modules.Subjects.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Schedule.Tests/Dotnetstore.PersonalApp.Modules.Schedule.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Grades.Tests/Dotnetstore.PersonalApp.Modules.Grades.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Email.Tests/Dotnetstore.PersonalApp.Modules.Email.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.TimeReports.Tests/Dotnetstore.PersonalApp.Modules.TimeReports.Tests.csproj" />
   </Folder>

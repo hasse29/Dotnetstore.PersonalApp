@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:scales="using:Dotnetstore.PersonalApp.Modules.Grades.Features.Scales"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Grades.Features.Scales.GradeScalesView"
+             x:DataType="scales:GradeScalesViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{loc:Tr GradeScales_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr GradeScales_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr GradeScales_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,420" ColumnSpacing="20">
+
+            <!-- scale table -->
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,*,Auto">
+
+                    <Border Grid.Row="0" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="1.5*,*,2*">
+                            <TextBlock Text="{loc:Tr GradeScales_ColName}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr GradeScales_ColCountry}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr GradeScales_ColGrades}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="1" Classes="table" ItemsSource="{Binding Scales}" SelectedItem="{Binding SelectedScale}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="scales:GradeScaleDto">
+                                <Grid ColumnDefinitions="1.5*,*,2*">
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Country}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding Summary}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="2" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr GradeScales_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <TextBlock Text="{loc:Tr GradeScales_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr GradeScales_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Editor / empty state -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                      Data="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z"/>
+                            <TextBlock Text="{loc:Tr GradeScales_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr GradeScales_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</UserControl>

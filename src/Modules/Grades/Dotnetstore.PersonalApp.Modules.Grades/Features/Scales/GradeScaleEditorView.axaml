@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:scales="using:Dotnetstore.PersonalApp.Modules.Grades.Features.Scales"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="720"
+             x:Class="Dotnetstore.PersonalApp.Modules.Grades.Features.Scales.GradeScaleEditorView"
+             x:DataType="scales:GradeScaleEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr GradeScaleField_Name}" Classes="label"/>
+                <TextBox Text="{Binding Name}" PlaceholderText="{loc:Tr GradeScaleField_NamePlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr GradeScaleField_Country}" Classes="label"/>
+                <TextBox Text="{Binding Country}" PlaceholderText="{loc:Tr GradeScaleField_CountryPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr GradeScaleField_Description}" Classes="label"/>
+                <TextBox Text="{Binding Description}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="60" MaxHeight="120"/>
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr GradeScaleField_Items}" Classes="label"/>
+                        <TextBlock Text="{loc:Tr GradeScaleField_ItemsHint}" Classes="muted" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="{loc:Tr GradeScaleEditor_AddItem}" Classes="subtle" Command="{Binding AddItemCommand}"
+                            VerticalAlignment="Top"/>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,90,Auto,Auto" ColumnSpacing="8">
+                    <TextBlock Text="{loc:Tr GradeItem_Label}" Classes="column"/>
+                    <TextBlock Grid.Column="1" Text="{loc:Tr GradeItem_Rank}" Classes="column"/>
+                    <TextBlock Grid.Column="2" Text="{loc:Tr GradeItem_Passing}" Classes="column"/>
+                </Grid>
+
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="scales:GradeItemRow">
+                            <StackPanel Spacing="4" Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="*,90,Auto,Auto" ColumnSpacing="8">
+                                    <TextBox Text="{Binding Label}"/>
+                                    <NumericUpDown Grid.Column="1" Value="{Binding Rank}" Increment="1" FormatString="0"/>
+                                    <CheckBox Grid.Column="2" IsChecked="{Binding IsPassing}" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="3" Content="{loc:Tr GradeItem_Remove}" Classes="link-danger" Command="{Binding RemoveCommand}"/>
+                                </Grid>
+                                <TextBox Text="{Binding Description}" PlaceholderText="{loc:Tr GradeItem_DescriptionPlaceholder}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr GradeScaleEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

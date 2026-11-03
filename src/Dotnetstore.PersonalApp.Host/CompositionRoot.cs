@@ -8,6 +8,7 @@ using Dotnetstore.PersonalApp.Modules.Addresses;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Modules.Clients;
 using Dotnetstore.PersonalApp.Modules.Cvs;
+using Dotnetstore.PersonalApp.Modules.Grades;
 using Dotnetstore.PersonalApp.Modules.Schedule;
 using Dotnetstore.PersonalApp.Modules.Students;
 using Dotnetstore.PersonalApp.Modules.Subjects;
@@ -61,6 +62,7 @@ internal static class CompositionRoot
         services.AddStudentsModule(Path.Combine(dataDirectory, "students.db"));
         services.AddSubjectsModule(Path.Combine(dataDirectory, "subjects.db"));
         services.AddScheduleModule(Path.Combine(dataDirectory, "schedule.db"));
+        services.AddGradesModule(Path.Combine(dataDirectory, "grades.db"));
         services.AddEmailModule(Path.Combine(dataDirectory, "email.db"));
         services.AddUsersModule(Path.Combine(dataDirectory, "users.db"));
 
