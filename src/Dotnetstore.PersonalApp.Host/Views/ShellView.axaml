@@ -58,7 +58,7 @@
         </Border>
 
         <!-- Main area -->
-        <Grid Grid.Column="1" RowDefinitions="64,*">
+        <Grid Grid.Column="1" RowDefinitions="64,Auto,*">
             <Border Background="{DynamicResource SurfaceBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}"
                     BorderThickness="0,0,0,1" Padding="28,0">
                 <Grid ColumnDefinitions="*,Auto">
@@ -87,7 +87,18 @@
                 </Grid>
             </Border>
 
-            <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+            <Border Grid.Row="1" Background="{DynamicResource AccentSoftBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}"
+                    BorderThickness="0,0,0,1" Padding="28,10"
+                    IsVisible="{Binding UpdateBanner.IsVisible, FallbackValue=False}" x:DataType="vm:ShellViewModel">
+                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                    <TextBlock Text="{Binding UpdateBanner.Message}" VerticalAlignment="Center" TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <Button Grid.Column="1" Classes="primary" Content="{loc:Tr Update_Download}" Command="{Binding UpdateBanner.DownloadCommand}"/>
+                    <Button Grid.Column="2" Classes="subtle" Content="{loc:Tr Update_Dismiss}" Command="{Binding UpdateBanner.DismissCommand}"/>
+                </Grid>
+            </Border>
+
+            <ContentControl Grid.Row="2" Content="{Binding CurrentPage}"/>
         </Grid>
     </Grid>
 

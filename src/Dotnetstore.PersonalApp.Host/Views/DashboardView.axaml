@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:dash="using:Dotnetstore.PersonalApp.Shared.Dashboard"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="720"
+             x:Class="Dotnetstore.PersonalApp.Host.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.metricValue">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.metricValue.warn">
+            <Setter Property="Foreground" Value="{DynamicResource DangerBrush}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="28" Spacing="20">
+
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding Greeting}" Classes="h1"/>
+                    <TextBlock Text="{Binding DateText}" Classes="muted"/>
+                </StackPanel>
+                <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr Dashboard_Refresh}" Command="{Binding LoadCommand}"
+                        VerticalAlignment="Top"/>
+            </Grid>
+
+            <TextBlock Text="{loc:Tr Dashboard_Loading}" Classes="muted" IsVisible="{Binding IsLoading}"/>
+            <TextBlock Text="{loc:Tr Dashboard_SomeUnavailable}" Classes="error" IsVisible="{Binding SomeUnavailable}"/>
+            <TextBlock Text="{loc:Tr Dashboard_Empty}" Classes="muted" IsVisible="{Binding ShowEmpty}"/>
+
+            <ItemsControl ItemsSource="{Binding Panels}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="dash:DashboardPanel">
+                        <Border Classes="card" Width="440" Margin="0,0,20,20" Padding="20">
+                            <StackPanel Spacing="16">
+                                <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+                                <ItemsControl ItemsSource="{Binding Metrics}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="dash:DashboardMetric">
+                                            <StackPanel Spacing="2" Margin="0,0,28,8" MinWidth="90">
+                                                <TextBlock Text="{Binding Value}" Classes="metricValue" Classes.warn="{Binding Warn}"/>
+                                                <TextBlock Text="{Binding Label}" Classes="caption"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <Border Height="1" Background="{DynamicResource BorderSubtleBrush}"/>
+
+                                <StackPanel Spacing="8">
+                                    <TextBlock Text="{Binding ListTitle}" Classes="column"/>
+                                    <TextBlock Text="{Binding EmptyText}" Classes="muted" IsVisible="{Binding IsEmpty}"/>
+                                    <ItemsControl ItemsSource="{Binding Rows}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="dash:DashboardRow">
+                                                <Grid ColumnDefinitions="*,Auto" Margin="0,4" ColumnSpacing="12">
+                                                    <StackPanel Spacing="1">
+                                                        <TextBlock Text="{Binding Title}" FontWeight="Medium" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding Subtitle}" Classes="caption" TextTrimming="CharacterEllipsis"
+                                                                   IsVisible="{Binding Subtitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Value}" VerticalAlignment="Center"
+                                                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

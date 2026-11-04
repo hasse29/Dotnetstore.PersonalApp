@@ -7,6 +7,12 @@
   <data name="Startup_InventoryDatabase" xml:space="preserve"><value>Preparing warehouse database...</value></data>
   <data name="Inventory_Title" xml:space="preserve"><value>Warehouse</value></data>
   <data name="Inventory_None" xml:space="preserve"><value>None</value></data>
+  <data name="InventoryDashboard_Title" xml:space="preserve"><value>Warehouse</value></data>
+  <data name="InventoryDashboard_Warehouses" xml:space="preserve"><value>Warehouses</value></data>
+  <data name="InventoryDashboard_Products" xml:space="preserve"><value>Products in stock</value></data>
+  <data name="InventoryDashboard_Low" xml:space="preserve"><value>At or below minimum</value></data>
+  <data name="InventoryDashboard_ListTitle" xml:space="preserve"><value>Needs restocking</value></data>
+  <data name="InventoryDashboard_Empty" xml:space="preserve"><value>Nothing is at its minimum.</value></data>
   <data name="WarehouseDetail_Back" xml:space="preserve"><value>Back</value></data>
   <data name="WarehouseDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="WarehouseDetail_TabLocations" xml:space="preserve"><value>Locations</value></data>

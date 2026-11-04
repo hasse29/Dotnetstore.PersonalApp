@@ -7,6 +7,12 @@
   <data name="Startup_SalesDatabase" xml:space="preserve"><value>正在准备销售数据库...</value></data>
   <data name="Sales_Title" xml:space="preserve"><value>销售</value></data>
   <data name="Sales_None" xml:space="preserve"><value>无</value></data>
+  <data name="SalesDashboard_Title" xml:space="preserve"><value>销售</value></data>
+  <data name="SalesDashboard_Open" xml:space="preserve"><value>未完成订单</value></data>
+  <data name="SalesDashboard_Month" xml:space="preserve"><value>本月销售额</value></data>
+  <data name="SalesDashboard_Customers" xml:space="preserve"><value>客户</value></data>
+  <data name="SalesDashboard_ListTitle" xml:space="preserve"><value>最新订单</value></data>
+  <data name="SalesDashboard_Empty" xml:space="preserve"><value>还没有销售订单。</value></data>
   <data name="CustomerDetail_Back" xml:space="preserve"><value>返回</value></data>
   <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
   <data name="CustomerDetail_TabSalesOrders" xml:space="preserve"><value>销售订单</value></data>

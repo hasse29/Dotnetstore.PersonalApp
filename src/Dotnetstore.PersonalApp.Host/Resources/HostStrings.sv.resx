@@ -15,4 +15,17 @@
   <data name="Modules_Title" xml:space="preserve"><value>Moduler</value></data>
   <data name="Modules_Subtitle" xml:space="preserve"><value>Slå på eller av moduler. En avstängd modul döljs i menyn; dess data finns kvar.</value></data>
   <data name="Modules_Required" xml:space="preserve"><value>Alltid på</value></data>
+
+  <data name="Dashboard_Title" xml:space="preserve"><value>Översikt</value></data>
+  <data name="Dashboard_GoodMorning" xml:space="preserve"><value>God morgon, {0}</value></data>
+  <data name="Dashboard_GoodAfternoon" xml:space="preserve"><value>God eftermiddag, {0}</value></data>
+  <data name="Dashboard_GoodEvening" xml:space="preserve"><value>God kväll, {0}</value></data>
+  <data name="Dashboard_Refresh" xml:space="preserve"><value>Uppdatera</value></data>
+  <data name="Dashboard_Loading" xml:space="preserve"><value>Laddar...</value></data>
+  <data name="Dashboard_SomeUnavailable" xml:space="preserve"><value>Några paneler kunde inte laddas.</value></data>
+  <data name="Dashboard_Empty" xml:space="preserve"><value>Inget att visa ännu. Slå på en modul under Moduler för att se dess sammanfattning här.</value></data>
+
+  <data name="Update_Available" xml:space="preserve"><value>Version {0} finns att hämta. Du använder {1}.</value></data>
+  <data name="Update_Download" xml:space="preserve"><value>Hämta</value></data>
+  <data name="Update_Dismiss" xml:space="preserve"><value>Senare</value></data>
 </root>

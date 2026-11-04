@@ -19,7 +19,9 @@ using Dotnetstore.PersonalApp.Modules.Sales.Features;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Modules.Sales.Resources;
 using Dotnetstore.PersonalApp.Modules.Sales.Startup;
+using Dotnetstore.PersonalApp.Modules.Sales.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Clients;
+using Dotnetstore.PersonalApp.Shared.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Purchasing;
 using Dotnetstore.PersonalApp.Shared.Sales;
@@ -216,5 +218,6 @@ public static class SalesModule
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<ISalesOrderLookup, SalesOrderLookup>();
         services.AddSingleton<IIntegrationEventConsumer<GoodsIssued>, GoodsIssuedConsumer>();
+        services.AddSingleton<IDashboardWidget, SalesDashboardWidget>();
     }
 }

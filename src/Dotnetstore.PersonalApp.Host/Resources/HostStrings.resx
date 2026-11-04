@@ -15,4 +15,17 @@
   <data name="Modules_Title" xml:space="preserve"><value>Modules</value></data>
   <data name="Modules_Subtitle" xml:space="preserve"><value>Turn modules on or off. A disabled module is hidden from the menu; its data is kept.</value></data>
   <data name="Modules_Required" xml:space="preserve"><value>Always on</value></data>
+
+  <data name="Dashboard_Title" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Dashboard_GoodMorning" xml:space="preserve"><value>Good morning, {0}</value></data>
+  <data name="Dashboard_GoodAfternoon" xml:space="preserve"><value>Good afternoon, {0}</value></data>
+  <data name="Dashboard_GoodEvening" xml:space="preserve"><value>Good evening, {0}</value></data>
+  <data name="Dashboard_Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Dashboard_Loading" xml:space="preserve"><value>Loading...</value></data>
+  <data name="Dashboard_SomeUnavailable" xml:space="preserve"><value>Some panels could not be loaded.</value></data>
+  <data name="Dashboard_Empty" xml:space="preserve"><value>Nothing to show yet. Turn on a module under Modules to see its summary here.</value></data>
+
+  <data name="Update_Available" xml:space="preserve"><value>Version {0} is available. You are using {1}.</value></data>
+  <data name="Update_Download" xml:space="preserve"><value>Download</value></data>
+  <data name="Update_Dismiss" xml:space="preserve"><value>Later</value></data>
 </root>

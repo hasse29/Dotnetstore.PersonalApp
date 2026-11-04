@@ -18,6 +18,7 @@ internal sealed partial class ShellView : UserControl
         if (DataContext is ShellViewModel viewModel)
         {
             viewModel.LoadUserPhotoCommand.Execute(null);
+            viewModel.UpdateBanner?.CheckCommand.Execute(null);
         }
     }
 }

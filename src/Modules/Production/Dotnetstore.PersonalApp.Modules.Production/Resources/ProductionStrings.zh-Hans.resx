@@ -7,6 +7,12 @@
   <data name="Startup_ProductionDatabase" xml:space="preserve"><value>正在准备生产数据库...</value></data>
   <data name="Production_Title" xml:space="preserve"><value>生产</value></data>
   <data name="Production_None" xml:space="preserve"><value>无</value></data>
+  <data name="ProductionDashboard_Title" xml:space="preserve"><value>生产</value></data>
+  <data name="ProductionDashboard_Products" xml:space="preserve"><value>产品</value></data>
+  <data name="ProductionDashboard_Open" xml:space="preserve"><value>未完成工单</value></data>
+  <data name="ProductionDashboard_Overdue" xml:space="preserve"><value>已逾期</value></data>
+  <data name="ProductionDashboard_ListTitle" xml:space="preserve"><value>即将到期</value></data>
+  <data name="ProductionDashboard_Empty" xml:space="preserve"><value>没有未完成的工单。</value></data>
   <data name="ProductDetail_Back" xml:space="preserve"><value>返回</value></data>
   <data name="ProductDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
   <data name="ProductDetail_TabCostHistory" xml:space="preserve"><value>成本历史</value></data>

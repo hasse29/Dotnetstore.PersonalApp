@@ -17,6 +17,8 @@ using Dotnetstore.PersonalApp.Modules.Production.Features;
 using Dotnetstore.PersonalApp.Modules.Production.Persistence;
 using Dotnetstore.PersonalApp.Modules.Production.Resources;
 using Dotnetstore.PersonalApp.Modules.Production.Startup;
+using Dotnetstore.PersonalApp.Modules.Production.Dashboard;
+using Dotnetstore.PersonalApp.Shared.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -193,5 +195,7 @@ public static class ProductionModule
         services.AddSingleton<DeleteTransactionHistory.Handler>();
         services.AddSingleton<ListTransactionHistories.Handler>();
         services.AddTransient<TransactionHistoriesViewModel>();
+
+        services.AddSingleton<IDashboardWidget, ProductionDashboardWidget>();
     }
 }

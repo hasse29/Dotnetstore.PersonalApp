@@ -48,4 +48,10 @@
   <data name="ScheduleField_StudentsHint" xml:space="preserve"><value>选择学校以查看其学生。</value></data>
   <data name="Error_schedule_student_not_found" xml:space="preserve"><value>在该学校未找到某位学生。</value></data>
   <data name="Error_schedule_too_many_students" xml:space="preserve"><value>一节课最多 200 名学生。</value></data>
+
+  <data name="ScheduleDashboard_Title" xml:space="preserve"><value>课程表</value></data>
+  <data name="ScheduleDashboard_Today" xml:space="preserve"><value>今日课程</value></data>
+  <data name="ScheduleDashboard_Week" xml:space="preserve"><value>每周课程</value></data>
+  <data name="ScheduleDashboard_ListTitle" xml:space="preserve"><value>今天</value></data>
+  <data name="ScheduleDashboard_Empty" xml:space="preserve"><value>今天没有课程。</value></data>
 </root>

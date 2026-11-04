@@ -7,6 +7,12 @@
   <data name="Startup_InventoryDatabase" xml:space="preserve"><value>正在准备仓库数据库...</value></data>
   <data name="Inventory_Title" xml:space="preserve"><value>仓库</value></data>
   <data name="Inventory_None" xml:space="preserve"><value>无</value></data>
+  <data name="InventoryDashboard_Title" xml:space="preserve"><value>仓库</value></data>
+  <data name="InventoryDashboard_Warehouses" xml:space="preserve"><value>仓库</value></data>
+  <data name="InventoryDashboard_Products" xml:space="preserve"><value>有库存的产品</value></data>
+  <data name="InventoryDashboard_Low" xml:space="preserve"><value>低于最低库存</value></data>
+  <data name="InventoryDashboard_ListTitle" xml:space="preserve"><value>需要补货</value></data>
+  <data name="InventoryDashboard_Empty" xml:space="preserve"><value>没有产品低于最低库存。</value></data>
   <data name="WarehouseDetail_Back" xml:space="preserve"><value>返回</value></data>
   <data name="WarehouseDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
   <data name="WarehouseDetail_TabLocations" xml:space="preserve"><value>库位</value></data>

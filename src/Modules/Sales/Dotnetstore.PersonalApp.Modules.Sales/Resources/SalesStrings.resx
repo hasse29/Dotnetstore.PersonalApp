@@ -7,6 +7,12 @@
   <data name="Startup_SalesDatabase" xml:space="preserve"><value>Preparing sales database...</value></data>
   <data name="Sales_Title" xml:space="preserve"><value>Sales</value></data>
   <data name="Sales_None" xml:space="preserve"><value>None</value></data>
+  <data name="SalesDashboard_Title" xml:space="preserve"><value>Sales</value></data>
+  <data name="SalesDashboard_Open" xml:space="preserve"><value>Open orders</value></data>
+  <data name="SalesDashboard_Month" xml:space="preserve"><value>Sold this month</value></data>
+  <data name="SalesDashboard_Customers" xml:space="preserve"><value>Customers</value></data>
+  <data name="SalesDashboard_ListTitle" xml:space="preserve"><value>Latest orders</value></data>
+  <data name="SalesDashboard_Empty" xml:space="preserve"><value>No sales orders yet.</value></data>
   <data name="CustomerDetail_Back" xml:space="preserve"><value>Back</value></data>
   <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="CustomerDetail_TabSalesOrders" xml:space="preserve"><value>Sales orders</value></data>

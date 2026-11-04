@@ -7,6 +7,12 @@
   <data name="Startup_ProductionDatabase" xml:space="preserve"><value>Förbereder databasen för produktion...</value></data>
   <data name="Production_Title" xml:space="preserve"><value>Produktion</value></data>
   <data name="Production_None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="ProductionDashboard_Title" xml:space="preserve"><value>Produktion</value></data>
+  <data name="ProductionDashboard_Products" xml:space="preserve"><value>Produkter</value></data>
+  <data name="ProductionDashboard_Open" xml:space="preserve"><value>Öppna arbetsorder</value></data>
+  <data name="ProductionDashboard_Overdue" xml:space="preserve"><value>Försenade</value></data>
+  <data name="ProductionDashboard_ListTitle" xml:space="preserve"><value>Förfaller härnäst</value></data>
+  <data name="ProductionDashboard_Empty" xml:space="preserve"><value>Inga öppna arbetsorder.</value></data>
   <data name="ProductDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
   <data name="ProductDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="ProductDetail_TabCostHistory" xml:space="preserve"><value>Kostnadshistorik</value></data>

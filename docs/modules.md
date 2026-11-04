@@ -23,7 +23,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 
 **School.** The app is used from a teacher's point of view: a client is a school and a user is a teacher. Students, Subjects, Schedule and Grades are separate projects but one switch in the Modules settings page ("School", `SchoolGroup.ModuleKey`). Switching it off hides the whole School sidebar group and the school tabs on other pages (Students on a client, Subjects on a user); the data is kept. See [architecture.md](architecture.md) for how the tabs find out (`IModuleAvailability`).
 
-`AddClientsModule` is registered before `AddUsersModule` in `CompositionRoot`, so Clients is the first page.
+The Dashboard (Host) is registered first in `CompositionRoot`, so it is the first page and the one you land on; `AddClientsModule` comes next, before `AddUsersModule`, so Clients is the first module page. See the Dashboard note in [architecture.md](architecture.md).
 
 ## Clients
 

@@ -9,6 +9,9 @@ internal sealed class UserSettings
 
     public string? Culture { get; set; }
 
+    /// <summary>Whether the app asks GitHub at startup if a newer version has been released. Off if set to false in settings.json.</summary>
+    public bool CheckForUpdates { get; set; } = true;
+
     /// <summary>Keys of modules whose menu pages are hidden.</summary>
     public List<string> DisabledModules { get; set; } = [];
 

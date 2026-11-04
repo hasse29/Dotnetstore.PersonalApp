@@ -9,9 +9,11 @@ using Dotnetstore.PersonalApp.Modules.Inventory.Features;
 using Dotnetstore.PersonalApp.Modules.Inventory.Persistence;
 using Dotnetstore.PersonalApp.Modules.Inventory.Resources;
 using Dotnetstore.PersonalApp.Modules.Inventory.Startup;
+using Dotnetstore.PersonalApp.Modules.Inventory.Dashboard;
 using Dotnetstore.PersonalApp.Modules.Inventory.Features.Receiving;
 using Dotnetstore.PersonalApp.Modules.Inventory.Features.StockOverview;
 using Dotnetstore.PersonalApp.Modules.Inventory.Features.Transfers;
+using Dotnetstore.PersonalApp.Shared.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -119,5 +121,6 @@ public static class InventoryModule
         services.AddTransient<GoodsReceiptViewModel>();
         services.AddTransient<GoodsIssueViewModel>();
         services.AddTransient<StockTransferViewModel>();
+        services.AddSingleton<IDashboardWidget, InventoryDashboardWidget>();
     }
 }

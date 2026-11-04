@@ -7,6 +7,12 @@
   <data name="Startup_PurchasingDatabase" xml:space="preserve"><value>Preparing purchasing database...</value></data>
   <data name="Purchasing_Title" xml:space="preserve"><value>Purchasing</value></data>
   <data name="Purchasing_None" xml:space="preserve"><value>None</value></data>
+  <data name="PurchasingDashboard_Title" xml:space="preserve"><value>Purchasing</value></data>
+  <data name="PurchasingDashboard_Pending" xml:space="preserve"><value>Pending orders</value></data>
+  <data name="PurchasingDashboard_Approved" xml:space="preserve"><value>Approved, awaiting goods</value></data>
+  <data name="PurchasingDashboard_Month" xml:space="preserve"><value>Ordered this month</value></data>
+  <data name="PurchasingDashboard_ListTitle" xml:space="preserve"><value>Latest orders</value></data>
+  <data name="PurchasingDashboard_Empty" xml:space="preserve"><value>No purchase orders yet.</value></data>
   <data name="VendorDetail_Back" xml:space="preserve"><value>Back</value></data>
   <data name="VendorDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="VendorDetail_TabVendorPrices" xml:space="preserve"><value>Prices</value></data>

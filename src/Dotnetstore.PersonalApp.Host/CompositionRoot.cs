@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Host.Startup;
 using Dotnetstore.PersonalApp.Host.ViewModels;
 using Dotnetstore.PersonalApp.Host.Auth;
 using Dotnetstore.PersonalApp.Host.Events;
+using Dotnetstore.PersonalApp.Host.Updates;
 using Dotnetstore.PersonalApp.Host.Files;
 using Dotnetstore.PersonalApp.Modules.Addresses;
 using Dotnetstore.PersonalApp.Shared.Files;
@@ -46,12 +47,19 @@ internal static class CompositionRoot
         services.AddSingleton<IFileSaveService, AvaloniaFileSaveService>();
         services.AddSingleton<IFileOpenService, AvaloniaFileOpenService>();
         services.AddSingleton<IFilePickService, AvaloniaFilePickService>();
+        services.AddHttpClient(GitHubUpdateChecker.ClientName);
+        services.AddSingleton<IUpdateChecker, GitHubUpdateChecker>();
+        services.AddSingleton<IUriLauncher, AvaloniaUriLauncher>();
+        services.AddSingleton(new UpdateOptions(UserSettings.Load(dataDirectory).CheckForUpdates));
+        services.AddSingleton<UpdateBannerViewModel>();
         services.AddSingleton<CurrentUserAccessor>();
         services.AddSingleton<ICurrentUser>(sp => sp.GetRequiredService<CurrentUserAccessor>());
         services.AddSingleton(new ModuleSettings(dataDirectory));
         services.AddSingleton<IModuleAvailability>(sp => sp.GetRequiredService<ModuleSettings>());
         // Students, Subjects, Schedule, Grades and Tests are one "School" module in the list, so it is described here rather than by each of them.
         services.AddSingleton(new ModuleInfo(SchoolGroup.ModuleKey, "Shell_School"));
+        services.AddSingleton<IModulePage, DashboardPage>();
+        services.AddTransient<DashboardViewModel>();
         services.AddSingleton<IModulePage, ModulesPage>();
         services.AddTransient<ModulesViewModel>();
         services.AddSingleton<MainWindowViewModel>();

@@ -1,3 +1,5 @@
+using Dotnetstore.PersonalApp.Modules.Schedule.Dashboard;
+using Dotnetstore.PersonalApp.Shared.Dashboard;
 using Dotnetstore.PersonalApp.Modules.Schedule.Consumers;
 using Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
@@ -38,6 +40,7 @@ public static class ScheduleModule
         services.AddSingleton<IIntegrationEventConsumer<StudentDeleted>, StudentDeletedConsumer>();
 
         services.AddSingleton<IModulePage, SchedulePage>();
+        services.AddSingleton<IDashboardWidget, ScheduleDashboardWidget>();
         services.AddSingleton<IStartupTask, MigrateScheduleDatabaseTask>();
 
         return services;

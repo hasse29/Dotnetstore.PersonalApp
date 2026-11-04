@@ -7,6 +7,12 @@
   <data name="Startup_SalesDatabase" xml:space="preserve"><value>Förbereder databasen för försäljning...</value></data>
   <data name="Sales_Title" xml:space="preserve"><value>Försäljning</value></data>
   <data name="Sales_None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="SalesDashboard_Title" xml:space="preserve"><value>Försäljning</value></data>
+  <data name="SalesDashboard_Open" xml:space="preserve"><value>Öppna order</value></data>
+  <data name="SalesDashboard_Month" xml:space="preserve"><value>Sålt denna månad</value></data>
+  <data name="SalesDashboard_Customers" xml:space="preserve"><value>Kunder</value></data>
+  <data name="SalesDashboard_ListTitle" xml:space="preserve"><value>Senaste order</value></data>
+  <data name="SalesDashboard_Empty" xml:space="preserve"><value>Inga kundorder ännu.</value></data>
   <data name="CustomerDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
   <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
   <data name="CustomerDetail_TabSalesOrders" xml:space="preserve"><value>Kundorder</value></data>

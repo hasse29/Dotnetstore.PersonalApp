@@ -22,9 +22,10 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     private readonly ModuleSettings? _moduleSettings;
     private readonly IUserPhotoLookup? _userPhotos;
     private readonly UserPhotoNotifier? _photoNotifier;
+    private readonly UpdateBannerViewModel? _updateBanner;
     private Action? _showCurrent;
 
-    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null)
+    public MainWindowViewModel(IAuthenticationPages authentication, IEnumerable<IModulePage> pages, ILocalizationService localization, CurrentUserAccessor? currentUser = null, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null, UpdateBannerViewModel? updateBanner = null)
     {
         _currentUser = currentUser;
         _authentication = authentication;
@@ -32,6 +33,7 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
         _moduleSettings = moduleSettings;
         _userPhotos = userPhotos;
         _photoNotifier = photoNotifier;
+        _updateBanner = updateBanner;
         localization.CultureChanged += (_, _) => Dispatcher.UIThread.Post(() => _showCurrent?.Invoke());
     }
 
@@ -78,6 +80,6 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     {
         _showCurrent = () => ShowShell(user);
         SetCurrentUser(user);
-        Content = new ShellViewModel(_pages, user, ShowLogin, _moduleSettings, _userPhotos, _photoNotifier);
+        Content = new ShellViewModel(_pages, user, ShowLogin, _moduleSettings, _userPhotos, _photoNotifier, _updateBanner);
     }
 }

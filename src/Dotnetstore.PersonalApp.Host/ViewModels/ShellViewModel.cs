@@ -23,11 +23,12 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
     private readonly HashSet<string> _expandedGroups = [];
     private bool _rebuilding;
 
-    public ShellViewModel(IEnumerable<IModulePage> pages, AuthenticatedUser user, Action signOut, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null)
+    public ShellViewModel(IEnumerable<IModulePage> pages, AuthenticatedUser user, Action signOut, ModuleSettings? moduleSettings = null, IUserPhotoLookup? userPhotos = null, UserPhotoNotifier? photoNotifier = null, UpdateBannerViewModel? updateBanner = null)
     {
         _moduleSettings = moduleSettings;
         _userPhotos = userPhotos;
         _photoNotifier = photoNotifier;
+        UpdateBanner = updateBanner;
         _signOut = signOut;
         User = user;
         _allPages = [.. pages];
@@ -79,6 +80,9 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
     }
 
     public AuthenticatedUser User { get; }
+
+    /// <summary>Tells the user a newer version is out; null where the app is built without it (tests).</summary>
+    public UpdateBannerViewModel? UpdateBanner { get; }
 
     /// <summary>The signed-in user's thumbnail for the top bar and sidebar; null shows the initials.</summary>
     [ObservableProperty]

@@ -8,7 +8,9 @@ using Dotnetstore.PersonalApp.Modules.Purchasing.Features;
 using Dotnetstore.PersonalApp.Modules.Purchasing.Persistence;
 using Dotnetstore.PersonalApp.Modules.Purchasing.Resources;
 using Dotnetstore.PersonalApp.Modules.Purchasing.Startup;
+using Dotnetstore.PersonalApp.Modules.Purchasing.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Clients;
+using Dotnetstore.PersonalApp.Shared.Dashboard;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Purchasing;
 using Dotnetstore.PersonalApp.Shared.Users;
@@ -99,5 +101,6 @@ public static class PurchasingModule
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IPurchaseOrderLookup, PurchaseOrderLookup>();
         services.AddSingleton<IIntegrationEventConsumer<GoodsReceived>, GoodsReceivedConsumer>();
+        services.AddSingleton<IDashboardWidget, PurchasingDashboardWidget>();
     }
 }

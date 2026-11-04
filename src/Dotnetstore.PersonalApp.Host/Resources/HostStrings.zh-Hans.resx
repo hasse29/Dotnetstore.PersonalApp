@@ -15,4 +15,17 @@
   <data name="Modules_Title" xml:space="preserve"><value>模块</value></data>
   <data name="Modules_Subtitle" xml:space="preserve"><value>开启或关闭模块。已关闭的模块会从菜单中隐藏，其数据会保留。</value></data>
   <data name="Modules_Required" xml:space="preserve"><value>始终开启</value></data>
+
+  <data name="Dashboard_Title" xml:space="preserve"><value>仪表盘</value></data>
+  <data name="Dashboard_GoodMorning" xml:space="preserve"><value>早上好，{0}</value></data>
+  <data name="Dashboard_GoodAfternoon" xml:space="preserve"><value>下午好，{0}</value></data>
+  <data name="Dashboard_GoodEvening" xml:space="preserve"><value>晚上好，{0}</value></data>
+  <data name="Dashboard_Refresh" xml:space="preserve"><value>刷新</value></data>
+  <data name="Dashboard_Loading" xml:space="preserve"><value>加载中...</value></data>
+  <data name="Dashboard_SomeUnavailable" xml:space="preserve"><value>部分面板无法加载。</value></data>
+  <data name="Dashboard_Empty" xml:space="preserve"><value>暂无内容。在“模块”中启用模块即可在此查看其摘要。</value></data>
+
+  <data name="Update_Available" xml:space="preserve"><value>新版本 {0} 已发布，您正在使用 {1}。</value></data>
+  <data name="Update_Download" xml:space="preserve"><value>下载</value></data>
+  <data name="Update_Dismiss" xml:space="preserve"><value>稍后</value></data>
 </root>
