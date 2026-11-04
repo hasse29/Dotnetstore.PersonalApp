@@ -18,5 +18,6 @@ internal sealed class StockMovementConfiguration : IEntityTypeConfiguration<Stoc
         builder.Property(x => x.Quantity).IsRequired();
         builder.Property(x => x.Reference).HasMaxLength(100);
         builder.Property(x => x.Note).HasMaxLength(500);
+        builder.Property(x => x.SourceLine).HasMaxLength(36);
     }
 }

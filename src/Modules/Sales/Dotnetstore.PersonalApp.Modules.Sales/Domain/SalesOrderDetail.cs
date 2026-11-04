@@ -24,4 +24,6 @@ internal sealed class SalesOrderDetail
     public decimal UnitPriceDiscount { get; set; }
 
     public decimal LineTotal { get; set; }
+
+    public int ShippedQty { get; set; }
 }

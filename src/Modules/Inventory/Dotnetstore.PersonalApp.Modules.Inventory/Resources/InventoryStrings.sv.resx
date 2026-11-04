@@ -220,6 +220,8 @@
   <data name="Error_stock_movement_reference_too_long" xml:space="preserve"><value>Referens får vara högst 100 tecken.</value></data>
   <data name="StockMovementField_Note" xml:space="preserve"><value>Anteckning</value></data>
   <data name="Error_stock_movement_note_too_long" xml:space="preserve"><value>Anteckning får vara högst 500 tecken.</value></data>
+  <data name="StockMovementField_SourceLine" xml:space="preserve"><value>Källrad</value></data>
+  <data name="Error_stock_movement_source_line_too_long" xml:space="preserve"><value>Källrad får vara högst 36 tecken.</value></data>
   <data name="Error_stock_movement_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
   <data name="Error_stock_movement_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
   <data name="InventoryCounts_Title" xml:space="preserve"><value>Inventeringar</value></data>

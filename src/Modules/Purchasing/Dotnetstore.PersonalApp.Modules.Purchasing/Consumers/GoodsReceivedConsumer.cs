@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dotnetstore.PersonalApp.Modules.Purchasing.Consumers;
 
-/// <summary>Adds what the warehouse received to the line it was received against.</summary>
+/// <summary>Sets the line to the total the warehouse has received against it.</summary>
 internal sealed class GoodsReceivedConsumer(IDbContextFactory<PurchasingDbContext> dbFactory) : IIntegrationEventConsumer<GoodsReceived>
 {
     public async Task ConsumeAsync(GoodsReceived integrationEvent, CancellationToken cancellationToken)
@@ -21,7 +21,7 @@ internal sealed class GoodsReceivedConsumer(IDbContextFactory<PurchasingDbContex
             return;
         }
 
-        line.ReceivedQty += integrationEvent.Quantity;
+        line.ReceivedQty = integrationEvent.TotalQuantity;
         line.StockedQty = line.ReceivedQty - line.RejectedQty;
         await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 

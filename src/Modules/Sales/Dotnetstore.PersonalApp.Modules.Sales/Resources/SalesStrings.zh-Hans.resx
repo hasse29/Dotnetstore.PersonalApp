@@ -509,6 +509,7 @@
   <data name="SalesOrderDetails_ColSalesOrderName" xml:space="preserve"><value>销售订单</value></data>
   <data name="SalesOrderDetails_ColProductName" xml:space="preserve"><value>产品</value></data>
   <data name="SalesOrderDetails_ColOrderQty" xml:space="preserve"><value>订购数量</value></data>
+  <data name="SalesOrderDetails_ColShippedQty" xml:space="preserve"><value>已发货数量</value></data>
   <data name="SalesOrderDetails_ColLineTotal" xml:space="preserve"><value>行合计</value></data>
   <data name="SalesOrderDetails_Delete" xml:space="preserve"><value>删除</value></data>
   <data name="SalesOrderDetails_ConfirmDelete" xml:space="preserve"><value>删除该记录？</value></data>
@@ -539,6 +540,8 @@
   <data name="Error_sales_order_detail_unit_price_discount_out_of_range" xml:space="preserve"><value>折扣（0-1）必须介于0和1之间。</value></data>
   <data name="SalesOrderDetailField_LineTotal" xml:space="preserve"><value>行合计</value></data>
   <data name="Error_sales_order_detail_line_total_out_of_range" xml:space="preserve"><value>行合计不得小于0。</value></data>
+  <data name="SalesOrderDetailField_ShippedQty" xml:space="preserve"><value>已发货数量</value></data>
+  <data name="Error_sales_order_detail_shipped_qty_out_of_range" xml:space="preserve"><value>已发货数量不得小于0。</value></data>
   <data name="Error_sales_order_detail_not_found" xml:space="preserve"><value>未找到该记录。</value></data>
   <data name="Error_sales_order_detail_in_use" xml:space="preserve"><value>该记录正在使用，无法删除。</value></data>
   <data name="SalesOrderReasons_Title" xml:space="preserve"><value>订单原因</value></data>

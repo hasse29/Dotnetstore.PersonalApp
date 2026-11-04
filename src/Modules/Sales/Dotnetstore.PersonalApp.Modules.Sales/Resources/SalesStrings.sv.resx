@@ -509,6 +509,7 @@
   <data name="SalesOrderDetails_ColSalesOrderName" xml:space="preserve"><value>KUNDORDER</value></data>
   <data name="SalesOrderDetails_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
   <data name="SalesOrderDetails_ColOrderQty" xml:space="preserve"><value>BESTÄLLT ANTAL</value></data>
+  <data name="SalesOrderDetails_ColShippedQty" xml:space="preserve"><value>SKICKAT ANTAL</value></data>
   <data name="SalesOrderDetails_ColLineTotal" xml:space="preserve"><value>RADSUMMA</value></data>
   <data name="SalesOrderDetails_Delete" xml:space="preserve"><value>Ta bort</value></data>
   <data name="SalesOrderDetails_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
@@ -539,6 +540,8 @@
   <data name="Error_sales_order_detail_unit_price_discount_out_of_range" xml:space="preserve"><value>Rabatt (0-1) måste vara mellan 0 och 1.</value></data>
   <data name="SalesOrderDetailField_LineTotal" xml:space="preserve"><value>Radsumma</value></data>
   <data name="Error_sales_order_detail_line_total_out_of_range" xml:space="preserve"><value>Radsumma måste vara minst 0.</value></data>
+  <data name="SalesOrderDetailField_ShippedQty" xml:space="preserve"><value>Skickat antal</value></data>
+  <data name="Error_sales_order_detail_shipped_qty_out_of_range" xml:space="preserve"><value>Skickat antal måste vara minst 0.</value></data>
   <data name="Error_sales_order_detail_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
   <data name="Error_sales_order_detail_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
   <data name="SalesOrderReasons_Title" xml:space="preserve"><value>Orderorsaker</value></data>

@@ -215,5 +215,6 @@ public static class SalesModule
         services.AddSingleton<IIntegrationEventConsumer<ProductDeleted>, ProductDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<ISalesOrderLookup, SalesOrderLookup>();
+        services.AddSingleton<IIntegrationEventConsumer<GoodsIssued>, GoodsIssuedConsumer>();
     }
 }

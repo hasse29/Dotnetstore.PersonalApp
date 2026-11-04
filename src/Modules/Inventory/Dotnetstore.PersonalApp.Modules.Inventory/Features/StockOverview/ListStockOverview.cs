@@ -25,6 +25,8 @@ internal static class ListStockOverview
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
+            var names = await references.ProductNamesAsync(cancellationToken).ConfigureAwait(false);
+
             var levels = db.StockLevels.AsNoTracking();
             if (query.WarehouseId is { } warehouseId)
             {
@@ -33,27 +35,52 @@ internal static class ListStockOverview
 
             if (query.OnlyLow)
             {
-                // SQLite cannot compare decimals, so only the rows without a minimum are dropped here and the comparison itself follows below.
-                levels = levels.Where(x => x.MinQuantity != null);
+                levels = levels.Where(x => x.MinQuantity != null && x.Quantity <= x.MinQuantity);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Search))
+            {
+                var search = query.Search.Trim();
+                var pattern = $"%{search}%";
+                var matching = names.Where(x => x.Value.Contains(search, StringComparison.OrdinalIgnoreCase)).Select(x => x.Key).ToList();
+                levels = levels.Where(x => matching.Contains(x.ProductId) || EF.Functions.Like(x.Location.Code, pattern));
+            }
+
+            var total = await levels.CountAsync(cancellationToken).ConfigureAwait(false);
+
+            // Only the first products by name are read in full, so a big warehouse costs one small count query and one bounded one.
+            var perProduct = await levels
+                .GroupBy(x => x.ProductId)
+                .Select(g => new { ProductId = g.Key, Count = g.Count() })
+                .ToListAsync(cancellationToken)
+                .ConfigureAwait(false);
+            var chosen = new List<Guid>();
+            var running = 0;
+            foreach (var product in perProduct.OrderBy(x => names.GetValueOrDefault(x.ProductId, string.Empty), StringComparer.CurrentCultureIgnoreCase))
+            {
+                if (running >= MaxRows)
+                {
+                    break;
+                }
+
+                chosen.Add(product.ProductId);
+                running += product.Count;
             }
 
             var rows = await levels
+                .Where(x => chosen.Contains(x.ProductId))
                 .Select(x => new { x.ProductId, Warehouse = x.Location.Warehouse.Name, x.Location.Code, x.Quantity, x.MinQuantity })
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
-            var names = await references.ProductNamesAsync(cancellationToken).ConfigureAwait(false);
 
             var result = rows
                 .Select(x => new StockOverviewRow(x.ProductId, names.GetValueOrDefault(x.ProductId, string.Empty), x.Warehouse, x.Code, x.Quantity, x.MinQuantity))
-                .Where(x => string.IsNullOrWhiteSpace(query.Search)
-                    || x.ProductName.Contains(query.Search.Trim(), StringComparison.OrdinalIgnoreCase)
-                    || x.LocationCode.Contains(query.Search.Trim(), StringComparison.OrdinalIgnoreCase))
-                .Where(x => !query.OnlyLow || x.IsLow)
                 .OrderBy(x => x.ProductName, StringComparer.CurrentCultureIgnoreCase)
                 .ThenBy(x => x.LocationCode, StringComparer.Ordinal)
+                .Take(MaxRows)
                 .ToList();
 
-            return new Response([.. result.Take(MaxRows)], result.Count);
+            return new Response(result, total);
         }
     }
 }

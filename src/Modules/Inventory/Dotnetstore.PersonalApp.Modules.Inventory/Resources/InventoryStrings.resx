@@ -220,6 +220,8 @@
   <data name="Error_stock_movement_reference_too_long" xml:space="preserve"><value>Reference can be at most 100 characters.</value></data>
   <data name="StockMovementField_Note" xml:space="preserve"><value>Note</value></data>
   <data name="Error_stock_movement_note_too_long" xml:space="preserve"><value>Note can be at most 500 characters.</value></data>
+  <data name="StockMovementField_SourceLine" xml:space="preserve"><value>Source line</value></data>
+  <data name="Error_stock_movement_source_line_too_long" xml:space="preserve"><value>Source line can be at most 36 characters.</value></data>
   <data name="Error_stock_movement_not_found" xml:space="preserve"><value>The record was not found.</value></data>
   <data name="Error_stock_movement_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
   <data name="InventoryCounts_Title" xml:space="preserve"><value>Inventory counts</value></data>

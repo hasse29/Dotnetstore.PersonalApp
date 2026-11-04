@@ -58,7 +58,8 @@ Delivery is synchronous with no outbox, so a crash between a delete and its cons
 | `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers, Schedule, Grades |
 | `SubjectDeleted` | Subjects | Schedule, Grades |
 | `ProductDeleted` | Production | Purchasing (vendor prices), Sales (offer products), Inventory (stock levels) |
-| `GoodsReceived` | Inventory | Purchasing (received and stocked quantity on the order line) |
+| `GoodsReceived` | Inventory | Purchasing (sets the line's received and stocked quantity to the total received) |
+| `GoodsIssued` | Inventory | Sales (sets the line's shipped quantity; the order becomes Shipped when every line has gone out) |
 | `UserPhotoChanged` | Users | Host (`UserPhotoNotifier`) |
 
 ## Startup and authentication

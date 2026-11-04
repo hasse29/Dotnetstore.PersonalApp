@@ -282,6 +282,9 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.Property<Guid>("SalesOrderId")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ShippedQty")
+                        .HasColumnType("INTEGER");
+
                     b.Property<Guid?>("SpecialOfferId")
                         .HasColumnType("TEXT");
 

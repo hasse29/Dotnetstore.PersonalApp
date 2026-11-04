@@ -32,6 +32,7 @@ internal static class ListStockMovements
                 var pattern = $"%{query.Search.Trim()}%";
                 rows = rows.Where(t =>
                     (t.Reference != null && EF.Functions.Like(t.Reference, pattern)) ||
+                    (t.SourceLine != null && EF.Functions.Like(t.SourceLine, pattern)) ||
                     EF.Functions.Like(t.Location.Code, pattern));
             }
 

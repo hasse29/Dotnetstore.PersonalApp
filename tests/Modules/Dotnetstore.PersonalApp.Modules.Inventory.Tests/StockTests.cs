@@ -114,8 +114,8 @@ public sealed class StockTests : IDisposable
         result.Value.ShouldBe(1);
         (await QuantityAsync(product, location.Id)).ShouldBe(7m);
         _fixture.Services.GetRequiredService<RecordingEventPublisher>().Published.OfType<GoodsReceived>()
-            .ShouldContain(x => x.PurchaseOrderLineId == lineId && x.Quantity == 7m);
-        (await handler.HandledAsync("PO-1", true, Ct))[product].ShouldBe(7m);
+            .ShouldContain(x => x.PurchaseOrderLineId == lineId && x.TotalQuantity == 7m);
+        (await handler.HandledAsync("PO-1", true, [new OrderMovements.Line(lineId, product, 100m, 0m)], Ct))[lineId].ShouldBe(7m);
     }
 
     [Fact]

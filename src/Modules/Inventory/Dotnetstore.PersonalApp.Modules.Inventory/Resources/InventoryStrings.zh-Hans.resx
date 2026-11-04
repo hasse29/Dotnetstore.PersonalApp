@@ -220,6 +220,8 @@
   <data name="Error_stock_movement_reference_too_long" xml:space="preserve"><value>参考最多100个字符。</value></data>
   <data name="StockMovementField_Note" xml:space="preserve"><value>备注</value></data>
   <data name="Error_stock_movement_note_too_long" xml:space="preserve"><value>备注最多500个字符。</value></data>
+  <data name="StockMovementField_SourceLine" xml:space="preserve"><value>来源行</value></data>
+  <data name="Error_stock_movement_source_line_too_long" xml:space="preserve"><value>来源行最多36个字符。</value></data>
   <data name="Error_stock_movement_not_found" xml:space="preserve"><value>未找到该记录。</value></data>
   <data name="Error_stock_movement_in_use" xml:space="preserve"><value>该记录正在使用，无法删除。</value></data>
   <data name="InventoryCounts_Title" xml:space="preserve"><value>盘点</value></data>

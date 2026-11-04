@@ -19,5 +19,6 @@ internal sealed class SalesOrderDetailConfiguration : IEntityTypeConfiguration<S
         builder.Property(x => x.UnitPrice).IsRequired();
         builder.Property(x => x.UnitPriceDiscount).IsRequired();
         builder.Property(x => x.LineTotal).IsRequired();
+        builder.Property(x => x.ShippedQty).IsRequired();
     }
 }

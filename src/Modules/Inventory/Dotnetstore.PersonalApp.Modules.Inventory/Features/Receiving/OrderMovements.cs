@@ -16,20 +16,59 @@ internal static class OrderMovements
 
     public sealed class Handler(IDbContextFactory<InventoryDbContext> dbFactory, IEventPublisher events, ExternalReferences references)
     {
-        /// <summary>How much of each product has already been received or issued against an order.</summary>
-        public async Task<IReadOnlyDictionary<Guid, decimal>> HandledAsync(string orderNumber, bool receiving, CancellationToken cancellationToken)
+        /// <summary>
+        /// How much of each line has already been received or issued. A movement remembers its line; older movements
+        /// that do not are handed out to the lines of the same product in order.
+        /// </summary>
+        public async Task<IReadOnlyDictionary<Guid, decimal>> HandledAsync(string orderNumber, bool receiving, IReadOnlyList<Line> lines, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
             var type = receiving ? "Receipt" : "Issue";
             var movements = await db.StockMovements.AsNoTracking()
                 .Where(x => x.Reference == orderNumber && x.Type == type)
-                .Select(x => new { x.ProductId, x.Quantity })
+                .Select(x => new { x.ProductId, x.SourceLine, x.Quantity })
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            return movements.GroupBy(x => x.ProductId).ToDictionary(g => g.Key, g => g.Sum(x => x.Quantity));
+            var byLine = movements
+                .Where(x => Guid.TryParse(x.SourceLine, out _))
+                .GroupBy(x => Guid.Parse(x.SourceLine!))
+                .ToDictionary(g => g.Key, g => g.Sum(x => x.Quantity));
+            var unattributed = movements
+                .Where(x => !Guid.TryParse(x.SourceLine, out _))
+                .GroupBy(x => x.ProductId)
+                .ToDictionary(g => g.Key, g => g.Sum(x => x.Quantity));
+
+            var result = new Dictionary<Guid, decimal>();
+            foreach (var line in lines)
+            {
+                var handled = byLine.GetValueOrDefault(line.LineId);
+                var share = Math.Min(Math.Max(line.Ordered - handled, 0m), unattributed.GetValueOrDefault(line.ProductId));
+                unattributed[line.ProductId] = unattributed.GetValueOrDefault(line.ProductId) - share;
+                result[line.LineId] = handled + share;
+            }
+
+            return result;
         }
+
+        /// <summary>
+        /// Tells the order module how much of each line has been handled in total. The figure is absolute, so sending it
+        /// again is harmless; it is also what brings an order back in step after a failed delivery.
+        /// </summary>
+        public async Task ResyncAsync(string orderNumber, bool receiving, IReadOnlyList<Line> lines, CancellationToken cancellationToken)
+        {
+            var handled = await HandledAsync(orderNumber, receiving, lines, cancellationToken).ConfigureAwait(false);
+            foreach (var line in lines.Where(x => handled.GetValueOrDefault(x.LineId) > 0m))
+            {
+                await PublishAsync(receiving, line.LineId, handled[line.LineId], cancellationToken).ConfigureAwait(false);
+            }
+        }
+
+        private Task PublishAsync(bool receiving, Guid lineId, decimal total, CancellationToken cancellationToken) =>
+            receiving
+                ? events.PublishAsync(new GoodsReceived(lineId, total), cancellationToken)
+                : events.PublishAsync(new GoodsIssued(lineId, total), cancellationToken);
 
         /// <returns>How many lines were received or issued.</returns>
         public async Task<Result<int>> RecordAsync(Command command, CancellationToken cancellationToken)
@@ -68,14 +107,11 @@ internal static class OrderMovements
                 }
             }
 
-            // Nothing may go past what the order asks for, which also stops a repeated submit from booking the same goods twice.
-            var handled = await HandledAsync(command.OrderNumber, command.Receiving, cancellationToken).ConfigureAwait(false);
-            foreach (var group in command.Lines.GroupBy(x => x.ProductId))
+            // Nothing may go past what a line asks for, which also stops a repeated submit from booking the same goods twice.
+            var handled = await HandledAsync(command.OrderNumber, command.Receiving, command.Lines, cancellationToken).ConfigureAwait(false);
+            if (lines.Any(x => handled.GetValueOrDefault(x.LineId) + x.Quantity > x.Ordered))
             {
-                if (handled.GetValueOrDefault(group.Key) + group.Sum(x => x.Quantity) > group.Sum(x => x.Ordered))
-                {
-                    return Error.Conflict("goods_movement_exceeds_order", "The quantity is more than the order has outstanding.");
-                }
+                return Error.Conflict("goods_movement_exceeds_order", "The quantity is more than the order has outstanding.");
             }
 
             await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
@@ -91,6 +127,7 @@ internal static class OrderMovements
                     Type = command.Receiving ? "Receipt" : "Issue",
                     Quantity = line.Quantity,
                     Reference = command.OrderNumber,
+                    SourceLine = line.LineId.ToString(),
                 });
             }
 
@@ -103,12 +140,10 @@ internal static class OrderMovements
 
             await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
 
-            if (command.Receiving)
+            // The order module is told after the stock is safe; if that fails, opening the order again resends the totals.
+            foreach (var line in lines)
             {
-                foreach (var line in lines)
-                {
-                    await events.PublishAsync(new GoodsReceived(line.LineId, line.Quantity), cancellationToken).ConfigureAwait(false);
-                }
+                await PublishAsync(command.Receiving, line.LineId, handled.GetValueOrDefault(line.LineId) + line.Quantity, cancellationToken).ConfigureAwait(false);
             }
 
             return lines.Count;

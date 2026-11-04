@@ -42,22 +42,24 @@
 
                     <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                             BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
-                        <Grid ColumnDefinitions="*,*,*,*">
+                        <Grid ColumnDefinitions="*,*,*,*,*">
                             <TextBlock Text="{loc:Tr SalesOrderDetails_ColSalesOrderName}" Classes="column"/>
                             <TextBlock Grid.Column="1" Text="{loc:Tr SalesOrderDetails_ColProductName}" Classes="column"/>
                             <TextBlock Grid.Column="2" Text="{loc:Tr SalesOrderDetails_ColOrderQty}" Classes="column"/>
-                            <TextBlock Grid.Column="3" Text="{loc:Tr SalesOrderDetails_ColLineTotal}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr SalesOrderDetails_ColShippedQty}" Classes="column"/>
+                            <TextBlock Grid.Column="4" Text="{loc:Tr SalesOrderDetails_ColLineTotal}" Classes="column"/>
                         </Grid>
                     </Border>
 
                     <ListBox Grid.Row="2" Classes="table" ItemsSource="{Binding SalesOrderDetails}" SelectedItem="{Binding SelectedSalesOrderDetail}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="vm:SalesOrderDetailDto">
-                                <Grid ColumnDefinitions="*,*,*,*">
+                                <Grid ColumnDefinitions="*,*,*,*,*">
                                     <TextBlock Text="{Binding SalesOrderName}" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="1" Text="{Binding ProductName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="2" Text="{Binding OrderQty}" Classes="muted" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Grid.Column="3" Text="{Binding LineTotal, StringFormat={}{0:N2}}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding ShippedQty}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding LineTotal, StringFormat={}{0:N2}}" Classes="muted" TextTrimming="CharacterEllipsis"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

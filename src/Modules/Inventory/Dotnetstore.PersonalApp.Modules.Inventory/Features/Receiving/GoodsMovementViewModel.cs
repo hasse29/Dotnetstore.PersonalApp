@@ -100,14 +100,15 @@ internal abstract partial class GoodsMovementViewModel(
 
         var lines = await orders.ListLinesAsync(_order.Id, cancellationToken);
         var names = await references.ProductNamesAsync(cancellationToken);
-        var handled = (await movements.HandledAsync(_order.Number, receiving, cancellationToken)).ToDictionary(x => x.Key, x => x.Value);
+        IReadOnlyList<OrderMovements.Line> asLines = [.. lines.Select(l => new OrderMovements.Line(l.LineId, l.ProductId, l.Quantity, 0m))];
+
+        // Opening the order also resends what has been handled, so an order module that missed an earlier message catches up.
+        await movements.ResyncAsync(_order.Number, receiving, asLines, cancellationToken);
+        var handled = await movements.HandledAsync(_order.Number, receiving, asLines, cancellationToken);
 
         foreach (var line in lines)
         {
-            // Several lines can be for the same product, so what has been handled is given out line by line.
-            var share = Math.Min(line.Quantity, handled.GetValueOrDefault(line.ProductId));
-            handled[line.ProductId] = handled.GetValueOrDefault(line.ProductId) - share;
-            Lines.Add(new OrderLineRow(line.LineId, line.ProductId, names.GetValueOrDefault(line.ProductId, string.Empty), line.Quantity, share));
+            Lines.Add(new OrderLineRow(line.LineId, line.ProductId, names.GetValueOrDefault(line.ProductId, string.Empty), line.Quantity, handled.GetValueOrDefault(line.LineId)));
         }
     }
 

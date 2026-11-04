@@ -20,4 +20,6 @@ internal sealed class StockMovement
     public string? Reference { get; set; }
 
     public string? Note { get; set; }
+
+    public string? SourceLine { get; set; }
 }
