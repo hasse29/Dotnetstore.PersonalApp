@@ -17,6 +17,68 @@ namespace Dotnetstore.PersonalApp.Modules.TimeReports.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.Expense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("VatAmount")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "Date");
+
+                    b.ToTable("Expenses", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.ExpenseReceipt", b =>
+                {
+                    b.Property<Guid>("ExpenseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(260)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ExpenseId");
+
+                    b.ToTable("ExpenseReceipts", (string)null);
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.TimeReport", b =>
                 {
                     b.Property<Guid>("Id")
@@ -122,6 +184,20 @@ namespace Dotnetstore.PersonalApp.Modules.TimeReports.Persistence.Migrations
                             Description = "Absent to care for a child.",
                             Name = "Parental leave"
                         });
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.ExpenseReceipt", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.Expense", null)
+                        .WithOne("Receipt")
+                        .HasForeignKey("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.ExpenseReceipt", "ExpenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.TimeReports.Domain.Expense", b =>
+                {
+                    b.Navigation("Receipt");
                 });
 #pragma warning restore 612, 618
         }

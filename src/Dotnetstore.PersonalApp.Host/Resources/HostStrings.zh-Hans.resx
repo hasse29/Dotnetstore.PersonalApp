@@ -28,4 +28,28 @@
   <data name="Update_Available" xml:space="preserve"><value>新版本 {0} 已发布，您正在使用 {1}。</value></data>
   <data name="Update_Download" xml:space="preserve"><value>下载</value></data>
   <data name="Update_Dismiss" xml:space="preserve"><value>稍后</value></data>
+  <data name="Backup_Title" xml:space="preserve"><value>备份</value></data>
+  <data name="Backup_Subtitle" xml:space="preserve"><value>将所有数据库备份到 zip 文件，或从 zip 文件还原。</value></data>
+  <data name="Backup_CreateHeading" xml:space="preserve"><value>备份</value></data>
+  <data name="Backup_CreateHint" xml:space="preserve"><value>将所有数据库（客户、工时报告、费用和收据、用户等）打包成一个 zip。由你选择保存位置。</value></data>
+  <data name="Backup_Create" xml:space="preserve"><value>备份数据库...</value></data>
+  <data name="Backup_RestoreHeading" xml:space="preserve"><value>还原</value></data>
+  <data name="Backup_RestoreHint" xml:space="preserve"><value>用备份 zip 中的数据库替换当前数据库。zip 中没有的数据库保持不变。当前数据会先保存为应用数据文件夹中 Backups 文件夹里的 zip。</value></data>
+  <data name="Backup_Restore" xml:space="preserve"><value>从备份还原...</value></data>
+  <data name="Backup_ConfirmRestore" xml:space="preserve"><value>这将用备份替换当前数据。继续吗？</value></data>
+  <data name="Backup_YesRestore" xml:space="preserve"><value>是，还原</value></data>
+  <data name="Backup_SaveDialogTitle" xml:space="preserve"><value>保存备份</value></data>
+  <data name="Backup_PickTitle" xml:space="preserve"><value>选择备份 zip</value></data>
+  <data name="Backup_Created" xml:space="preserve"><value>已将 {0} 个数据库备份到 {1}。</value></data>
+  <data name="Backup_Restored" xml:space="preserve"><value>已还原 {0} 个数据库。</value></data>
+  <data name="Backup_RestoredWithCopy" xml:space="preserve"><value>已还原 {0} 个数据库。之前的数据已保存到 {1}。</value></data>
+  <data name="Backup_RestartNeeded" xml:space="preserve"><value>请重启应用以使用还原的数据。</value></data>
+  <data name="Backup_Restart" xml:space="preserve"><value>立即重启</value></data>
+  <data name="Error_backup_nothing_to_back_up" xml:space="preserve"><value>还没有可备份的数据库。</value></data>
+  <data name="Error_backup_failed" xml:space="preserve"><value>无法创建备份。</value></data>
+  <data name="Error_backup_invalid_archive" xml:space="preserve"><value>这不是由本应用创建的备份。</value></data>
+  <data name="Error_backup_newer_version" xml:space="preserve"><value>该备份由更新版本的应用创建。请先更新应用。</value></data>
+  <data name="Error_backup_corrupt" xml:space="preserve"><value>备份中包含已损坏的数据库。未做任何更改。</value></data>
+  <data name="Error_backup_file_too_large" xml:space="preserve"><value>备份超过 1 GB。</value></data>
+  <data name="Error_backup_restore_failed" xml:space="preserve"><value>无法还原数据库。请关闭其他使用这些文件的程序后重试。</value></data>
 </root>

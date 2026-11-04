@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:clients="using:Dotnetstore.PersonalApp.Shared.Clients"
+             xmlns:expenses="using:Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses.ExpenseEditorView"
+             x:DataType="expenses:ExpenseEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ExpenseField_Date}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ExpenseField_Category}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="expenses:ExpenseCategoryOption">
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ExpenseField_Description}" Classes="label"/>
+                <TextBox Text="{Binding Description}" PlaceholderText="{loc:Tr ExpenseField_DescriptionPlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ExpenseField_Client}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="clients:ClientReference">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ExpenseField_Amount}" Classes="label"/>
+                    <NumericUpDown Value="{Binding Amount}" Minimum="0" Maximum="10000000" Increment="10" FormatString="0.00"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ExpenseField_Vat}" Classes="label"/>
+                    <NumericUpDown Value="{Binding VatAmount}" Minimum="0" Maximum="10000000" Increment="1" FormatString="0.00"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Spacing="6">
+                <TextBlock Text="{loc:Tr ExpenseField_Receipt}" Classes="label"/>
+                <TextBlock Text="{Binding ReceiptName}" Classes="muted" TextTrimming="CharacterEllipsis"
+                           IsVisible="{Binding HasReceipt}"/>
+                <TextBlock Text="{loc:Tr ExpenseEditor_NoReceipt}" Classes="muted"
+                           IsVisible="{Binding !HasReceipt}"/>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="{loc:Tr ExpenseEditor_AttachReceipt}" Classes="subtle" Command="{Binding AttachReceiptCommand}"/>
+                    <Button Content="{loc:Tr ExpenseEditor_SaveCopy}" Classes="subtle" Command="{Binding SaveReceiptCopyCommand}"
+                            IsVisible="{Binding HasReceipt}"/>
+                    <Button Content="{loc:Tr ExpenseEditor_RemoveReceipt}" Classes="link-danger" Command="{Binding RemoveReceiptCommand}"
+                            IsVisible="{Binding HasReceipt}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding ReceiptStatus}" Classes="caption" TextWrapping="Wrap"
+                           IsVisible="{Binding ReceiptStatus, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr ExpenseEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Persistence;
@@ -26,6 +27,12 @@ internal sealed class TimeReportsFixture : IDisposable
         List = new ListTimeReports.Handler(DbFactory, Clients);
         Export = new ExportTimeReports.Handler(DbFactory, Clients, new Localizer());
         ExportKilometers = new ExportKilometerSummary.Handler(DbFactory, Clients, new Localizer());
+        CreateExpense = new CreateExpense.Handler(DbFactory, new CreateExpense.Validator(), Clients, Clock);
+        UpdateExpense = new UpdateExpense.Handler(DbFactory, new UpdateExpense.Validator(), Clients);
+        DeleteExpense = new DeleteExpense.Handler(DbFactory);
+        ListExpenses = new ListExpenses.Handler(DbFactory, Clients);
+        GetReceipt = new GetExpenseReceipt.Handler(DbFactory);
+        ExportExpenses = new ExportExpenses.Handler(DbFactory, Clients, new Localizer());
         CreateType = new CreateWorkTimeType.Handler(DbFactory, new CreateWorkTimeType.Validator(), Clock);
         UpdateType = new UpdateWorkTimeType.Handler(DbFactory, new UpdateWorkTimeType.Validator());
         DeleteType = new DeleteWorkTimeType.Handler(DbFactory);
@@ -49,6 +56,18 @@ internal sealed class TimeReportsFixture : IDisposable
     public ExportTimeReports.Handler Export { get; }
 
     public ExportKilometerSummary.Handler ExportKilometers { get; }
+
+    public CreateExpense.Handler CreateExpense { get; }
+
+    public UpdateExpense.Handler UpdateExpense { get; }
+
+    public DeleteExpense.Handler DeleteExpense { get; }
+
+    public ListExpenses.Handler ListExpenses { get; }
+
+    public GetExpenseReceipt.Handler GetReceipt { get; }
+
+    public ExportExpenses.Handler ExportExpenses { get; }
 
     public CreateWorkTimeType.Handler CreateType { get; }
 

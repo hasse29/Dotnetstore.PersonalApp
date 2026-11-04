@@ -28,4 +28,28 @@
   <data name="Update_Available" xml:space="preserve"><value>Version {0} finns att hämta. Du använder {1}.</value></data>
   <data name="Update_Download" xml:space="preserve"><value>Hämta</value></data>
   <data name="Update_Dismiss" xml:space="preserve"><value>Senare</value></data>
+  <data name="Backup_Title" xml:space="preserve"><value>Säkerhetskopiering</value></data>
+  <data name="Backup_Subtitle" xml:space="preserve"><value>Säkerhetskopiera alla databaser till en zip-fil, eller återställ dem från en.</value></data>
+  <data name="Backup_CreateHeading" xml:space="preserve"><value>Säkerhetskopiera</value></data>
+  <data name="Backup_CreateHint" xml:space="preserve"><value>Packar alla databaser (kunder, tidrapporter, utlägg och kvitton, användare med mera) i en zip-fil. Du väljer var den sparas.</value></data>
+  <data name="Backup_Create" xml:space="preserve"><value>Säkerhetskopiera databaser...</value></data>
+  <data name="Backup_RestoreHeading" xml:space="preserve"><value>Återställ</value></data>
+  <data name="Backup_RestoreHint" xml:space="preserve"><value>Ersätter databaserna med de i en backup-zip. Databaser som inte finns i zip-filen lämnas som de är. Dina nuvarande data sparas först i en zip i mappen Backups i appens datamapp.</value></data>
+  <data name="Backup_Restore" xml:space="preserve"><value>Återställ från säkerhetskopia...</value></data>
+  <data name="Backup_ConfirmRestore" xml:space="preserve"><value>Detta ersätter dina nuvarande data med säkerhetskopian. Fortsätta?</value></data>
+  <data name="Backup_YesRestore" xml:space="preserve"><value>Ja, återställ</value></data>
+  <data name="Backup_SaveDialogTitle" xml:space="preserve"><value>Spara säkerhetskopia</value></data>
+  <data name="Backup_PickTitle" xml:space="preserve"><value>Välj säkerhetskopians zip-fil</value></data>
+  <data name="Backup_Created" xml:space="preserve"><value>Säkerhetskopierade {0} databaser till {1}.</value></data>
+  <data name="Backup_Restored" xml:space="preserve"><value>Återställde {0} databaser.</value></data>
+  <data name="Backup_RestoredWithCopy" xml:space="preserve"><value>Återställde {0} databaser. Tidigare data sparades i {1}.</value></data>
+  <data name="Backup_RestartNeeded" xml:space="preserve"><value>Starta om appen för att använda de återställda data.</value></data>
+  <data name="Backup_Restart" xml:space="preserve"><value>Starta om nu</value></data>
+  <data name="Error_backup_nothing_to_back_up" xml:space="preserve"><value>Det finns inga databaser att säkerhetskopiera ännu.</value></data>
+  <data name="Error_backup_failed" xml:space="preserve"><value>Säkerhetskopian kunde inte skapas.</value></data>
+  <data name="Error_backup_invalid_archive" xml:space="preserve"><value>Det här är inte en säkerhetskopia från den här appen.</value></data>
+  <data name="Error_backup_newer_version" xml:space="preserve"><value>Säkerhetskopian gjordes med en nyare version av appen. Uppdatera appen först.</value></data>
+  <data name="Error_backup_corrupt" xml:space="preserve"><value>Säkerhetskopian innehåller en skadad databas. Inget ändrades.</value></data>
+  <data name="Error_backup_file_too_large" xml:space="preserve"><value>Säkerhetskopian är större än 1 GB.</value></data>
+  <data name="Error_backup_restore_failed" xml:space="preserve"><value>Databaserna kunde inte återställas. Stäng andra program som använder filerna och försök igen.</value></data>
 </root>

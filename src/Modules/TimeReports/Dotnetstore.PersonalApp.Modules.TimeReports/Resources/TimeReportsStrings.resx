@@ -116,4 +116,78 @@
 Attached are the time reports for {0} for {1}.
 
 Best regards</value></data>
+  <data name="Expenses_Title" xml:space="preserve"><value>Expenses</value></data>
+  <data name="Expenses_Subtitle" xml:space="preserve"><value>Keep track of what you spend, with a copy of the receipt, for your tax return.</value></data>
+  <data name="Expenses_New" xml:space="preserve"><value>New expense</value></data>
+  <data name="Expenses_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Expenses_ConfirmDelete" xml:space="preserve"><value>Delete this expense and its receipt?</value></data>
+  <data name="Expenses_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Expenses_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="Expenses_ColCategory" xml:space="preserve"><value>Category</value></data>
+  <data name="Expenses_ColDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="Expenses_ColClient" xml:space="preserve"><value>Client</value></data>
+  <data name="Expenses_ColAmount" xml:space="preserve"><value>Amount</value></data>
+  <data name="Expenses_ColReceipt" xml:space="preserve"><value>Receipt</value></data>
+  <data name="Expenses_NoSelection" xml:space="preserve"><value>No expense selected</value></data>
+  <data name="Expenses_NoSelectionHint" xml:space="preserve"><value>Select an expense in the list to edit it, or create a new one.</value></data>
+  <data name="Expenses_Summary" xml:space="preserve"><value>{0} expenses, {1} in total</value></data>
+  <data name="Expenses_Saved" xml:space="preserve"><value>Expense saved.</value></data>
+  <data name="Expenses_NotSignedIn" xml:space="preserve"><value>You must be signed in to register expenses.</value></data>
+  <data name="Expenses_NoClient" xml:space="preserve"><value>No client</value></data>
+  <data name="Expenses_Export" xml:space="preserve"><value>Export to Excel</value></data>
+  <data name="Expenses_ExportDialogTitle" xml:space="preserve"><value>Export expenses</value></data>
+  <data name="Expenses_Exported" xml:space="preserve"><value>Exported {0} expenses to {1}.</value></data>
+  <data name="ExpenseEditor_New" xml:space="preserve"><value>New expense</value></data>
+  <data name="ExpenseEditor_Edit" xml:space="preserve"><value>Edit expense</value></data>
+  <data name="ExpenseEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="ExpenseEditor_NoReceipt" xml:space="preserve"><value>No receipt attached.</value></data>
+  <data name="ExpenseEditor_AttachReceipt" xml:space="preserve"><value>Attach receipt</value></data>
+  <data name="ExpenseEditor_AttachTitle" xml:space="preserve"><value>Choose the receipt (PDF, PNG or JPEG)</value></data>
+  <data name="ExpenseEditor_RemoveReceipt" xml:space="preserve"><value>Remove</value></data>
+  <data name="ExpenseEditor_SaveCopy" xml:space="preserve"><value>Save a copy</value></data>
+  <data name="ExpenseEditor_SaveCopyTitle" xml:space="preserve"><value>Save a copy of the receipt</value></data>
+  <data name="ExpenseEditor_ReceiptSaved" xml:space="preserve"><value>Receipt saved to {0}.</value></data>
+  <data name="ExpenseField_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="ExpenseField_Category" xml:space="preserve"><value>Category</value></data>
+  <data name="ExpenseField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="ExpenseField_DescriptionPlaceholder" xml:space="preserve"><value>e.g. Hotel in Gothenburg, 2 nights</value></data>
+  <data name="ExpenseField_Client" xml:space="preserve"><value>Client</value></data>
+  <data name="ExpenseField_Amount" xml:space="preserve"><value>Amount paid</value></data>
+  <data name="ExpenseField_Vat" xml:space="preserve"><value>Of which VAT</value></data>
+  <data name="ExpenseField_Receipt" xml:space="preserve"><value>Receipt</value></data>
+  <data name="ExpenseCategory_Hotel" xml:space="preserve"><value>Hotel</value></data>
+  <data name="ExpenseCategory_Travel" xml:space="preserve"><value>Travel</value></data>
+  <data name="ExpenseCategory_Meals" xml:space="preserve"><value>Meals</value></data>
+  <data name="ExpenseCategory_Parking" xml:space="preserve"><value>Parking</value></data>
+  <data name="ExpenseCategory_Fuel" xml:space="preserve"><value>Fuel</value></data>
+  <data name="ExpenseCategory_Materials" xml:space="preserve"><value>Materials</value></data>
+  <data name="ExpenseCategory_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="ExpenseExport_SheetExpenses" xml:space="preserve"><value>Expenses</value></data>
+  <data name="ExpenseExport_SheetSummary" xml:space="preserve"><value>Summary</value></data>
+  <data name="ExpenseExport_Title" xml:space="preserve"><value>Expenses {0}</value></data>
+  <data name="ExpenseExport_SummaryTitle" xml:space="preserve"><value>Expenses per category {0}</value></data>
+  <data name="ExpenseExport_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="ExpenseExport_Category" xml:space="preserve"><value>Category</value></data>
+  <data name="ExpenseExport_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="ExpenseExport_Client" xml:space="preserve"><value>Client</value></data>
+  <data name="ExpenseExport_Amount" xml:space="preserve"><value>Amount</value></data>
+  <data name="ExpenseExport_Vat" xml:space="preserve"><value>VAT</value></data>
+  <data name="ExpenseExport_Receipt" xml:space="preserve"><value>Receipt</value></data>
+  <data name="ExpenseExport_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="ExpenseExport_UnknownClient" xml:space="preserve"><value>(deleted client)</value></data>
+  <data name="Error_expense_user_required" xml:space="preserve"><value>You must be signed in.</value></data>
+  <data name="Error_expense_date_required" xml:space="preserve"><value>Date is required.</value></data>
+  <data name="Error_expense_category_invalid" xml:space="preserve"><value>Choose a category.</value></data>
+  <data name="Error_expense_description_required" xml:space="preserve"><value>Description is required.</value></data>
+  <data name="Error_expense_description_too_long" xml:space="preserve"><value>Description can be at most 200 characters.</value></data>
+  <data name="Error_expense_amount_required" xml:space="preserve"><value>Amount is required.</value></data>
+  <data name="Error_expense_amount_invalid" xml:space="preserve"><value>Amount must be more than 0 and at most 10 000 000.</value></data>
+  <data name="Error_expense_vat_invalid" xml:space="preserve"><value>VAT must be between 0 and the amount.</value></data>
+  <data name="Error_expense_receipt_empty" xml:space="preserve"><value>The receipt file is empty.</value></data>
+  <data name="Error_expense_receipt_too_large" xml:space="preserve"><value>The receipt file is larger than 10 MB.</value></data>
+  <data name="Error_expense_receipt_type_invalid" xml:space="preserve"><value>The receipt must be a PDF, PNG or JPEG file.</value></data>
+  <data name="Error_expense_receipt_not_found" xml:space="preserve"><value>This expense has no receipt.</value></data>
+  <data name="Error_expense_client_not_found" xml:space="preserve"><value>The selected client no longer exists.</value></data>
+  <data name="Error_expense_not_found" xml:space="preserve"><value>Expense not found.</value></data>
+  <data name="Error_expense_export_empty" xml:space="preserve"><value>There are no expenses for this year.</value></data>
 </root>

@@ -9,6 +9,10 @@ internal sealed class TimeReportsDbContext(DbContextOptions<TimeReportsDbContext
 
     public DbSet<TimeReport> TimeReports => Set<TimeReport>();
 
+    public DbSet<Expense> Expenses => Set<Expense>();
+
+    public DbSet<ExpenseReceipt> ExpenseReceipts => Set<ExpenseReceipt>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TimeReportsDbContext).Assembly);

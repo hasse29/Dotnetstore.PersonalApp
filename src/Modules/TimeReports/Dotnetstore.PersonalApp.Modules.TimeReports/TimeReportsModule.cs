@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes;
 using Dotnetstore.PersonalApp.Modules.TimeReports.Persistence;
@@ -40,6 +41,19 @@ public static class TimeReportsModule
         services.AddSingleton<ListWorkTimeTypes.Handler>();
         services.AddSingleton<UpdateWorkTimeType.Handler>();
         services.AddSingleton<DeleteWorkTimeType.Handler>();
+
+        services.AddSingleton<IValidator<CreateExpense.Command>, CreateExpense.Validator>();
+        services.AddSingleton<IValidator<UpdateExpense.Command>, UpdateExpense.Validator>();
+
+        services.AddSingleton<CreateExpense.Handler>();
+        services.AddSingleton<UpdateExpense.Handler>();
+        services.AddSingleton<DeleteExpense.Handler>();
+        services.AddSingleton<ListExpenses.Handler>();
+        services.AddSingleton<GetExpenseReceipt.Handler>();
+        services.AddSingleton<ExportExpenses.Handler>();
+
+        services.AddTransient<ExpensesViewModel>();
+        services.AddSingleton<IModulePage, ExpensesPage>();
 
         services.AddTransient<WorkTimeTypesViewModel>();
         services.AddSingleton<IModulePage, WorkTimeTypesPage>();

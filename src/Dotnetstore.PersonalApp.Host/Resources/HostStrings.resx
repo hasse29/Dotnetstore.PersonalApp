@@ -28,4 +28,28 @@
   <data name="Update_Available" xml:space="preserve"><value>Version {0} is available. You are using {1}.</value></data>
   <data name="Update_Download" xml:space="preserve"><value>Download</value></data>
   <data name="Update_Dismiss" xml:space="preserve"><value>Later</value></data>
+  <data name="Backup_Title" xml:space="preserve"><value>Backup</value></data>
+  <data name="Backup_Subtitle" xml:space="preserve"><value>Back up all databases to a zip file, or restore them from one.</value></data>
+  <data name="Backup_CreateHeading" xml:space="preserve"><value>Back up</value></data>
+  <data name="Backup_CreateHint" xml:space="preserve"><value>Packs every database (clients, time reports, expenses and receipts, users and so on) into one zip. You choose where to save it.</value></data>
+  <data name="Backup_Create" xml:space="preserve"><value>Back up databases...</value></data>
+  <data name="Backup_RestoreHeading" xml:space="preserve"><value>Restore</value></data>
+  <data name="Backup_RestoreHint" xml:space="preserve"><value>Replaces the databases with the ones in a backup zip. Databases that are not in the zip are left as they are. Your current data is first saved to a zip in the Backups folder of the app data folder.</value></data>
+  <data name="Backup_Restore" xml:space="preserve"><value>Restore from backup...</value></data>
+  <data name="Backup_ConfirmRestore" xml:space="preserve"><value>This replaces your current data with the backup. Continue?</value></data>
+  <data name="Backup_YesRestore" xml:space="preserve"><value>Yes, restore</value></data>
+  <data name="Backup_SaveDialogTitle" xml:space="preserve"><value>Save backup</value></data>
+  <data name="Backup_PickTitle" xml:space="preserve"><value>Choose the backup zip</value></data>
+  <data name="Backup_Created" xml:space="preserve"><value>Backed up {0} databases to {1}.</value></data>
+  <data name="Backup_Restored" xml:space="preserve"><value>Restored {0} databases.</value></data>
+  <data name="Backup_RestoredWithCopy" xml:space="preserve"><value>Restored {0} databases. The previous data was saved to {1}.</value></data>
+  <data name="Backup_RestartNeeded" xml:space="preserve"><value>Restart the app to start using the restored data.</value></data>
+  <data name="Backup_Restart" xml:space="preserve"><value>Restart now</value></data>
+  <data name="Error_backup_nothing_to_back_up" xml:space="preserve"><value>There are no databases to back up yet.</value></data>
+  <data name="Error_backup_failed" xml:space="preserve"><value>The backup could not be created.</value></data>
+  <data name="Error_backup_invalid_archive" xml:space="preserve"><value>This is not a backup made by this app.</value></data>
+  <data name="Error_backup_newer_version" xml:space="preserve"><value>The backup was made by a newer version of the app. Update the app first.</value></data>
+  <data name="Error_backup_corrupt" xml:space="preserve"><value>The backup contains a damaged database. Nothing was changed.</value></data>
+  <data name="Error_backup_file_too_large" xml:space="preserve"><value>The backup is larger than 1 GB.</value></data>
+  <data name="Error_backup_restore_failed" xml:space="preserve"><value>The databases could not be restored. Close other programs that use the files and try again.</value></data>
 </root>

@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Host.Backup;
 using Dotnetstore.PersonalApp.Host.Resources;
 using Dotnetstore.PersonalApp.Host.Startup;
 using Dotnetstore.PersonalApp.Host.ViewModels;
@@ -47,6 +48,8 @@ internal static class CompositionRoot
         services.AddSingleton<IFileSaveService, AvaloniaFileSaveService>();
         services.AddSingleton<IFileOpenService, AvaloniaFileOpenService>();
         services.AddSingleton<IFilePickService, AvaloniaFilePickService>();
+        services.AddSingleton(sp => new DatabaseBackup(dataDirectory, sp.GetRequiredService<TimeProvider>()));
+        services.AddSingleton<IAppRestarter, AvaloniaAppRestarter>();
         services.AddHttpClient(GitHubUpdateChecker.ClientName);
         services.AddSingleton<IUpdateChecker, GitHubUpdateChecker>();
         services.AddSingleton<IUriLauncher, AvaloniaUriLauncher>();
@@ -62,28 +65,30 @@ internal static class CompositionRoot
         services.AddTransient<DashboardViewModel>();
         services.AddSingleton<IModulePage, ModulesPage>();
         services.AddTransient<ModulesViewModel>();
+        services.AddSingleton<IModulePage, BackupPage>();
+        services.AddTransient<BackupViewModel>();
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<StartupRunner>();
         services.AddSingleton<IEventPublisher, InProcessEventPublisher>();
         services.AddSingleton<UserPhotoNotifier>();
         services.AddSingleton<IIntegrationEventConsumer<UserPhotoChanged>>(sp => sp.GetRequiredService<UserPhotoNotifier>());
 
-        services.AddClientsModule(Path.Combine(dataDirectory, "clients.db"));
-        services.AddTimeReportsModule(Path.Combine(dataDirectory, "timereports.db"));
-        services.AddAddressesModule(Path.Combine(dataDirectory, "addresses.db"));
-        services.AddEmailAddressesModule(Path.Combine(dataDirectory, "emailaddresses.db"));
-        services.AddPhoneNumbersModule(Path.Combine(dataDirectory, "phonenumbers.db"));
-        services.AddCvsModule(Path.Combine(dataDirectory, "cvs.db"));
-        services.AddStudentsModule(Path.Combine(dataDirectory, "students.db"));
-        services.AddSubjectsModule(Path.Combine(dataDirectory, "subjects.db"));
-        services.AddScheduleModule(Path.Combine(dataDirectory, "schedule.db"));
-        services.AddGradesModule(Path.Combine(dataDirectory, "grades.db"));
-        services.AddEmailModule(Path.Combine(dataDirectory, "email.db"));
-        services.AddProductionModule(Path.Combine(dataDirectory, "production.db"));
-        services.AddSalesModule(Path.Combine(dataDirectory, "sales.db"));
-        services.AddPurchasingModule(Path.Combine(dataDirectory, "purchasing.db"));
-        services.AddInventoryModule(Path.Combine(dataDirectory, "inventory.db"));
-        services.AddUsersModule(Path.Combine(dataDirectory, "users.db"));
+        services.AddClientsModule(Path.Combine(dataDirectory, DatabaseFiles.Clients));
+        services.AddTimeReportsModule(Path.Combine(dataDirectory, DatabaseFiles.TimeReports));
+        services.AddAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.Addresses));
+        services.AddEmailAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.EmailAddresses));
+        services.AddPhoneNumbersModule(Path.Combine(dataDirectory, DatabaseFiles.PhoneNumbers));
+        services.AddCvsModule(Path.Combine(dataDirectory, DatabaseFiles.Cvs));
+        services.AddStudentsModule(Path.Combine(dataDirectory, DatabaseFiles.Students));
+        services.AddSubjectsModule(Path.Combine(dataDirectory, DatabaseFiles.Subjects));
+        services.AddScheduleModule(Path.Combine(dataDirectory, DatabaseFiles.Schedule));
+        services.AddGradesModule(Path.Combine(dataDirectory, DatabaseFiles.Grades));
+        services.AddEmailModule(Path.Combine(dataDirectory, DatabaseFiles.Email));
+        services.AddProductionModule(Path.Combine(dataDirectory, DatabaseFiles.Production));
+        services.AddSalesModule(Path.Combine(dataDirectory, DatabaseFiles.Sales));
+        services.AddPurchasingModule(Path.Combine(dataDirectory, DatabaseFiles.Purchasing));
+        services.AddInventoryModule(Path.Combine(dataDirectory, DatabaseFiles.Inventory));
+        services.AddUsersModule(Path.Combine(dataDirectory, DatabaseFiles.Users));
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });
     }

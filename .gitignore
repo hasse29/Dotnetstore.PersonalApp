@@ -264,6 +264,8 @@ Generated_Code/
 # because we have git ;-)
 _UpgradeReport_Files/
 Backup*/
+# Source folder of the database backup feature, not backup output
+!src/Dotnetstore.PersonalApp.Host/Backup/
 UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/

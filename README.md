@@ -21,6 +21,8 @@ A personal desktop app for keeping track of clients, the time you work for them,
 - **Inventory**: warehouses with storage locations, stock per product and location kept by a movement ledger, a stock overview with low-stock filter, transfers, receiving and issuing against purchase and sales orders, and inventory counts that post adjustments.
 - **Production, Purchasing and Sales** (modelled on the AdventureWorks sample): a product catalogue with categories, subcategories, models, units of measure, cost and list price history, inventory per location, reviews, bills of materials, work orders with routing steps and inventory transactions; vendors with their prices per product and purchase orders with lines; customers, stores, salespeople, territories, currencies and exchange rates, special offers, tax rates and sales orders with lines. Order totals follow their lines. Products, vendors, customers and salespeople open on detail pages with tabs (history, prices, lines and orders, contact details), and orders open on one screen with their lines and totals. Each module is switched on and off on its own.
 - **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.
+- **Expenses**: hotel, travel, meals and other costs with VAT, an optional client and a copy of the receipt (PDF, PNG or JPEG, up to 10 MB), plus a yearly Excel export for your tax return.
+- **Backup and restore**: back up all databases to one zip in a place you choose, and restore them from such a zip (Settings, Backup).
   - Copy a report to create similar ones on another date.
   - **Work time types** (Work, Sick, Vacation, Parental leave, or your own) have their own page.
   - **Excel export** of one client's reports for a year, one sheet per month.
@@ -36,7 +38,7 @@ A personal desktop app for keeping track of clients, the time you work for them,
 
 Download `Dotnetstore.PersonalApp-Setup-<version>.exe` from the [latest release](https://github.com/hasse29/Dotnetstore.PersonalApp/releases/latest) and run it. The app is self-contained, so .NET does not need to be installed. The installer is not code-signed, so Windows SmartScreen may warn about an unknown publisher.
 
-Your data is stored in `%LOCALAPPDATA%\Dotnetstore.PersonalApp` (one SQLite database per module plus `settings.json`) and is kept when you uninstall.
+Your data is stored in `%LOCALAPPDATA%\Dotnetstore.PersonalApp` (one SQLite database per module plus `settings.json`) and is kept when you uninstall. A restore first saves the data it replaces to a zip in the `Backups` folder there.
 
 On start the app asks GitHub once whether a newer release exists and shows a notice if so (nothing else is sent). To turn this off, set `"CheckForUpdates": false` in `settings.json`.
 
@@ -79,7 +81,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Addresses | Addresses for any object, with address types | `addresses.db` |
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
 | PhoneNumbers | Phone numbers for any object, with types | `phonenumbers.db` |
-| TimeReports | Time reports, work time types, exports | `timereports.db` |
+| TimeReports | Time reports, expenses, work time types, exports | `timereports.db` |
 | Cvs | CVs with sections, contact selection, Word export | `cvs.db` |
 | Email | Mail accounts, inbox, sending, drafts | `email.db` |
 

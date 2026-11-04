@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Host.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Host.Views.BackupView"
+             x:DataType="vm:BackupViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+        <StackPanel Spacing="4">
+            <TextBlock Text="{loc:Tr Backup_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr Backup_Subtitle}" Classes="muted" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="16" MaxWidth="560" HorizontalAlignment="Left">
+
+            <Border Classes="card" Padding="24">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="{loc:Tr Backup_CreateHeading}" Classes="h2"/>
+                    <TextBlock Text="{loc:Tr Backup_CreateHint}" Classes="muted" TextWrapping="Wrap"/>
+                    <Button Content="{loc:Tr Backup_Create}" Classes="primary" HorizontalAlignment="Left"
+                            Command="{Binding BackupCommand}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card" Padding="24">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="{loc:Tr Backup_RestoreHeading}" Classes="h2"/>
+                    <TextBlock Text="{loc:Tr Backup_RestoreHint}" Classes="muted" TextWrapping="Wrap"/>
+                    <Button Content="{loc:Tr Backup_Restore}" Classes="subtle" HorizontalAlignment="Left"
+                            Command="{Binding ChooseRestoreCommand}"/>
+
+                    <StackPanel Spacing="8" IsVisible="{Binding IsConfirmingRestore}">
+                        <TextBlock Text="{Binding PendingFileName}" FontWeight="Medium" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Text="{loc:Tr Backup_ConfirmRestore}" Classes="error" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="{loc:Tr Backup_YesRestore}" Classes="danger" Command="{Binding ConfirmRestoreCommand}"/>
+                            <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelRestoreCommand}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Spacing="8" IsVisible="{Binding NeedsRestart}">
+                        <TextBlock Text="{loc:Tr Backup_RestartNeeded}" TextWrapping="Wrap"/>
+                        <Button Content="{loc:Tr Backup_Restart}" Classes="primary" HorizontalAlignment="Left"
+                                Command="{Binding RestartCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap"
+                       Classes.error="{Binding StatusIsError}" Classes.caption="{Binding !StatusIsError}"
+                       IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
