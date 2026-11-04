@@ -15,6 +15,9 @@ using Dotnetstore.PersonalApp.Modules.Subjects;
 using Dotnetstore.PersonalApp.Modules.Email;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
+using Dotnetstore.PersonalApp.Modules.Production;
+using Dotnetstore.PersonalApp.Modules.Sales;
+using Dotnetstore.PersonalApp.Modules.Purchasing;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
 using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
@@ -67,6 +70,9 @@ internal static class CompositionRoot
         services.AddScheduleModule(Path.Combine(dataDirectory, "schedule.db"));
         services.AddGradesModule(Path.Combine(dataDirectory, "grades.db"));
         services.AddEmailModule(Path.Combine(dataDirectory, "email.db"));
+        services.AddProductionModule(Path.Combine(dataDirectory, "production.db"));
+        services.AddSalesModule(Path.Combine(dataDirectory, "sales.db"));
+        services.AddPurchasingModule(Path.Combine(dataDirectory, "purchasing.db"));
         services.AddUsersModule(Path.Combine(dataDirectory, "users.db"));
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });

@@ -11,6 +11,10 @@ public interface IUserLookup
 {
     /// <returns>The user, or null when no user has this id.</returns>
     Task<UserReference?> GetAsync(Guid id, CancellationToken cancellationToken);
+
+    /// <summary>Every user ordered by name, for pickers in other modules. The default is empty; Users overrides it.</summary>
+    Task<IReadOnlyList<UserReference>> ListAsync(CancellationToken cancellationToken) =>
+        Task.FromResult<IReadOnlyList<UserReference>>([]);
 }
 
 

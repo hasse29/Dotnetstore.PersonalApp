@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_PurchasingDatabase" xml:space="preserve"><value>Preparing purchasing database...</value></data>
+  <data name="Purchasing_Title" xml:space="preserve"><value>Purchasing</value></data>
+  <data name="Purchasing_None" xml:space="preserve"><value>None</value></data>
+  <data name="VendorDetail_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="VendorDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="VendorDetail_TabVendorPrices" xml:space="preserve"><value>Prices</value></data>
+  <data name="VendorDetail_TabPurchaseOrders" xml:space="preserve"><value>Purchase orders</value></data>
+  <data name="VendorDetail_TabAddresses" xml:space="preserve"><value>Addresses</value></data>
+  <data name="VendorDetail_TabEmailAddresses" xml:space="preserve"><value>Email addresses</value></data>
+  <data name="VendorDetail_TabPhoneNumbers" xml:space="preserve"><value>Phone numbers</value></data>
+  <data name="PurchaseOrderScreen_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="PurchaseOrderScreen_Lines" xml:space="preserve"><value>Lines</value></data>
+  <data name="ShipMethods_Title" xml:space="preserve"><value>Ship methods</value></data>
+  <data name="ShipMethods_Subtitle" xml:space="preserve"><value>Manage ship methods.</value></data>
+  <data name="ShipMethods_New" xml:space="preserve"><value>New ship method</value></data>
+  <data name="ShipMethods_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="ShipMethods_SearchPlaceholder" xml:space="preserve"><value>Search ship methods...</value></data>
+  <data name="ShipMethods_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="ShipMethods_ColShipBase" xml:space="preserve"><value>BASE CHARGE</value></data>
+  <data name="ShipMethods_ColShipRate" xml:space="preserve"><value>RATE PER UNIT</value></data>
+  <data name="ShipMethods_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="ShipMethods_ConfirmDelete" xml:space="preserve"><value>Delete this record?</value></data>
+  <data name="ShipMethods_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="ShipMethods_NoSelection" xml:space="preserve"><value>No ship method selected</value></data>
+  <data name="ShipMethods_NoSelectionHint" xml:space="preserve"><value>Select a row in the table to edit it, or add a new one.</value></data>
+  <data name="ShipMethods_Count" xml:space="preserve"><value>{0} ship methods</value></data>
+  <data name="ShipMethods_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1}. Refine the search to see more.</value></data>
+  <data name="ShipMethods_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="ShipMethodEditor_New" xml:space="preserve"><value>New ship method</value></data>
+  <data name="ShipMethodEditor_Edit" xml:space="preserve"><value>Edit ship method</value></data>
+  <data name="ShipMethodEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="ShipMethodField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Error_ship_method_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_ship_method_name_too_long" xml:space="preserve"><value>Name can be at most 50 characters.</value></data>
+  <data name="ShipMethodField_ShipBase" xml:space="preserve"><value>Base charge</value></data>
+  <data name="Error_ship_method_ship_base_out_of_range" xml:space="preserve"><value>Base charge must be between 0 and 1000000000.</value></data>
+  <data name="ShipMethodField_ShipRate" xml:space="preserve"><value>Rate per unit</value></data>
+  <data name="Error_ship_method_ship_rate_out_of_range" xml:space="preserve"><value>Rate per unit must be between 0 and 1000000000.</value></data>
+  <data name="Error_ship_method_not_found" xml:space="preserve"><value>The record was not found.</value></data>
+  <data name="Error_ship_method_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
+  <data name="Error_ship_method_conflict" xml:space="preserve"><value>A record with the same values already exists.</value></data>
+  <data name="Vendors_Title" xml:space="preserve"><value>Vendors</value></data>
+  <data name="Vendors_Subtitle" xml:space="preserve"><value>Manage vendors.</value></data>
+  <data name="Vendors_New" xml:space="preserve"><value>New vendor</value></data>
+  <data name="Vendors_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Vendors_SearchPlaceholder" xml:space="preserve"><value>Search vendors...</value></data>
+  <data name="Vendors_ColAccountNumber" xml:space="preserve"><value>ACCOUNT NUMBER</value></data>
+  <data name="Vendors_ColName" xml:space="preserve"><value>NAME</value></data>
+  <data name="Vendors_ColCreditRating" xml:space="preserve"><value>CREDIT RATING (1-5)</value></data>
+  <data name="Vendors_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Vendors_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Vendors_ConfirmDelete" xml:space="preserve"><value>Delete this record?</value></data>
+  <data name="Vendors_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Vendors_NoSelection" xml:space="preserve"><value>No vendor selected</value></data>
+  <data name="Vendors_NoSelectionHint" xml:space="preserve"><value>Select a row in the table to edit it, or add a new one.</value></data>
+  <data name="Vendors_Count" xml:space="preserve"><value>{0} vendors</value></data>
+  <data name="Vendors_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1}. Refine the search to see more.</value></data>
+  <data name="Vendors_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="VendorEditor_New" xml:space="preserve"><value>New vendor</value></data>
+  <data name="VendorEditor_Edit" xml:space="preserve"><value>Edit vendor</value></data>
+  <data name="VendorEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="VendorField_AccountNumber" xml:space="preserve"><value>Account number</value></data>
+  <data name="Error_vendor_account_number_required" xml:space="preserve"><value>Account number is required.</value></data>
+  <data name="Error_vendor_account_number_too_long" xml:space="preserve"><value>Account number can be at most 15 characters.</value></data>
+  <data name="VendorField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Error_vendor_name_required" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="Error_vendor_name_too_long" xml:space="preserve"><value>Name can be at most 50 characters.</value></data>
+  <data name="VendorField_CreditRating" xml:space="preserve"><value>Credit rating (1-5)</value></data>
+  <data name="Error_vendor_credit_rating_out_of_range" xml:space="preserve"><value>Credit rating (1-5) must be between 1 and 5.</value></data>
+  <data name="VendorField_PreferredVendorStatus" xml:space="preserve"><value>Preferred vendor</value></data>
+  <data name="VendorField_ActiveFlag" xml:space="preserve"><value>Active</value></data>
+  <data name="VendorField_PurchasingWebServiceUrl" xml:space="preserve"><value>Web address</value></data>
+  <data name="Error_vendor_purchasing_web_service_url_too_long" xml:space="preserve"><value>Web address can be at most 1024 characters.</value></data>
+  <data name="VendorField_Client" xml:space="preserve"><value>Linked client</value></data>
+  <data name="Error_vendor_client_not_found" xml:space="preserve"><value>Linked client was not found.</value></data>
+  <data name="Error_vendor_not_found" xml:space="preserve"><value>The record was not found.</value></data>
+  <data name="Error_vendor_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
+  <data name="Error_vendor_conflict" xml:space="preserve"><value>A record with the same values already exists.</value></data>
+  <data name="ProductVendors_Title" xml:space="preserve"><value>Vendor prices</value></data>
+  <data name="ProductVendors_Subtitle" xml:space="preserve"><value>Manage vendor prices.</value></data>
+  <data name="ProductVendors_New" xml:space="preserve"><value>New vendor price</value></data>
+  <data name="ProductVendors_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="ProductVendors_SearchPlaceholder" xml:space="preserve"><value>Search vendor prices...</value></data>
+  <data name="ProductVendors_ColProductName" xml:space="preserve"><value>PRODUCT</value></data>
+  <data name="ProductVendors_ColVendorName" xml:space="preserve"><value>VENDOR</value></data>
+  <data name="ProductVendors_ColStandardPrice" xml:space="preserve"><value>STANDARD PRICE</value></data>
+  <data name="ProductVendors_ColAverageLeadTime" xml:space="preserve"><value>AVERAGE LEAD TIME (DAYS)</value></data>
+  <data name="ProductVendors_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="ProductVendors_ConfirmDelete" xml:space="preserve"><value>Delete this record?</value></data>
+  <data name="ProductVendors_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="ProductVendors_NoSelection" xml:space="preserve"><value>No vendor price selected</value></data>
+  <data name="ProductVendors_NoSelectionHint" xml:space="preserve"><value>Select a row in the table to edit it, or add a new one.</value></data>
+  <data name="ProductVendors_Count" xml:space="preserve"><value>{0} vendor prices</value></data>
+  <data name="ProductVendors_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1}. Refine the search to see more.</value></data>
+  <data name="ProductVendors_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="ProductVendorEditor_New" xml:space="preserve"><value>New vendor price</value></data>
+  <data name="ProductVendorEditor_Edit" xml:space="preserve"><value>Edit vendor price</value></data>
+  <data name="ProductVendorEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="ProductVendorField_Product" xml:space="preserve"><value>Product</value></data>
+  <data name="Error_product_vendor_product_required" xml:space="preserve"><value>Product is required.</value></data>
+  <data name="Error_product_vendor_product_not_found" xml:space="preserve"><value>Product was not found.</value></data>
+  <data name="ProductVendorField_Vendor" xml:space="preserve"><value>Vendor</value></data>
+  <data name="Error_product_vendor_vendor_required" xml:space="preserve"><value>Vendor is required.</value></data>
+  <data name="Error_product_vendor_vendor_not_found" xml:space="preserve"><value>Vendor was not found.</value></data>
+  <data name="ProductVendorField_AverageLeadTime" xml:space="preserve"><value>Average lead time (days)</value></data>
+  <data name="Error_product_vendor_average_lead_time_out_of_range" xml:space="preserve"><value>Average lead time (days) must be between 0 and 1000000.</value></data>
+  <data name="ProductVendorField_StandardPrice" xml:space="preserve"><value>Standard price</value></data>
+  <data name="Error_product_vendor_standard_price_out_of_range" xml:space="preserve"><value>Standard price must be between 0 and 1000000000.</value></data>
+  <data name="ProductVendorField_LastReceiptCost" xml:space="preserve"><value>Last receipt cost</value></data>
+  <data name="Error_product_vendor_last_receipt_cost_out_of_range" xml:space="preserve"><value>Last receipt cost must be between 0 and 1000000000.</value></data>
+  <data name="ProductVendorField_LastReceiptDate" xml:space="preserve"><value>Last receipt date</value></data>
+  <data name="ProductVendorField_MinOrderQty" xml:space="preserve"><value>Minimum order quantity</value></data>
+  <data name="Error_product_vendor_min_order_qty_out_of_range" xml:space="preserve"><value>Minimum order quantity must be between 0 and 1000000.</value></data>
+  <data name="ProductVendorField_MaxOrderQty" xml:space="preserve"><value>Maximum order quantity</value></data>
+  <data name="Error_product_vendor_max_order_qty_out_of_range" xml:space="preserve"><value>Maximum order quantity must be between 0 and 1000000.</value></data>
+  <data name="ProductVendorField_OnOrderQty" xml:space="preserve"><value>Quantity on order</value></data>
+  <data name="Error_product_vendor_on_order_qty_out_of_range" xml:space="preserve"><value>Quantity on order must be between 0 and 1000000.</value></data>
+  <data name="ProductVendorField_Unit" xml:space="preserve"><value>Unit</value></data>
+  <data name="Error_product_vendor_unit_required" xml:space="preserve"><value>Unit is required.</value></data>
+  <data name="Error_product_vendor_unit_not_found" xml:space="preserve"><value>Unit was not found.</value></data>
+  <data name="Error_product_vendor_not_found" xml:space="preserve"><value>The record was not found.</value></data>
+  <data name="Error_product_vendor_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
+  <data name="Error_product_vendor_conflict" xml:space="preserve"><value>A record with the same values already exists.</value></data>
+  <data name="PurchaseOrders_Title" xml:space="preserve"><value>Purchase orders</value></data>
+  <data name="PurchaseOrders_Subtitle" xml:space="preserve"><value>Manage purchase orders.</value></data>
+  <data name="PurchaseOrders_New" xml:space="preserve"><value>New purchase order</value></data>
+  <data name="PurchaseOrders_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="PurchaseOrders_SearchPlaceholder" xml:space="preserve"><value>Search purchase orders...</value></data>
+  <data name="PurchaseOrders_ColNumber" xml:space="preserve"><value>ORDER NUMBER</value></data>
+  <data name="PurchaseOrders_ColVendorName" xml:space="preserve"><value>VENDOR</value></data>
+  <data name="PurchaseOrders_ColOrderDate" xml:space="preserve"><value>ORDER DATE</value></data>
+  <data name="PurchaseOrders_ColTotalDue" xml:space="preserve"><value>TOTAL DUE</value></data>
+  <data name="PurchaseOrders_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="PurchaseOrders_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="PurchaseOrders_ConfirmDelete" xml:space="preserve"><value>Delete this record?</value></data>
+  <data name="PurchaseOrders_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="PurchaseOrders_NoSelection" xml:space="preserve"><value>No purchase order selected</value></data>
+  <data name="PurchaseOrders_NoSelectionHint" xml:space="preserve"><value>Select a row in the table to edit it, or add a new one.</value></data>
+  <data name="PurchaseOrders_Count" xml:space="preserve"><value>{0} purchase orders</value></data>
+  <data name="PurchaseOrders_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1}. Refine the search to see more.</value></data>
+  <data name="PurchaseOrders_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="PurchaseOrderEditor_New" xml:space="preserve"><value>New purchase order</value></data>
+  <data name="PurchaseOrderEditor_Edit" xml:space="preserve"><value>Edit purchase order</value></data>
+  <data name="PurchaseOrderEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="PurchaseOrderField_Number" xml:space="preserve"><value>Order number</value></data>
+  <data name="Error_purchase_order_number_required" xml:space="preserve"><value>Order number is required.</value></data>
+  <data name="Error_purchase_order_number_too_long" xml:space="preserve"><value>Order number can be at most 25 characters.</value></data>
+  <data name="PurchaseOrderField_Status" xml:space="preserve"><value>Status</value></data>
+  <data name="PurchaseOrderChoice_Status_P" xml:space="preserve"><value>Pending</value></data>
+  <data name="PurchaseOrderChoice_Status_A" xml:space="preserve"><value>Approved</value></data>
+  <data name="PurchaseOrderChoice_Status_R" xml:space="preserve"><value>Rejected</value></data>
+  <data name="PurchaseOrderChoice_Status_C" xml:space="preserve"><value>Complete</value></data>
+  <data name="Error_purchase_order_status_invalid" xml:space="preserve"><value>Status is not valid.</value></data>
+  <data name="PurchaseOrderField_Buyer" xml:space="preserve"><value>Buyer</value></data>
+  <data name="Error_purchase_order_buyer_not_found" xml:space="preserve"><value>Buyer was not found.</value></data>
+  <data name="PurchaseOrderField_Vendor" xml:space="preserve"><value>Vendor</value></data>
+  <data name="Error_purchase_order_vendor_required" xml:space="preserve"><value>Vendor is required.</value></data>
+  <data name="Error_purchase_order_vendor_not_found" xml:space="preserve"><value>Vendor was not found.</value></data>
+  <data name="PurchaseOrderField_ShipMethod" xml:space="preserve"><value>Ship method</value></data>
+  <data name="Error_purchase_order_ship_method_required" xml:space="preserve"><value>Ship method is required.</value></data>
+  <data name="Error_purchase_order_ship_method_not_found" xml:space="preserve"><value>Ship method was not found.</value></data>
+  <data name="PurchaseOrderField_OrderDate" xml:space="preserve"><value>Order date</value></data>
+  <data name="PurchaseOrderField_ShipDate" xml:space="preserve"><value>Ship date</value></data>
+  <data name="PurchaseOrderField_TaxAmt" xml:space="preserve"><value>Tax</value></data>
+  <data name="Error_purchase_order_tax_amt_out_of_range" xml:space="preserve"><value>Tax must be between 0 and 1000000000.</value></data>
+  <data name="PurchaseOrderField_Freight" xml:space="preserve"><value>Freight</value></data>
+  <data name="Error_purchase_order_freight_out_of_range" xml:space="preserve"><value>Freight must be between 0 and 1000000000.</value></data>
+  <data name="PurchaseOrderField_SubTotal" xml:space="preserve"><value>Subtotal</value></data>
+  <data name="Error_purchase_order_sub_total_out_of_range" xml:space="preserve"><value>Subtotal must be at least 0.</value></data>
+  <data name="PurchaseOrderField_TotalDue" xml:space="preserve"><value>Total due</value></data>
+  <data name="Error_purchase_order_total_due_out_of_range" xml:space="preserve"><value>Total due must be at least 0.</value></data>
+  <data name="Error_purchase_order_not_found" xml:space="preserve"><value>The record was not found.</value></data>
+  <data name="Error_purchase_order_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
+  <data name="Error_purchase_order_conflict" xml:space="preserve"><value>A record with the same values already exists.</value></data>
+  <data name="Error_purchase_order_end_before_start" xml:space="preserve"><value>The end date cannot be before the start date.</value></data>
+  <data name="PurchaseOrderDetails_Title" xml:space="preserve"><value>Purchase order lines</value></data>
+  <data name="PurchaseOrderDetails_Subtitle" xml:space="preserve"><value>Manage purchase order lines.</value></data>
+  <data name="PurchaseOrderDetails_New" xml:space="preserve"><value>New purchase order line</value></data>
+  <data name="PurchaseOrderDetails_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="PurchaseOrderDetails_SearchPlaceholder" xml:space="preserve"><value>Search purchase order lines...</value></data>
+  <data name="PurchaseOrderDetails_ColPurchaseOrderName" xml:space="preserve"><value>PURCHASE ORDER</value></data>
+  <data name="PurchaseOrderDetails_ColProductName" xml:space="preserve"><value>PRODUCT</value></data>
+  <data name="PurchaseOrderDetails_ColOrderQty" xml:space="preserve"><value>ORDER QUANTITY</value></data>
+  <data name="PurchaseOrderDetails_ColLineTotal" xml:space="preserve"><value>LINE TOTAL</value></data>
+  <data name="PurchaseOrderDetails_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="PurchaseOrderDetails_ConfirmDelete" xml:space="preserve"><value>Delete this record?</value></data>
+  <data name="PurchaseOrderDetails_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="PurchaseOrderDetails_NoSelection" xml:space="preserve"><value>No purchase order line selected</value></data>
+  <data name="PurchaseOrderDetails_NoSelectionHint" xml:space="preserve"><value>Select a row in the table to edit it, or add a new one.</value></data>
+  <data name="PurchaseOrderDetails_Count" xml:space="preserve"><value>{0} purchase order lines</value></data>
+  <data name="PurchaseOrderDetails_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1}. Refine the search to see more.</value></data>
+  <data name="PurchaseOrderDetails_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="PurchaseOrderDetailEditor_New" xml:space="preserve"><value>New purchase order line</value></data>
+  <data name="PurchaseOrderDetailEditor_Edit" xml:space="preserve"><value>Edit purchase order line</value></data>
+  <data name="PurchaseOrderDetailEditor_Save" xml:space="preserve"><value>Save changes</value></data>
+  <data name="PurchaseOrderDetailField_PurchaseOrder" xml:space="preserve"><value>Purchase order</value></data>
+  <data name="Error_purchase_order_detail_purchase_order_required" xml:space="preserve"><value>Purchase order is required.</value></data>
+  <data name="Error_purchase_order_detail_purchase_order_not_found" xml:space="preserve"><value>Purchase order was not found.</value></data>
+  <data name="PurchaseOrderDetailField_Product" xml:space="preserve"><value>Product</value></data>
+  <data name="Error_purchase_order_detail_product_required" xml:space="preserve"><value>Product is required.</value></data>
+  <data name="Error_purchase_order_detail_product_not_found" xml:space="preserve"><value>Product was not found.</value></data>
+  <data name="PurchaseOrderDetailField_DueDate" xml:space="preserve"><value>Due date</value></data>
+  <data name="PurchaseOrderDetailField_OrderQty" xml:space="preserve"><value>Order quantity</value></data>
+  <data name="Error_purchase_order_detail_order_qty_out_of_range" xml:space="preserve"><value>Order quantity must be between 1 and 1000000.</value></data>
+  <data name="PurchaseOrderDetailField_UnitPrice" xml:space="preserve"><value>Unit price</value></data>
+  <data name="Error_purchase_order_detail_unit_price_out_of_range" xml:space="preserve"><value>Unit price must be between 0 and 1000000000.</value></data>
+  <data name="PurchaseOrderDetailField_ReceivedQty" xml:space="preserve"><value>Received quantity</value></data>
+  <data name="Error_purchase_order_detail_received_qty_out_of_range" xml:space="preserve"><value>Received quantity must be between 0 and 1000000000.</value></data>
+  <data name="PurchaseOrderDetailField_RejectedQty" xml:space="preserve"><value>Rejected quantity</value></data>
+  <data name="Error_purchase_order_detail_rejected_qty_out_of_range" xml:space="preserve"><value>Rejected quantity must be between 0 and 1000000000.</value></data>
+  <data name="PurchaseOrderDetailField_LineTotal" xml:space="preserve"><value>Line total</value></data>
+  <data name="Error_purchase_order_detail_line_total_out_of_range" xml:space="preserve"><value>Line total must be at least 0.</value></data>
+  <data name="PurchaseOrderDetailField_StockedQty" xml:space="preserve"><value>Stocked quantity</value></data>
+  <data name="Error_purchase_order_detail_stocked_qty_out_of_range" xml:space="preserve"><value>Stocked quantity must be at least 0.</value></data>
+  <data name="Error_purchase_order_detail_not_found" xml:space="preserve"><value>The record was not found.</value></data>
+  <data name="Error_purchase_order_detail_in_use" xml:space="preserve"><value>The record is in use and cannot be deleted.</value></data>
+</root>

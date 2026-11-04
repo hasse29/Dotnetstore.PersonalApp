@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Sales.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Sales.Features.SalesOrderReasons"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.SalesOrderReasons.SalesOrderReasonEditorView"
+             x:DataType="vm:SalesOrderReasonEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderReasonField_SalesOrder}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding SalesOrderOptions}" SelectedItem="{Binding SelectedSalesOrder}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderReasonField_SalesReason}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding SalesReasonOptions}" SelectedItem="{Binding SelectedSalesReason}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr SalesOrderReasonEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

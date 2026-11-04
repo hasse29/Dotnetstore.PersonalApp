@@ -1,0 +1,112 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Production.Features.Products"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Production.Features.Products.ProductDetailView"
+             x:DataType="vm:ProductDetailViewModel">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="20">
+
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr ProductDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Product.Name}" Classes="h2"/>
+                <TextBlock Text="{Binding Product.ProductNumber}" Classes="muted"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Row="1" Padding="0">
+            <TabItem Header="{loc:Tr ProductDetail_TabInformation}">
+                <Border Classes="card" Padding="28" Margin="0,20,0,0" VerticalAlignment="Top">
+                    <WrapPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_ProductNumber}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.ProductNumber}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_Subcategory}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.SubcategoryName}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_Model}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.ModelName}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_Color}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.Color}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_Size}" Classes="label"/>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="{Binding Product.Size}"/>
+                                <TextBlock Text="{Binding Product.SizeUnitName}" Classes="muted"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_Weight}" Classes="label"/>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="{Binding Product.Weight, StringFormat={}{0:N2}}"/>
+                                <TextBlock Text="{Binding Product.WeightUnitName}" Classes="muted"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_StandardCost}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.StandardCost, StringFormat={}{0:N2}}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_ListPrice}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.ListPrice, StringFormat={}{0:N2}}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_SafetyStockLevel}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.SafetyStockLevel}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_ReorderPoint}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.ReorderPoint}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_DaysToManufacture}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.DaysToManufacture}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_SellStartDate}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.SellStartDate, StringFormat={}{0:d}}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr ProductField_SellEndDate}" Classes="label"/>
+                            <TextBlock Text="{Binding Product.SellEndDate, StringFormat={}{0:d}}"/>
+                        </StackPanel>
+                        <CheckBox IsChecked="{Binding Product.MakeFlag}" IsEnabled="False" Content="{loc:Tr ProductField_MakeFlag}" Margin="0,0,16,0"/>
+                        <CheckBox IsChecked="{Binding Product.FinishedGoodsFlag}" IsEnabled="False" Content="{loc:Tr ProductField_FinishedGoodsFlag}"/>
+                    </WrapPanel>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="{loc:Tr ProductDetail_TabCostHistory}">
+                <ContentControl Content="{Binding CostHistory}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ProductDetail_TabListPrices}">
+                <ContentControl Content="{Binding ListPrices}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ProductDetail_TabInventory}">
+                <ContentControl Content="{Binding Inventory}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ProductDetail_TabReviews}">
+                <ContentControl Content="{Binding Reviews}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr ProductDetail_TabBillOfMaterials}">
+                <ContentControl Content="{Binding BillOfMaterials}" Margin="0,20,0,0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

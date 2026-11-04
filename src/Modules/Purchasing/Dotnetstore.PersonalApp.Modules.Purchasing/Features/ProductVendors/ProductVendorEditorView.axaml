@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Purchasing.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Purchasing.Features.ProductVendors"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Purchasing.Features.ProductVendors.ProductVendorEditorView"
+             x:DataType="vm:ProductVendorEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_Product}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding ProductOptions}" SelectedItem="{Binding SelectedProduct}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding !IsParentFixed}">
+                <TextBlock Text="{loc:Tr ProductVendorField_Vendor}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding VendorOptions}" SelectedItem="{Binding SelectedVendor}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_AverageLeadTime}" Classes="label"/>
+                <NumericUpDown Value="{Binding AverageLeadTime}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_StandardPrice}" Classes="label"/>
+                <NumericUpDown Value="{Binding StandardPrice}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_LastReceiptCost}" Classes="label"/>
+                <NumericUpDown Value="{Binding LastReceiptCost}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_LastReceiptDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding LastReceiptDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_MinOrderQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding MinOrderQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_MaxOrderQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding MaxOrderQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_OnOrderQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding OnOrderQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductVendorField_Unit}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding UnitOptions}" SelectedItem="{Binding SelectedUnit}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr ProductVendorEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Sales.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Sales.Features.SpecialOffers"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.SpecialOffers.SpecialOfferEditorView"
+             x:DataType="vm:SpecialOfferEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_Description}" Classes="label"/>
+                <TextBox Text="{Binding Description}" MaxLength="255"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_DiscountPct}" Classes="label"/>
+                <NumericUpDown Value="{Binding DiscountPct}" Minimum="0" Maximum="1" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_OfferType}" Classes="label"/>
+                <TextBox Text="{Binding OfferType}" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_Category}" Classes="label"/>
+                <TextBox Text="{Binding Category}" MaxLength="50"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_StartDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding StartDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_EndDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding EndDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_MinQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding MinQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SpecialOfferField_MaxQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding MaxQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr SpecialOfferEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

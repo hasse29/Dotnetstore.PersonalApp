@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_SalesDatabase" xml:space="preserve"><value>Förbereder databasen för försäljning...</value></data>
+  <data name="Sales_Title" xml:space="preserve"><value>Försäljning</value></data>
+  <data name="Sales_None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="CustomerDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="CustomerDetail_TabSalesOrders" xml:space="preserve"><value>Kundorder</value></data>
+  <data name="CustomerDetail_TabAddresses" xml:space="preserve"><value>Adresser</value></data>
+  <data name="CustomerDetail_TabEmailAddresses" xml:space="preserve"><value>E-postadresser</value></data>
+  <data name="CustomerDetail_TabPhoneNumbers" xml:space="preserve"><value>Telefonnummer</value></data>
+  <data name="SalesPersonDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="SalesPersonDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="SalesPersonDetail_TabQuotaHistory" xml:space="preserve"><value>Måluppföljning</value></data>
+  <data name="SalesPersonDetail_TabTerritoryHistory" xml:space="preserve"><value>Områdeshistorik</value></data>
+  <data name="SalesOrderScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="SalesOrderScreen_Lines" xml:space="preserve"><value>Orderrader</value></data>
+  <data name="SalesTerritories_Title" xml:space="preserve"><value>Säljområden</value></data>
+  <data name="SalesTerritories_Subtitle" xml:space="preserve"><value>Hantera säljområden.</value></data>
+  <data name="SalesTerritories_New" xml:space="preserve"><value>Lägg till säljområde</value></data>
+  <data name="SalesTerritories_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesTerritories_SearchPlaceholder" xml:space="preserve"><value>Sök bland säljområden...</value></data>
+  <data name="SalesTerritories_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="SalesTerritories_ColCountryRegionCode" xml:space="preserve"><value>LANDSKOD</value></data>
+  <data name="SalesTerritories_ColRegionGroup" xml:space="preserve"><value>GRUPP</value></data>
+  <data name="SalesTerritories_ColSalesYtd" xml:space="preserve"><value>FÖRSÄLJNING HITTILLS I ÅR</value></data>
+  <data name="SalesTerritories_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesTerritories_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesTerritories_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesTerritories_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesTerritories_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesTerritories_Count" xml:space="preserve"><value>{0} st: säljområden</value></data>
+  <data name="SalesTerritories_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesTerritories_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesTerritoryEditor_New" xml:space="preserve"><value>Lägg till säljområde</value></data>
+  <data name="SalesTerritoryEditor_Edit" xml:space="preserve"><value>Redigera säljområde</value></data>
+  <data name="SalesTerritoryEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesTerritoryField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_sales_territory_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_sales_territory_name_too_long" xml:space="preserve"><value>Namn får vara högst 50 tecken.</value></data>
+  <data name="SalesTerritoryField_CountryRegionCode" xml:space="preserve"><value>Landskod</value></data>
+  <data name="Error_sales_territory_country_region_code_required" xml:space="preserve"><value>Landskod måste anges.</value></data>
+  <data name="Error_sales_territory_country_region_code_too_long" xml:space="preserve"><value>Landskod får vara högst 10 tecken.</value></data>
+  <data name="SalesTerritoryField_RegionGroup" xml:space="preserve"><value>Grupp</value></data>
+  <data name="Error_sales_territory_region_group_required" xml:space="preserve"><value>Grupp måste anges.</value></data>
+  <data name="Error_sales_territory_region_group_too_long" xml:space="preserve"><value>Grupp får vara högst 50 tecken.</value></data>
+  <data name="SalesTerritoryField_SalesYtd" xml:space="preserve"><value>Försäljning hittills i år</value></data>
+  <data name="Error_sales_territory_sales_ytd_out_of_range" xml:space="preserve"><value>Försäljning hittills i år måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesTerritoryField_SalesLastYear" xml:space="preserve"><value>Försäljning förra året</value></data>
+  <data name="Error_sales_territory_sales_last_year_out_of_range" xml:space="preserve"><value>Försäljning förra året måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesTerritoryField_CostYtd" xml:space="preserve"><value>Kostnad hittills i år</value></data>
+  <data name="Error_sales_territory_cost_ytd_out_of_range" xml:space="preserve"><value>Kostnad hittills i år måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesTerritoryField_CostLastYear" xml:space="preserve"><value>Kostnad förra året</value></data>
+  <data name="Error_sales_territory_cost_last_year_out_of_range" xml:space="preserve"><value>Kostnad förra året måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_sales_territory_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_territory_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_territory_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SalesPeople_Title" xml:space="preserve"><value>Säljare</value></data>
+  <data name="SalesPeople_Subtitle" xml:space="preserve"><value>Hantera säljare.</value></data>
+  <data name="SalesPeople_New" xml:space="preserve"><value>Lägg till säljare</value></data>
+  <data name="SalesPeople_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesPeople_SearchPlaceholder" xml:space="preserve"><value>Sök bland säljare...</value></data>
+  <data name="SalesPeople_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="SalesPeople_ColTerritoryName" xml:space="preserve"><value>SÄLJOMRÅDE</value></data>
+  <data name="SalesPeople_ColSalesQuota" xml:space="preserve"><value>FÖRSÄLJNINGSMÅL</value></data>
+  <data name="SalesPeople_ColCommissionPct" xml:space="preserve"><value>PROVISION (0-1)</value></data>
+  <data name="SalesPeople_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesPeople_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="SalesPeople_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesPeople_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesPeople_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesPeople_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesPeople_Count" xml:space="preserve"><value>{0} st: säljare</value></data>
+  <data name="SalesPeople_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesPeople_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesPersonEditor_New" xml:space="preserve"><value>Lägg till säljare</value></data>
+  <data name="SalesPersonEditor_Edit" xml:space="preserve"><value>Redigera säljare</value></data>
+  <data name="SalesPersonEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesPersonField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_sales_person_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_sales_person_name_too_long" xml:space="preserve"><value>Namn får vara högst 100 tecken.</value></data>
+  <data name="SalesPersonField_User" xml:space="preserve"><value>Användare</value></data>
+  <data name="Error_sales_person_user_not_found" xml:space="preserve"><value>Användare hittades inte.</value></data>
+  <data name="SalesPersonField_Territory" xml:space="preserve"><value>Säljområde</value></data>
+  <data name="Error_sales_person_territory_not_found" xml:space="preserve"><value>Säljområde hittades inte.</value></data>
+  <data name="SalesPersonField_SalesQuota" xml:space="preserve"><value>Försäljningsmål</value></data>
+  <data name="Error_sales_person_sales_quota_out_of_range" xml:space="preserve"><value>Försäljningsmål måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesPersonField_Bonus" xml:space="preserve"><value>Bonus</value></data>
+  <data name="Error_sales_person_bonus_out_of_range" xml:space="preserve"><value>Bonus måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesPersonField_CommissionPct" xml:space="preserve"><value>Provision (0-1)</value></data>
+  <data name="Error_sales_person_commission_pct_out_of_range" xml:space="preserve"><value>Provision (0-1) måste vara mellan 0 och 1.</value></data>
+  <data name="SalesPersonField_SalesYtd" xml:space="preserve"><value>Försäljning hittills i år</value></data>
+  <data name="Error_sales_person_sales_ytd_out_of_range" xml:space="preserve"><value>Försäljning hittills i år måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesPersonField_SalesLastYear" xml:space="preserve"><value>Försäljning förra året</value></data>
+  <data name="Error_sales_person_sales_last_year_out_of_range" xml:space="preserve"><value>Försäljning förra året måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_sales_person_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_person_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_person_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SalesPersonQuotaHistories_Title" xml:space="preserve"><value>Målhistorik</value></data>
+  <data name="SalesPersonQuotaHistories_Subtitle" xml:space="preserve"><value>Hantera målhistorik.</value></data>
+  <data name="SalesPersonQuotaHistories_New" xml:space="preserve"><value>Lägg till måltidigare</value></data>
+  <data name="SalesPersonQuotaHistories_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesPersonQuotaHistories_SearchPlaceholder" xml:space="preserve"><value>Sök bland målhistorik...</value></data>
+  <data name="SalesPersonQuotaHistories_ColSalesPersonName" xml:space="preserve"><value>SÄLJARE</value></data>
+  <data name="SalesPersonQuotaHistories_ColQuotaDate" xml:space="preserve"><value>MÅLDATUM</value></data>
+  <data name="SalesPersonQuotaHistories_ColSalesQuota" xml:space="preserve"><value>FÖRSÄLJNINGSMÅL</value></data>
+  <data name="SalesPersonQuotaHistories_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesPersonQuotaHistories_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesPersonQuotaHistories_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesPersonQuotaHistories_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesPersonQuotaHistories_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesPersonQuotaHistories_Count" xml:space="preserve"><value>{0} st: målhistorik</value></data>
+  <data name="SalesPersonQuotaHistories_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesPersonQuotaHistories_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesPersonQuotaHistoryEditor_New" xml:space="preserve"><value>Lägg till måltidigare</value></data>
+  <data name="SalesPersonQuotaHistoryEditor_Edit" xml:space="preserve"><value>Redigera måltidigare</value></data>
+  <data name="SalesPersonQuotaHistoryEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesPersonQuotaHistoryField_SalesPerson" xml:space="preserve"><value>Säljare</value></data>
+  <data name="Error_sales_person_quota_history_sales_person_required" xml:space="preserve"><value>Säljare måste anges.</value></data>
+  <data name="Error_sales_person_quota_history_sales_person_not_found" xml:space="preserve"><value>Säljare hittades inte.</value></data>
+  <data name="SalesPersonQuotaHistoryField_QuotaDate" xml:space="preserve"><value>Måldatum</value></data>
+  <data name="SalesPersonQuotaHistoryField_SalesQuota" xml:space="preserve"><value>Försäljningsmål</value></data>
+  <data name="Error_sales_person_quota_history_sales_quota_out_of_range" xml:space="preserve"><value>Försäljningsmål måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_sales_person_quota_history_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_person_quota_history_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_person_quota_history_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SalesTerritoryHistories_Title" xml:space="preserve"><value>Områdeshistorik</value></data>
+  <data name="SalesTerritoryHistories_Subtitle" xml:space="preserve"><value>Hantera områdeshistorik.</value></data>
+  <data name="SalesTerritoryHistories_New" xml:space="preserve"><value>Lägg till områdestilldelning</value></data>
+  <data name="SalesTerritoryHistories_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesTerritoryHistories_SearchPlaceholder" xml:space="preserve"><value>Sök bland områdeshistorik...</value></data>
+  <data name="SalesTerritoryHistories_ColSalesPersonName" xml:space="preserve"><value>SÄLJARE</value></data>
+  <data name="SalesTerritoryHistories_ColTerritoryName" xml:space="preserve"><value>SÄLJOMRÅDE</value></data>
+  <data name="SalesTerritoryHistories_ColStartDate" xml:space="preserve"><value>STARTDATUM</value></data>
+  <data name="SalesTerritoryHistories_ColEndDate" xml:space="preserve"><value>SLUTDATUM</value></data>
+  <data name="SalesTerritoryHistories_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesTerritoryHistories_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesTerritoryHistories_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesTerritoryHistories_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesTerritoryHistories_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesTerritoryHistories_Count" xml:space="preserve"><value>{0} st: områdeshistorik</value></data>
+  <data name="SalesTerritoryHistories_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesTerritoryHistories_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesTerritoryHistoryEditor_New" xml:space="preserve"><value>Lägg till områdestilldelning</value></data>
+  <data name="SalesTerritoryHistoryEditor_Edit" xml:space="preserve"><value>Redigera områdestilldelning</value></data>
+  <data name="SalesTerritoryHistoryEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesTerritoryHistoryField_SalesPerson" xml:space="preserve"><value>Säljare</value></data>
+  <data name="Error_sales_territory_history_sales_person_required" xml:space="preserve"><value>Säljare måste anges.</value></data>
+  <data name="Error_sales_territory_history_sales_person_not_found" xml:space="preserve"><value>Säljare hittades inte.</value></data>
+  <data name="SalesTerritoryHistoryField_Territory" xml:space="preserve"><value>Säljområde</value></data>
+  <data name="Error_sales_territory_history_territory_required" xml:space="preserve"><value>Säljområde måste anges.</value></data>
+  <data name="Error_sales_territory_history_territory_not_found" xml:space="preserve"><value>Säljområde hittades inte.</value></data>
+  <data name="SalesTerritoryHistoryField_StartDate" xml:space="preserve"><value>Startdatum</value></data>
+  <data name="SalesTerritoryHistoryField_EndDate" xml:space="preserve"><value>Slutdatum</value></data>
+  <data name="Error_sales_territory_history_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_territory_history_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_territory_history_end_before_start" xml:space="preserve"><value>Slutdatumet kan inte vara före startdatumet.</value></data>
+  <data name="SalesTaxRates_Title" xml:space="preserve"><value>Skattesatser</value></data>
+  <data name="SalesTaxRates_Subtitle" xml:space="preserve"><value>Hantera skattesatser.</value></data>
+  <data name="SalesTaxRates_New" xml:space="preserve"><value>Lägg till skattesats</value></data>
+  <data name="SalesTaxRates_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesTaxRates_SearchPlaceholder" xml:space="preserve"><value>Sök bland skattesatser...</value></data>
+  <data name="SalesTaxRates_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="SalesTaxRates_ColStateProvince" xml:space="preserve"><value>DELSTAT ELLER REGION</value></data>
+  <data name="SalesTaxRates_ColTaxRate" xml:space="preserve"><value>SKATTESATS (%)</value></data>
+  <data name="SalesTaxRates_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesTaxRates_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesTaxRates_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesTaxRates_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesTaxRates_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesTaxRates_Count" xml:space="preserve"><value>{0} st: skattesatser</value></data>
+  <data name="SalesTaxRates_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesTaxRates_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesTaxRateEditor_New" xml:space="preserve"><value>Lägg till skattesats</value></data>
+  <data name="SalesTaxRateEditor_Edit" xml:space="preserve"><value>Redigera skattesats</value></data>
+  <data name="SalesTaxRateEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesTaxRateField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_sales_tax_rate_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_sales_tax_rate_name_too_long" xml:space="preserve"><value>Namn får vara högst 50 tecken.</value></data>
+  <data name="SalesTaxRateField_StateProvince" xml:space="preserve"><value>Delstat eller region</value></data>
+  <data name="Error_sales_tax_rate_state_province_required" xml:space="preserve"><value>Delstat eller region måste anges.</value></data>
+  <data name="Error_sales_tax_rate_state_province_too_long" xml:space="preserve"><value>Delstat eller region får vara högst 50 tecken.</value></data>
+  <data name="SalesTaxRateField_TaxType" xml:space="preserve"><value>Skatttyp</value></data>
+  <data name="SalesTaxRateChoice_TaxType_R" xml:space="preserve"><value>Detaljhandel</value></data>
+  <data name="SalesTaxRateChoice_TaxType_W" xml:space="preserve"><value>Grosshandel</value></data>
+  <data name="SalesTaxRateChoice_TaxType_A" xml:space="preserve"><value>All försäljning</value></data>
+  <data name="Error_sales_tax_rate_tax_type_invalid" xml:space="preserve"><value>Skatttyp är ogiltigt.</value></data>
+  <data name="SalesTaxRateField_TaxRate" xml:space="preserve"><value>Skattesats (%)</value></data>
+  <data name="Error_sales_tax_rate_tax_rate_out_of_range" xml:space="preserve"><value>Skattesats (%) måste vara mellan 0 och 100.</value></data>
+  <data name="Error_sales_tax_rate_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_tax_rate_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_tax_rate_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="Currencies_Title" xml:space="preserve"><value>Valutor</value></data>
+  <data name="Currencies_Subtitle" xml:space="preserve"><value>Hantera valutor.</value></data>
+  <data name="Currencies_New" xml:space="preserve"><value>Lägg till valuta</value></data>
+  <data name="Currencies_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Currencies_SearchPlaceholder" xml:space="preserve"><value>Sök bland valutor...</value></data>
+  <data name="Currencies_ColCode" xml:space="preserve"><value>KOD</value></data>
+  <data name="Currencies_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Currencies_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Currencies_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="Currencies_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Currencies_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="Currencies_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="Currencies_Count" xml:space="preserve"><value>{0} st: valutor</value></data>
+  <data name="Currencies_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="Currencies_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="CurrencyEditor_New" xml:space="preserve"><value>Lägg till valuta</value></data>
+  <data name="CurrencyEditor_Edit" xml:space="preserve"><value>Redigera valuta</value></data>
+  <data name="CurrencyEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="CurrencyField_Code" xml:space="preserve"><value>Kod</value></data>
+  <data name="Error_currency_code_required" xml:space="preserve"><value>Kod måste anges.</value></data>
+  <data name="Error_currency_code_too_long" xml:space="preserve"><value>Kod får vara högst 3 tecken.</value></data>
+  <data name="CurrencyField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_currency_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_currency_name_too_long" xml:space="preserve"><value>Namn får vara högst 50 tecken.</value></data>
+  <data name="Error_currency_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_currency_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_currency_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="CurrencyRates_Title" xml:space="preserve"><value>Växelkurser</value></data>
+  <data name="CurrencyRates_Subtitle" xml:space="preserve"><value>Hantera växelkurser.</value></data>
+  <data name="CurrencyRates_New" xml:space="preserve"><value>Lägg till växelkurs</value></data>
+  <data name="CurrencyRates_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="CurrencyRates_SearchPlaceholder" xml:space="preserve"><value>Sök bland växelkurser...</value></data>
+  <data name="CurrencyRates_ColRateDate" xml:space="preserve"><value>DATUM</value></data>
+  <data name="CurrencyRates_ColFromCurrencyName" xml:space="preserve"><value>FRÅN VALUTA</value></data>
+  <data name="CurrencyRates_ColToCurrencyName" xml:space="preserve"><value>TILL VALUTA</value></data>
+  <data name="CurrencyRates_ColAverageRate" xml:space="preserve"><value>GENOMSNITTSKURS</value></data>
+  <data name="CurrencyRates_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="CurrencyRates_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="CurrencyRates_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="CurrencyRates_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="CurrencyRates_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="CurrencyRates_Count" xml:space="preserve"><value>{0} st: växelkurser</value></data>
+  <data name="CurrencyRates_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="CurrencyRates_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="CurrencyRateEditor_New" xml:space="preserve"><value>Lägg till växelkurs</value></data>
+  <data name="CurrencyRateEditor_Edit" xml:space="preserve"><value>Redigera växelkurs</value></data>
+  <data name="CurrencyRateEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="CurrencyRateField_RateDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="CurrencyRateField_FromCurrency" xml:space="preserve"><value>Från valuta</value></data>
+  <data name="Error_currency_rate_from_currency_required" xml:space="preserve"><value>Från valuta måste anges.</value></data>
+  <data name="Error_currency_rate_from_currency_not_found" xml:space="preserve"><value>Från valuta hittades inte.</value></data>
+  <data name="CurrencyRateField_ToCurrency" xml:space="preserve"><value>Till valuta</value></data>
+  <data name="Error_currency_rate_to_currency_required" xml:space="preserve"><value>Till valuta måste anges.</value></data>
+  <data name="Error_currency_rate_to_currency_not_found" xml:space="preserve"><value>Till valuta hittades inte.</value></data>
+  <data name="CurrencyRateField_AverageRate" xml:space="preserve"><value>Genomsnittskurs</value></data>
+  <data name="Error_currency_rate_average_rate_out_of_range" xml:space="preserve"><value>Genomsnittskurs måste vara mellan 0 och 1000000000.</value></data>
+  <data name="CurrencyRateField_EndOfDayRate" xml:space="preserve"><value>Dagskurs</value></data>
+  <data name="Error_currency_rate_end_of_day_rate_out_of_range" xml:space="preserve"><value>Dagskurs måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_currency_rate_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_currency_rate_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_currency_rate_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="CountryRegionCurrencies_Title" xml:space="preserve"><value>Landsvalutor</value></data>
+  <data name="CountryRegionCurrencies_Subtitle" xml:space="preserve"><value>Hantera landsvalutor.</value></data>
+  <data name="CountryRegionCurrencies_New" xml:space="preserve"><value>Lägg till landsvaluta</value></data>
+  <data name="CountryRegionCurrencies_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="CountryRegionCurrencies_SearchPlaceholder" xml:space="preserve"><value>Sök bland landsvalutor...</value></data>
+  <data name="CountryRegionCurrencies_ColCountryRegion" xml:space="preserve"><value>LAND ELLER REGION</value></data>
+  <data name="CountryRegionCurrencies_ColCurrencyName" xml:space="preserve"><value>VALUTA</value></data>
+  <data name="CountryRegionCurrencies_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="CountryRegionCurrencies_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="CountryRegionCurrencies_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="CountryRegionCurrencies_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="CountryRegionCurrencies_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="CountryRegionCurrencies_Count" xml:space="preserve"><value>{0} st: landsvalutor</value></data>
+  <data name="CountryRegionCurrencies_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="CountryRegionCurrencies_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="CountryRegionCurrencyEditor_New" xml:space="preserve"><value>Lägg till landsvaluta</value></data>
+  <data name="CountryRegionCurrencyEditor_Edit" xml:space="preserve"><value>Redigera landsvaluta</value></data>
+  <data name="CountryRegionCurrencyEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="CountryRegionCurrencyField_CountryRegion" xml:space="preserve"><value>Land eller region</value></data>
+  <data name="Error_country_region_currency_country_region_required" xml:space="preserve"><value>Land eller region måste anges.</value></data>
+  <data name="Error_country_region_currency_country_region_too_long" xml:space="preserve"><value>Land eller region får vara högst 100 tecken.</value></data>
+  <data name="CountryRegionCurrencyField_Currency" xml:space="preserve"><value>Valuta</value></data>
+  <data name="Error_country_region_currency_currency_required" xml:space="preserve"><value>Valuta måste anges.</value></data>
+  <data name="Error_country_region_currency_currency_not_found" xml:space="preserve"><value>Valuta hittades inte.</value></data>
+  <data name="Error_country_region_currency_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_country_region_currency_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_country_region_currency_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SalesReasons_Title" xml:space="preserve"><value>Försäljningsorsaker</value></data>
+  <data name="SalesReasons_Subtitle" xml:space="preserve"><value>Hantera försäljningsorsaker.</value></data>
+  <data name="SalesReasons_New" xml:space="preserve"><value>Lägg till försäljningsorsak</value></data>
+  <data name="SalesReasons_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesReasons_SearchPlaceholder" xml:space="preserve"><value>Sök bland försäljningsorsaker...</value></data>
+  <data name="SalesReasons_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="SalesReasons_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesReasons_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesReasons_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesReasons_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesReasons_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesReasons_Count" xml:space="preserve"><value>{0} st: försäljningsorsaker</value></data>
+  <data name="SalesReasons_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesReasons_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesReasonEditor_New" xml:space="preserve"><value>Lägg till försäljningsorsak</value></data>
+  <data name="SalesReasonEditor_Edit" xml:space="preserve"><value>Redigera försäljningsorsak</value></data>
+  <data name="SalesReasonEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesReasonField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_sales_reason_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_sales_reason_name_too_long" xml:space="preserve"><value>Namn får vara högst 50 tecken.</value></data>
+  <data name="SalesReasonField_ReasonType" xml:space="preserve"><value>Typ</value></data>
+  <data name="SalesReasonChoice_ReasonType_M" xml:space="preserve"><value>Marknadsföring</value></data>
+  <data name="SalesReasonChoice_ReasonType_P" xml:space="preserve"><value>Kampanj</value></data>
+  <data name="SalesReasonChoice_ReasonType_O" xml:space="preserve"><value>Övrigt</value></data>
+  <data name="Error_sales_reason_reason_type_invalid" xml:space="preserve"><value>Typ är ogiltigt.</value></data>
+  <data name="Error_sales_reason_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_reason_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_reason_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SpecialOffers_Title" xml:space="preserve"><value>Specialerbjudanden</value></data>
+  <data name="SpecialOffers_Subtitle" xml:space="preserve"><value>Hantera specialerbjudanden.</value></data>
+  <data name="SpecialOffers_New" xml:space="preserve"><value>Lägg till specialerbjudande</value></data>
+  <data name="SpecialOffers_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SpecialOffers_SearchPlaceholder" xml:space="preserve"><value>Sök bland specialerbjudanden...</value></data>
+  <data name="SpecialOffers_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="SpecialOffers_ColDiscountPct" xml:space="preserve"><value>RABATT (0-1)</value></data>
+  <data name="SpecialOffers_ColStartDate" xml:space="preserve"><value>STARTDATUM</value></data>
+  <data name="SpecialOffers_ColEndDate" xml:space="preserve"><value>SLUTDATUM</value></data>
+  <data name="SpecialOffers_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SpecialOffers_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SpecialOffers_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SpecialOffers_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SpecialOffers_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SpecialOffers_Count" xml:space="preserve"><value>{0} st: specialerbjudanden</value></data>
+  <data name="SpecialOffers_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SpecialOffers_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SpecialOfferEditor_New" xml:space="preserve"><value>Lägg till specialerbjudande</value></data>
+  <data name="SpecialOfferEditor_Edit" xml:space="preserve"><value>Redigera specialerbjudande</value></data>
+  <data name="SpecialOfferEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SpecialOfferField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="Error_special_offer_description_required" xml:space="preserve"><value>Beskrivning måste anges.</value></data>
+  <data name="Error_special_offer_description_too_long" xml:space="preserve"><value>Beskrivning får vara högst 255 tecken.</value></data>
+  <data name="SpecialOfferField_DiscountPct" xml:space="preserve"><value>Rabatt (0-1)</value></data>
+  <data name="Error_special_offer_discount_pct_out_of_range" xml:space="preserve"><value>Rabatt (0-1) måste vara mellan 0 och 1.</value></data>
+  <data name="SpecialOfferField_OfferType" xml:space="preserve"><value>Typ</value></data>
+  <data name="Error_special_offer_offer_type_required" xml:space="preserve"><value>Typ måste anges.</value></data>
+  <data name="Error_special_offer_offer_type_too_long" xml:space="preserve"><value>Typ får vara högst 50 tecken.</value></data>
+  <data name="SpecialOfferField_Category" xml:space="preserve"><value>Kategori</value></data>
+  <data name="Error_special_offer_category_required" xml:space="preserve"><value>Kategori måste anges.</value></data>
+  <data name="Error_special_offer_category_too_long" xml:space="preserve"><value>Kategori får vara högst 50 tecken.</value></data>
+  <data name="SpecialOfferField_StartDate" xml:space="preserve"><value>Startdatum</value></data>
+  <data name="SpecialOfferField_EndDate" xml:space="preserve"><value>Slutdatum</value></data>
+  <data name="SpecialOfferField_MinQty" xml:space="preserve"><value>Minsta antal</value></data>
+  <data name="Error_special_offer_min_qty_out_of_range" xml:space="preserve"><value>Minsta antal måste vara mellan 0 och 1000000.</value></data>
+  <data name="SpecialOfferField_MaxQty" xml:space="preserve"><value>Största antal</value></data>
+  <data name="Error_special_offer_max_qty_out_of_range" xml:space="preserve"><value>Största antal måste vara mellan 0 och 1000000.</value></data>
+  <data name="Error_special_offer_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_special_offer_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_special_offer_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="Error_special_offer_end_before_start" xml:space="preserve"><value>Slutdatumet kan inte vara före startdatumet.</value></data>
+  <data name="SpecialOfferProducts_Title" xml:space="preserve"><value>Erbjudandeprodukter</value></data>
+  <data name="SpecialOfferProducts_Subtitle" xml:space="preserve"><value>Hantera erbjudandeprodukter.</value></data>
+  <data name="SpecialOfferProducts_New" xml:space="preserve"><value>Lägg till erbjudandeprodukt</value></data>
+  <data name="SpecialOfferProducts_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SpecialOfferProducts_SearchPlaceholder" xml:space="preserve"><value>Sök bland erbjudandeprodukter...</value></data>
+  <data name="SpecialOfferProducts_ColSpecialOfferName" xml:space="preserve"><value>SPECIALERBJUDANDE</value></data>
+  <data name="SpecialOfferProducts_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
+  <data name="SpecialOfferProducts_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SpecialOfferProducts_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SpecialOfferProducts_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SpecialOfferProducts_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SpecialOfferProducts_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SpecialOfferProducts_Count" xml:space="preserve"><value>{0} st: erbjudandeprodukter</value></data>
+  <data name="SpecialOfferProducts_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SpecialOfferProducts_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SpecialOfferProductEditor_New" xml:space="preserve"><value>Lägg till erbjudandeprodukt</value></data>
+  <data name="SpecialOfferProductEditor_Edit" xml:space="preserve"><value>Redigera erbjudandeprodukt</value></data>
+  <data name="SpecialOfferProductEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SpecialOfferProductField_SpecialOffer" xml:space="preserve"><value>Specialerbjudande</value></data>
+  <data name="Error_special_offer_product_special_offer_required" xml:space="preserve"><value>Specialerbjudande måste anges.</value></data>
+  <data name="Error_special_offer_product_special_offer_not_found" xml:space="preserve"><value>Specialerbjudande hittades inte.</value></data>
+  <data name="SpecialOfferProductField_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="Error_special_offer_product_product_required" xml:space="preserve"><value>Produkt måste anges.</value></data>
+  <data name="Error_special_offer_product_product_not_found" xml:space="preserve"><value>Produkt hittades inte.</value></data>
+  <data name="Error_special_offer_product_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_special_offer_product_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_special_offer_product_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="Stores_Title" xml:space="preserve"><value>Butiker</value></data>
+  <data name="Stores_Subtitle" xml:space="preserve"><value>Hantera butiker.</value></data>
+  <data name="Stores_New" xml:space="preserve"><value>Lägg till butik</value></data>
+  <data name="Stores_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Stores_SearchPlaceholder" xml:space="preserve"><value>Sök bland butiker...</value></data>
+  <data name="Stores_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Stores_ColSalesPersonName" xml:space="preserve"><value>SÄLJARE</value></data>
+  <data name="Stores_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Stores_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="Stores_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Stores_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="Stores_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="Stores_Count" xml:space="preserve"><value>{0} st: butiker</value></data>
+  <data name="Stores_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="Stores_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="StoreEditor_New" xml:space="preserve"><value>Lägg till butik</value></data>
+  <data name="StoreEditor_Edit" xml:space="preserve"><value>Redigera butik</value></data>
+  <data name="StoreEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="StoreField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_store_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_store_name_too_long" xml:space="preserve"><value>Namn får vara högst 50 tecken.</value></data>
+  <data name="StoreField_SalesPerson" xml:space="preserve"><value>Säljare</value></data>
+  <data name="Error_store_sales_person_not_found" xml:space="preserve"><value>Säljare hittades inte.</value></data>
+  <data name="Error_store_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_store_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_store_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="Customers_Title" xml:space="preserve"><value>Kunder</value></data>
+  <data name="Customers_Subtitle" xml:space="preserve"><value>Hantera kunder.</value></data>
+  <data name="Customers_New" xml:space="preserve"><value>Lägg till kund</value></data>
+  <data name="Customers_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Sök bland kunder...</value></data>
+  <data name="Customers_ColNumber" xml:space="preserve"><value>KUNDNUMMER</value></data>
+  <data name="Customers_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Customers_ColStoreName" xml:space="preserve"><value>BUTIK</value></data>
+  <data name="Customers_ColTerritoryName" xml:space="preserve"><value>SÄLJOMRÅDE</value></data>
+  <data name="Customers_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Customers_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="Customers_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="Customers_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Customers_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="Customers_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="Customers_Count" xml:space="preserve"><value>{0} st: kunder</value></data>
+  <data name="Customers_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="Customers_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="CustomerEditor_New" xml:space="preserve"><value>Lägg till kund</value></data>
+  <data name="CustomerEditor_Edit" xml:space="preserve"><value>Redigera kund</value></data>
+  <data name="CustomerEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="CustomerField_Number" xml:space="preserve"><value>Kundnummer</value></data>
+  <data name="Error_customer_number_required" xml:space="preserve"><value>Kundnummer måste anges.</value></data>
+  <data name="Error_customer_number_too_long" xml:space="preserve"><value>Kundnummer får vara högst 25 tecken.</value></data>
+  <data name="CustomerField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_customer_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_customer_name_too_long" xml:space="preserve"><value>Namn får vara högst 100 tecken.</value></data>
+  <data name="CustomerField_Client" xml:space="preserve"><value>Länkad klient</value></data>
+  <data name="Error_customer_client_not_found" xml:space="preserve"><value>Länkad klient hittades inte.</value></data>
+  <data name="CustomerField_Store" xml:space="preserve"><value>Butik</value></data>
+  <data name="Error_customer_store_not_found" xml:space="preserve"><value>Butik hittades inte.</value></data>
+  <data name="CustomerField_Territory" xml:space="preserve"><value>Säljområde</value></data>
+  <data name="Error_customer_territory_not_found" xml:space="preserve"><value>Säljområde hittades inte.</value></data>
+  <data name="Error_customer_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_customer_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_customer_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="SalesOrders_Title" xml:space="preserve"><value>Kundorder</value></data>
+  <data name="SalesOrders_Subtitle" xml:space="preserve"><value>Hantera kundorder.</value></data>
+  <data name="SalesOrders_New" xml:space="preserve"><value>Lägg till kundorder</value></data>
+  <data name="SalesOrders_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesOrders_SearchPlaceholder" xml:space="preserve"><value>Sök bland kundorder...</value></data>
+  <data name="SalesOrders_ColNumber" xml:space="preserve"><value>ORDERNUMMER</value></data>
+  <data name="SalesOrders_ColCustomerName" xml:space="preserve"><value>KUND</value></data>
+  <data name="SalesOrders_ColOrderDate" xml:space="preserve"><value>ORDERDATUM</value></data>
+  <data name="SalesOrders_ColTotalDue" xml:space="preserve"><value>ATT BETALA</value></data>
+  <data name="SalesOrders_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesOrders_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="SalesOrders_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesOrders_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesOrders_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesOrders_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesOrders_Count" xml:space="preserve"><value>{0} st: kundorder</value></data>
+  <data name="SalesOrders_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesOrders_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesOrderEditor_New" xml:space="preserve"><value>Lägg till kundorder</value></data>
+  <data name="SalesOrderEditor_Edit" xml:space="preserve"><value>Redigera kundorder</value></data>
+  <data name="SalesOrderEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesOrderField_Number" xml:space="preserve"><value>Ordernummer</value></data>
+  <data name="Error_sales_order_number_required" xml:space="preserve"><value>Ordernummer måste anges.</value></data>
+  <data name="Error_sales_order_number_too_long" xml:space="preserve"><value>Ordernummer får vara högst 25 tecken.</value></data>
+  <data name="SalesOrderField_Status" xml:space="preserve"><value>Status</value></data>
+  <data name="SalesOrderChoice_Status_I" xml:space="preserve"><value>Pågår</value></data>
+  <data name="SalesOrderChoice_Status_A" xml:space="preserve"><value>Godkänd</value></data>
+  <data name="SalesOrderChoice_Status_B" xml:space="preserve"><value>Restnoterad</value></data>
+  <data name="SalesOrderChoice_Status_R" xml:space="preserve"><value>Avslagen</value></data>
+  <data name="SalesOrderChoice_Status_S" xml:space="preserve"><value>Levererad</value></data>
+  <data name="SalesOrderChoice_Status_C" xml:space="preserve"><value>Avbruten</value></data>
+  <data name="Error_sales_order_status_invalid" xml:space="preserve"><value>Status är ogiltigt.</value></data>
+  <data name="SalesOrderField_OnlineOrderFlag" xml:space="preserve"><value>Webborder</value></data>
+  <data name="SalesOrderField_OrderDate" xml:space="preserve"><value>Orderdatum</value></data>
+  <data name="SalesOrderField_DueDate" xml:space="preserve"><value>Förfallodatum</value></data>
+  <data name="SalesOrderField_ShipDate" xml:space="preserve"><value>Leveransdatum</value></data>
+  <data name="SalesOrderField_PurchaseOrderNumber" xml:space="preserve"><value>Kundens inköpsorder</value></data>
+  <data name="Error_sales_order_purchase_order_number_too_long" xml:space="preserve"><value>Kundens inköpsorder får vara högst 25 tecken.</value></data>
+  <data name="SalesOrderField_Customer" xml:space="preserve"><value>Kund</value></data>
+  <data name="Error_sales_order_customer_required" xml:space="preserve"><value>Kund måste anges.</value></data>
+  <data name="Error_sales_order_customer_not_found" xml:space="preserve"><value>Kund hittades inte.</value></data>
+  <data name="SalesOrderField_SalesPerson" xml:space="preserve"><value>Säljare</value></data>
+  <data name="Error_sales_order_sales_person_not_found" xml:space="preserve"><value>Säljare hittades inte.</value></data>
+  <data name="SalesOrderField_Territory" xml:space="preserve"><value>Säljområde</value></data>
+  <data name="Error_sales_order_territory_not_found" xml:space="preserve"><value>Säljområde hittades inte.</value></data>
+  <data name="SalesOrderField_ShipMethod" xml:space="preserve"><value>Fraktsätt</value></data>
+  <data name="Error_sales_order_ship_method_not_found" xml:space="preserve"><value>Fraktsätt hittades inte.</value></data>
+  <data name="SalesOrderField_TaxAmt" xml:space="preserve"><value>Moms</value></data>
+  <data name="Error_sales_order_tax_amt_out_of_range" xml:space="preserve"><value>Moms måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesOrderField_Freight" xml:space="preserve"><value>Frakt</value></data>
+  <data name="Error_sales_order_freight_out_of_range" xml:space="preserve"><value>Frakt måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesOrderField_Comment" xml:space="preserve"><value>Kommentar</value></data>
+  <data name="Error_sales_order_comment_too_long" xml:space="preserve"><value>Kommentar får vara högst 128 tecken.</value></data>
+  <data name="SalesOrderField_SubTotal" xml:space="preserve"><value>Delsumma</value></data>
+  <data name="Error_sales_order_sub_total_out_of_range" xml:space="preserve"><value>Delsumma måste vara minst 0.</value></data>
+  <data name="SalesOrderField_TotalDue" xml:space="preserve"><value>Att betala</value></data>
+  <data name="Error_sales_order_total_due_out_of_range" xml:space="preserve"><value>Att betala måste vara minst 0.</value></data>
+  <data name="Error_sales_order_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_order_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_order_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="Error_sales_order_end_before_start" xml:space="preserve"><value>Slutdatumet kan inte vara före startdatumet.</value></data>
+  <data name="SalesOrderDetails_Title" xml:space="preserve"><value>Kundorderrader</value></data>
+  <data name="SalesOrderDetails_Subtitle" xml:space="preserve"><value>Hantera kundorderrader.</value></data>
+  <data name="SalesOrderDetails_New" xml:space="preserve"><value>Lägg till kundorderrad</value></data>
+  <data name="SalesOrderDetails_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesOrderDetails_SearchPlaceholder" xml:space="preserve"><value>Sök bland kundorderrader...</value></data>
+  <data name="SalesOrderDetails_ColSalesOrderName" xml:space="preserve"><value>KUNDORDER</value></data>
+  <data name="SalesOrderDetails_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
+  <data name="SalesOrderDetails_ColOrderQty" xml:space="preserve"><value>BESTÄLLT ANTAL</value></data>
+  <data name="SalesOrderDetails_ColLineTotal" xml:space="preserve"><value>RADSUMMA</value></data>
+  <data name="SalesOrderDetails_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesOrderDetails_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesOrderDetails_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesOrderDetails_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesOrderDetails_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesOrderDetails_Count" xml:space="preserve"><value>{0} st: kundorderrader</value></data>
+  <data name="SalesOrderDetails_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesOrderDetails_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesOrderDetailEditor_New" xml:space="preserve"><value>Lägg till kundorderrad</value></data>
+  <data name="SalesOrderDetailEditor_Edit" xml:space="preserve"><value>Redigera kundorderrad</value></data>
+  <data name="SalesOrderDetailEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesOrderDetailField_SalesOrder" xml:space="preserve"><value>Kundorder</value></data>
+  <data name="Error_sales_order_detail_sales_order_required" xml:space="preserve"><value>Kundorder måste anges.</value></data>
+  <data name="Error_sales_order_detail_sales_order_not_found" xml:space="preserve"><value>Kundorder hittades inte.</value></data>
+  <data name="SalesOrderDetailField_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="Error_sales_order_detail_product_required" xml:space="preserve"><value>Produkt måste anges.</value></data>
+  <data name="Error_sales_order_detail_product_not_found" xml:space="preserve"><value>Produkt hittades inte.</value></data>
+  <data name="SalesOrderDetailField_CarrierTrackingNumber" xml:space="preserve"><value>Spårningsnummer</value></data>
+  <data name="Error_sales_order_detail_carrier_tracking_number_too_long" xml:space="preserve"><value>Spårningsnummer får vara högst 25 tecken.</value></data>
+  <data name="SalesOrderDetailField_OrderQty" xml:space="preserve"><value>Beställt antal</value></data>
+  <data name="Error_sales_order_detail_order_qty_out_of_range" xml:space="preserve"><value>Beställt antal måste vara mellan 1 och 1000000.</value></data>
+  <data name="SalesOrderDetailField_SpecialOffer" xml:space="preserve"><value>Specialerbjudande</value></data>
+  <data name="Error_sales_order_detail_special_offer_not_found" xml:space="preserve"><value>Specialerbjudande hittades inte.</value></data>
+  <data name="SalesOrderDetailField_UnitPrice" xml:space="preserve"><value>Styckpris</value></data>
+  <data name="Error_sales_order_detail_unit_price_out_of_range" xml:space="preserve"><value>Styckpris måste vara mellan 0 och 1000000000.</value></data>
+  <data name="SalesOrderDetailField_UnitPriceDiscount" xml:space="preserve"><value>Rabatt (0-1)</value></data>
+  <data name="Error_sales_order_detail_unit_price_discount_out_of_range" xml:space="preserve"><value>Rabatt (0-1) måste vara mellan 0 och 1.</value></data>
+  <data name="SalesOrderDetailField_LineTotal" xml:space="preserve"><value>Radsumma</value></data>
+  <data name="Error_sales_order_detail_line_total_out_of_range" xml:space="preserve"><value>Radsumma måste vara minst 0.</value></data>
+  <data name="Error_sales_order_detail_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_order_detail_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="SalesOrderReasons_Title" xml:space="preserve"><value>Orderorsaker</value></data>
+  <data name="SalesOrderReasons_Subtitle" xml:space="preserve"><value>Hantera orderorsaker.</value></data>
+  <data name="SalesOrderReasons_New" xml:space="preserve"><value>Lägg till orderorsak</value></data>
+  <data name="SalesOrderReasons_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="SalesOrderReasons_SearchPlaceholder" xml:space="preserve"><value>Sök bland orderorsaker...</value></data>
+  <data name="SalesOrderReasons_ColSalesOrderName" xml:space="preserve"><value>KUNDORDER</value></data>
+  <data name="SalesOrderReasons_ColSalesReasonName" xml:space="preserve"><value>FÖRSÄLJNINGSORSAK</value></data>
+  <data name="SalesOrderReasons_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SalesOrderReasons_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="SalesOrderReasons_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SalesOrderReasons_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="SalesOrderReasons_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="SalesOrderReasons_Count" xml:space="preserve"><value>{0} st: orderorsaker</value></data>
+  <data name="SalesOrderReasons_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="SalesOrderReasons_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="SalesOrderReasonEditor_New" xml:space="preserve"><value>Lägg till orderorsak</value></data>
+  <data name="SalesOrderReasonEditor_Edit" xml:space="preserve"><value>Redigera orderorsak</value></data>
+  <data name="SalesOrderReasonEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="SalesOrderReasonField_SalesOrder" xml:space="preserve"><value>Kundorder</value></data>
+  <data name="Error_sales_order_reason_sales_order_required" xml:space="preserve"><value>Kundorder måste anges.</value></data>
+  <data name="Error_sales_order_reason_sales_order_not_found" xml:space="preserve"><value>Kundorder hittades inte.</value></data>
+  <data name="SalesOrderReasonField_SalesReason" xml:space="preserve"><value>Försäljningsorsak</value></data>
+  <data name="Error_sales_order_reason_sales_reason_required" xml:space="preserve"><value>Försäljningsorsak måste anges.</value></data>
+  <data name="Error_sales_order_reason_sales_reason_not_found" xml:space="preserve"><value>Försäljningsorsak hittades inte.</value></data>
+  <data name="Error_sales_order_reason_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_sales_order_reason_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_sales_order_reason_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+</root>

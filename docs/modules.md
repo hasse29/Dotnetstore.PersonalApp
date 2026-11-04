@@ -9,6 +9,9 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | School > Subjects; Subjects tab on the User detail page |
 | [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | School > Schedule |
 | [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | School > Grades, Grade scales, Tests; Grades tab on the Student detail page |
+| [Production](#production) | `production.db` | Products, categories, models, units, price history, inventory, bills of materials, work orders, transactions | Production group |
+| [Purchasing](#purchasing) | `purchasing.db` | Ship methods, vendors, vendor prices, purchase orders and lines | Purchasing group |
+| [Sales](#sales) | `sales.db` | Customers, stores, salespeople, territories, currencies, special offers, tax rates, sales orders and lines | Sales group |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -74,6 +77,45 @@ Grade scales per country, and the grades a teacher gives students. Countries gra
 - **TestResult**: one student's result on a test: `StudentId` (other module, so no foreign key; checked through `IStudentLookup`), `Score` (0 up to the test's maximum) and an optional `ScaleItemId` (the grade, a step on any scale, with a restricting FK inside the module so a scale step in use cannot be removed and a scale in use cannot be deleted). A student has at most one result per test: saving again replaces it. Deleting a test deletes its results (cascade). Scores are typed as text and accept a decimal point or comma (`ScoreText`).
 - **Tests page**: a third page in the School group (`TestsPage`, `ModuleKey` `school`): the test list, an editor for name/date/maximum score and, for a saved test, the results panel (student picker, score, scale and grade). Error codes `test_*`; a missing grade step reuses `grade_item_not_found`.
 - Consumes `UserDeleted` (the grades and tests that teacher gave), `StudentDeleted` (their grades and test results) and `SubjectDeleted`.
+
+## Production
+
+Products and what goes into making them, modelled on the AdventureWorks sample's Production schema. One sidebar group "Production" (`ModuleKey` `production`) with one page per entity. Error codes are the entity name in snake case (`product_*`, `work_order_*`, ...).
+
+- **Catalogue**: `ProductCategory`, `ProductSubcategory` (of a category), `ProductModel`, `UnitMeasure` (seeded with each, kilogram, gram, meter, centimeter, liter, hour, package) and `Product` (name and product number unique, make/salable flags, color, size and weight with units, stock levels, standard cost, list price, product line/class/style, subcategory, model, sell dates; a sell end before the start is `product_end_before_start`).
+- **History and stock**: `ProductCostHistory` and `ProductListPriceHistory` (dated, deleted with the product), `ProductInventory` (quantity per product and location, unique per pair) and `Location` (cost rate, available hours; four seeded). `ProductReview` (rating 1-5) is deleted with its product.
+- **Making things**: `BillOfMaterial` (assembly product, component product, unit, level, quantity per assembly), `WorkOrder` (number handed out as `WO-000001` when left blank; product, quantities, dates, optional `ScrapReason`, seeded with a few reasons), `WorkOrderRouting` (steps of a work order at a location, unique per sequence number) and `TransactionHistory` (work order, sales order or purchase order transactions).
+- **Rules**: rows that others point at cannot be deleted (`*_in_use`), except children that go with their parent (history, reviews, inventory, routing steps). Deleting a product publishes `ProductDeleted`.
+- **Not ported**: documents, illustrations, product photos and the culture-specific descriptions of the sample, and the archive table of transactions.
+- **Contracts**: implements `IProductLookup` and `IUnitMeasureLookup` (`Shared/Products`) for Purchasing and Sales.
+- **Product page**: the Products list has an Open button that shows `ProductDetailViewModel` with tabs Information, Cost history, List prices, Inventory, Reviews and Bill of materials (the product as assembly). The tabs are the ordinary list pages limited to the product (see "Detail pages and order screens" below).
+
+## Purchasing
+
+Vendors and what is bought from them. Sidebar group "Purchasing" (`ModuleKey` `purchasing`).
+
+- **ShipMethod** (name, base charge, rate per unit; three seeded) implements `IShipMethodLookup` (`Shared/Purchasing`), which Sales uses too.
+- **Vendor**: account number and name unique, credit rating 1-5, preferred and active flags, optional web address and an optional link to a client (by id, no foreign key; cleared when the client is deleted).
+- **ProductVendor**: what a vendor charges for a product (lead time, standard and last receipt price, order quantities, unit). Unique per product and vendor. `ProductId` and the unit are ids from Production, so there is no foreign key; they are checked through `IProductLookup` / `IUnitMeasureLookup` (skipped if Production is absent). Consumes `ProductDeleted` and removes the prices of that product.
+- **PurchaseOrder** and **PurchaseOrderDetail**: an order has a number (`PO-000001` when left blank), status, vendor, ship method, optional buyer (a user id, cleared when the user is deleted), dates, tax and freight; its subtotal and total due are kept by `OrderTotals` from the lines whenever a line or the order changes. A line's total is quantity times price and its stocked quantity is received minus rejected. Lines are deleted with the order and keep their product id if the product is deleted (shown without a name).
+- **Vendor page**: Open on a vendor shows tabs Information, Prices, Purchase orders, and Addresses, Email addresses and Phone numbers when those modules are present (the vendor id is the object id).
+- **Order screen**: Open on a purchase order shows `PurchaseOrderScreenViewModel`: the order's editor on the left, a totals strip (subtotal, tax, freight, total due) and the lines on the right. Adding, changing or deleting a line refreshes the totals; saving the header does too. The separate line page stays for searching all lines.
+
+## Sales
+
+Customers and what is sold to them. Sidebar group "Sales" (`ModuleKey` `sales`).
+
+- **Territories and people**: `SalesTerritory`, `SalesPerson` (a name, an optional user link, territory, quota, bonus, commission 0-1), `SalesPersonQuotaHistory` and `SalesTerritoryHistory` (deleted with the salesperson).
+- **Money**: `Currency` (seeded SEK, USD, EUR, GBP, NOK, DKK, CNY), `CurrencyRate` (unique per date and currency pair), `CountryRegionCurrency` (country as free text) and `SalesTaxRate` (percent).
+- **Offers**: `SpecialOffer` (discount 0-1, dates, quantities; "No discount" seeded) and `SpecialOfferProduct`, which consumes `ProductDeleted`.
+- **Customers**: `Store`, and `Customer` (number `CU-000001` when left blank, name, optional link to a client, store and territory). Deleting a client clears the link, the customer stays.
+- **SalesOrder** and **SalesOrderDetail**: number `SO-000001` when left blank, status, dates, customer, optional salesperson, territory and ship method (`IShipMethodLookup`), tax, freight and comment. A line's total is price times quantity less the discount; the order's subtotal and total due follow the lines (`OrderTotals`). `SalesOrderReason` ties sales reasons (`SalesReason`, seeded) to an order.
+- **Not ported**: credit cards (card data is a security risk), shopping carts, and the customer's and order's addresses.
+- **Customer page**: tabs Information, Sales orders and the contact tabs (as for vendors). **Salesperson page**: tabs Information, Quota history and Territory history. **Order screen**: as for purchase orders (`SalesOrderScreenViewModel`).
+
+### Detail pages and order screens
+
+The three modules share one pattern, produced by the same generator as the list pages. A child entity declares its parent (`ProductCostHistory` -> `Product`); its list handler takes a `ParentId`, and its page view model has `ForParent(parentId)`, which limits the list to that parent, gives new rows the parent (the editor hides the parent drop-down, `IsParentFixed`), drops the page's title and margin (`IsEmbedded`) and raises `Changed` after a save or delete. An entity with a detail page has an Open button and `Detail` on its list page; the detail view model derives from `DetailViewModel` (Back raises `Closed`) and is created by `IDetailFactory<TDto>` with the container supplying everything but the row. The detail view models and their views are hand-written next to the generated files; the view is found by name (`*ViewModel` -> `*View`) like every other page.
 
 ## Users
 

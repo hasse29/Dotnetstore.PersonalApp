@@ -1,0 +1,78 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Production.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Production.Features.WorkOrders"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Production.Features.WorkOrders.WorkOrderEditorView"
+             x:DataType="vm:WorkOrderEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_Number}" Classes="label"/>
+                <TextBox Text="{Binding Number}" MaxLength="25"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_Product}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding ProductOptions}" SelectedItem="{Binding SelectedProduct}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_OrderQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding OrderQty}" Minimum="1" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_ScrappedQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding ScrappedQty}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_StartDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding StartDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_EndDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding EndDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_DueDate}" Classes="label"/>
+                <CalendarDatePicker SelectedDate="{Binding DueDate}" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr WorkOrderField_ScrapReason}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding ScrapReasonOptions}" SelectedItem="{Binding SelectedScrapReason}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr WorkOrderEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

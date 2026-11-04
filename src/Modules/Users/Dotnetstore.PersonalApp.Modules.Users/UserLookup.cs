@@ -17,6 +17,17 @@ internal sealed class UserLookup(IDbContextFactory<UsersDbContext> dbFactory) : 
             .ConfigureAwait(false);
     }
 
+    public async Task<IReadOnlyList<UserReference>> ListAsync(CancellationToken cancellationToken)
+    {
+        await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
+
+        return await db.Users.AsNoTracking()
+            .OrderBy(u => u.LastName).ThenBy(u => u.FirstName)
+            .Select(u => new UserReference(u.Id, u.FirstName, u.LastName, u.Username, u.DateOfBirth))
+            .ToListAsync(cancellationToken)
+            .ConfigureAwait(false);
+    }
+
     public async Task<byte[]?> GetThumbnailAsync(Guid userId, CancellationToken cancellationToken)
     {
         await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);

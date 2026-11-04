@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Sales.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Sales.Features.SalesOrderDetails"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.SalesOrderDetails.SalesOrderDetailEditorView"
+             x:DataType="vm:SalesOrderDetailEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel IsVisible="{Binding !IsParentFixed}">
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_SalesOrder}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding SalesOrderOptions}" SelectedItem="{Binding SelectedSalesOrder}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_Product}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding ProductOptions}" SelectedItem="{Binding SelectedProduct}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_CarrierTrackingNumber}" Classes="label"/>
+                <TextBox Text="{Binding CarrierTrackingNumber}" MaxLength="25"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_OrderQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding OrderQty}" Minimum="1" Maximum="1000000" Increment="1" FormatString="0" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_SpecialOffer}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding SpecialOfferOptions}" SelectedItem="{Binding SelectedSpecialOffer}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_UnitPrice}" Classes="label"/>
+                <NumericUpDown Value="{Binding UnitPrice}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SalesOrderDetailField_UnitPriceDiscount}" Classes="label"/>
+                <NumericUpDown Value="{Binding UnitPriceDiscount}" Minimum="0" Maximum="1" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr SalesOrderDetailEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

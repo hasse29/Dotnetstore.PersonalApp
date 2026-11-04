@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Sales.Features.Customers"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.Customers.CustomersView"
+             x:DataType="vm:CustomersViewModel">
+
+<Grid>
+    <Grid RowDefinitions="Auto,*" Margin="28" IsVisible="{Binding Detail, Converter={x:Static ObjectConverters.IsNull} }" RowSpacing="20">
+
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{loc:Tr Customers_Title}" Classes="h1"/>
+                <TextBlock Text="{loc:Tr Customers_Subtitle}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    <TextBlock Text="{loc:Tr Customers_New}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,380" ColumnSpacing="20">
+
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="16">
+                        <TextBox Text="{Binding Search}" PlaceholderText="{loc:Tr Customers_SearchPlaceholder}"/>
+                        <Button Grid.Column="1" Content="{loc:Tr Customers_Search}" Classes="subtle" Command="{Binding LoadCommand}"/>
+                    </Grid>
+
+                    <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
+                        <Grid ColumnDefinitions="*,*,*,*">
+                            <TextBlock Text="{loc:Tr Customers_ColNumber}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr Customers_ColName}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr Customers_ColStoreName}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr Customers_ColTerritoryName}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <ListBox Grid.Row="2" Classes="table" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CustomerDto">
+                                <Grid ColumnDefinitions="*,*,*,*">
+                                    <TextBlock Text="{Binding Number}" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding StoreName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding TerritoryName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="3" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center"/>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+<Button Content="{loc:Tr Customers_Open}" Classes="subtle" Command="{Binding OpenDetailCommand}"/>
+                                            <Button Content="{loc:Tr Customers_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                                <TextBlock Text="{loc:Tr Customers_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                           IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Customers_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                    <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                            IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull} }">
+                        <StackPanel Spacing="8" HorizontalAlignment="Center">
+                            <TextBlock Text="{loc:Tr Customers_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{loc:Tr Customers_NoSelectionHint}"
+                                       Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+<ContentControl Content="{Binding Detail}" Margin="28"/>
+    </Grid>
+</UserControl>
