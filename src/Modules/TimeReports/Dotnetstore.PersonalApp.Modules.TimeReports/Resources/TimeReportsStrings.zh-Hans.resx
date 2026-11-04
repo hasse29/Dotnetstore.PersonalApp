@@ -39,6 +39,9 @@
   <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>（未知委托方）</value></data>
   <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>驾驶里程（公里）{0}</value></data>
   <data name="TimeReports_Copy" xml:space="preserve"><value>复制</value></data>
+  <data name="TimeReports_PageOf" xml:space="preserve"><value>第 {0} / {1} 页</value></data>
+  <data name="TimeReports_PreviousPage" xml:space="preserve"><value>上一页</value></data>
+  <data name="TimeReports_NextPage" xml:space="preserve"><value>下一页</value></data>
   <data name="TimeReportEditor_Copy" xml:space="preserve"><value>新建工时报告（复制）</value></data>
   <data name="TimeReports_ColType" xml:space="preserve"><value>类型</value></data>
   <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>请先添加工时类型，然后才能记录工时。</value></data>

@@ -39,6 +39,9 @@
   <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>(unknown client)</value></data>
   <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>Driving (km) {0}</value></data>
   <data name="TimeReports_Copy" xml:space="preserve"><value>Copy</value></data>
+  <data name="TimeReports_PageOf" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="TimeReports_PreviousPage" xml:space="preserve"><value>Previous</value></data>
+  <data name="TimeReports_NextPage" xml:space="preserve"><value>Next</value></data>
   <data name="TimeReportEditor_Copy" xml:space="preserve"><value>New time report (copy)</value></data>
   <data name="TimeReports_ColType" xml:space="preserve"><value>Type</value></data>
   <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>Add a work time type first, then you can report time.</value></data>

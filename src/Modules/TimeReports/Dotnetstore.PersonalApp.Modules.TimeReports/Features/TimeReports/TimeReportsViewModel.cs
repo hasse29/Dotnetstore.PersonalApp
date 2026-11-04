@@ -36,6 +36,9 @@ internal sealed partial class TimeReportsViewModel(
     IContactPersonLookup? contactPersons = null,
     IEnumerable<IContactInfoSource>? contactSources = null) : ViewModelBase
 {
+    /// <summary>Rows per page; keeps the table a fixed height however many reports there are.</summary>
+    private const int PageSize = 15;
+
     private IReadOnlyList<ClientReference> _clients = [];
     private IReadOnlyList<WorkTimeTypeDto> _workTimeTypes = [];
     private ClientReference? _allClients;
@@ -77,6 +80,22 @@ internal sealed partial class TimeReportsViewModel(
     public bool CanEmail => mailSender is not null;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PageLabel))]
+    [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))]
+    [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]
+    public partial int CurrentPage { get; set; } = 1;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(PageLabel))]
+    [NotifyPropertyChangedFor(nameof(ShowPager))]
+    [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]
+    public partial int PageCount { get; set; } = 1;
+
+    public string PageLabel => localization.Format("TimeReports_PageOf", CurrentPage, PageCount);
+
+    public bool ShowPager => PageCount > 1;
+
+    [ObservableProperty]
     public partial string? StatusMessage { get; set; }
 
     [ObservableProperty]
@@ -87,6 +106,7 @@ internal sealed partial class TimeReportsViewModel(
         if (!_loading)
         {
             CloseEditor();
+            CurrentPage = 1;
             LoadCommand.Execute(null);
         }
     }
@@ -117,7 +137,17 @@ internal sealed partial class TimeReportsViewModel(
             RefreshFilterClients();
 
             var clientId = fixedClientId ?? (SelectedFilter == _allClients ? null : SelectedFilter?.Id);
-            var response = await list.HandleAsync(new ListTimeReports.Query(user.Id, clientId), cancellationToken);
+            var response = await list.HandleAsync(new ListTimeReports.Query(user.Id, clientId, CurrentPage, PageSize), cancellationToken);
+
+            // Deleting the last report on the last page leaves the current page empty: step back to the new last page.
+            var pageCount = Math.Max(1, (response.TotalCount + PageSize - 1) / PageSize);
+            if (CurrentPage > pageCount)
+            {
+                CurrentPage = pageCount;
+                response = await list.HandleAsync(new ListTimeReports.Query(user.Id, clientId, CurrentPage, PageSize), cancellationToken);
+            }
+
+            PageCount = pageCount;
 
             Reports.Clear();
             foreach (var report in response.Items)
@@ -173,6 +203,23 @@ internal sealed partial class TimeReportsViewModel(
         // Deselect first so the delete buttons cannot act on the report being copied.
         SelectedReport = null;
         OpenEditor(NewEditor(report, isCopy: true));
+    }
+
+    [RelayCommand(CanExecute = nameof(HasPreviousPage))]
+    private async Task PreviousPageAsync(CancellationToken cancellationToken) => await GoToPageAsync(CurrentPage - 1, cancellationToken);
+
+    [RelayCommand(CanExecute = nameof(HasNextPage))]
+    private async Task NextPageAsync(CancellationToken cancellationToken) => await GoToPageAsync(CurrentPage + 1, cancellationToken);
+
+    private bool HasPreviousPage() => CurrentPage > 1;
+
+    private bool HasNextPage() => CurrentPage < PageCount;
+
+    private async Task GoToPageAsync(int page, CancellationToken cancellationToken)
+    {
+        CloseEditor();
+        CurrentPage = page;
+        await LoadAsync(cancellationToken);
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]

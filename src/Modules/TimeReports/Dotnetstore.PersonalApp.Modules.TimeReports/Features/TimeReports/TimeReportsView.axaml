@@ -35,7 +35,7 @@
 
             <!-- Report table -->
             <Border Classes="card" VerticalAlignment="Top">
-                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
 
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="16">
                         <ComboBox ItemsSource="{Binding FilterClients}" SelectedItem="{Binding SelectedFilter}"
@@ -57,7 +57,22 @@
                         </Button>
                     </Grid>
 
-                    <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                    <Border Grid.Row="1" Padding="16,0,16,12">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="{loc:Tr TimeReports_Copy}" Classes="subtle" Command="{Binding CopyCommand}"
+                                    IsVisible="{Binding !IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr TimeReports_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                    IsVisible="{Binding !IsConfirmingDelete}"/>
+                            <TextBlock Text="{loc:Tr TimeReports_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                       IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr TimeReports_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Row="2" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                             BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
                         <Grid ColumnDefinitions="1.2*,1.5*,1.1*,1.4*,0.8*,0.8*,1.3*">
                             <TextBlock Text="{loc:Tr TimeReports_ColDate}" Classes="column"/>
@@ -70,7 +85,7 @@
                         </Grid>
                     </Border>
 
-                    <ListBox Grid.Row="2" Classes="table" MinHeight="120" ItemsSource="{Binding Reports}"
+                    <ListBox Grid.Row="3" Classes="table" MinHeight="120" ItemsSource="{Binding Reports}"
                              SelectedItem="{Binding SelectedReport}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="reports:TimeReportDto">
@@ -88,26 +103,19 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <Border Grid.Row="3" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="4" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                                <Button Content="{loc:Tr TimeReports_Copy}" Classes="subtle" Command="{Binding CopyCommand}"
-                                        IsVisible="{Binding !IsConfirmingDelete}"/>
-                                <Button Content="{loc:Tr TimeReports_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
-                                        IsVisible="{Binding !IsConfirmingDelete}"/>
-                                <TextBlock Text="{loc:Tr TimeReports_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
-                                           IsVisible="{Binding IsConfirmingDelete}"/>
-                                <Button Content="{loc:Tr TimeReports_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
-                                        IsVisible="{Binding IsConfirmingDelete}"/>
-                                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
-                                        IsVisible="{Binding IsConfirmingDelete}"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" IsVisible="{Binding ShowPager}">
+                                <Button Content="{loc:Tr TimeReports_PreviousPage}" Classes="subtle" Command="{Binding PreviousPageCommand}"/>
+                                <TextBlock Text="{Binding PageLabel}" Classes="muted" VerticalAlignment="Center"/>
+                                <Button Content="{loc:Tr TimeReports_NextPage}" Classes="subtle" Command="{Binding NextPageCommand}"/>
                             </StackPanel>
                         </Grid>
                     </Border>
 
-                    <Border Grid.Row="4" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                    <Border Grid.Row="5" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
                         <StackPanel Orientation="Horizontal" Spacing="8">
                             <TextBlock Text="{loc:Tr TimeReports_ExportYear}" Classes="label" VerticalAlignment="Center"/>
                             <NumericUpDown Value="{Binding ExportYear}" Minimum="2000" Maximum="2100" Increment="1" FormatString="0" Width="130"/>

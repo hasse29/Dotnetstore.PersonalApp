@@ -39,6 +39,9 @@
   <data name="TimeReportExport_UnknownClient" xml:space="preserve"><value>(okänd uppdragsgivare)</value></data>
   <data name="TimeReportExport_KilometersTitle" xml:space="preserve"><value>Körsträcka (km) {0}</value></data>
   <data name="TimeReports_Copy" xml:space="preserve"><value>Kopiera</value></data>
+  <data name="TimeReports_PageOf" xml:space="preserve"><value>Sida {0} av {1}</value></data>
+  <data name="TimeReports_PreviousPage" xml:space="preserve"><value>Föregående</value></data>
+  <data name="TimeReports_NextPage" xml:space="preserve"><value>Nästa</value></data>
   <data name="TimeReportEditor_Copy" xml:space="preserve"><value>Ny tidrapport (kopia)</value></data>
   <data name="TimeReports_ColType" xml:space="preserve"><value>Typ</value></data>
   <data name="TimeReports_NoWorkTimeTypes" xml:space="preserve"><value>Lägg först till en tidstyp, sedan kan du rapportera tid.</value></data>
