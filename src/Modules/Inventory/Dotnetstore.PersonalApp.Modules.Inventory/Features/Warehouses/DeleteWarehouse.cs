@@ -19,6 +19,11 @@ internal static class DeleteWarehouse
                 return Error.Conflict("warehouse_in_use", "The record is in use and cannot be deleted.");
             }
 
+            if (await db.StockMovements.AnyAsync(x => x.Location.WarehouseId == command.Id, cancellationToken).ConfigureAwait(false))
+            {
+                return Error.Conflict("warehouse_in_use", "The record is in use and cannot be deleted.");
+            }
+
             var deleted = await db.Warehouses
                 .Where(x => x.Id == command.Id)
                 .ExecuteDeleteAsync(cancellationToken)

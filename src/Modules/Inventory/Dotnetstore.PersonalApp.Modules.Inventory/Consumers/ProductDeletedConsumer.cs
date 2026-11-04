@@ -13,7 +13,6 @@ internal sealed class ProductDeletedConsumer(IDbContextFactory<InventoryDbContex
         await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
         await db.StockLevels.Where(x => x.ProductId == integrationEvent.ProductId).ExecuteDeleteAsync(cancellationToken).ConfigureAwait(false);
-        await db.StockMovements.Where(x => x.ProductId == integrationEvent.ProductId).ExecuteDeleteAsync(cancellationToken).ConfigureAwait(false);
-        await db.InventoryCountLines.Where(x => x.ProductId == integrationEvent.ProductId).ExecuteDeleteAsync(cancellationToken).ConfigureAwait(false);
+        await db.InventoryCountLines.Where(x => x.ProductId == integrationEvent.ProductId && !x.InventoryCount.Posted).ExecuteDeleteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

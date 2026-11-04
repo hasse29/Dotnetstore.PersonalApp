@@ -22,6 +22,8 @@ internal static class DeleteStockMovement
                 .FirstOrDefaultAsync(cancellationToken)
                 .ConfigureAwait(false);
 
+            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
+
             var deleted = await db.StockMovements
                 .Where(x => x.Id == command.Id)
                 .ExecuteDeleteAsync(cancellationToken)
@@ -35,6 +37,12 @@ internal static class DeleteStockMovement
             if (keys is not null)
             {
                 await StockLedger.RecalculateAsync(db, keys.ProductId, keys.LocationId, cancellationToken).ConfigureAwait(false);
+                if (await StockLedger.GuardAsync(db, keys.ProductId, keys.LocationId, cancellationToken).ConfigureAwait(false) is { } guardError)
+                {
+                    return guardError;
+                }
+
+                await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
             }
 
             return command.Id;

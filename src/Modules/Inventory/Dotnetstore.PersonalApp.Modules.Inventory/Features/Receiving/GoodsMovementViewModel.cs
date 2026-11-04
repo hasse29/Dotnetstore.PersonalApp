@@ -128,7 +128,7 @@ internal abstract partial class GoodsMovementViewModel(
             SelectedLocation.Id,
             _order.Number,
             DateOnly.FromDateTime(clock.GetLocalNow().DateTime),
-            [.. Lines.Select(l => new OrderMovements.Line(l.LineId, l.ProductId, l.Quantity ?? 0m))]);
+            [.. Lines.Select(l => new OrderMovements.Line(l.LineId, l.ProductId, l.Ordered, l.Quantity ?? 0m))]);
         var result = await movements.RecordAsync(command, cancellationToken);
 
         if (result.IsSuccess)

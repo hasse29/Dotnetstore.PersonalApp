@@ -72,6 +72,8 @@
   <data name="Error_goods_movement_not_found" xml:space="preserve"><value>未找到库位或产品。</value></data>
   <data name="Error_inventory_count_posted" xml:space="preserve"><value>此盘点已过账。</value></data>
   <data name="Error_inventory_count_not_found" xml:space="preserve"><value>未找到盘点。</value></data>
+  <data name="Error_goods_movement_exceeds_order" xml:space="preserve"><value>数量超过订单未完成数量。</value></data>
+  <data name="Error_stock_level_key_fixed" xml:space="preserve"><value>只能修改最低库存。</value></data>
   <data name="Warehouses_Title" xml:space="preserve"><value>仓库</value></data>
   <data name="Warehouses_Subtitle" xml:space="preserve"><value>管理仓库。</value></data>
   <data name="Warehouses_New" xml:space="preserve"><value>新建仓库</value></data>

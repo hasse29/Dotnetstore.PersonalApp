@@ -33,6 +33,8 @@ internal static class PostInventoryCount
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
+            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
+
             var adjusted = 0;
             foreach (var line in lines.Where(x => x.CountedQty is not null))
             {
@@ -61,6 +63,7 @@ internal static class PostInventoryCount
 
             count.Posted = true;
             await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
 
             return adjusted;
         }

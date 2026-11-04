@@ -40,6 +40,8 @@ internal static class UpdateInventoryCount
                 return Error.NotFound("inventory_count_not_found", "The record was not found.");
             }
 
+
+
             if (!await db.Warehouses.AnyAsync(x => x.Id == command.WarehouseId, cancellationToken).ConfigureAwait(false))
             {
                 return Error.NotFound("inventory_count_warehouse_not_found", "Warehouse not found.");

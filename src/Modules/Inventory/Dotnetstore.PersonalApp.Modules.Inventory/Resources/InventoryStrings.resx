@@ -72,6 +72,8 @@
   <data name="Error_goods_movement_not_found" xml:space="preserve"><value>The location or a product was not found.</value></data>
   <data name="Error_inventory_count_posted" xml:space="preserve"><value>This count is already posted.</value></data>
   <data name="Error_inventory_count_not_found" xml:space="preserve"><value>The inventory count was not found.</value></data>
+  <data name="Error_goods_movement_exceeds_order" xml:space="preserve"><value>The quantity is more than the order has outstanding.</value></data>
+  <data name="Error_stock_level_key_fixed" xml:space="preserve"><value>Only the minimum quantity can be changed.</value></data>
   <data name="Warehouses_Title" xml:space="preserve"><value>Warehouses</value></data>
   <data name="Warehouses_Subtitle" xml:space="preserve"><value>Manage warehouses.</value></data>
   <data name="Warehouses_New" xml:space="preserve"><value>New warehouse</value></data>

@@ -43,6 +43,8 @@ internal static class UpdateStorageLocation
                 return Error.NotFound("storage_location_not_found", "The record was not found.");
             }
 
+
+
             if (!await db.Warehouses.AnyAsync(x => x.Id == command.WarehouseId, cancellationToken).ConfigureAwait(false))
             {
                 return Error.NotFound("storage_location_warehouse_not_found", "Warehouse not found.");

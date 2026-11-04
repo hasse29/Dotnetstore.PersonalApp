@@ -109,7 +109,7 @@ public sealed class StockTests : IDisposable
         var handler = Get<OrderMovements.Handler>();
 
         var result = await handler.RecordAsync(
-            new OrderMovements.Command(true, location.Id, "PO-1", Today, [new OrderMovements.Line(lineId, product, 7m)]), Ct);
+            new OrderMovements.Command(true, location.Id, "PO-1", Today, [new OrderMovements.Line(lineId, product, 100m, 7m)]), Ct);
 
         result.Value.ShouldBe(1);
         (await QuantityAsync(product, location.Id)).ShouldBe(7m);
@@ -129,7 +129,7 @@ public sealed class StockTests : IDisposable
 
         var result = await Get<OrderMovements.Handler>().RecordAsync(
             new OrderMovements.Command(false, location.Id, "SO-1", Today,
-                [new OrderMovements.Line(Guid.NewGuid(), stocked, 2m), new OrderMovements.Line(Guid.NewGuid(), missing, 1m)]), Ct);
+                [new OrderMovements.Line(Guid.NewGuid(), stocked, 100m, 2m), new OrderMovements.Line(Guid.NewGuid(), missing, 100m, 1m)]), Ct);
 
         result.Error.Code.ShouldBe("stock_movement_insufficient_stock");
         (await QuantityAsync(stocked, location.Id)).ShouldBe(5m);
@@ -142,7 +142,7 @@ public sealed class StockTests : IDisposable
         var location = await LocationAsync(warehouse.Id, "A1");
 
         var result = await Get<OrderMovements.Handler>().RecordAsync(
-            new OrderMovements.Command(true, location.Id, "PO-1", Today, [new OrderMovements.Line(Guid.NewGuid(), Guid.NewGuid(), 0m)]), Ct);
+            new OrderMovements.Command(true, location.Id, "PO-1", Today, [new OrderMovements.Line(Guid.NewGuid(), Guid.NewGuid(), 100m, 0m)]), Ct);
 
         result.Error.Code.ShouldBe("goods_movement_nothing");
     }

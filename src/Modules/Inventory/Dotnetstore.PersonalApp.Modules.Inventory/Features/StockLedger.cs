@@ -11,7 +11,12 @@ namespace Dotnetstore.PersonalApp.Modules.Inventory.Features;
 /// </summary>
 internal static class StockLedger
 {
+    private static readonly HashSet<string> Incoming = ["Receipt", "Return", "TransferIn", "AdjustmentUp"];
+
     private static readonly HashSet<string> Outgoing = ["Issue", "Scrap", "TransferOut", "AdjustmentDown"];
+
+    /// <summary>Every movement type, so a new one cannot be added without saying which way it moves stock.</summary>
+    public static IEnumerable<string> Types => Incoming.Concat(Outgoing);
 
     public static bool IsOutgoing(string type) => Outgoing.Contains(type);
 
@@ -35,17 +40,16 @@ internal static class StockLedger
         await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    /// <summary>Stops a movement out of stock that does not exist; called before a movement is saved.</summary>
-    public static async Task<Error?> GuardAsync(InventoryDbContext db, StockMovement movement, CancellationToken cancellationToken)
+    /// <summary>
+    /// Run after a movement is saved and the level recalculated, inside the same transaction: if the stock at the
+    /// location has gone below zero the caller rolls everything back. This also covers changing or deleting an
+    /// incoming movement that later outgoing ones depend on.
+    /// </summary>
+    public static async Task<Error?> GuardAsync(InventoryDbContext db, Guid productId, Guid locationId, CancellationToken cancellationToken)
     {
-        if (!IsOutgoing(movement.Type))
-        {
-            return null;
-        }
+        var available = await QuantityAsync(db, productId, locationId, null, cancellationToken).ConfigureAwait(false);
 
-        var available = await QuantityAsync(db, movement.ProductId, movement.LocationId, movement.Id, cancellationToken).ConfigureAwait(false);
-
-        return available < movement.Quantity
+        return available < 0m
             ? Error.Conflict("stock_movement_insufficient_stock", "There is not enough in stock at that location.")
             : null;
     }

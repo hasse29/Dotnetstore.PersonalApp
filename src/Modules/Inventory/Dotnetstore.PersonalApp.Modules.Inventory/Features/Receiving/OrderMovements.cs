@@ -10,7 +10,7 @@ namespace Dotnetstore.PersonalApp.Modules.Inventory.Features.Receiving;
 /// <summary>Receives goods against a purchase order or issues them against a sales order; each is a stock movement that refers to the order number.</summary>
 internal static class OrderMovements
 {
-    public sealed record Line(Guid LineId, Guid ProductId, decimal Quantity);
+    public sealed record Line(Guid LineId, Guid ProductId, decimal Ordered, decimal Quantity);
 
     public sealed record Command(bool Receiving, Guid LocationId, string OrderNumber, DateOnly Date, IReadOnlyList<Line> Lines);
 
@@ -68,6 +68,18 @@ internal static class OrderMovements
                 }
             }
 
+            // Nothing may go past what the order asks for, which also stops a repeated submit from booking the same goods twice.
+            var handled = await HandledAsync(command.OrderNumber, command.Receiving, cancellationToken).ConfigureAwait(false);
+            foreach (var group in command.Lines.GroupBy(x => x.ProductId))
+            {
+                if (handled.GetValueOrDefault(group.Key) + group.Sum(x => x.Quantity) > group.Sum(x => x.Ordered))
+                {
+                    return Error.Conflict("goods_movement_exceeds_order", "The quantity is more than the order has outstanding.");
+                }
+            }
+
+            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
+
             foreach (var line in lines)
             {
                 db.StockMovements.Add(new StockMovement
@@ -88,6 +100,8 @@ internal static class OrderMovements
             {
                 await StockLedger.RecalculateAsync(db, productId, command.LocationId, cancellationToken).ConfigureAwait(false);
             }
+
+            await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
 
             if (command.Receiving)
             {

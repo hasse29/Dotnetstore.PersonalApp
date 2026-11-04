@@ -31,6 +31,12 @@ internal static class ListStockOverview
                 levels = levels.Where(x => x.Location.WarehouseId == warehouseId);
             }
 
+            if (query.OnlyLow)
+            {
+                // SQLite cannot compare decimals, so only the rows without a minimum are dropped here and the comparison itself follows below.
+                levels = levels.Where(x => x.MinQuantity != null);
+            }
+
             var rows = await levels
                 .Select(x => new { x.ProductId, Warehouse = x.Location.Warehouse.Name, x.Location.Code, x.Quantity, x.MinQuantity })
                 .ToListAsync(cancellationToken)

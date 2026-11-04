@@ -44,6 +44,8 @@ internal static class UpdateStockMovement
                 return Error.NotFound("stock_movement_not_found", "The record was not found.");
             }
 
+
+
             if (!await references.ProductExistsAsync(command.ProductId, cancellationToken).ConfigureAwait(false))
             {
                 return Error.NotFound("stock_movement_product_not_found", "Product not found.");
@@ -64,19 +66,28 @@ internal static class UpdateStockMovement
             entity.Reference = referenceValue;
             entity.Note = noteValue;
 
-            if (await StockLedger.GuardAsync(db, entity, cancellationToken).ConfigureAwait(false) is { } guardError)
-            {
-                return guardError;
-            }
+            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
 
             await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             if (oldKeys != (entity.ProductId, entity.LocationId))
             {
                 await StockLedger.RecalculateAsync(db, oldKeys.Item1, oldKeys.Item2, cancellationToken).ConfigureAwait(false);
+
+                if (await StockLedger.GuardAsync(db, oldKeys.Item1, oldKeys.Item2, cancellationToken).ConfigureAwait(false) is { } oldGuardError)
+                {
+                    return oldGuardError;
+                }
             }
 
             await StockLedger.RecalculateAsync(db, entity.ProductId, entity.LocationId, cancellationToken).ConfigureAwait(false);
+
+            if (await StockLedger.GuardAsync(db, entity.ProductId, entity.LocationId, cancellationToken).ConfigureAwait(false) is { } guardError)
+            {
+                return guardError;
+            }
+
+            await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
 
             var dto = await db.StockMovements.AsNoTracking()
                 .Where(x => x.Id == entity.Id)

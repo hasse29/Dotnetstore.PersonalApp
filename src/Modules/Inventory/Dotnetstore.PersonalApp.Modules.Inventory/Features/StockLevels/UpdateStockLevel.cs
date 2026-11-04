@@ -39,6 +39,13 @@ internal static class UpdateStockLevel
                 return Error.NotFound("stock_level_not_found", "The record was not found.");
             }
 
+            // The quantity follows the movements, so a row stays with its product and location; only the minimum is edited.
+            if (command.ProductId != entity.ProductId || command.LocationId != entity.LocationId)
+            {
+                return Error.Validation("stock_level_key_fixed", "Only the minimum quantity can be changed.");
+            }
+
+
             if (!await references.ProductExistsAsync(command.ProductId, cancellationToken).ConfigureAwait(false))
             {
                 return Error.NotFound("stock_level_product_not_found", "Product not found.");

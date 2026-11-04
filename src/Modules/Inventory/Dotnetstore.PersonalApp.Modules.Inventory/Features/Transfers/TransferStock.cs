@@ -46,12 +46,20 @@ internal static class TransferStock
                 return Error.Conflict("stock_movement_insufficient_stock", "There is not enough in stock at that location.");
             }
 
+            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken).ConfigureAwait(false);
+
             db.StockMovements.Add(Movement(command, command.FromLocationId, "TransferOut"));
             db.StockMovements.Add(Movement(command, command.ToLocationId, "TransferIn"));
             await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             await StockLedger.RecalculateAsync(db, command.ProductId, command.FromLocationId, cancellationToken).ConfigureAwait(false);
             await StockLedger.RecalculateAsync(db, command.ProductId, command.ToLocationId, cancellationToken).ConfigureAwait(false);
+            if (await StockLedger.GuardAsync(db, command.ProductId, command.FromLocationId, cancellationToken).ConfigureAwait(false) is { } guardError)
+            {
+                return guardError;
+            }
+
+            await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
 
             return available - command.Quantity;
         }
