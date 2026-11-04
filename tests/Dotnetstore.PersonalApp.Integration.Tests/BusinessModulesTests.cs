@@ -10,7 +10,7 @@ namespace Dotnetstore.PersonalApp.Integration.Tests;
 
 public sealed class BusinessModulesTests : IDisposable
 {
-    private static readonly string[] BusinessModules = ["production", "purchasing", "sales"];
+    private static readonly string[] BusinessModules = ["production", "purchasing", "sales", "inventory"];
 
     private readonly string _directory = Path.Combine(Path.GetTempPath(), "personalapp-business-" + Guid.NewGuid().ToString("N"));
 
@@ -37,7 +37,7 @@ public sealed class BusinessModulesTests : IDisposable
 
         var pages = services.GetServices<IModulePage>().Where(p => p.ModuleKey is { } key && BusinessModules.Contains(key)).ToList();
 
-        pages.Count.ShouldBe(36);
+        pages.Count.ShouldBe(46);
         pages.Select(p => p.Title).ShouldBeUnique();
         pages.ShouldAllBe(p => p.CreateViewModel() != null);
         BusinessModules.ShouldAllBe(key => File.Exists(Path.Combine(_directory, key + ".db")));
@@ -71,5 +71,6 @@ public sealed class BusinessModulesTests : IDisposable
         listed.ShouldContain("production");
         listed.ShouldContain("purchasing");
         listed.ShouldContain("sales");
+        listed.ShouldContain("inventory");
     }
 }

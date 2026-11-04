@@ -12,6 +12,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Production](#production) | `production.db` | Products, categories, models, units, price history, inventory, bills of materials, work orders, transactions | Production group |
 | [Purchasing](#purchasing) | `purchasing.db` | Ship methods, vendors, vendor prices, purchase orders and lines | Purchasing group |
 | [Sales](#sales) | `sales.db` | Customers, stores, salespeople, territories, currencies, special offers, tax rates, sales orders and lines | Sales group |
+| [Inventory](#inventory) | `inventory.db` | Warehouses, storage locations, stock levels and movements, inventory counts, receiving and issuing against orders | Warehouse group |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
@@ -100,6 +101,17 @@ Vendors and what is bought from them. Sidebar group "Purchasing" (`ModuleKey` `p
 - **PurchaseOrder** and **PurchaseOrderDetail**: an order has a number (`PO-000001` when left blank), status, vendor, ship method, optional buyer (a user id, cleared when the user is deleted), dates, tax and freight; its subtotal and total due are kept by `OrderTotals` from the lines whenever a line or the order changes. A line's total is quantity times price and its stocked quantity is received minus rejected. Lines are deleted with the order and keep their product id if the product is deleted (shown without a name).
 - **Vendor page**: Open on a vendor shows tabs Information, Prices, Purchase orders, and Addresses, Email addresses and Phone numbers when those modules are present (the vendor id is the object id).
 - **Order screen**: Open on a purchase order shows `PurchaseOrderScreenViewModel`: the order's editor on the left, a totals strip (subtotal, tax, freight, total due) and the lines on the right. Adding, changing or deleting a line refreshes the totals; saving the header does too. The separate line page stays for searching all lines.
+
+## Inventory
+
+The warehouse: where goods are stored and how many there are. Sidebar group "Warehouse" (`ModuleKey` `inventory`). The module is named Inventory because an entity called `Warehouse` would clash with a module namespace of the same name. It owns its stock; Production's `ProductInventory` is untouched.
+
+- **Warehouse** (code and name unique, optional address, active flag; `MAIN` is seeded) and **StorageLocation** (a bin or shelf: unique code, optional zone, description and capacity), deleted with its warehouse. Open on either shows a detail page: a warehouse has tabs Information, Locations and Counts; a location has Information, Contents and Movements.
+- **StockMovement** is the ledger: date, product, location, type (Receipt, Return, TransferIn and AdjustmentUp add; Issue, Scrap, TransferOut and AdjustmentDown take away), quantity above zero, reference and note. `StockLedger` keeps **StockLevel** (one row per product and location, optional minimum) equal to the signed sum of the movements, recalculated whenever a movement is created, changed or deleted, and blocks an outgoing movement that would take a location below zero (`stock_movement_insufficient_stock`). Sums are done client-side because SQLite cannot sum decimals.
+- **Stock overview** (read-only page): products by warehouse and location with quantity and minimum, a search, a warehouse filter and an "only low stock" filter; at most 500 rows.
+- **Stock transfer** moves a quantity between two locations as a TransferOut and TransferIn pair; **Receive goods** and **Issue goods** pick an order from the order modules, show ordered, already handled and outstanding quantities, and book Receipt or Issue movements with the order number as reference. An issue is checked for every line before anything is saved. Order modules are optional; without them the pages say so.
+- **InventoryCount** (number `IC-000001` when left blank, warehouse, date, note, posted flag) and **InventoryCountLine** (product, location, expected and counted quantity, difference). Open shows one screen: Fill adds a line per non-zero stock level of the warehouse, the counted quantities are entered, and Post records an AdjustmentUp or AdjustmentDown for each counted line by counted minus current stock. A posted count cannot be filled or posted again.
+- **Contracts**: consumes `ProductDeleted` (stock levels of that product are removed; movements and count lines keep the id). Uses `IPurchaseOrderLookup` and `ISalesOrderLookup` (both `IOrderLookup`, `Shared/Orders`) and publishes `GoodsReceived` for each received purchase order line; Purchasing adds it to the line's received and stocked quantities and refreshes the order totals.
 
 ## Sales
 

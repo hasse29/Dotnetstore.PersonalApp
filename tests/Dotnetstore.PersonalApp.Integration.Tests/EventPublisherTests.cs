@@ -49,7 +49,8 @@ public sealed class EventPublisherTests
         (services.GetServices<IIntegrationEventConsumer<ClientDeleted>>().Count()).ShouldBe(7);
         (services.GetServices<IIntegrationEventConsumer<StudentDeleted>>().Count()).ShouldBe(5);
         (services.GetServices<IIntegrationEventConsumer<SubjectDeleted>>().Count()).ShouldBe(2);
-        (services.GetServices<IIntegrationEventConsumer<ProductDeleted>>().Count()).ShouldBe(2);
+        (services.GetServices<IIntegrationEventConsumer<ProductDeleted>>().Count()).ShouldBe(3);
+        (services.GetServices<IIntegrationEventConsumer<GoodsReceived>>().Count()).ShouldBe(1);
         (services.GetRequiredService<IEventPublisher>()).ShouldBeOfType<InProcessEventPublisher>();
     }
 }

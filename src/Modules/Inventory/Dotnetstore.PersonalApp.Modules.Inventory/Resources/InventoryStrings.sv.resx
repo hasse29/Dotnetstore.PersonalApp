@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_InventoryDatabase" xml:space="preserve"><value>Förbereder databasen för lager...</value></data>
+  <data name="Inventory_Title" xml:space="preserve"><value>Lager</value></data>
+  <data name="Inventory_None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="WarehouseDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="WarehouseDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="WarehouseDetail_TabLocations" xml:space="preserve"><value>Lagerplatser</value></data>
+  <data name="WarehouseDetail_TabCounts" xml:space="preserve"><value>Inventeringar</value></data>
+  <data name="StorageLocationDetail_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="StorageLocationDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="StorageLocationDetail_TabContents" xml:space="preserve"><value>Innehåll</value></data>
+  <data name="StorageLocationDetail_TabMovements" xml:space="preserve"><value>Rörelser</value></data>
+  <data name="InventoryCountScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="InventoryCountScreen_Lines" xml:space="preserve"><value>Orderrader</value></data>
+  <data name="InventoryCountScreen_Fill" xml:space="preserve"><value>Fyll från lager</value></data>
+  <data name="InventoryCountScreen_Post" xml:space="preserve"><value>Bokför inventering</value></data>
+  <data name="InventoryCountScreen_Posted" xml:space="preserve"><value>Inventeringen är bokförd.</value></data>
+  <data name="InventoryCountScreen_Filled" xml:space="preserve"><value>{0} rader lades till.</value></data>
+  <data name="InventoryCountScreen_PostedResult" xml:space="preserve"><value>Bokförd. {0} justeringar registrerades.</value></data>
+  <data name="StockOverview_Title" xml:space="preserve"><value>Lagersaldo</value></data>
+  <data name="StockOverview_Subtitle" xml:space="preserve"><value>Hur mycket av varje produkt som finns var.</value></data>
+  <data name="StockOverview_SearchPlaceholder" xml:space="preserve"><value>Sök produkter</value></data>
+  <data name="StockOverview_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StockOverview_AllWarehouses" xml:space="preserve"><value>Alla lager</value></data>
+  <data name="StockOverview_OnlyLow" xml:space="preserve"><value>Endast lågt saldo</value></data>
+  <data name="StockOverview_ColProduct" xml:space="preserve"><value>Produkt</value></data>
+  <data name="StockOverview_ColWarehouse" xml:space="preserve"><value>Lager</value></data>
+  <data name="StockOverview_ColLocation" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="StockOverview_ColQuantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="StockOverview_ColMinQuantity" xml:space="preserve"><value>Minimum</value></data>
+  <data name="StockOverview_Low" xml:space="preserve"><value>Lågt</value></data>
+  <data name="StockOverview_Count" xml:space="preserve"><value>{0} rader</value></data>
+  <data name="StockOverview_ShowingPartial" xml:space="preserve"><value>Visar de första {0} raderna. Begränsa sökningen för att se fler.</value></data>
+  <data name="StockTransfer_Title" xml:space="preserve"><value>Flytta lager</value></data>
+  <data name="StockTransfer_Subtitle" xml:space="preserve"><value>Flytta ett antal från en lagerplats till en annan.</value></data>
+  <data name="StockTransfer_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="StockTransfer_From" xml:space="preserve"><value>Från lagerplats</value></data>
+  <data name="StockTransfer_To" xml:space="preserve"><value>Till lagerplats</value></data>
+  <data name="StockTransfer_Quantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="StockTransfer_Reference" xml:space="preserve"><value>Referens</value></data>
+  <data name="StockTransfer_Transfer" xml:space="preserve"><value>Flytta</value></data>
+  <data name="StockTransfer_ChooseAll" xml:space="preserve"><value>Välj produkt, båda lagerplatserna och ett antal.</value></data>
+  <data name="StockTransfer_Done" xml:space="preserve"><value>Flyttat. {0} finns kvar på källplatsen.</value></data>
+  <data name="GoodsMovement_NoOrderModule" xml:space="preserve"><value>Order är inte tillgängliga, så det finns inget att välja.</value></data>
+  <data name="GoodsMovement_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="GoodsMovement_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="GoodsMovement_ColProduct" xml:space="preserve"><value>Produkt</value></data>
+  <data name="GoodsMovement_ColOrdered" xml:space="preserve"><value>Beställt</value></data>
+  <data name="GoodsMovement_ColOutstanding" xml:space="preserve"><value>Återstår</value></data>
+  <data name="GoodsMovement_ColQuantity" xml:space="preserve"><value>Antal nu</value></data>
+  <data name="GoodsMovement_ChooseOrderAndLocation" xml:space="preserve"><value>Välj en order och en lagerplats.</value></data>
+  <data name="GoodsReceipt_Title" xml:space="preserve"><value>Ta emot varor</value></data>
+  <data name="GoodsReceipt_Subtitle" xml:space="preserve"><value>Lägg inköpsorderrader på en lagerplats.</value></data>
+  <data name="GoodsReceipt_Confirm" xml:space="preserve"><value>Ta emot</value></data>
+  <data name="GoodsReceipt_Handled" xml:space="preserve"><value>Mottaget</value></data>
+  <data name="GoodsReceipt_Done" xml:space="preserve"><value>{0} rader mottagna.</value></data>
+  <data name="GoodsIssue_Title" xml:space="preserve"><value>Plocka varor</value></data>
+  <data name="GoodsIssue_Subtitle" xml:space="preserve"><value>Ta kundorderrader från en lagerplats.</value></data>
+  <data name="GoodsIssue_Confirm" xml:space="preserve"><value>Plocka</value></data>
+  <data name="GoodsIssue_Handled" xml:space="preserve"><value>Plockat</value></data>
+  <data name="GoodsIssue_Done" xml:space="preserve"><value>{0} rader plockade.</value></data>
+  <data name="Error_stock_movement_insufficient_stock" xml:space="preserve"><value>Det finns inte tillräckligt i lager på den lagerplatsen.</value></data>
+  <data name="Error_stock_transfer_quantity" xml:space="preserve"><value>Antalet måste vara större än noll.</value></data>
+  <data name="Error_stock_transfer_same_location" xml:space="preserve"><value>Välj två olika lagerplatser.</value></data>
+  <data name="Error_stock_transfer_not_found" xml:space="preserve"><value>Produkten eller en lagerplats hittades inte.</value></data>
+  <data name="Error_goods_movement_nothing" xml:space="preserve"><value>Ange antal på minst en rad.</value></data>
+  <data name="Error_goods_movement_not_found" xml:space="preserve"><value>Lagerplatsen eller en produkt hittades inte.</value></data>
+  <data name="Error_inventory_count_posted" xml:space="preserve"><value>Inventeringen är redan bokförd.</value></data>
+  <data name="Error_inventory_count_not_found" xml:space="preserve"><value>Inventeringen hittades inte.</value></data>
+  <data name="Warehouses_Title" xml:space="preserve"><value>Lager</value></data>
+  <data name="Warehouses_Subtitle" xml:space="preserve"><value>Hantera lager.</value></data>
+  <data name="Warehouses_New" xml:space="preserve"><value>Lägg till lager</value></data>
+  <data name="Warehouses_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Warehouses_SearchPlaceholder" xml:space="preserve"><value>Sök bland lager...</value></data>
+  <data name="Warehouses_ColCode" xml:space="preserve"><value>KOD</value></data>
+  <data name="Warehouses_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="Warehouses_ColAddress" xml:space="preserve"><value>ADRESS</value></data>
+  <data name="Warehouses_ColActive" xml:space="preserve"><value>AKTIVT</value></data>
+  <data name="Warehouses_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Warehouses_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="Warehouses_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="Warehouses_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Warehouses_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="Warehouses_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="Warehouses_Count" xml:space="preserve"><value>{0} st: lager</value></data>
+  <data name="Warehouses_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="Warehouses_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="WarehouseEditor_New" xml:space="preserve"><value>Lägg till lager</value></data>
+  <data name="WarehouseEditor_Edit" xml:space="preserve"><value>Redigera lager</value></data>
+  <data name="WarehouseEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="WarehouseField_Code" xml:space="preserve"><value>Kod</value></data>
+  <data name="Error_warehouse_code_required" xml:space="preserve"><value>Kod måste anges.</value></data>
+  <data name="Error_warehouse_code_too_long" xml:space="preserve"><value>Kod får vara högst 20 tecken.</value></data>
+  <data name="WarehouseField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="Error_warehouse_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_warehouse_name_too_long" xml:space="preserve"><value>Namn får vara högst 100 tecken.</value></data>
+  <data name="WarehouseField_Address" xml:space="preserve"><value>Adress</value></data>
+  <data name="Error_warehouse_address_too_long" xml:space="preserve"><value>Adress får vara högst 200 tecken.</value></data>
+  <data name="WarehouseField_Active" xml:space="preserve"><value>Aktivt</value></data>
+  <data name="Error_warehouse_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_warehouse_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_warehouse_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="StorageLocations_Title" xml:space="preserve"><value>Lagerplatser</value></data>
+  <data name="StorageLocations_Subtitle" xml:space="preserve"><value>Hantera lagerplatser.</value></data>
+  <data name="StorageLocations_New" xml:space="preserve"><value>Lägg till lagerplats</value></data>
+  <data name="StorageLocations_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StorageLocations_SearchPlaceholder" xml:space="preserve"><value>Sök bland lagerplatser...</value></data>
+  <data name="StorageLocations_ColWarehouseName" xml:space="preserve"><value>LAGER</value></data>
+  <data name="StorageLocations_ColCode" xml:space="preserve"><value>KOD</value></data>
+  <data name="StorageLocations_ColZone" xml:space="preserve"><value>ZON</value></data>
+  <data name="StorageLocations_ColCapacity" xml:space="preserve"><value>KAPACITET</value></data>
+  <data name="StorageLocations_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="StorageLocations_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="StorageLocations_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="StorageLocations_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="StorageLocations_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="StorageLocations_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="StorageLocations_Count" xml:space="preserve"><value>{0} st: lagerplatser</value></data>
+  <data name="StorageLocations_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="StorageLocations_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="StorageLocationEditor_New" xml:space="preserve"><value>Lägg till lagerplats</value></data>
+  <data name="StorageLocationEditor_Edit" xml:space="preserve"><value>Redigera lagerplats</value></data>
+  <data name="StorageLocationEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="StorageLocationField_Warehouse" xml:space="preserve"><value>Lager</value></data>
+  <data name="Error_storage_location_warehouse_required" xml:space="preserve"><value>Lager måste anges.</value></data>
+  <data name="Error_storage_location_warehouse_not_found" xml:space="preserve"><value>Lager hittades inte.</value></data>
+  <data name="StorageLocationField_Code" xml:space="preserve"><value>Kod</value></data>
+  <data name="Error_storage_location_code_required" xml:space="preserve"><value>Kod måste anges.</value></data>
+  <data name="Error_storage_location_code_too_long" xml:space="preserve"><value>Kod får vara högst 30 tecken.</value></data>
+  <data name="StorageLocationField_Zone" xml:space="preserve"><value>Zon</value></data>
+  <data name="Error_storage_location_zone_too_long" xml:space="preserve"><value>Zon får vara högst 50 tecken.</value></data>
+  <data name="StorageLocationField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="Error_storage_location_description_too_long" xml:space="preserve"><value>Beskrivning får vara högst 200 tecken.</value></data>
+  <data name="StorageLocationField_Capacity" xml:space="preserve"><value>Kapacitet</value></data>
+  <data name="Error_storage_location_capacity_out_of_range" xml:space="preserve"><value>Kapacitet måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_storage_location_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_storage_location_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_storage_location_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="StockLevels_Title" xml:space="preserve"><value>Lagersaldon</value></data>
+  <data name="StockLevels_Subtitle" xml:space="preserve"><value>Hantera lagersaldon.</value></data>
+  <data name="StockLevels_New" xml:space="preserve"><value>Lägg till lagersaldo</value></data>
+  <data name="StockLevels_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StockLevels_SearchPlaceholder" xml:space="preserve"><value>Sök bland lagersaldon...</value></data>
+  <data name="StockLevels_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
+  <data name="StockLevels_ColLocationName" xml:space="preserve"><value>LAGERPLATS</value></data>
+  <data name="StockLevels_ColQuantity" xml:space="preserve"><value>ANTAL</value></data>
+  <data name="StockLevels_ColMinQuantity" xml:space="preserve"><value>BESTÄLLNINGSPUNKT</value></data>
+  <data name="StockLevels_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="StockLevels_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="StockLevels_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="StockLevels_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="StockLevels_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="StockLevels_Count" xml:space="preserve"><value>{0} st: lagersaldon</value></data>
+  <data name="StockLevels_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="StockLevels_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="StockLevelEditor_New" xml:space="preserve"><value>Lägg till lagersaldo</value></data>
+  <data name="StockLevelEditor_Edit" xml:space="preserve"><value>Redigera lagersaldo</value></data>
+  <data name="StockLevelEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="StockLevelField_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="Error_stock_level_product_required" xml:space="preserve"><value>Produkt måste anges.</value></data>
+  <data name="Error_stock_level_product_not_found" xml:space="preserve"><value>Produkt hittades inte.</value></data>
+  <data name="StockLevelField_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="Error_stock_level_location_required" xml:space="preserve"><value>Lagerplats måste anges.</value></data>
+  <data name="Error_stock_level_location_not_found" xml:space="preserve"><value>Lagerplats hittades inte.</value></data>
+  <data name="StockLevelField_Quantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="Error_stock_level_quantity_out_of_range" xml:space="preserve"><value>Antal måste vara minst 0.</value></data>
+  <data name="StockLevelField_MinQuantity" xml:space="preserve"><value>Beställningspunkt</value></data>
+  <data name="Error_stock_level_min_quantity_out_of_range" xml:space="preserve"><value>Beställningspunkt måste vara mellan 0 och 1000000000.</value></data>
+  <data name="Error_stock_level_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_stock_level_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_stock_level_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="StockMovements_Title" xml:space="preserve"><value>Lagerrörelser</value></data>
+  <data name="StockMovements_Subtitle" xml:space="preserve"><value>Hantera lagerrörelser.</value></data>
+  <data name="StockMovements_New" xml:space="preserve"><value>Lägg till lagerrörelse</value></data>
+  <data name="StockMovements_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StockMovements_SearchPlaceholder" xml:space="preserve"><value>Sök bland lagerrörelser...</value></data>
+  <data name="StockMovements_ColDate" xml:space="preserve"><value>DATUM</value></data>
+  <data name="StockMovements_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
+  <data name="StockMovements_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="StockMovements_ColQuantity" xml:space="preserve"><value>ANTAL</value></data>
+  <data name="StockMovements_ColLocationName" xml:space="preserve"><value>LAGERPLATS</value></data>
+  <data name="StockMovements_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="StockMovements_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="StockMovements_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="StockMovements_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="StockMovements_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="StockMovements_Count" xml:space="preserve"><value>{0} st: lagerrörelser</value></data>
+  <data name="StockMovements_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="StockMovements_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="StockMovementEditor_New" xml:space="preserve"><value>Lägg till lagerrörelse</value></data>
+  <data name="StockMovementEditor_Edit" xml:space="preserve"><value>Redigera lagerrörelse</value></data>
+  <data name="StockMovementEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="StockMovementField_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="StockMovementField_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="Error_stock_movement_product_required" xml:space="preserve"><value>Produkt måste anges.</value></data>
+  <data name="Error_stock_movement_product_not_found" xml:space="preserve"><value>Produkt hittades inte.</value></data>
+  <data name="StockMovementField_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="Error_stock_movement_location_required" xml:space="preserve"><value>Lagerplats måste anges.</value></data>
+  <data name="Error_stock_movement_location_not_found" xml:space="preserve"><value>Lagerplats hittades inte.</value></data>
+  <data name="StockMovementField_Type" xml:space="preserve"><value>Typ</value></data>
+  <data name="StockMovementChoice_Type_Receipt" xml:space="preserve"><value>Inleverans</value></data>
+  <data name="StockMovementChoice_Type_Return" xml:space="preserve"><value>Retur</value></data>
+  <data name="StockMovementChoice_Type_TransferIn" xml:space="preserve"><value>Överföring in</value></data>
+  <data name="StockMovementChoice_Type_AdjustmentUp" xml:space="preserve"><value>Justering (ökning)</value></data>
+  <data name="StockMovementChoice_Type_Issue" xml:space="preserve"><value>Uttag</value></data>
+  <data name="StockMovementChoice_Type_Scrap" xml:space="preserve"><value>Kassation</value></data>
+  <data name="StockMovementChoice_Type_TransferOut" xml:space="preserve"><value>Överföring ut</value></data>
+  <data name="StockMovementChoice_Type_AdjustmentDown" xml:space="preserve"><value>Justering (minskning)</value></data>
+  <data name="Error_stock_movement_type_invalid" xml:space="preserve"><value>Typ är ogiltigt.</value></data>
+  <data name="StockMovementField_Quantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="Error_stock_movement_quantity_out_of_range" xml:space="preserve"><value>Antal måste vara mellan 0 och 1000000000.</value></data>
+  <data name="StockMovementField_Reference" xml:space="preserve"><value>Referens</value></data>
+  <data name="Error_stock_movement_reference_too_long" xml:space="preserve"><value>Referens får vara högst 100 tecken.</value></data>
+  <data name="StockMovementField_Note" xml:space="preserve"><value>Anteckning</value></data>
+  <data name="Error_stock_movement_note_too_long" xml:space="preserve"><value>Anteckning får vara högst 500 tecken.</value></data>
+  <data name="Error_stock_movement_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_stock_movement_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="InventoryCounts_Title" xml:space="preserve"><value>Inventeringar</value></data>
+  <data name="InventoryCounts_Subtitle" xml:space="preserve"><value>Hantera inventeringar.</value></data>
+  <data name="InventoryCounts_New" xml:space="preserve"><value>Lägg till inventering</value></data>
+  <data name="InventoryCounts_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="InventoryCounts_SearchPlaceholder" xml:space="preserve"><value>Sök bland inventeringar...</value></data>
+  <data name="InventoryCounts_ColNumber" xml:space="preserve"><value>NUMMER</value></data>
+  <data name="InventoryCounts_ColWarehouseName" xml:space="preserve"><value>LAGER</value></data>
+  <data name="InventoryCounts_ColDate" xml:space="preserve"><value>DATUM</value></data>
+  <data name="InventoryCounts_ColPosted" xml:space="preserve"><value>BOKFÖRD</value></data>
+  <data name="InventoryCounts_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="InventoryCounts_Open" xml:space="preserve"><value>Öppna</value></data>
+  <data name="InventoryCounts_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="InventoryCounts_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="InventoryCounts_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="InventoryCounts_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="InventoryCounts_Count" xml:space="preserve"><value>{0} st: inventeringar</value></data>
+  <data name="InventoryCounts_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="InventoryCounts_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="InventoryCountEditor_New" xml:space="preserve"><value>Lägg till inventering</value></data>
+  <data name="InventoryCountEditor_Edit" xml:space="preserve"><value>Redigera inventering</value></data>
+  <data name="InventoryCountEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="InventoryCountField_Number" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Error_inventory_count_number_required" xml:space="preserve"><value>Nummer måste anges.</value></data>
+  <data name="Error_inventory_count_number_too_long" xml:space="preserve"><value>Nummer får vara högst 25 tecken.</value></data>
+  <data name="InventoryCountField_Warehouse" xml:space="preserve"><value>Lager</value></data>
+  <data name="Error_inventory_count_warehouse_required" xml:space="preserve"><value>Lager måste anges.</value></data>
+  <data name="Error_inventory_count_warehouse_not_found" xml:space="preserve"><value>Lager hittades inte.</value></data>
+  <data name="InventoryCountField_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="InventoryCountField_Note" xml:space="preserve"><value>Anteckning</value></data>
+  <data name="Error_inventory_count_note_too_long" xml:space="preserve"><value>Anteckning får vara högst 500 tecken.</value></data>
+  <data name="InventoryCountField_Posted" xml:space="preserve"><value>Bokförd</value></data>
+  <data name="Error_inventory_count_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_inventory_count_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+  <data name="InventoryCountLines_Title" xml:space="preserve"><value>Inventeringsrader</value></data>
+  <data name="InventoryCountLines_Subtitle" xml:space="preserve"><value>Hantera inventeringsrader.</value></data>
+  <data name="InventoryCountLines_New" xml:space="preserve"><value>Lägg till inventeringsrad</value></data>
+  <data name="InventoryCountLines_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="InventoryCountLines_SearchPlaceholder" xml:space="preserve"><value>Sök bland inventeringsrader...</value></data>
+  <data name="InventoryCountLines_ColProductName" xml:space="preserve"><value>PRODUKT</value></data>
+  <data name="InventoryCountLines_ColLocationName" xml:space="preserve"><value>LAGERPLATS</value></data>
+  <data name="InventoryCountLines_ColExpectedQty" xml:space="preserve"><value>FÖRVÄNTAT ANTAL</value></data>
+  <data name="InventoryCountLines_ColCountedQty" xml:space="preserve"><value>RÄKNAT ANTAL</value></data>
+  <data name="InventoryCountLines_ColDifference" xml:space="preserve"><value>DIFFERENS</value></data>
+  <data name="InventoryCountLines_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="InventoryCountLines_ConfirmDelete" xml:space="preserve"><value>Ta bort posten?</value></data>
+  <data name="InventoryCountLines_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="InventoryCountLines_NoSelection" xml:space="preserve"><value>Inget valt</value></data>
+  <data name="InventoryCountLines_NoSelectionHint" xml:space="preserve"><value>Välj en rad i tabellen för att redigera den, eller lägg till en ny.</value></data>
+  <data name="InventoryCountLines_Count" xml:space="preserve"><value>{0} st: inventeringsrader</value></data>
+  <data name="InventoryCountLines_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1}. Förfina sökningen för att se fler.</value></data>
+  <data name="InventoryCountLines_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="InventoryCountLineEditor_New" xml:space="preserve"><value>Lägg till inventeringsrad</value></data>
+  <data name="InventoryCountLineEditor_Edit" xml:space="preserve"><value>Redigera inventeringsrad</value></data>
+  <data name="InventoryCountLineEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="InventoryCountLineField_InventoryCount" xml:space="preserve"><value>Inventering</value></data>
+  <data name="Error_inventory_count_line_inventory_count_required" xml:space="preserve"><value>Inventering måste anges.</value></data>
+  <data name="Error_inventory_count_line_inventory_count_not_found" xml:space="preserve"><value>Inventering hittades inte.</value></data>
+  <data name="InventoryCountLineField_Product" xml:space="preserve"><value>Produkt</value></data>
+  <data name="Error_inventory_count_line_product_required" xml:space="preserve"><value>Produkt måste anges.</value></data>
+  <data name="Error_inventory_count_line_product_not_found" xml:space="preserve"><value>Produkt hittades inte.</value></data>
+  <data name="InventoryCountLineField_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="Error_inventory_count_line_location_required" xml:space="preserve"><value>Lagerplats måste anges.</value></data>
+  <data name="Error_inventory_count_line_location_not_found" xml:space="preserve"><value>Lagerplats hittades inte.</value></data>
+  <data name="InventoryCountLineField_ExpectedQty" xml:space="preserve"><value>Förväntat antal</value></data>
+  <data name="Error_inventory_count_line_expected_qty_out_of_range" xml:space="preserve"><value>Förväntat antal måste vara mellan 0 och 1000000000.</value></data>
+  <data name="InventoryCountLineField_CountedQty" xml:space="preserve"><value>Räknat antal</value></data>
+  <data name="Error_inventory_count_line_counted_qty_out_of_range" xml:space="preserve"><value>Räknat antal måste vara mellan 0 och 1000000000.</value></data>
+  <data name="InventoryCountLineField_Difference" xml:space="preserve"><value>Differens</value></data>
+  <data name="Error_inventory_count_line_difference_out_of_range" xml:space="preserve"><value>Differens måste vara minst 0.</value></data>
+  <data name="Error_inventory_count_line_not_found" xml:space="preserve"><value>Posten hittades inte.</value></data>
+  <data name="Error_inventory_count_line_in_use" xml:space="preserve"><value>Posten används och kan inte tas bort.</value></data>
+  <data name="Error_inventory_count_line_conflict" xml:space="preserve"><value>Det finns redan en post med samma värden.</value></data>
+</root>

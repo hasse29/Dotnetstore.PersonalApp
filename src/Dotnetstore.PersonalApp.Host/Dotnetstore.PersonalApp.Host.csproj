@@ -45,6 +45,7 @@
     <ProjectReference Include="..\Modules\Users\Dotnetstore.PersonalApp.Modules.Users\Dotnetstore.PersonalApp.Modules.Users.csproj" />
     <ProjectReference Include="..\Modules\Production\Dotnetstore.PersonalApp.Modules.Production\Dotnetstore.PersonalApp.Modules.Production.csproj" />
     <ProjectReference Include="..\Modules\Purchasing\Dotnetstore.PersonalApp.Modules.Purchasing\Dotnetstore.PersonalApp.Modules.Purchasing.csproj" />
+    <ProjectReference Include="..\Modules\Inventory\Dotnetstore.PersonalApp.Modules.Inventory\Dotnetstore.PersonalApp.Modules.Inventory.csproj" />
     <ProjectReference Include="..\Modules\Sales\Dotnetstore.PersonalApp.Modules.Sales\Dotnetstore.PersonalApp.Modules.Sales.csproj" />
   </ItemGroup>
 

@@ -22,6 +22,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Startup;
 using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Purchasing;
+using Dotnetstore.PersonalApp.Shared.Sales;
 using Dotnetstore.PersonalApp.Shared.Users;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
@@ -213,5 +214,6 @@ public static class SalesModule
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ProductDeleted>, ProductDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
+        services.AddSingleton<ISalesOrderLookup, SalesOrderLookup>();
     }
 }

@@ -28,6 +28,7 @@
     <Project Path="src/Modules/Production/Dotnetstore.PersonalApp.Modules.Production/Dotnetstore.PersonalApp.Modules.Production.csproj" />
     <Project Path="src/Modules/Sales/Dotnetstore.PersonalApp.Modules.Sales/Dotnetstore.PersonalApp.Modules.Sales.csproj" />
     <Project Path="src/Modules/Purchasing/Dotnetstore.PersonalApp.Modules.Purchasing/Dotnetstore.PersonalApp.Modules.Purchasing.csproj" />
+    <Project Path="src/Modules/Inventory/Dotnetstore.PersonalApp.Modules.Inventory/Dotnetstore.PersonalApp.Modules.Inventory.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Dotnetstore.PersonalApp.Integration.Tests/Dotnetstore.PersonalApp.Integration.Tests.csproj" />
@@ -46,5 +47,6 @@
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Production.Tests/Dotnetstore.PersonalApp.Modules.Production.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Sales.Tests/Dotnetstore.PersonalApp.Modules.Sales.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Purchasing.Tests/Dotnetstore.PersonalApp.Modules.Purchasing.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Inventory.Tests/Dotnetstore.PersonalApp.Modules.Inventory.Tests.csproj" />
   </Folder>
 </Solution>

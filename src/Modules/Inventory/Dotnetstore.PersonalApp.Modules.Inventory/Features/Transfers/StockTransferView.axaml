@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Inventory.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Inventory.Features.Transfers"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Inventory.Features.Transfers.StockTransferView"
+             x:DataType="vm:StockTransferViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+
+        <StackPanel Spacing="4">
+            <TextBlock Text="{loc:Tr StockTransfer_Title}" Classes="h1"/>
+            <TextBlock Text="{loc:Tr StockTransfer_Subtitle}" Classes="muted"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" Classes="card" Padding="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="460">
+            <StackPanel Spacing="14">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StockTransfer_Product}" Classes="label"/>
+                    <ComboBox ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="feat:OptionDto">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StockTransfer_From}" Classes="label"/>
+                    <ComboBox ItemsSource="{Binding Locations}" SelectedItem="{Binding FromLocation}" HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="feat:OptionDto">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StockTransfer_To}" Classes="label"/>
+                    <ComboBox ItemsSource="{Binding Locations}" SelectedItem="{Binding ToLocation}" HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="feat:OptionDto">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StockTransfer_Quantity}" Classes="label"/>
+                    <NumericUpDown Value="{Binding Quantity}" Minimum="0" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr StockTransfer_Reference}" Classes="label"/>
+                    <TextBox Text="{Binding Reference}" MaxLength="100"/>
+                </StackPanel>
+
+                <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+                <TextBlock Text="{Binding StatusMessage}" Classes="caption"
+                           IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+                <Button Content="{loc:Tr StockTransfer_Transfer}" Classes="primary" HorizontalAlignment="Right" Command="{Binding TransferCommand}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>

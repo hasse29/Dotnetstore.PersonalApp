@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Inventory.Features.Warehouses"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="620"
+             x:Class="Dotnetstore.PersonalApp.Modules.Inventory.Features.Warehouses.WarehouseDetailView"
+             x:DataType="vm:WarehouseDetailViewModel">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="20">
+
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr WarehouseDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Warehouse.Name}" Classes="h2"/>
+                <TextBlock Text="{Binding Warehouse.Code}" Classes="muted"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Row="1" Padding="0">
+            <TabItem Header="{loc:Tr WarehouseDetail_TabInformation}">
+                <Border Classes="card" Padding="28" Margin="0,20,0,0" VerticalAlignment="Top">
+                    <WrapPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr WarehouseField_Code}" Classes="label"/>
+                            <TextBlock Text="{Binding Warehouse.Code}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr WarehouseField_Name}" Classes="label"/>
+                            <TextBlock Text="{Binding Warehouse.Name}"/>
+                        </StackPanel>
+                        <StackPanel Width="260" Margin="0,0,16,14">
+                            <TextBlock Text="{loc:Tr WarehouseField_Address}" Classes="label"/>
+                            <TextBlock Text="{Binding Warehouse.Address}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <CheckBox IsChecked="{Binding Warehouse.Active}" IsEnabled="False" Content="{loc:Tr WarehouseField_Active}"/>
+                    </WrapPanel>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="{loc:Tr WarehouseDetail_TabLocations}">
+                <ContentControl Content="{Binding Locations}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr WarehouseDetail_TabCounts}">
+                <ContentControl Content="{Binding Counts}" Margin="0,20,0,0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

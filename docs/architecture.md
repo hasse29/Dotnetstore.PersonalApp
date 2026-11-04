@@ -31,7 +31,7 @@ installer/                           Inno Setup script and build script
 - Modules reference only `Shared`, never each other. The Host references modules and wires them up; modules never reference the Host.
 - Modules contribute pages to the shell through `IModulePage` (defined in `Shared`).
 - Each module has its own `DbContext` and database; never share tables or reference another module's DbContext or internals.
-- Cross-module data and UI goes through contracts in `Shared`: lookups (`IClientLookup`, `IUserLookup`, `IProductLookup`, `IShipMethodLookup`, ...; the newer ones derive from `IReferenceLookup` in `Shared/Lookups`), panel factories (`IObjectAddressesPanelFactory`, ...), `IContactInfoSource`, `ISystemMailSender`, and integration events.
+- Cross-module data and UI goes through contracts in `Shared`: lookups (`IClientLookup`, `IUserLookup`, `IProductLookup`, `IShipMethodLookup`, `IPurchaseOrderLookup` and `ISalesOrderLookup` (both `IOrderLookup`), ...; the newer ones derive from `IReferenceLookup` in `Shared/Lookups`), panel factories (`IObjectAddressesPanelFactory`, ...), `IContactInfoSource`, `ISystemMailSender`, and integration events.
 - `Shared` holds contracts and cross-cutting primitives only, no business logic.
 - Handlers, view models, consumers and DbContexts are `internal`; only the module registration extension is `public`. Everything in the Host is `internal` (tests use `InternalsVisibleTo`).
 - View models contain no UI types (`Window`, `Control`); handlers contain no view-model types. Views live next to their view model, and `ViewLocator` maps `*ViewModel` to `*View` by name.
@@ -57,7 +57,8 @@ Delivery is synchronous with no outbox, so a crash between a delete and its cons
 | `ContactPersonDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers |
 | `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers, Schedule, Grades |
 | `SubjectDeleted` | Subjects | Schedule, Grades |
-| `ProductDeleted` | Production | Purchasing (vendor prices), Sales (offer products) |
+| `ProductDeleted` | Production | Purchasing (vendor prices), Sales (offer products), Inventory (stock levels) |
+| `GoodsReceived` | Inventory | Purchasing (received and stocked quantity on the order line) |
 | `UserPhotoChanged` | Users | Host (`UserPhotoNotifier`) |
 
 ## Startup and authentication

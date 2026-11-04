@@ -18,6 +18,7 @@ using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
 using Dotnetstore.PersonalApp.Modules.Production;
 using Dotnetstore.PersonalApp.Modules.Sales;
 using Dotnetstore.PersonalApp.Modules.Purchasing;
+using Dotnetstore.PersonalApp.Modules.Inventory;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
 using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
@@ -73,6 +74,7 @@ internal static class CompositionRoot
         services.AddProductionModule(Path.Combine(dataDirectory, "production.db"));
         services.AddSalesModule(Path.Combine(dataDirectory, "sales.db"));
         services.AddPurchasingModule(Path.Combine(dataDirectory, "purchasing.db"));
+        services.AddInventoryModule(Path.Combine(dataDirectory, "inventory.db"));
         services.AddUsersModule(Path.Combine(dataDirectory, "users.db"));
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });

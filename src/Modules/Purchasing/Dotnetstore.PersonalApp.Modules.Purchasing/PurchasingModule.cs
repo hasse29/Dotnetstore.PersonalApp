@@ -97,5 +97,7 @@ public static class PurchasingModule
         services.AddSingleton<IIntegrationEventConsumer<ClientDeleted>, ClientDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<ProductDeleted>, ProductDeletedConsumer>();
         services.AddSingleton<IIntegrationEventConsumer<UserDeleted>, UserDeletedConsumer>();
+        services.AddSingleton<IPurchaseOrderLookup, PurchaseOrderLookup>();
+        services.AddSingleton<IIntegrationEventConsumer<GoodsReceived>, GoodsReceivedConsumer>();
     }
 }

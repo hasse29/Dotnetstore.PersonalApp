@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:feat="using:Dotnetstore.PersonalApp.Modules.Inventory.Features"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Dotnetstore.PersonalApp.Modules.Inventory.Features.InventoryCountLines"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Inventory.Features.InventoryCountLines.InventoryCountLineEditorView"
+             x:DataType="vm:InventoryCountLineEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel IsVisible="{Binding !IsParentFixed}">
+                <TextBlock Text="{loc:Tr InventoryCountLineField_InventoryCount}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding InventoryCountOptions}" SelectedItem="{Binding SelectedInventoryCount}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr InventoryCountLineField_Product}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding ProductOptions}" SelectedItem="{Binding SelectedProduct}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr InventoryCountLineField_Location}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding LocationOptions}" SelectedItem="{Binding SelectedLocation}" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="feat:OptionDto">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr InventoryCountLineField_ExpectedQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding ExpectedQty}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr InventoryCountLineField_CountedQty}" Classes="label"/>
+                <NumericUpDown Value="{Binding CountedQty}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="0.00" ShowButtonSpinner="False"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty} }"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr InventoryCountLineEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>
