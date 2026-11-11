@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Credits;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
@@ -50,18 +51,26 @@ public static class SalesModule
         services.AddSingleton<CreateInvoiceFromOrder.Handler>();
         services.AddSingleton<GetInvoice.Handler>();
         services.AddSingleton<ListInvoices.Handler>();
-        services.AddSingleton<MarkInvoicePaid.Handler>();
+        services.AddSingleton<RecordPayment.Handler>();
+        services.AddSingleton<ApplyCredit.Handler>();
+        services.AddSingleton<DeletePayment.Handler>();
+
+        services.AddSingleton<ListCredits.Handler>();
+        services.AddSingleton<GetCustomerCredit.Handler>();
+        services.AddSingleton<RefundCredit.Handler>();
         services.AddSingleton<CancelInvoice.Handler>();
 
         services.AddTransient<OffersViewModel>();
         services.AddTransient<OrdersViewModel>();
         services.AddTransient<PickListsViewModel>();
         services.AddTransient<InvoicesViewModel>();
+        services.AddTransient<CreditsViewModel>();
         services.AddTransient<CustomersViewModel>();
         services.AddSingleton<IModulePage, OffersPage>();
         services.AddSingleton<IModulePage, OrdersPage>();
         services.AddSingleton<IModulePage, PickListsPage>();
         services.AddSingleton<IModulePage, InvoicesPage>();
+        services.AddSingleton<IModulePage, CreditsPage>();
         services.AddSingleton<IModulePage, CustomersPage>();
 
         services.AddSingleton(new ModuleInfo("sales", "Sales_Title"));

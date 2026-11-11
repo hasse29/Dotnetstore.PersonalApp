@@ -209,14 +209,12 @@
   <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>已取消</value></data>
   <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>已逾期</value></data>
   <data name="InvoiceScreen_Back" xml:space="preserve"><value>发票</value></data>
-  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>标记为已付款</value></data>
   <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>取消发票</value></data>
   <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>取消此发票？之后可以重新为订单开票。</value></data>
   <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>是，取消</value></data>
   <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>保留发票</value></data>
   <data name="InvoiceScreen_Customer" xml:space="preserve"><value>客户</value></data>
   <data name="InvoiceScreen_Dates" xml:space="preserve"><value>开票日期 {0}，到期 {1}</value></data>
-  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>付款日期 {0}</value></data>
   <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>来自订单 {0}</value></data>
   <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>描述</value></data>
   <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>数量</value></data>
@@ -226,7 +224,6 @@
   <data name="InvoiceScreen_Net" xml:space="preserve"><value>不含税</value></data>
   <data name="InvoiceScreen_Vat" xml:space="preserve"><value>税额</value></data>
   <data name="InvoiceScreen_Total" xml:space="preserve"><value>合计</value></data>
-  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>发票已标记为已付款。</value></data>
   <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>发票已取消。</value></data>
   <data name="OrderStatus_Invoiced" xml:space="preserve"><value>已开票</value></data>
   <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>创建发票</value></data>
@@ -236,8 +233,45 @@
   <data name="Error_invoice_not_found" xml:space="preserve"><value>发票已不存在。</value></data>
   <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>只有可开票的订单才能开票。</value></data>
   <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>付款期限必须在 0 到 365 天之间。</value></data>
-  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>只有未付款的发票才能这样更改。</value></data>
-  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>发票不能早于开票日期付款。</value></data>
   <data name="Error_order_invoiced" xml:space="preserve"><value>订单已开票。请先取消发票。</value></data>
   <data name="Error_picklist_locked" xml:space="preserve"><value>订单已开票，因此无法更改拣货。</value></data>
+  <data name="InvoiceStatus_PartiallyPaid" xml:space="preserve"><value>部分付款</value></data>
+  <data name="Invoices_ColOutstanding" xml:space="preserve"><value>待付</value></data>
+  <data name="InvoiceScreen_Payments" xml:space="preserve"><value>付款</value></data>
+  <data name="InvoiceScreen_Paid" xml:space="preserve"><value>已付</value></data>
+  <data name="InvoiceScreen_Outstanding" xml:space="preserve"><value>待付</value></data>
+  <data name="InvoiceScreen_PaymentNote" xml:space="preserve"><value>备注（例如银行参考号）</value></data>
+  <data name="InvoiceScreen_RecordPayment" xml:space="preserve"><value>登记付款</value></data>
+  <data name="InvoiceScreen_PaymentHint" xml:space="preserve"><value>日期留空表示今天。可以登记多笔付款。超出待付金额的部分将成为客户的余额。</value></data>
+  <data name="InvoiceScreen_ApplyCredit" xml:space="preserve"><value>使用余额</value></data>
+  <data name="InvoiceScreen_Credit" xml:space="preserve"><value>客户有 {0} 的余额。</value></data>
+  <data name="InvoiceScreen_PaymentExcess" xml:space="preserve"><value>{0} 转为余额</value></data>
+  <data name="InvoiceScreen_PaymentRecorded" xml:space="preserve"><value>付款已登记。</value></data>
+  <data name="InvoiceScreen_Overpaid" xml:space="preserve"><value>客户多付了。{0} 现已成为客户余额：可用于其他发票，或在“客户余额”中退还。</value></data>
+  <data name="InvoiceScreen_CreditApplied" xml:space="preserve"><value>已将 {0} 的余额用于此发票。</value></data>
+  <data name="InvoiceScreen_PaymentRemoved" xml:space="preserve"><value>付款已删除。</value></data>
+  <data name="PaymentKind_Received" xml:space="preserve"><value>付款</value></data>
+  <data name="PaymentKind_CreditApplied" xml:space="preserve"><value>使用余额</value></data>
+  <data name="CreditEntryKind_Overpayment" xml:space="preserve"><value>多付</value></data>
+  <data name="CreditEntryKind_Applied" xml:space="preserve"><value>用于发票</value></data>
+  <data name="CreditEntryKind_Refund" xml:space="preserve"><value>已退款</value></data>
+  <data name="Credits_Title" xml:space="preserve"><value>客户余额</value></data>
+  <data name="Credits_Subtitle" xml:space="preserve"><value>多付发票金额的客户。可将余额用于其他发票，或在此退还。</value></data>
+  <data name="Credits_ColCustomer" xml:space="preserve"><value>客户</value></data>
+  <data name="Credits_ColBalance" xml:space="preserve"><value>余额</value></data>
+  <data name="Credits_Count" xml:space="preserve"><value>{0} 位客户有余额</value></data>
+  <data name="Credits_Ledger" xml:space="preserve"><value>记录</value></data>
+  <data name="Credits_RefundHeading" xml:space="preserve"><value>退还</value></data>
+  <data name="Credits_RefundNote" xml:space="preserve"><value>备注（例如银行参考号）</value></data>
+  <data name="Credits_Refund" xml:space="preserve"><value>登记退款</value></data>
+  <data name="Credits_RefundHint" xml:space="preserve"><value>款项在应用之外支付。此处仅登记已退款。日期留空表示今天。</value></data>
+  <data name="Credits_Refunded" xml:space="preserve"><value>已登记退款 {0}。</value></data>
+  <data name="Error_payment_amount_invalid" xml:space="preserve"><value>金额必须大于 0 且不超过 10 000 000。</value></data>
+  <data name="Error_payment_date_invalid" xml:space="preserve"><value>付款日期不能早于发票日期。</value></data>
+  <data name="Error_payment_exceeds_outstanding" xml:space="preserve"><value>发票所需金额更少。最多使用待付金额。</value></data>
+  <data name="Error_payment_not_found" xml:space="preserve"><value>该付款已不存在。</value></data>
+  <data name="Error_invoice_cancelled" xml:space="preserve"><value>已取消的发票无法付款。</value></data>
+  <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>发票已取消。</value></data>
+  <data name="Error_invoice_has_payments" xml:space="preserve"><value>发票已有付款。请先删除付款再取消。</value></data>
+  <data name="Error_credit_insufficient" xml:space="preserve"><value>客户余额不足，或此付款产生的余额已被使用或退还。</value></data>
 </root>

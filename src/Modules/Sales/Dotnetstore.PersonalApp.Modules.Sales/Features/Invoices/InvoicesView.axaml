@@ -41,20 +41,21 @@
 
                     <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                             BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
-                        <Grid ColumnDefinitions="1.3*,2*,1*,1*,1.2*,1.2*">
+                        <Grid ColumnDefinitions="1.3*,2*,1*,1*,1.3*,1.2*,1.2*">
                             <TextBlock Text="{loc:Tr Invoices_ColNumber}" Classes="column"/>
                             <TextBlock Grid.Column="1" Text="{loc:Tr Invoices_ColCustomer}" Classes="column"/>
                             <TextBlock Grid.Column="2" Text="{loc:Tr Invoices_ColDate}" Classes="column"/>
                             <TextBlock Grid.Column="3" Text="{loc:Tr Invoices_ColDueDate}" Classes="column"/>
                             <TextBlock Grid.Column="4" Text="{loc:Tr Invoices_ColStatus}" Classes="column"/>
                             <TextBlock Grid.Column="5" Text="{loc:Tr Invoices_ColTotal}" Classes="column"/>
+                            <TextBlock Grid.Column="6" Text="{loc:Tr Invoices_ColOutstanding}" Classes="column"/>
                         </Grid>
                     </Border>
 
                     <ListBox Grid.Row="2" Classes="table" ItemsSource="{Binding Invoices}" SelectedItem="{Binding SelectedInvoice}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="invoices:InvoiceRow">
-                                <Grid ColumnDefinitions="1.3*,2*,1*,1*,1.2*,1.2*">
+                                <Grid ColumnDefinitions="1.3*,2*,1*,1*,1.3*,1.2*,1.2*">
                                     <TextBlock Text="{Binding Invoice.Number}" FontWeight="SemiBold"
                                                Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
                                     <TextBlock Grid.Column="1" Text="{Binding Invoice.CustomerName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
@@ -63,6 +64,7 @@
                                     <TextBlock Grid.Column="4" Text="{Binding StatusText}" Classes="muted"/>
                                     <TextBlock Grid.Column="5" Text="{Binding TotalText}" FontWeight="SemiBold"
                                                Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Grid.Column="6" Text="{Binding OutstandingText}" Classes="muted"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

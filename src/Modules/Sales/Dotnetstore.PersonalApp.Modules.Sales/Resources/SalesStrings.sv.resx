@@ -209,14 +209,12 @@
   <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>Annullerad</value></data>
   <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>Förfallen</value></data>
   <data name="InvoiceScreen_Back" xml:space="preserve"><value>Fakturor</value></data>
-  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>Markera som betald</value></data>
   <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>Annullera faktura</value></data>
   <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>Annullera fakturan? Ordern kan då faktureras igen.</value></data>
   <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>Ja, annullera</value></data>
   <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>Behåll fakturan</value></data>
   <data name="InvoiceScreen_Customer" xml:space="preserve"><value>Kund</value></data>
   <data name="InvoiceScreen_Dates" xml:space="preserve"><value>Fakturadatum {0}, förfaller {1}</value></data>
-  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>Betald {0}</value></data>
   <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>Från order {0}</value></data>
   <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
   <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>Antal</value></data>
@@ -226,7 +224,6 @@
   <data name="InvoiceScreen_Net" xml:space="preserve"><value>Netto</value></data>
   <data name="InvoiceScreen_Vat" xml:space="preserve"><value>Moms</value></data>
   <data name="InvoiceScreen_Total" xml:space="preserve"><value>Totalt</value></data>
-  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>Fakturan är markerad som betald.</value></data>
   <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>Fakturan är annullerad.</value></data>
   <data name="OrderStatus_Invoiced" xml:space="preserve"><value>Fakturerad</value></data>
   <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>Skapa faktura</value></data>
@@ -236,8 +233,45 @@
   <data name="Error_invoice_not_found" xml:space="preserve"><value>Fakturan finns inte längre.</value></data>
   <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>Bara en order som är redo att faktureras kan faktureras.</value></data>
   <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>Betalningsvillkoren måste vara mellan 0 och 365 dagar.</value></data>
-  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>Bara en obetald faktura kan ändras på det här sättet.</value></data>
-  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>Fakturan kan inte betalas före fakturadatumet.</value></data>
   <data name="Error_order_invoiced" xml:space="preserve"><value>Ordern är fakturerad. Annullera fakturan först.</value></data>
   <data name="Error_picklist_locked" xml:space="preserve"><value>Ordern är fakturerad, så plockningen kan inte ändras.</value></data>
+  <data name="InvoiceStatus_PartiallyPaid" xml:space="preserve"><value>Delvis betald</value></data>
+  <data name="Invoices_ColOutstanding" xml:space="preserve"><value>Kvar att betala</value></data>
+  <data name="InvoiceScreen_Payments" xml:space="preserve"><value>Betalningar</value></data>
+  <data name="InvoiceScreen_Paid" xml:space="preserve"><value>Betalt</value></data>
+  <data name="InvoiceScreen_Outstanding" xml:space="preserve"><value>Kvar att betala</value></data>
+  <data name="InvoiceScreen_PaymentNote" xml:space="preserve"><value>Anteckning (till exempel bankreferens)</value></data>
+  <data name="InvoiceScreen_RecordPayment" xml:space="preserve"><value>Registrera betalning</value></data>
+  <data name="InvoiceScreen_PaymentHint" xml:space="preserve"><value>Lämna datumet tomt för idag. Flera betalningar kan registreras. Allt över det som återstår att betala blir tillgodohavande för kunden.</value></data>
+  <data name="InvoiceScreen_ApplyCredit" xml:space="preserve"><value>Använd tillgodohavande</value></data>
+  <data name="InvoiceScreen_Credit" xml:space="preserve"><value>Kunden har {0} i tillgodohavande.</value></data>
+  <data name="InvoiceScreen_PaymentExcess" xml:space="preserve"><value>{0} blev tillgodohavande</value></data>
+  <data name="InvoiceScreen_PaymentRecorded" xml:space="preserve"><value>Betalningen är registrerad.</value></data>
+  <data name="InvoiceScreen_Overpaid" xml:space="preserve"><value>Kunden betalade för mycket. {0} är nu tillgodohavande hos kunden: använd det på en annan faktura eller betala tillbaka under Tillgodohavanden.</value></data>
+  <data name="InvoiceScreen_CreditApplied" xml:space="preserve"><value>{0} av tillgodohavandet är använt på fakturan.</value></data>
+  <data name="InvoiceScreen_PaymentRemoved" xml:space="preserve"><value>Betalningen är borttagen.</value></data>
+  <data name="PaymentKind_Received" xml:space="preserve"><value>Betalning</value></data>
+  <data name="PaymentKind_CreditApplied" xml:space="preserve"><value>Använt tillgodohavande</value></data>
+  <data name="CreditEntryKind_Overpayment" xml:space="preserve"><value>Överbetalning</value></data>
+  <data name="CreditEntryKind_Applied" xml:space="preserve"><value>Använt på faktura</value></data>
+  <data name="CreditEntryKind_Refund" xml:space="preserve"><value>Återbetalt</value></data>
+  <data name="Credits_Title" xml:space="preserve"><value>Tillgodohavanden</value></data>
+  <data name="Credits_Subtitle" xml:space="preserve"><value>Kunder som betalat mer än sina fakturor. Använd tillgodohavandet på en annan faktura eller betala tillbaka här.</value></data>
+  <data name="Credits_ColCustomer" xml:space="preserve"><value>Kund</value></data>
+  <data name="Credits_ColBalance" xml:space="preserve"><value>Tillgodohavande</value></data>
+  <data name="Credits_Count" xml:space="preserve"><value>{0} kunder med tillgodohavande</value></data>
+  <data name="Credits_Ledger" xml:space="preserve"><value>Historik</value></data>
+  <data name="Credits_RefundHeading" xml:space="preserve"><value>Betala tillbaka</value></data>
+  <data name="Credits_RefundNote" xml:space="preserve"><value>Anteckning (till exempel bankreferens)</value></data>
+  <data name="Credits_Refund" xml:space="preserve"><value>Registrera återbetalning</value></data>
+  <data name="Credits_RefundHint" xml:space="preserve"><value>Pengarna betalas utanför appen. Det här registrerar att de är återbetalda. Lämna datumet tomt för idag.</value></data>
+  <data name="Credits_Refunded" xml:space="preserve"><value>{0} är registrerat som återbetalt.</value></data>
+  <data name="Error_payment_amount_invalid" xml:space="preserve"><value>Beloppet måste vara större än 0 och högst 10 000 000.</value></data>
+  <data name="Error_payment_date_invalid" xml:space="preserve"><value>Betalningen kan inte vara daterad före fakturan.</value></data>
+  <data name="Error_payment_exceeds_outstanding" xml:space="preserve"><value>Fakturan behöver mindre än så. Använd högst det som återstår att betala.</value></data>
+  <data name="Error_payment_not_found" xml:space="preserve"><value>Betalningen finns inte längre.</value></data>
+  <data name="Error_invoice_cancelled" xml:space="preserve"><value>En annullerad faktura kan inte betalas.</value></data>
+  <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>Fakturan är redan annullerad.</value></data>
+  <data name="Error_invoice_has_payments" xml:space="preserve"><value>Fakturan har betalningar. Ta bort dem innan du annullerar den.</value></data>
+  <data name="Error_credit_insufficient" xml:space="preserve"><value>Kunden har inte så mycket tillgodohavande, eller så har tillgodohavandet från betalningen redan använts eller betalats tillbaka.</value></data>
 </root>

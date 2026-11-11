@@ -17,6 +17,46 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.CreditEntry", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(14, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("PaymentId");
+
+                    b.ToTable("CreditEntries", (string)null);
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -114,9 +154,6 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.Property<string>("OrderNumber")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateOnly?>("PaidDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Reference")
@@ -406,6 +443,45 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.ToTable("OrderLines", (string)null);
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(14, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Excess")
+                        .HasPrecision(14, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("InvoiceId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("InvoicePayments", (string)null);
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickAllocation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -503,6 +579,15 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.ToTable("PickListLines", (string)null);
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.CreditEntry", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", b =>
                 {
                     b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", null)
@@ -569,6 +654,15 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Payment", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickAllocation", b =>
                 {
                     b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickListLine", null)
@@ -599,6 +693,8 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", b =>
                 {
                     b.Navigation("Lines");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Offer", b =>

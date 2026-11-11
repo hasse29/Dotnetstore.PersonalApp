@@ -22,9 +22,7 @@
                     <TextBlock Text="{Binding Heading}" Classes="h2"/>
                     <TextBlock Text="{Binding StatusText}" Classes="muted"/>
                 </StackPanel>
-                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" IsVisible="{Binding IsUnpaid}">
-                    <Button Content="{loc:Tr InvoiceScreen_MarkPaid}" Classes="primary" Command="{Binding MarkPaidCommand}"
-                            IsVisible="{Binding !IsConfirmingCancel}"/>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" IsVisible="{Binding CanCancel}">
                     <Button Content="{loc:Tr InvoiceScreen_Cancel}" Classes="link-danger" Command="{Binding RequestCancelCommand}"
                             IsVisible="{Binding !IsConfirmingCancel}"/>
                     <TextBlock Text="{loc:Tr InvoiceScreen_ConfirmCancel}" VerticalAlignment="Center" Classes="muted"
@@ -44,12 +42,60 @@
                     </StackPanel>
                     <StackPanel Grid.Column="1" Spacing="4">
                         <TextBlock Text="{Binding DatesText}"/>
-                        <TextBlock Text="{Binding PaidText}" IsVisible="{Binding IsPaid}"/>
                         <TextBlock Text="{Binding OrderText}" Classes="muted"/>
                         <TextBlock Text="{Binding Reference}" Classes="muted"
                                    IsVisible="{Binding Reference, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     </StackPanel>
                 </Grid>
+            </Border>
+
+            <Border Classes="card" Padding="24" IsVisible="{Binding CanPay}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="{loc:Tr InvoiceScreen_Payments}" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Spacing="24">
+                        <TextBlock>
+                            <Run Text="{loc:Tr InvoiceScreen_Paid}" Classes="muted"/>
+                            <Run Text="{Binding PaidText}" FontWeight="SemiBold"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="{loc:Tr InvoiceScreen_Outstanding}" Classes="muted"/>
+                            <Run Text="{Binding OutstandingText}" FontWeight="SemiBold"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <ItemsControl ItemsSource="{Binding Payments}" IsVisible="{Binding HasPayments}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="invoices:PaymentRow">
+                                <Grid ColumnDefinitions="*,3*,1.2*,2*,Auto" Margin="0,4">
+                                    <TextBlock Text="{Binding DateText}" Classes="muted" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding KindText}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding AmountText}" FontWeight="SemiBold" VerticalAlignment="Center"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Grid.Column="3" Text="{Binding ExcessText}" Classes="muted" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="4" Classes="subtle" VerticalAlignment="Center"
+                                            Command="{Binding $parent[ItemsControl].((invoices:InvoiceScreenViewModel)DataContext).DeletePaymentCommand}"
+                                            CommandParameter="{Binding}">
+                                        <PathIcon Width="12" Height="12" Data="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Grid ColumnDefinitions="180,180,*,Auto" ColumnSpacing="8">
+                        <NumericUpDown Value="{Binding PaymentAmount}" Minimum="0" Maximum="10000000" Increment="100" FormatString="N2"
+                                       ShowButtonSpinner="False" VerticalAlignment="Center"/>
+                        <CalendarDatePicker Grid.Column="1" SelectedDate="{Binding PaymentDate}" HorizontalAlignment="Stretch"/>
+                        <TextBox Grid.Column="2" Text="{Binding PaymentNote}" PlaceholderText="{loc:Tr InvoiceScreen_PaymentNote}"/>
+                        <Button Grid.Column="3" Content="{loc:Tr InvoiceScreen_RecordPayment}" Classes="primary" Command="{Binding RecordPaymentCommand}"/>
+                    </Grid>
+                    <TextBlock Text="{loc:Tr InvoiceScreen_PaymentHint}" Classes="caption" TextWrapping="Wrap"/>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12" IsVisible="{Binding CanApplyCredit}">
+                        <TextBlock Text="{Binding CreditText}" VerticalAlignment="Center"/>
+                        <Button Content="{loc:Tr InvoiceScreen_ApplyCredit}" Classes="subtle" Command="{Binding ApplyCreditCommand}"/>
+                    </StackPanel>
+                </StackPanel>
             </Border>
 
             <Border Classes="card">

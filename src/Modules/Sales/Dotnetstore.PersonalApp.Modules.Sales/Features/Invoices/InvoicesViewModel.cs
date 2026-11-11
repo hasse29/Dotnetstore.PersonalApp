@@ -9,7 +9,7 @@ using Dotnetstore.PersonalApp.Shared.Mvvm;
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 
 /// <summary>An invoice as the list shows it: the DTO plus its texts in the current UI language.</summary>
-internal sealed record InvoiceRow(InvoiceDto Invoice, string StatusText, string DateText, string DueDateText, string TotalText);
+internal sealed record InvoiceRow(InvoiceDto Invoice, string StatusText, string DateText, string DueDateText, string TotalText, string OutstandingText);
 
 internal sealed record InvoiceStatusOption(InvoiceStatus? Status, string Label);
 
@@ -18,7 +18,9 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
 {
     private readonly ListInvoices.Handler _list;
     private readonly GetInvoice.Handler _get;
-    private readonly MarkInvoicePaid.Handler _markPaid;
+    private readonly RecordPayment.Handler _recordPayment;
+    private readonly ApplyCredit.Handler _applyCredit;
+    private readonly DeletePayment.Handler _deletePayment;
     private readonly CancelInvoice.Handler _cancel;
     private readonly ILocalizationService _localization;
     private readonly bool _ready;
@@ -26,13 +28,17 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
     public InvoicesViewModel(
         ListInvoices.Handler list,
         GetInvoice.Handler get,
-        MarkInvoicePaid.Handler markPaid,
+        RecordPayment.Handler recordPayment,
+        ApplyCredit.Handler applyCredit,
+        DeletePayment.Handler deletePayment,
         CancelInvoice.Handler cancel,
         ILocalizationService localization)
     {
         _list = list;
         _get = get;
-        _markPaid = markPaid;
+        _recordPayment = recordPayment;
+        _applyCredit = applyCredit;
+        _deletePayment = deletePayment;
         _cancel = cancel;
         _localization = localization;
 
@@ -74,7 +80,7 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
             return;
         }
 
-        var screen = new InvoiceScreenViewModel(value.Invoice.Id, _get, _markPaid, _cancel, _localization);
+        var screen = new InvoiceScreenViewModel(value.Invoice.Id, _get, _recordPayment, _applyCredit, _deletePayment, _cancel, _localization);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);
@@ -101,7 +107,8 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
                 _localization.Get(invoice.IsOverdue ? "InvoiceStatus_Overdue" : $"InvoiceStatus_{invoice.Status}"),
                 invoice.Date.ToString("d", CultureInfo.CurrentCulture),
                 invoice.DueDate.ToString("d", CultureInfo.CurrentCulture),
-                invoice.Total.ToString("N2", CultureInfo.CurrentCulture)));
+                invoice.Total.ToString("N2", CultureInfo.CurrentCulture),
+                invoice.Outstanding.ToString("N2", CultureInfo.CurrentCulture)));
         }
 
         StatusMessage = response.TotalCount > response.Items.Count

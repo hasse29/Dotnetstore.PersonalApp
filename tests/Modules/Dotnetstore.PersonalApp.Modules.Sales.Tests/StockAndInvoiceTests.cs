@@ -154,23 +154,6 @@ public sealed class StockAndInvoiceTests
     }
 
     [Fact]
-    public async Task MarksAnUnpaidInvoicePaidOnce()
-    {
-        using var fixture = new SalesFixture();
-        var order = await ReadyOrderAsync(fixture);
-        var invoice = (await fixture.CreateInvoice.HandleAsync(new CreateInvoiceFromOrder.Command(order.Order.Id), CancellationToken.None)).Value;
-
-        var early = await fixture.MarkPaid.HandleAsync(new MarkInvoicePaid.Command(invoice.Invoice.Id, new DateOnly(2026, 11, 9)), CancellationToken.None);
-        var paid = await fixture.MarkPaid.HandleAsync(new MarkInvoicePaid.Command(invoice.Invoice.Id), CancellationToken.None);
-        var again = await fixture.MarkPaid.HandleAsync(new MarkInvoicePaid.Command(invoice.Invoice.Id), CancellationToken.None);
-
-        early.Error.Code.ShouldBe("invoice_paid_date_invalid");
-        paid.Value.Invoice.Status.ShouldBe(InvoiceStatus.Paid);
-        paid.Value.Invoice.PaidDate.ShouldBe(new DateOnly(2026, 11, 10));
-        again.Error.Code.ShouldBe("invoice_not_unpaid");
-    }
-
-    [Fact]
     public async Task CancellingAnInvoiceReopensTheOrderAndTheNumberIsNotReused()
     {
         using var fixture = new SalesFixture();
@@ -195,7 +178,7 @@ public sealed class StockAndInvoiceTests
         var two = await ReadyOrderAsync(fixture);
         var invoiceOne = (await fixture.CreateInvoice.HandleAsync(new CreateInvoiceFromOrder.Command(one.Order.Id), CancellationToken.None)).Value;
         await fixture.CreateInvoice.HandleAsync(new CreateInvoiceFromOrder.Command(two.Order.Id), CancellationToken.None);
-        await fixture.MarkPaid.HandleAsync(new MarkInvoicePaid.Command(invoiceOne.Invoice.Id), CancellationToken.None);
+        await fixture.RecordPayment.HandleAsync(new RecordPayment.Command(invoiceOne.Invoice.Id, invoiceOne.Totals.Gross), CancellationToken.None);
 
         var all = await fixture.ListInvoices.HandleAsync(new ListInvoices.Query(), CancellationToken.None);
         var unpaid = await fixture.ListInvoices.HandleAsync(new ListInvoices.Query(Status: InvoiceStatus.Unpaid), CancellationToken.None);

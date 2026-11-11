@@ -209,14 +209,12 @@
   <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>Cancelled</value></data>
   <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>Overdue</value></data>
   <data name="InvoiceScreen_Back" xml:space="preserve"><value>Invoices</value></data>
-  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>Mark as paid</value></data>
   <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>Cancel invoice</value></data>
   <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>Cancel this invoice? The order can then be invoiced again.</value></data>
   <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>Yes, cancel</value></data>
   <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>Keep invoice</value></data>
   <data name="InvoiceScreen_Customer" xml:space="preserve"><value>Customer</value></data>
   <data name="InvoiceScreen_Dates" xml:space="preserve"><value>Invoice date {0}, due {1}</value></data>
-  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>Paid {0}</value></data>
   <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>From order {0}</value></data>
   <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>Description</value></data>
   <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>Quantity</value></data>
@@ -226,7 +224,6 @@
   <data name="InvoiceScreen_Net" xml:space="preserve"><value>Net</value></data>
   <data name="InvoiceScreen_Vat" xml:space="preserve"><value>VAT</value></data>
   <data name="InvoiceScreen_Total" xml:space="preserve"><value>Total</value></data>
-  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>The invoice is marked as paid.</value></data>
   <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>The invoice is cancelled.</value></data>
   <data name="OrderStatus_Invoiced" xml:space="preserve"><value>Invoiced</value></data>
   <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>Create invoice</value></data>
@@ -236,8 +233,45 @@
   <data name="Error_invoice_not_found" xml:space="preserve"><value>The invoice no longer exists.</value></data>
   <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>Only an order that is ready to invoice can be invoiced.</value></data>
   <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>The payment terms must be between 0 and 365 days.</value></data>
-  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>Only an unpaid invoice can be changed this way.</value></data>
-  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>The invoice cannot be paid before its date.</value></data>
   <data name="Error_order_invoiced" xml:space="preserve"><value>The order has been invoiced. Cancel the invoice first.</value></data>
   <data name="Error_picklist_locked" xml:space="preserve"><value>The order has been invoiced, so the picking cannot be changed.</value></data>
+  <data name="InvoiceStatus_PartiallyPaid" xml:space="preserve"><value>Partially paid</value></data>
+  <data name="Invoices_ColOutstanding" xml:space="preserve"><value>Left to pay</value></data>
+  <data name="InvoiceScreen_Payments" xml:space="preserve"><value>Payments</value></data>
+  <data name="InvoiceScreen_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="InvoiceScreen_Outstanding" xml:space="preserve"><value>Left to pay</value></data>
+  <data name="InvoiceScreen_PaymentNote" xml:space="preserve"><value>Note (for example bank reference)</value></data>
+  <data name="InvoiceScreen_RecordPayment" xml:space="preserve"><value>Record payment</value></data>
+  <data name="InvoiceScreen_PaymentHint" xml:space="preserve"><value>Leave the date empty for today. Several payments can be recorded. Anything above what is left to pay becomes credit for the customer.</value></data>
+  <data name="InvoiceScreen_ApplyCredit" xml:space="preserve"><value>Use credit</value></data>
+  <data name="InvoiceScreen_Credit" xml:space="preserve"><value>The customer has {0} in credit.</value></data>
+  <data name="InvoiceScreen_PaymentExcess" xml:space="preserve"><value>{0} became credit</value></data>
+  <data name="InvoiceScreen_PaymentRecorded" xml:space="preserve"><value>The payment is recorded.</value></data>
+  <data name="InvoiceScreen_Overpaid" xml:space="preserve"><value>The customer paid too much. {0} is now credit on the customer: use it on another invoice, or pay it back under Credits.</value></data>
+  <data name="InvoiceScreen_CreditApplied" xml:space="preserve"><value>{0} of credit is used on the invoice.</value></data>
+  <data name="InvoiceScreen_PaymentRemoved" xml:space="preserve"><value>The payment is removed.</value></data>
+  <data name="PaymentKind_Received" xml:space="preserve"><value>Payment</value></data>
+  <data name="PaymentKind_CreditApplied" xml:space="preserve"><value>Credit used</value></data>
+  <data name="CreditEntryKind_Overpayment" xml:space="preserve"><value>Overpayment</value></data>
+  <data name="CreditEntryKind_Applied" xml:space="preserve"><value>Used on an invoice</value></data>
+  <data name="CreditEntryKind_Refund" xml:space="preserve"><value>Paid back</value></data>
+  <data name="Credits_Title" xml:space="preserve"><value>Credits</value></data>
+  <data name="Credits_Subtitle" xml:space="preserve"><value>Customers who paid more than their invoices. Use the credit on another invoice, or pay it back here.</value></data>
+  <data name="Credits_ColCustomer" xml:space="preserve"><value>Customer</value></data>
+  <data name="Credits_ColBalance" xml:space="preserve"><value>Credit</value></data>
+  <data name="Credits_Count" xml:space="preserve"><value>{0} customers with credit</value></data>
+  <data name="Credits_Ledger" xml:space="preserve"><value>History</value></data>
+  <data name="Credits_RefundHeading" xml:space="preserve"><value>Pay back</value></data>
+  <data name="Credits_RefundNote" xml:space="preserve"><value>Note (for example bank reference)</value></data>
+  <data name="Credits_Refund" xml:space="preserve"><value>Record refund</value></data>
+  <data name="Credits_RefundHint" xml:space="preserve"><value>The money is paid outside the app. This records that it was paid back. Leave the date empty for today.</value></data>
+  <data name="Credits_Refunded" xml:space="preserve"><value>{0} is recorded as paid back.</value></data>
+  <data name="Error_payment_amount_invalid" xml:space="preserve"><value>The amount must be more than 0 and at most 10 000 000.</value></data>
+  <data name="Error_payment_date_invalid" xml:space="preserve"><value>The payment cannot be dated before the invoice.</value></data>
+  <data name="Error_payment_exceeds_outstanding" xml:space="preserve"><value>The invoice needs less than that. Apply at most what is left to pay.</value></data>
+  <data name="Error_payment_not_found" xml:space="preserve"><value>The payment no longer exists.</value></data>
+  <data name="Error_invoice_cancelled" xml:space="preserve"><value>A cancelled invoice cannot be paid.</value></data>
+  <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>The invoice is already cancelled.</value></data>
+  <data name="Error_invoice_has_payments" xml:space="preserve"><value>The invoice has payments. Remove them before cancelling it.</value></data>
+  <data name="Error_credit_insufficient" xml:space="preserve"><value>The customer does not have that much credit, or the credit from this payment has already been used or paid back.</value></data>
 </root>

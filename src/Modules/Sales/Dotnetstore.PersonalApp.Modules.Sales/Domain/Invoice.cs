@@ -4,6 +4,7 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Domain;
 internal enum InvoiceStatus
 {
     Unpaid,
+    PartiallyPaid,
     Paid,
     Cancelled,
 }
@@ -36,12 +37,11 @@ internal sealed class Invoice
 
     public InvoiceStatus Status { get; set; }
 
-    /// <summary>When the payment arrived; set when the invoice is marked as paid.</summary>
-    public DateOnly? PaidDate { get; set; }
-
     public DateTimeOffset CreatedAt { get; set; }
 
     public List<InvoiceLine> Lines { get; set; } = [];
+
+    public List<Payment> Payments { get; set; } = [];
 }
 
 internal sealed class InvoiceLine

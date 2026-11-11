@@ -43,6 +43,7 @@ internal static class ListInvoices
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Include(i => i.Lines)
+                .Include(i => i.Payments)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 

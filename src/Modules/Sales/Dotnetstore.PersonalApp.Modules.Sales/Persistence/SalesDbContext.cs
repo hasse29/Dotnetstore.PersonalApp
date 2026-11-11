@@ -25,6 +25,10 @@ internal sealed class SalesDbContext(DbContextOptions<SalesDbContext> options) :
 
     public DbSet<InvoiceLine> InvoiceLines => Set<InvoiceLine>();
 
+    public DbSet<Payment> Payments => Set<Payment>();
+
+    public DbSet<CreditEntry> CreditEntries => Set<CreditEntry>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SalesDbContext).Assembly);

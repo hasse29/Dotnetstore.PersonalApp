@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Credits;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
@@ -41,7 +42,12 @@ internal sealed class SalesFixture : IDisposable
         CreateInvoice = new CreateInvoiceFromOrder.Handler(DbFactory, Clock);
         GetInvoice = new GetInvoice.Handler(DbFactory, Clock);
         ListInvoices = new ListInvoices.Handler(DbFactory, Clock);
-        MarkPaid = new MarkInvoicePaid.Handler(DbFactory, Clock);
+        RecordPayment = new RecordPayment.Handler(DbFactory, Clock);
+        ApplyCredit = new ApplyCredit.Handler(DbFactory, Clock);
+        DeletePayment = new DeletePayment.Handler(DbFactory, Clock);
+        ListCredits = new ListCredits.Handler(DbFactory);
+        GetCredit = new GetCustomerCredit.Handler(DbFactory);
+        RefundCredit = new RefundCredit.Handler(DbFactory, Clock);
         CancelInvoice = new CancelInvoice.Handler(DbFactory, Clock);
     }
 
@@ -91,7 +97,17 @@ internal sealed class SalesFixture : IDisposable
 
     public ListInvoices.Handler ListInvoices { get; }
 
-    public MarkInvoicePaid.Handler MarkPaid { get; }
+    public RecordPayment.Handler RecordPayment { get; }
+
+    public ApplyCredit.Handler ApplyCredit { get; }
+
+    public DeletePayment.Handler DeletePayment { get; }
+
+    public ListCredits.Handler ListCredits { get; }
+
+    public GetCustomerCredit.Handler GetCredit { get; }
+
+    public RefundCredit.Handler RefundCredit { get; }
 
     public CancelInvoice.Handler CancelInvoice { get; }
 

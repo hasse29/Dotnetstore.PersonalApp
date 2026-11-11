@@ -14,11 +14,11 @@ internal static class GetInvoice
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
-            var invoice = await db.Invoices.AsNoTracking().Include(i => i.Lines).FirstOrDefaultAsync(i => i.Id == query.Id, cancellationToken).ConfigureAwait(false);
+            var invoice = await InvoicePayments.LoadAsync(db, query.Id, cancellationToken).ConfigureAwait(false);
 
             return invoice is null
                 ? Error.NotFound("invoice_not_found", "Invoice not found.")
-                : InvoiceDetailDto.From(invoice, DateOnly.FromDateTime(clock.GetLocalNow().DateTime));
+                : await InvoicePayments.DetailAsync(db, invoice, DateOnly.FromDateTime(clock.GetLocalNow().DateTime), cancellationToken).ConfigureAwait(false);
         }
     }
 }
