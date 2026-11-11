@@ -7,7 +7,7 @@
 ![Avalonia 12](https://img.shields.io/badge/Avalonia-12-8B44AC)
 ![Platform: Windows](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)
 
-A personal desktop app for keeping track of clients, the time you work for them, your CVs and your mail. It is built from a teacher's point of view: a client is a school, and a user is a teacher who can work at several schools. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
+A personal desktop app for keeping track of clients, the time you work for them, your products and stock, your CVs and your mail. It is built from a teacher's point of view: a client is a school, and a user is a teacher who can work at several schools. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
 
 ## Features
 
@@ -26,6 +26,9 @@ A personal desktop app for keeping track of clients, the time you work for them,
   - **Excel export** of one client's reports for a year, one sheet per month.
   - **Kilometer summary** for a year, per client and month with totals, for tax reporting.
   - **Email the export** to the client or a contact person.
+- **Products**: hardware, software you make and consulting hours, with a product number, category, price, cost, VAT and kind-specific details. Each product has a detail page with a photo and its **supplier prices** (one price per supplier, with the supplier's own article number).
+- **Suppliers**: who you buy from, with contact details and an active flag.
+- **Stock**: **storage locations**, quantities per product and location, and a log of every movement (receive, issue, transfer). Products below their minimum stock are flagged. **Inventory counts** let you count what is on the shelves and post the differences as adjustments.
 - **CVs**: several CVs per user for different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, LinkedIn link and the contact details you choose per CV. Export to Word.
 - **Email**: SMTP and POP3 accounts (personal or shared system accounts), inbox with auto-refresh, reply, reply all, forward, drafts, sent mail, attachments and formatted HTML mail.
 - **Users and sign-in**: the first start creates the first user; users have a photo that shows in the sidebar and top bar.
