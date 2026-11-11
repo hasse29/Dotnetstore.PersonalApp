@@ -1,0 +1,111 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:orders="using:Dotnetstore.PersonalApp.Modules.Sales.Features.Orders"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="720"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.Orders.OrderScreenView"
+             x:DataType="orders:OrderScreenViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="16">
+                <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        <TextBlock Text="{loc:Tr OrderScreen_Back}"/>
+                    </StackPanel>
+                </Button>
+                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Heading}" Classes="h2"/>
+                    <TextBlock Text="{Binding StatusText}" Classes="muted"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" IsVisible="{Binding CanInvoice}">
+                    <TextBlock Text="{loc:Tr OrderScreen_PaymentDays}" VerticalAlignment="Center" Classes="muted"/>
+                    <NumericUpDown Value="{Binding PaymentDays}" Minimum="0" Maximum="365" Increment="5" FormatString="0" Width="130"/>
+                    <Button Content="{loc:Tr OrderScreen_CreateInvoice}" Classes="primary" Command="{Binding CreateInvoiceCommand}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" IsVisible="{Binding CanCancel}">
+                    <Button Content="{loc:Tr OrderScreen_Cancel}" Classes="link-danger" Command="{Binding RequestCancelCommand}"
+                            IsVisible="{Binding !IsConfirmingCancel}"/>
+                    <TextBlock Text="{loc:Tr OrderScreen_ConfirmCancel}" VerticalAlignment="Center" Classes="muted"
+                               IsVisible="{Binding IsConfirmingCancel}"/>
+                    <Button Content="{loc:Tr OrderScreen_YesCancel}" Classes="danger" Command="{Binding ConfirmCancelCommand}"
+                            IsVisible="{Binding IsConfirmingCancel}"/>
+                    <Button Content="{loc:Tr OrderScreen_KeepOrder}" Classes="subtle" Command="{Binding CancelCancelCommand}"
+                            IsVisible="{Binding IsConfirmingCancel}"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Classes="card" Padding="24">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="{loc:Tr OrderScreen_Customer}" Classes="label"/>
+                        <TextBlock Text="{Binding CustomerText}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="4">
+                        <TextBlock Text="{Binding OfferText}" Classes="muted"/>
+                        <TextBlock Text="{Binding PickText}"/>
+                        <TextBlock Text="{Binding InvoiceText}" Classes="muted" IsVisible="{Binding InvoiceText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        <TextBlock Text="{Binding Reference}" Classes="muted"
+                                   IsVisible="{Binding Reference, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,Auto">
+                    <Border Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="4*,1.5*,1.3*,1.3*">
+                            <TextBlock Text="{loc:Tr OrderScreen_ColDescription}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr OrderScreen_ColQuantity}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr OrderScreen_ColPrice}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr OrderScreen_ColAmount}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="orders:OrderLineRow">
+                                    <Grid ColumnDefinitions="4*,1.5*,1.3*,1.3*" Margin="16,8">
+                                        <TextBlock Text="{Binding Line.Description}" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding QuantityText}" Classes="muted"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding PriceText}" Classes="muted"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding AmountText}" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Border Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                            <StackPanel Spacing="4" HorizontalAlignment="Right">
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OrderScreen_Net}" Classes="muted"/>
+                                    <TextBlock Text="{Binding NetText}" MinWidth="100" TextAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OrderScreen_Vat}" Classes="muted"/>
+                                    <TextBlock Text="{Binding VatText}" MinWidth="100" TextAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OrderScreen_Total}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding TotalText}" MinWidth="100" TextAlignment="Right" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <TextBlock Text="{Binding StatusMessage}" Classes="caption" TextWrapping="Wrap"
+                       IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

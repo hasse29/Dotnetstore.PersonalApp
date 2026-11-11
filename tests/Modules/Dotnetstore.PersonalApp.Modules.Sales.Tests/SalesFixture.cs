@@ -1,5 +1,8 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.PickLists;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -28,9 +31,23 @@ internal sealed class SalesFixture : IDisposable
         DeleteOffer = new DeleteOffer.Handler(DbFactory);
         GetOffer = new GetOffer.Handler(DbFactory, Clock);
         ListOffers = new ListOffers.Handler(DbFactory, Clock);
+        CreateOrder = new CreateOrderFromOffer.Handler(DbFactory, Clock);
+        GetOrder = new GetOrder.Handler(DbFactory);
+        ListOrders = new ListOrders.Handler(DbFactory);
+        CancelOrder = new CancelOrder.Handler(DbFactory, Stock);
+        GetPickList = new GetPickList.Handler(DbFactory);
+        ListPickLists = new ListPickLists.Handler(DbFactory);
+        SavePicked = new SavePickedQuantities.Handler(DbFactory, Stock);
+        CreateInvoice = new CreateInvoiceFromOrder.Handler(DbFactory, Clock);
+        GetInvoice = new GetInvoice.Handler(DbFactory, Clock);
+        ListInvoices = new ListInvoices.Handler(DbFactory, Clock);
+        MarkPaid = new MarkInvoicePaid.Handler(DbFactory, Clock);
+        CancelInvoice = new CancelInvoice.Handler(DbFactory, Clock);
     }
 
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 10, 12, 0, 0, TimeSpan.Zero));
+
+    public FakeStockService Stock { get; } = new();
 
     public IDbContextFactory<SalesDbContext> DbFactory { get; }
 
@@ -53,6 +70,30 @@ internal sealed class SalesFixture : IDisposable
     public GetOffer.Handler GetOffer { get; }
 
     public ListOffers.Handler ListOffers { get; }
+
+    public CreateOrderFromOffer.Handler CreateOrder { get; }
+
+    public GetOrder.Handler GetOrder { get; }
+
+    public ListOrders.Handler ListOrders { get; }
+
+    public CancelOrder.Handler CancelOrder { get; }
+
+    public GetPickList.Handler GetPickList { get; }
+
+    public ListPickLists.Handler ListPickLists { get; }
+
+    public SavePickedQuantities.Handler SavePicked { get; }
+
+    public CreateInvoiceFromOrder.Handler CreateInvoice { get; }
+
+    public GetInvoice.Handler GetInvoice { get; }
+
+    public ListInvoices.Handler ListInvoices { get; }
+
+    public MarkInvoicePaid.Handler MarkPaid { get; }
+
+    public CancelInvoice.Handler CancelInvoice { get; }
 
     public static CustomerFields Customer(string name = "Acme School") =>
         new(name, "556677-8899", "office@acme.example", "08-123 45", "Main Street 1", "111 22", "Stockholm", null, true);

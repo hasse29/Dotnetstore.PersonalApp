@@ -71,6 +71,120 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.ToTable("Customers", (string)null);
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerAddress")
+                        .HasMaxLength(400)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("DueDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT")
+                        .UseCollation("NOCASE");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly?>("PaidDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Reference")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Invoices", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.InvoiceLine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("DiscountPercent")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("InvoiceId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Quantity")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("VatRate")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId", "Position");
+
+                    b.ToTable("InvoiceLines", (string)null);
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Offer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -142,6 +256,9 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                         .HasPrecision(5, 2)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsPhysical")
+                        .HasColumnType("INTEGER");
+
                     b.Property<Guid>("OfferId")
                         .HasColumnType("TEXT");
 
@@ -175,6 +292,241 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                     b.ToTable("OfferLines", (string)null);
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerAddress")
+                        .HasMaxLength(400)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT")
+                        .UseCollation("NOCASE");
+
+                    b.Property<Guid>("OfferId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfferNumber")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Reference")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.HasIndex("OfferId");
+
+                    b.ToTable("Orders", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.OrderLine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("DiscountPercent")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsPhysical")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Quantity")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("VatRate")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId", "Position");
+
+                    b.ToTable("OrderLines", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickAllocation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("PickListLineId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Quantity")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PickListLineId");
+
+                    b.ToTable("PickAllocations", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT")
+                        .UseCollation("NOCASE");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.ToTable("PickLists", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickListLine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("PickListId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PickedQuantity")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Quantity")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PickListId", "Position");
+
+                    b.ToTable("PickListLines", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.InvoiceLine", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Offer", b =>
                 {
                     b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", null)
@@ -193,9 +545,82 @@ namespace Dotnetstore.PersonalApp.Modules.Sales.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Offer", null)
+                        .WithMany()
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.OrderLine", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickAllocation", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickListLine", null)
+                        .WithMany("Allocations")
+                        .HasForeignKey("PickListLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickList", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", null)
+                        .WithOne("PickList")
+                        .HasForeignKey("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickList", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickListLine", b =>
+                {
+                    b.HasOne("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickList", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("PickListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Invoice", b =>
+                {
+                    b.Navigation("Lines");
+                });
+
             modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Offer", b =>
                 {
                     b.Navigation("Lines");
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.Order", b =>
+                {
+                    b.Navigation("Lines");
+
+                    b.Navigation("PickList");
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickList", b =>
+                {
+                    b.Navigation("Lines");
+                });
+
+            modelBuilder.Entity("Dotnetstore.PersonalApp.Modules.Sales.Domain.PickListLine", b =>
+                {
+                    b.Navigation("Allocations");
                 });
 #pragma warning restore 612, 618
         }

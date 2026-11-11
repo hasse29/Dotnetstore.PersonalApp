@@ -120,4 +120,124 @@
   <data name="Error_offer_status_invalid" xml:space="preserve"><value>Offerten kan inte få den statusen.</value></data>
   <data name="Error_offer_no_lines" xml:space="preserve"><value>Lägg till minst en rad innan du skickar offerten.</value></data>
   <data name="Error_offer_not_deletable" xml:space="preserve"><value>Bara ett utkast eller en avböjd offert kan tas bort.</value></data>
+  <data name="OfferScreen_CreateOrder" xml:space="preserve"><value>Skapa order</value></data>
+  <data name="OfferScreen_HasOrder" xml:space="preserve"><value>Order {0}</value></data>
+  <data name="OfferScreen_OrderCreated" xml:space="preserve"><value>Order {0} skapades, med plocklista om varor ska plockas.</value></data>
+  <data name="Orders_Title" xml:space="preserve"><value>Order</value></data>
+  <data name="Orders_Subtitle" xml:space="preserve"><value>Order som skapats från accepterade offerter. Skapa en order på själva offerten.</value></data>
+  <data name="Orders_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Orders_SearchPlaceholder" xml:space="preserve"><value>Nummer, offert eller kund</value></data>
+  <data name="Orders_AllStatuses" xml:space="preserve"><value>Alla statusar</value></data>
+  <data name="Orders_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Orders_ColCustomer" xml:space="preserve"><value>Kund</value></data>
+  <data name="Orders_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="Orders_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Orders_ColPicking" xml:space="preserve"><value>Plockning</value></data>
+  <data name="Orders_ColTotal" xml:space="preserve"><value>Totalt</value></data>
+  <data name="Orders_Count" xml:space="preserve"><value>{0} order</value></data>
+  <data name="Orders_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} order</value></data>
+  <data name="Orders_NothingToPick" xml:space="preserve"><value>Inget att plocka</value></data>
+  <data name="Orders_PickProgress" xml:space="preserve"><value>{0} av {1} rader plockade</value></data>
+  <data name="OrderStatus_Open" xml:space="preserve"><value>Öppen</value></data>
+  <data name="OrderStatus_ReadyToInvoice" xml:space="preserve"><value>Redo att fakturera</value></data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve"><value>Annullerad</value></data>
+  <data name="OrderScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="OrderScreen_Cancel" xml:space="preserve"><value>Annullera order</value></data>
+  <data name="OrderScreen_ConfirmCancel" xml:space="preserve"><value>Annullera ordern och dess plocklista?</value></data>
+  <data name="OrderScreen_YesCancel" xml:space="preserve"><value>Ja, annullera</value></data>
+  <data name="OrderScreen_KeepOrder" xml:space="preserve"><value>Behåll ordern</value></data>
+  <data name="OrderScreen_Cancelled" xml:space="preserve"><value>Ordern är annullerad.</value></data>
+  <data name="OrderScreen_Customer" xml:space="preserve"><value>Kund</value></data>
+  <data name="OrderScreen_FromOffer" xml:space="preserve"><value>Från offert {0}</value></data>
+  <data name="OrderScreen_NothingToPick" xml:space="preserve"><value>Inget behöver plockas.</value></data>
+  <data name="OrderScreen_PickList" xml:space="preserve"><value>Plocklista {0}: {1} av {2} rader plockade</value></data>
+  <data name="OrderScreen_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="OrderScreen_ColQuantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="OrderScreen_ColPrice" xml:space="preserve"><value>Pris</value></data>
+  <data name="OrderScreen_ColAmount" xml:space="preserve"><value>Belopp</value></data>
+  <data name="OrderScreen_Net" xml:space="preserve"><value>Summa exklusive moms</value></data>
+  <data name="OrderScreen_Vat" xml:space="preserve"><value>Moms</value></data>
+  <data name="OrderScreen_Total" xml:space="preserve"><value>Att betala</value></data>
+  <data name="PickLists_Title" xml:space="preserve"><value>Plocklistor</value></data>
+  <data name="PickLists_Subtitle" xml:space="preserve"><value>Vad som ska plockas för varje order. När allt är plockat är ordern redo att faktureras.</value></data>
+  <data name="PickLists_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="PickLists_SearchPlaceholder" xml:space="preserve"><value>Nummer, order eller kund</value></data>
+  <data name="PickLists_AllStatuses" xml:space="preserve"><value>Alla statusar</value></data>
+  <data name="PickLists_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="PickLists_ColOrder" xml:space="preserve"><value>Order</value></data>
+  <data name="PickLists_ColCustomer" xml:space="preserve"><value>Kund</value></data>
+  <data name="PickLists_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="PickLists_ColProgress" xml:space="preserve"><value>Plockat</value></data>
+  <data name="PickLists_Progress" xml:space="preserve"><value>{0} av {1} rader</value></data>
+  <data name="PickLists_Count" xml:space="preserve"><value>{0} plocklistor</value></data>
+  <data name="PickLists_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} plocklistor</value></data>
+  <data name="PickListStatus_Open" xml:space="preserve"><value>Pågår</value></data>
+  <data name="PickListStatus_Complete" xml:space="preserve"><value>Klar</value></data>
+  <data name="PickListStatus_Cancelled" xml:space="preserve"><value>Annullerad</value></data>
+  <data name="PickListScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="PickListScreen_PickAll" xml:space="preserve"><value>Plocka allt</value></data>
+  <data name="PickListScreen_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="PickListScreen_Saved" xml:space="preserve"><value>Sparat.</value></data>
+  <data name="PickListScreen_Complete" xml:space="preserve"><value>Allt är plockat. Ordern är redo att faktureras.</value></data>
+  <data name="PickListScreen_ColProduct" xml:space="preserve"><value>Produkt</value></data>
+  <data name="PickListScreen_ColOrdered" xml:space="preserve"><value>Beställt</value></data>
+  <data name="PickListScreen_ColPicked" xml:space="preserve"><value>Plockat</value></data>
+  <data name="PickListScreen_ColRemaining" xml:space="preserve"><value>Kvar att plocka</value></data>
+  <data name="Error_order_offer_not_accepted" xml:space="preserve"><value>Bara en accepterad offert kan bli en order.</value></data>
+  <data name="Error_order_already_exists" xml:space="preserve"><value>Offerten har redan en order.</value></data>
+  <data name="Error_order_not_found" xml:space="preserve"><value>Ordern finns inte längre.</value></data>
+  <data name="Error_order_already_cancelled" xml:space="preserve"><value>Ordern är redan annullerad.</value></data>
+  <data name="Error_picklist_not_found" xml:space="preserve"><value>Plocklistan finns inte längre.</value></data>
+  <data name="Error_picklist_cancelled" xml:space="preserve"><value>Plocklistan är annullerad.</value></data>
+  <data name="Error_picklist_line_not_found" xml:space="preserve"><value>Plocklistans rad finns inte längre.</value></data>
+  <data name="Error_picklist_picked_invalid" xml:space="preserve"><value>Plockat antal måste vara mellan 0 och beställt antal.</value></data>
+  <data name="Invoices_Title" xml:space="preserve"><value>Fakturor</value></data>
+  <data name="Invoices_Subtitle" xml:space="preserve"><value>Fakturor skapade från order som är redo att faktureras. Skapa fakturan på ordern.</value></data>
+  <data name="Invoices_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Invoices_SearchPlaceholder" xml:space="preserve"><value>Sök på nummer eller kund</value></data>
+  <data name="Invoices_AllStatuses" xml:space="preserve"><value>Alla statusar</value></data>
+  <data name="Invoices_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Invoices_ColCustomer" xml:space="preserve"><value>Kund</value></data>
+  <data name="Invoices_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="Invoices_ColDueDate" xml:space="preserve"><value>Förfaller</value></data>
+  <data name="Invoices_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Invoices_ColTotal" xml:space="preserve"><value>Totalt</value></data>
+  <data name="Invoices_Count" xml:space="preserve"><value>{0} fakturor</value></data>
+  <data name="Invoices_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} fakturor</value></data>
+  <data name="InvoiceStatus_Unpaid" xml:space="preserve"><value>Obetald</value></data>
+  <data name="InvoiceStatus_Paid" xml:space="preserve"><value>Betald</value></data>
+  <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>Annullerad</value></data>
+  <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>Förfallen</value></data>
+  <data name="InvoiceScreen_Back" xml:space="preserve"><value>Fakturor</value></data>
+  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>Markera som betald</value></data>
+  <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>Annullera faktura</value></data>
+  <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>Annullera fakturan? Ordern kan då faktureras igen.</value></data>
+  <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>Ja, annullera</value></data>
+  <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>Behåll fakturan</value></data>
+  <data name="InvoiceScreen_Customer" xml:space="preserve"><value>Kund</value></data>
+  <data name="InvoiceScreen_Dates" xml:space="preserve"><value>Fakturadatum {0}, förfaller {1}</value></data>
+  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>Betald {0}</value></data>
+  <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>Från order {0}</value></data>
+  <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="InvoiceScreen_ColPrice" xml:space="preserve"><value>Pris</value></data>
+  <data name="InvoiceScreen_ColVat" xml:space="preserve"><value>Moms</value></data>
+  <data name="InvoiceScreen_ColAmount" xml:space="preserve"><value>Belopp</value></data>
+  <data name="InvoiceScreen_Net" xml:space="preserve"><value>Netto</value></data>
+  <data name="InvoiceScreen_Vat" xml:space="preserve"><value>Moms</value></data>
+  <data name="InvoiceScreen_Total" xml:space="preserve"><value>Totalt</value></data>
+  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>Fakturan är markerad som betald.</value></data>
+  <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>Fakturan är annullerad.</value></data>
+  <data name="OrderStatus_Invoiced" xml:space="preserve"><value>Fakturerad</value></data>
+  <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>Skapa faktura</value></data>
+  <data name="OrderScreen_PaymentDays" xml:space="preserve"><value>Betalningsvillkor (dagar)</value></data>
+  <data name="OrderScreen_HasInvoice" xml:space="preserve"><value>Faktura {0}</value></data>
+  <data name="OrderScreen_InvoiceCreated" xml:space="preserve"><value>Faktura {0} är skapad.</value></data>
+  <data name="Error_invoice_not_found" xml:space="preserve"><value>Fakturan finns inte längre.</value></data>
+  <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>Bara en order som är redo att faktureras kan faktureras.</value></data>
+  <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>Betalningsvillkoren måste vara mellan 0 och 365 dagar.</value></data>
+  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>Bara en obetald faktura kan ändras på det här sättet.</value></data>
+  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>Fakturan kan inte betalas före fakturadatumet.</value></data>
+  <data name="Error_order_invoiced" xml:space="preserve"><value>Ordern är fakturerad. Annullera fakturan först.</value></data>
+  <data name="Error_picklist_locked" xml:space="preserve"><value>Ordern är fakturerad, så plockningen kan inte ändras.</value></data>
 </root>

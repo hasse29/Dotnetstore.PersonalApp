@@ -120,4 +120,124 @@
   <data name="Error_offer_status_invalid" xml:space="preserve"><value>The offer cannot move to that status.</value></data>
   <data name="Error_offer_no_lines" xml:space="preserve"><value>Add at least one line before sending the offer.</value></data>
   <data name="Error_offer_not_deletable" xml:space="preserve"><value>Only a draft or declined offer can be deleted.</value></data>
+  <data name="OfferScreen_CreateOrder" xml:space="preserve"><value>Create order</value></data>
+  <data name="OfferScreen_HasOrder" xml:space="preserve"><value>Order {0}</value></data>
+  <data name="OfferScreen_OrderCreated" xml:space="preserve"><value>Order {0} created, with a pick list if goods have to be picked.</value></data>
+  <data name="Orders_Title" xml:space="preserve"><value>Orders</value></data>
+  <data name="Orders_Subtitle" xml:space="preserve"><value>Orders made from accepted offers. Create an order on the offer itself.</value></data>
+  <data name="Orders_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Orders_SearchPlaceholder" xml:space="preserve"><value>Number, offer or customer</value></data>
+  <data name="Orders_AllStatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="Orders_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="Orders_ColCustomer" xml:space="preserve"><value>Customer</value></data>
+  <data name="Orders_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="Orders_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Orders_ColPicking" xml:space="preserve"><value>Picking</value></data>
+  <data name="Orders_ColTotal" xml:space="preserve"><value>Total</value></data>
+  <data name="Orders_Count" xml:space="preserve"><value>{0} orders</value></data>
+  <data name="Orders_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} orders</value></data>
+  <data name="Orders_NothingToPick" xml:space="preserve"><value>Nothing to pick</value></data>
+  <data name="Orders_PickProgress" xml:space="preserve"><value>{0} of {1} lines picked</value></data>
+  <data name="OrderStatus_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="OrderStatus_ReadyToInvoice" xml:space="preserve"><value>Ready to invoice</value></data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="OrderScreen_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="OrderScreen_Cancel" xml:space="preserve"><value>Cancel order</value></data>
+  <data name="OrderScreen_ConfirmCancel" xml:space="preserve"><value>Cancel this order and its pick list?</value></data>
+  <data name="OrderScreen_YesCancel" xml:space="preserve"><value>Yes, cancel</value></data>
+  <data name="OrderScreen_KeepOrder" xml:space="preserve"><value>Keep order</value></data>
+  <data name="OrderScreen_Cancelled" xml:space="preserve"><value>The order is cancelled.</value></data>
+  <data name="OrderScreen_Customer" xml:space="preserve"><value>Customer</value></data>
+  <data name="OrderScreen_FromOffer" xml:space="preserve"><value>From offer {0}</value></data>
+  <data name="OrderScreen_NothingToPick" xml:space="preserve"><value>Nothing has to be picked.</value></data>
+  <data name="OrderScreen_PickList" xml:space="preserve"><value>Pick list {0}: {1} of {2} lines picked</value></data>
+  <data name="OrderScreen_ColDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="OrderScreen_ColQuantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="OrderScreen_ColPrice" xml:space="preserve"><value>Price</value></data>
+  <data name="OrderScreen_ColAmount" xml:space="preserve"><value>Amount</value></data>
+  <data name="OrderScreen_Net" xml:space="preserve"><value>Total excluding VAT</value></data>
+  <data name="OrderScreen_Vat" xml:space="preserve"><value>VAT</value></data>
+  <data name="OrderScreen_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="PickLists_Title" xml:space="preserve"><value>Pick lists</value></data>
+  <data name="PickLists_Subtitle" xml:space="preserve"><value>What has to be picked for each order. When everything is picked, the order is ready to invoice.</value></data>
+  <data name="PickLists_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="PickLists_SearchPlaceholder" xml:space="preserve"><value>Number, order or customer</value></data>
+  <data name="PickLists_AllStatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="PickLists_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="PickLists_ColOrder" xml:space="preserve"><value>Order</value></data>
+  <data name="PickLists_ColCustomer" xml:space="preserve"><value>Customer</value></data>
+  <data name="PickLists_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="PickLists_ColProgress" xml:space="preserve"><value>Picked</value></data>
+  <data name="PickLists_Progress" xml:space="preserve"><value>{0} of {1} lines</value></data>
+  <data name="PickLists_Count" xml:space="preserve"><value>{0} pick lists</value></data>
+  <data name="PickLists_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} pick lists</value></data>
+  <data name="PickListStatus_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="PickListStatus_Complete" xml:space="preserve"><value>Complete</value></data>
+  <data name="PickListStatus_Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="PickListScreen_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="PickListScreen_PickAll" xml:space="preserve"><value>Pick everything</value></data>
+  <data name="PickListScreen_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="PickListScreen_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="PickListScreen_Complete" xml:space="preserve"><value>Everything is picked. The order is ready to invoice.</value></data>
+  <data name="PickListScreen_ColProduct" xml:space="preserve"><value>Product</value></data>
+  <data name="PickListScreen_ColOrdered" xml:space="preserve"><value>Ordered</value></data>
+  <data name="PickListScreen_ColPicked" xml:space="preserve"><value>Picked</value></data>
+  <data name="PickListScreen_ColRemaining" xml:space="preserve"><value>Left to pick</value></data>
+  <data name="Error_order_offer_not_accepted" xml:space="preserve"><value>Only an accepted offer can be made into an order.</value></data>
+  <data name="Error_order_already_exists" xml:space="preserve"><value>The offer already has an order.</value></data>
+  <data name="Error_order_not_found" xml:space="preserve"><value>The order no longer exists.</value></data>
+  <data name="Error_order_already_cancelled" xml:space="preserve"><value>The order is already cancelled.</value></data>
+  <data name="Error_picklist_not_found" xml:space="preserve"><value>The pick list no longer exists.</value></data>
+  <data name="Error_picklist_cancelled" xml:space="preserve"><value>The pick list is cancelled.</value></data>
+  <data name="Error_picklist_line_not_found" xml:space="preserve"><value>The pick list line no longer exists.</value></data>
+  <data name="Error_picklist_picked_invalid" xml:space="preserve"><value>The picked quantity must be between 0 and the ordered quantity.</value></data>
+  <data name="Invoices_Title" xml:space="preserve"><value>Invoices</value></data>
+  <data name="Invoices_Subtitle" xml:space="preserve"><value>Invoices made from orders that are ready to invoice. Create an invoice on the order itself.</value></data>
+  <data name="Invoices_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Invoices_SearchPlaceholder" xml:space="preserve"><value>Search by number or customer</value></data>
+  <data name="Invoices_AllStatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="Invoices_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="Invoices_ColCustomer" xml:space="preserve"><value>Customer</value></data>
+  <data name="Invoices_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="Invoices_ColDueDate" xml:space="preserve"><value>Due</value></data>
+  <data name="Invoices_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Invoices_ColTotal" xml:space="preserve"><value>Total</value></data>
+  <data name="Invoices_Count" xml:space="preserve"><value>{0} invoices</value></data>
+  <data name="Invoices_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} invoices</value></data>
+  <data name="InvoiceStatus_Unpaid" xml:space="preserve"><value>Unpaid</value></data>
+  <data name="InvoiceStatus_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="InvoiceScreen_Back" xml:space="preserve"><value>Invoices</value></data>
+  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>Mark as paid</value></data>
+  <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>Cancel invoice</value></data>
+  <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>Cancel this invoice? The order can then be invoiced again.</value></data>
+  <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>Yes, cancel</value></data>
+  <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>Keep invoice</value></data>
+  <data name="InvoiceScreen_Customer" xml:space="preserve"><value>Customer</value></data>
+  <data name="InvoiceScreen_Dates" xml:space="preserve"><value>Invoice date {0}, due {1}</value></data>
+  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>Paid {0}</value></data>
+  <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>From order {0}</value></data>
+  <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="InvoiceScreen_ColPrice" xml:space="preserve"><value>Price</value></data>
+  <data name="InvoiceScreen_ColVat" xml:space="preserve"><value>VAT</value></data>
+  <data name="InvoiceScreen_ColAmount" xml:space="preserve"><value>Amount</value></data>
+  <data name="InvoiceScreen_Net" xml:space="preserve"><value>Net</value></data>
+  <data name="InvoiceScreen_Vat" xml:space="preserve"><value>VAT</value></data>
+  <data name="InvoiceScreen_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>The invoice is marked as paid.</value></data>
+  <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>The invoice is cancelled.</value></data>
+  <data name="OrderStatus_Invoiced" xml:space="preserve"><value>Invoiced</value></data>
+  <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>Create invoice</value></data>
+  <data name="OrderScreen_PaymentDays" xml:space="preserve"><value>Payment terms (days)</value></data>
+  <data name="OrderScreen_HasInvoice" xml:space="preserve"><value>Invoice {0}</value></data>
+  <data name="OrderScreen_InvoiceCreated" xml:space="preserve"><value>Invoice {0} is created.</value></data>
+  <data name="Error_invoice_not_found" xml:space="preserve"><value>The invoice no longer exists.</value></data>
+  <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>Only an order that is ready to invoice can be invoiced.</value></data>
+  <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>The payment terms must be between 0 and 365 days.</value></data>
+  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>Only an unpaid invoice can be changed this way.</value></data>
+  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>The invoice cannot be paid before its date.</value></data>
+  <data name="Error_order_invoiced" xml:space="preserve"><value>The order has been invoiced. Cancel the invoice first.</value></data>
+  <data name="Error_picklist_locked" xml:space="preserve"><value>The order has been invoiced, so the picking cannot be changed.</value></data>
 </root>

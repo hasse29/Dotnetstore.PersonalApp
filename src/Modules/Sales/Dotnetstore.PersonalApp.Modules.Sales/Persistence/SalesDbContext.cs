@@ -11,6 +11,20 @@ internal sealed class SalesDbContext(DbContextOptions<SalesDbContext> options) :
 
     public DbSet<OfferLine> OfferLines => Set<OfferLine>();
 
+    public DbSet<Order> Orders => Set<Order>();
+
+    public DbSet<OrderLine> OrderLines => Set<OrderLine>();
+
+    public DbSet<PickList> PickLists => Set<PickList>();
+
+    public DbSet<PickListLine> PickListLines => Set<PickListLine>();
+
+    public DbSet<PickAllocation> PickAllocations => Set<PickAllocation>();
+
+    public DbSet<Invoice> Invoices => Set<Invoice>();
+
+    public DbSet<InvoiceLine> InvoiceLines => Set<InvoiceLine>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SalesDbContext).Assembly);

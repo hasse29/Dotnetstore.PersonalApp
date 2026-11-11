@@ -314,4 +314,5 @@
   <data name="Error_inventory_count_location_required" xml:space="preserve"><value>请选择库位，或仅包含有库存的产品。</value></data>
   <data name="Error_inventory_count_not_found" xml:space="preserve"><value>该盘点已不存在。</value></data>
   <data name="Error_inventory_count_posted" xml:space="preserve"><value>该盘点已过账。</value></data>
+  <data name="Error_stock_insufficient_total" xml:space="preserve"><value>库存不足。</value></data>
 </root>

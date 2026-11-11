@@ -314,4 +314,5 @@
   <data name="Error_inventory_count_location_required" xml:space="preserve"><value>Välj en lagerplats, eller ta bara med produkter som har lagersaldo.</value></data>
   <data name="Error_inventory_count_not_found" xml:space="preserve"><value>Inventeringen finns inte längre.</value></data>
   <data name="Error_inventory_count_posted" xml:space="preserve"><value>Inventeringen är redan bokförd.</value></data>
+  <data name="Error_stock_insufficient_total" xml:space="preserve"><value>Det finns inte tillräckligt i lager.</value></data>
 </root>

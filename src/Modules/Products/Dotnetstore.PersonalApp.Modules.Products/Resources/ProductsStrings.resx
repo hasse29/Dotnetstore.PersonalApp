@@ -314,4 +314,5 @@
   <data name="Error_inventory_count_location_required" xml:space="preserve"><value>Select a location, or include only products that have stock.</value></data>
   <data name="Error_inventory_count_not_found" xml:space="preserve"><value>The count no longer exists.</value></data>
   <data name="Error_inventory_count_posted" xml:space="preserve"><value>The count is already posted.</value></data>
+  <data name="Error_stock_insufficient_total" xml:space="preserve"><value>There is not enough in stock.</value></data>
 </root>

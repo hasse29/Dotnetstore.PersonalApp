@@ -1,5 +1,8 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.PickLists;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Modules.Sales.Resources;
 using Dotnetstore.PersonalApp.Modules.Sales.Startup;
@@ -36,9 +39,29 @@ public static class SalesModule
         services.AddSingleton<GetOffer.Handler>();
         services.AddSingleton<ListOffers.Handler>();
 
+        services.AddSingleton<CreateOrderFromOffer.Handler>();
+        services.AddSingleton<GetOrder.Handler>();
+        services.AddSingleton<ListOrders.Handler>();
+        services.AddSingleton<CancelOrder.Handler>();
+        services.AddSingleton<GetPickList.Handler>();
+        services.AddSingleton<ListPickLists.Handler>();
+        services.AddSingleton<SavePickedQuantities.Handler>();
+
+        services.AddSingleton<CreateInvoiceFromOrder.Handler>();
+        services.AddSingleton<GetInvoice.Handler>();
+        services.AddSingleton<ListInvoices.Handler>();
+        services.AddSingleton<MarkInvoicePaid.Handler>();
+        services.AddSingleton<CancelInvoice.Handler>();
+
         services.AddTransient<OffersViewModel>();
+        services.AddTransient<OrdersViewModel>();
+        services.AddTransient<PickListsViewModel>();
+        services.AddTransient<InvoicesViewModel>();
         services.AddTransient<CustomersViewModel>();
         services.AddSingleton<IModulePage, OffersPage>();
+        services.AddSingleton<IModulePage, OrdersPage>();
+        services.AddSingleton<IModulePage, PickListsPage>();
+        services.AddSingleton<IModulePage, InvoicesPage>();
         services.AddSingleton<IModulePage, CustomersPage>();
 
         services.AddSingleton(new ModuleInfo("sales", "Sales_Title"));

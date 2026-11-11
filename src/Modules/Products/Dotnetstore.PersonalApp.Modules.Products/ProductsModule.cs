@@ -11,6 +11,7 @@ using Dotnetstore.PersonalApp.Modules.Products.Startup;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Dotnetstore.PersonalApp.Shared.Shell;
+using Dotnetstore.PersonalApp.Shared.Stock;
 using Dotnetstore.PersonalApp.Shared.Startup;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,7 @@ public static class ProductsModule
         services.AddSingleton<SetProductPhoto.Handler>();
         services.AddSingleton<ProductPhotoPanelFactory>();
         services.AddSingleton<IProductCatalog, ProductCatalog>();
+        services.AddSingleton<IStockService, StockService>();
 
         services.AddSingleton<IValidator<CreateProductCategory.Command>, CreateProductCategory.Validator>();
         services.AddSingleton<IValidator<UpdateProductCategory.Command>, UpdateProductCategory.Validator>();

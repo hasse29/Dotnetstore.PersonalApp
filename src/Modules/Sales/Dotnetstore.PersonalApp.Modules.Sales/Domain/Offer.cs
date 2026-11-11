@@ -68,4 +68,7 @@ internal sealed class OfferLine
 
     /// <summary>Discount in percent, 0 to 100.</summary>
     public decimal DiscountPercent { get; set; }
+
+    /// <summary>Whether goods have to be picked for the line when it is ordered. Free text and consulting hours are not.</summary>
+    public bool IsPhysical { get; set; }
 }

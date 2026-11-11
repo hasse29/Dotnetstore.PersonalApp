@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Products;
@@ -24,6 +25,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
     private readonly GetOffer.Handler _get;
     private readonly ChangeOfferStatus.Handler _changeStatus;
     private readonly DeleteOffer.Handler _delete;
+    private readonly CreateOrderFromOffer.Handler _createOrder;
     private readonly ListCustomers.Handler _customers;
     private readonly IProductCatalog _catalog;
     private readonly ILocalizationService _localization;
@@ -37,6 +39,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
         GetOffer.Handler get,
         ChangeOfferStatus.Handler changeStatus,
         DeleteOffer.Handler delete,
+        CreateOrderFromOffer.Handler createOrder,
         ListCustomers.Handler customers,
         IProductCatalog catalog,
         ILocalizationService localization,
@@ -48,6 +51,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
         _get = get;
         _changeStatus = changeStatus;
         _delete = delete;
+        _createOrder = createOrder;
         _customers = customers;
         _catalog = catalog;
         _localization = localization;
@@ -126,7 +130,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
 
     private void OpenScreen(Guid? offerId)
     {
-        var screen = new OfferScreenViewModel(offerId, _create, _update, _get, _changeStatus, _delete, _customers, _catalog, _localization, _clock);
+        var screen = new OfferScreenViewModel(offerId, _create, _update, _get, _changeStatus, _delete, _createOrder, _customers, _catalog, _localization, _clock);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);

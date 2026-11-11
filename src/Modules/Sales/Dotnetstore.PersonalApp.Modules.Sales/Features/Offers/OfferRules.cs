@@ -12,7 +12,8 @@ internal sealed record OfferLineFields(
     string Unit,
     decimal UnitPrice,
     decimal VatRate,
-    decimal DiscountPercent);
+    decimal DiscountPercent,
+    bool IsPhysical = false);
 
 /// <summary>What the create and update commands share.</summary>
 internal sealed record OfferFields(
@@ -56,6 +57,7 @@ internal static class OfferRules
         UnitPrice = Math.Round(fields.UnitPrice, 2, MidpointRounding.AwayFromZero),
         VatRate = Math.Round(fields.VatRate, 2, MidpointRounding.AwayFromZero),
         DiscountPercent = Math.Round(fields.DiscountPercent, 2, MidpointRounding.AwayFromZero),
+        IsPhysical = fields.IsPhysical,
     };
 
     public static string? Normalize(string? value) => string.IsNullOrWhiteSpace(value) ? null : value.Trim();

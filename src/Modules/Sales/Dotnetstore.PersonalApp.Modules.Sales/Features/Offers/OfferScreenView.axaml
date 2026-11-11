@@ -28,6 +28,8 @@
                     <Button Content="{loc:Tr OfferScreen_Send}" Classes="primary" Command="{Binding SendCommand}" IsVisible="{Binding ShowSend}"/>
                     <Button Content="{loc:Tr OfferScreen_Accept}" Classes="primary" Command="{Binding AcceptCommand}" IsVisible="{Binding ShowAnswer}"/>
                     <Button Content="{loc:Tr OfferScreen_Decline}" Classes="subtle" Command="{Binding DeclineCommand}" IsVisible="{Binding ShowAnswer}"/>
+                    <Button Content="{loc:Tr OfferScreen_CreateOrder}" Classes="primary" Command="{Binding CreateOrderCommand}" IsVisible="{Binding ShowCreateOrder}"/>
+                    <TextBlock Text="{Binding OrderText}" Classes="muted" VerticalAlignment="Center" IsVisible="{Binding HasOrder}"/>
                     <Button Content="{loc:Tr OfferScreen_Reopen}" Classes="subtle" Command="{Binding ReopenCommand}" IsVisible="{Binding ShowReopen}"/>
                 </StackPanel>
             </Grid>

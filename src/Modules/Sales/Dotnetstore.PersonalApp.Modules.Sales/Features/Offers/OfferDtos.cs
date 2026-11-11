@@ -23,7 +23,8 @@ internal sealed record OfferLineDto(
     string Unit,
     decimal UnitPrice,
     decimal VatRate,
-    decimal DiscountPercent)
+    decimal DiscountPercent,
+    bool IsPhysical)
 {
     public LineAmounts Amounts => new(Quantity, UnitPrice, VatRate, DiscountPercent);
 
@@ -36,13 +37,14 @@ internal sealed record OfferDetailDto(
     string? Reference,
     string? Notes,
     IReadOnlyList<OfferLineDto> Lines,
-    OfferTotal Totals)
+    OfferTotal Totals,
+    string? OrderNumber = null)
 {
     public static OfferDetailDto From(Offer offer, DateOnly today)
     {
         var lines = offer.Lines
             .OrderBy(l => l.Position)
-            .Select(l => new OfferLineDto(l.Id, l.Position, l.ProductId, l.Description, l.Quantity, l.Unit, l.UnitPrice, l.VatRate, l.DiscountPercent))
+            .Select(l => new OfferLineDto(l.Id, l.Position, l.ProductId, l.Description, l.Quantity, l.Unit, l.UnitPrice, l.VatRate, l.DiscountPercent, l.IsPhysical))
             .ToList();
         var totals = OfferTotals.Compute(lines.Select(l => l.Amounts));
 

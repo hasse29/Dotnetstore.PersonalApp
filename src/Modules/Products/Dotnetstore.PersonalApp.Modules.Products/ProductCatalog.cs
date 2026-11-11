@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Products.Domain;
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Products;
 using Microsoft.EntityFrameworkCore;
@@ -20,10 +21,10 @@ internal sealed class ProductCatalog(IDbContextFactory<ProductsDbContext> dbFact
         var rows = await products
             .OrderBy(p => p.Name)
             .Take(Math.Clamp(maxCount, 1, 100))
-            .Select(p => new { p.Id, p.Number, p.Name, p.Unit, p.UnitPrice, p.VatRate })
+            .Select(p => new { p.Id, p.Number, p.Name, p.Unit, p.UnitPrice, p.VatRate, p.Kind })
             .ToListAsync(cancellationToken)
             .ConfigureAwait(false);
 
-        return [.. rows.Select(p => new ProductSummary(p.Id, p.Number, p.Name, p.Unit.ToString(), p.UnitPrice, p.VatRate))];
+        return [.. rows.Select(p => new ProductSummary(p.Id, p.Number, p.Name, p.Unit.ToString(), p.UnitPrice, p.VatRate, p.Kind != ProductKind.Consulting))];
     }
 }

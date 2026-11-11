@@ -120,4 +120,124 @@
   <data name="Error_offer_status_invalid" xml:space="preserve"><value>报价单无法变为该状态。</value></data>
   <data name="Error_offer_no_lines" xml:space="preserve"><value>发送前请至少添加一行。</value></data>
   <data name="Error_offer_not_deletable" xml:space="preserve"><value>只有草稿或已拒绝的报价单可以删除。</value></data>
+  <data name="OfferScreen_CreateOrder" xml:space="preserve"><value>创建订单</value></data>
+  <data name="OfferScreen_HasOrder" xml:space="preserve"><value>订单 {0}</value></data>
+  <data name="OfferScreen_OrderCreated" xml:space="preserve"><value>已创建订单 {0}，如需拣货则同时生成拣货单。</value></data>
+  <data name="Orders_Title" xml:space="preserve"><value>订单</value></data>
+  <data name="Orders_Subtitle" xml:space="preserve"><value>由已接受的报价单生成的订单。请在报价单上创建订单。</value></data>
+  <data name="Orders_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Orders_SearchPlaceholder" xml:space="preserve"><value>编号、报价单或客户</value></data>
+  <data name="Orders_AllStatuses" xml:space="preserve"><value>所有状态</value></data>
+  <data name="Orders_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="Orders_ColCustomer" xml:space="preserve"><value>客户</value></data>
+  <data name="Orders_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="Orders_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Orders_ColPicking" xml:space="preserve"><value>拣货</value></data>
+  <data name="Orders_ColTotal" xml:space="preserve"><value>合计</value></data>
+  <data name="Orders_Count" xml:space="preserve"><value>{0} 个订单</value></data>
+  <data name="Orders_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 个订单</value></data>
+  <data name="Orders_NothingToPick" xml:space="preserve"><value>无需拣货</value></data>
+  <data name="Orders_PickProgress" xml:space="preserve"><value>已拣 {0} / {1} 行</value></data>
+  <data name="OrderStatus_Open" xml:space="preserve"><value>进行中</value></data>
+  <data name="OrderStatus_ReadyToInvoice" xml:space="preserve"><value>可开票</value></data>
+  <data name="OrderStatus_Cancelled" xml:space="preserve"><value>已取消</value></data>
+  <data name="OrderScreen_Back" xml:space="preserve"><value>返回</value></data>
+  <data name="OrderScreen_Cancel" xml:space="preserve"><value>取消订单</value></data>
+  <data name="OrderScreen_ConfirmCancel" xml:space="preserve"><value>取消此订单及其拣货单？</value></data>
+  <data name="OrderScreen_YesCancel" xml:space="preserve"><value>是，取消</value></data>
+  <data name="OrderScreen_KeepOrder" xml:space="preserve"><value>保留订单</value></data>
+  <data name="OrderScreen_Cancelled" xml:space="preserve"><value>订单已取消。</value></data>
+  <data name="OrderScreen_Customer" xml:space="preserve"><value>客户</value></data>
+  <data name="OrderScreen_FromOffer" xml:space="preserve"><value>来自报价单 {0}</value></data>
+  <data name="OrderScreen_NothingToPick" xml:space="preserve"><value>无需拣货。</value></data>
+  <data name="OrderScreen_PickList" xml:space="preserve"><value>拣货单 {0}：已拣 {1} / {2} 行</value></data>
+  <data name="OrderScreen_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="OrderScreen_ColQuantity" xml:space="preserve"><value>数量</value></data>
+  <data name="OrderScreen_ColPrice" xml:space="preserve"><value>单价</value></data>
+  <data name="OrderScreen_ColAmount" xml:space="preserve"><value>金额</value></data>
+  <data name="OrderScreen_Net" xml:space="preserve"><value>不含税合计</value></data>
+  <data name="OrderScreen_Vat" xml:space="preserve"><value>税额</value></data>
+  <data name="OrderScreen_Total" xml:space="preserve"><value>应付总额</value></data>
+  <data name="PickLists_Title" xml:space="preserve"><value>拣货单</value></data>
+  <data name="PickLists_Subtitle" xml:space="preserve"><value>每个订单需要拣选的货物。全部拣完后订单即可开票。</value></data>
+  <data name="PickLists_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="PickLists_SearchPlaceholder" xml:space="preserve"><value>编号、订单或客户</value></data>
+  <data name="PickLists_AllStatuses" xml:space="preserve"><value>所有状态</value></data>
+  <data name="PickLists_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="PickLists_ColOrder" xml:space="preserve"><value>订单</value></data>
+  <data name="PickLists_ColCustomer" xml:space="preserve"><value>客户</value></data>
+  <data name="PickLists_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="PickLists_ColProgress" xml:space="preserve"><value>已拣</value></data>
+  <data name="PickLists_Progress" xml:space="preserve"><value>{0} / {1} 行</value></data>
+  <data name="PickLists_Count" xml:space="preserve"><value>{0} 个拣货单</value></data>
+  <data name="PickLists_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 个拣货单</value></data>
+  <data name="PickListStatus_Open" xml:space="preserve"><value>进行中</value></data>
+  <data name="PickListStatus_Complete" xml:space="preserve"><value>已完成</value></data>
+  <data name="PickListStatus_Cancelled" xml:space="preserve"><value>已取消</value></data>
+  <data name="PickListScreen_Back" xml:space="preserve"><value>返回</value></data>
+  <data name="PickListScreen_PickAll" xml:space="preserve"><value>全部拣完</value></data>
+  <data name="PickListScreen_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="PickListScreen_Saved" xml:space="preserve"><value>已保存。</value></data>
+  <data name="PickListScreen_Complete" xml:space="preserve"><value>全部拣完，订单可开票。</value></data>
+  <data name="PickListScreen_ColProduct" xml:space="preserve"><value>产品</value></data>
+  <data name="PickListScreen_ColOrdered" xml:space="preserve"><value>订购</value></data>
+  <data name="PickListScreen_ColPicked" xml:space="preserve"><value>已拣</value></data>
+  <data name="PickListScreen_ColRemaining" xml:space="preserve"><value>待拣</value></data>
+  <data name="Error_order_offer_not_accepted" xml:space="preserve"><value>只有已接受的报价单才能生成订单。</value></data>
+  <data name="Error_order_already_exists" xml:space="preserve"><value>该报价单已有订单。</value></data>
+  <data name="Error_order_not_found" xml:space="preserve"><value>该订单已不存在。</value></data>
+  <data name="Error_order_already_cancelled" xml:space="preserve"><value>该订单已取消。</value></data>
+  <data name="Error_picklist_not_found" xml:space="preserve"><value>该拣货单已不存在。</value></data>
+  <data name="Error_picklist_cancelled" xml:space="preserve"><value>该拣货单已取消。</value></data>
+  <data name="Error_picklist_line_not_found" xml:space="preserve"><value>该拣货单行已不存在。</value></data>
+  <data name="Error_picklist_picked_invalid" xml:space="preserve"><value>已拣数量必须在 0 到订购数量之间。</value></data>
+  <data name="Invoices_Title" xml:space="preserve"><value>发票</value></data>
+  <data name="Invoices_Subtitle" xml:space="preserve"><value>由可开票的订单生成的发票。请在订单页面创建发票。</value></data>
+  <data name="Invoices_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Invoices_SearchPlaceholder" xml:space="preserve"><value>按编号或客户搜索</value></data>
+  <data name="Invoices_AllStatuses" xml:space="preserve"><value>所有状态</value></data>
+  <data name="Invoices_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="Invoices_ColCustomer" xml:space="preserve"><value>客户</value></data>
+  <data name="Invoices_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="Invoices_ColDueDate" xml:space="preserve"><value>到期</value></data>
+  <data name="Invoices_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Invoices_ColTotal" xml:space="preserve"><value>合计</value></data>
+  <data name="Invoices_Count" xml:space="preserve"><value>{0} 张发票</value></data>
+  <data name="Invoices_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 张发票</value></data>
+  <data name="InvoiceStatus_Unpaid" xml:space="preserve"><value>未付款</value></data>
+  <data name="InvoiceStatus_Paid" xml:space="preserve"><value>已付款</value></data>
+  <data name="InvoiceStatus_Cancelled" xml:space="preserve"><value>已取消</value></data>
+  <data name="InvoiceStatus_Overdue" xml:space="preserve"><value>已逾期</value></data>
+  <data name="InvoiceScreen_Back" xml:space="preserve"><value>发票</value></data>
+  <data name="InvoiceScreen_MarkPaid" xml:space="preserve"><value>标记为已付款</value></data>
+  <data name="InvoiceScreen_Cancel" xml:space="preserve"><value>取消发票</value></data>
+  <data name="InvoiceScreen_ConfirmCancel" xml:space="preserve"><value>取消此发票？之后可以重新为订单开票。</value></data>
+  <data name="InvoiceScreen_YesCancel" xml:space="preserve"><value>是，取消</value></data>
+  <data name="InvoiceScreen_KeepInvoice" xml:space="preserve"><value>保留发票</value></data>
+  <data name="InvoiceScreen_Customer" xml:space="preserve"><value>客户</value></data>
+  <data name="InvoiceScreen_Dates" xml:space="preserve"><value>开票日期 {0}，到期 {1}</value></data>
+  <data name="InvoiceScreen_PaidOn" xml:space="preserve"><value>付款日期 {0}</value></data>
+  <data name="InvoiceScreen_FromOrder" xml:space="preserve"><value>来自订单 {0}</value></data>
+  <data name="InvoiceScreen_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="InvoiceScreen_ColQuantity" xml:space="preserve"><value>数量</value></data>
+  <data name="InvoiceScreen_ColPrice" xml:space="preserve"><value>单价</value></data>
+  <data name="InvoiceScreen_ColVat" xml:space="preserve"><value>税率</value></data>
+  <data name="InvoiceScreen_ColAmount" xml:space="preserve"><value>金额</value></data>
+  <data name="InvoiceScreen_Net" xml:space="preserve"><value>不含税</value></data>
+  <data name="InvoiceScreen_Vat" xml:space="preserve"><value>税额</value></data>
+  <data name="InvoiceScreen_Total" xml:space="preserve"><value>合计</value></data>
+  <data name="InvoiceScreen_MarkedPaid" xml:space="preserve"><value>发票已标记为已付款。</value></data>
+  <data name="InvoiceScreen_Cancelled" xml:space="preserve"><value>发票已取消。</value></data>
+  <data name="OrderStatus_Invoiced" xml:space="preserve"><value>已开票</value></data>
+  <data name="OrderScreen_CreateInvoice" xml:space="preserve"><value>创建发票</value></data>
+  <data name="OrderScreen_PaymentDays" xml:space="preserve"><value>付款期限（天）</value></data>
+  <data name="OrderScreen_HasInvoice" xml:space="preserve"><value>发票 {0}</value></data>
+  <data name="OrderScreen_InvoiceCreated" xml:space="preserve"><value>已创建发票 {0}。</value></data>
+  <data name="Error_invoice_not_found" xml:space="preserve"><value>发票已不存在。</value></data>
+  <data name="Error_invoice_order_not_ready" xml:space="preserve"><value>只有可开票的订单才能开票。</value></data>
+  <data name="Error_invoice_payment_days_invalid" xml:space="preserve"><value>付款期限必须在 0 到 365 天之间。</value></data>
+  <data name="Error_invoice_not_unpaid" xml:space="preserve"><value>只有未付款的发票才能这样更改。</value></data>
+  <data name="Error_invoice_paid_date_invalid" xml:space="preserve"><value>发票不能早于开票日期付款。</value></data>
+  <data name="Error_order_invoiced" xml:space="preserve"><value>订单已开票。请先取消发票。</value></data>
+  <data name="Error_picklist_locked" xml:space="preserve"><value>订单已开票，因此无法更改拣货。</value></data>
 </root>

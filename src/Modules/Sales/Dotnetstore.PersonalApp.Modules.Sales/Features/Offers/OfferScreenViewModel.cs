@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Products;
@@ -28,6 +29,8 @@ internal sealed partial class OfferLineRow : ObservableObject
     public IReadOnlyList<UnitOption> Units { get; }
 
     public Guid? ProductId { get; init; }
+
+    public bool IsPhysical { get; init; }
 
     [ObservableProperty]
     public partial bool IsEditable { get; set; }
@@ -72,6 +75,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
     private readonly GetOffer.Handler _get;
     private readonly ChangeOfferStatus.Handler _changeStatus;
     private readonly DeleteOffer.Handler _delete;
+    private readonly CreateOrderFromOffer.Handler _createOrder;
     private readonly ListCustomers.Handler _customers;
     private readonly IProductCatalog _catalog;
     private readonly ILocalizationService _localization;
@@ -86,11 +90,13 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
         GetOffer.Handler get,
         ChangeOfferStatus.Handler changeStatus,
         DeleteOffer.Handler delete,
+        CreateOrderFromOffer.Handler createOrder,
         ListCustomers.Handler customers,
         IProductCatalog catalog,
         ILocalizationService localization,
         TimeProvider clock)
     {
+        _createOrder = createOrder;
         _offerId = offerId;
         _create = create;
         _update = update;
@@ -130,6 +136,12 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
 
     public bool ShowAnswer => Status == OfferStatus.Sent;
 
+    public bool ShowCreateOrder => Exists && Status == OfferStatus.Accepted && OrderNumber is null;
+
+    public bool HasOrder => OrderNumber is not null;
+
+    public string OrderText => _localization.Format("OfferScreen_HasOrder", OrderNumber ?? string.Empty);
+
     public bool ShowReopen => Status is OfferStatus.Sent or OfferStatus.Declined;
 
     public bool ShowDelete => Exists && Status is OfferStatus.Draft or OfferStatus.Declined;
@@ -153,11 +165,18 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsEditable))]
     [NotifyPropertyChangedFor(nameof(ShowSend))]
+    [NotifyPropertyChangedFor(nameof(ShowCreateOrder))]
     [NotifyPropertyChangedFor(nameof(ShowAnswer))]
     [NotifyPropertyChangedFor(nameof(ShowReopen))]
     [NotifyPropertyChangedFor(nameof(ShowDelete))]
     [NotifyPropertyChangedFor(nameof(StatusText))]
     public partial OfferStatus Status { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowCreateOrder))]
+    [NotifyPropertyChangedFor(nameof(HasOrder))]
+    [NotifyPropertyChangedFor(nameof(OrderText))]
+    public partial string? OrderNumber { get; set; }
 
     [ObservableProperty]
     public partial CustomerOption? SelectedCustomer { get; set; }
@@ -210,6 +229,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
         AddLine(new OfferLineRow(_units, unit, IsEditable)
         {
             ProductId = value.Id,
+            IsPhysical = value.IsStockable,
             Description = $"{value.Number} {value.Name}",
             UnitPrice = value.UnitPrice,
             VatRate = value.VatRate,
@@ -267,6 +287,27 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
 
     [RelayCommand]
     private Task ReopenAsync(CancellationToken cancellationToken) => MoveAsync(OfferStatus.Draft, saveFirst: false, cancellationToken);
+
+    [RelayCommand]
+    private async Task CreateOrderAsync(CancellationToken cancellationToken)
+    {
+        if (_offerId is not { } id)
+        {
+            return;
+        }
+
+        ErrorMessage = null;
+        var result = await _createOrder.HandleAsync(new CreateOrderFromOffer.Command(id), cancellationToken);
+        if (result.IsSuccess)
+        {
+            OrderNumber = result.Value.Order.Number;
+            StatusMessage = _localization.Format("OfferScreen_OrderCreated", result.Value.Order.Number);
+        }
+        else
+        {
+            ErrorMessage = _localization.Describe(result.Error);
+        }
+    }
 
     [RelayCommand]
     private void RequestDelete() => IsConfirmingDelete = true;
@@ -365,7 +406,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
             DateOnly.FromDateTime(validUntil),
             Reference,
             Notes,
-            [.. Lines.Select(l => new OfferLineFields(l.ProductId, l.Description, l.Quantity ?? 0, l.SelectedUnit.Key, l.UnitPrice ?? 0, l.VatRate ?? 0, l.DiscountPercent ?? 0))]);
+            [.. Lines.Select(l => new OfferLineFields(l.ProductId, l.Description, l.Quantity ?? 0, l.SelectedUnit.Key, l.UnitPrice ?? 0, l.VatRate ?? 0, l.DiscountPercent ?? 0, l.IsPhysical))]);
 
         var result = _offerId is { } id
             ? await _update.HandleAsync(new UpdateOffer.Command(id, fields), cancellationToken)
@@ -387,6 +428,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
         OnPropertyChanged(nameof(Exists));
         Number = detail.Offer.Number;
         Status = detail.Offer.Status;
+        OrderNumber = detail.OrderNumber;
 
         // An inactive customer is not in the picker, but an existing offer still shows its own.
         if (Customers.All(c => c.Id != detail.Offer.CustomerId))
@@ -407,6 +449,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
             AddLine(new OfferLineRow(_units, unit, IsEditable)
             {
                 ProductId = line.ProductId,
+                IsPhysical = line.IsPhysical,
                 Description = line.Description,
                 Quantity = line.Quantity,
                 UnitPrice = line.UnitPrice,

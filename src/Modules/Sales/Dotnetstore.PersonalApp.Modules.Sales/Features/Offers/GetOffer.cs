@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +17,19 @@ internal static class GetOffer
 
             var offer = await db.Offers.AsNoTracking().Include(o => o.Lines).FirstOrDefaultAsync(o => o.Id == query.Id, cancellationToken).ConfigureAwait(false);
 
-            return offer is null
-                ? Error.NotFound("offer_not_found", "Offer not found.")
-                : OfferDetailDto.From(offer, DateOnly.FromDateTime(clock.GetLocalNow().DateTime));
+            if (offer is null)
+            {
+                return Error.NotFound("offer_not_found", "Offer not found.");
+            }
+
+            // The order the offer was made into, if there is a live one.
+            var orderNumber = await db.Orders.AsNoTracking()
+                .Where(o => o.OfferId == offer.Id && o.Status != OrderStatus.Cancelled)
+                .Select(o => o.Number)
+                .FirstOrDefaultAsync(cancellationToken)
+                .ConfigureAwait(false);
+
+            return OfferDetailDto.From(offer, DateOnly.FromDateTime(clock.GetLocalNow().DateTime)) with { OrderNumber = orderNumber };
         }
     }
 }
