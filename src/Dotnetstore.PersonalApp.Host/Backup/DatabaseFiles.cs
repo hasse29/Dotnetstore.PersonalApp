@@ -6,6 +6,10 @@ internal static class DatabaseFiles
     public const string Clients = "clients.db";
     public const string TimeReports = "timereports.db";
     public const string Products = "products.db";
+
+    // Not sales.db: that name belonged to the old Sales module and is deleted at startup (see Retired).
+    public const string Sales = "salesdocuments.db";
+
     public const string Addresses = "addresses.db";
     public const string EmailAddresses = "emailaddresses.db";
     public const string PhoneNumbers = "phonenumbers.db";
@@ -19,7 +23,7 @@ internal static class DatabaseFiles
 
     public static IReadOnlyList<string> All { get; } =
     [
-        Clients, TimeReports, Products, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
+        Clients, TimeReports, Products, Sales, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
         Schedule, Grades, Email, Users,
     ];
 

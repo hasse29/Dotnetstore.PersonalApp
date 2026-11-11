@@ -1,0 +1,85 @@
+using System.Globalization;
+using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
+using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
+using Dotnetstore.PersonalApp.Shared.Results;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+
+namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
+
+internal static class CreateOffer
+{
+    public sealed record Command(OfferFields Fields);
+
+    public sealed class Validator : AbstractValidator<Command>
+    {
+        public Validator()
+        {
+            RuleFor(c => c.Fields).SetValidator(new OfferFieldsValidator());
+        }
+    }
+
+    public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
+    {
+        public async Task<Result<OfferDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        {
+            var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
+            if (!validation.IsValid)
+            {
+                return validation.ToError();
+            }
+
+            var fields = command.Fields;
+
+            await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
+
+            var customer = await db.Customers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == fields.CustomerId, cancellationToken).ConfigureAwait(false);
+            if (customer is null)
+            {
+                return Error.NotFound("offer_customer_not_found", "Customer not found.");
+            }
+
+            if (!customer.IsActive)
+            {
+                return Error.Validation("offer_customer_inactive", "The customer is inactive.");
+            }
+
+            var offer = new Offer
+            {
+                Id = Guid.CreateVersion7(),
+                Number = await NextNumberAsync(db, fields.Date.Year, cancellationToken).ConfigureAwait(false),
+                CustomerId = customer.Id,
+                CustomerName = customer.Name,
+                CustomerAddress = CustomerRules.FormatAddress(customer),
+                Status = OfferStatus.Draft,
+                CreatedAt = clock.GetUtcNow(),
+            };
+            OfferRules.Apply(offer, fields);
+            offer.Lines.AddRange(fields.Lines.Select((l, i) => OfferRules.ToLine(l, i + 1)));
+
+            db.Offers.Add(offer);
+            await db.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            return OfferDetailDto.From(offer, DateOnly.FromDateTime(clock.GetLocalNow().DateTime));
+        }
+
+        // The next number of the year: one more than the highest one used so far, so a deleted draft never makes a number repeat.
+        private static async Task<string> NextNumberAsync(SalesDbContext db, int year, CancellationToken cancellationToken)
+        {
+            var prefix = string.Create(CultureInfo.InvariantCulture, $"O-{year}-");
+            var used = await db.Offers
+                .Where(o => o.Number.StartsWith(prefix))
+                .Select(o => o.Number)
+                .ToListAsync(cancellationToken)
+                .ConfigureAwait(false);
+
+            var highest = used
+                .Select(n => int.TryParse(n.AsSpan(prefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var value) ? value : 0)
+                .DefaultIfEmpty(0)
+                .Max();
+
+            return string.Create(CultureInfo.InvariantCulture, $"{prefix}{highest + 1:0000}");
+        }
+    }
+}

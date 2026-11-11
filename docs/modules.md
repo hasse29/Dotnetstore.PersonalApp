@@ -15,6 +15,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [PhoneNumbers](#phonenumbers) | `phonenumbers.db` | Phone numbers and types | Phone number types (Settings) |
 | [TimeReports](#timereports) | `timereports.db` | Time reports, work time types, exports | Time reports group |
 | [Products](#products) | `products.db` | Hardware, software and consulting products, categories, suppliers, supplier prices and stock (locations, movements, inventory counts) | Products group |
+| [Sales](#sales) | `salesdocuments.db` | Customers and offers (orders, pick lists and invoices follow) | Sales group |
 | [Cvs](#cvs) | `cvs.db` | CVs and their sections | CVs |
 | [Email](#email) | `email.db` | Mail accounts, messages, drafts | Email group |
 
@@ -132,7 +133,19 @@ The catalogue of what is sold: hardware (cables, tools, computer parts), softwar
 - **InventoryCount**: a count for one location (or all, with an option to include products with no stock). Lines snapshot the expected quantity; counted quantities are saved as you go. Posting compares with the stock at that moment and writes `CountAdjustment` movements for the differences, then locks the count. Posted counts cannot be edited (`inventory_count_posted`).
 - **Stock UI**: Stock, Stock movements, Inventory counts and Storage locations pages in the "Stock" sidebar group, plus a stock card on the product detail page.
 - **Prices on the detail page**: a Suppliers card (`SupplierPricesViewModel`) lists every supplier's price cheapest first, marks the lowest one when there is more than one, and lets you add, change and remove prices.
-- No cross-module contract yet: nothing else reads products or suppliers. Add one in `Shared` when another module (e.g. purchasing) needs it.
+- **Product catalog**: `IProductCatalog` (Shared) lets Sales search active products for offer lines. Nothing else reads products or suppliers.
+
+## Sales
+
+Owns `salesdocuments.db` (not `sales.db`: that file belonged to the old Sales module and is still deleted at startup). The flow is offer, then order and pick list, then invoice; only the offer exists so far.
+
+- **Customer**: someone the owner sells to, a company or a private person. Unique case-insensitive `Name`, optional organization number, email (loose format check), phone, street, postal code, city, notes and `IsActive`. Customers are the module's own and are not linked to Clients. A customer with offers cannot be deleted (`customer_in_use`; make it inactive). Error codes `customer_*`.
+- **Offer**: a number (`O-<year>-<sequence>`, one more than the highest of the year so a deleted draft never makes a number repeat), a customer, a date, a valid-until date, an optional reference and notes, a status and lines. The customer's name and address are copied onto the offer, so editing or renaming a customer never changes an issued offer. Error codes `offer_*`.
+- **Offer line**: a description, quantity, unit key (Piece, Hour, Day, Month, License), unit price excluding VAT, VAT percent and discount percent. A line made from a product copies its description, price, unit and VAT through `IProductCatalog` (Shared, implemented by Products); `ProductId` is a plain value, not a foreign key, since the product lives in another database. Free-text lines have no product.
+- **Totals**: `OfferTotals` rounds each line's net amount (quantity x price less discount) and its VAT to 2 decimals and adds them up, as an invoice does. The same code runs in the editor and in the handlers; totals are never stored.
+- **Status**: Draft, Sent, Accepted, Declined. Draft to Sent needs at least one line; Sent to Accepted, Declined or back to Draft; Declined back to Draft. Accepted is final: it is what the order will be made from. "Expired" is only shown, for a Sent offer past its valid-until date. Only a Draft can be edited (`offer_not_editable`); only a Draft or Declined offer can be deleted (`offer_not_deletable`).
+- **UI**: Offers and Customers pages in the Sales sidebar group. The offers list has search and a status filter; opening or starting an offer replaces the list with the offer screen (customer, dates, lines with live totals, notes and the status buttons). Lines are added by searching products or as free lines.
+
 ## Cvs
 
 Each user keeps several CVs aimed at different jobs: `Cv` (`UserId`, unique case-insensitive `Title` per user, optional `TargetJob`, `Summary`). Handlers are scoped by `UserId`. Error codes `cv_*`.

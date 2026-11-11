@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Sales_Title" xml:space="preserve"><value>Försäljning</value></data>
+  <data name="Startup_SalesDatabase" xml:space="preserve"><value>Förbereder försäljningsdatabasen</value></data>
+  <data name="Customers_Title" xml:space="preserve"><value>Kunder</value></data>
+  <data name="Customers_Subtitle" xml:space="preserve"><value>Företag och personer du säljer till.</value></data>
+  <data name="Customers_New" xml:space="preserve"><value>Ny kund</value></data>
+  <data name="Customers_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Namn, organisationsnummer, e-post eller ort</value></data>
+  <data name="Customers_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="Customers_ColEmail" xml:space="preserve"><value>E-post</value></data>
+  <data name="Customers_ColCity" xml:space="preserve"><value>Ort</value></data>
+  <data name="Customers_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Customers_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="Customers_Inactive" xml:space="preserve"><value>Inaktiv</value></data>
+  <data name="Customers_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Customers_ConfirmDelete" xml:space="preserve"><value>Ta bort den här kunden?</value></data>
+  <data name="Customers_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Customers_NoSelection" xml:space="preserve"><value>Ingen kund vald</value></data>
+  <data name="Customers_NoSelectionHint" xml:space="preserve"><value>Välj en kund för att redigera, eller lägg till en ny.</value></data>
+  <data name="Customers_Count" xml:space="preserve"><value>{0} kunder</value></data>
+  <data name="Customers_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} kunder</value></data>
+  <data name="Customers_Saved" xml:space="preserve"><value>{0} sparad</value></data>
+  <data name="CustomerEditor_New" xml:space="preserve"><value>Ny kund</value></data>
+  <data name="CustomerEditor_Edit" xml:space="preserve"><value>Redigera kund</value></data>
+  <data name="CustomerEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="CustomerField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="CustomerField_OrganizationNumber" xml:space="preserve"><value>Organisationsnummer</value></data>
+  <data name="CustomerField_Email" xml:space="preserve"><value>E-post</value></data>
+  <data name="CustomerField_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="CustomerField_Street" xml:space="preserve"><value>Gata</value></data>
+  <data name="CustomerField_PostalCode" xml:space="preserve"><value>Postnummer</value></data>
+  <data name="CustomerField_City" xml:space="preserve"><value>Ort</value></data>
+  <data name="CustomerField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="CustomerField_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="OfferStatus_Draft" xml:space="preserve"><value>Utkast</value></data>
+  <data name="OfferStatus_Sent" xml:space="preserve"><value>Skickad</value></data>
+  <data name="OfferStatus_Accepted" xml:space="preserve"><value>Accepterad</value></data>
+  <data name="OfferStatus_Declined" xml:space="preserve"><value>Avböjd</value></data>
+  <data name="OfferStatus_Expired" xml:space="preserve"><value>Utgången</value></data>
+  <data name="Offers_Title" xml:space="preserve"><value>Offerter</value></data>
+  <data name="Offers_Subtitle" xml:space="preserve"><value>Offerter till dina kunder. En accepterad offert blir en order.</value></data>
+  <data name="Offers_New" xml:space="preserve"><value>Ny offert</value></data>
+  <data name="Offers_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Offers_SearchPlaceholder" xml:space="preserve"><value>Nummer eller kund</value></data>
+  <data name="Offers_AllStatuses" xml:space="preserve"><value>Alla statusar</value></data>
+  <data name="Offers_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Offers_ColCustomer" xml:space="preserve"><value>Kund</value></data>
+  <data name="Offers_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="Offers_ColValidUntil" xml:space="preserve"><value>Giltig till</value></data>
+  <data name="Offers_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Offers_ColTotal" xml:space="preserve"><value>Totalt</value></data>
+  <data name="Offers_Count" xml:space="preserve"><value>{0} offerter</value></data>
+  <data name="Offers_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} offerter</value></data>
+  <data name="OfferField_Customer" xml:space="preserve"><value>Kund</value></data>
+  <data name="OfferField_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="OfferField_ValidUntil" xml:space="preserve"><value>Giltig till</value></data>
+  <data name="OfferField_Reference" xml:space="preserve"><value>Er referens</value></data>
+  <data name="OfferField_Notes" xml:space="preserve"><value>Anteckningar på offerten</value></data>
+  <data name="OfferScreen_New" xml:space="preserve"><value>Ny offert</value></data>
+  <data name="OfferScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="OfferScreen_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="OfferScreen_Saved" xml:space="preserve"><value>Offerten sparades.</value></data>
+  <data name="OfferScreen_Send" xml:space="preserve"><value>Markera som skickad</value></data>
+  <data name="OfferScreen_Accept" xml:space="preserve"><value>Kunden accepterade</value></data>
+  <data name="OfferScreen_Decline" xml:space="preserve"><value>Kunden avböjde</value></data>
+  <data name="OfferScreen_Reopen" xml:space="preserve"><value>Redigera igen</value></data>
+  <data name="OfferScreen_StatusChanged" xml:space="preserve"><value>Offerten är nu: {0}</value></data>
+  <data name="OfferScreen_Delete" xml:space="preserve"><value>Ta bort offert</value></data>
+  <data name="OfferScreen_ConfirmDelete" xml:space="preserve"><value>Ta bort den här offerten?</value></data>
+  <data name="OfferScreen_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="OfferScreen_ProductSearch" xml:space="preserve"><value>Sök en produkt att lägga till</value></data>
+  <data name="OfferScreen_FindProduct" xml:space="preserve"><value>Sök produkt</value></data>
+  <data name="OfferScreen_AddFreeLine" xml:space="preserve"><value>Lägg till egen rad</value></data>
+  <data name="OfferScreen_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="OfferScreen_ColQuantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="OfferScreen_ColUnit" xml:space="preserve"><value>Enhet</value></data>
+  <data name="OfferScreen_ColPrice" xml:space="preserve"><value>Pris</value></data>
+  <data name="OfferScreen_ColVat" xml:space="preserve"><value>Moms %</value></data>
+  <data name="OfferScreen_ColDiscount" xml:space="preserve"><value>Rabatt %</value></data>
+  <data name="OfferScreen_ColAmount" xml:space="preserve"><value>Belopp</value></data>
+  <data name="OfferScreen_NoLines" xml:space="preserve"><value>Det finns inga rader än. Sök en produkt eller lägg till en egen rad.</value></data>
+  <data name="OfferScreen_Net" xml:space="preserve"><value>Summa exklusive moms</value></data>
+  <data name="OfferScreen_Vat" xml:space="preserve"><value>Moms</value></data>
+  <data name="OfferScreen_Total" xml:space="preserve"><value>Att betala</value></data>
+  <data name="Error_customer_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_customer_name_too_long" xml:space="preserve"><value>Namnet är för långt (max 200 tecken).</value></data>
+  <data name="Error_customer_name_conflict" xml:space="preserve"><value>Det finns redan en kund med det namnet.</value></data>
+  <data name="Error_customer_organization_number_too_long" xml:space="preserve"><value>Organisationsnumret är för långt (max 30 tecken).</value></data>
+  <data name="Error_customer_email_too_long" xml:space="preserve"><value>E-postadressen är för lång (max 200 tecken).</value></data>
+  <data name="Error_customer_email_invalid" xml:space="preserve"><value>Ange en giltig e-postadress.</value></data>
+  <data name="Error_customer_phone_too_long" xml:space="preserve"><value>Telefonnumret är för långt (max 50 tecken).</value></data>
+  <data name="Error_customer_street_too_long" xml:space="preserve"><value>Gatan är för lång (max 200 tecken).</value></data>
+  <data name="Error_customer_postal_code_too_long" xml:space="preserve"><value>Postnumret är för långt (max 20 tecken).</value></data>
+  <data name="Error_customer_city_too_long" xml:space="preserve"><value>Orten är för lång (max 100 tecken).</value></data>
+  <data name="Error_customer_notes_too_long" xml:space="preserve"><value>Anteckningarna är för långa (max 2000 tecken).</value></data>
+  <data name="Error_customer_not_found" xml:space="preserve"><value>Kunden finns inte längre.</value></data>
+  <data name="Error_customer_in_use" xml:space="preserve"><value>Kunden har offerter. Gör kunden inaktiv i stället.</value></data>
+  <data name="Error_offer_customer_required" xml:space="preserve"><value>Välj en kund.</value></data>
+  <data name="Error_offer_customer_not_found" xml:space="preserve"><value>Kunden finns inte längre.</value></data>
+  <data name="Error_offer_customer_inactive" xml:space="preserve"><value>Kunden är inaktiv.</value></data>
+  <data name="Error_offer_date_required" xml:space="preserve"><value>Ange datum och giltig till.</value></data>
+  <data name="Error_offer_valid_until_before_date" xml:space="preserve"><value>Offerten kan inte vara giltig till ett datum före offertdatumet.</value></data>
+  <data name="Error_offer_reference_too_long" xml:space="preserve"><value>Referensen är för lång (max 200 tecken).</value></data>
+  <data name="Error_offer_notes_too_long" xml:space="preserve"><value>Anteckningarna är för långa (max 2000 tecken).</value></data>
+  <data name="Error_offer_too_many_lines" xml:space="preserve"><value>Offerten har för många rader (max 200).</value></data>
+  <data name="Error_offer_line_description_required" xml:space="preserve"><value>Varje rad behöver en beskrivning.</value></data>
+  <data name="Error_offer_line_description_too_long" xml:space="preserve"><value>En beskrivning är för lång (max 300 tecken).</value></data>
+  <data name="Error_offer_line_unit_required" xml:space="preserve"><value>Varje rad behöver en enhet.</value></data>
+  <data name="Error_offer_line_quantity_invalid" xml:space="preserve"><value>Antalet måste vara större än 0 och högst 1 000 000.</value></data>
+  <data name="Error_offer_line_price_invalid" xml:space="preserve"><value>Priset måste vara mellan 0 och 10 000 000.</value></data>
+  <data name="Error_offer_line_vat_invalid" xml:space="preserve"><value>Moms måste vara mellan 0 och 100.</value></data>
+  <data name="Error_offer_line_discount_invalid" xml:space="preserve"><value>Rabatten måste vara mellan 0 och 100.</value></data>
+  <data name="Error_offer_not_found" xml:space="preserve"><value>Offerten finns inte längre.</value></data>
+  <data name="Error_offer_not_editable" xml:space="preserve"><value>Bara ett utkast kan ändras. Välj Redigera igen först.</value></data>
+  <data name="Error_offer_status_invalid" xml:space="preserve"><value>Offerten kan inte få den statusen.</value></data>
+  <data name="Error_offer_no_lines" xml:space="preserve"><value>Lägg till minst en rad innan du skickar offerten.</value></data>
+  <data name="Error_offer_not_deletable" xml:space="preserve"><value>Bara ett utkast eller en avböjd offert kan tas bort.</value></data>
+</root>

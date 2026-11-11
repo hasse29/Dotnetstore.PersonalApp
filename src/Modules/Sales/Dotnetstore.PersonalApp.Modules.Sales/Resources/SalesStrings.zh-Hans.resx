@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Sales_Title" xml:space="preserve"><value>销售</value></data>
+  <data name="Startup_SalesDatabase" xml:space="preserve"><value>正在准备销售数据库</value></data>
+  <data name="Customers_Title" xml:space="preserve"><value>客户</value></data>
+  <data name="Customers_Subtitle" xml:space="preserve"><value>您的销售对象（公司和个人）。</value></data>
+  <data name="Customers_New" xml:space="preserve"><value>新建客户</value></data>
+  <data name="Customers_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>名称、组织号、邮箱或城市</value></data>
+  <data name="Customers_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="Customers_ColEmail" xml:space="preserve"><value>邮箱</value></data>
+  <data name="Customers_ColCity" xml:space="preserve"><value>城市</value></data>
+  <data name="Customers_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Customers_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="Customers_Inactive" xml:space="preserve"><value>停用</value></data>
+  <data name="Customers_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Customers_ConfirmDelete" xml:space="preserve"><value>删除此客户？</value></data>
+  <data name="Customers_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Customers_NoSelection" xml:space="preserve"><value>未选择客户</value></data>
+  <data name="Customers_NoSelectionHint" xml:space="preserve"><value>选择客户进行编辑，或新建一个。</value></data>
+  <data name="Customers_Count" xml:space="preserve"><value>{0} 位客户</value></data>
+  <data name="Customers_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 位客户</value></data>
+  <data name="Customers_Saved" xml:space="preserve"><value>已保存 {0}</value></data>
+  <data name="CustomerEditor_New" xml:space="preserve"><value>新建客户</value></data>
+  <data name="CustomerEditor_Edit" xml:space="preserve"><value>编辑客户</value></data>
+  <data name="CustomerEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="CustomerField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="CustomerField_OrganizationNumber" xml:space="preserve"><value>组织号</value></data>
+  <data name="CustomerField_Email" xml:space="preserve"><value>邮箱</value></data>
+  <data name="CustomerField_Phone" xml:space="preserve"><value>电话</value></data>
+  <data name="CustomerField_Street" xml:space="preserve"><value>街道</value></data>
+  <data name="CustomerField_PostalCode" xml:space="preserve"><value>邮编</value></data>
+  <data name="CustomerField_City" xml:space="preserve"><value>城市</value></data>
+  <data name="CustomerField_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="CustomerField_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="OfferStatus_Draft" xml:space="preserve"><value>草稿</value></data>
+  <data name="OfferStatus_Sent" xml:space="preserve"><value>已发送</value></data>
+  <data name="OfferStatus_Accepted" xml:space="preserve"><value>已接受</value></data>
+  <data name="OfferStatus_Declined" xml:space="preserve"><value>已拒绝</value></data>
+  <data name="OfferStatus_Expired" xml:space="preserve"><value>已过期</value></data>
+  <data name="Offers_Title" xml:space="preserve"><value>报价单</value></data>
+  <data name="Offers_Subtitle" xml:space="preserve"><value>给客户的报价单。客户接受后将生成订单。</value></data>
+  <data name="Offers_New" xml:space="preserve"><value>新建报价单</value></data>
+  <data name="Offers_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Offers_SearchPlaceholder" xml:space="preserve"><value>编号或客户</value></data>
+  <data name="Offers_AllStatuses" xml:space="preserve"><value>所有状态</value></data>
+  <data name="Offers_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="Offers_ColCustomer" xml:space="preserve"><value>客户</value></data>
+  <data name="Offers_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="Offers_ColValidUntil" xml:space="preserve"><value>有效期至</value></data>
+  <data name="Offers_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Offers_ColTotal" xml:space="preserve"><value>合计</value></data>
+  <data name="Offers_Count" xml:space="preserve"><value>{0} 份报价单</value></data>
+  <data name="Offers_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 份报价单</value></data>
+  <data name="OfferField_Customer" xml:space="preserve"><value>客户</value></data>
+  <data name="OfferField_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="OfferField_ValidUntil" xml:space="preserve"><value>有效期至</value></data>
+  <data name="OfferField_Reference" xml:space="preserve"><value>客户参考</value></data>
+  <data name="OfferField_Notes" xml:space="preserve"><value>报价单备注</value></data>
+  <data name="OfferScreen_New" xml:space="preserve"><value>新建报价单</value></data>
+  <data name="OfferScreen_Back" xml:space="preserve"><value>返回</value></data>
+  <data name="OfferScreen_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="OfferScreen_Saved" xml:space="preserve"><value>报价单已保存。</value></data>
+  <data name="OfferScreen_Send" xml:space="preserve"><value>标记为已发送</value></data>
+  <data name="OfferScreen_Accept" xml:space="preserve"><value>客户已接受</value></data>
+  <data name="OfferScreen_Decline" xml:space="preserve"><value>客户已拒绝</value></data>
+  <data name="OfferScreen_Reopen" xml:space="preserve"><value>重新编辑</value></data>
+  <data name="OfferScreen_StatusChanged" xml:space="preserve"><value>报价单状态：{0}</value></data>
+  <data name="OfferScreen_Delete" xml:space="preserve"><value>删除报价单</value></data>
+  <data name="OfferScreen_ConfirmDelete" xml:space="preserve"><value>删除此报价单？</value></data>
+  <data name="OfferScreen_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="OfferScreen_ProductSearch" xml:space="preserve"><value>搜索要添加的产品</value></data>
+  <data name="OfferScreen_FindProduct" xml:space="preserve"><value>查找产品</value></data>
+  <data name="OfferScreen_AddFreeLine" xml:space="preserve"><value>添加自定义行</value></data>
+  <data name="OfferScreen_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="OfferScreen_ColQuantity" xml:space="preserve"><value>数量</value></data>
+  <data name="OfferScreen_ColUnit" xml:space="preserve"><value>单位</value></data>
+  <data name="OfferScreen_ColPrice" xml:space="preserve"><value>单价</value></data>
+  <data name="OfferScreen_ColVat" xml:space="preserve"><value>税率 %</value></data>
+  <data name="OfferScreen_ColDiscount" xml:space="preserve"><value>折扣 %</value></data>
+  <data name="OfferScreen_ColAmount" xml:space="preserve"><value>金额</value></data>
+  <data name="OfferScreen_NoLines" xml:space="preserve"><value>暂无行。请查找产品或添加自定义行。</value></data>
+  <data name="OfferScreen_Net" xml:space="preserve"><value>不含税合计</value></data>
+  <data name="OfferScreen_Vat" xml:space="preserve"><value>税额</value></data>
+  <data name="OfferScreen_Total" xml:space="preserve"><value>应付总额</value></data>
+  <data name="Error_customer_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_customer_name_too_long" xml:space="preserve"><value>名称过长（最多 200 个字符）。</value></data>
+  <data name="Error_customer_name_conflict" xml:space="preserve"><value>已存在同名客户。</value></data>
+  <data name="Error_customer_organization_number_too_long" xml:space="preserve"><value>组织号过长（最多 30 个字符）。</value></data>
+  <data name="Error_customer_email_too_long" xml:space="preserve"><value>邮箱过长（最多 200 个字符）。</value></data>
+  <data name="Error_customer_email_invalid" xml:space="preserve"><value>请输入有效的邮箱地址。</value></data>
+  <data name="Error_customer_phone_too_long" xml:space="preserve"><value>电话号码过长（最多 50 个字符）。</value></data>
+  <data name="Error_customer_street_too_long" xml:space="preserve"><value>街道过长（最多 200 个字符）。</value></data>
+  <data name="Error_customer_postal_code_too_long" xml:space="preserve"><value>邮编过长（最多 20 个字符）。</value></data>
+  <data name="Error_customer_city_too_long" xml:space="preserve"><value>城市过长（最多 100 个字符）。</value></data>
+  <data name="Error_customer_notes_too_long" xml:space="preserve"><value>备注过长（最多 2000 个字符）。</value></data>
+  <data name="Error_customer_not_found" xml:space="preserve"><value>该客户已不存在。</value></data>
+  <data name="Error_customer_in_use" xml:space="preserve"><value>该客户有报价单，请改为停用。</value></data>
+  <data name="Error_offer_customer_required" xml:space="preserve"><value>请选择客户。</value></data>
+  <data name="Error_offer_customer_not_found" xml:space="preserve"><value>该客户已不存在。</value></data>
+  <data name="Error_offer_customer_inactive" xml:space="preserve"><value>该客户已停用。</value></data>
+  <data name="Error_offer_date_required" xml:space="preserve"><value>请输入日期和有效期。</value></data>
+  <data name="Error_offer_valid_until_before_date" xml:space="preserve"><value>有效期不能早于报价日期。</value></data>
+  <data name="Error_offer_reference_too_long" xml:space="preserve"><value>参考过长（最多 200 个字符）。</value></data>
+  <data name="Error_offer_notes_too_long" xml:space="preserve"><value>备注过长（最多 2000 个字符）。</value></data>
+  <data name="Error_offer_too_many_lines" xml:space="preserve"><value>报价单行数过多（最多 200 行）。</value></data>
+  <data name="Error_offer_line_description_required" xml:space="preserve"><value>每一行都需要描述。</value></data>
+  <data name="Error_offer_line_description_too_long" xml:space="preserve"><value>描述过长（最多 300 个字符）。</value></data>
+  <data name="Error_offer_line_unit_required" xml:space="preserve"><value>每一行都需要单位。</value></data>
+  <data name="Error_offer_line_quantity_invalid" xml:space="preserve"><value>数量必须大于 0 且不超过 1,000,000。</value></data>
+  <data name="Error_offer_line_price_invalid" xml:space="preserve"><value>单价必须在 0 到 10,000,000 之间。</value></data>
+  <data name="Error_offer_line_vat_invalid" xml:space="preserve"><value>税率必须在 0 到 100 之间。</value></data>
+  <data name="Error_offer_line_discount_invalid" xml:space="preserve"><value>折扣必须在 0 到 100 之间。</value></data>
+  <data name="Error_offer_not_found" xml:space="preserve"><value>该报价单已不存在。</value></data>
+  <data name="Error_offer_not_editable" xml:space="preserve"><value>只有草稿可以修改。请先选择“重新编辑”。</value></data>
+  <data name="Error_offer_status_invalid" xml:space="preserve"><value>报价单无法变为该状态。</value></data>
+  <data name="Error_offer_no_lines" xml:space="preserve"><value>发送前请至少添加一行。</value></data>
+  <data name="Error_offer_not_deletable" xml:space="preserve"><value>只有草稿或已拒绝的报价单可以删除。</value></data>
+</root>

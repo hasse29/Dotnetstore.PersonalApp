@@ -1,0 +1,192 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:offers="using:Dotnetstore.PersonalApp.Modules.Sales.Features.Offers"
+             xmlns:products="using:Dotnetstore.PersonalApp.Shared.Products"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="720"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.Offers.OfferScreenView"
+             x:DataType="offers:OfferScreenViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="20">
+
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        <TextBlock Text="{loc:Tr OfferScreen_Back}"/>
+                    </StackPanel>
+                </Button>
+                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Heading}" Classes="h2"/>
+                    <TextBlock Text="{Binding StatusText}" Classes="muted"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Button Content="{loc:Tr OfferScreen_Save}" Classes="subtle" Command="{Binding SaveCommand}" IsVisible="{Binding IsEditable}"/>
+                    <Button Content="{loc:Tr OfferScreen_Send}" Classes="primary" Command="{Binding SendCommand}" IsVisible="{Binding ShowSend}"/>
+                    <Button Content="{loc:Tr OfferScreen_Accept}" Classes="primary" Command="{Binding AcceptCommand}" IsVisible="{Binding ShowAnswer}"/>
+                    <Button Content="{loc:Tr OfferScreen_Decline}" Classes="subtle" Command="{Binding DeclineCommand}" IsVisible="{Binding ShowAnswer}"/>
+                    <Button Content="{loc:Tr OfferScreen_Reopen}" Classes="subtle" Command="{Binding ReopenCommand}" IsVisible="{Binding ShowReopen}"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Classes="card" Padding="24">
+                <StackPanel Spacing="14" IsEnabled="{Binding IsEditable}">
+                    <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="12">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr OfferField_Customer}" Classes="label"/>
+                            <ComboBox ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" HorizontalAlignment="Stretch">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="offers:CustomerOption">
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{loc:Tr OfferField_Date}" Classes="label"/>
+                            <CalendarDatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="{loc:Tr OfferField_ValidUntil}" Classes="label"/>
+                            <CalendarDatePicker SelectedDate="{Binding ValidUntil}" HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr OfferField_Reference}" Classes="label"/>
+                        <TextBox Text="{Binding Reference}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8" Margin="16" IsEnabled="{Binding IsEditable}">
+                        <TextBox Text="{Binding ProductSearch}" PlaceholderText="{loc:Tr OfferScreen_ProductSearch}">
+                            <TextBox.KeyBindings>
+                                <KeyBinding Gesture="Enter" Command="{Binding SearchProductsCommand}"/>
+                            </TextBox.KeyBindings>
+                        </TextBox>
+                        <Button Grid.Column="1" Content="{loc:Tr OfferScreen_FindProduct}" Classes="subtle" Command="{Binding SearchProductsCommand}"/>
+                        <Button Grid.Column="2" Content="{loc:Tr OfferScreen_AddFreeLine}" Classes="subtle" Command="{Binding AddFreeLineCommand}"/>
+                    </Grid>
+
+                    <ListBox Grid.Row="1" Classes="table" MaxHeight="180" Margin="16,0,16,12"
+                             ItemsSource="{Binding ProductResults}" SelectedItem="{Binding SelectedProduct}"
+                             IsVisible="{Binding HasProductResults}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="products:ProductSummary">
+                                <Grid ColumnDefinitions="1*,3*,1*">
+                                    <TextBlock Text="{Binding Number}" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding UnitPrice, StringFormat={}{0:N2}}" Classes="muted"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Border Grid.Row="2" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                            BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
+                        <Grid ColumnDefinitions="3*,1*,1.2*,1.2*,0.9*,0.9*,1.2*,40">
+                            <TextBlock Text="{loc:Tr OfferScreen_ColDescription}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr OfferScreen_ColQuantity}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr OfferScreen_ColUnit}" Classes="column"/>
+                            <TextBlock Grid.Column="3" Text="{loc:Tr OfferScreen_ColPrice}" Classes="column"/>
+                            <TextBlock Grid.Column="4" Text="{loc:Tr OfferScreen_ColVat}" Classes="column"/>
+                            <TextBlock Grid.Column="5" Text="{loc:Tr OfferScreen_ColDiscount}" Classes="column"/>
+                            <TextBlock Grid.Column="6" Text="{loc:Tr OfferScreen_ColAmount}" Classes="column"/>
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Text="{loc:Tr OfferScreen_NoLines}" Classes="muted" Margin="16" TextWrapping="Wrap"
+                                   IsVisible="{Binding !HasLines}"/>
+
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="offers:OfferLineRow">
+                                    <Grid ColumnDefinitions="3*,1*,1.2*,1.2*,0.9*,0.9*,1.2*,40" Margin="16,4" IsEnabled="{Binding IsEditable}">
+                                        <TextBox Text="{Binding Description}" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                        <NumericUpDown Grid.Column="1" Value="{Binding Quantity}" Minimum="0" Maximum="1000000"
+                                                       Increment="1" FormatString="0.##" Margin="0,0,8,0" ShowButtonSpinner="False" VerticalAlignment="Center"/>
+                                        <ComboBox Grid.Column="2" ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}"
+                                                  HorizontalAlignment="Stretch" Margin="0,0,8,0" VerticalAlignment="Center">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate x:DataType="offers:UnitOption">
+                                                    <TextBlock Text="{Binding Label}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <NumericUpDown Grid.Column="3" Value="{Binding UnitPrice}" Minimum="0" Maximum="10000000"
+                                                       Increment="1" FormatString="N2" Margin="0,0,8,0" ShowButtonSpinner="False" VerticalAlignment="Center"/>
+                                        <NumericUpDown Grid.Column="4" Value="{Binding VatRate}" Minimum="0" Maximum="100"
+                                                       Increment="1" FormatString="0.##" Margin="0,0,8,0" ShowButtonSpinner="False" VerticalAlignment="Center"/>
+                                        <NumericUpDown Grid.Column="5" Value="{Binding DiscountPercent}" Minimum="0" Maximum="100"
+                                                       Increment="1" FormatString="0.##" Margin="0,0,8,0" ShowButtonSpinner="False" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="6" Text="{Binding LineTotalText}" FontWeight="SemiBold" VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                        <Button Grid.Column="7" Classes="subtle" VerticalAlignment="Center"
+                                                Command="{Binding $parent[ItemsControl].((offers:OfferScreenViewModel)DataContext).RemoveLineCommand}"
+                                                CommandParameter="{Binding}">
+                                            <PathIcon Width="12" Height="12" Data="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Border Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                            <StackPanel Spacing="4" HorizontalAlignment="Right">
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OfferScreen_Net}" Classes="muted"/>
+                                    <TextBlock Text="{Binding NetText}" MinWidth="100" TextAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OfferScreen_Vat}" Classes="muted"/>
+                                    <TextBlock Text="{Binding VatText}" MinWidth="100" TextAlignment="Right"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Right">
+                                    <TextBlock Text="{loc:Tr OfferScreen_Total}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding TotalText}" MinWidth="100" TextAlignment="Right" FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Classes="card" Padding="24">
+                <StackPanel IsEnabled="{Binding IsEditable}">
+                    <TextBlock Text="{loc:Tr OfferField_Notes}" Classes="label"/>
+                    <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="70" MaxHeight="140"/>
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Spacing="4" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding StatusMessage}" Classes="caption" TextWrapping="Wrap"
+                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                               IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" IsVisible="{Binding ShowDelete}">
+                    <Button Content="{loc:Tr OfferScreen_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                            IsVisible="{Binding !IsConfirmingDelete}"/>
+                    <TextBlock Text="{loc:Tr OfferScreen_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                               IsVisible="{Binding IsConfirmingDelete}"/>
+                    <Button Content="{loc:Tr OfferScreen_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                            IsVisible="{Binding IsConfirmingDelete}"/>
+                    <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                            IsVisible="{Binding IsConfirmingDelete}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

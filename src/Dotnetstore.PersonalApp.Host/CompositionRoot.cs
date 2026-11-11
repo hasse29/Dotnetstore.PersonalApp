@@ -18,6 +18,7 @@ using Dotnetstore.PersonalApp.Modules.Email;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
 using Dotnetstore.PersonalApp.Modules.Products;
+using Dotnetstore.PersonalApp.Modules.Sales;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
 using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
@@ -75,6 +76,7 @@ internal static class CompositionRoot
         services.AddClientsModule(Path.Combine(dataDirectory, DatabaseFiles.Clients));
         services.AddTimeReportsModule(Path.Combine(dataDirectory, DatabaseFiles.TimeReports));
         services.AddProductsModule(Path.Combine(dataDirectory, DatabaseFiles.Products));
+        services.AddSalesModule(Path.Combine(dataDirectory, DatabaseFiles.Sales));
         services.AddAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.Addresses));
         services.AddEmailAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.EmailAddresses));
         services.AddPhoneNumbersModule(Path.Combine(dataDirectory, DatabaseFiles.PhoneNumbers));

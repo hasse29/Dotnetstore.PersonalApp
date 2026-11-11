@@ -1,0 +1,22 @@
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
+using Dotnetstore.PersonalApp.Shared.Localization;
+using Dotnetstore.PersonalApp.Shared.Mvvm;
+using Dotnetstore.PersonalApp.Shared.Shell;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Dotnetstore.PersonalApp.Modules.Sales;
+
+internal sealed class OffersPage(IServiceProvider services) : IModulePage
+{
+    public string? ModuleKey => "sales";
+
+    public string Title => Localizer.Instance.Get("Offers_Title");
+
+    // Material "description" icon
+    public string IconData =>
+        "M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z";
+
+    public ModulePageGroup? Group => SalesNav.Group();
+
+    public ViewModelBase CreateViewModel() => services.GetRequiredService<OffersViewModel>();
+}

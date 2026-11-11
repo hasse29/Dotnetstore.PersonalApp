@@ -81,6 +81,7 @@ public sealed class RetiredDatabasesTests : IDisposable
     {
         using var services = CompositionRoot.BuildServices(_directory);
 
-        services.GetServices<ModuleInfo>().Select(m => m.Key).Intersect(["production", "purchasing", "sales", "inventory"]).ShouldBeEmpty();
+        // "sales" is not listed: the module of that name was replaced by a new one that keeps the key (and uses another database file).
+        services.GetServices<ModuleInfo>().Select(m => m.Key).Intersect(["production", "purchasing", "inventory"]).ShouldBeEmpty();
     }
 }
