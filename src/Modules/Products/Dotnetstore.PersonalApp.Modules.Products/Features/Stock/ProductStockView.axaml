@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:stock="using:Dotnetstore.PersonalApp.Modules.Products.Features.Stock"
+             mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="300"
+             x:Class="Dotnetstore.PersonalApp.Modules.Products.Features.Stock.ProductStockView"
+             x:DataType="stock:ProductStockViewModel">
+
+    <Border Classes="card" Padding="28">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{loc:Tr ProductStock_Title}" Classes="h2"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ProductStock_Total}" Classes="label"/>
+                    <TextBlock Text="{Binding TotalText}" FontWeight="SemiBold"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ProductStock_Minimum}" Classes="label"/>
+                    <TextBlock Text="{Binding MinimumText}"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="{Binding WarningText}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding WarningText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <TextBlock Text="{loc:Tr ProductStock_Empty}" Classes="muted" TextWrapping="Wrap" IsVisible="{Binding IsEmpty}"/>
+
+            <ItemsControl ItemsSource="{Binding Locations}" IsVisible="{Binding !IsEmpty}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="stock:ProductStockLine">
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,2">
+                            <TextBlock Text="{Binding LocationName}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Grid.Column="1" Text="{Binding QuantityText}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+
+</UserControl>

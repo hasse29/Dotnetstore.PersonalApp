@@ -9,6 +9,7 @@
   <data name="Splash_CheckingUsers" xml:space="preserve"><value>Checking for users...</value></data>
   <data name="Startup_Ready" xml:space="preserve"><value>Ready</value></data>
   <data name="Startup_Failed" xml:space="preserve"><value>Startup failed: {0}</value></data>
+  <data name="Startup_RemovingRetiredDatabases" xml:space="preserve"><value>Removing unused data...</value></data>
   <data name="Shell_Menu" xml:space="preserve"><value>MENU</value></data>
   <data name="Shell_Home" xml:space="preserve"><value>Home</value></data>
   <data name="Shell_SignOut" xml:space="preserve"><value>Sign out</value></data>

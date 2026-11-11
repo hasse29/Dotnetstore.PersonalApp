@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Products_Title" xml:space="preserve"><value>Produkter</value></data>
+  <data name="Products_Subtitle" xml:space="preserve"><value>Hårdvara, programvara och konsulttimmar som du säljer.</value></data>
+  <data name="Products_New" xml:space="preserve"><value>Ny produkt</value></data>
+  <data name="Products_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Products_SearchPlaceholder" xml:space="preserve"><value>Nummer, namn, tillverkare eller modell</value></data>
+  <data name="Products_AllKinds" xml:space="preserve"><value>Alla typer</value></data>
+  <data name="Products_NoCategory" xml:space="preserve"><value>Ingen kategori</value></data>
+  <data name="Products_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Products_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="Products_ColKind" xml:space="preserve"><value>Typ</value></data>
+  <data name="Products_ColCategory" xml:space="preserve"><value>Kategori</value></data>
+  <data name="Products_ColPrice" xml:space="preserve"><value>Pris</value></data>
+  <data name="Products_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Products_ConfirmDelete" xml:space="preserve"><value>Ta bort den här produkten?</value></data>
+  <data name="Products_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Products_NoSelection" xml:space="preserve"><value>Ingen produkt vald</value></data>
+  <data name="Products_NoSelectionHint" xml:space="preserve"><value>Välj en produkt i listan för att redigera den, eller skapa en ny.</value></data>
+  <data name="Products_Count" xml:space="preserve"><value>{0} produkt(er)</value></data>
+  <data name="Products_Saved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="Products_PageOf" xml:space="preserve"><value>Sida {0} av {1}</value></data>
+  <data name="Products_PreviousPage" xml:space="preserve"><value>Föregående</value></data>
+  <data name="Products_NextPage" xml:space="preserve"><value>Nästa</value></data>
+  <data name="ProductEditor_New" xml:space="preserve"><value>Ny produkt</value></data>
+  <data name="ProductEditor_Edit" xml:space="preserve"><value>Redigera produkt</value></data>
+  <data name="ProductEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="ProductField_Kind" xml:space="preserve"><value>Typ</value></data>
+  <data name="ProductField_Number" xml:space="preserve"><value>Produktnummer</value></data>
+  <data name="ProductField_NumberPlaceholder" xml:space="preserve"><value>t.ex. HW-1001</value></data>
+  <data name="ProductField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="ProductField_Category" xml:space="preserve"><value>Kategori</value></data>
+  <data name="ProductField_Manufacturer" xml:space="preserve"><value>Tillverkare</value></data>
+  <data name="ProductField_Model" xml:space="preserve"><value>Modell</value></data>
+  <data name="ProductField_Version" xml:space="preserve"><value>Version</value></data>
+  <data name="ProductField_VersionPlaceholder" xml:space="preserve"><value>t.ex. 2.1.0</value></data>
+  <data name="ProductField_MinimumHours" xml:space="preserve"><value>Minsta antal timmar</value></data>
+  <data name="ProductField_UnitPrice" xml:space="preserve"><value>Pris</value></data>
+  <data name="ProductField_Unit" xml:space="preserve"><value>Enhet</value></data>
+  <data name="ProductField_CostPrice" xml:space="preserve"><value>Inköpspris</value></data>
+  <data name="ProductField_Vat" xml:space="preserve"><value>Moms %</value></data>
+  <data name="ProductField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="ProductField_Active" xml:space="preserve"><value>Aktiv (kan säljas)</value></data>
+  <data name="ProductKind_Hardware" xml:space="preserve"><value>Hårdvara</value></data>
+  <data name="ProductKind_Software" xml:space="preserve"><value>Programvara</value></data>
+  <data name="ProductKind_Consulting" xml:space="preserve"><value>Konsulttjänst</value></data>
+  <data name="ProductUnit_Piece" xml:space="preserve"><value>st</value></data>
+  <data name="ProductUnit_Hour" xml:space="preserve"><value>timme</value></data>
+  <data name="ProductUnit_Day" xml:space="preserve"><value>dag</value></data>
+  <data name="ProductUnit_Month" xml:space="preserve"><value>månad</value></data>
+  <data name="ProductUnit_License" xml:space="preserve"><value>licens</value></data>
+  <data name="ProductCategories_Title" xml:space="preserve"><value>Produktkategorier</value></data>
+  <data name="ProductCategories_Subtitle" xml:space="preserve"><value>Gruppera dina produkter, till exempel kablar, verktyg eller licenser.</value></data>
+  <data name="ProductCategories_New" xml:space="preserve"><value>Ny kategori</value></data>
+  <data name="ProductCategories_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="ProductCategories_SearchPlaceholder" xml:space="preserve"><value>Sök kategorier</value></data>
+  <data name="ProductCategories_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="ProductCategories_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="ProductCategories_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="ProductCategories_ConfirmDelete" xml:space="preserve"><value>Ta bort den här kategorin?</value></data>
+  <data name="ProductCategories_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="ProductCategories_NoSelection" xml:space="preserve"><value>Ingen kategori vald</value></data>
+  <data name="ProductCategories_NoSelectionHint" xml:space="preserve"><value>Välj en kategori i listan för att redigera den, eller skapa en ny.</value></data>
+  <data name="ProductCategories_Count" xml:space="preserve"><value>{0} kategori(er)</value></data>
+  <data name="ProductCategories_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} kategorier. Förfina sökningen för att se fler.</value></data>
+  <data name="ProductCategories_Saved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="ProductCategoryEditor_New" xml:space="preserve"><value>Ny kategori</value></data>
+  <data name="ProductCategoryEditor_Edit" xml:space="preserve"><value>Redigera kategori</value></data>
+  <data name="ProductCategoryEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="ProductCategoryField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="ProductCategoryField_NamePlaceholder" xml:space="preserve"><value>t.ex. Nätverkskablar</value></data>
+  <data name="ProductCategoryField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="Startup_ProductsDatabase" xml:space="preserve"><value>Förbereder produktdatabasen</value></data>
+  <data name="Error_product_number_required" xml:space="preserve"><value>Ange ett produktnummer.</value></data>
+  <data name="Error_product_number_too_long" xml:space="preserve"><value>Produktnumret är för långt (högst 30 tecken).</value></data>
+  <data name="Error_product_number_conflict" xml:space="preserve"><value>En annan produkt använder redan det här numret.</value></data>
+  <data name="Error_product_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_product_name_too_long" xml:space="preserve"><value>Namnet är för långt (högst 200 tecken).</value></data>
+  <data name="Error_product_kind_invalid" xml:space="preserve"><value>Välj en giltig typ.</value></data>
+  <data name="Error_product_unit_invalid" xml:space="preserve"><value>Välj en giltig enhet.</value></data>
+  <data name="Error_product_description_too_long" xml:space="preserve"><value>Beskrivningen är för lång (högst 2000 tecken).</value></data>
+  <data name="Error_product_price_invalid" xml:space="preserve"><value>Priser måste vara mellan 0 och 10 000 000.</value></data>
+  <data name="Error_product_price_required" xml:space="preserve"><value>Ange pris och inköpspris.</value></data>
+  <data name="Error_product_vat_invalid" xml:space="preserve"><value>Moms måste vara mellan 0 och 100.</value></data>
+  <data name="Error_product_vat_required" xml:space="preserve"><value>Ange en momssats.</value></data>
+  <data name="Error_product_manufacturer_too_long" xml:space="preserve"><value>Tillverkaren är för lång (högst 100 tecken).</value></data>
+  <data name="Error_product_model_too_long" xml:space="preserve"><value>Modellen är för lång (högst 100 tecken).</value></data>
+  <data name="Error_product_version_too_long" xml:space="preserve"><value>Versionen är för lång (högst 50 tecken).</value></data>
+  <data name="Error_product_minimum_hours_invalid" xml:space="preserve"><value>Minsta antal timmar måste vara större än 0 och högst 1000.</value></data>
+  <data name="Error_product_not_found" xml:space="preserve"><value>Produkten finns inte längre.</value></data>
+  <data name="Error_product_category_not_found" xml:space="preserve"><value>Kategorin finns inte längre.</value></data>
+  <data name="Error_product_category_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_product_category_name_too_long" xml:space="preserve"><value>Namnet är för långt (högst 100 tecken).</value></data>
+  <data name="Error_product_category_description_too_long" xml:space="preserve"><value>Beskrivningen är för lång (högst 500 tecken).</value></data>
+  <data name="Error_product_category_conflict" xml:space="preserve"><value>Det finns redan en kategori med det här namnet.</value></data>
+  <data name="Error_product_category_in_use" xml:space="preserve"><value>Kategorin används av produkter och kan inte tas bort.</value></data>
+  <data name="Products_Details" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="ProductDetail_Back" xml:space="preserve"><value>Tillbaka till produkter</value></data>
+  <data name="ProductDetail_Edit" xml:space="preserve"><value>Redigera</value></data>
+  <data name="ProductDetail_Status" xml:space="preserve"><value>Status</value></data>
+  <data name="ProductDetail_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="ProductDetail_Inactive" xml:space="preserve"><value>Inaktiv</value></data>
+  <data name="ProductDetail_Pricing" xml:space="preserve"><value>Prissättning</value></data>
+  <data name="ProductDetail_PriceWithVat" xml:space="preserve"><value>Pris inkl. moms</value></data>
+  <data name="ProductDetail_Margin" xml:space="preserve"><value>Marginal</value></data>
+  <data name="Suppliers_Title" xml:space="preserve"><value>Leverantörer</value></data>
+  <data name="Suppliers_Subtitle" xml:space="preserve"><value>Vilka du köper produkter av.</value></data>
+  <data name="Suppliers_New" xml:space="preserve"><value>Ny leverantör</value></data>
+  <data name="Suppliers_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Suppliers_SearchPlaceholder" xml:space="preserve"><value>Namn, organisationsnummer eller e-post</value></data>
+  <data name="Suppliers_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="Suppliers_ColEmail" xml:space="preserve"><value>E-post</value></data>
+  <data name="Suppliers_ColPhone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="Suppliers_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Suppliers_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="Suppliers_Inactive" xml:space="preserve"><value>Inaktiv</value></data>
+  <data name="Suppliers_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="Suppliers_ConfirmDelete" xml:space="preserve"><value>Ta bort leverantören och dess priser?</value></data>
+  <data name="Suppliers_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="Suppliers_NoSelection" xml:space="preserve"><value>Ingen leverantör vald</value></data>
+  <data name="Suppliers_NoSelectionHint" xml:space="preserve"><value>Välj en leverantör i listan för att redigera den, eller skapa en ny.</value></data>
+  <data name="Suppliers_Count" xml:space="preserve"><value>{0} leverantör(er)</value></data>
+  <data name="Suppliers_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} leverantörer. Förfina sökningen för att se fler.</value></data>
+  <data name="Suppliers_Saved" xml:space="preserve"><value>Sparade {0}.</value></data>
+  <data name="SupplierEditor_New" xml:space="preserve"><value>Ny leverantör</value></data>
+  <data name="SupplierEditor_Edit" xml:space="preserve"><value>Redigera leverantör</value></data>
+  <data name="SupplierEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="SupplierField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="SupplierField_OrganizationNumber" xml:space="preserve"><value>Organisationsnummer</value></data>
+  <data name="SupplierField_Email" xml:space="preserve"><value>E-post</value></data>
+  <data name="SupplierField_Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="SupplierField_Website" xml:space="preserve"><value>Webbplats</value></data>
+  <data name="SupplierField_WebsitePlaceholder" xml:space="preserve"><value>https://</value></data>
+  <data name="SupplierField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="SupplierField_Active" xml:space="preserve"><value>Aktiv (kan väljas för nya priser)</value></data>
+  <data name="SupplierPrices_Title" xml:space="preserve"><value>Leverantörer</value></data>
+  <data name="SupplierPrices_Add" xml:space="preserve"><value>Lägg till pris</value></data>
+  <data name="SupplierPrices_Empty" xml:space="preserve"><value>Ingen leverantör har något pris för den här produkten än.</value></data>
+  <data name="SupplierPrices_Edit" xml:space="preserve"><value>Ändra</value></data>
+  <data name="SupplierPrices_Remove" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="SupplierPrices_ConfirmRemove" xml:space="preserve"><value>Ta bort priset?</value></data>
+  <data name="SupplierPrices_YesRemove" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="SupplierPrices_Supplier" xml:space="preserve"><value>Leverantör</value></data>
+  <data name="SupplierPrices_Price" xml:space="preserve"><value>Inköpspris</value></data>
+  <data name="SupplierPrices_ArticleNumber" xml:space="preserve"><value>Leverantörens artikelnr</value></data>
+  <data name="SupplierPrices_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="SupplierPrices_Lowest" xml:space="preserve"><value>Lägsta pris</value></data>
+  <data name="SupplierPrices_Saved" xml:space="preserve"><value>Sparade priset från {0}.</value></data>
+  <data name="SupplierPrices_NoSuppliers" xml:space="preserve"><value>Lägg först till en leverantör under Leverantörer.</value></data>
+  <data name="SupplierPrices_AllPriced" xml:space="preserve"><value>Alla aktiva leverantörer har redan ett pris för den här produkten.</value></data>
+  <data name="Error_supplier_required" xml:space="preserve"><value>Välj en leverantör.</value></data>
+  <data name="Error_supplier_price_required" xml:space="preserve"><value>Ange ett pris.</value></data>
+  <data name="Error_supplier_price_invalid" xml:space="preserve"><value>Priset måste vara mellan 0 och 10 000 000.</value></data>
+  <data name="Error_supplier_article_number_too_long" xml:space="preserve"><value>Artikelnumret är för långt (högst 50 tecken).</value></data>
+  <data name="Error_supplier_price_not_found" xml:space="preserve"><value>Priset finns inte längre.</value></data>
+  <data name="Error_supplier_not_found" xml:space="preserve"><value>Leverantören finns inte längre.</value></data>
+  <data name="Error_supplier_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_supplier_name_too_long" xml:space="preserve"><value>Namnet är för långt (högst 200 tecken).</value></data>
+  <data name="Error_supplier_name_conflict" xml:space="preserve"><value>Det finns redan en leverantör med det här namnet.</value></data>
+  <data name="Error_supplier_organization_number_too_long" xml:space="preserve"><value>Organisationsnumret är för långt (högst 30 tecken).</value></data>
+  <data name="Error_supplier_email_too_long" xml:space="preserve"><value>E-postadressen är för lång (högst 200 tecken).</value></data>
+  <data name="Error_supplier_email_invalid" xml:space="preserve"><value>Ange en giltig e-postadress.</value></data>
+  <data name="Error_supplier_phone_too_long" xml:space="preserve"><value>Telefonnumret är för långt (högst 50 tecken).</value></data>
+  <data name="Error_supplier_website_too_long" xml:space="preserve"><value>Webbadressen är för lång (högst 200 tecken).</value></data>
+  <data name="Error_supplier_notes_too_long" xml:space="preserve"><value>Anteckningarna är för långa (högst 2000 tecken).</value></data>
+  <data name="ProductField_MinimumStock" xml:space="preserve"><value>Minsta lagersaldo</value></data>
+  <data name="Stock_Group" xml:space="preserve"><value>Lager</value></data>
+  <data name="Stock_Title" xml:space="preserve"><value>Lager</value></data>
+  <data name="Stock_Subtitle" xml:space="preserve"><value>Se vad som finns i lager, ta emot, plocka ut och flytta varor.</value></data>
+  <data name="Stock_SearchPlaceholder" xml:space="preserve"><value>Sök nummer eller namn</value></data>
+  <data name="Stock_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="Stock_LowOnly" xml:space="preserve"><value>Endast lågt saldo</value></data>
+  <data name="Stock_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="Stock_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="Stock_ColInStock" xml:space="preserve"><value>I lager</value></data>
+  <data name="Stock_ColMinimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="Stock_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Stock_Low" xml:space="preserve"><value>Lågt</value></data>
+  <data name="Stock_Count" xml:space="preserve"><value>{0} produkter</value></data>
+  <data name="Stock_PageOf" xml:space="preserve"><value>Sida {0} av {1}</value></data>
+  <data name="Stock_PreviousPage" xml:space="preserve"><value>Föregående</value></data>
+  <data name="Stock_NextPage" xml:space="preserve"><value>Nästa</value></data>
+  <data name="Stock_NoSelection" xml:space="preserve"><value>Ingen produkt vald</value></data>
+  <data name="Stock_NoSelectionHint" xml:space="preserve"><value>Välj en produkt för att ta emot, plocka ut eller flytta lager.</value></data>
+  <data name="Stock_NoLocations" xml:space="preserve"><value>Lägg först till en lagerplats.</value></data>
+  <data name="Stock_Registered" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="StockEditor_Title" xml:space="preserve"><value>Registrera lagerrörelse</value></data>
+  <data name="StockEditor_Mode" xml:space="preserve"><value>Åtgärd</value></data>
+  <data name="StockEditor_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="StockEditor_FromLocation" xml:space="preserve"><value>Från lagerplats</value></data>
+  <data name="StockEditor_ToLocation" xml:space="preserve"><value>Till lagerplats</value></data>
+  <data name="StockEditor_Quantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="StockEditor_Supplier" xml:space="preserve"><value>Leverantör</value></data>
+  <data name="StockEditor_NoSupplier" xml:space="preserve"><value>Ingen leverantör</value></data>
+  <data name="StockEditor_Note" xml:space="preserve"><value>Anteckning</value></data>
+  <data name="StockEditor_Register" xml:space="preserve"><value>Registrera</value></data>
+  <data name="StockMode_Receipt" xml:space="preserve"><value>Ta emot</value></data>
+  <data name="StockMode_Issue" xml:space="preserve"><value>Plocka ut</value></data>
+  <data name="StockMode_Transfer" xml:space="preserve"><value>Flytta</value></data>
+  <data name="StockMovementType_Receipt" xml:space="preserve"><value>Inleverans</value></data>
+  <data name="StockMovementType_Issue" xml:space="preserve"><value>Uttag</value></data>
+  <data name="StockMovementType_TransferIn" xml:space="preserve"><value>Flytt in</value></data>
+  <data name="StockMovementType_TransferOut" xml:space="preserve"><value>Flytt ut</value></data>
+  <data name="StockMovementType_CountAdjustment" xml:space="preserve"><value>Inventeringsjustering</value></data>
+  <data name="StockMovements_Title" xml:space="preserve"><value>Lagerrörelser</value></data>
+  <data name="StockMovements_Subtitle" xml:space="preserve"><value>Alla ändringar av lagret, senaste först.</value></data>
+  <data name="StockMovements_SearchPlaceholder" xml:space="preserve"><value>Sök produkt</value></data>
+  <data name="StockMovements_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StockMovements_AllTypes" xml:space="preserve"><value>Alla typer</value></data>
+  <data name="StockMovements_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="StockMovements_ColProduct" xml:space="preserve"><value>Produkt</value></data>
+  <data name="StockMovements_ColLocation" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="StockMovements_ColType" xml:space="preserve"><value>Typ</value></data>
+  <data name="StockMovements_ColQuantity" xml:space="preserve"><value>Antal</value></data>
+  <data name="StockMovements_ColDetails" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="StockMovements_Count" xml:space="preserve"><value>{0} rörelser</value></data>
+  <data name="StockMovements_PageOf" xml:space="preserve"><value>Sida {0} av {1}</value></data>
+  <data name="StockMovements_PreviousPage" xml:space="preserve"><value>Föregående</value></data>
+  <data name="StockMovements_NextPage" xml:space="preserve"><value>Nästa</value></data>
+  <data name="ProductStock_Title" xml:space="preserve"><value>Lager</value></data>
+  <data name="ProductStock_Total" xml:space="preserve"><value>I lager</value></data>
+  <data name="ProductStock_Minimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="ProductStock_Empty" xml:space="preserve"><value>Inget i lager.</value></data>
+  <data name="ProductStock_Low" xml:space="preserve"><value>Lagersaldot är under minimum.</value></data>
+  <data name="StorageLocations_Title" xml:space="preserve"><value>Lagerplatser</value></data>
+  <data name="StorageLocations_Subtitle" xml:space="preserve"><value>Hyllor, rum och lådor där varor förvaras.</value></data>
+  <data name="StorageLocations_New" xml:space="preserve"><value>Ny lagerplats</value></data>
+  <data name="StorageLocations_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="StorageLocations_SearchPlaceholder" xml:space="preserve"><value>Sök namn</value></data>
+  <data name="StorageLocations_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="StorageLocations_ColDescription" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="StorageLocations_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="StorageLocations_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="StorageLocations_Inactive" xml:space="preserve"><value>Inaktiv</value></data>
+  <data name="StorageLocations_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="StorageLocations_ConfirmDelete" xml:space="preserve"><value>Ta bort den här lagerplatsen?</value></data>
+  <data name="StorageLocations_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="StorageLocations_NoSelection" xml:space="preserve"><value>Ingen lagerplats vald</value></data>
+  <data name="StorageLocations_NoSelectionHint" xml:space="preserve"><value>Välj en lagerplats för att redigera, eller lägg till en ny.</value></data>
+  <data name="StorageLocations_Count" xml:space="preserve"><value>{0} lagerplatser</value></data>
+  <data name="StorageLocations_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} lagerplatser</value></data>
+  <data name="StorageLocations_Saved" xml:space="preserve"><value>{0} sparad</value></data>
+  <data name="StorageLocationEditor_New" xml:space="preserve"><value>Ny lagerplats</value></data>
+  <data name="StorageLocationEditor_Edit" xml:space="preserve"><value>Redigera lagerplats</value></data>
+  <data name="StorageLocationEditor_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="StorageLocationField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="StorageLocationField_NamePlaceholder" xml:space="preserve"><value>Till exempel Hylla A2</value></data>
+  <data name="StorageLocationField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="StorageLocationField_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="InventoryCounts_Title" xml:space="preserve"><value>Inventeringar</value></data>
+  <data name="InventoryCounts_Subtitle" xml:space="preserve"><value>Räkna vad som faktiskt finns på hyllorna och justera lagret.</value></data>
+  <data name="InventoryCounts_New" xml:space="preserve"><value>Ny inventering</value></data>
+  <data name="InventoryCounts_OpenCount" xml:space="preserve"><value>Öppna</value></data>
+  <data name="InventoryCounts_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="InventoryCounts_ConfirmDelete" xml:space="preserve"><value>Ta bort den här inventeringen?</value></data>
+  <data name="InventoryCounts_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="InventoryCounts_ColName" xml:space="preserve"><value>Namn</value></data>
+  <data name="InventoryCounts_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="InventoryCounts_ColLocation" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="InventoryCounts_ColCounted" xml:space="preserve"><value>Räknat</value></data>
+  <data name="InventoryCounts_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="InventoryCounts_AllLocations" xml:space="preserve"><value>Alla lagerplatser</value></data>
+  <data name="InventoryCounts_Open" xml:space="preserve"><value>Pågår</value></data>
+  <data name="InventoryCounts_Posted" xml:space="preserve"><value>Bokförd</value></data>
+  <data name="InventoryCounts_Count" xml:space="preserve"><value>{0} inventeringar</value></data>
+  <data name="InventoryCounts_NoSelection" xml:space="preserve"><value>Ingen inventering vald</value></data>
+  <data name="InventoryCounts_NoSelectionHint" xml:space="preserve"><value>Välj en inventering för att öppna den, eller starta en ny.</value></data>
+  <data name="InventoryCountEditor_Title" xml:space="preserve"><value>Ny inventering</value></data>
+  <data name="InventoryCountEditor_Start" xml:space="preserve"><value>Starta inventering</value></data>
+  <data name="InventoryCountEditor_DefaultName" xml:space="preserve"><value>Inventering {0}</value></data>
+  <data name="InventoryCountField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="InventoryCountField_Location" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="InventoryCountField_IncludeUnstocked" xml:space="preserve"><value>Ta med produkter utan lagersaldo</value></data>
+  <data name="InventoryCountField_Note" xml:space="preserve"><value>Anteckning</value></data>
+  <data name="InventoryCountScreen_Back" xml:space="preserve"><value>Tillbaka</value></data>
+  <data name="InventoryCountScreen_Hint" xml:space="preserve"><value>Ange det du räknade. Lämna en rad tom för att hoppa över den.</value></data>
+  <data name="InventoryCountScreen_PostedHint" xml:space="preserve"><value>Den här inventeringen är bokförd och kan inte ändras.</value></data>
+  <data name="InventoryCountScreen_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="InventoryCountScreen_ColProduct" xml:space="preserve"><value>Produkt</value></data>
+  <data name="InventoryCountScreen_ColLocation" xml:space="preserve"><value>Lagerplats</value></data>
+  <data name="InventoryCountScreen_ColExpected" xml:space="preserve"><value>Förväntat</value></data>
+  <data name="InventoryCountScreen_ColCounted" xml:space="preserve"><value>Räknat</value></data>
+  <data name="InventoryCountScreen_ColDifference" xml:space="preserve"><value>Differens</value></data>
+  <data name="InventoryCountScreen_Empty" xml:space="preserve"><value>Det finns inget att räkna.</value></data>
+  <data name="InventoryCountScreen_Save" xml:space="preserve"><value>Spara</value></data>
+  <data name="InventoryCountScreen_Post" xml:space="preserve"><value>Bokför inventering</value></data>
+  <data name="InventoryCountScreen_ConfirmPost" xml:space="preserve"><value>Justera lagret till de räknade antalen?</value></data>
+  <data name="InventoryCountScreen_YesPost" xml:space="preserve"><value>Ja, bokför</value></data>
+  <data name="InventoryCountScreen_Saved" xml:space="preserve"><value>Inventeringen sparades.</value></data>
+  <data name="InventoryCountScreen_Posted" xml:space="preserve"><value>Inventeringen bokfördes, {0} justeringar gjordes.</value></data>
+  <data name="Error_storage_location_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_storage_location_name_too_long" xml:space="preserve"><value>Namnet är för långt (max 100 tecken).</value></data>
+  <data name="Error_storage_location_conflict" xml:space="preserve"><value>Det finns redan en lagerplats med det namnet.</value></data>
+  <data name="Error_storage_location_description_too_long" xml:space="preserve"><value>Beskrivningen är för lång (max 500 tecken).</value></data>
+  <data name="Error_storage_location_not_found" xml:space="preserve"><value>Lagerplatsen finns inte längre.</value></data>
+  <data name="Error_storage_location_in_use" xml:space="preserve"><value>Lagerplatsen har lagersaldo eller historik. Gör den inaktiv i stället.</value></data>
+  <data name="Error_storage_location_inactive" xml:space="preserve"><value>Lagerplatsen är inaktiv.</value></data>
+  <data name="Error_storage_location_required" xml:space="preserve"><value>Välj en lagerplats.</value></data>
+  <data name="Error_stock_quantity_invalid" xml:space="preserve"><value>Ange ett antal större än 0.</value></data>
+  <data name="Error_stock_insufficient" xml:space="preserve"><value>Det finns inte tillräckligt i lager på lagerplatsen.</value></data>
+  <data name="Error_stock_note_too_long" xml:space="preserve"><value>Anteckningen är för lång (max 500 tecken).</value></data>
+  <data name="Error_stock_same_location" xml:space="preserve"><value>Välj två olika lagerplatser.</value></data>
+  <data name="Error_stock_counted_invalid" xml:space="preserve"><value>Räknat antal måste vara mellan 0 och 1 000 000.</value></data>
+  <data name="Error_product_not_stockable" xml:space="preserve"><value>Konsulttimmar kan inte lagerhållas.</value></data>
+  <data name="Error_product_in_use" xml:space="preserve"><value>Produkten har lagerhistorik. Gör den inaktiv i stället.</value></data>
+  <data name="Error_product_minimum_stock_invalid" xml:space="preserve"><value>Minsta lagersaldo måste vara mellan 0 och 1 000 000.</value></data>
+  <data name="Error_inventory_count_name_required" xml:space="preserve"><value>Ange ett namn.</value></data>
+  <data name="Error_inventory_count_name_too_long" xml:space="preserve"><value>Namnet är för långt (max 100 tecken).</value></data>
+  <data name="Error_inventory_count_note_too_long" xml:space="preserve"><value>Anteckningen är för lång (max 500 tecken).</value></data>
+  <data name="Error_inventory_count_location_required" xml:space="preserve"><value>Välj en lagerplats, eller ta bara med produkter som har lagersaldo.</value></data>
+  <data name="Error_inventory_count_not_found" xml:space="preserve"><value>Inventeringen finns inte längre.</value></data>
+  <data name="Error_inventory_count_posted" xml:space="preserve"><value>Inventeringen är redan bokförd.</value></data>
+</root>

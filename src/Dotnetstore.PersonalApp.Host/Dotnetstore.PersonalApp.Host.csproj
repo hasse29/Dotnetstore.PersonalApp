@@ -35,6 +35,7 @@
     <ProjectReference Include="..\Dotnetstore.PersonalApp.Shared\Dotnetstore.PersonalApp.Shared.csproj" />
     <ProjectReference Include="..\Modules\Addresses\Dotnetstore.PersonalApp.Modules.Addresses\Dotnetstore.PersonalApp.Modules.Addresses.csproj" />
     <ProjectReference Include="..\Modules\Clients\Dotnetstore.PersonalApp.Modules.Clients\Dotnetstore.PersonalApp.Modules.Clients.csproj" />
+    <ProjectReference Include="..\Modules\Products\Dotnetstore.PersonalApp.Modules.Products\Dotnetstore.PersonalApp.Modules.Products.csproj" />
     <ProjectReference Include="..\Modules\TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports.csproj" />
     <ProjectReference Include="..\Modules\EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses.csproj" />
     <ProjectReference Include="..\Modules\PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers.csproj" />
@@ -45,10 +46,6 @@
     <ProjectReference Include="..\Modules\Grades\Dotnetstore.PersonalApp.Modules.Grades\Dotnetstore.PersonalApp.Modules.Grades.csproj" />
     <ProjectReference Include="..\Modules\Email\Dotnetstore.PersonalApp.Modules.Email\Dotnetstore.PersonalApp.Modules.Email.csproj" />
     <ProjectReference Include="..\Modules\Users\Dotnetstore.PersonalApp.Modules.Users\Dotnetstore.PersonalApp.Modules.Users.csproj" />
-    <ProjectReference Include="..\Modules\Production\Dotnetstore.PersonalApp.Modules.Production\Dotnetstore.PersonalApp.Modules.Production.csproj" />
-    <ProjectReference Include="..\Modules\Purchasing\Dotnetstore.PersonalApp.Modules.Purchasing\Dotnetstore.PersonalApp.Modules.Purchasing.csproj" />
-    <ProjectReference Include="..\Modules\Inventory\Dotnetstore.PersonalApp.Modules.Inventory\Dotnetstore.PersonalApp.Modules.Inventory.csproj" />
-    <ProjectReference Include="..\Modules\Sales\Dotnetstore.PersonalApp.Modules.Sales\Dotnetstore.PersonalApp.Modules.Sales.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,10 +17,7 @@ using Dotnetstore.PersonalApp.Modules.Subjects;
 using Dotnetstore.PersonalApp.Modules.Email;
 using Dotnetstore.PersonalApp.Modules.EmailAddresses;
 using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
-using Dotnetstore.PersonalApp.Modules.Production;
-using Dotnetstore.PersonalApp.Modules.Sales;
-using Dotnetstore.PersonalApp.Modules.Purchasing;
-using Dotnetstore.PersonalApp.Modules.Inventory;
+using Dotnetstore.PersonalApp.Modules.Products;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
 using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
@@ -28,6 +25,7 @@ using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Shell;
+using Dotnetstore.PersonalApp.Shared.Startup;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dotnetstore.PersonalApp.Host;
@@ -69,12 +67,14 @@ internal static class CompositionRoot
         services.AddTransient<BackupViewModel>();
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<StartupRunner>();
+        services.AddSingleton<IStartupTask>(sp => new RemoveRetiredDatabasesTask(dataDirectory, sp.GetRequiredService<ILocalizationService>()));
         services.AddSingleton<IEventPublisher, InProcessEventPublisher>();
         services.AddSingleton<UserPhotoNotifier>();
         services.AddSingleton<IIntegrationEventConsumer<UserPhotoChanged>>(sp => sp.GetRequiredService<UserPhotoNotifier>());
 
         services.AddClientsModule(Path.Combine(dataDirectory, DatabaseFiles.Clients));
         services.AddTimeReportsModule(Path.Combine(dataDirectory, DatabaseFiles.TimeReports));
+        services.AddProductsModule(Path.Combine(dataDirectory, DatabaseFiles.Products));
         services.AddAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.Addresses));
         services.AddEmailAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.EmailAddresses));
         services.AddPhoneNumbersModule(Path.Combine(dataDirectory, DatabaseFiles.PhoneNumbers));
@@ -84,10 +84,6 @@ internal static class CompositionRoot
         services.AddScheduleModule(Path.Combine(dataDirectory, DatabaseFiles.Schedule));
         services.AddGradesModule(Path.Combine(dataDirectory, DatabaseFiles.Grades));
         services.AddEmailModule(Path.Combine(dataDirectory, DatabaseFiles.Email));
-        services.AddProductionModule(Path.Combine(dataDirectory, DatabaseFiles.Production));
-        services.AddSalesModule(Path.Combine(dataDirectory, DatabaseFiles.Sales));
-        services.AddPurchasingModule(Path.Combine(dataDirectory, DatabaseFiles.Purchasing));
-        services.AddInventoryModule(Path.Combine(dataDirectory, DatabaseFiles.Inventory));
         services.AddUsersModule(Path.Combine(dataDirectory, DatabaseFiles.Users));
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });

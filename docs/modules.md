@@ -9,15 +9,12 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Subjects](#subjects) | `subjects.db` | Subjects and which teacher teaches what | School > Subjects; Subjects tab on the User detail page |
 | [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | School > Schedule |
 | [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | School > Grades, Grade scales, Tests; Grades tab on the Student detail page |
-| [Production](#production) | `production.db` | Products, categories, models, units, price history, inventory, bills of materials, work orders, transactions | Production group |
-| [Purchasing](#purchasing) | `purchasing.db` | Ship methods, vendors, vendor prices, purchase orders and lines | Purchasing group |
-| [Sales](#sales) | `sales.db` | Customers, stores, salespeople, territories, currencies, special offers, tax rates, sales orders and lines | Sales group |
-| [Inventory](#inventory) | `inventory.db` | Warehouses, storage locations, stock levels and movements, inventory counts, receiving and issuing against orders | Warehouse group |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
 | [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
 | [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
 | [PhoneNumbers](#phonenumbers) | `phonenumbers.db` | Phone numbers and types | Phone number types (Settings) |
 | [TimeReports](#timereports) | `timereports.db` | Time reports, work time types, exports | Time reports group |
+| [Products](#products) | `products.db` | Hardware, software and consulting products, categories, suppliers, supplier prices and stock (locations, movements, inventory counts) | Products group |
 | [Cvs](#cvs) | `cvs.db` | CVs and their sections | CVs |
 | [Email](#email) | `email.db` | Mail accounts, messages, drafts | Email group |
 
@@ -79,56 +76,6 @@ Grade scales per country, and the grades a teacher gives students. Countries gra
 - **Tests page**: a third page in the School group (`TestsPage`, `ModuleKey` `school`): the test list, an editor for name/date/maximum score and, for a saved test, the results panel (student picker, score, scale and grade). Error codes `test_*`; a missing grade step reuses `grade_item_not_found`.
 - Consumes `UserDeleted` (the grades and tests that teacher gave), `StudentDeleted` (their grades and test results) and `SubjectDeleted`.
 
-## Production
-
-Products and what goes into making them, modelled on the AdventureWorks sample's Production schema. One sidebar group "Production" (`ModuleKey` `production`) with one page per entity. Error codes are the entity name in snake case (`product_*`, `work_order_*`, ...).
-
-- **Catalogue**: `ProductCategory`, `ProductSubcategory` (of a category), `ProductModel`, `UnitMeasure` (seeded with each, kilogram, gram, meter, centimeter, liter, hour, package) and `Product` (name and product number unique, make/salable flags, color, size and weight with units, stock levels, standard cost, list price, product line/class/style, subcategory, model, sell dates; a sell end before the start is `product_end_before_start`).
-- **History and stock**: `ProductCostHistory` and `ProductListPriceHistory` (dated, deleted with the product), `ProductInventory` (quantity per product and location, unique per pair) and `Location` (cost rate, available hours; four seeded). `ProductReview` (rating 1-5) is deleted with its product.
-- **Making things**: `BillOfMaterial` (assembly product, component product, unit, level, quantity per assembly), `WorkOrder` (number handed out as `WO-000001` when left blank; product, quantities, dates, optional `ScrapReason`, seeded with a few reasons), `WorkOrderRouting` (steps of a work order at a location, unique per sequence number) and `TransactionHistory` (work order, sales order or purchase order transactions).
-- **Rules**: rows that others point at cannot be deleted (`*_in_use`), except children that go with their parent (history, reviews, inventory, routing steps). Deleting a product publishes `ProductDeleted`.
-- **Not ported**: documents, illustrations, product photos and the culture-specific descriptions of the sample, and the archive table of transactions.
-- **Contracts**: implements `IProductLookup` and `IUnitMeasureLookup` (`Shared/Products`) for Purchasing and Sales.
-- **Product page**: the Products list has an Open button that shows `ProductDetailViewModel` with tabs Information, Cost history, List prices, Inventory, Reviews and Bill of materials (the product as assembly). The tabs are the ordinary list pages limited to the product (see "Detail pages and order screens" below).
-
-## Purchasing
-
-Vendors and what is bought from them. Sidebar group "Purchasing" (`ModuleKey` `purchasing`).
-
-- **ShipMethod** (name, base charge, rate per unit; three seeded) implements `IShipMethodLookup` (`Shared/Purchasing`), which Sales uses too.
-- **Vendor**: account number and name unique, credit rating 1-5, preferred and active flags, optional web address and an optional link to a client (by id, no foreign key; cleared when the client is deleted).
-- **ProductVendor**: what a vendor charges for a product (lead time, standard and last receipt price, order quantities, unit). Unique per product and vendor. `ProductId` and the unit are ids from Production, so there is no foreign key; they are checked through `IProductLookup` / `IUnitMeasureLookup` (skipped if Production is absent). Consumes `ProductDeleted` and removes the prices of that product.
-- **PurchaseOrder** and **PurchaseOrderDetail**: an order has a number (`PO-000001` when left blank), status, vendor, ship method, optional buyer (a user id, cleared when the user is deleted), dates, tax and freight; its subtotal and total due are kept by `OrderTotals` from the lines whenever a line or the order changes. A line's total is quantity times price and its stocked quantity is received minus rejected. Lines are deleted with the order and keep their product id if the product is deleted (shown without a name).
-- **Vendor page**: Open on a vendor shows tabs Information, Prices, Purchase orders, and Addresses, Email addresses and Phone numbers when those modules are present (the vendor id is the object id).
-- **Order screen**: Open on a purchase order shows `PurchaseOrderScreenViewModel`: the order's editor on the left, a totals strip (subtotal, tax, freight, total due) and the lines on the right. Adding, changing or deleting a line refreshes the totals; saving the header does too. The separate line page stays for searching all lines.
-
-## Inventory
-
-The warehouse: where goods are stored and how many there are. Sidebar group "Warehouse" (`ModuleKey` `inventory`). The module is named Inventory because an entity called `Warehouse` would clash with a module namespace of the same name. It owns its stock; Production's `ProductInventory` is untouched.
-
-- **Warehouse** (code and name unique, optional address, active flag; `MAIN` is seeded) and **StorageLocation** (a bin or shelf: unique code, optional zone, description and capacity), deleted with its warehouse. A warehouse with movements at any of its locations cannot be deleted (`warehouse_in_use`). Open on either shows a detail page: a warehouse has tabs Information, Locations and Counts; a location has Information, Contents and Movements.
-- **StockMovement** is the ledger: date, product, location, type (Receipt, Return, TransferIn and AdjustmentUp add; Issue, Scrap, TransferOut and AdjustmentDown take away), quantity above zero, reference and note. `StockLedger` keeps **StockLevel** (one row per product and location, optional minimum) equal to the signed sum of the movements, recalculated whenever a movement is created, changed or deleted, and refuses any create, change or delete that would leave a location below zero (`stock_movement_insufficient_stock`), including deleting or shrinking a receipt that later issues depend on. Each of these, a transfer, a goods movement and the posting of a count runs in one transaction, so a refused or failed change leaves nothing behind. A stock level can only have its minimum edited (`stock_level_key_fixed`); its quantity follows the movements. Sums are done client-side because SQLite cannot sum decimals.
-- **Stock overview** (read-only page): products by warehouse and location with quantity and minimum, a search, a warehouse filter and an "only low stock" filter; at most 500 rows. The filters run in the database and only the first products by name are read in full.
-- **Stock transfer** moves a quantity between two locations as a TransferOut and TransferIn pair; **Receive goods** and **Issue goods** pick an order from the order modules, show ordered, already handled and outstanding quantities, and book Receipt or Issue movements with the order number as reference. An issue is checked for every line before anything is saved, and the quantity cannot go past what the order has outstanding (`goods_movement_exceeds_order`), so a repeated submit books nothing. Order modules are optional; without them the pages say so.
-- **InventoryCount** (number `IC-000001` when left blank, warehouse, date, note, posted flag) and **InventoryCountLine** (product, location, expected and counted quantity, difference). Open shows one screen: Fill adds a line per non-zero stock level of the warehouse, the counted quantities are entered, and Post records an AdjustmentUp or AdjustmentDown for each counted line by counted minus current stock. A posted count cannot be filled or posted again.
-- **Contracts**: consumes `ProductDeleted` (stock levels and the lines of unposted counts are removed; movements and posted count lines keep the id and the history). Uses `IPurchaseOrderLookup` and `ISalesOrderLookup` (both `IOrderLookup`, `Shared/Orders`) and publishes `GoodsReceived` or `GoodsIssued` with the running total for each line (a movement remembers its order line in `SourceLine`, and the cap on how much can be handled is per line). The totals are absolute, so a repeat does no harm, and opening an order on the receive or issue page resends them, which brings an order module back in step after a failed delivery. Purchasing sets the line's received and stocked quantities and refreshes the order totals; Sales sets the line's shipped quantity (`ShippedQty`) and marks the order Shipped with a ship date once every line is out, unless it is cancelled or rejected.
-
-## Sales
-
-Customers and what is sold to them. Sidebar group "Sales" (`ModuleKey` `sales`).
-
-- **Territories and people**: `SalesTerritory`, `SalesPerson` (a name, an optional user link, territory, quota, bonus, commission 0-1), `SalesPersonQuotaHistory` and `SalesTerritoryHistory` (deleted with the salesperson).
-- **Money**: `Currency` (seeded SEK, USD, EUR, GBP, NOK, DKK, CNY), `CurrencyRate` (unique per date and currency pair), `CountryRegionCurrency` (country as free text) and `SalesTaxRate` (percent).
-- **Offers**: `SpecialOffer` (discount 0-1, dates, quantities; "No discount" seeded) and `SpecialOfferProduct`, which consumes `ProductDeleted`.
-- **Customers**: `Store`, and `Customer` (number `CU-000001` when left blank, name, optional link to a client, store and territory). Deleting a client clears the link, the customer stays.
-- **SalesOrder** and **SalesOrderDetail**: number `SO-000001` when left blank, status, dates, customer, optional salesperson, territory and ship method (`IShipMethodLookup`), tax, freight and comment. A line's total is price times quantity less the discount; the order's subtotal and total due follow the lines (`OrderTotals`). `SalesOrderReason` ties sales reasons (`SalesReason`, seeded) to an order.
-- **Not ported**: credit cards (card data is a security risk), shopping carts, and the customer's and order's addresses.
-- **Customer page**: tabs Information, Sales orders and the contact tabs (as for vendors). **Salesperson page**: tabs Information, Quota history and Territory history. **Order screen**: as for purchase orders (`SalesOrderScreenViewModel`).
-
-### Detail pages and order screens
-
-The three modules share one pattern, produced by the same generator as the list pages. A child entity declares its parent (`ProductCostHistory` -> `Product`); its list handler takes a `ParentId`, and its page view model has `ForParent(parentId)`, which limits the list to that parent, gives new rows the parent (the editor hides the parent drop-down, `IsParentFixed`), drops the page's title and margin (`IsEmbedded`) and raises `Changed` after a save or delete. An entity with a detail page has an Open button and `Detail` on its list page; the detail view model derives from `DetailViewModel` (Back raises `Closed`) and is created by `IDetailFactory<TDto>` with the container supplying everything but the row. The detail view models and their views are hand-written next to the generated files; the view is found by name (`*ViewModel` -> `*View`) like every other page.
-
 ## Users
 
 CRUD plus authentication (see [architecture.md](architecture.md#startup-and-authentication)). Passwords are hashed with `IPasswordHasher<T>`; plain text is never stored or logged. Error codes `user_*`. Implements `IAuthenticationPages` (login and first-user setup) and `IUserLookup` / `IUserPhotoLookup` (`Shared/Users`).
@@ -166,6 +113,26 @@ Lets the signed-in user report time per client.
 - **Receipt**: `ExpenseReceipt` holds one PDF/PNG/JPEG (max 10 MB, checked by extension) per expense in its own table, so listing never loads the bytes; it is replaced or removed through `UpdateExpense` and deleted with the expense (cascade). The editor attaches through `IFilePickService` and saves a copy back out through `IFileSaveService` (`GetExpenseReceipt`).
 - **Expenses UI and export**: an Expenses page in the "Time reports" sidebar group (15 per page) with a year picker and an Export to Excel button (`ExportExpenses`): one sheet listing every expense of the calendar year (date, category, description, client, amount, VAT, receipt file name) with totals, and a Summary sheet with amount and VAT per category. SQLite cannot order by `DateTimeOffset`, so lists tie-break on `Id` (a v7 Guid).
 
+## Products
+
+The catalogue of what is sold: hardware (cables, tools, computer parts), software the user makes, and consulting hours. A single `Product` table with a `Kind` enum (`ProductKind`: Hardware, Software, Consulting).
+
+- **Product**: unique case-insensitive `Number` (SKU, max 30), `Name`, `Kind`, optional `Description`, `IsActive`, `Unit` (`ProductUnit`: Piece, Hour, Day, Month, License), `UnitPrice`, `CostPrice`, `VatRate` (default 25), optional category.
+- **Kind-specific details**: `Manufacturer`/`Model` (Hardware only), `SoftwareVersion` (Software only), `MinimumHours` (Consulting only). `ProductRules.Apply` clears the fields that do not belong to the chosen kind, and the editor only shows the matching ones. A new product gets a default unit per kind (Piece, License, Hour).
+- **ProductCategory**: user-managed lookup in the same database (unique case-insensitive `Name`, optional `Description`), its own page in the Products sidebar group. A category used by products cannot be deleted (`product_category_in_use`; the FK is `Restrict`).
+- **Rules**: prices 0-10,000,000 (rounded to 2 decimals), VAT 0-100, minimum hours more than 0 and at most 1000. Error codes `product_*` and `product_category_*`.
+- **UI**: a list with search (number, name, manufacturer, model), a kind filter, 15 products per page, a thumbnail per row and an editor beside the list.
+- **Detail page**: the Details button opens `ProductDetailViewModel` in place of the list: photo, kind, status, category, the kind-specific details, and a pricing card (price, price incl. VAT, cost, VAT, margin as profit and percent of the price). Edit returns to the list with the product open in the editor.
+- **Photo**: PNG/JPEG up to 6 MB with a 96x96 thumbnail, like students (see Cross-cutting: photos). `Get/SetProductPhoto`, `ProductPhotoPanelFactory`; `ListProducts` projects column by column so full-size photos are never loaded for a list.
+- **Supplier**: who the products are bought from, in the same module and database so prices can point at products with real foreign keys. Unique case-insensitive `Name`, optional organization number, email (loose format check), phone, website and notes, and `IsActive` (inactive suppliers keep their prices but are not offered for new ones). Own page in the Products sidebar group. Error codes `supplier_*`.
+- **SupplierPrice**: one supplier's purchase price (excluding VAT, per the product's unit) for one product, with the supplier's own article number and when it was last changed. Unique per supplier and product, so `SetSupplierPrice` adds or replaces. The FKs cascade: deleting a supplier or a product removes its prices.
+- **Stock**: lives in the Products module so quantities point at products and locations with real foreign keys. Consulting is not stockable (`product_not_stockable`); `Product.MinimumStock` (0-1,000,000, non-consulting only) marks a product as low when the total falls below it.
+- **StorageLocation**: unique case-insensitive `Name`, optional description, `IsActive` (inactive locations keep their stock but take no new goods). A location with stock levels or movements cannot be deleted (`storage_location_in_use`; make it inactive).
+- **StockLevel / StockMovement**: `StockLedger.ApplyAsync` is the only place quantities change. It updates the level for (product, location) and appends an immutable movement (Receipt, Issue, TransferIn, TransferOut, CountAdjustment) in the same `SaveChanges`. Issues and transfers cannot go below zero (`stock_insufficient`); a transfer writes two movements sharing a `TransferId`. Receipts may name the supplier. A product with movements cannot be deleted (`product_in_use`).
+- **InventoryCount**: a count for one location (or all, with an option to include products with no stock). Lines snapshot the expected quantity; counted quantities are saved as you go. Posting compares with the stock at that moment and writes `CountAdjustment` movements for the differences, then locks the count. Posted counts cannot be edited (`inventory_count_posted`).
+- **Stock UI**: Stock, Stock movements, Inventory counts and Storage locations pages in the "Stock" sidebar group, plus a stock card on the product detail page.
+- **Prices on the detail page**: a Suppliers card (`SupplierPricesViewModel`) lists every supplier's price cheapest first, marks the lowest one when there is more than one, and lets you add, change and remove prices.
+- No cross-module contract yet: nothing else reads products or suppliers. Add one in `Shared` when another module (e.g. purchasing) needs it.
 ## Cvs
 
 Each user keeps several CVs aimed at different jobs: `Cv` (`UserId`, unique case-insensitive `Title` per user, optional `TargetJob`, `Summary`). Handlers are scoped by `UserId`. Error codes `cv_*`.
@@ -202,7 +169,7 @@ An account is personal (`OwnerId` = the user) or a system account shared by ever
 
 ## Cross-cutting: photos
 
-Users, clients, contact persons and students can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
+Users, clients, contact persons, students and products can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
 
 - `Get<X>Photo` / `Set<X>Photo` handlers read and write only that column, so lists and updates never load it.
 - Shared pieces in `Shared/Photos`: `PhotoRules`, `PhotoThumbnail`, `BytesToBitmapConverter`, `PhotoPanelViewModel` / `PhotoPanelView` (round photo or initials with Change/Remove buttons on the User and Client detail pages) and `AvatarView`. Each module hands the panel its load/save delegates through its `<X>PhotoPanelFactory`; the file dialog is `IFileOpenService`.

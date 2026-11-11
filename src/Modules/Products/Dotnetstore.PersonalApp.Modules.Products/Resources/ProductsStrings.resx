@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Products_Title" xml:space="preserve"><value>Products</value></data>
+  <data name="Products_Subtitle" xml:space="preserve"><value>Hardware, software and consulting hours you sell.</value></data>
+  <data name="Products_New" xml:space="preserve"><value>New product</value></data>
+  <data name="Products_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Products_SearchPlaceholder" xml:space="preserve"><value>Number, name, manufacturer or model</value></data>
+  <data name="Products_AllKinds" xml:space="preserve"><value>All kinds</value></data>
+  <data name="Products_NoCategory" xml:space="preserve"><value>No category</value></data>
+  <data name="Products_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="Products_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="Products_ColKind" xml:space="preserve"><value>Kind</value></data>
+  <data name="Products_ColCategory" xml:space="preserve"><value>Category</value></data>
+  <data name="Products_ColPrice" xml:space="preserve"><value>Price</value></data>
+  <data name="Products_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Products_ConfirmDelete" xml:space="preserve"><value>Delete this product?</value></data>
+  <data name="Products_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Products_NoSelection" xml:space="preserve"><value>No product selected</value></data>
+  <data name="Products_NoSelectionHint" xml:space="preserve"><value>Select a product in the list to edit it, or create a new one.</value></data>
+  <data name="Products_Count" xml:space="preserve"><value>{0} product(s)</value></data>
+  <data name="Products_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="Products_PageOf" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Products_PreviousPage" xml:space="preserve"><value>Previous</value></data>
+  <data name="Products_NextPage" xml:space="preserve"><value>Next</value></data>
+  <data name="ProductEditor_New" xml:space="preserve"><value>New product</value></data>
+  <data name="ProductEditor_Edit" xml:space="preserve"><value>Edit product</value></data>
+  <data name="ProductEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="ProductField_Kind" xml:space="preserve"><value>Kind</value></data>
+  <data name="ProductField_Number" xml:space="preserve"><value>Product number</value></data>
+  <data name="ProductField_NumberPlaceholder" xml:space="preserve"><value>e.g. HW-1001</value></data>
+  <data name="ProductField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="ProductField_Category" xml:space="preserve"><value>Category</value></data>
+  <data name="ProductField_Manufacturer" xml:space="preserve"><value>Manufacturer</value></data>
+  <data name="ProductField_Model" xml:space="preserve"><value>Model</value></data>
+  <data name="ProductField_Version" xml:space="preserve"><value>Version</value></data>
+  <data name="ProductField_VersionPlaceholder" xml:space="preserve"><value>e.g. 2.1.0</value></data>
+  <data name="ProductField_MinimumHours" xml:space="preserve"><value>Minimum hours</value></data>
+  <data name="ProductField_UnitPrice" xml:space="preserve"><value>Price</value></data>
+  <data name="ProductField_Unit" xml:space="preserve"><value>Unit</value></data>
+  <data name="ProductField_CostPrice" xml:space="preserve"><value>Cost</value></data>
+  <data name="ProductField_Vat" xml:space="preserve"><value>VAT %</value></data>
+  <data name="ProductField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="ProductField_Active" xml:space="preserve"><value>Active (available to sell)</value></data>
+  <data name="ProductKind_Hardware" xml:space="preserve"><value>Hardware</value></data>
+  <data name="ProductKind_Software" xml:space="preserve"><value>Software</value></data>
+  <data name="ProductKind_Consulting" xml:space="preserve"><value>Consulting</value></data>
+  <data name="ProductUnit_Piece" xml:space="preserve"><value>piece</value></data>
+  <data name="ProductUnit_Hour" xml:space="preserve"><value>hour</value></data>
+  <data name="ProductUnit_Day" xml:space="preserve"><value>day</value></data>
+  <data name="ProductUnit_Month" xml:space="preserve"><value>month</value></data>
+  <data name="ProductUnit_License" xml:space="preserve"><value>license</value></data>
+  <data name="ProductCategories_Title" xml:space="preserve"><value>Product categories</value></data>
+  <data name="ProductCategories_Subtitle" xml:space="preserve"><value>Group your products, for example cables, tools or licenses.</value></data>
+  <data name="ProductCategories_New" xml:space="preserve"><value>New category</value></data>
+  <data name="ProductCategories_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="ProductCategories_SearchPlaceholder" xml:space="preserve"><value>Search categories</value></data>
+  <data name="ProductCategories_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="ProductCategories_ColDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="ProductCategories_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="ProductCategories_ConfirmDelete" xml:space="preserve"><value>Delete this category?</value></data>
+  <data name="ProductCategories_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="ProductCategories_NoSelection" xml:space="preserve"><value>No category selected</value></data>
+  <data name="ProductCategories_NoSelectionHint" xml:space="preserve"><value>Select a category in the list to edit it, or create a new one.</value></data>
+  <data name="ProductCategories_Count" xml:space="preserve"><value>{0} categor(ies)</value></data>
+  <data name="ProductCategories_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} categories. Refine the search to see more.</value></data>
+  <data name="ProductCategories_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="ProductCategoryEditor_New" xml:space="preserve"><value>New category</value></data>
+  <data name="ProductCategoryEditor_Edit" xml:space="preserve"><value>Edit category</value></data>
+  <data name="ProductCategoryEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="ProductCategoryField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="ProductCategoryField_NamePlaceholder" xml:space="preserve"><value>e.g. Network cables</value></data>
+  <data name="ProductCategoryField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Startup_ProductsDatabase" xml:space="preserve"><value>Preparing the products database</value></data>
+  <data name="Error_product_number_required" xml:space="preserve"><value>Enter a product number.</value></data>
+  <data name="Error_product_number_too_long" xml:space="preserve"><value>The product number is too long (max 30 characters).</value></data>
+  <data name="Error_product_number_conflict" xml:space="preserve"><value>Another product already uses this number.</value></data>
+  <data name="Error_product_name_required" xml:space="preserve"><value>Enter a name.</value></data>
+  <data name="Error_product_name_too_long" xml:space="preserve"><value>The name is too long (max 200 characters).</value></data>
+  <data name="Error_product_kind_invalid" xml:space="preserve"><value>Select a valid kind.</value></data>
+  <data name="Error_product_unit_invalid" xml:space="preserve"><value>Select a valid unit.</value></data>
+  <data name="Error_product_description_too_long" xml:space="preserve"><value>The description is too long (max 2000 characters).</value></data>
+  <data name="Error_product_price_invalid" xml:space="preserve"><value>Prices must be between 0 and 10,000,000.</value></data>
+  <data name="Error_product_price_required" xml:space="preserve"><value>Enter a price and a cost.</value></data>
+  <data name="Error_product_vat_invalid" xml:space="preserve"><value>VAT must be between 0 and 100.</value></data>
+  <data name="Error_product_vat_required" xml:space="preserve"><value>Enter a VAT rate.</value></data>
+  <data name="Error_product_manufacturer_too_long" xml:space="preserve"><value>The manufacturer is too long (max 100 characters).</value></data>
+  <data name="Error_product_model_too_long" xml:space="preserve"><value>The model is too long (max 100 characters).</value></data>
+  <data name="Error_product_version_too_long" xml:space="preserve"><value>The version is too long (max 50 characters).</value></data>
+  <data name="Error_product_minimum_hours_invalid" xml:space="preserve"><value>Minimum hours must be more than 0 and at most 1000.</value></data>
+  <data name="Error_product_not_found" xml:space="preserve"><value>The product no longer exists.</value></data>
+  <data name="Error_product_category_not_found" xml:space="preserve"><value>The category no longer exists.</value></data>
+  <data name="Error_product_category_name_required" xml:space="preserve"><value>Enter a name.</value></data>
+  <data name="Error_product_category_name_too_long" xml:space="preserve"><value>The name is too long (max 100 characters).</value></data>
+  <data name="Error_product_category_description_too_long" xml:space="preserve"><value>The description is too long (max 500 characters).</value></data>
+  <data name="Error_product_category_conflict" xml:space="preserve"><value>A category with this name already exists.</value></data>
+  <data name="Error_product_category_in_use" xml:space="preserve"><value>This category is used by products and cannot be deleted.</value></data>
+  <data name="Products_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="ProductDetail_Back" xml:space="preserve"><value>Back to products</value></data>
+  <data name="ProductDetail_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="ProductDetail_Status" xml:space="preserve"><value>Status</value></data>
+  <data name="ProductDetail_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="ProductDetail_Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="ProductDetail_Pricing" xml:space="preserve"><value>Pricing</value></data>
+  <data name="ProductDetail_PriceWithVat" xml:space="preserve"><value>Price incl. VAT</value></data>
+  <data name="ProductDetail_Margin" xml:space="preserve"><value>Margin</value></data>
+  <data name="Suppliers_Title" xml:space="preserve"><value>Suppliers</value></data>
+  <data name="Suppliers_Subtitle" xml:space="preserve"><value>Who you buy products from.</value></data>
+  <data name="Suppliers_New" xml:space="preserve"><value>New supplier</value></data>
+  <data name="Suppliers_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Suppliers_SearchPlaceholder" xml:space="preserve"><value>Name, organization number or email</value></data>
+  <data name="Suppliers_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="Suppliers_ColEmail" xml:space="preserve"><value>Email</value></data>
+  <data name="Suppliers_ColPhone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Suppliers_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Suppliers_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Suppliers_Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Suppliers_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Suppliers_ConfirmDelete" xml:space="preserve"><value>Delete this supplier and its prices?</value></data>
+  <data name="Suppliers_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="Suppliers_NoSelection" xml:space="preserve"><value>No supplier selected</value></data>
+  <data name="Suppliers_NoSelectionHint" xml:space="preserve"><value>Select a supplier in the list to edit it, or create a new one.</value></data>
+  <data name="Suppliers_Count" xml:space="preserve"><value>{0} supplier(s)</value></data>
+  <data name="Suppliers_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} suppliers. Refine the search to see more.</value></data>
+  <data name="Suppliers_Saved" xml:space="preserve"><value>Saved {0}.</value></data>
+  <data name="SupplierEditor_New" xml:space="preserve"><value>New supplier</value></data>
+  <data name="SupplierEditor_Edit" xml:space="preserve"><value>Edit supplier</value></data>
+  <data name="SupplierEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="SupplierField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="SupplierField_OrganizationNumber" xml:space="preserve"><value>Organization number</value></data>
+  <data name="SupplierField_Email" xml:space="preserve"><value>Email</value></data>
+  <data name="SupplierField_Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="SupplierField_Website" xml:space="preserve"><value>Website</value></data>
+  <data name="SupplierField_WebsitePlaceholder" xml:space="preserve"><value>https://</value></data>
+  <data name="SupplierField_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="SupplierField_Active" xml:space="preserve"><value>Active (offered for new prices)</value></data>
+  <data name="SupplierPrices_Title" xml:space="preserve"><value>Suppliers</value></data>
+  <data name="SupplierPrices_Add" xml:space="preserve"><value>Add price</value></data>
+  <data name="SupplierPrices_Empty" xml:space="preserve"><value>No supplier has a price for this product yet.</value></data>
+  <data name="SupplierPrices_Edit" xml:space="preserve"><value>Change</value></data>
+  <data name="SupplierPrices_Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="SupplierPrices_ConfirmRemove" xml:space="preserve"><value>Remove this price?</value></data>
+  <data name="SupplierPrices_YesRemove" xml:space="preserve"><value>Yes, remove</value></data>
+  <data name="SupplierPrices_Supplier" xml:space="preserve"><value>Supplier</value></data>
+  <data name="SupplierPrices_Price" xml:space="preserve"><value>Purchase price</value></data>
+  <data name="SupplierPrices_ArticleNumber" xml:space="preserve"><value>Supplier article no.</value></data>
+  <data name="SupplierPrices_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="SupplierPrices_Lowest" xml:space="preserve"><value>Lowest price</value></data>
+  <data name="SupplierPrices_Saved" xml:space="preserve"><value>Saved the price from {0}.</value></data>
+  <data name="SupplierPrices_NoSuppliers" xml:space="preserve"><value>Add a supplier first, under Suppliers.</value></data>
+  <data name="SupplierPrices_AllPriced" xml:space="preserve"><value>Every active supplier already has a price for this product.</value></data>
+  <data name="Error_supplier_required" xml:space="preserve"><value>Select a supplier.</value></data>
+  <data name="Error_supplier_price_required" xml:space="preserve"><value>Enter a price.</value></data>
+  <data name="Error_supplier_price_invalid" xml:space="preserve"><value>The price must be between 0 and 10,000,000.</value></data>
+  <data name="Error_supplier_article_number_too_long" xml:space="preserve"><value>The article number is too long (max 50 characters).</value></data>
+  <data name="Error_supplier_price_not_found" xml:space="preserve"><value>The price no longer exists.</value></data>
+  <data name="Error_supplier_not_found" xml:space="preserve"><value>The supplier no longer exists.</value></data>
+  <data name="Error_supplier_name_required" xml:space="preserve"><value>Enter a name.</value></data>
+  <data name="Error_supplier_name_too_long" xml:space="preserve"><value>The name is too long (max 200 characters).</value></data>
+  <data name="Error_supplier_name_conflict" xml:space="preserve"><value>A supplier with this name already exists.</value></data>
+  <data name="Error_supplier_organization_number_too_long" xml:space="preserve"><value>The organization number is too long (max 30 characters).</value></data>
+  <data name="Error_supplier_email_too_long" xml:space="preserve"><value>The email is too long (max 200 characters).</value></data>
+  <data name="Error_supplier_email_invalid" xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="Error_supplier_phone_too_long" xml:space="preserve"><value>The phone number is too long (max 50 characters).</value></data>
+  <data name="Error_supplier_website_too_long" xml:space="preserve"><value>The website is too long (max 200 characters).</value></data>
+  <data name="Error_supplier_notes_too_long" xml:space="preserve"><value>The notes are too long (max 2000 characters).</value></data>
+  <data name="ProductField_MinimumStock" xml:space="preserve"><value>Minimum stock</value></data>
+  <data name="Stock_Group" xml:space="preserve"><value>Stock</value></data>
+  <data name="Stock_Title" xml:space="preserve"><value>Stock</value></data>
+  <data name="Stock_Subtitle" xml:space="preserve"><value>See what is in stock, receive, issue and move goods.</value></data>
+  <data name="Stock_SearchPlaceholder" xml:space="preserve"><value>Search number or name</value></data>
+  <data name="Stock_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Stock_LowOnly" xml:space="preserve"><value>Low stock only</value></data>
+  <data name="Stock_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="Stock_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="Stock_ColInStock" xml:space="preserve"><value>In stock</value></data>
+  <data name="Stock_ColMinimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="Stock_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="Stock_Low" xml:space="preserve"><value>Low</value></data>
+  <data name="Stock_Count" xml:space="preserve"><value>{0} products</value></data>
+  <data name="Stock_PageOf" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Stock_PreviousPage" xml:space="preserve"><value>Previous</value></data>
+  <data name="Stock_NextPage" xml:space="preserve"><value>Next</value></data>
+  <data name="Stock_NoSelection" xml:space="preserve"><value>No product selected</value></data>
+  <data name="Stock_NoSelectionHint" xml:space="preserve"><value>Select a product to receive, issue or move stock.</value></data>
+  <data name="Stock_NoLocations" xml:space="preserve"><value>Add a storage location first.</value></data>
+  <data name="Stock_Registered" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="StockEditor_Title" xml:space="preserve"><value>Register stock movement</value></data>
+  <data name="StockEditor_Mode" xml:space="preserve"><value>Action</value></data>
+  <data name="StockEditor_Location" xml:space="preserve"><value>Location</value></data>
+  <data name="StockEditor_FromLocation" xml:space="preserve"><value>From location</value></data>
+  <data name="StockEditor_ToLocation" xml:space="preserve"><value>To location</value></data>
+  <data name="StockEditor_Quantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="StockEditor_Supplier" xml:space="preserve"><value>Supplier</value></data>
+  <data name="StockEditor_NoSupplier" xml:space="preserve"><value>No supplier</value></data>
+  <data name="StockEditor_Note" xml:space="preserve"><value>Note</value></data>
+  <data name="StockEditor_Register" xml:space="preserve"><value>Register</value></data>
+  <data name="StockMode_Receipt" xml:space="preserve"><value>Receive</value></data>
+  <data name="StockMode_Issue" xml:space="preserve"><value>Issue</value></data>
+  <data name="StockMode_Transfer" xml:space="preserve"><value>Transfer</value></data>
+  <data name="StockMovementType_Receipt" xml:space="preserve"><value>Receipt</value></data>
+  <data name="StockMovementType_Issue" xml:space="preserve"><value>Issue</value></data>
+  <data name="StockMovementType_TransferIn" xml:space="preserve"><value>Transfer in</value></data>
+  <data name="StockMovementType_TransferOut" xml:space="preserve"><value>Transfer out</value></data>
+  <data name="StockMovementType_CountAdjustment" xml:space="preserve"><value>Count adjustment</value></data>
+  <data name="StockMovements_Title" xml:space="preserve"><value>Stock movements</value></data>
+  <data name="StockMovements_Subtitle" xml:space="preserve"><value>Every change to the stock, newest first.</value></data>
+  <data name="StockMovements_SearchPlaceholder" xml:space="preserve"><value>Search product</value></data>
+  <data name="StockMovements_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="StockMovements_AllTypes" xml:space="preserve"><value>All types</value></data>
+  <data name="StockMovements_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="StockMovements_ColProduct" xml:space="preserve"><value>Product</value></data>
+  <data name="StockMovements_ColLocation" xml:space="preserve"><value>Location</value></data>
+  <data name="StockMovements_ColType" xml:space="preserve"><value>Type</value></data>
+  <data name="StockMovements_ColQuantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="StockMovements_ColDetails" xml:space="preserve"><value>Details</value></data>
+  <data name="StockMovements_Count" xml:space="preserve"><value>{0} movements</value></data>
+  <data name="StockMovements_PageOf" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="StockMovements_PreviousPage" xml:space="preserve"><value>Previous</value></data>
+  <data name="StockMovements_NextPage" xml:space="preserve"><value>Next</value></data>
+  <data name="ProductStock_Title" xml:space="preserve"><value>Stock</value></data>
+  <data name="ProductStock_Total" xml:space="preserve"><value>In stock</value></data>
+  <data name="ProductStock_Minimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="ProductStock_Empty" xml:space="preserve"><value>Nothing in stock.</value></data>
+  <data name="ProductStock_Low" xml:space="preserve"><value>Stock is below the minimum.</value></data>
+  <data name="StorageLocations_Title" xml:space="preserve"><value>Storage locations</value></data>
+  <data name="StorageLocations_Subtitle" xml:space="preserve"><value>Shelves, rooms and boxes where goods are kept.</value></data>
+  <data name="StorageLocations_New" xml:space="preserve"><value>New location</value></data>
+  <data name="StorageLocations_Search" xml:space="preserve"><value>Search</value></data>
+  <data name="StorageLocations_SearchPlaceholder" xml:space="preserve"><value>Search name</value></data>
+  <data name="StorageLocations_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="StorageLocations_ColDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="StorageLocations_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="StorageLocations_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="StorageLocations_Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="StorageLocations_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="StorageLocations_ConfirmDelete" xml:space="preserve"><value>Delete this location?</value></data>
+  <data name="StorageLocations_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="StorageLocations_NoSelection" xml:space="preserve"><value>No location selected</value></data>
+  <data name="StorageLocations_NoSelectionHint" xml:space="preserve"><value>Select a location to edit it, or add a new one.</value></data>
+  <data name="StorageLocations_Count" xml:space="preserve"><value>{0} locations</value></data>
+  <data name="StorageLocations_ShowingPartial" xml:space="preserve"><value>Showing {0} of {1} locations</value></data>
+  <data name="StorageLocations_Saved" xml:space="preserve"><value>{0} saved</value></data>
+  <data name="StorageLocationEditor_New" xml:space="preserve"><value>New storage location</value></data>
+  <data name="StorageLocationEditor_Edit" xml:space="preserve"><value>Edit storage location</value></data>
+  <data name="StorageLocationEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="StorageLocationField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="StorageLocationField_NamePlaceholder" xml:space="preserve"><value>For example Shelf A2</value></data>
+  <data name="StorageLocationField_Description" xml:space="preserve"><value>Description</value></data>
+  <data name="StorageLocationField_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="InventoryCounts_Title" xml:space="preserve"><value>Inventory counts</value></data>
+  <data name="InventoryCounts_Subtitle" xml:space="preserve"><value>Count what is really on the shelves and adjust the stock.</value></data>
+  <data name="InventoryCounts_New" xml:space="preserve"><value>New count</value></data>
+  <data name="InventoryCounts_OpenCount" xml:space="preserve"><value>Open</value></data>
+  <data name="InventoryCounts_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="InventoryCounts_ConfirmDelete" xml:space="preserve"><value>Delete this count?</value></data>
+  <data name="InventoryCounts_YesDelete" xml:space="preserve"><value>Yes, delete</value></data>
+  <data name="InventoryCounts_ColName" xml:space="preserve"><value>Name</value></data>
+  <data name="InventoryCounts_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="InventoryCounts_ColLocation" xml:space="preserve"><value>Location</value></data>
+  <data name="InventoryCounts_ColCounted" xml:space="preserve"><value>Counted</value></data>
+  <data name="InventoryCounts_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="InventoryCounts_AllLocations" xml:space="preserve"><value>All locations</value></data>
+  <data name="InventoryCounts_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="InventoryCounts_Posted" xml:space="preserve"><value>Posted</value></data>
+  <data name="InventoryCounts_Count" xml:space="preserve"><value>{0} counts</value></data>
+  <data name="InventoryCounts_NoSelection" xml:space="preserve"><value>No count selected</value></data>
+  <data name="InventoryCounts_NoSelectionHint" xml:space="preserve"><value>Select a count to open it, or start a new one.</value></data>
+  <data name="InventoryCountEditor_Title" xml:space="preserve"><value>New inventory count</value></data>
+  <data name="InventoryCountEditor_Start" xml:space="preserve"><value>Start count</value></data>
+  <data name="InventoryCountEditor_DefaultName" xml:space="preserve"><value>Count {0}</value></data>
+  <data name="InventoryCountField_Name" xml:space="preserve"><value>Name</value></data>
+  <data name="InventoryCountField_Location" xml:space="preserve"><value>Location</value></data>
+  <data name="InventoryCountField_IncludeUnstocked" xml:space="preserve"><value>Include products with no stock</value></data>
+  <data name="InventoryCountField_Note" xml:space="preserve"><value>Note</value></data>
+  <data name="InventoryCountScreen_Back" xml:space="preserve"><value>Back</value></data>
+  <data name="InventoryCountScreen_Hint" xml:space="preserve"><value>Enter what you counted. Leave a line empty to skip it.</value></data>
+  <data name="InventoryCountScreen_PostedHint" xml:space="preserve"><value>This count is posted and can no longer be changed.</value></data>
+  <data name="InventoryCountScreen_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="InventoryCountScreen_ColProduct" xml:space="preserve"><value>Product</value></data>
+  <data name="InventoryCountScreen_ColLocation" xml:space="preserve"><value>Location</value></data>
+  <data name="InventoryCountScreen_ColExpected" xml:space="preserve"><value>Expected</value></data>
+  <data name="InventoryCountScreen_ColCounted" xml:space="preserve"><value>Counted</value></data>
+  <data name="InventoryCountScreen_ColDifference" xml:space="preserve"><value>Difference</value></data>
+  <data name="InventoryCountScreen_Empty" xml:space="preserve"><value>There is nothing to count.</value></data>
+  <data name="InventoryCountScreen_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="InventoryCountScreen_Post" xml:space="preserve"><value>Post count</value></data>
+  <data name="InventoryCountScreen_ConfirmPost" xml:space="preserve"><value>Adjust the stock to the counted quantities?</value></data>
+  <data name="InventoryCountScreen_YesPost" xml:space="preserve"><value>Yes, post</value></data>
+  <data name="InventoryCountScreen_Saved" xml:space="preserve"><value>Count saved.</value></data>
+  <data name="InventoryCountScreen_Posted" xml:space="preserve"><value>Count posted, {0} adjustments made.</value></data>
+  <data name="Error_storage_location_name_required" xml:space="preserve"><value>Enter a name.</value></data>
+  <data name="Error_storage_location_name_too_long" xml:space="preserve"><value>The name is too long (max 100 characters).</value></data>
+  <data name="Error_storage_location_conflict" xml:space="preserve"><value>A storage location with that name already exists.</value></data>
+  <data name="Error_storage_location_description_too_long" xml:space="preserve"><value>The description is too long (max 500 characters).</value></data>
+  <data name="Error_storage_location_not_found" xml:space="preserve"><value>The storage location no longer exists.</value></data>
+  <data name="Error_storage_location_in_use" xml:space="preserve"><value>The location has stock or history. Make it inactive instead.</value></data>
+  <data name="Error_storage_location_inactive" xml:space="preserve"><value>The storage location is inactive.</value></data>
+  <data name="Error_storage_location_required" xml:space="preserve"><value>Select a storage location.</value></data>
+  <data name="Error_stock_quantity_invalid" xml:space="preserve"><value>Enter a quantity greater than 0.</value></data>
+  <data name="Error_stock_insufficient" xml:space="preserve"><value>There is not enough in stock at that location.</value></data>
+  <data name="Error_stock_note_too_long" xml:space="preserve"><value>The note is too long (max 500 characters).</value></data>
+  <data name="Error_stock_same_location" xml:space="preserve"><value>Choose two different locations.</value></data>
+  <data name="Error_stock_counted_invalid" xml:space="preserve"><value>The counted quantity must be between 0 and 1,000,000.</value></data>
+  <data name="Error_product_not_stockable" xml:space="preserve"><value>Consulting hours cannot be kept in stock.</value></data>
+  <data name="Error_product_in_use" xml:space="preserve"><value>The product has stock history. Make it inactive instead.</value></data>
+  <data name="Error_product_minimum_stock_invalid" xml:space="preserve"><value>The minimum stock must be between 0 and 1,000,000.</value></data>
+  <data name="Error_inventory_count_name_required" xml:space="preserve"><value>Enter a name.</value></data>
+  <data name="Error_inventory_count_name_too_long" xml:space="preserve"><value>The name is too long (max 100 characters).</value></data>
+  <data name="Error_inventory_count_note_too_long" xml:space="preserve"><value>The note is too long (max 500 characters).</value></data>
+  <data name="Error_inventory_count_location_required" xml:space="preserve"><value>Select a location, or include only products that have stock.</value></data>
+  <data name="Error_inventory_count_not_found" xml:space="preserve"><value>The count no longer exists.</value></data>
+  <data name="Error_inventory_count_posted" xml:space="preserve"><value>The count is already posted.</value></data>
+</root>

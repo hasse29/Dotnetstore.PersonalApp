@@ -9,6 +9,7 @@
   <data name="Splash_CheckingUsers" xml:space="preserve"><value>正在检查用户...</value></data>
   <data name="Startup_Ready" xml:space="preserve"><value>就绪</value></data>
   <data name="Startup_Failed" xml:space="preserve"><value>启动失败：{0}</value></data>
+  <data name="Startup_RemovingRetiredDatabases" xml:space="preserve"><value>正在删除不再使用的数据...</value></data>
   <data name="Shell_Menu" xml:space="preserve"><value>菜单</value></data>
   <data name="Shell_Home" xml:space="preserve"><value>首页</value></data>
   <data name="Shell_SignOut" xml:space="preserve"><value>退出登录</value></data>

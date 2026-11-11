@@ -165,6 +165,12 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
         var staged = new List<(string Name, string Path)>();
         foreach (var entry in zip.Entries.Where(e => e.FullName != ManifestName))
         {
+            // A backup from before a module was removed still has its database; it is simply not restored.
+            if (DatabaseFiles.Retired.Contains(entry.FullName, StringComparer.Ordinal))
+            {
+                continue;
+            }
+
             var name = DatabaseFiles.All.FirstOrDefault(n => string.Equals(n, entry.FullName, StringComparison.Ordinal));
             if (name is null || staged.Any(s => s.Name == name))
             {

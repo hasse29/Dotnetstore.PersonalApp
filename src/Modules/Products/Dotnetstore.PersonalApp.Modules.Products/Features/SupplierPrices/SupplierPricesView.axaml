@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prices="using:Dotnetstore.PersonalApp.Modules.Products.Features.SupplierPrices"
+             xmlns:suppliers="using:Dotnetstore.PersonalApp.Modules.Products.Features.Suppliers"
+             mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="420"
+             x:Class="Dotnetstore.PersonalApp.Modules.Products.Features.SupplierPrices.SupplierPricesView"
+             x:DataType="prices:SupplierPricesViewModel">
+
+    <Border Classes="card" Padding="28">
+        <StackPanel Spacing="14">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Text="{loc:Tr SupplierPrices_Title}" Classes="h2" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Classes="subtle" Content="{loc:Tr SupplierPrices_Add}" Command="{Binding AddCommand}"
+                        IsVisible="{Binding IsNotEditing}"/>
+            </Grid>
+
+            <TextBlock Text="{loc:Tr SupplierPrices_Empty}" Classes="muted" TextWrapping="Wrap"
+                       IsVisible="{Binding IsEmpty}"/>
+
+            <ListBox Classes="table" ItemsSource="{Binding Prices}" SelectedItem="{Binding SelectedPrice}"
+                     IsVisible="{Binding !IsEmpty}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="prices:SupplierPriceRow">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                            <TextBlock Text="{Binding Price.SupplierName}" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Grid.Column="1" Text="{Binding PriceText}" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                            <TextBlock Grid.Row="1" Text="{Binding DetailText}" Classes="caption" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding BadgeText}" Classes="caption" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsNotEditing}">
+                <Button Content="{loc:Tr SupplierPrices_Edit}" Classes="subtle" Command="{Binding EditCommand}"/>
+                <Button Content="{loc:Tr SupplierPrices_Remove}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                        IsVisible="{Binding !IsConfirmingDelete}"/>
+                <TextBlock Text="{loc:Tr SupplierPrices_ConfirmRemove}" VerticalAlignment="Center" Classes="muted"
+                           IsVisible="{Binding IsConfirmingDelete}"/>
+                <Button Content="{loc:Tr SupplierPrices_YesRemove}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                        IsVisible="{Binding IsConfirmingDelete}"/>
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                        IsVisible="{Binding IsConfirmingDelete}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding StatusMessage}" Classes="caption" TextWrapping="Wrap"
+                       IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <!-- Editor -->
+            <StackPanel Spacing="12" IsVisible="{Binding IsEditing}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr SupplierPrices_Supplier}" Classes="label"/>
+                    <ComboBox ItemsSource="{Binding AvailableSuppliers}" SelectedItem="{Binding SelectedSupplier}"
+                              IsEnabled="{Binding !IsSupplierLocked}" HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="suppliers:SupplierDto">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <StackPanel>
+                        <TextBlock Text="{loc:Tr SupplierPrices_Price}" Classes="label"/>
+                        <NumericUpDown Value="{Binding Price}" Minimum="0" Maximum="10000000" Increment="10" FormatString="0.00"
+                                       HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{loc:Tr SupplierPrices_ArticleNumber}" Classes="label"/>
+                        <TextBox Text="{Binding ArticleNumber}"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+                    <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                    <Button Content="{loc:Tr SupplierPrices_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

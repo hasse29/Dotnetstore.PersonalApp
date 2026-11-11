@@ -5,6 +5,7 @@ internal static class DatabaseFiles
 {
     public const string Clients = "clients.db";
     public const string TimeReports = "timereports.db";
+    public const string Products = "products.db";
     public const string Addresses = "addresses.db";
     public const string EmailAddresses = "emailaddresses.db";
     public const string PhoneNumbers = "phonenumbers.db";
@@ -14,15 +15,14 @@ internal static class DatabaseFiles
     public const string Schedule = "schedule.db";
     public const string Grades = "grades.db";
     public const string Email = "email.db";
-    public const string Production = "production.db";
-    public const string Sales = "sales.db";
-    public const string Purchasing = "purchasing.db";
-    public const string Inventory = "inventory.db";
     public const string Users = "users.db";
 
     public static IReadOnlyList<string> All { get; } =
     [
-        Clients, TimeReports, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
-        Schedule, Grades, Email, Production, Sales, Purchasing, Inventory, Users,
+        Clients, TimeReports, Products, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
+        Schedule, Grades, Email, Users,
     ];
+
+    /// <summary>Databases of modules that were removed from the app. They are no longer used, deleted at startup, and skipped when a backup that still has them is restored.</summary>
+    public static IReadOnlyList<string> Retired { get; } = ["production.db", "purchasing.db", "sales.db", "inventory.db"];
 }

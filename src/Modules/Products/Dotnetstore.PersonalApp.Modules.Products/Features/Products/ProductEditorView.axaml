@@ -1,0 +1,128 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:products="using:Dotnetstore.PersonalApp.Modules.Products.Features.Products"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="780"
+             x:Class="Dotnetstore.PersonalApp.Modules.Products.Features.Products.ProductEditorView"
+             x:DataType="products:ProductEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductField_Kind}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Kinds}" SelectedItem="{Binding SelectedKind}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="products:ProductKindOption">
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,2*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ProductField_Number}" Classes="label"/>
+                    <TextBox Text="{Binding Number}" PlaceholderText="{loc:Tr ProductField_NumberPlaceholder}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ProductField_Name}" Classes="label"/>
+                    <TextBox Text="{Binding Name}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductField_Category}" Classes="label"/>
+                <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" HorizontalAlignment="Stretch">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="products:ProductCategoryOption">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Hardware -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" IsVisible="{Binding IsHardware}">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ProductField_Manufacturer}" Classes="label"/>
+                    <TextBox Text="{Binding Manufacturer}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ProductField_Model}" Classes="label"/>
+                    <TextBox Text="{Binding Model}"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Software -->
+            <StackPanel IsVisible="{Binding IsSoftware}">
+                <TextBlock Text="{loc:Tr ProductField_Version}" Classes="label"/>
+                <TextBox Text="{Binding SoftwareVersion}" PlaceholderText="{loc:Tr ProductField_VersionPlaceholder}"/>
+            </StackPanel>
+
+            <!-- Consulting -->
+            <StackPanel IsVisible="{Binding IsConsulting}">
+                <TextBlock Text="{loc:Tr ProductField_MinimumHours}" Classes="label"/>
+                <NumericUpDown Value="{Binding MinimumHours}" Minimum="0" Maximum="1000" Increment="0.5" FormatString="0.00"
+                               HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <!-- Stock -->
+            <StackPanel IsVisible="{Binding IsStocked}">
+                <TextBlock Text="{loc:Tr ProductField_MinimumStock}" Classes="label"/>
+                <NumericUpDown Value="{Binding MinimumStock}" Minimum="0" Maximum="1000000" Increment="1" FormatString="0.##"
+                               HorizontalAlignment="Stretch"/>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ProductField_UnitPrice}" Classes="label"/>
+                    <NumericUpDown Value="{Binding UnitPrice}" Minimum="0" Maximum="10000000" Increment="10" FormatString="0.00"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ProductField_Unit}" Classes="label"/>
+                    <ComboBox ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}" HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="products:ProductUnitOption">
+                                <TextBlock Text="{Binding Label}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr ProductField_CostPrice}" Classes="label"/>
+                    <NumericUpDown Value="{Binding CostPrice}" Minimum="0" Maximum="10000000" Increment="10" FormatString="0.00"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr ProductField_Vat}" Classes="label"/>
+                    <NumericUpDown Value="{Binding VatRate}" Minimum="0" Maximum="100" Increment="1" FormatString="0.##"
+                                   HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr ProductField_Description}" Classes="label"/>
+                <TextBox Text="{Binding Description}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" MaxHeight="140"/>
+            </StackPanel>
+
+            <CheckBox IsChecked="{Binding IsActive}" Content="{loc:Tr ProductField_Active}"/>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr ProductEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

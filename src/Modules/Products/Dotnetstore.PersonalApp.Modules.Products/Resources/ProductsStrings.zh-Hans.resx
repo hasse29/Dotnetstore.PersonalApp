@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Products_Title" xml:space="preserve"><value>产品</value></data>
+  <data name="Products_Subtitle" xml:space="preserve"><value>您销售的硬件、软件和咨询工时。</value></data>
+  <data name="Products_New" xml:space="preserve"><value>新建产品</value></data>
+  <data name="Products_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Products_SearchPlaceholder" xml:space="preserve"><value>编号、名称、制造商或型号</value></data>
+  <data name="Products_AllKinds" xml:space="preserve"><value>所有类型</value></data>
+  <data name="Products_NoCategory" xml:space="preserve"><value>无类别</value></data>
+  <data name="Products_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="Products_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="Products_ColKind" xml:space="preserve"><value>类型</value></data>
+  <data name="Products_ColCategory" xml:space="preserve"><value>类别</value></data>
+  <data name="Products_ColPrice" xml:space="preserve"><value>价格</value></data>
+  <data name="Products_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Products_ConfirmDelete" xml:space="preserve"><value>删除此产品？</value></data>
+  <data name="Products_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Products_NoSelection" xml:space="preserve"><value>未选择产品</value></data>
+  <data name="Products_NoSelectionHint" xml:space="preserve"><value>在列表中选择产品进行编辑，或新建一个。</value></data>
+  <data name="Products_Count" xml:space="preserve"><value>{0} 个产品</value></data>
+  <data name="Products_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="Products_PageOf" xml:space="preserve"><value>第 {0} 页，共 {1} 页</value></data>
+  <data name="Products_PreviousPage" xml:space="preserve"><value>上一页</value></data>
+  <data name="Products_NextPage" xml:space="preserve"><value>下一页</value></data>
+  <data name="ProductEditor_New" xml:space="preserve"><value>新建产品</value></data>
+  <data name="ProductEditor_Edit" xml:space="preserve"><value>编辑产品</value></data>
+  <data name="ProductEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="ProductField_Kind" xml:space="preserve"><value>类型</value></data>
+  <data name="ProductField_Number" xml:space="preserve"><value>产品编号</value></data>
+  <data name="ProductField_NumberPlaceholder" xml:space="preserve"><value>例如 HW-1001</value></data>
+  <data name="ProductField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="ProductField_Category" xml:space="preserve"><value>类别</value></data>
+  <data name="ProductField_Manufacturer" xml:space="preserve"><value>制造商</value></data>
+  <data name="ProductField_Model" xml:space="preserve"><value>型号</value></data>
+  <data name="ProductField_Version" xml:space="preserve"><value>版本</value></data>
+  <data name="ProductField_VersionPlaceholder" xml:space="preserve"><value>例如 2.1.0</value></data>
+  <data name="ProductField_MinimumHours" xml:space="preserve"><value>最少工时</value></data>
+  <data name="ProductField_UnitPrice" xml:space="preserve"><value>价格</value></data>
+  <data name="ProductField_Unit" xml:space="preserve"><value>单位</value></data>
+  <data name="ProductField_CostPrice" xml:space="preserve"><value>成本</value></data>
+  <data name="ProductField_Vat" xml:space="preserve"><value>增值税 %</value></data>
+  <data name="ProductField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="ProductField_Active" xml:space="preserve"><value>启用（可销售）</value></data>
+  <data name="ProductKind_Hardware" xml:space="preserve"><value>硬件</value></data>
+  <data name="ProductKind_Software" xml:space="preserve"><value>软件</value></data>
+  <data name="ProductKind_Consulting" xml:space="preserve"><value>咨询</value></data>
+  <data name="ProductUnit_Piece" xml:space="preserve"><value>件</value></data>
+  <data name="ProductUnit_Hour" xml:space="preserve"><value>小时</value></data>
+  <data name="ProductUnit_Day" xml:space="preserve"><value>天</value></data>
+  <data name="ProductUnit_Month" xml:space="preserve"><value>月</value></data>
+  <data name="ProductUnit_License" xml:space="preserve"><value>许可证</value></data>
+  <data name="ProductCategories_Title" xml:space="preserve"><value>产品类别</value></data>
+  <data name="ProductCategories_Subtitle" xml:space="preserve"><value>对产品分组，例如线缆、工具或许可证。</value></data>
+  <data name="ProductCategories_New" xml:space="preserve"><value>新建类别</value></data>
+  <data name="ProductCategories_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="ProductCategories_SearchPlaceholder" xml:space="preserve"><value>搜索类别</value></data>
+  <data name="ProductCategories_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="ProductCategories_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="ProductCategories_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="ProductCategories_ConfirmDelete" xml:space="preserve"><value>删除此类别？</value></data>
+  <data name="ProductCategories_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="ProductCategories_NoSelection" xml:space="preserve"><value>未选择类别</value></data>
+  <data name="ProductCategories_NoSelectionHint" xml:space="preserve"><value>在列表中选择类别进行编辑，或新建一个。</value></data>
+  <data name="ProductCategories_Count" xml:space="preserve"><value>{0} 个类别</value></data>
+  <data name="ProductCategories_ShowingPartial" xml:space="preserve"><value>显示 {1} 个类别中的 {0} 个。请细化搜索以查看更多。</value></data>
+  <data name="ProductCategories_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="ProductCategoryEditor_New" xml:space="preserve"><value>新建类别</value></data>
+  <data name="ProductCategoryEditor_Edit" xml:space="preserve"><value>编辑类别</value></data>
+  <data name="ProductCategoryEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="ProductCategoryField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="ProductCategoryField_NamePlaceholder" xml:space="preserve"><value>例如 网络线缆</value></data>
+  <data name="ProductCategoryField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="Startup_ProductsDatabase" xml:space="preserve"><value>正在准备产品数据库</value></data>
+  <data name="Error_product_number_required" xml:space="preserve"><value>请输入产品编号。</value></data>
+  <data name="Error_product_number_too_long" xml:space="preserve"><value>产品编号过长（最多 30 个字符）。</value></data>
+  <data name="Error_product_number_conflict" xml:space="preserve"><value>已有其他产品使用此编号。</value></data>
+  <data name="Error_product_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_product_name_too_long" xml:space="preserve"><value>名称过长（最多 200 个字符）。</value></data>
+  <data name="Error_product_kind_invalid" xml:space="preserve"><value>请选择有效的类型。</value></data>
+  <data name="Error_product_unit_invalid" xml:space="preserve"><value>请选择有效的单位。</value></data>
+  <data name="Error_product_description_too_long" xml:space="preserve"><value>描述过长（最多 2000 个字符）。</value></data>
+  <data name="Error_product_price_invalid" xml:space="preserve"><value>价格必须在 0 到 10,000,000 之间。</value></data>
+  <data name="Error_product_price_required" xml:space="preserve"><value>请输入价格和成本。</value></data>
+  <data name="Error_product_vat_invalid" xml:space="preserve"><value>增值税必须在 0 到 100 之间。</value></data>
+  <data name="Error_product_vat_required" xml:space="preserve"><value>请输入增值税率。</value></data>
+  <data name="Error_product_manufacturer_too_long" xml:space="preserve"><value>制造商名称过长（最多 100 个字符）。</value></data>
+  <data name="Error_product_model_too_long" xml:space="preserve"><value>型号过长（最多 100 个字符）。</value></data>
+  <data name="Error_product_version_too_long" xml:space="preserve"><value>版本过长（最多 50 个字符）。</value></data>
+  <data name="Error_product_minimum_hours_invalid" xml:space="preserve"><value>最少工时必须大于 0 且不超过 1000。</value></data>
+  <data name="Error_product_not_found" xml:space="preserve"><value>该产品已不存在。</value></data>
+  <data name="Error_product_category_not_found" xml:space="preserve"><value>该类别已不存在。</value></data>
+  <data name="Error_product_category_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_product_category_name_too_long" xml:space="preserve"><value>名称过长（最多 100 个字符）。</value></data>
+  <data name="Error_product_category_description_too_long" xml:space="preserve"><value>描述过长（最多 500 个字符）。</value></data>
+  <data name="Error_product_category_conflict" xml:space="preserve"><value>已存在同名类别。</value></data>
+  <data name="Error_product_category_in_use" xml:space="preserve"><value>此类别正被产品使用，无法删除。</value></data>
+  <data name="Products_Details" xml:space="preserve"><value>详情</value></data>
+  <data name="ProductDetail_Back" xml:space="preserve"><value>返回产品</value></data>
+  <data name="ProductDetail_Edit" xml:space="preserve"><value>编辑</value></data>
+  <data name="ProductDetail_Status" xml:space="preserve"><value>状态</value></data>
+  <data name="ProductDetail_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="ProductDetail_Inactive" xml:space="preserve"><value>停用</value></data>
+  <data name="ProductDetail_Pricing" xml:space="preserve"><value>定价</value></data>
+  <data name="ProductDetail_PriceWithVat" xml:space="preserve"><value>含税价格</value></data>
+  <data name="ProductDetail_Margin" xml:space="preserve"><value>利润</value></data>
+  <data name="Suppliers_Title" xml:space="preserve"><value>供应商</value></data>
+  <data name="Suppliers_Subtitle" xml:space="preserve"><value>您从哪些供应商采购产品。</value></data>
+  <data name="Suppliers_New" xml:space="preserve"><value>新建供应商</value></data>
+  <data name="Suppliers_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Suppliers_SearchPlaceholder" xml:space="preserve"><value>名称、组织编号或电子邮件</value></data>
+  <data name="Suppliers_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="Suppliers_ColEmail" xml:space="preserve"><value>电子邮件</value></data>
+  <data name="Suppliers_ColPhone" xml:space="preserve"><value>电话</value></data>
+  <data name="Suppliers_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Suppliers_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="Suppliers_Inactive" xml:space="preserve"><value>停用</value></data>
+  <data name="Suppliers_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Suppliers_ConfirmDelete" xml:space="preserve"><value>删除此供应商及其价格？</value></data>
+  <data name="Suppliers_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="Suppliers_NoSelection" xml:space="preserve"><value>未选择供应商</value></data>
+  <data name="Suppliers_NoSelectionHint" xml:space="preserve"><value>在列表中选择供应商进行编辑，或新建一个。</value></data>
+  <data name="Suppliers_Count" xml:space="preserve"><value>{0} 个供应商</value></data>
+  <data name="Suppliers_ShowingPartial" xml:space="preserve"><value>显示 {1} 个供应商中的 {0} 个。请细化搜索以查看更多。</value></data>
+  <data name="Suppliers_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="SupplierEditor_New" xml:space="preserve"><value>新建供应商</value></data>
+  <data name="SupplierEditor_Edit" xml:space="preserve"><value>编辑供应商</value></data>
+  <data name="SupplierEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="SupplierField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="SupplierField_OrganizationNumber" xml:space="preserve"><value>组织编号</value></data>
+  <data name="SupplierField_Email" xml:space="preserve"><value>电子邮件</value></data>
+  <data name="SupplierField_Phone" xml:space="preserve"><value>电话</value></data>
+  <data name="SupplierField_Website" xml:space="preserve"><value>网站</value></data>
+  <data name="SupplierField_WebsitePlaceholder" xml:space="preserve"><value>https://</value></data>
+  <data name="SupplierField_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="SupplierField_Active" xml:space="preserve"><value>启用（可用于新价格）</value></data>
+  <data name="SupplierPrices_Title" xml:space="preserve"><value>供应商</value></data>
+  <data name="SupplierPrices_Add" xml:space="preserve"><value>添加价格</value></data>
+  <data name="SupplierPrices_Empty" xml:space="preserve"><value>尚无供应商为此产品报价。</value></data>
+  <data name="SupplierPrices_Edit" xml:space="preserve"><value>修改</value></data>
+  <data name="SupplierPrices_Remove" xml:space="preserve"><value>移除</value></data>
+  <data name="SupplierPrices_ConfirmRemove" xml:space="preserve"><value>移除此价格？</value></data>
+  <data name="SupplierPrices_YesRemove" xml:space="preserve"><value>是，移除</value></data>
+  <data name="SupplierPrices_Supplier" xml:space="preserve"><value>供应商</value></data>
+  <data name="SupplierPrices_Price" xml:space="preserve"><value>采购价格</value></data>
+  <data name="SupplierPrices_ArticleNumber" xml:space="preserve"><value>供应商货号</value></data>
+  <data name="SupplierPrices_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="SupplierPrices_Lowest" xml:space="preserve"><value>最低价</value></data>
+  <data name="SupplierPrices_Saved" xml:space="preserve"><value>已保存 {0} 的价格。</value></data>
+  <data name="SupplierPrices_NoSuppliers" xml:space="preserve"><value>请先在“供应商”中添加供应商。</value></data>
+  <data name="SupplierPrices_AllPriced" xml:space="preserve"><value>所有启用的供应商都已为此产品报价。</value></data>
+  <data name="Error_supplier_required" xml:space="preserve"><value>请选择供应商。</value></data>
+  <data name="Error_supplier_price_required" xml:space="preserve"><value>请输入价格。</value></data>
+  <data name="Error_supplier_price_invalid" xml:space="preserve"><value>价格必须在 0 到 10,000,000 之间。</value></data>
+  <data name="Error_supplier_article_number_too_long" xml:space="preserve"><value>货号过长（最多 50 个字符）。</value></data>
+  <data name="Error_supplier_price_not_found" xml:space="preserve"><value>该价格已不存在。</value></data>
+  <data name="Error_supplier_not_found" xml:space="preserve"><value>该供应商已不存在。</value></data>
+  <data name="Error_supplier_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_supplier_name_too_long" xml:space="preserve"><value>名称过长（最多 200 个字符）。</value></data>
+  <data name="Error_supplier_name_conflict" xml:space="preserve"><value>已存在同名供应商。</value></data>
+  <data name="Error_supplier_organization_number_too_long" xml:space="preserve"><value>组织编号过长（最多 30 个字符）。</value></data>
+  <data name="Error_supplier_email_too_long" xml:space="preserve"><value>电子邮件过长（最多 200 个字符）。</value></data>
+  <data name="Error_supplier_email_invalid" xml:space="preserve"><value>请输入有效的电子邮件地址。</value></data>
+  <data name="Error_supplier_phone_too_long" xml:space="preserve"><value>电话号码过长（最多 50 个字符）。</value></data>
+  <data name="Error_supplier_website_too_long" xml:space="preserve"><value>网址过长（最多 200 个字符）。</value></data>
+  <data name="Error_supplier_notes_too_long" xml:space="preserve"><value>备注过长（最多 2000 个字符）。</value></data>
+  <data name="ProductField_MinimumStock" xml:space="preserve"><value>最低库存</value></data>
+  <data name="Stock_Group" xml:space="preserve"><value>库存</value></data>
+  <data name="Stock_Title" xml:space="preserve"><value>库存</value></data>
+  <data name="Stock_Subtitle" xml:space="preserve"><value>查看库存，入库、出库和调拨货物。</value></data>
+  <data name="Stock_SearchPlaceholder" xml:space="preserve"><value>搜索编号或名称</value></data>
+  <data name="Stock_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Stock_LowOnly" xml:space="preserve"><value>仅显示低库存</value></data>
+  <data name="Stock_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="Stock_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="Stock_ColInStock" xml:space="preserve"><value>库存</value></data>
+  <data name="Stock_ColMinimum" xml:space="preserve"><value>最低</value></data>
+  <data name="Stock_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="Stock_Low" xml:space="preserve"><value>偏低</value></data>
+  <data name="Stock_Count" xml:space="preserve"><value>{0} 个产品</value></data>
+  <data name="Stock_PageOf" xml:space="preserve"><value>第 {0} 页，共 {1} 页</value></data>
+  <data name="Stock_PreviousPage" xml:space="preserve"><value>上一页</value></data>
+  <data name="Stock_NextPage" xml:space="preserve"><value>下一页</value></data>
+  <data name="Stock_NoSelection" xml:space="preserve"><value>未选择产品</value></data>
+  <data name="Stock_NoSelectionHint" xml:space="preserve"><value>选择产品以入库、出库或调拨。</value></data>
+  <data name="Stock_NoLocations" xml:space="preserve"><value>请先添加库位。</value></data>
+  <data name="Stock_Registered" xml:space="preserve"><value>{0}：{1}</value></data>
+  <data name="StockEditor_Title" xml:space="preserve"><value>登记库存变动</value></data>
+  <data name="StockEditor_Mode" xml:space="preserve"><value>操作</value></data>
+  <data name="StockEditor_Location" xml:space="preserve"><value>库位</value></data>
+  <data name="StockEditor_FromLocation" xml:space="preserve"><value>来源库位</value></data>
+  <data name="StockEditor_ToLocation" xml:space="preserve"><value>目标库位</value></data>
+  <data name="StockEditor_Quantity" xml:space="preserve"><value>数量</value></data>
+  <data name="StockEditor_Supplier" xml:space="preserve"><value>供应商</value></data>
+  <data name="StockEditor_NoSupplier" xml:space="preserve"><value>无供应商</value></data>
+  <data name="StockEditor_Note" xml:space="preserve"><value>备注</value></data>
+  <data name="StockEditor_Register" xml:space="preserve"><value>登记</value></data>
+  <data name="StockMode_Receipt" xml:space="preserve"><value>入库</value></data>
+  <data name="StockMode_Issue" xml:space="preserve"><value>出库</value></data>
+  <data name="StockMode_Transfer" xml:space="preserve"><value>调拨</value></data>
+  <data name="StockMovementType_Receipt" xml:space="preserve"><value>入库</value></data>
+  <data name="StockMovementType_Issue" xml:space="preserve"><value>出库</value></data>
+  <data name="StockMovementType_TransferIn" xml:space="preserve"><value>调入</value></data>
+  <data name="StockMovementType_TransferOut" xml:space="preserve"><value>调出</value></data>
+  <data name="StockMovementType_CountAdjustment" xml:space="preserve"><value>盘点调整</value></data>
+  <data name="StockMovements_Title" xml:space="preserve"><value>库存变动</value></data>
+  <data name="StockMovements_Subtitle" xml:space="preserve"><value>所有库存变动，最新的在前。</value></data>
+  <data name="StockMovements_SearchPlaceholder" xml:space="preserve"><value>搜索产品</value></data>
+  <data name="StockMovements_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="StockMovements_AllTypes" xml:space="preserve"><value>所有类型</value></data>
+  <data name="StockMovements_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="StockMovements_ColProduct" xml:space="preserve"><value>产品</value></data>
+  <data name="StockMovements_ColLocation" xml:space="preserve"><value>库位</value></data>
+  <data name="StockMovements_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="StockMovements_ColQuantity" xml:space="preserve"><value>数量</value></data>
+  <data name="StockMovements_ColDetails" xml:space="preserve"><value>详情</value></data>
+  <data name="StockMovements_Count" xml:space="preserve"><value>{0} 条变动</value></data>
+  <data name="StockMovements_PageOf" xml:space="preserve"><value>第 {0} 页，共 {1} 页</value></data>
+  <data name="StockMovements_PreviousPage" xml:space="preserve"><value>上一页</value></data>
+  <data name="StockMovements_NextPage" xml:space="preserve"><value>下一页</value></data>
+  <data name="ProductStock_Title" xml:space="preserve"><value>库存</value></data>
+  <data name="ProductStock_Total" xml:space="preserve"><value>库存</value></data>
+  <data name="ProductStock_Minimum" xml:space="preserve"><value>最低</value></data>
+  <data name="ProductStock_Empty" xml:space="preserve"><value>无库存。</value></data>
+  <data name="ProductStock_Low" xml:space="preserve"><value>库存低于最低值。</value></data>
+  <data name="StorageLocations_Title" xml:space="preserve"><value>库位</value></data>
+  <data name="StorageLocations_Subtitle" xml:space="preserve"><value>存放货物的货架、房间和箱子。</value></data>
+  <data name="StorageLocations_New" xml:space="preserve"><value>新建库位</value></data>
+  <data name="StorageLocations_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="StorageLocations_SearchPlaceholder" xml:space="preserve"><value>搜索名称</value></data>
+  <data name="StorageLocations_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="StorageLocations_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="StorageLocations_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="StorageLocations_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="StorageLocations_Inactive" xml:space="preserve"><value>停用</value></data>
+  <data name="StorageLocations_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="StorageLocations_ConfirmDelete" xml:space="preserve"><value>删除此库位？</value></data>
+  <data name="StorageLocations_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="StorageLocations_NoSelection" xml:space="preserve"><value>未选择库位</value></data>
+  <data name="StorageLocations_NoSelectionHint" xml:space="preserve"><value>选择库位进行编辑，或新建一个。</value></data>
+  <data name="StorageLocations_Count" xml:space="preserve"><value>{0} 个库位</value></data>
+  <data name="StorageLocations_ShowingPartial" xml:space="preserve"><value>显示 {0} / {1} 个库位</value></data>
+  <data name="StorageLocations_Saved" xml:space="preserve"><value>已保存 {0}</value></data>
+  <data name="StorageLocationEditor_New" xml:space="preserve"><value>新建库位</value></data>
+  <data name="StorageLocationEditor_Edit" xml:space="preserve"><value>编辑库位</value></data>
+  <data name="StorageLocationEditor_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="StorageLocationField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="StorageLocationField_NamePlaceholder" xml:space="preserve"><value>例如 A2 货架</value></data>
+  <data name="StorageLocationField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="StorageLocationField_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="InventoryCounts_Title" xml:space="preserve"><value>盘点</value></data>
+  <data name="InventoryCounts_Subtitle" xml:space="preserve"><value>清点货架上的实际数量并调整库存。</value></data>
+  <data name="InventoryCounts_New" xml:space="preserve"><value>新建盘点</value></data>
+  <data name="InventoryCounts_OpenCount" xml:space="preserve"><value>打开</value></data>
+  <data name="InventoryCounts_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="InventoryCounts_ConfirmDelete" xml:space="preserve"><value>删除此盘点？</value></data>
+  <data name="InventoryCounts_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="InventoryCounts_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="InventoryCounts_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="InventoryCounts_ColLocation" xml:space="preserve"><value>库位</value></data>
+  <data name="InventoryCounts_ColCounted" xml:space="preserve"><value>已清点</value></data>
+  <data name="InventoryCounts_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="InventoryCounts_AllLocations" xml:space="preserve"><value>所有库位</value></data>
+  <data name="InventoryCounts_Open" xml:space="preserve"><value>进行中</value></data>
+  <data name="InventoryCounts_Posted" xml:space="preserve"><value>已过账</value></data>
+  <data name="InventoryCounts_Count" xml:space="preserve"><value>{0} 次盘点</value></data>
+  <data name="InventoryCounts_NoSelection" xml:space="preserve"><value>未选择盘点</value></data>
+  <data name="InventoryCounts_NoSelectionHint" xml:space="preserve"><value>选择盘点以打开，或开始新的盘点。</value></data>
+  <data name="InventoryCountEditor_Title" xml:space="preserve"><value>新建盘点</value></data>
+  <data name="InventoryCountEditor_Start" xml:space="preserve"><value>开始盘点</value></data>
+  <data name="InventoryCountEditor_DefaultName" xml:space="preserve"><value>盘点 {0}</value></data>
+  <data name="InventoryCountField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="InventoryCountField_Location" xml:space="preserve"><value>库位</value></data>
+  <data name="InventoryCountField_IncludeUnstocked" xml:space="preserve"><value>包含无库存的产品</value></data>
+  <data name="InventoryCountField_Note" xml:space="preserve"><value>备注</value></data>
+  <data name="InventoryCountScreen_Back" xml:space="preserve"><value>返回</value></data>
+  <data name="InventoryCountScreen_Hint" xml:space="preserve"><value>输入清点数量。留空则跳过该行。</value></data>
+  <data name="InventoryCountScreen_PostedHint" xml:space="preserve"><value>此盘点已过账，无法再更改。</value></data>
+  <data name="InventoryCountScreen_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="InventoryCountScreen_ColProduct" xml:space="preserve"><value>产品</value></data>
+  <data name="InventoryCountScreen_ColLocation" xml:space="preserve"><value>库位</value></data>
+  <data name="InventoryCountScreen_ColExpected" xml:space="preserve"><value>预期</value></data>
+  <data name="InventoryCountScreen_ColCounted" xml:space="preserve"><value>已清点</value></data>
+  <data name="InventoryCountScreen_ColDifference" xml:space="preserve"><value>差异</value></data>
+  <data name="InventoryCountScreen_Empty" xml:space="preserve"><value>没有需要清点的内容。</value></data>
+  <data name="InventoryCountScreen_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="InventoryCountScreen_Post" xml:space="preserve"><value>过账盘点</value></data>
+  <data name="InventoryCountScreen_ConfirmPost" xml:space="preserve"><value>按清点数量调整库存？</value></data>
+  <data name="InventoryCountScreen_YesPost" xml:space="preserve"><value>是，过账</value></data>
+  <data name="InventoryCountScreen_Saved" xml:space="preserve"><value>盘点已保存。</value></data>
+  <data name="InventoryCountScreen_Posted" xml:space="preserve"><value>盘点已过账，共调整 {0} 项。</value></data>
+  <data name="Error_storage_location_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_storage_location_name_too_long" xml:space="preserve"><value>名称过长（最多 100 个字符）。</value></data>
+  <data name="Error_storage_location_conflict" xml:space="preserve"><value>已存在同名库位。</value></data>
+  <data name="Error_storage_location_description_too_long" xml:space="preserve"><value>描述过长（最多 500 个字符）。</value></data>
+  <data name="Error_storage_location_not_found" xml:space="preserve"><value>该库位已不存在。</value></data>
+  <data name="Error_storage_location_in_use" xml:space="preserve"><value>该库位有库存或历史记录，请改为停用。</value></data>
+  <data name="Error_storage_location_inactive" xml:space="preserve"><value>该库位已停用。</value></data>
+  <data name="Error_storage_location_required" xml:space="preserve"><value>请选择库位。</value></data>
+  <data name="Error_stock_quantity_invalid" xml:space="preserve"><value>请输入大于 0 的数量。</value></data>
+  <data name="Error_stock_insufficient" xml:space="preserve"><value>该库位库存不足。</value></data>
+  <data name="Error_stock_note_too_long" xml:space="preserve"><value>备注过长（最多 500 个字符）。</value></data>
+  <data name="Error_stock_same_location" xml:space="preserve"><value>请选择两个不同的库位。</value></data>
+  <data name="Error_stock_counted_invalid" xml:space="preserve"><value>清点数量必须在 0 到 1,000,000 之间。</value></data>
+  <data name="Error_product_not_stockable" xml:space="preserve"><value>咨询工时不能入库。</value></data>
+  <data name="Error_product_in_use" xml:space="preserve"><value>该产品有库存历史，请改为停用。</value></data>
+  <data name="Error_product_minimum_stock_invalid" xml:space="preserve"><value>最低库存必须在 0 到 1,000,000 之间。</value></data>
+  <data name="Error_inventory_count_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_inventory_count_name_too_long" xml:space="preserve"><value>名称过长（最多 100 个字符）。</value></data>
+  <data name="Error_inventory_count_note_too_long" xml:space="preserve"><value>备注过长（最多 500 个字符）。</value></data>
+  <data name="Error_inventory_count_location_required" xml:space="preserve"><value>请选择库位，或仅包含有库存的产品。</value></data>
+  <data name="Error_inventory_count_not_found" xml:space="preserve"><value>该盘点已不存在。</value></data>
+  <data name="Error_inventory_count_posted" xml:space="preserve"><value>该盘点已过账。</value></data>
+</root>

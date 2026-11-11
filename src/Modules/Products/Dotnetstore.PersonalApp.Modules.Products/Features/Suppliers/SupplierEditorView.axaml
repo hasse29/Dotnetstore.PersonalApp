@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:suppliers="using:Dotnetstore.PersonalApp.Modules.Products.Features.Suppliers"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="640"
+             x:Class="Dotnetstore.PersonalApp.Modules.Products.Features.Suppliers.SupplierEditorView"
+             x:DataType="suppliers:SupplierEditorViewModel">
+
+    <Border Classes="card" Padding="24">
+        <StackPanel Spacing="14">
+            <TextBlock Text="{Binding Title}" Classes="h2"/>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SupplierField_Name}" Classes="label"/>
+                <TextBox Text="{Binding Name}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SupplierField_OrganizationNumber}" Classes="label"/>
+                <TextBox Text="{Binding OrganizationNumber}"/>
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel>
+                    <TextBlock Text="{loc:Tr SupplierField_Email}" Classes="label"/>
+                    <TextBox Text="{Binding Email}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{loc:Tr SupplierField_Phone}" Classes="label"/>
+                    <TextBox Text="{Binding Phone}"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SupplierField_Website}" Classes="label"/>
+                <TextBox Text="{Binding Website}" PlaceholderText="{loc:Tr SupplierField_WebsitePlaceholder}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="{loc:Tr SupplierField_Notes}" Classes="label"/>
+                <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" MaxHeight="140"/>
+            </StackPanel>
+
+            <CheckBox IsChecked="{Binding IsActive}" Content="{loc:Tr SupplierField_Active}"/>
+
+            <TextBlock Text="{Binding ErrorMessage}" Classes="error" TextWrapping="Wrap"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,6,0,0">
+                <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelCommand}"/>
+                <Button Content="{loc:Tr SupplierEditor_Save}" Classes="primary" Command="{Binding SaveCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>

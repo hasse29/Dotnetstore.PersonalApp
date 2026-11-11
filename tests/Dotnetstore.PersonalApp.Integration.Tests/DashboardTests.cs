@@ -49,7 +49,7 @@ public sealed class DashboardTests : IDisposable
             panels.Add(await widget.LoadAsync(context, Ct));
         }
 
-        widgets.Select(w => w.ModuleKey).ShouldBe(["production", "purchasing", "sales", "inventory", "school"], ignoreOrder: true);
+        widgets.Select(w => w.ModuleKey).ShouldBe(["school"]);
         panels.ShouldAllBe(p => p.Title.Length > 0 && !p.Title.StartsWith("Missing", StringComparison.Ordinal) && p.Metrics.Count > 0);
         panels.ShouldAllBe(p => p.Rows.Count == 0 ? p.EmptyText.Length > 0 : true);
     }
@@ -66,15 +66,15 @@ public sealed class DashboardTests : IDisposable
         var dashboard = services.GetRequiredService<DashboardViewModel>();
         await dashboard.LoadCommand.ExecuteAsync(null);
 
-        dashboard.Panels.Count.ShouldBe(5);
+        dashboard.Panels.Count.ShouldBe(1);
         dashboard.SomeUnavailable.ShouldBeFalse();
         dashboard.Greeting.ShouldContain("Test Teacher");
 
         var settings = services.GetRequiredService<ModuleSettings>();
-        settings.SetEnabled("inventory", false);
+        settings.SetEnabled("school", false);
         await dashboard.LoadCommand.ExecuteAsync(null);
 
-        dashboard.Panels.Count.ShouldBe(4);
+        dashboard.Panels.Count.ShouldBe(0);
         _ = services.GetRequiredService<ILocalizationService>();
     }
 }

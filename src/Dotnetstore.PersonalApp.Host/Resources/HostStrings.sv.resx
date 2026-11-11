@@ -9,6 +9,7 @@
   <data name="Splash_CheckingUsers" xml:space="preserve"><value>Kontrollerar användare...</value></data>
   <data name="Startup_Ready" xml:space="preserve"><value>Klar</value></data>
   <data name="Startup_Failed" xml:space="preserve"><value>Starten misslyckades: {0}</value></data>
+  <data name="Startup_RemovingRetiredDatabases" xml:space="preserve"><value>Tar bort oanvända data...</value></data>
   <data name="Shell_Menu" xml:space="preserve"><value>MENY</value></data>
   <data name="Shell_Home" xml:space="preserve"><value>Hem</value></data>
   <data name="Shell_SignOut" xml:space="preserve"><value>Logga ut</value></data>

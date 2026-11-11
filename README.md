@@ -17,9 +17,7 @@ A personal desktop app for keeping track of clients, the time you work for them,
 - **Grades and tests**: grade scales per country (for example A-F in Sweden or 1-6 in Germany, defined by you) and the grades you give your students per subject, on a Grades page and a tab on each student.
 - **Tests**: a test has a name, a date and a maximum score. Then you set each student's score and grade on it.
 - **Schedule**: a teacher's recurring weekly lessons, for example mathematics every Monday at 08:00, each with a subject, a school, a time, an optional room and the students who attend. Overlapping lessons are rejected.
-- **Dashboard**: the page you land on after signing in, with a greeting and a panel for each module that is switched on: today's lessons, open work orders (overdue ones flagged), open sales orders and what was sold this month, pending purchase orders, and products at or below their minimum stock.
-- **Inventory**: warehouses with storage locations, stock per product and location kept by a movement ledger, a stock overview with low-stock filter, transfers, receiving and issuing against purchase and sales orders, and inventory counts that post adjustments.
-- **Production, Purchasing and Sales** (modelled on the AdventureWorks sample): a product catalogue with categories, subcategories, models, units of measure, cost and list price history, inventory per location, reviews, bills of materials, work orders with routing steps and inventory transactions; vendors with their prices per product and purchase orders with lines; customers, stores, salespeople, territories, currencies and exchange rates, special offers, tax rates and sales orders with lines. Order totals follow their lines. Products, vendors, customers and salespeople open on detail pages with tabs (history, prices, lines and orders, contact details), and orders open on one screen with their lines and totals. Each module is switched on and off on its own.
+- **Dashboard**: the page you land on after signing in, with a greeting and a panel for each module that is switched on (today's lessons for the School module).
 - **Time reports**: date, start and end time, worked hours, work time type, location and driving distance per client.
 - **Expenses**: hotel, travel, meals and other costs with VAT, an optional client and a copy of the receipt (PDF, PNG or JPEG, up to 10 MB), plus a yearly Excel export for your tax return.
 - **Backup and restore**: back up all databases to one zip in a place you choose, and restore them from such a zip (Settings, Backup).
@@ -73,15 +71,12 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Subjects | Subjects and which teacher teaches what | `subjects.db` |
 | Schedule | A teacher's recurring weekly lessons | `schedule.db` |
 | Grades | Grade scales per country, students' grades, tests and their results | `grades.db` |
-| Production | Products and everything around making them: categories, models, units, price history, inventory, bills of materials, work orders | `production.db` |
-| Purchasing | Ship methods, vendors, vendor prices per product, purchase orders and their lines | `purchasing.db` |
-| Sales | Customers, stores, salespeople, territories, currencies, special offers, tax rates, sales orders and their lines | `sales.db` |
-| Inventory | Warehouses, storage locations, stock per product and location, movements, inventory counts, receiving and issuing against orders | `inventory.db` |
 | Users | Users and sign-in | `users.db` |
 | Addresses | Addresses for any object, with address types | `addresses.db` |
 | EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
 | PhoneNumbers | Phone numbers for any object, with types | `phonenumbers.db` |
 | TimeReports | Time reports, expenses, work time types, exports | `timereports.db` |
+| Products | Hardware, software and consulting products with categories, suppliers, supplier prices and stock with inventory counts | `products.db` |
 | Cvs | CVs with sections, contact selection, Word export | `cvs.db` |
 | Email | Mail accounts, inbox, sending, drafts | `email.db` |
 
