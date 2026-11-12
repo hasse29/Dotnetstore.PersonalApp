@@ -1,6 +1,6 @@
 # Architecture
 
-A .NET 10 Avalonia desktop app (MVVM) structured as a modular monolith. Modules live in one process (the Host) but keep strict boundaries: each owns its features (views, view models, handlers), data and domain logic. The domain is CRUD-heavy and the team is solo, so each module uses vertical slices internally. There is no HTTP API.
+A .NET 11 Avalonia desktop app (MVVM) structured as a modular monolith. Modules live in one process (the Host) but keep strict boundaries: each owns its features (views, view models, handlers), data and domain logic. The domain is CRUD-heavy and the team is solo, so each module uses vertical slices internally. There is no HTTP API.
 
 Module details are in [modules.md](modules.md).
 

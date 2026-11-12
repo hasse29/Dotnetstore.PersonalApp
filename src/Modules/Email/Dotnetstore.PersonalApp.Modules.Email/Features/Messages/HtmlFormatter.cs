@@ -270,7 +270,7 @@ internal static class HtmlFormatter
             }
 
             // A space right after a space or at the start of a block adds nothing in normal text.
-            if (_pre == 0 && text[0] == ' ' && (_runs.Count == 0 || _runs[^1].Text.EndsWith(' ') || _runs[^1].Text.EndsWith('\n')))
+            if (_pre == 0 && text[0] == ' ' && (_runs.Count == 0 || _runs[^1].Text.EndsWith(' ', StringComparison.Ordinal) || _runs[^1].Text.EndsWith('\n', StringComparison.Ordinal)))
             {
                 text = text.TrimStart(' ');
                 if (text.Length == 0)

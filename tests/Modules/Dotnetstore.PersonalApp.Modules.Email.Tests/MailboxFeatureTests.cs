@@ -166,7 +166,7 @@ public sealed class MailboxFeatureTests : IDisposable
         _fixture.Gateway.Mailbox.AddRange([Incoming("a"), Incoming("b")]);
         await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);
         var items = (await _fixture.ListMessages.HandleAsync(new ListEmailMessages.Query(_user, account.Id), Ct)).Value.Items;
-        var toDelete = items.First(m => m.Subject.EndsWith('a'));
+        var toDelete = items.First(m => m.Subject.EndsWith('a', StringComparison.Ordinal));
 
         var deleted = await _fixture.DeleteMessage.HandleAsync(new DeleteEmailMessage.Command(toDelete.Id, _user), Ct);
         var refetched = await _fixture.Fetch.HandleAsync(new FetchEmail.Command(_user, account.Id), Ct);

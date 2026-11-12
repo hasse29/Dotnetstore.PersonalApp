@@ -23,9 +23,10 @@ public static class PhotoThumbnail
 
         using var thumbnail = new SKBitmap(Size, Size);
         using (var canvas = new SKCanvas(thumbnail))
+        using (var sourceImage = SKImage.FromBitmap(source))
         using (var paint = new SKPaint { IsAntialias = true })
         {
-            canvas.DrawBitmap(source, crop, SKRect.Create(Size, Size), paint);
+            canvas.DrawImage(sourceImage, crop, SKRect.Create(Size, Size), new SKSamplingOptions(SKFilterMode.Linear, SKMipmapMode.Linear), paint);
         }
 
         using var image = SKImage.FromBitmap(thumbnail);

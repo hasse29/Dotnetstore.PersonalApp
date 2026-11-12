@@ -1,6 +1,6 @@
 # Dotnetstore.PersonalApp — Avalonia Modular Monolith
 
-.NET 10 **Avalonia desktop app** (MVVM) as a modular monolith: one process (the Host), strict module boundaries, vertical slices inside each module. Solo project, CRUD-heavy. No HTTP API, no minimal API.
+.NET 11 **Avalonia desktop app** (MVVM) as a modular monolith: one process (the Host), strict module boundaries, vertical slices inside each module. Solo project, CRUD-heavy. No HTTP API, no minimal API.
 
 ## Documentation
 
@@ -12,8 +12,8 @@ Keep these in sync when you change a module's behavior, add a module, or change 
 
 ## Tech Stack
 
-- **.NET 10** / C# 14 (`Directory.Build.props`: nullable, `AnalysisLevel=latest-all`, warnings as errors)
-- **Avalonia 12.0.x**, Fluent theme, compiled bindings on by default (`x:DataType` required in every `.axaml`)
+- **.NET 11** / C# 14 (`Directory.Build.props`: nullable, `AnalysisLevel=latest-all`, warnings as errors)
+- **Avalonia 12.1.x**, Fluent theme, compiled bindings on by default (`x:DataType` required in every `.axaml`)
 - **CommunityToolkit.Mvvm** (`[ObservableProperty]`, `[RelayCommand]`), **Microsoft.Extensions.DependencyInjection** (composition root in `Host/CompositionRoot.cs`)
 - **EF Core + SQLite**, one DbContext and one database file per module
 - **FluentValidation**; Wolverine and Serilog are not used (see integration events in the architecture doc); no auth framework
