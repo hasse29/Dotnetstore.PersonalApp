@@ -7,6 +7,7 @@ using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.Messages;
 
@@ -57,7 +58,10 @@ internal static class SendEmail
         TimeProvider clock)
     {
         /// <summary>Returns the number of recipients the message was sent to.</summary>
-        public async Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<int>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

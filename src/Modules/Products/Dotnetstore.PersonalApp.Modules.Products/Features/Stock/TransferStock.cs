@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.Stock;
 
@@ -25,7 +26,10 @@ internal static class TransferStock
     /// <returns>The new quantity at the sending location.</returns>
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
     {
-        public async Task<Result<decimal>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<decimal>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<decimal>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

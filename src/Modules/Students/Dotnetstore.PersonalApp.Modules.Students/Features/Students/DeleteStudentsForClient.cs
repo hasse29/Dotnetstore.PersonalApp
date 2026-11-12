@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Students.Persistence;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -11,7 +12,10 @@ internal static class DeleteStudentsForClient
 
     public sealed class Handler(IDbContextFactory<StudentsDbContext> dbFactory, IEventPublisher events)
     {
-        public async Task<int> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<int> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<int> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

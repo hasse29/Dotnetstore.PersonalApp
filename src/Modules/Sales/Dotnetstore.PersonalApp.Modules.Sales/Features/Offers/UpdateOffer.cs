@@ -5,6 +5,7 @@ using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
 
@@ -23,7 +24,10 @@ internal static class UpdateOffer
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock, IEnumerable<IContactInfoSource> contactSources)
     {
-        public async Task<Result<OfferDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<OfferDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<OfferDetailDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

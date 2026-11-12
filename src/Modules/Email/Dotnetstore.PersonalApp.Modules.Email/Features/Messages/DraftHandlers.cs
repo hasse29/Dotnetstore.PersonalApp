@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.Messages;
 
@@ -51,7 +52,10 @@ internal static class SaveDraft
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
     {
-        public async Task<Result<DraftDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<DraftDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<DraftDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)
@@ -126,7 +130,10 @@ internal static class ListDrafts
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory)
     {
-        public async Task<Response> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Response> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Response> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             var page = Math.Max(query.Page, 1);
             var pageSize = Math.Clamp(query.PageSize, 1, MaxPageSize);
@@ -154,7 +161,10 @@ internal static class GetDraft
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory)
     {
-        public async Task<Result<DraftDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<DraftDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<DraftDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
@@ -178,7 +188,10 @@ internal static class DeleteDraft
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

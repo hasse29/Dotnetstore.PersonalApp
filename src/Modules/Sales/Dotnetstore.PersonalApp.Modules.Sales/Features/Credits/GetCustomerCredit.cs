@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Credits;
 
@@ -12,7 +13,10 @@ internal static class GetCustomerCredit
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory)
     {
-        public async Task<Result<CustomerCreditDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<CustomerCreditDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<CustomerCreditDetailDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

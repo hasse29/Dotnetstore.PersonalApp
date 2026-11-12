@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Email.Features.EmailAccounts;
 using Dotnetstore.PersonalApp.Modules.Email.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.Messages;
 
@@ -14,7 +15,10 @@ internal static class GetEmailAttachment
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory)
     {
-        public async Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<Response>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

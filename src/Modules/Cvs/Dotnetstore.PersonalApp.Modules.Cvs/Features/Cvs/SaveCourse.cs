@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Cvs.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
@@ -26,7 +27,10 @@ internal static class SaveCourse
 
     public sealed class Handler(IDbContextFactory<CvsDbContext> dbFactory, IValidator<Command> validator)
     {
-        public async Task<Result<CourseDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<CourseDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<CourseDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.Email.Security;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.EmailAccounts;
 
@@ -47,7 +48,10 @@ internal static class UpdateEmailAccount
         ISecretProtector protector,
         TimeProvider clock)
     {
-        public async Task<Result<EmailAccountDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<EmailAccountDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<EmailAccountDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

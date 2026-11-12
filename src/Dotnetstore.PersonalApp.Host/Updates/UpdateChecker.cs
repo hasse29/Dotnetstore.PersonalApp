@@ -1,3 +1,4 @@
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text.Json;
@@ -54,6 +55,7 @@ internal sealed class GitHubUpdateChecker(IHttpClientFactory httpClientFactory) 
         }
         catch (Exception ex) when (ex is HttpRequestException or JsonException or OperationCanceledException && !cancellationToken.IsCancellationRequested)
         {
+            AppTelemetry.CreateLogger<GitHubUpdateChecker>().LogHandled(ex, "Updates.Check");
             return null;
         }
     }

@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -28,7 +29,10 @@ internal static class CreateStudent
         TimeProvider clock,
         IClientLookup? clients = null)
     {
-        public async Task<Result<StudentDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<StudentDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<StudentDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

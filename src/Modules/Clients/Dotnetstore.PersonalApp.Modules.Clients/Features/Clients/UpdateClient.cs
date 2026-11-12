@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
 
@@ -33,7 +34,10 @@ internal static class UpdateClient
 
     public sealed class Handler(IDbContextFactory<ClientsDbContext> dbFactory, IValidator<Command> validator)
     {
-        public async Task<Result<ClientDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<ClientDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<ClientDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

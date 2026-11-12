@@ -5,6 +5,7 @@ using Dotnetstore.PersonalApp.Modules.Email.Persistence;
 using Dotnetstore.PersonalApp.Modules.Email.Security;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.Messages;
 
@@ -26,7 +27,10 @@ internal static class FetchEmail
         TimeProvider clock)
     {
         /// <summary>Returns the number of new messages stored.</summary>
-        public async Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<int>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

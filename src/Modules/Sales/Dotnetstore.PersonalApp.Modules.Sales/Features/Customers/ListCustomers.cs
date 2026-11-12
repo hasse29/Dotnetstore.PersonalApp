@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 
@@ -14,7 +15,10 @@ internal static class ListCustomers
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory)
     {
-        public async Task<Response> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Response> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Response> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             var page = Math.Max(query.Page, 1);
             var pageSize = Math.Clamp(query.PageSize, 1, MaxPageSize);

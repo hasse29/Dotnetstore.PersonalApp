@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.Products;
 
@@ -11,7 +12,10 @@ internal static class GetProductPhoto
 
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory)
     {
-        public async Task<Result<byte[]?>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<byte[]?>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<byte[]?>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

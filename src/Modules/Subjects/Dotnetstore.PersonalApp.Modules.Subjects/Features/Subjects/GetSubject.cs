@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Subjects.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Subjects.Features.Subjects;
 
@@ -10,7 +11,10 @@ internal static class GetSubject
 
     public sealed class Handler(IDbContextFactory<SubjectsDbContext> dbFactory)
     {
-        public async Task<Result<SubjectDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<SubjectDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<SubjectDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Photos;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
 
@@ -14,7 +15,10 @@ internal static class SetUserPhoto
 
     public sealed class Handler(IDbContextFactory<UsersDbContext> dbFactory, IEventPublisher events)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (PhotoRules.Validate(command.Photo) is { } invalid)
             {

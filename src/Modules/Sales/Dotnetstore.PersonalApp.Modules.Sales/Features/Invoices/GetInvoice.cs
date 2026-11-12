@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 
@@ -10,7 +11,10 @@ internal static class GetInvoice
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<InvoiceDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<InvoiceDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<InvoiceDetailDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

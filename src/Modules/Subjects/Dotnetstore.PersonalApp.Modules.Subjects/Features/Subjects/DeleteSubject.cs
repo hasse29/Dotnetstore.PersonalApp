@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Subjects.Features.Subjects;
 
@@ -13,7 +14,10 @@ internal static class DeleteSubject
     /// <summary>The subject is also taken off every teacher who taught it (cascade); other modules hear about it through <see cref="SubjectDeleted"/>.</summary>
     public sealed class Handler(IDbContextFactory<SubjectsDbContext> dbFactory, IEventPublisher events)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

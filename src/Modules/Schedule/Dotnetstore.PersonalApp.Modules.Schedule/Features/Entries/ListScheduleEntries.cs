@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
 
@@ -10,7 +11,10 @@ internal static class ListScheduleEntries
     public sealed class Handler(IDbContextFactory<ScheduleDbContext> dbFactory)
     {
         /// <summary>One teacher's lessons in week order: Monday first, Sunday last, then by start time.</summary>
-        public async Task<IReadOnlyList<ScheduleEntryDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<ScheduleEntryDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<ScheduleEntryDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

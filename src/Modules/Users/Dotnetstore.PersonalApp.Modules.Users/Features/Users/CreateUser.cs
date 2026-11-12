@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
 
@@ -29,7 +30,10 @@ internal static class CreateUser
         IPasswordHasher<User> hasher,
         TimeProvider clock)
     {
-        public async Task<Result<UserDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<UserDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<UserDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Users.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Users;
 
@@ -10,7 +11,10 @@ internal static class GetUser
 
     public sealed class Handler(IDbContextFactory<UsersDbContext> dbFactory)
     {
-        public async Task<Result<UserDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<UserDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<UserDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

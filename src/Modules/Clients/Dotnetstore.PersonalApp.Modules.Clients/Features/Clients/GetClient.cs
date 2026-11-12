@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
 
@@ -10,7 +11,10 @@ internal static class GetClient
 
     public sealed class Handler(IDbContextFactory<ClientsDbContext> dbFactory)
     {
-        public async Task<Result<ClientDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<ClientDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<ClientDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

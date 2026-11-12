@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.TimeReports.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.WorkTimeTypes;
 
@@ -20,7 +21,10 @@ internal static class UpdateWorkTimeType
 
     public sealed class Handler(IDbContextFactory<TimeReportsDbContext> dbFactory, IValidator<Command> validator)
     {
-        public async Task<Result<WorkTimeTypeDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<WorkTimeTypeDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<WorkTimeTypeDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

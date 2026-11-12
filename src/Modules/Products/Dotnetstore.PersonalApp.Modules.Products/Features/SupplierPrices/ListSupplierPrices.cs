@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.SupplierPrices;
 
@@ -10,7 +11,10 @@ internal static class ListSupplierPrices
 
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory)
     {
-        public async Task<IReadOnlyList<SupplierPriceDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<SupplierPriceDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<SupplierPriceDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

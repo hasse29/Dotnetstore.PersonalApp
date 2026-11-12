@@ -13,6 +13,14 @@ namespace Dotnetstore.PersonalApp.Integration.Tests;
 public sealed class CompositionRootTests
 {
     [Fact]
+    public void EveryHandlerIsAuditedThroughTheAuditModulesSink()
+    {
+        using var services = CompositionRoot.BuildServices();
+
+        Shared.Audit.AuditTrail.Sink.ShouldBeSameAs(services.GetRequiredService<Shared.Audit.IAuditSink>());
+    }
+
+    [Fact]
     public void ServicesBuildAndResolveMainWindowViewModel()
     {
         using var services = CompositionRoot.BuildServices();

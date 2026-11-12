@@ -95,3 +95,16 @@ Light admin look: dark slate sidebar, white top bar, light grey page background,
 ## Testing
 
 xUnit v3 with Shouldly assertions (never `Assert.*`), and `Avalonia.Headless.XUnit` for the few view tests. Most tests are at handler or view-model level; handler tests use real in-memory SQLite (e.g. `UsersFixture`), not the EF in-memory provider. Module `Add<Module>Module` registration and the composition root are covered by the integration tests. Analyzers are strict: no underscores in test method names (CA1707).
+
+## Observability
+
+Serilog and OpenTelemetry are set up once in `Host/Telemetry/TelemetrySetup.cs`, started from `Program.Main` before Avalonia.
+
+- **Logs**: Serilog writes rolling daily files `logs/personalapp-<date>.log` in the data folder (14 kept). Level comes from `LogLevel` in `settings.json` (default `Information`). Unhandled and unobserved task exceptions, startup failures and Avalonia warnings (`AvaloniaLogSink`) all end up there.
+- **Traces and metrics**: the single `ActivitySource` and `Meter` named `Dotnetstore.PersonalApp` live in `Shared/Telemetry/AppTelemetry`. Runtime metrics are included.
+- **Export**: nothing leaves the machine unless `OtlpEndpoint` (for example `http://localhost:4317`) is set in `settings.json`; then logs, traces and metrics are sent there over OTLP/gRPC.
+- **Every handler is traced**: a handler's public `HandleAsync` is `AppTelemetry.TraceAsync(this, () => HandleCoreAsync(...))` and the work is in a private `HandleCoreAsync`. The span is named `Module.Feature`, a duration histogram and a failure counter are recorded, and failed results and exceptions are logged. A test fails if a handler's `HandleAsync` is `async` (it would bypass the wrapper). Startup tasks and integration event consumers are wrapped the same way.
+- **Catches that carry on** (a locked file, a bad network answer) log with `logger.LogHandled(ex, "Operation")` from `AppTelemetry.CreateLogger<T>()`.
+- **Privacy**: only operation names, error codes and durations are recorded. Never log customer, contact, mail or student data, addresses or credentials, and use message templates, not string interpolation.
+- In tests the wrapper is a no-op (no listeners, null logger factory).
+- **Audit**: the same wrapper also feeds the audit log (see the Audit module in [modules.md](modules.md)); `TraceAsync(this, () => HandleCoreAsync(request, ct), request)` passes the request so the log gets the entity id and field names. Audit entries hold ids, operation names and field names only.

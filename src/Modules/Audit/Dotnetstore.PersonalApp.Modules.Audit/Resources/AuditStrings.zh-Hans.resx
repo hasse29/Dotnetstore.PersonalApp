@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Startup_AuditDatabase" xml:space="preserve"><value>正在准备审计日志...</value></data>
+  <data name="Audit_Title" xml:space="preserve"><value>审计日志</value></data>
+  <data name="Audit_Subtitle" xml:space="preserve"><value>谁在何时做了什么。只记录字段名称,不记录其值。日志不可编辑,也不包含在备份中。</value></data>
+  <data name="Audit_SearchPlaceholder" xml:space="preserve"><value>搜索用户、操作、字段或错误...</value></data>
+  <data name="Audit_OnlyChanges" xml:space="preserve"><value>仅更改</value></data>
+  <data name="Audit_OnlyFailed" xml:space="preserve"><value>仅失败</value></data>
+  <data name="Audit_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="Audit_ColWhen" xml:space="preserve"><value>时间</value></data>
+  <data name="Audit_ColUser" xml:space="preserve"><value>用户</value></data>
+  <data name="Audit_ColOperation" xml:space="preserve"><value>操作</value></data>
+  <data name="Audit_ColEntity" xml:space="preserve"><value>对象</value></data>
+  <data name="Audit_ColFields" xml:space="preserve"><value>字段</value></data>
+  <data name="Audit_ColOutcome" xml:space="preserve"><value>结果</value></data>
+  <data name="Audit_Count" xml:space="preserve"><value>{0} 条记录</value></data>
+  <data name="Audit_ShowingPartial" xml:space="preserve"><value>显示最新 {0} 条,共 {1} 条。请缩小搜索范围以查看其他记录。</value></data>
+</root>

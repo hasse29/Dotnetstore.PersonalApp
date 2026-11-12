@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Dotnetstore.PersonalApp.Shared.Stock;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
 
@@ -17,7 +18,10 @@ internal static class CancelOrder
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IStockService stock)
     {
-        public async Task<Result<OrderDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<OrderDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<OrderDetailDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

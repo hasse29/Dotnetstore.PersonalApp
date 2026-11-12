@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
 
@@ -12,7 +13,10 @@ internal static class DeleteOffer
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

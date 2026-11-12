@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Email.Domain;
 using Dotnetstore.PersonalApp.Modules.Email.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Email.Features.EmailAccounts;
 
@@ -15,7 +16,10 @@ internal static class ListEmailAccounts
 
     public sealed class Handler(IDbContextFactory<EmailDbContext> dbFactory)
     {
-        public async Task<Response> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Response> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Response> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             var page = Math.Max(query.Page, 1);
             var pageSize = Math.Clamp(query.PageSize, 1, MaxPageSize);

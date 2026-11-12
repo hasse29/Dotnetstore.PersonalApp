@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Dotnetstore.PersonalApp.Shared.Photos;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.Clients;
 
@@ -12,7 +13,10 @@ internal static class SetClientPhoto
 
     public sealed class Handler(IDbContextFactory<ClientsDbContext> dbFactory)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (PhotoRules.Validate(command.Photo) is { } invalid)
             {

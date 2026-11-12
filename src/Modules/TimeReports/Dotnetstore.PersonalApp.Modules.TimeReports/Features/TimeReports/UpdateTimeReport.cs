@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports;
 
@@ -39,7 +40,10 @@ internal static class UpdateTimeReport
 
     public sealed class Handler(IDbContextFactory<TimeReportsDbContext> dbFactory, IValidator<Command> validator, IClientLookup clients)
     {
-        public async Task<Result<TimeReportDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<TimeReportDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<TimeReportDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

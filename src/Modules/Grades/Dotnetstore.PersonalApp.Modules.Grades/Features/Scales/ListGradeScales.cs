@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Grades.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Grades.Features.Scales;
 
@@ -9,7 +10,10 @@ internal static class ListGradeScales
 
     public sealed class Handler(IDbContextFactory<GradesDbContext> dbFactory)
     {
-        public async Task<IReadOnlyList<GradeScaleDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<GradeScaleDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<GradeScaleDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

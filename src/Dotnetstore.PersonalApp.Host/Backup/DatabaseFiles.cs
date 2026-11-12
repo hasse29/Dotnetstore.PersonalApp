@@ -25,6 +25,9 @@ internal static class DatabaseFiles
     public const string Email = "email.db";
     public const string Users = "users.db";
 
+    // The audit log is deliberately not in All: backups do not include it and a restore must never roll it back.
+    public const string Audit = "audit.db";
+
     public static IReadOnlyList<string> All { get; } =
     [
         Clients, TimeReports, Products, Sales, Contact, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,

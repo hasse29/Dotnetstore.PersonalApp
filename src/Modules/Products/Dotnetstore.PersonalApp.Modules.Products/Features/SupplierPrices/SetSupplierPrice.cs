@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.SupplierPrices;
 
@@ -27,7 +28,10 @@ internal static class SetSupplierPrice
 
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
     {
-        public async Task<Result<SupplierPriceDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<SupplierPriceDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<SupplierPriceDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

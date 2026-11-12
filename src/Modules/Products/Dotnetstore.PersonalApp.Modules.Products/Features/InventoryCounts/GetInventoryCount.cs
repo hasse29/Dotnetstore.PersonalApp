@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.InventoryCounts;
 
@@ -10,7 +11,10 @@ internal static class GetInventoryCount
 
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory)
     {
-        public async Task<Result<InventoryCountDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<InventoryCountDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<InventoryCountDetailDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

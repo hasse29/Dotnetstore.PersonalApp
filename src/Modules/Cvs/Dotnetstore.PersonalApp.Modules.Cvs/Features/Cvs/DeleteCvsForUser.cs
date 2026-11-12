@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Cvs.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
@@ -11,7 +12,10 @@ internal static class DeleteCvsForUser
 
     public sealed class Handler(IDbContextFactory<CvsDbContext> dbFactory)
     {
-        public async Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<int>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (command.UserId == Guid.Empty)
             {
