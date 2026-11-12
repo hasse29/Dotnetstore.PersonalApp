@@ -96,9 +96,9 @@ internal static class CustomerRules
     {
         var at = value.IndexOf('@', StringComparison.Ordinal);
         return at > 0
-            && at == value.LastIndexOf('@')
-            && value.IndexOf('.', at) > at + 1
-            && !value.EndsWith('.')
+            && at == value.LastIndexOf('@', StringComparison.Ordinal)
+            && value.IndexOf('.', at, StringComparison.Ordinal) > at + 1
+            && !value.EndsWith('.', StringComparison.Ordinal)
             && !value.Contains(' ', StringComparison.Ordinal);
     }
 }

@@ -30,7 +30,7 @@ internal static class PhoneNumberRules
     {
         var trimmed = number.Trim();
         var digits = new string([.. trimmed.Where(char.IsAsciiDigit)]);
-        return trimmed.StartsWith('+') ? "+" + digits : digits;
+        return trimmed.StartsWith('+', StringComparison.Ordinal) ? "+" + digits : digits;
     }
 
     public static Error ToError(this ValidationResult result)

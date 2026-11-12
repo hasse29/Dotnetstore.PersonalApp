@@ -3,11 +3,11 @@
 [![Build](https://github.com/hasse29/Dotnetstore.PersonalApp/actions/workflows/build.yml/badge.svg)](https://github.com/hasse29/Dotnetstore.PersonalApp/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/hasse29/Dotnetstore.PersonalApp)](https://github.com/hasse29/Dotnetstore.PersonalApp/releases/latest)
 [![Last commit](https://img.shields.io/github/last-commit/hasse29/Dotnetstore.PersonalApp)](https://github.com/hasse29/Dotnetstore.PersonalApp/commits/main)
-![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)
+![.NET 11](https://img.shields.io/badge/.NET-11-512BD4?logo=dotnet)
 ![Avalonia 12](https://img.shields.io/badge/Avalonia-12-8B44AC)
 ![Platform: Windows](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)
 
-A personal desktop app for keeping track of clients, the time you work for them, your products, stock and offers, your CVs and your mail. It is built from a teacher's point of view: a client is a school, and a user is a teacher who can work at several schools. Built with [Avalonia](https://avaloniaui.net/) on .NET 10 as a modular monolith.
+A personal desktop app for keeping track of clients, the time you work for them, your products, stock and offers, your CVs and your mail. It is built from a teacher's point of view: a client is a school, and a user is a teacher who can work at several schools. Built with [Avalonia](https://avaloniaui.net/) on .NET 11 as a modular monolith.
 
 ## Features
 
@@ -46,7 +46,7 @@ On start the app asks GitHub once whether a newer release exists and shows a not
 
 ## Build and run from source
 
-Requires the [.NET 10 SDK](https://dotnet.microsoft.com/download).
+Requires the [.NET 11 SDK](https://dotnet.microsoft.com/download). The installer build is self-contained, so end users need no .NET install.
 
 ```bash
 dotnet build
@@ -95,7 +95,7 @@ installer/                           Inno Setup script and build script
 docs/                                Architecture and module documentation
 ```
 
-**Tech stack:** .NET 10, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, SkiaSharp, MailKit, ClosedXML, Open XML SDK, xUnit v3 with Shouldly.
+**Tech stack:** .NET 11, Avalonia 12 (Fluent theme, compiled bindings), CommunityToolkit.Mvvm, EF Core with SQLite, FluentValidation, SkiaSharp, MailKit, ClosedXML, Open XML SDK, xUnit v3 with Shouldly.
 
 ## Documentation
 
