@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Contact.Persistence;
 using Dotnetstore.PersonalApp.Modules.Contact.PhoneNumbers.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Contact.PhoneNumbers.Features.PhoneNumbers;
 
@@ -11,7 +12,10 @@ internal static class GetPhoneNumber
 
     public sealed class Handler(IDbContextFactory<ContactDbContext> dbFactory)
     {
-        public async Task<Result<PhoneNumberDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<PhoneNumberDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<PhoneNumberDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

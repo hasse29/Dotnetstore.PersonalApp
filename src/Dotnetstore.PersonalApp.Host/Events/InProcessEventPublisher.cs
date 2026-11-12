@@ -1,4 +1,5 @@
 using Dotnetstore.PersonalApp.Shared.Events;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Dotnetstore.PersonalApp.Host.Events;
@@ -14,7 +15,7 @@ internal sealed class InProcessEventPublisher(IServiceProvider services) : IEven
     {
         foreach (var handler in services.GetServices<IIntegrationEventConsumer<TEvent>>())
         {
-            await handler.ConsumeAsync(integrationEvent, cancellationToken).ConfigureAwait(false);
+            await AppTelemetry.TraceAsync(handler, () => handler.ConsumeAsync(integrationEvent, cancellationToken)).ConfigureAwait(false);
         }
     }
 }

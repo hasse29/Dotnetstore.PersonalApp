@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Credits;
 
@@ -8,7 +9,10 @@ internal static class ListCredits
 {
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory)
     {
-        public async Task<IReadOnlyList<CustomerCreditDto>> HandleAsync(CancellationToken cancellationToken)
+        public Task<IReadOnlyList<CustomerCreditDto>> HandleAsync(CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(cancellationToken));
+
+        private async Task<IReadOnlyList<CustomerCreditDto>> HandleCoreAsync(CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

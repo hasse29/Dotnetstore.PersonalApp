@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Contact.Persistence;
 using Dotnetstore.PersonalApp.Modules.Contact.Addresses.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Contact.Addresses.Features.Addresses;
 
@@ -12,7 +13,10 @@ internal static class DeleteAddressesForObject
 
     public sealed class Handler(IDbContextFactory<ContactDbContext> dbFactory)
     {
-        public async Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<int>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (command.ObjectId == Guid.Empty)
             {

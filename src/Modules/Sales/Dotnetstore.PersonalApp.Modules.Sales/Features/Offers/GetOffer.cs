@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
 
@@ -11,7 +12,10 @@ internal static class GetOffer
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<OfferDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<OfferDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<OfferDetailDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

@@ -123,16 +123,23 @@ internal sealed partial class ShellViewModel : ViewModelBase, IDisposable
             return;
         }
 
-        if (value.Page is { } page)
+        // This runs while the ListBox is still committing the click. Changing Entries (or the page, which rebuilds them) right here
+        // pulls the items out from under its selection model and crashes the app, so it waits until the click has been handled.
+        Dispatcher.UIThread.Post(() => OpenEntry(value));
+    }
+
+    private void OpenEntry(NavEntry entry)
+    {
+        if (entry.Page is { } page)
         {
             SelectedPage = page;
             return;
         }
 
         // A header only expands or collapses; keep the current page highlighted.
-        if (!_expandedGroups.Remove(value.GroupKey!))
+        if (!_expandedGroups.Remove(entry.GroupKey!))
         {
-            _expandedGroups.Add(value.GroupKey!);
+            _expandedGroups.Add(entry.GroupKey!);
         }
 
         Rebuild();

@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses;
 
@@ -24,7 +25,10 @@ internal static class ExportExpenses
     {
         private const int FirstDataRow = 4;
 
-        public async Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<Response>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             if (query.Year is < ExportTimeReports.MinYear or > ExportTimeReports.MaxYear)
             {

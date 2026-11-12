@@ -16,7 +16,7 @@ Keep these in sync when you change a module's behavior, add a module, or change 
 - **Avalonia 12.1.x**, Fluent theme, compiled bindings on by default (`x:DataType` required in every `.axaml`)
 - **CommunityToolkit.Mvvm** (`[ObservableProperty]`, `[RelayCommand]`), **Microsoft.Extensions.DependencyInjection** (composition root in `Host/CompositionRoot.cs`)
 - **EF Core + SQLite**, one DbContext and one database file per module
-- **FluentValidation**; Wolverine and Serilog are not used (see integration events in the architecture doc); no auth framework
+- **FluentValidation**; **Serilog** (rolling files) and **OpenTelemetry** (traces, metrics, optional OTLP export) for observability, see Observability in the architecture doc; Wolverine is not used (see integration events); no auth framework
 - **xUnit v3** with **Shouldly** assertions (never `Assert.*`) and `Avalonia.Headless.XUnit` for UI tests
 - Central package management: add versions to `Directory.Packages.props`, reference without a version in the csproj
 
@@ -57,7 +57,9 @@ Do NOT:
 - Use reflection bindings where compiled bindings work
 - Expose domain entities to views; map to view-model state
 - Wrap EF Core in repository abstractions
-- Catch bare `Exception`; use string interpolation in log messages
+- Catch bare `Exception` (the rethrowing catch in `AppTelemetry.TraceAsync` is the one exception); use string interpolation in log messages
+- Log customer, contact or mail data, names, addresses or credentials: only operation names, error codes and durations
+- Add a handler that does not pass its request to `AppTelemetry.TraceAsync` (the audit log needs it for the entity id and field names)
 - Create a single god DbContext
 - Put business logic in Shared
 - Store or log plain-text passwords

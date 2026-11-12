@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Users.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Authentication;
 
@@ -7,7 +8,10 @@ internal static class HasUsers
 {
     public sealed class Handler(IDbContextFactory<UsersDbContext> dbFactory)
     {
-        public async Task<bool> HandleAsync(CancellationToken cancellationToken)
+        public Task<bool> HandleAsync(CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(cancellationToken));
+
+        private async Task<bool> HandleCoreAsync(CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 
@@ -14,7 +15,10 @@ internal static class DeletePayment
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<InvoiceDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<InvoiceDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<InvoiceDetailDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

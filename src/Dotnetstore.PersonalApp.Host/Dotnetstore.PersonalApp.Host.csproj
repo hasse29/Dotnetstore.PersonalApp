@@ -29,6 +29,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="OpenTelemetry" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Extensions.Logging" />
+    <PackageReference Include="Serilog.Sinks.File" />
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +48,7 @@
     <ProjectReference Include="..\Modules\Cvs\Dotnetstore.PersonalApp.Modules.Cvs\Dotnetstore.PersonalApp.Modules.Cvs.csproj" />
     <ProjectReference Include="..\Modules\Students\Dotnetstore.PersonalApp.Modules.Students\Dotnetstore.PersonalApp.Modules.Students.csproj" />
     <ProjectReference Include="..\Modules\Subjects\Dotnetstore.PersonalApp.Modules.Subjects\Dotnetstore.PersonalApp.Modules.Subjects.csproj" />
+    <ProjectReference Include="..\Modules\Audit\Dotnetstore.PersonalApp.Modules.Audit\Dotnetstore.PersonalApp.Modules.Audit.csproj" />
     <ProjectReference Include="..\Modules\Schedule\Dotnetstore.PersonalApp.Modules.Schedule\Dotnetstore.PersonalApp.Modules.Schedule.csproj" />
     <ProjectReference Include="..\Modules\Grades\Dotnetstore.PersonalApp.Modules.Grades\Dotnetstore.PersonalApp.Modules.Grades.csproj" />
     <ProjectReference Include="..\Modules\Email\Dotnetstore.PersonalApp.Modules.Email\Dotnetstore.PersonalApp.Modules.Email.csproj" />

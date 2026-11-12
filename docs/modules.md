@@ -10,6 +10,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | School > Schedule |
 | [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | School > Grades, Grade scales, Tests; Grades tab on the Student detail page |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
+| [Audit](#audit) | `audit.db` | The audit log: who did what to which entity, when, with what outcome | Audit log |
 | [Contact](#contact) | `contact.db` | Addresses, email addresses and phone numbers, each with user-managed types | Address types, Email address types, Phone number types (Settings) |
 | [TimeReports](#timereports) | `timereports.db` | Time reports, work time types, exports | Time reports group |
 | [Products](#products) | `products.db` | Hardware, software and consulting products, categories, suppliers, supplier prices and stock (locations, movements, inventory counts) | Products group |
@@ -201,3 +202,13 @@ Users, clients, contact persons, students, products and customers can have a pho
 - Error codes `photo_too_large` / `photo_invalid` (shared strings).
 - Every saved photo also gets a 96x96 PNG `PhotoThumbnail` (SkiaSharp, made by the `Set<X>Photo` handler; bytes that cannot be decoded are `photo_invalid`). List queries and DTOs carry only the thumbnail (`Thumbnail`), shown by `AvatarView` in the Users, Clients and Contact persons lists, the sidebar and the top bar. Photos saved before thumbnails existed show initials in lists until they are uploaded again.
 - The signed-in user's picture reaches the shell through `IUserPhotoLookup` (implemented by Users). `SetUserPhoto` publishes `UserPhotoChanged`, which the Host's `UserPhotoNotifier` turns into a refresh of the open shell.
+
+## Audit
+
+Append-only audit log of what users do, with a read-only viewer page ("Audit log", always on, `CanDisable: false`).
+
+- **What is recorded**: every handler call, reads included, through the same `AppTelemetry.TraceAsync` wrapper that traces it. One entry has the time, the signed-in user (id and username, null before sign-in), the operation (`Module.Feature`), read or change, the entity id (the request's `Id`, or the `Id` of the result), the outcome and error code, and the duration. Backup and restore are recorded explicitly in `DatabaseBackup`.
+- **Fields**: for a change, the names of the request properties that were filled in (ids excluded). This is the fields *submitted*, not a diff against the old values, and never the values themselves. Names only keeps customer, contact and mail data out of the log.
+- **How**: `Shared/Audit` has `AuditTrail` (static entry point the Host connects at startup), `IAuditSink` and `AuditEntry`. The module's `AuditWriter` queues entries and writes them to `audit.db` on a background loop, so an operation never waits for the log and a write failure only goes to the application log. It starts once the database is migrated; earlier entries wait in the queue and are flushed when the container is disposed.
+- The module's own handlers (`Audit.*`) are not audited. Nothing updates or deletes entries, and `audit.db` is deliberately not in `DatabaseFiles.All`: backups do not contain it and a restore never rolls it back.
+- Not covered: settings that are not handlers (language, module switches).

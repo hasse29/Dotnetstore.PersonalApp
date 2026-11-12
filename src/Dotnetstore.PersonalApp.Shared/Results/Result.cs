@@ -5,7 +5,7 @@ namespace Dotnetstore.PersonalApp.Shared.Results;
 // Static factories and implicit conversions are the point of a Result type; handlers return `value` or `Error` directly.
 [SuppressMessage("Design", "CA1000:Do not declare static members on generic types", Justification = "Result pattern ergonomics.")]
 [SuppressMessage("Usage", "CA2225:Operator overloads have named alternates", Justification = "Success/Failure are the named alternates.")]
-public sealed class Result<T>
+public sealed class Result<T> : IResult
 {
     private readonly T? _value;
     private readonly Error? _error;
@@ -21,6 +21,10 @@ public sealed class Result<T>
     }
 
     public bool IsSuccess => _error is null;
+
+    string? IResult.ErrorCode => _error?.Code;
+
+    object? IResult.BoxedValue => IsSuccess ? _value : null;
 
     public T Value => IsSuccess ? _value! : throw new InvalidOperationException("A failed result has no value.");
 

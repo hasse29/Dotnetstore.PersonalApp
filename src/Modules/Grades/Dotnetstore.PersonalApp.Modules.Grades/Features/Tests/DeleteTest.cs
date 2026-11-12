@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Grades.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Grades.Features.Tests;
 
@@ -11,7 +12,10 @@ internal static class DeleteTest
     public sealed class Handler(IDbContextFactory<GradesDbContext> dbFactory)
     {
         /// <summary>The results of the test go with it (cascade).</summary>
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.Clients.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Clients.Features.ContactPersons;
 
@@ -27,7 +28,10 @@ internal static class CreateContactPerson
         IValidator<Command> validator,
         TimeProvider clock)
     {
-        public async Task<Result<ContactPersonDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<ContactPersonDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<ContactPersonDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

@@ -45,6 +45,8 @@ Your data is stored in `%LOCALAPPDATA%\Dotnetstore.PersonalApp` (one SQLite data
 
 On start the app asks GitHub once whether a newer release exists and shows a notice if so (nothing else is sent). To turn this off, set `"CheckForUpdates": false` in `settings.json`.
 
+The app writes a log to `%LOCALAPPDATA%Dotnetstore.PersonalAppogs` (one file per day, 14 days kept). It records which operations ran, error codes and timings, never your customer or contact data. Set `"LogLevel"` in `settings.json` (`Debug`, `Information`, `Warning`, ...) to change the detail. To also send logs, traces and metrics to an OpenTelemetry collector, set `"OtlpEndpoint": "http://localhost:4317"`; by default nothing is sent anywhere.
+
 ## Build and run from source
 
 Requires the [.NET 11 SDK](https://dotnet.microsoft.com/download). The installer build is self-contained, so end users need no .NET install.
@@ -77,6 +79,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Schedule | A teacher's recurring weekly lessons | `schedule.db` |
 | Grades | Grade scales per country, students' grades, tests and their results | `grades.db` |
 | Users | Users and sign-in | `users.db` |
+| Audit | An append-only audit log of every operation with a viewer page | `audit.db` |
 | Contact | Addresses, email addresses and phone numbers for any object, with their types | `contact.db` |
 | TimeReports | Time reports, expenses, work time types, exports | `timereports.db` |
 | Products | Hardware, software and consulting products with categories, suppliers, supplier prices and stock with inventory counts | `products.db` |

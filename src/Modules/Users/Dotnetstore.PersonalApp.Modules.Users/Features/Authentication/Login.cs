@@ -5,6 +5,7 @@ using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Users.Features.Authentication;
 
@@ -17,7 +18,10 @@ internal static class Login
         // Verified against when the username is unknown, so response time does not reveal which usernames exist.
         private readonly Lazy<string> _dummyHash = new(() => hasher.HashPassword(new User(), "dummy-password-for-timing"));
 
-        public async Task<Result<AuthenticatedUser>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<AuthenticatedUser>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<AuthenticatedUser>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (string.IsNullOrWhiteSpace(command.Username) || string.IsNullOrEmpty(command.Password))
             {

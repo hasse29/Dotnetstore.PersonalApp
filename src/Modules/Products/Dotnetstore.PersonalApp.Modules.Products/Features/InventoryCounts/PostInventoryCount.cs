@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Products.Features.Stock;
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.InventoryCounts;
 
@@ -18,7 +19,10 @@ internal static class PostInventoryCount
     /// <returns>How many adjustments were made.</returns>
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<int>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<int>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

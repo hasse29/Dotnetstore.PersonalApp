@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Cvs.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
@@ -11,7 +12,10 @@ internal static class SetDriverLicence
 
     public sealed class Handler(IDbContextFactory<CvsDbContext> dbFactory)
     {
-        public async Task<Result<IReadOnlyList<string>>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<IReadOnlyList<string>>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<IReadOnlyList<string>>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (command.Categories.Any(c => !DriverLicenceCategories.All.Contains(c, StringComparer.OrdinalIgnoreCase)))
             {

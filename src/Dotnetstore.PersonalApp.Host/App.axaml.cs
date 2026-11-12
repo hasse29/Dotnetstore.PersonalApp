@@ -77,6 +77,7 @@ internal sealed partial class App : Application
         }
         catch (Exception ex)
         {
+            Serilog.Log.Fatal(ex, "Startup failed");
             splashViewModel.Fail(Localizer.Instance.Format("Startup_Failed", ex.Message));
             await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(true);
             desktop.Shutdown(1);

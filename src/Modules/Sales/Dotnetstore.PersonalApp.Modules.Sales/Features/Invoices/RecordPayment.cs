@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 
@@ -18,7 +19,10 @@ internal static class RecordPayment
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<Response>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Response>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Response>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var amount = Math.Round(command.Amount, 2, MidpointRounding.AwayFromZero);
             if (amount <= 0m || amount > InvoicePayments.MaxAmount)

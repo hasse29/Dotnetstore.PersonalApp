@@ -5,6 +5,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.TimeReports;
 
@@ -23,7 +24,10 @@ internal static class ExportTimeReports
 
     public sealed class Handler(IDbContextFactory<TimeReportsDbContext> dbFactory, IClientLookup clients, ILocalizationService localization)
     {
-        public async Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<Response>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             if (query.Year is < MinYear or > MaxYear)
             {

@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Grades.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Grades.Features.Tests;
 
@@ -10,7 +11,10 @@ internal static class ListTests
     public sealed class Handler(IDbContextFactory<GradesDbContext> dbFactory)
     {
         /// <summary>The teacher's tests, the latest first: by the day taken, then by when it was recorded.</summary>
-        public async Task<IReadOnlyList<TestDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<TestDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<TestDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

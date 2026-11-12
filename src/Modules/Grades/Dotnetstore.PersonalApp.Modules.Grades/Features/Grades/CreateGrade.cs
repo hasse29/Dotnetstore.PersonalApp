@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Shared.Students;
 using Dotnetstore.PersonalApp.Shared.Subjects;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Grades.Features.Grades;
 
@@ -31,7 +32,10 @@ internal static class CreateGrade
         ISubjectLookup subjects,
         TimeProvider clock)
     {
-        public async Task<Result<GradeDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<GradeDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<GradeDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

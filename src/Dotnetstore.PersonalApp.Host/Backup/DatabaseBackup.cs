@@ -1,3 +1,5 @@
+using Dotnetstore.PersonalApp.Shared.Audit;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 using System.IO.Compression;
 using System.Text.Json;
 using Dotnetstore.PersonalApp.Host.Updates;
@@ -29,6 +31,24 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
 
     public async Task<Result<BackupFile>> CreateAsync(CancellationToken cancellationToken)
     {
+        var result = await CreateCoreAsync(cancellationToken).ConfigureAwait(false);
+        RecordAudit("Backup.Create", result);
+        return result;
+    }
+
+    public async Task<Result<RestoreSummary>> RestoreAsync(ReadOnlyMemory<byte> archive, CancellationToken cancellationToken)
+    {
+        var result = await RestoreCoreAsync(archive, cancellationToken).ConfigureAwait(false);
+        RecordAudit("Backup.Restore", result);
+        return result;
+    }
+
+    // Not handlers, so they are audited here: a backup copies every table and a restore replaces them.
+    private static void RecordAudit(string operation, IResult result) =>
+        AuditTrail.Record(operation, AuditKind.Write, result.IsSuccess, result.ErrorCode);
+
+    private async Task<Result<BackupFile>> CreateCoreAsync(CancellationToken cancellationToken)
+    {
         var staging = NewStagingDirectory(Path.GetTempPath());
         try
         {
@@ -36,6 +56,7 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SqliteException)
         {
+            AppTelemetry.CreateLogger<DatabaseBackup>().LogHandled(ex, "Backup.Create");
             return Error.Validation("backup_failed", "The backup could not be created.");
         }
         finally
@@ -44,7 +65,7 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
         }
     }
 
-    public async Task<Result<RestoreSummary>> RestoreAsync(ReadOnlyMemory<byte> archive, CancellationToken cancellationToken)
+    private async Task<Result<RestoreSummary>> RestoreCoreAsync(ReadOnlyMemory<byte> archive, CancellationToken cancellationToken)
     {
         // Staged inside the data directory so the final move onto the live files stays on one volume.
         var staging = NewStagingDirectory(dataDirectory);
@@ -52,12 +73,14 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
         {
             return await Task.Run(() => Restore(archive, staging), cancellationToken).ConfigureAwait(false);
         }
-        catch (InvalidDataException)
+        catch (InvalidDataException ex)
         {
+            AppTelemetry.CreateLogger<DatabaseBackup>().LogHandled(ex, "Backup.Restore");
             return InvalidArchive();
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SqliteException)
         {
+            AppTelemetry.CreateLogger<DatabaseBackup>().LogHandled(ex, "Backup.Restore");
             return Error.Validation("backup_restore_failed", "The databases could not be restored.");
         }
         finally
@@ -202,8 +225,9 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
             using var stream = entry.Open();
             return JsonSerializer.Deserialize<Manifest>(stream);
         }
-        catch (JsonException)
+        catch (JsonException ex)
         {
+            AppTelemetry.CreateLogger<DatabaseBackup>().LogHandled(ex, "Backup.ReadManifest");
             return null;
         }
     }
@@ -227,8 +251,9 @@ internal sealed class DatabaseBackup(string dataDirectory, TimeProvider clock)
             command.CommandText = "PRAGMA quick_check";
             return string.Equals(command.ExecuteScalar() as string, "ok", StringComparison.Ordinal);
         }
-        catch (SqliteException)
+        catch (SqliteException ex)
         {
+            AppTelemetry.CreateLogger<DatabaseBackup>().LogHandled(ex, "Backup.IntegrityCheck");
             return false;
         }
     }

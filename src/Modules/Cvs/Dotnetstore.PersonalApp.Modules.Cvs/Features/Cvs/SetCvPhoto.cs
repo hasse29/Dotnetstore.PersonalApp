@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Cvs.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
@@ -16,7 +17,10 @@ internal static class SetCvPhoto
 
     public sealed class Handler(IDbContextFactory<CvsDbContext> dbFactory, TimeProvider clock)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (command.Photo is { } photo)
             {

@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Students.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Students.Features.Students;
 
@@ -10,7 +11,10 @@ internal static class ListStudents
 
     public sealed class Handler(IDbContextFactory<StudentsDbContext> dbFactory)
     {
-        public async Task<IReadOnlyList<StudentDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<StudentDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<StudentDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

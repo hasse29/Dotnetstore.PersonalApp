@@ -1,5 +1,6 @@
 using Dotnetstore.PersonalApp.Modules.Schedule.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Schedule.Features.Entries;
 
@@ -10,7 +11,10 @@ internal static class RemoveStudentFromEntries
 
     public sealed class Handler(IDbContextFactory<ScheduleDbContext> dbFactory)
     {
-        public async Task HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

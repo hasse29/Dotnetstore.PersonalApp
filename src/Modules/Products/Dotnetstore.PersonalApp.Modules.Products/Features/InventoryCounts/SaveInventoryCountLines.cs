@@ -2,6 +2,7 @@ using Dotnetstore.PersonalApp.Modules.Products.Features.Stock;
 using Dotnetstore.PersonalApp.Modules.Products.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Products.Features.InventoryCounts;
 
@@ -14,7 +15,10 @@ internal static class SaveInventoryCountLines
 
     public sealed class Handler(IDbContextFactory<ProductsDbContext> dbFactory)
     {
-        public async Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<Guid>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<Guid>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             if (command.Entries.Any(e => e.CountedQuantity is < 0m or > StockLedger.MaxQuantity))
             {

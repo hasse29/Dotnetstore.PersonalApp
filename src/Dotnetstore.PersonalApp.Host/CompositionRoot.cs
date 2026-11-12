@@ -7,6 +7,7 @@ using Dotnetstore.PersonalApp.Host.Events;
 using Dotnetstore.PersonalApp.Host.Updates;
 using Dotnetstore.PersonalApp.Host.Files;
 using Dotnetstore.PersonalApp.Shared.Files;
+using Dotnetstore.PersonalApp.Modules.Audit;
 using Dotnetstore.PersonalApp.Modules.Clients;
 using Dotnetstore.PersonalApp.Modules.Cvs;
 using Dotnetstore.PersonalApp.Modules.Grades;
@@ -22,10 +23,13 @@ using Dotnetstore.PersonalApp.Modules.Users;
 using Dotnetstore.PersonalApp.Shared.Auth;
 using Dotnetstore.PersonalApp.Shared.Contracts.Events;
 using Dotnetstore.PersonalApp.Shared.Events;
+using Dotnetstore.PersonalApp.Shared.Audit;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Shell;
 using Dotnetstore.PersonalApp.Shared.Startup;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Dotnetstore.PersonalApp.Host;
 
@@ -41,6 +45,7 @@ internal static class CompositionRoot
         var services = new ServiceCollection();
 
         services.AddSingleton(TimeProvider.System);
+        services.AddLogging(logging => logging.ClearProviders().AddSerilog(dispose: false));
         services.AddSingleton<ILocalizationService>(Localizer.Instance);
         services.AddSingleton<IFileSaveService, AvaloniaFileSaveService>();
         services.AddSingleton<IFileOpenService, AvaloniaFileOpenService>();
@@ -85,7 +90,15 @@ internal static class CompositionRoot
         services.AddGradesModule(Path.Combine(dataDirectory, DatabaseFiles.Grades));
         services.AddEmailModule(Path.Combine(dataDirectory, DatabaseFiles.Email));
         services.AddUsersModule(Path.Combine(dataDirectory, DatabaseFiles.Users));
+        services.AddAuditModule(Path.Combine(dataDirectory, DatabaseFiles.Audit));
 
-        return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });
+        var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = true });
+
+        // Every handler records itself through AuditTrail; connect it to the audit module and to whoever is signed in.
+        var currentUser = provider.GetRequiredService<ICurrentUser>();
+        AuditTrail.CurrentUser = () => currentUser.User;
+        AuditTrail.Clock = provider.GetRequiredService<TimeProvider>();
+        AuditTrail.Sink = provider.GetRequiredService<IAuditSink>();
+        return provider;
     }
 }

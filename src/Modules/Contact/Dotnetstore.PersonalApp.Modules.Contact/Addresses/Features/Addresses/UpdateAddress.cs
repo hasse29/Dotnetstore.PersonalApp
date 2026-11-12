@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Contact.Addresses.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Contact.Addresses.Features.Addresses;
 
@@ -37,7 +38,10 @@ internal static class UpdateAddress
 
     public sealed class Handler(IDbContextFactory<ContactDbContext> dbFactory, IValidator<Command> validator)
     {
-        public async Task<Result<AddressDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<AddressDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<AddressDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

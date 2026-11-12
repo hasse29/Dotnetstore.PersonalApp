@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Subjects.Features.Subjects;
 using Dotnetstore.PersonalApp.Modules.Subjects.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Subjects.Features.TeacherSubjects;
 
@@ -11,7 +12,10 @@ internal static class ListTeacherSubjects
     public sealed class Handler(IDbContextFactory<SubjectsDbContext> dbFactory)
     {
         /// <summary>The subjects this teacher teaches, by name.</summary>
-        public async Task<IReadOnlyList<SubjectDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<IReadOnlyList<SubjectDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<IReadOnlyList<SubjectDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

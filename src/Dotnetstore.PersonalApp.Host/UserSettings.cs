@@ -12,6 +12,12 @@ internal sealed class UserSettings
     /// <summary>Whether the app asks GitHub at startup if a newer version has been released. Off if set to false in settings.json.</summary>
     public bool CheckForUpdates { get; set; } = true;
 
+    /// <summary>The least severe level written to the log files: Verbose, Debug, Information (default), Warning, Error or Fatal.</summary>
+    public string LogLevel { get; set; } = "Information";
+
+    /// <summary>An OTLP endpoint (for example http://localhost:4317) that logs, traces and metrics are also sent to. Empty means nothing leaves the machine.</summary>
+    public string? OtlpEndpoint { get; set; }
+
     /// <summary>Keys of modules whose menu pages are hidden.</summary>
     public List<string> DisabledModules { get; set; } = [];
 

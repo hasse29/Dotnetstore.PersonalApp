@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Dotnetstore.PersonalApp.Shared.Users;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Cvs.Features.Cvs;
 
@@ -13,7 +14,10 @@ internal static class GetCvDetail
 
     public sealed class Handler(IDbContextFactory<CvsDbContext> dbFactory, IUserLookup users, IEnumerable<IContactInfoSource> contactSources)
     {
-        public async Task<Result<CvDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<CvDetailDto>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<CvDetailDto>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

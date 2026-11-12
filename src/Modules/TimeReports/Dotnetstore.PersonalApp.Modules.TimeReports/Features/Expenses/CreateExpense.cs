@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Shared.Clients;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses;
 
@@ -39,7 +40,10 @@ internal static class CreateExpense
         IClientLookup clients,
         TimeProvider clock)
     {
-        public async Task<Result<ExpenseDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<ExpenseDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<ExpenseDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

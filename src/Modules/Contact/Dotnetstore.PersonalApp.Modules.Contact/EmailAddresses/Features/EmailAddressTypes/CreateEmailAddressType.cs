@@ -4,6 +4,7 @@ using Dotnetstore.PersonalApp.Modules.Contact.EmailAddresses.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Contact.EmailAddresses.Features.EmailAddressTypes;
 
@@ -25,7 +26,10 @@ internal static class CreateEmailAddressType
         IValidator<Command> validator,
         TimeProvider clock)
     {
-        public async Task<Result<EmailAddressTypeDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<EmailAddressTypeDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<EmailAddressTypeDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             var validation = await validator.ValidateAsync(command, cancellationToken).ConfigureAwait(false);
             if (!validation.IsValid)

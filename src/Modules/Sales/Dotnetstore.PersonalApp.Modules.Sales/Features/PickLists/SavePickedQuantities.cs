@@ -3,6 +3,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Dotnetstore.PersonalApp.Shared.Stock;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.PickLists;
 
@@ -21,7 +22,10 @@ internal static class SavePickedQuantities
 
     public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IStockService stock)
     {
-        public async Task<Result<PickListDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
+        public Task<Result<PickListDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(command, cancellationToken), command);
+
+        private async Task<Result<PickListDetailDto>> HandleCoreAsync(Command command, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 

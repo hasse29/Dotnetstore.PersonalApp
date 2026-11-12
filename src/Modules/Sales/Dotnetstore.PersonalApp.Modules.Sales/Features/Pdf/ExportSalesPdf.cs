@@ -6,6 +6,7 @@ using Dotnetstore.PersonalApp.Modules.Sales.Features.PickLists;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Results;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 
@@ -36,7 +37,10 @@ internal static class ExportSalesPdf
     {
         private delegate Task<Result<PdfDocumentModel>> Builder(Guid id, CancellationToken cancellationToken);
 
-        public async Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<Response>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<Response>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             Builder? build = query.Kind switch
             {

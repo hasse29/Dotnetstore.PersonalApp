@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.TimeReports.Persistence;
 using Dotnetstore.PersonalApp.Shared.Results;
 using Microsoft.EntityFrameworkCore;
+using Dotnetstore.PersonalApp.Shared.Telemetry;
 
 namespace Dotnetstore.PersonalApp.Modules.TimeReports.Features.Expenses;
 
@@ -11,7 +12,10 @@ internal static class GetExpenseReceipt
 
     public sealed class Handler(IDbContextFactory<TimeReportsDbContext> dbFactory)
     {
-        public async Task<Result<ReceiptFile>> HandleAsync(Query query, CancellationToken cancellationToken)
+        public Task<Result<ReceiptFile>> HandleAsync(Query query, CancellationToken cancellationToken) =>
+            AppTelemetry.TraceAsync(this, () => HandleCoreAsync(query, cancellationToken), query);
+
+        private async Task<Result<ReceiptFile>> HandleCoreAsync(Query query, CancellationToken cancellationToken)
         {
             await using var db = await dbFactory.CreateDbContextAsync(cancellationToken).ConfigureAwait(false);
 
