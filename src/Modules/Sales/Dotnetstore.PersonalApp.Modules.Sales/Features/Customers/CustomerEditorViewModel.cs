@@ -27,11 +27,6 @@ internal sealed partial class CustomerEditorViewModel : ViewModelBase
         {
             Name = existing.Name;
             OrganizationNumber = existing.OrganizationNumber ?? string.Empty;
-            Email = existing.Email ?? string.Empty;
-            Phone = existing.Phone ?? string.Empty;
-            Street = existing.Street ?? string.Empty;
-            PostalCode = existing.PostalCode ?? string.Empty;
-            City = existing.City ?? string.Empty;
             Notes = existing.Notes ?? string.Empty;
             IsActive = existing.IsActive;
         }
@@ -50,21 +45,6 @@ internal sealed partial class CustomerEditorViewModel : ViewModelBase
     public partial string OrganizationNumber { get; set; } = string.Empty;
 
     [ObservableProperty]
-    public partial string Email { get; set; } = string.Empty;
-
-    [ObservableProperty]
-    public partial string Phone { get; set; } = string.Empty;
-
-    [ObservableProperty]
-    public partial string Street { get; set; } = string.Empty;
-
-    [ObservableProperty]
-    public partial string PostalCode { get; set; } = string.Empty;
-
-    [ObservableProperty]
-    public partial string City { get; set; } = string.Empty;
-
-    [ObservableProperty]
     public partial string Notes { get; set; } = string.Empty;
 
     [ObservableProperty]
@@ -78,7 +58,7 @@ internal sealed partial class CustomerEditorViewModel : ViewModelBase
     {
         ErrorMessage = null;
 
-        var fields = new CustomerFields(Name, OrganizationNumber, Email, Phone, Street, PostalCode, City, Notes, IsActive);
+        var fields = new CustomerFields(Name, OrganizationNumber, Notes, IsActive);
         var result = _existing is null
             ? await _create.HandleAsync(new CreateCustomer.Command(fields), cancellationToken)
             : await _update.HandleAsync(new UpdateCustomer.Command(_existing.Id, fields), cancellationToken);

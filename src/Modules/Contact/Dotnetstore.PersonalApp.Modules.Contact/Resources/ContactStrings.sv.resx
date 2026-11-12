@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AddressTypes_Title" xml:space="preserve"><value>Adresstyper</value></data>
+  <data name="AddressTypes_Subtitle" xml:space="preserve"><value>Hantera vilka typer av adresser som användare, uppdragsgivare och andra kan ha.</value></data>
+  <data name="AddressTypes_New" xml:space="preserve"><value>Ny adresstyp</value></data>
+  <data name="AddressTypes_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller beskrivning</value></data>
+  <data name="AddressTypes_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="AddressTypes_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="AddressTypes_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="AddressTypes_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="AddressTypes_ConfirmDelete" xml:space="preserve"><value>Ta bort adresstypen?</value></data>
+  <data name="AddressTypes_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="AddressTypes_NoSelection" xml:space="preserve"><value>Ingen adresstyp vald</value></data>
+  <data name="AddressTypes_NoSelectionHint" xml:space="preserve"><value>Välj en adresstyp i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="AddressTypes_Count" xml:space="preserve"><value>{0} adresstyper</value></data>
+  <data name="AddressTypes_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} adresstyper. Förfina sökningen för att se fler.</value></data>
+  <data name="AddressTypes_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="AddressTypeEditor_New" xml:space="preserve"><value>Ny adresstyp</value></data>
+  <data name="AddressTypeEditor_Edit" xml:space="preserve"><value>Redigera adresstyp</value></data>
+  <data name="AddressTypeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="AddressTypeField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="AddressTypeField_NamePlaceholder" xml:space="preserve"><value>t.ex. Faktura</value></data>
+  <data name="AddressTypeField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="AddressesPanel_Title" xml:space="preserve"><value>Adresser</value></data>
+  <data name="AddressesPanel_New" xml:space="preserve"><value>Ny adress</value></data>
+  <data name="AddressesPanel_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="AddressesPanel_ColAddress" xml:space="preserve"><value>ADRESS</value></data>
+  <data name="AddressesPanel_ColCountry" xml:space="preserve"><value>LAND</value></data>
+  <data name="AddressesPanel_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="AddressesPanel_DeleteAll" xml:space="preserve"><value>Ta bort alla</value></data>
+  <data name="AddressesPanel_ConfirmDelete" xml:space="preserve"><value>Ta bort adressen?</value></data>
+  <data name="AddressesPanel_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="AddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>Ta bort alla adresser?</value></data>
+  <data name="AddressesPanel_YesDeleteAll" xml:space="preserve"><value>Ja, ta bort alla</value></data>
+  <data name="AddressesPanel_NoSelection" xml:space="preserve"><value>Ingen adress vald</value></data>
+  <data name="AddressesPanel_NoSelectionHint" xml:space="preserve"><value>Välj en adress i tabellen för att redigera, eller lägg till en ny.</value></data>
+  <data name="AddressesPanel_Count" xml:space="preserve"><value>{0} adresser</value></data>
+  <data name="AddressesPanel_Saved" xml:space="preserve"><value>Adressen av typen {0} sparades.</value></data>
+  <data name="AddressesPanel_Deleted" xml:space="preserve"><value>{0} adresser togs bort.</value></data>
+  <data name="AddressesPanel_NoTypes" xml:space="preserve"><value>Skapa först en adresstyp (se sidan Adresstyper).</value></data>
+  <data name="AddressEditor_New" xml:space="preserve"><value>Ny adress</value></data>
+  <data name="AddressEditor_Edit" xml:space="preserve"><value>Redigera adress</value></data>
+  <data name="AddressEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="AddressField_Type" xml:space="preserve"><value>Adresstyp</value></data>
+  <data name="AddressField_CareOf" xml:space="preserve"><value>C/O</value></data>
+  <data name="AddressField_Street1" xml:space="preserve"><value>Gatuadress</value></data>
+  <data name="AddressField_Street2" xml:space="preserve"><value>Gatuadress 2</value></data>
+  <data name="AddressField_PostalCode" xml:space="preserve"><value>Postnummer</value></data>
+  <data name="AddressField_City" xml:space="preserve"><value>Ort</value></data>
+  <data name="AddressField_State" xml:space="preserve"><value>Delstat / region</value></data>
+  <data name="AddressField_Country" xml:space="preserve"><value>Land</value></data>
+  <data name="Startup_ContactDatabase" xml:space="preserve"><value>Förbereder kontaktdatabasen...</value></data>
+  <data name="Error_address_type_not_found" xml:space="preserve"><value>Adresstypen hittades inte.</value></data>
+  <data name="Error_address_type_conflict" xml:space="preserve"><value>Det finns redan en adresstyp med det namnet.</value></data>
+  <data name="Error_address_type_in_use" xml:space="preserve"><value>Adresstypen används av befintliga adresser och kan inte tas bort.</value></data>
+  <data name="Error_address_not_found" xml:space="preserve"><value>Adressen hittades inte.</value></data>
+  <data name="Error_address_object_required" xml:space="preserve"><value>Adressen måste tillhöra ett objekt.</value></data>
+  <data name="Error_address_type_required" xml:space="preserve"><value>Adresstyp måste anges.</value></data>
+  <data name="Error_address_care_of_too_long" xml:space="preserve"><value>C/O får vara högst 100 tecken.</value></data>
+  <data name="Error_address_street1_required" xml:space="preserve"><value>Gatuadress måste anges.</value></data>
+  <data name="Error_address_street1_too_long" xml:space="preserve"><value>Gatuadressen får vara högst 200 tecken.</value></data>
+  <data name="Error_address_street2_too_long" xml:space="preserve"><value>Gatuadress 2 får vara högst 200 tecken.</value></data>
+  <data name="Error_address_postal_code_required" xml:space="preserve"><value>Postnummer måste anges.</value></data>
+  <data name="Error_address_postal_code_too_long" xml:space="preserve"><value>Postnumret får vara högst 20 tecken.</value></data>
+  <data name="Error_address_city_required" xml:space="preserve"><value>Ort måste anges.</value></data>
+  <data name="Error_address_city_too_long" xml:space="preserve"><value>Orten får vara högst 100 tecken.</value></data>
+  <data name="Error_address_state_too_long" xml:space="preserve"><value>Delstaten/regionen får vara högst 100 tecken.</value></data>
+  <data name="Error_address_country_required" xml:space="preserve"><value>Land måste anges.</value></data>
+  <data name="Error_address_country_too_long" xml:space="preserve"><value>Landet får vara högst 100 tecken.</value></data>
+  <data name="Error_address_type_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_address_type_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_address_type_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+  <data name="EmailAddressTypes_Title" xml:space="preserve"><value>E-postadresstyper</value></data>
+  <data name="EmailAddressTypes_Subtitle" xml:space="preserve"><value>Hantera vilka typer av e-postadresser som användare, uppdragsgivare och andra kan ha.</value></data>
+  <data name="EmailAddressTypes_New" xml:space="preserve"><value>Ny e-postadresstyp</value></data>
+  <data name="EmailAddressTypes_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller beskrivning</value></data>
+  <data name="EmailAddressTypes_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="EmailAddressTypes_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="EmailAddressTypes_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="EmailAddressTypes_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="EmailAddressTypes_ConfirmDelete" xml:space="preserve"><value>Ta bort e-postadresstypen?</value></data>
+  <data name="EmailAddressTypes_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="EmailAddressTypes_NoSelection" xml:space="preserve"><value>Ingen e-postadresstyp vald</value></data>
+  <data name="EmailAddressTypes_NoSelectionHint" xml:space="preserve"><value>Välj en typ i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="EmailAddressTypes_Count" xml:space="preserve"><value>{0} e-postadresstyper</value></data>
+  <data name="EmailAddressTypes_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} e-postadresstyper. Förfina sökningen för att se fler.</value></data>
+  <data name="EmailAddressTypes_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="EmailAddressTypeEditor_New" xml:space="preserve"><value>Ny e-postadresstyp</value></data>
+  <data name="EmailAddressTypeEditor_Edit" xml:space="preserve"><value>Redigera e-postadresstyp</value></data>
+  <data name="EmailAddressTypeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="EmailAddressTypeField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="EmailAddressTypeField_NamePlaceholder" xml:space="preserve"><value>t.ex. Arbete</value></data>
+  <data name="EmailAddressTypeField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="EmailAddressesPanel_Title" xml:space="preserve"><value>E-postadresser</value></data>
+  <data name="EmailAddressesPanel_New" xml:space="preserve"><value>Ny e-postadress</value></data>
+  <data name="EmailAddressesPanel_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="EmailAddressesPanel_ColEmailAddress" xml:space="preserve"><value>E-POSTADRESS</value></data>
+  <data name="EmailAddressesPanel_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="EmailAddressesPanel_DeleteAll" xml:space="preserve"><value>Ta bort alla</value></data>
+  <data name="EmailAddressesPanel_ConfirmDelete" xml:space="preserve"><value>Ta bort e-postadressen?</value></data>
+  <data name="EmailAddressesPanel_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="EmailAddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>Ta bort alla e-postadresser?</value></data>
+  <data name="EmailAddressesPanel_YesDeleteAll" xml:space="preserve"><value>Ja, ta bort alla</value></data>
+  <data name="EmailAddressesPanel_NoSelection" xml:space="preserve"><value>Ingen e-postadress vald</value></data>
+  <data name="EmailAddressesPanel_NoSelectionHint" xml:space="preserve"><value>Välj en e-postadress i tabellen för att redigera, eller lägg till en ny.</value></data>
+  <data name="EmailAddressesPanel_Count" xml:space="preserve"><value>{0} e-postadresser</value></data>
+  <data name="EmailAddressesPanel_Saved" xml:space="preserve"><value>E-postadressen av typen {0} sparades.</value></data>
+  <data name="EmailAddressesPanel_Deleted" xml:space="preserve"><value>{0} e-postadresser togs bort.</value></data>
+  <data name="EmailAddressesPanel_NoTypes" xml:space="preserve"><value>Skapa först en e-postadresstyp (se sidan E-postadresstyper).</value></data>
+  <data name="EmailAddressEditor_New" xml:space="preserve"><value>Ny e-postadress</value></data>
+  <data name="EmailAddressEditor_Edit" xml:space="preserve"><value>Redigera e-postadress</value></data>
+  <data name="EmailAddressEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="EmailAddressField_Type" xml:space="preserve"><value>E-postadresstyp</value></data>
+  <data name="EmailAddressField_Email" xml:space="preserve"><value>E-postadress</value></data>
+  <data name="EmailAddressField_EmailPlaceholder" xml:space="preserve"><value>namn@exempel.se</value></data>
+  <data name="Error_email_address_type_not_found" xml:space="preserve"><value>E-postadresstypen hittades inte.</value></data>
+  <data name="Error_email_address_type_conflict" xml:space="preserve"><value>Det finns redan en e-postadresstyp med det namnet.</value></data>
+  <data name="Error_email_address_type_in_use" xml:space="preserve"><value>E-postadresstypen används av befintliga e-postadresser och kan inte tas bort.</value></data>
+  <data name="Error_email_address_type_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_email_address_type_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_email_address_type_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+  <data name="Error_email_address_not_found" xml:space="preserve"><value>E-postadressen hittades inte.</value></data>
+  <data name="Error_email_address_conflict" xml:space="preserve"><value>E-postadressen är redan registrerad.</value></data>
+  <data name="Error_email_address_object_required" xml:space="preserve"><value>E-postadressen måste tillhöra ett objekt.</value></data>
+  <data name="Error_email_address_type_required" xml:space="preserve"><value>E-postadresstyp måste anges.</value></data>
+  <data name="Error_email_address_email_required" xml:space="preserve"><value>E-postadress måste anges.</value></data>
+  <data name="Error_email_address_email_too_long" xml:space="preserve"><value>E-postadressen får vara högst 254 tecken.</value></data>
+  <data name="Error_email_address_email_invalid" xml:space="preserve"><value>E-postadressen är ogiltig.</value></data>
+  <data name="PhoneNumberTypes_Title" xml:space="preserve"><value>Telefonnummertyper</value></data>
+  <data name="PhoneNumberTypes_Subtitle" xml:space="preserve"><value>Hantera vilka typer av telefonnummer som användare, uppdragsgivare och andra kan ha.</value></data>
+  <data name="PhoneNumberTypes_New" xml:space="preserve"><value>Ny telefonnummertyp</value></data>
+  <data name="PhoneNumberTypes_SearchPlaceholder" xml:space="preserve"><value>Sök på namn eller beskrivning</value></data>
+  <data name="PhoneNumberTypes_Search" xml:space="preserve"><value>Sök</value></data>
+  <data name="PhoneNumberTypes_ColName" xml:space="preserve"><value>NAMN</value></data>
+  <data name="PhoneNumberTypes_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="PhoneNumberTypes_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="PhoneNumberTypes_ConfirmDelete" xml:space="preserve"><value>Ta bort telefonnummertypen?</value></data>
+  <data name="PhoneNumberTypes_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="PhoneNumberTypes_NoSelection" xml:space="preserve"><value>Ingen telefonnummertyp vald</value></data>
+  <data name="PhoneNumberTypes_NoSelectionHint" xml:space="preserve"><value>Välj en typ i tabellen för att redigera, eller skapa en ny.</value></data>
+  <data name="PhoneNumberTypes_Count" xml:space="preserve"><value>{0} telefonnummertyper</value></data>
+  <data name="PhoneNumberTypes_ShowingPartial" xml:space="preserve"><value>Visar {0} av {1} telefonnummertyper. Förfina sökningen för att se fler.</value></data>
+  <data name="PhoneNumberTypes_Saved" xml:space="preserve"><value>{0} sparades.</value></data>
+  <data name="PhoneNumberTypeEditor_New" xml:space="preserve"><value>Ny telefonnummertyp</value></data>
+  <data name="PhoneNumberTypeEditor_Edit" xml:space="preserve"><value>Redigera telefonnummertyp</value></data>
+  <data name="PhoneNumberTypeEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="PhoneNumberTypeField_Name" xml:space="preserve"><value>Namn</value></data>
+  <data name="PhoneNumberTypeField_NamePlaceholder" xml:space="preserve"><value>t.ex. Mobil</value></data>
+  <data name="PhoneNumberTypeField_Description" xml:space="preserve"><value>Beskrivning</value></data>
+  <data name="PhoneNumbersPanel_Title" xml:space="preserve"><value>Telefonnummer</value></data>
+  <data name="PhoneNumbersPanel_New" xml:space="preserve"><value>Nytt telefonnummer</value></data>
+  <data name="PhoneNumbersPanel_ColType" xml:space="preserve"><value>TYP</value></data>
+  <data name="PhoneNumbersPanel_ColNumber" xml:space="preserve"><value>TELEFONNUMMER</value></data>
+  <data name="PhoneNumbersPanel_Delete" xml:space="preserve"><value>Ta bort</value></data>
+  <data name="PhoneNumbersPanel_DeleteAll" xml:space="preserve"><value>Ta bort alla</value></data>
+  <data name="PhoneNumbersPanel_ConfirmDelete" xml:space="preserve"><value>Ta bort telefonnumret?</value></data>
+  <data name="PhoneNumbersPanel_YesDelete" xml:space="preserve"><value>Ja, ta bort</value></data>
+  <data name="PhoneNumbersPanel_ConfirmDeleteAll" xml:space="preserve"><value>Ta bort alla telefonnummer?</value></data>
+  <data name="PhoneNumbersPanel_YesDeleteAll" xml:space="preserve"><value>Ja, ta bort alla</value></data>
+  <data name="PhoneNumbersPanel_NoSelection" xml:space="preserve"><value>Inget telefonnummer valt</value></data>
+  <data name="PhoneNumbersPanel_NoSelectionHint" xml:space="preserve"><value>Välj ett telefonnummer i tabellen för att redigera, eller lägg till ett nytt.</value></data>
+  <data name="PhoneNumbersPanel_Count" xml:space="preserve"><value>{0} telefonnummer</value></data>
+  <data name="PhoneNumbersPanel_Saved" xml:space="preserve"><value>Telefonnumret av typen {0} sparades.</value></data>
+  <data name="PhoneNumbersPanel_Deleted" xml:space="preserve"><value>{0} telefonnummer togs bort.</value></data>
+  <data name="PhoneNumbersPanel_NoTypes" xml:space="preserve"><value>Skapa först en telefonnummertyp (se sidan Telefonnummertyper).</value></data>
+  <data name="PhoneNumberEditor_New" xml:space="preserve"><value>Nytt telefonnummer</value></data>
+  <data name="PhoneNumberEditor_Edit" xml:space="preserve"><value>Redigera telefonnummer</value></data>
+  <data name="PhoneNumberEditor_Save" xml:space="preserve"><value>Spara ändringar</value></data>
+  <data name="PhoneNumberField_Type" xml:space="preserve"><value>Telefonnummertyp</value></data>
+  <data name="PhoneNumberField_Number" xml:space="preserve"><value>Telefonnummer</value></data>
+  <data name="PhoneNumberField_NumberPlaceholder" xml:space="preserve"><value>+46 8 123 456</value></data>
+  <data name="Error_phone_number_type_not_found" xml:space="preserve"><value>Telefonnummertypen hittades inte.</value></data>
+  <data name="Error_phone_number_type_conflict" xml:space="preserve"><value>Det finns redan en telefonnummertyp med det namnet.</value></data>
+  <data name="Error_phone_number_type_in_use" xml:space="preserve"><value>Telefonnummertypen används av befintliga telefonnummer och kan inte tas bort.</value></data>
+  <data name="Error_phone_number_type_name_required" xml:space="preserve"><value>Namn måste anges.</value></data>
+  <data name="Error_phone_number_type_name_too_long" xml:space="preserve"><value>Namnet får vara högst 100 tecken.</value></data>
+  <data name="Error_phone_number_type_description_too_long" xml:space="preserve"><value>Beskrivningen får vara högst 500 tecken.</value></data>
+  <data name="Error_phone_number_not_found" xml:space="preserve"><value>Telefonnumret hittades inte.</value></data>
+  <data name="Error_phone_number_conflict" xml:space="preserve"><value>Telefonnumret är redan registrerat.</value></data>
+  <data name="Error_phone_number_object_required" xml:space="preserve"><value>Telefonnumret måste tillhöra ett objekt.</value></data>
+  <data name="Error_phone_number_type_required" xml:space="preserve"><value>Telefonnummertyp måste anges.</value></data>
+  <data name="Error_phone_number_number_required" xml:space="preserve"><value>Telefonnummer måste anges.</value></data>
+  <data name="Error_phone_number_number_too_long" xml:space="preserve"><value>Telefonnumret får vara högst 30 tecken.</value></data>
+  <data name="Error_phone_number_number_invalid" xml:space="preserve"><value>Telefonnumret måste ha 5–15 siffror och får bara innehålla siffror, mellanslag och + - ( ) . /</value></data>
+  <data name="ContactPanel_Title" xml:space="preserve"><value>Kontakt</value></data>
+</root>

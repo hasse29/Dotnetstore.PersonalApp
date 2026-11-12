@@ -53,10 +53,11 @@ Delivery is synchronous with no outbox, so a crash between a delete and its cons
 
 | Event | Published by | Consumed by |
 | --- | --- | --- |
-| `UserDeleted` | Users | Addresses, EmailAddresses, PhoneNumbers, Cvs, Email, Subjects, Schedule, Grades |
-| `ClientDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers, Students, Schedule |
-| `ContactPersonDeleted` | Clients | Addresses, EmailAddresses, PhoneNumbers |
-| `StudentDeleted` | Students | Addresses, EmailAddresses, PhoneNumbers, Schedule, Grades |
+| `UserDeleted` | Users | Contact, Cvs, Email, Subjects, Schedule, Grades |
+| `ClientDeleted` | Clients | Contact, Students, Schedule |
+| `ContactPersonDeleted` | Clients | Contact |
+| `CustomerDeleted` | Sales | Contact |
+| `StudentDeleted` | Students | Contact, Schedule, Grades |
 | `SubjectDeleted` | Subjects | Schedule, Grades |
 | `UserPhotoChanged` | Users | Host (`UserPhotoNotifier`) |
 

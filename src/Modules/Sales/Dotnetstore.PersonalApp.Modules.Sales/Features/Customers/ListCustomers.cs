@@ -32,9 +32,7 @@ internal static class ListCustomers
                 var pattern = $"%{query.Search.Trim()}%";
                 customers = customers.Where(c =>
                     EF.Functions.Like(c.Name, pattern) ||
-                    (c.OrganizationNumber != null && EF.Functions.Like(c.OrganizationNumber, pattern)) ||
-                    (c.Email != null && EF.Functions.Like(c.Email, pattern)) ||
-                    (c.City != null && EF.Functions.Like(c.City, pattern)));
+                    (c.OrganizationNumber != null && EF.Functions.Like(c.OrganizationNumber, pattern)));
             }
 
             var total = await customers.CountAsync(cancellationToken).ConfigureAwait(false);
@@ -42,7 +40,7 @@ internal static class ListCustomers
                 .OrderBy(c => c.Name)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(c => new CustomerDto(c.Id, c.Name, c.OrganizationNumber, c.Email, c.Phone, c.Street, c.PostalCode, c.City, c.Notes, c.IsActive))
+                .Select(c => new CustomerDto(c.Id, c.Name, c.OrganizationNumber, c.Notes, c.IsActive, c.PhotoThumbnail))
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 

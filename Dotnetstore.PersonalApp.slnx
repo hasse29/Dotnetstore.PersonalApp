@@ -13,15 +13,13 @@
     <Project Path="src/Dotnetstore.PersonalApp.Shared/Dotnetstore.PersonalApp.Shared.csproj" />
   </Folder>
   <Folder Name="/src/Modules/">
-    <Project Path="src/Modules/Addresses/Dotnetstore.PersonalApp.Modules.Addresses/Dotnetstore.PersonalApp.Modules.Addresses.csproj" />
-    <Project Path="src/Modules/EmailAddresses/Dotnetstore.PersonalApp.Modules.EmailAddresses/Dotnetstore.PersonalApp.Modules.EmailAddresses.csproj" />
+    <Project Path="src/Modules/Contact/Dotnetstore.PersonalApp.Modules.Contact/Dotnetstore.PersonalApp.Modules.Contact.csproj" />
     <Project Path="src/Modules/Clients/Dotnetstore.PersonalApp.Modules.Clients/Dotnetstore.PersonalApp.Modules.Clients.csproj" />
     <Project Path="src/Modules/Cvs/Dotnetstore.PersonalApp.Modules.Cvs/Dotnetstore.PersonalApp.Modules.Cvs.csproj" />
     <Project Path="src/Modules/Email/Dotnetstore.PersonalApp.Modules.Email/Dotnetstore.PersonalApp.Modules.Email.csproj" />
     <Project Path="src/Modules/Products/Dotnetstore.PersonalApp.Modules.Products/Dotnetstore.PersonalApp.Modules.Products.csproj" />
     <Project Path="src/Modules/Sales/Dotnetstore.PersonalApp.Modules.Sales/Dotnetstore.PersonalApp.Modules.Sales.csproj" />
     <Project Path="src/Modules/TimeReports/Dotnetstore.PersonalApp.Modules.TimeReports/Dotnetstore.PersonalApp.Modules.TimeReports.csproj" />
-    <Project Path="src/Modules/PhoneNumbers/Dotnetstore.PersonalApp.Modules.PhoneNumbers/Dotnetstore.PersonalApp.Modules.PhoneNumbers.csproj" />
     <Project Path="src/Modules/Students/Dotnetstore.PersonalApp.Modules.Students/Dotnetstore.PersonalApp.Modules.Students.csproj" />
     <Project Path="src/Modules/Subjects/Dotnetstore.PersonalApp.Modules.Subjects/Dotnetstore.PersonalApp.Modules.Subjects.csproj" />
     <Project Path="src/Modules/Schedule/Dotnetstore.PersonalApp.Modules.Schedule/Dotnetstore.PersonalApp.Modules.Schedule.csproj" />
@@ -31,9 +29,7 @@
   <Folder Name="/tests/">
     <Project Path="tests/Dotnetstore.PersonalApp.Integration.Tests/Dotnetstore.PersonalApp.Integration.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Users.Tests/Dotnetstore.PersonalApp.Modules.Users.Tests.csproj" />
-    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Addresses.Tests/Dotnetstore.PersonalApp.Modules.Addresses.Tests.csproj" />
-    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.EmailAddresses.Tests/Dotnetstore.PersonalApp.Modules.EmailAddresses.Tests.csproj" />
-    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.PhoneNumbers.Tests/Dotnetstore.PersonalApp.Modules.PhoneNumbers.Tests.csproj" />
+    <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Contact.Tests/Dotnetstore.PersonalApp.Modules.Contact.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Clients.Tests/Dotnetstore.PersonalApp.Modules.Clients.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Cvs.Tests/Dotnetstore.PersonalApp.Modules.Cvs.Tests.csproj" />
     <Project Path="tests/Modules/Dotnetstore.PersonalApp.Modules.Students.Tests/Dotnetstore.PersonalApp.Modules.Students.Tests.csproj" />

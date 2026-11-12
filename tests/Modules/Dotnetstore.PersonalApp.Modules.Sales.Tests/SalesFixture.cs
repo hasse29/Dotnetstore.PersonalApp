@@ -24,10 +24,10 @@ internal sealed class SalesFixture : IDisposable
 
         CreateCustomer = new CreateCustomer.Handler(DbFactory, new CreateCustomer.Validator(), Clock);
         UpdateCustomer = new UpdateCustomer.Handler(DbFactory, new UpdateCustomer.Validator());
-        DeleteCustomer = new DeleteCustomer.Handler(DbFactory);
+        DeleteCustomer = new DeleteCustomer.Handler(DbFactory, Events);
         ListCustomers = new ListCustomers.Handler(DbFactory);
-        CreateOffer = new CreateOffer.Handler(DbFactory, new CreateOffer.Validator(), Clock);
-        UpdateOffer = new UpdateOffer.Handler(DbFactory, new UpdateOffer.Validator(), Clock);
+        CreateOffer = new CreateOffer.Handler(DbFactory, new CreateOffer.Validator(), Clock, [Contacts]);
+        UpdateOffer = new UpdateOffer.Handler(DbFactory, new UpdateOffer.Validator(), Clock, [Contacts]);
         ChangeStatus = new ChangeOfferStatus.Handler(DbFactory, Clock);
         DeleteOffer = new DeleteOffer.Handler(DbFactory);
         GetOffer = new GetOffer.Handler(DbFactory, Clock);
@@ -54,6 +54,10 @@ internal sealed class SalesFixture : IDisposable
     public TimeProvider Clock { get; } = new FixedClock(new DateTimeOffset(2026, 11, 10, 12, 0, 0, TimeSpan.Zero));
 
     public FakeStockService Stock { get; } = new();
+
+    public RecordingEventPublisher Events { get; } = new();
+
+    public FakeContactSource Contacts { get; } = new();
 
     public IDbContextFactory<SalesDbContext> DbFactory { get; }
 
@@ -112,7 +116,7 @@ internal sealed class SalesFixture : IDisposable
     public CancelInvoice.Handler CancelInvoice { get; }
 
     public static CustomerFields Customer(string name = "Acme School") =>
-        new(name, "556677-8899", "office@acme.example", "08-123 45", "Main Street 1", "111 22", "Stockholm", null, true);
+        new(name, "556677-8899", null, true);
 
     public static OfferLineFields Line(string description = "Cat6 cable 2m", decimal quantity = 10, decimal price = 50, decimal vat = 25, decimal discount = 0) =>
         new(null, description, quantity, "Piece", price, vat, discount);

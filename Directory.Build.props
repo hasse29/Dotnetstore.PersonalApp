@@ -30,7 +30,7 @@
         <Company>Dotnetstore</Company>
         <Product>Dotnetstore.PersonalApp</Product>
         <!-- Single source for the assembly version and the installer version -->
-        <Version>7.4.0</Version>
+        <Version>7.5.0</Version>
         <Copyright>Copyright (c) $([System.DateTime]::Now.Year) Hans Sjödin</Copyright>
     </PropertyGroup>
 

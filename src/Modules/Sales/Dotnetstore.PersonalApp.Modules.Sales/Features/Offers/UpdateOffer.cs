@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
+using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ internal static class UpdateOffer
         }
     }
 
-    public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
+    public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock, IEnumerable<IContactInfoSource> contactSources)
     {
         public async Task<Result<OfferDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
         {
@@ -46,7 +47,8 @@ internal static class UpdateOffer
             }
 
             // The copied name and address only change when another customer is picked.
-            if (offer.CustomerId != fields.CustomerId)
+            var customerChanged = offer.CustomerId != fields.CustomerId;
+            if (customerChanged)
             {
                 var customer = await db.Customers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == fields.CustomerId, cancellationToken).ConfigureAwait(false);
                 if (customer is null)
@@ -61,7 +63,14 @@ internal static class UpdateOffer
 
                 offer.CustomerId = customer.Id;
                 offer.CustomerName = customer.Name;
-                offer.CustomerAddress = CustomerRules.FormatAddress(customer);
+            }
+
+            // A draft is not issued yet, so it picks up the customer's current address; sent offers keep the one they were sent with.
+            // No address found (it was removed, or no address source is installed) leaves a draft's existing address alone.
+            var address = await CustomerAddressBlock.ResolveAsync(contactSources, offer.CustomerId, cancellationToken).ConfigureAwait(false);
+            if (address is not null || customerChanged)
+            {
+                offer.CustomerAddress = address;
             }
 
             OfferRules.Apply(offer, fields);

@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:addresses="using:Dotnetstore.PersonalApp.Modules.Contact.EmailAddresses.Features.EmailAddresses"
+             mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Contact.EmailAddresses.Features.EmailAddresses.ObjectEmailAddressesView"
+             x:DataType="addresses:ObjectEmailAddressesViewModel">
+
+    <Grid ColumnDefinitions="*,380" ColumnSpacing="20">
+
+        <!-- EmailAddress table -->
+        <Border Classes="card" VerticalAlignment="Top">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+
+                <Grid ColumnDefinitions="*,Auto" Margin="16">
+                    <TextBlock Text="{loc:Tr EmailAddressesPanel_Title}" Classes="h2" VerticalAlignment="Center"/>
+                    <Button Grid.Column="1" Classes="primary" Command="{Binding NewCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <PathIcon Width="14" Height="14" Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            <TextBlock Text="{loc:Tr EmailAddressesPanel_New}"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
+                        BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
+                    <Grid ColumnDefinitions="*,2*">
+                        <TextBlock Text="{loc:Tr EmailAddressesPanel_ColType}" Classes="column"/>
+                        <TextBlock Grid.Column="1" Text="{loc:Tr EmailAddressesPanel_ColEmailAddress}" Classes="column"/>
+                    </Grid>
+                </Border>
+
+                <ListBox Grid.Row="2" Classes="table" MinHeight="120" ItemsSource="{Binding EmailAddresses}"
+                         SelectedItem="{Binding SelectedEmailAddress}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="addresses:EmailAddressDto">
+                            <Grid ColumnDefinitions="*,2*">
+                                <TextBlock Text="{Binding EmailAddressTypeName}" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Email}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border Grid.Row="3" Padding="16,12" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Content="{loc:Tr EmailAddressesPanel_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
+                                    IsVisible="{Binding IsIdle}"/>
+                            <Button Content="{loc:Tr EmailAddressesPanel_DeleteAll}" Classes="link-danger" Command="{Binding RequestDeleteAllCommand}"
+                                    IsVisible="{Binding IsIdle}"/>
+
+                            <TextBlock Text="{loc:Tr EmailAddressesPanel_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
+                                       IsVisible="{Binding IsConfirmingDelete}"/>
+                            <Button Content="{loc:Tr EmailAddressesPanel_YesDelete}" Classes="danger" Command="{Binding ConfirmDeleteCommand}"
+                                    IsVisible="{Binding IsConfirmingDelete}"/>
+
+                            <TextBlock Text="{loc:Tr EmailAddressesPanel_ConfirmDeleteAll}" VerticalAlignment="Center" Classes="muted"
+                                       IsVisible="{Binding IsConfirmingDeleteAll}"/>
+                            <Button Content="{loc:Tr EmailAddressesPanel_YesDeleteAll}" Classes="danger" Command="{Binding ConfirmDeleteAllCommand}"
+                                    IsVisible="{Binding IsConfirmingDeleteAll}"/>
+
+                            <Button Content="{loc:Tr Common_Cancel}" Classes="subtle" Command="{Binding CancelDeleteCommand}"
+                                    IsVisible="{Binding !IsIdle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Editor / empty state -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <ContentControl Content="{Binding Editor}" VerticalAlignment="Top"/>
+
+                <Border Classes="card" Padding="28" VerticalAlignment="Top"
+                        IsVisible="{Binding Editor, Converter={x:Static ObjectConverters.IsNull}}">
+                    <StackPanel Spacing="8" HorizontalAlignment="Center">
+                        <PathIcon Width="36" Height="36" Foreground="{DynamicResource TextMutedBrush}" HorizontalAlignment="Center"
+                                  Data="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        <TextBlock Text="{loc:Tr EmailAddressesPanel_NoSelection}" Classes="h2" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{loc:Tr EmailAddressesPanel_NoSelectionHint}"
+                                   Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

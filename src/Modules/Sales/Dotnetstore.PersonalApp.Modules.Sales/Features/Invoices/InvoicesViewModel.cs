@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
@@ -23,6 +24,7 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
     private readonly DeletePayment.Handler _deletePayment;
     private readonly CancelInvoice.Handler _cancel;
     private readonly ILocalizationService _localization;
+    private readonly SalesPdfSaver _pdf;
     private readonly bool _ready;
 
     public InvoicesViewModel(
@@ -32,7 +34,8 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
         ApplyCredit.Handler applyCredit,
         DeletePayment.Handler deletePayment,
         CancelInvoice.Handler cancel,
-        ILocalizationService localization)
+        ILocalizationService localization,
+        SalesPdfSaver pdf)
     {
         _list = list;
         _get = get;
@@ -41,6 +44,7 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
         _deletePayment = deletePayment;
         _cancel = cancel;
         _localization = localization;
+        _pdf = pdf;
 
         StatusOptions =
         [
@@ -80,7 +84,7 @@ internal sealed partial class InvoicesViewModel : ViewModelBase
             return;
         }
 
-        var screen = new InvoiceScreenViewModel(value.Invoice.Id, _get, _recordPayment, _applyCredit, _deletePayment, _cancel, _localization);
+        var screen = new InvoiceScreenViewModel(value.Invoice.Id, _get, _recordPayment, _applyCredit, _deletePayment, _cancel, _localization, _pdf);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);

@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customers="using:Dotnetstore.PersonalApp.Modules.Sales.Features.Customers"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="520"
+             x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.Customers.CustomerDetailView"
+             x:DataType="customers:CustomerDetailViewModel">
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="20" Margin="28">
+
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+            <Button Classes="subtle" Command="{Binding BackCommand}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <PathIcon Width="14" Height="14" Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                    <TextBlock Text="{loc:Tr CustomerDetail_Back}"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Customer.Name}" Classes="h2"/>
+                <TextBlock Text="{Binding StatusText}" Classes="muted"/>
+            </StackPanel>
+            <Button Grid.Column="2" Classes="subtle" Content="{loc:Tr CustomerDetail_Edit}" Command="{Binding EditCommand}"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <TabControl Grid.Row="1" Padding="0">
+            <TabItem Header="{loc:Tr CustomerDetail_TabInformation}">
+                <Border Classes="card" Padding="28" Margin="0,20,0,0" VerticalAlignment="Top">
+                    <StackPanel Spacing="18">
+                        <ContentControl Content="{Binding Photo}" HorizontalAlignment="Left"/>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+                            <StackPanel>
+                                <TextBlock Text="{loc:Tr CustomerField_Name}" Classes="label"/>
+                                <TextBlock Text="{Binding Customer.Name}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{loc:Tr CustomerField_OrganizationNumber}" Classes="label"/>
+                                <TextBlock Text="{Binding Customer.OrganizationNumber}"/>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel>
+                            <TextBlock Text="{loc:Tr CustomerField_Notes}" Classes="label"/>
+                            <TextBlock Text="{Binding Customer.Notes}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="{loc:Tr CustomerDetail_TabAddresses}"
+                     IsVisible="{Binding Addresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding Addresses}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr CustomerDetail_TabEmailAddresses}"
+                     IsVisible="{Binding EmailAddresses, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding EmailAddresses}" Margin="0,20,0,0"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr CustomerDetail_TabPhoneNumbers}"
+                     IsVisible="{Binding PhoneNumbers, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding PhoneNumbers}" Margin="0,20,0,0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

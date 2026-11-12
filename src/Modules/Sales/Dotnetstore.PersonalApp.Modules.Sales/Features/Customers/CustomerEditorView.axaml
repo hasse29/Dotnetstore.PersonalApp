@@ -22,33 +22,6 @@
                 <TextBox Text="{Binding OrganizationNumber}"/>
             </StackPanel>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                <StackPanel>
-                    <TextBlock Text="{loc:Tr CustomerField_Email}" Classes="label"/>
-                    <TextBox Text="{Binding Email}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{loc:Tr CustomerField_Phone}" Classes="label"/>
-                    <TextBox Text="{Binding Phone}"/>
-                </StackPanel>
-            </Grid>
-
-            <StackPanel>
-                <TextBlock Text="{loc:Tr CustomerField_Street}" Classes="label"/>
-                <TextBox Text="{Binding Street}"/>
-            </StackPanel>
-
-            <Grid ColumnDefinitions="*,2*" ColumnSpacing="12">
-                <StackPanel>
-                    <TextBlock Text="{loc:Tr CustomerField_PostalCode}" Classes="label"/>
-                    <TextBox Text="{Binding PostalCode}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{loc:Tr CustomerField_City}" Classes="label"/>
-                    <TextBox Text="{Binding City}"/>
-                </StackPanel>
-            </Grid>
-
             <StackPanel>
                 <TextBlock Text="{loc:Tr CustomerField_Notes}" Classes="label"/>
                 <TextBox Text="{Binding Notes}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" MaxHeight="140"/>

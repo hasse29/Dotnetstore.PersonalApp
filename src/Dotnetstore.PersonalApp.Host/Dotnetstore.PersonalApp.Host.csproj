@@ -33,13 +33,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dotnetstore.PersonalApp.Shared\Dotnetstore.PersonalApp.Shared.csproj" />
-    <ProjectReference Include="..\Modules\Addresses\Dotnetstore.PersonalApp.Modules.Addresses\Dotnetstore.PersonalApp.Modules.Addresses.csproj" />
+    <ProjectReference Include="..\Modules\Contact\Dotnetstore.PersonalApp.Modules.Contact\Dotnetstore.PersonalApp.Modules.Contact.csproj" />
     <ProjectReference Include="..\Modules\Clients\Dotnetstore.PersonalApp.Modules.Clients\Dotnetstore.PersonalApp.Modules.Clients.csproj" />
     <ProjectReference Include="..\Modules\Products\Dotnetstore.PersonalApp.Modules.Products\Dotnetstore.PersonalApp.Modules.Products.csproj" />
     <ProjectReference Include="..\Modules\Sales\Dotnetstore.PersonalApp.Modules.Sales\Dotnetstore.PersonalApp.Modules.Sales.csproj" />
     <ProjectReference Include="..\Modules\TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports\Dotnetstore.PersonalApp.Modules.TimeReports.csproj" />
-    <ProjectReference Include="..\Modules\EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses\Dotnetstore.PersonalApp.Modules.EmailAddresses.csproj" />
-    <ProjectReference Include="..\Modules\PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers\Dotnetstore.PersonalApp.Modules.PhoneNumbers.csproj" />
     <ProjectReference Include="..\Modules\Cvs\Dotnetstore.PersonalApp.Modules.Cvs\Dotnetstore.PersonalApp.Modules.Cvs.csproj" />
     <ProjectReference Include="..\Modules\Students\Dotnetstore.PersonalApp.Modules.Students\Dotnetstore.PersonalApp.Modules.Students.csproj" />
     <ProjectReference Include="..\Modules\Subjects\Dotnetstore.PersonalApp.Modules.Subjects\Dotnetstore.PersonalApp.Modules.Subjects.csproj" />

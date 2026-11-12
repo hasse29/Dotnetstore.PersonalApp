@@ -6,7 +6,6 @@ using Dotnetstore.PersonalApp.Host.Auth;
 using Dotnetstore.PersonalApp.Host.Events;
 using Dotnetstore.PersonalApp.Host.Updates;
 using Dotnetstore.PersonalApp.Host.Files;
-using Dotnetstore.PersonalApp.Modules.Addresses;
 using Dotnetstore.PersonalApp.Shared.Files;
 using Dotnetstore.PersonalApp.Modules.Clients;
 using Dotnetstore.PersonalApp.Modules.Cvs;
@@ -15,8 +14,7 @@ using Dotnetstore.PersonalApp.Modules.Schedule;
 using Dotnetstore.PersonalApp.Modules.Students;
 using Dotnetstore.PersonalApp.Modules.Subjects;
 using Dotnetstore.PersonalApp.Modules.Email;
-using Dotnetstore.PersonalApp.Modules.EmailAddresses;
-using Dotnetstore.PersonalApp.Modules.PhoneNumbers;
+using Dotnetstore.PersonalApp.Modules.Contact;
 using Dotnetstore.PersonalApp.Modules.Products;
 using Dotnetstore.PersonalApp.Modules.Sales;
 using Dotnetstore.PersonalApp.Modules.TimeReports;
@@ -77,9 +75,9 @@ internal static class CompositionRoot
         services.AddTimeReportsModule(Path.Combine(dataDirectory, DatabaseFiles.TimeReports));
         services.AddProductsModule(Path.Combine(dataDirectory, DatabaseFiles.Products));
         services.AddSalesModule(Path.Combine(dataDirectory, DatabaseFiles.Sales));
-        services.AddAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.Addresses));
-        services.AddEmailAddressesModule(Path.Combine(dataDirectory, DatabaseFiles.EmailAddresses));
-        services.AddPhoneNumbersModule(Path.Combine(dataDirectory, DatabaseFiles.PhoneNumbers));
+        services.AddContactModule(
+            Path.Combine(dataDirectory, DatabaseFiles.Contact),
+            [Path.Combine(dataDirectory, DatabaseFiles.Addresses), Path.Combine(dataDirectory, DatabaseFiles.EmailAddresses), Path.Combine(dataDirectory, DatabaseFiles.PhoneNumbers)]);
         services.AddCvsModule(Path.Combine(dataDirectory, DatabaseFiles.Cvs));
         services.AddStudentsModule(Path.Combine(dataDirectory, DatabaseFiles.Students));
         services.AddSubjectsModule(Path.Combine(dataDirectory, DatabaseFiles.Subjects));

@@ -10,6 +10,10 @@ internal static class DatabaseFiles
     // Not sales.db: that name belonged to the old Sales module and is deleted at startup (see Retired).
     public const string Sales = "salesdocuments.db";
 
+    public const string Contact = "contact.db";
+
+    // The former Addresses, EmailAddresses and PhoneNumbers modules, merged into Contact. Their files are imported into
+    // contact.db at startup and then deleted; they stay listed so a backup made before the merge can still be restored.
     public const string Addresses = "addresses.db";
     public const string EmailAddresses = "emailaddresses.db";
     public const string PhoneNumbers = "phonenumbers.db";
@@ -23,7 +27,7 @@ internal static class DatabaseFiles
 
     public static IReadOnlyList<string> All { get; } =
     [
-        Clients, TimeReports, Products, Sales, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
+        Clients, TimeReports, Products, Sales, Contact, Addresses, EmailAddresses, PhoneNumbers, Cvs, Students, Subjects,
         Schedule, Grades, Email, Users,
     ];
 

@@ -6,25 +6,24 @@ internal sealed record CustomerDto(
     Guid Id,
     string Name,
     string? OrganizationNumber,
-    string? Email,
-    string? Phone,
-    string? Street,
-    string? PostalCode,
-    string? City,
     string? Notes,
-    bool IsActive)
+    bool IsActive,
+    byte[]? Thumbnail = null)
 {
+    public string Initials => InitialsOf(Name);
+
+    public static string InitialsOf(string name) => string.Concat(
+        name.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Take(2)
+            .Select(part => char.ToUpperInvariant(part[0])));
+
     public static CustomerDto From(Customer customer) => new(
         customer.Id,
         customer.Name,
         customer.OrganizationNumber,
-        customer.Email,
-        customer.Phone,
-        customer.Street,
-        customer.PostalCode,
-        customer.City,
         customer.Notes,
-        customer.IsActive);
+        customer.IsActive,
+        customer.PhotoThumbnail);
 }
 
 /// <summary>A customer as the list shows it: the DTO plus its status in the current UI language.</summary>

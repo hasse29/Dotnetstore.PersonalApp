@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AddressTypes_Title" xml:space="preserve"><value>地址类型</value></data>
+  <data name="AddressTypes_Subtitle" xml:space="preserve"><value>管理用户、委托方等可以拥有的地址类型。</value></data>
+  <data name="AddressTypes_New" xml:space="preserve"><value>新建地址类型</value></data>
+  <data name="AddressTypes_SearchPlaceholder" xml:space="preserve"><value>按名称或描述搜索</value></data>
+  <data name="AddressTypes_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="AddressTypes_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="AddressTypes_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="AddressTypes_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="AddressTypes_ConfirmDelete" xml:space="preserve"><value>删除此地址类型？</value></data>
+  <data name="AddressTypes_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="AddressTypes_NoSelection" xml:space="preserve"><value>未选择地址类型</value></data>
+  <data name="AddressTypes_NoSelectionHint" xml:space="preserve"><value>从表格中选择地址类型进行编辑，或新建一个。</value></data>
+  <data name="AddressTypes_Count" xml:space="preserve"><value>{0} 个地址类型</value></data>
+  <data name="AddressTypes_ShowingPartial" xml:space="preserve"><value>显示 {1} 个地址类型中的 {0} 个。请缩小搜索范围以查看更多。</value></data>
+  <data name="AddressTypes_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="AddressTypeEditor_New" xml:space="preserve"><value>新建地址类型</value></data>
+  <data name="AddressTypeEditor_Edit" xml:space="preserve"><value>编辑地址类型</value></data>
+  <data name="AddressTypeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="AddressTypeField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="AddressTypeField_NamePlaceholder" xml:space="preserve"><value>例如：账单地址</value></data>
+  <data name="AddressTypeField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="AddressesPanel_Title" xml:space="preserve"><value>地址</value></data>
+  <data name="AddressesPanel_New" xml:space="preserve"><value>新建地址</value></data>
+  <data name="AddressesPanel_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="AddressesPanel_ColAddress" xml:space="preserve"><value>地址</value></data>
+  <data name="AddressesPanel_ColCountry" xml:space="preserve"><value>国家/地区</value></data>
+  <data name="AddressesPanel_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="AddressesPanel_DeleteAll" xml:space="preserve"><value>全部删除</value></data>
+  <data name="AddressesPanel_ConfirmDelete" xml:space="preserve"><value>删除此地址？</value></data>
+  <data name="AddressesPanel_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="AddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>删除所有地址？</value></data>
+  <data name="AddressesPanel_YesDeleteAll" xml:space="preserve"><value>是，全部删除</value></data>
+  <data name="AddressesPanel_NoSelection" xml:space="preserve"><value>未选择地址</value></data>
+  <data name="AddressesPanel_NoSelectionHint" xml:space="preserve"><value>从表格中选择地址进行编辑，或添加新地址。</value></data>
+  <data name="AddressesPanel_Count" xml:space="preserve"><value>{0} 个地址</value></data>
+  <data name="AddressesPanel_Saved" xml:space="preserve"><value>已保存{0}地址。</value></data>
+  <data name="AddressesPanel_Deleted" xml:space="preserve"><value>已删除 {0} 个地址。</value></data>
+  <data name="AddressesPanel_NoTypes" xml:space="preserve"><value>请先创建地址类型（见“地址类型”页面）。</value></data>
+  <data name="AddressEditor_New" xml:space="preserve"><value>新建地址</value></data>
+  <data name="AddressEditor_Edit" xml:space="preserve"><value>编辑地址</value></data>
+  <data name="AddressEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="AddressField_Type" xml:space="preserve"><value>地址类型</value></data>
+  <data name="AddressField_CareOf" xml:space="preserve"><value>C/O（转交）</value></data>
+  <data name="AddressField_Street1" xml:space="preserve"><value>街道地址</value></data>
+  <data name="AddressField_Street2" xml:space="preserve"><value>街道地址第 2 行</value></data>
+  <data name="AddressField_PostalCode" xml:space="preserve"><value>邮政编码</value></data>
+  <data name="AddressField_City" xml:space="preserve"><value>城市</value></data>
+  <data name="AddressField_State" xml:space="preserve"><value>州/省</value></data>
+  <data name="AddressField_Country" xml:space="preserve"><value>国家/地区</value></data>
+  <data name="Startup_ContactDatabase" xml:space="preserve"><value>正在准备联系人数据库...</value></data>
+  <data name="Error_address_type_not_found" xml:space="preserve"><value>未找到该地址类型。</value></data>
+  <data name="Error_address_type_conflict" xml:space="preserve"><value>已存在同名的地址类型。</value></data>
+  <data name="Error_address_type_in_use" xml:space="preserve"><value>该地址类型正被现有地址使用，无法删除。</value></data>
+  <data name="Error_address_not_found" xml:space="preserve"><value>未找到该地址。</value></data>
+  <data name="Error_address_object_required" xml:space="preserve"><value>地址必须属于某个对象。</value></data>
+  <data name="Error_address_type_required" xml:space="preserve"><value>请选择地址类型。</value></data>
+  <data name="Error_address_care_of_too_long" xml:space="preserve"><value>C/O 最多 100 个字符。</value></data>
+  <data name="Error_address_street1_required" xml:space="preserve"><value>请输入街道地址。</value></data>
+  <data name="Error_address_street1_too_long" xml:space="preserve"><value>街道地址最多 200 个字符。</value></data>
+  <data name="Error_address_street2_too_long" xml:space="preserve"><value>街道地址第 2 行最多 200 个字符。</value></data>
+  <data name="Error_address_postal_code_required" xml:space="preserve"><value>请输入邮政编码。</value></data>
+  <data name="Error_address_postal_code_too_long" xml:space="preserve"><value>邮政编码最多 20 个字符。</value></data>
+  <data name="Error_address_city_required" xml:space="preserve"><value>请输入城市。</value></data>
+  <data name="Error_address_city_too_long" xml:space="preserve"><value>城市最多 100 个字符。</value></data>
+  <data name="Error_address_state_too_long" xml:space="preserve"><value>州/省最多 100 个字符。</value></data>
+  <data name="Error_address_country_required" xml:space="preserve"><value>请输入国家/地区。</value></data>
+  <data name="Error_address_country_too_long" xml:space="preserve"><value>国家/地区最多 100 个字符。</value></data>
+  <data name="Error_address_type_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_address_type_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_address_type_description_too_long" xml:space="preserve"><value>描述最多 500 个字符。</value></data>
+  <data name="EmailAddressTypes_Title" xml:space="preserve"><value>电子邮件地址类型</value></data>
+  <data name="EmailAddressTypes_Subtitle" xml:space="preserve"><value>管理用户、委托方等可以拥有的电子邮件地址类型。</value></data>
+  <data name="EmailAddressTypes_New" xml:space="preserve"><value>新建电子邮件地址类型</value></data>
+  <data name="EmailAddressTypes_SearchPlaceholder" xml:space="preserve"><value>按名称或描述搜索</value></data>
+  <data name="EmailAddressTypes_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="EmailAddressTypes_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="EmailAddressTypes_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="EmailAddressTypes_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="EmailAddressTypes_ConfirmDelete" xml:space="preserve"><value>删除此电子邮件地址类型？</value></data>
+  <data name="EmailAddressTypes_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="EmailAddressTypes_NoSelection" xml:space="preserve"><value>未选择电子邮件地址类型</value></data>
+  <data name="EmailAddressTypes_NoSelectionHint" xml:space="preserve"><value>从表格中选择类型进行编辑，或新建一个。</value></data>
+  <data name="EmailAddressTypes_Count" xml:space="preserve"><value>{0} 个电子邮件地址类型</value></data>
+  <data name="EmailAddressTypes_ShowingPartial" xml:space="preserve"><value>显示 {1} 个电子邮件地址类型中的 {0} 个。请缩小搜索范围以查看更多。</value></data>
+  <data name="EmailAddressTypes_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="EmailAddressTypeEditor_New" xml:space="preserve"><value>新建电子邮件地址类型</value></data>
+  <data name="EmailAddressTypeEditor_Edit" xml:space="preserve"><value>编辑电子邮件地址类型</value></data>
+  <data name="EmailAddressTypeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="EmailAddressTypeField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="EmailAddressTypeField_NamePlaceholder" xml:space="preserve"><value>例如：工作</value></data>
+  <data name="EmailAddressTypeField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="EmailAddressesPanel_Title" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="EmailAddressesPanel_New" xml:space="preserve"><value>新建电子邮件地址</value></data>
+  <data name="EmailAddressesPanel_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="EmailAddressesPanel_ColEmailAddress" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="EmailAddressesPanel_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="EmailAddressesPanel_DeleteAll" xml:space="preserve"><value>全部删除</value></data>
+  <data name="EmailAddressesPanel_ConfirmDelete" xml:space="preserve"><value>删除此电子邮件地址？</value></data>
+  <data name="EmailAddressesPanel_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="EmailAddressesPanel_ConfirmDeleteAll" xml:space="preserve"><value>删除所有电子邮件地址？</value></data>
+  <data name="EmailAddressesPanel_YesDeleteAll" xml:space="preserve"><value>是，全部删除</value></data>
+  <data name="EmailAddressesPanel_NoSelection" xml:space="preserve"><value>未选择电子邮件地址</value></data>
+  <data name="EmailAddressesPanel_NoSelectionHint" xml:space="preserve"><value>从表格中选择电子邮件地址进行编辑，或添加新地址。</value></data>
+  <data name="EmailAddressesPanel_Count" xml:space="preserve"><value>{0} 个电子邮件地址</value></data>
+  <data name="EmailAddressesPanel_Saved" xml:space="preserve"><value>已保存{0}电子邮件地址。</value></data>
+  <data name="EmailAddressesPanel_Deleted" xml:space="preserve"><value>已删除 {0} 个电子邮件地址。</value></data>
+  <data name="EmailAddressesPanel_NoTypes" xml:space="preserve"><value>请先创建电子邮件地址类型（见“电子邮件地址类型”页面）。</value></data>
+  <data name="EmailAddressEditor_New" xml:space="preserve"><value>新建电子邮件地址</value></data>
+  <data name="EmailAddressEditor_Edit" xml:space="preserve"><value>编辑电子邮件地址</value></data>
+  <data name="EmailAddressEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="EmailAddressField_Type" xml:space="preserve"><value>电子邮件地址类型</value></data>
+  <data name="EmailAddressField_Email" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="EmailAddressField_EmailPlaceholder" xml:space="preserve"><value>name@example.com</value></data>
+  <data name="Error_email_address_type_not_found" xml:space="preserve"><value>未找到该电子邮件地址类型。</value></data>
+  <data name="Error_email_address_type_conflict" xml:space="preserve"><value>已存在同名的电子邮件地址类型。</value></data>
+  <data name="Error_email_address_type_in_use" xml:space="preserve"><value>该电子邮件地址类型正被现有电子邮件地址使用，无法删除。</value></data>
+  <data name="Error_email_address_type_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_email_address_type_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_email_address_type_description_too_long" xml:space="preserve"><value>描述最多 500 个字符。</value></data>
+  <data name="Error_email_address_not_found" xml:space="preserve"><value>未找到该电子邮件地址。</value></data>
+  <data name="Error_email_address_conflict" xml:space="preserve"><value>该电子邮件地址已登记。</value></data>
+  <data name="Error_email_address_object_required" xml:space="preserve"><value>电子邮件地址必须属于某个对象。</value></data>
+  <data name="Error_email_address_type_required" xml:space="preserve"><value>请选择电子邮件地址类型。</value></data>
+  <data name="Error_email_address_email_required" xml:space="preserve"><value>请输入电子邮件地址。</value></data>
+  <data name="Error_email_address_email_too_long" xml:space="preserve"><value>电子邮件地址最多 254 个字符。</value></data>
+  <data name="Error_email_address_email_invalid" xml:space="preserve"><value>电子邮件地址无效。</value></data>
+  <data name="PhoneNumberTypes_Title" xml:space="preserve"><value>电话号码类型</value></data>
+  <data name="PhoneNumberTypes_Subtitle" xml:space="preserve"><value>管理用户、委托方等可以拥有的电话号码类型。</value></data>
+  <data name="PhoneNumberTypes_New" xml:space="preserve"><value>新建电话号码类型</value></data>
+  <data name="PhoneNumberTypes_SearchPlaceholder" xml:space="preserve"><value>按名称或描述搜索</value></data>
+  <data name="PhoneNumberTypes_Search" xml:space="preserve"><value>搜索</value></data>
+  <data name="PhoneNumberTypes_ColName" xml:space="preserve"><value>名称</value></data>
+  <data name="PhoneNumberTypes_ColDescription" xml:space="preserve"><value>描述</value></data>
+  <data name="PhoneNumberTypes_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="PhoneNumberTypes_ConfirmDelete" xml:space="preserve"><value>删除此电话号码类型？</value></data>
+  <data name="PhoneNumberTypes_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="PhoneNumberTypes_NoSelection" xml:space="preserve"><value>未选择电话号码类型</value></data>
+  <data name="PhoneNumberTypes_NoSelectionHint" xml:space="preserve"><value>从表格中选择类型进行编辑，或新建一个。</value></data>
+  <data name="PhoneNumberTypes_Count" xml:space="preserve"><value>{0} 个电话号码类型</value></data>
+  <data name="PhoneNumberTypes_ShowingPartial" xml:space="preserve"><value>显示 {1} 个电话号码类型中的 {0} 个。请缩小搜索范围以查看更多。</value></data>
+  <data name="PhoneNumberTypes_Saved" xml:space="preserve"><value>已保存 {0}。</value></data>
+  <data name="PhoneNumberTypeEditor_New" xml:space="preserve"><value>新建电话号码类型</value></data>
+  <data name="PhoneNumberTypeEditor_Edit" xml:space="preserve"><value>编辑电话号码类型</value></data>
+  <data name="PhoneNumberTypeEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="PhoneNumberTypeField_Name" xml:space="preserve"><value>名称</value></data>
+  <data name="PhoneNumberTypeField_NamePlaceholder" xml:space="preserve"><value>例如：手机</value></data>
+  <data name="PhoneNumberTypeField_Description" xml:space="preserve"><value>描述</value></data>
+  <data name="PhoneNumbersPanel_Title" xml:space="preserve"><value>电话号码</value></data>
+  <data name="PhoneNumbersPanel_New" xml:space="preserve"><value>新建电话号码</value></data>
+  <data name="PhoneNumbersPanel_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="PhoneNumbersPanel_ColNumber" xml:space="preserve"><value>电话号码</value></data>
+  <data name="PhoneNumbersPanel_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="PhoneNumbersPanel_DeleteAll" xml:space="preserve"><value>全部删除</value></data>
+  <data name="PhoneNumbersPanel_ConfirmDelete" xml:space="preserve"><value>删除此电话号码？</value></data>
+  <data name="PhoneNumbersPanel_YesDelete" xml:space="preserve"><value>是，删除</value></data>
+  <data name="PhoneNumbersPanel_ConfirmDeleteAll" xml:space="preserve"><value>删除所有电话号码？</value></data>
+  <data name="PhoneNumbersPanel_YesDeleteAll" xml:space="preserve"><value>是，全部删除</value></data>
+  <data name="PhoneNumbersPanel_NoSelection" xml:space="preserve"><value>未选择电话号码</value></data>
+  <data name="PhoneNumbersPanel_NoSelectionHint" xml:space="preserve"><value>从表格中选择电话号码进行编辑，或添加新号码。</value></data>
+  <data name="PhoneNumbersPanel_Count" xml:space="preserve"><value>{0} 个电话号码</value></data>
+  <data name="PhoneNumbersPanel_Saved" xml:space="preserve"><value>已保存{0}电话号码。</value></data>
+  <data name="PhoneNumbersPanel_Deleted" xml:space="preserve"><value>已删除 {0} 个电话号码。</value></data>
+  <data name="PhoneNumbersPanel_NoTypes" xml:space="preserve"><value>请先创建电话号码类型（见“电话号码类型”页面）。</value></data>
+  <data name="PhoneNumberEditor_New" xml:space="preserve"><value>新建电话号码</value></data>
+  <data name="PhoneNumberEditor_Edit" xml:space="preserve"><value>编辑电话号码</value></data>
+  <data name="PhoneNumberEditor_Save" xml:space="preserve"><value>保存更改</value></data>
+  <data name="PhoneNumberField_Type" xml:space="preserve"><value>电话号码类型</value></data>
+  <data name="PhoneNumberField_Number" xml:space="preserve"><value>电话号码</value></data>
+  <data name="PhoneNumberField_NumberPlaceholder" xml:space="preserve"><value>+86 10 1234 5678</value></data>
+  <data name="Error_phone_number_type_not_found" xml:space="preserve"><value>未找到该电话号码类型。</value></data>
+  <data name="Error_phone_number_type_conflict" xml:space="preserve"><value>已存在同名的电话号码类型。</value></data>
+  <data name="Error_phone_number_type_in_use" xml:space="preserve"><value>该电话号码类型正被现有电话号码使用，无法删除。</value></data>
+  <data name="Error_phone_number_type_name_required" xml:space="preserve"><value>请输入名称。</value></data>
+  <data name="Error_phone_number_type_name_too_long" xml:space="preserve"><value>名称最多 100 个字符。</value></data>
+  <data name="Error_phone_number_type_description_too_long" xml:space="preserve"><value>描述最多 500 个字符。</value></data>
+  <data name="Error_phone_number_not_found" xml:space="preserve"><value>未找到该电话号码。</value></data>
+  <data name="Error_phone_number_conflict" xml:space="preserve"><value>该电话号码已登记。</value></data>
+  <data name="Error_phone_number_object_required" xml:space="preserve"><value>电话号码必须属于某个对象。</value></data>
+  <data name="Error_phone_number_type_required" xml:space="preserve"><value>请选择电话号码类型。</value></data>
+  <data name="Error_phone_number_number_required" xml:space="preserve"><value>请输入电话号码。</value></data>
+  <data name="Error_phone_number_number_too_long" xml:space="preserve"><value>电话号码最多 30 个字符。</value></data>
+  <data name="Error_phone_number_number_invalid" xml:space="preserve"><value>电话号码必须包含 5 到 15 位数字，且只能包含数字、空格以及 + - ( ) . /</value></data>
+  <data name="ContactPanel_Title" xml:space="preserve"><value>联系方式</value></data>
+</root>

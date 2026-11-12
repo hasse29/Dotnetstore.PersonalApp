@@ -10,9 +10,7 @@ Each module is one project under `src/Modules/<Module>/` with its own SQLite dat
 | [Schedule](#schedule) | `schedule.db` | A teacher's recurring weekly lessons | School > Schedule |
 | [Grades](#grades) | `grades.db` | Grade scales per country, the grades given to students, and tests with their results | School > Grades, Grade scales, Tests; Grades tab on the Student detail page |
 | [Users](#users) | `users.db` | Users, sign-in | Users |
-| [Addresses](#addresses) | `addresses.db` | Addresses and address types | Address types (Settings) |
-| [EmailAddresses](#emailaddresses) | `emailaddresses.db` | Email addresses and types | Email address types (Settings) |
-| [PhoneNumbers](#phonenumbers) | `phonenumbers.db` | Phone numbers and types | Phone number types (Settings) |
+| [Contact](#contact) | `contact.db` | Addresses, email addresses and phone numbers, each with user-managed types | Address types, Email address types, Phone number types (Settings) |
 | [TimeReports](#timereports) | `timereports.db` | Time reports, work time types, exports | Time reports group |
 | [Products](#products) | `products.db` | Hardware, software and consulting products, categories, suppliers, supplier prices and stock (locations, movements, inventory counts) | Products group |
 | [Sales](#sales) | `salesdocuments.db` | Customers, offers, orders, pick lists (reduce stock), invoices, payments and credit | Sales group |
@@ -43,7 +41,7 @@ The app is used from a teacher's perspective: a **client is a school**, a user i
 - **Photo**: PNG/JPEG up to 6 MB with a 96x96 thumbnail, like users, clients and contact persons (see Cross-cutting: photos). `Get/SetStudentPhoto`, `StudentPhotoPanelFactory`; lists carry only the thumbnail.
 - **Lookup**: implements `IStudentLookup` (`Shared/Students`) so other modules (Schedule, Grades) can list the students of a school or of all schools and check that a student exists.
 - **Grades tab**: the detail page also shows a Grades tab built through `IStudentGradesPanelFactory` (`Shared/Students`; optional, so the tab disappears if the Grades module is absent).
-- **Deleting**: deleting a student publishes `StudentDeleted`. The module consumes `ClientDeleted`, deletes the school's students and publishes one `StudentDeleted` per student; Addresses, EmailAddresses and PhoneNumbers consume `StudentDeleted` and remove the student's entries.
+- **Deleting**: deleting a student publishes `StudentDeleted`. The module consumes `ClientDeleted`, deletes the school's students and publishes one `StudentDeleted` per student; Contact consumes `StudentDeleted` and remove the student's entries.
 
 ## Subjects
 
@@ -81,20 +79,24 @@ Grade scales per country, and the grades a teacher gives students. Countries gra
 
 CRUD plus authentication (see [architecture.md](architecture.md#startup-and-authentication)). Passwords are hashed with `IPasswordHasher<T>`; plain text is never stored or logged. Error codes `user_*`. Implements `IAuthenticationPages` (login and first-user setup) and `IUserLookup` / `IUserPhotoLookup` (`Shared/Users`).
 
-## Addresses
+## Contact
+
+One module owns the contact details of every other module: addresses, email addresses and phone numbers, in one project (`Addresses/`, `EmailAddresses/`, `PhoneNumbers/` folders, namespaces `Modules.Contact.<Area>`) with one `ContactDbContext` and one database, `contact.db`. It replaces the former Addresses, EmailAddresses and PhoneNumbers modules: at startup `MigrateContactDatabaseTask` copies the rows of their old `addresses.db`, `emailaddresses.db` and `phonenumbers.db` into `contact.db` (seeded types keep their ids, so they are not duplicated) and deletes the old files. Types are matched by id, then by name: a legacy type whose name already exists in `contact.db` (a seeded type the user deleted and re-created) is merged into the existing one and its rows are pointed at it. A legacy file that cannot be imported (damaged, locked) is left untouched and retried at the next start; it never blocks startup or the other files. Restoring a backup made before the merge brings the old files back and they are imported the same way at the next start, so rows already in `contact.db` win and rows deleted since can reappear. The three settings pages share the module key `contact`, and one `OwnerDeletedConsumer` handles `UserDeleted`, `ClientDeleted`, `ContactPersonDeleted`, `CustomerDeleted` and `StudentDeleted` for all three areas. `IContactInfoSource.Kind` tells a caller which kind a source returns, and address entries carry their `Lines`, so Sales prints an address without parsing the one-line text.
+
+### Addresses
 
 Owns addresses for every other module. An `Address` points at its owner by a single `ObjectId`; user, client and contact person ids are globally unique GUIDs, so no owner type is stored. Listing is always per `ObjectId`; `DeleteAddressesForObject` removes all of an owner's addresses.
 
 - **AddressType**: user-managed lookup (unique case-insensitive `Name`, optional `Description`). `Billing`, `Delivery`, `Visiting` and `Home` are seeded once by the migration via `HasData`, then editable and deletable. A type in use cannot be deleted (`address_type_in_use`).
 - **Address**: `ObjectId`, `AddressTypeId`, `CareOf`, `Street1/2`, `PostalCode`, `City`, `State`, `Country`.
 - Other modules show an object's addresses through `IObjectAddressesPanelFactory` (`Shared/Addresses`). The Users and Clients detail pages each build an Addresses tab from `factory.Create(id)`; the factory is optional, so the tab disappears if the module is absent.
-- Consumes `UserDeleted`, `ClientDeleted` and `ContactPersonDeleted`.
+- Consumes `UserDeleted`, `ClientDeleted`, `ContactPersonDeleted`, `CustomerDeleted` and `StudentDeleted`.
 
-## EmailAddresses
+### EmailAddresses
 
 The email counterpart of Addresses, same design: user-managed `EmailAddressType` (seeded `Work`, `Private`, `Billing`), `EmailAddress` (`ObjectId`, type, `Email`; unique per object, case-insensitive), `IObjectEmailAddressesPanelFactory`, and the same three delete consumers. Error codes `email_address_*` / `email_address_type_*`.
 
-## PhoneNumbers
+### PhoneNumbers
 
 Same design again: user-managed `PhoneNumberType` (seeded `Mobile`, `Work`, `Home`), `PhoneNumber` (`ObjectId`, type, `Number` as typed plus a `NormalizedNumber` of an optional `+` and digits; 5-15 digits; unique per object by normalized value, so `070-123 45 67` and `0701234567` clash), `IObjectPhoneNumbersPanelFactory`, and the same three delete consumers. Error codes `phone_number_*` / `phone_number_type_*`.
 
@@ -140,7 +142,8 @@ The catalogue of what is sold: hardware (cables, tools, computer parts), softwar
 
 Owns `salesdocuments.db` (not `sales.db`: that file belonged to the old Sales module and is still deleted at startup). The flow is offer, then order and pick list, then invoice.
 
-- **Customer**: someone the owner sells to, a company or a private person. Unique case-insensitive `Name`, optional organization number, email (loose format check), phone, street, postal code, city, notes and `IsActive`. Customers are the module's own and are not linked to Clients. A customer with offers cannot be deleted (`customer_in_use`; make it inactive). Error codes `customer_*`.
+- **Customer**: someone the owner sells to, a company or a private person. Unique case-insensitive `Name`, optional organization number, notes and `IsActive`. Email addresses, phone numbers and addresses are not stored on the customer: they live in the Addresses, EmailAddresses and PhoneNumbers modules and are managed on the detail page. Customers are the module's own and are not linked to Clients. A customer with offers cannot be deleted (`customer_in_use`; make it inactive). Error codes `customer_*`.
+- **Customer detail page**: a Details button on the customers list opens a page with the customer's photo and Information, Addresses, Email addresses and Phone numbers tabs. The tabs reuse the Addresses / EmailAddresses / PhoneNumbers panel factories with the customer's id as `ObjectId`, so those modules need no schema change. An offer copies the customer's first address (by address type name, read through `IContactInfoSource`, one line per part) when it is created, and a draft offer refreshes it each time it is saved. Deleting a customer publishes `CustomerDeleted`, which the three modules consume to remove its entries. Photo: PNG/JPEG up to 6 MB with a 96x96 thumbnail like Clients (`Get/SetCustomerPhoto`, `CustomerPhotoPanelFactory`; see Cross-cutting: photos).
 - **Offer**: a number (`O-<year>-<sequence>`, one more than the highest of the year so a deleted draft never makes a number repeat), a customer, a date, a valid-until date, an optional reference and notes, a status and lines. The customer's name and address are copied onto the offer, so editing or renaming a customer never changes an issued offer. Error codes `offer_*`.
 - **Offer line**: a description, quantity, unit key (Piece, Hour, Day, Month, License), unit price excluding VAT, VAT percent and discount percent. A line made from a product copies its description, price, unit and VAT through `IProductCatalog` (Shared, implemented by Products); `ProductId` is a plain value, not a foreign key, since the product lives in another database. Free-text lines have no product.
 - **Totals**: `OfferTotals` rounds each line's net amount (quantity x price less discount) and its VAT to 2 decimals and adds them up, as an invoice does. The same code runs in the editor and in the handlers; totals are never stored.
@@ -153,6 +156,7 @@ Owns `salesdocuments.db` (not `sales.db`: that file belonged to the old Sales mo
 - **Credit**: what a customer has paid over, as a signed ledger of `CreditEntry` rows (Overpayment adds; Applied and Refund take away); the balance is their sum and never goes below zero. The Credits page lists customers with a balance and their ledger. Credit is used with `ApplyCredit` on another invoice of the same customer (at most the balance and at most what the invoice still needs; the button on the invoice screen uses as much as fits), or paid back with `RefundCredit`, which only records that the money was returned outside the app. Credit belongs to the customer, not to the invoice, so cancelling or reopening invoices never moves it. Error codes `credit_*`.
 - **Orders UI**: Orders (read-only, with Cancel) and Pick lists (enter what was picked, Pick everything) pages in the Sales group; the pick list filter starts on Open. A ready order gets payment terms and a Create invoice button. Invoices page: list with search, a status filter and what is left to pay, and an invoice screen with its payments, a Record payment form (amount, date, note), Use credit and Cancel invoice. Paying too much is answered on the spot with how much became credit and what to do with it. Credits page: customers with credit, the ledger and a Record refund form.
 - **Offer UI**: Offers and Customers pages in the Sales sidebar group. The offers list has search and a status filter; opening or starting an offer replaces the list with the offer screen (customer, dates, lines with live totals, notes and the status buttons). Lines are added by searching products or as free lines.
+- **PDF export** (`ExportSalesPdf`, QuestPDF Community license): the offer, order, pick list and invoice screens each have an Export PDF button that renders the document through the same Get handlers the screen uses, in the current UI language, and hands it to the user through `IFileSaveService` (`SalesPdfSaver`). One renderer (`SalesPdfRenderer`) draws a neutral `PdfDocumentModel`; the pick list has an empty "picked" column to write in. QuestPDF 2026.9+ ships only Lato, so `UseSystemFonts` is on for CJK text and `ThrowOnMissingTextGlyphs` is off: an unknown character is drawn as a replacement glyph rather than blocking the export. Error code `sales_pdf_kind_invalid`.
 
 ## Cvs
 
@@ -160,7 +164,7 @@ Each user keeps several CVs aimed at different jobs: `Cv` (`UserId`, unique case
 
 - **UI**: its own sidebar page (signed-in user) and a CVs tab on the User detail page via `IUserCvsPanelFactory` (`Shared/Cvs`). Each CV opens a read-only detail page (owner details from `IUserLookup`, photo, summary, work experience, education, courses, languages, driver licence); entries are changed in an editor that replaces the overview.
 - **Photo**: stored per CV (PNG/JPEG, max 6 MB), picked through `IFileOpenService` (`Shared/Files`, dialog in the Host).
-- **Contact details** are the user's own data from Addresses, PhoneNumbers and EmailAddresses, read through `IContactInfoSource` (`Shared/Contacts`, one implementation per module, so Cvs never references them). Each CV stores only which entry ids to show (`CvContactSelection`: ids of other modules, so no foreign key; `SetCvContacts` ignores ids that are not the user's; deleted ones just disappear), plus an optional `LinkedIn` URL (normalized to https, must be on linkedin.com, error `cv_linkedin_invalid`).
+- **Contact details** are the user's own data from Contact, read through `IContactInfoSource` (`Shared/Contacts`, one implementation per area, so Cvs never references them). Each CV stores only which entry ids to show (`CvContactSelection`: ids of other modules, so no foreign key; `SetCvContacts` ignores ids that are not the user's; deleted ones just disappear), plus an optional `LinkedIn` URL (normalized to https, must be on linkedin.com, error `cv_linkedin_invalid`).
 - **Word export** (`ExportCvToWord`, Open XML SDK) in the current UI language, handed to the user through `IFileSaveService`.
 - Consumes `UserDeleted` and deletes the user's CVs.
 
@@ -190,7 +194,7 @@ An account is personal (`OwnerId` = the user) or a system account shared by ever
 
 ## Cross-cutting: photos
 
-Users, clients, contact persons, students and products can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
+Users, clients, contact persons, students, products and customers can have a photo (PNG/JPEG, max 6 MB), stored as `Photo` bytes in the owning module's database. Cvs keeps its own per-CV photo.
 
 - `Get<X>Photo` / `Set<X>Photo` handlers read and write only that column, so lists and updates never load it.
 - Shared pieces in `Shared/Photos`: `PhotoRules`, `PhotoThumbnail`, `BytesToBitmapConverter`, `PhotoPanelViewModel` / `PhotoPanelView` (round photo or initials with Change/Remove buttons on the User and Client detail pages) and `AvatarView`. Each module hands the panel its load/save delegates through its `<X>PhotoPanelFactory`; the file dialog is `IFileOpenService`.

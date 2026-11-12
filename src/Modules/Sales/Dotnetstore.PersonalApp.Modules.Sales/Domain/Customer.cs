@@ -10,19 +10,14 @@ internal sealed class Customer
     /// <summary>Organization number for a company; empty for a private person.</summary>
     public string? OrganizationNumber { get; set; }
 
-    public string? Email { get; set; }
-
-    public string? Phone { get; set; }
-
-    public string? Street { get; set; }
-
-    public string? PostalCode { get; set; }
-
-    public string? City { get; set; }
-
     public string? Notes { get; set; }
 
     public bool IsActive { get; set; } = true;
+
+    public byte[]? Photo { get; set; }
+
+    /// <summary>A small square copy of <see cref="Photo"/> for lists.</summary>
+    public byte[]? PhotoThumbnail { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
 }
