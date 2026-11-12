@@ -14,7 +14,7 @@ internal sealed class Offer
 {
     public Guid Id { get; set; }
 
-    /// <summary>Unique and sequential per year, for example O-2026-0001.</summary>
+    /// <summary>Unique, for example OFF202611120001 (OFF, the date and a four-digit counter of the day).</summary>
     public string Number { get; set; } = string.Empty;
 
     public Guid CustomerId { get; set; }

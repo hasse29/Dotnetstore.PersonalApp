@@ -53,7 +53,7 @@ internal static class CreateOffer
             var offer = new Offer
             {
                 Id = Guid.CreateVersion7(),
-                Number = await NextNumberAsync(db, fields.Date.Year, cancellationToken).ConfigureAwait(false),
+                Number = await NextNumberAsync(db, DateOnly.FromDateTime(clock.GetLocalNow().DateTime), cancellationToken).ConfigureAwait(false),
                 CustomerId = customer.Id,
                 CustomerName = customer.Name,
                 CustomerAddress = await CustomerAddressBlock.ResolveAsync(contactSources, customer.Id, cancellationToken).ConfigureAwait(false),
@@ -69,22 +69,17 @@ internal static class CreateOffer
             return OfferDetailDto.From(offer, DateOnly.FromDateTime(clock.GetLocalNow().DateTime));
         }
 
-        // The next number of the year: one more than the highest one used so far, so a deleted draft never makes a number repeat.
-        private static async Task<string> NextNumberAsync(SalesDbContext db, int year, CancellationToken cancellationToken)
+        // The counter restarts every day: one more than the highest used so far, so a deleted draft never makes a number repeat.
+        private static async Task<string> NextNumberAsync(SalesDbContext db, DateOnly date, CancellationToken cancellationToken)
         {
-            var prefix = string.Create(CultureInfo.InvariantCulture, $"O-{year}-");
+            var prefix = DocumentNumber.Prefix(DocumentNumber.Offer, date);
             var used = await db.Offers
                 .Where(o => o.Number.StartsWith(prefix))
                 .Select(o => o.Number)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            var highest = used
-                .Select(n => int.TryParse(n.AsSpan(prefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var value) ? value : 0)
-                .DefaultIfEmpty(0)
-                .Max();
-
-            return string.Create(CultureInfo.InvariantCulture, $"{prefix}{highest + 1:0000}");
+            return DocumentNumber.Next(prefix, used);
         }
     }
 }

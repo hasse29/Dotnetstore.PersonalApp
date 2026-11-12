@@ -14,7 +14,7 @@ internal sealed class Invoice
 {
     public Guid Id { get; set; }
 
-    /// <summary>Unique and sequential per year, for example INV-2026-0001. Numbers are never reused, not even after a cancellation.</summary>
+    /// <summary>Unique, for example INV202611120001 (INV, the date and a four-digit counter of the day). Numbers are never reused, not even after a cancellation.</summary>
     public string Number { get; set; } = string.Empty;
 
     public Guid OrderId { get; set; }

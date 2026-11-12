@@ -21,7 +21,7 @@ internal sealed class Order
 {
     public Guid Id { get; set; }
 
-    /// <summary>Unique and sequential per year, for example ORD-2026-0001.</summary>
+    /// <summary>Unique, for example ORD202611120001 (ORD, the date and a four-digit counter of the day).</summary>
     public string Number { get; set; } = string.Empty;
 
     /// <summary>The offer the order was made from. Not unique: a cancelled order lets the offer be ordered again.</summary>
@@ -81,7 +81,7 @@ internal sealed class PickList
 {
     public Guid Id { get; set; }
 
-    /// <summary>The order number with PL instead of ORD, for example PL-2026-0001.</summary>
+    /// <summary>The order number with PL instead of ORD, for example PL202611120001.</summary>
     public string Number { get; set; } = string.Empty;
 
     public Guid OrderId { get; set; }

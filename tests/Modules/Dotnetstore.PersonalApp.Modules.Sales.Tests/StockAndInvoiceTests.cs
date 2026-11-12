@@ -111,7 +111,7 @@ public sealed class StockAndInvoiceTests
 
         result.IsSuccess.ShouldBeTrue();
         var invoice = result.Value;
-        invoice.Invoice.Number.ShouldBe("INV-2026-0001");
+        invoice.Invoice.Number.ShouldBe("INV202611100001");
         invoice.Invoice.Status.ShouldBe(InvoiceStatus.Unpaid);
         invoice.Invoice.Date.ShouldBe(new DateOnly(2026, 11, 10));
         invoice.Invoice.DueDate.ShouldBe(new DateOnly(2026, 11, 24));
@@ -167,7 +167,7 @@ public sealed class StockAndInvoiceTests
         cancelled.Value.Invoice.Status.ShouldBe(InvoiceStatus.Cancelled);
         reopened.Order.Status.ShouldBe(OrderStatus.ReadyToInvoice);
         reopened.InvoiceNumber.ShouldBeNull();
-        second.Value.Invoice.Number.ShouldBe("INV-2026-0002");
+        second.Value.Invoice.Number.ShouldBe("INV202611100002");
     }
 
     [Fact]
@@ -183,7 +183,7 @@ public sealed class StockAndInvoiceTests
         var all = await fixture.ListInvoices.HandleAsync(new ListInvoices.Query(), CancellationToken.None);
         var unpaid = await fixture.ListInvoices.HandleAsync(new ListInvoices.Query(Status: InvoiceStatus.Unpaid), CancellationToken.None);
 
-        all.Items.Select(i => i.Number).ShouldBe(["INV-2026-0002", "INV-2026-0001"]);
-        unpaid.Items.Single().Number.ShouldBe("INV-2026-0002");
+        all.Items.Select(i => i.Number).ShouldBe(["INV202611100002", "INV202611100001"]);
+        unpaid.Items.Single().Number.ShouldBe("INV202611100002");
     }
 }
