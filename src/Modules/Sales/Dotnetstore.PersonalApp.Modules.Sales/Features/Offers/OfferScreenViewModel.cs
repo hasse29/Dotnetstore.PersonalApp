@@ -229,6 +229,21 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
             return;
         }
 
+        // This runs while the ListBox is still committing the click. Clearing the results (its items) right here pulls them out from
+        // under its selection model and crashes the app, so the work waits until the click has been handled. Without a
+        // synchronization context (tests) it just runs at once.
+        if (SynchronizationContext.Current is { } context)
+        {
+            context.Post(_ => AddSelectedProduct(value), null);
+        }
+        else
+        {
+            AddSelectedProduct(value);
+        }
+    }
+
+    private void AddSelectedProduct(ProductSummary value)
+    {
         var unit = _units.FirstOrDefault(u => u.Key == value.Unit) ?? AddUnit(value.Unit);
         AddLine(new OfferLineRow(_units, unit, IsEditable)
         {
