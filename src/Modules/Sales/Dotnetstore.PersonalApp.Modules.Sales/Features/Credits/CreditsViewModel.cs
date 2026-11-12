@@ -113,10 +113,11 @@ internal sealed partial class CreditsViewModel(
 
         RefundNote = null;
         RefundDate = null;
-        StatusMessage = localization.Format("Credits_Refunded", Format(amount));
 
         // A used-up credit leaves the list; otherwise the balance and ledger are shown again.
+        // The reload writes its own count, so the confirmation is set after it.
         await LoadAsync(cancellationToken);
+        StatusMessage = localization.Format("Credits_Refunded", Format(amount));
         if (SelectedCredit is not null)
         {
             ApplyLedger(result.Value);
