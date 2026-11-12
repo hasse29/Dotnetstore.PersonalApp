@@ -46,7 +46,7 @@ internal static class CreateOrderFromOffer
             var order = new Order
             {
                 Id = Guid.CreateVersion7(),
-                Number = await NextNumberAsync(db, today.Year, cancellationToken).ConfigureAwait(false),
+                Number = await NextNumberAsync(db, today, cancellationToken).ConfigureAwait(false),
                 OfferId = offer.Id,
                 OfferNumber = offer.Number,
                 CustomerId = offer.CustomerId,
@@ -82,7 +82,7 @@ internal static class CreateOrderFromOffer
                 var pickList = new PickList
                 {
                     Id = Guid.CreateVersion7(),
-                    Number = "PL-" + order.Number["ORD-".Length..],
+                    Number = DocumentNumber.PickList(order.Number),
                     Status = PickListStatus.Open,
                     CreatedAt = now,
                     Lines = [.. physical.Select((l, i) => new PickListLine
@@ -103,23 +103,17 @@ internal static class CreateOrderFromOffer
 
             return OrderDetailDto.From(order);
         }
-
-        // One more than the highest number of the year, so a number is never reused.
-        private static async Task<string> NextNumberAsync(SalesDbContext db, int year, CancellationToken cancellationToken)
+        // The counter restarts every day and is never reused.
+        private static async Task<string> NextNumberAsync(SalesDbContext db, DateOnly date, CancellationToken cancellationToken)
         {
-            var prefix = string.Create(CultureInfo.InvariantCulture, $"ORD-{year}-");
+            var prefix = DocumentNumber.Prefix(DocumentNumber.Order, date);
             var used = await db.Orders
                 .Where(o => o.Number.StartsWith(prefix))
                 .Select(o => o.Number)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            var highest = used
-                .Select(n => int.TryParse(n.AsSpan(prefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var value) ? value : 0)
-                .DefaultIfEmpty(0)
-                .Max();
-
-            return string.Create(CultureInfo.InvariantCulture, $"{prefix}{highest + 1:0000}");
+            return DocumentNumber.Next(prefix, used);
         }
     }
 }

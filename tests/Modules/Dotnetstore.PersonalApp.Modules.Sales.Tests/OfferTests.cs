@@ -15,8 +15,8 @@ public sealed class OfferTests
         var first = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
         var second = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
 
-        first.Offer.Number.ShouldBe("O-2026-0001");
-        second.Offer.Number.ShouldBe("O-2026-0002");
+        first.Offer.Number.ShouldBe("OFF202611100001");
+        second.Offer.Number.ShouldBe("OFF202611100002");
         first.Offer.Status.ShouldBe(OfferStatus.Draft);
         first.Offer.CustomerName.ShouldBe("Acme School");
         first.CustomerAddress.ShouldBe("Main Street 1\n111 22 Stockholm");
@@ -33,7 +33,7 @@ public sealed class OfferTests
 
         var third = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
 
-        third.Offer.Number.ShouldBe("O-2026-0002");
+        third.Offer.Number.ShouldBe("OFF202611100002");
     }
 
     [Fact]
@@ -207,7 +207,7 @@ public sealed class OfferTests
         var sent = await fixture.ListOffers.HandleAsync(new ListOffers.Query(Status: OfferStatus.Sent), CancellationToken.None);
         var searched = await fixture.ListOffers.HandleAsync(new ListOffers.Query("acme"), CancellationToken.None);
 
-        all.Items.Select(o => o.Number).ShouldBe(["O-2026-0002", "O-2026-0001"]);
+        all.Items.Select(o => o.Number).ShouldBe(["OFF202611100002", "OFF202611100001"]);
         sent.Items.Single().CustomerName.ShouldBe("Beta Corp");
         searched.Items.Single().CustomerName.ShouldBe("Acme School");
     }

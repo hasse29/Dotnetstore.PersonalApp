@@ -45,12 +45,12 @@ public sealed class OrderTests
 
         result.IsSuccess.ShouldBeTrue();
         var order = result.Value;
-        order.Order.Number.ShouldBe("ORD-2026-0001");
+        order.Order.Number.ShouldBe("ORD202611100001");
         order.Order.OfferNumber.ShouldBe(offer.Offer.Number);
         order.Order.Status.ShouldBe(OrderStatus.Open);
         order.Lines.Count.ShouldBe(3);
         order.Totals.Gross.ShouldBe(offer.Totals.Gross);
-        order.PickListNumber.ShouldBe("PL-2026-0001");
+        order.PickListNumber.ShouldBe("PL202611100001");
 
         var picks = await fixture.ListPickLists.HandleAsync(new ListPickLists.Query(), CancellationToken.None);
         var detail = await fixture.GetPickList.HandleAsync(new GetPickList.Query(picks.Items.Single().Id), CancellationToken.None);
@@ -84,7 +84,7 @@ public sealed class OrderTests
 
         again.Error.Code.ShouldBe("order_already_exists");
         afterCancel.IsSuccess.ShouldBeTrue();
-        afterCancel.Value.Order.Number.ShouldBe("ORD-2026-0002");
+        afterCancel.Value.Order.Number.ShouldBe("ORD202611100002");
     }
 
     [Fact]
@@ -160,8 +160,8 @@ public sealed class OrderTests
         var all = await fixture.ListOrders.HandleAsync(new ListOrders.Query(), CancellationToken.None);
         var open = await fixture.ListOrders.HandleAsync(new ListOrders.Query(Status: OrderStatus.Open), CancellationToken.None);
 
-        all.Items.Select(o => o.Number).ShouldBe(["ORD-2026-0002", "ORD-2026-0001"]);
-        open.Items.Single().Number.ShouldBe("ORD-2026-0002");
+        all.Items.Select(o => o.Number).ShouldBe(["ORD202611100002", "ORD202611100001"]);
+        open.Items.Single().Number.ShouldBe("ORD202611100002");
         open.Items.Single().PickLines.ShouldBe(1);
     }
 }

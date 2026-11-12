@@ -32,8 +32,8 @@ public sealed class PickListScreenViewModelTests : IDisposable
     {
         var (screen, _, _) = await OpenAsync();
 
-        screen.Heading.ShouldStartWith("PL-");
-        screen.Heading.ShouldContain("ORD-");
+        screen.Heading.ShouldStartWith("PL20261110");
+        screen.Heading.ShouldContain("ORD20261110");
         screen.CustomerName.ShouldNotBeEmpty();
         screen.StatusText.ShouldBe(_harness.Localizer.Get("PickListStatus_Open"));
         screen.IsEditable.ShouldBeTrue();

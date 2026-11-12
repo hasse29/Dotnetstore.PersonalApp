@@ -47,7 +47,7 @@ internal static class CreateInvoiceFromOrder
             var invoice = new Invoice
             {
                 Id = Guid.CreateVersion7(),
-                Number = await NextNumberAsync(db, today.Year, cancellationToken).ConfigureAwait(false),
+                Number = await NextNumberAsync(db, today, cancellationToken).ConfigureAwait(false),
                 OrderId = order.Id,
                 OrderNumber = order.Number,
                 CustomerId = order.CustomerId,
@@ -78,23 +78,17 @@ internal static class CreateInvoiceFromOrder
 
             return InvoiceDetailDto.From(invoice, today);
         }
-
-        // One more than the highest number of the year, so a number is never reused, not even after a cancellation.
-        private static async Task<string> NextNumberAsync(SalesDbContext db, int year, CancellationToken cancellationToken)
+        // The counter restarts every day and is never reused, not even after a cancellation.
+        private static async Task<string> NextNumberAsync(SalesDbContext db, DateOnly date, CancellationToken cancellationToken)
         {
-            var prefix = string.Create(CultureInfo.InvariantCulture, $"INV-{year}-");
+            var prefix = DocumentNumber.Prefix(DocumentNumber.Invoice, date);
             var used = await db.Invoices
                 .Where(i => i.Number.StartsWith(prefix))
                 .Select(i => i.Number)
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            var highest = used
-                .Select(n => int.TryParse(n.AsSpan(prefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var value) ? value : 0)
-                .DefaultIfEmpty(0)
-                .Max();
-
-            return string.Create(CultureInfo.InvariantCulture, $"{prefix}{highest + 1:0000}");
+            return DocumentNumber.Next(prefix, used);
         }
     }
 }
