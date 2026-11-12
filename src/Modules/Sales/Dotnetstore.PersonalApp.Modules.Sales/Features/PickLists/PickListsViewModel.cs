@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
@@ -19,18 +20,21 @@ internal sealed partial class PickListsViewModel : ViewModelBase
     private readonly GetPickList.Handler _get;
     private readonly SavePickedQuantities.Handler _save;
     private readonly ILocalizationService _localization;
+    private readonly SalesPdfSaver _pdf;
     private readonly bool _ready;
 
     public PickListsViewModel(
         ListPickLists.Handler list,
         GetPickList.Handler get,
         SavePickedQuantities.Handler save,
-        ILocalizationService localization)
+        ILocalizationService localization,
+        SalesPdfSaver pdf)
     {
         _list = list;
         _get = get;
         _save = save;
         _localization = localization;
+        _pdf = pdf;
 
         StatusOptions =
         [
@@ -72,7 +76,7 @@ internal sealed partial class PickListsViewModel : ViewModelBase
             return;
         }
 
-        var screen = new PickListScreenViewModel(value.PickList.Id, _get, _save, _localization);
+        var screen = new PickListScreenViewModel(value.PickList.Id, _get, _save, _localization, _pdf);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);

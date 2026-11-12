@@ -29,7 +29,8 @@ A personal desktop app for keeping track of clients, the time you work for them,
 - **Products**: hardware, software you make and consulting hours, with a product number, category, price, cost, VAT and kind-specific details. Each product has a detail page with a photo and its **supplier prices** (one price per supplier, with the supplier's own article number).
 - **Suppliers**: who you buy from, with contact details and an active flag.
 - **Stock**: **storage locations**, quantities per product and location, and a log of every movement (receive, issue, transfer). Products below their minimum stock are flagged. **Inventory counts** let you count what is on the shelves and post the differences as adjustments.
-- **Sales**: **customers** (companies and private persons) and **offers**: pick products or write free lines, with quantity, price, VAT and discount, live totals, and a status that follows the offer from draft to sent, accepted or declined. An accepted offer becomes an **order** with a **pick list**; picking takes the goods out of stock, and when everything is picked the order is ready to invoice. An **invoice** is made from the order with payment terms. Customers can pay in several parts, in full or too much: the excess becomes **credit** that you can use on another invoice or record as paid back.
+- **Sales**: **customers** (companies and private persons, with a photo and a detail page for addresses, email addresses and phone numbers) and **offers**: pick products or write free lines, with quantity, price, VAT and discount, live totals, and a status that follows the offer from draft to sent, accepted or declined. An accepted offer becomes an **order** with a **pick list**; picking takes the goods out of stock, and when everything is picked the order is ready to invoice. An **invoice** is made from the order with payment terms. Offers, orders, pick lists and invoices can each be exported to **PDF** from their screen, in the current language. Customers can pay in several parts, in full or too much: the excess becomes **credit** that you can use on another invoice or record as paid back.
+- **Contact details**: addresses, email addresses and phone numbers, each with types you manage yourself (Settings), for users, clients, contact persons, students and customers. One module, one database; databases from before version 7.5 are merged in automatically at the first start.
 - **CVs**: several CVs per user for different jobs, with photo, summary, work experience (with technologies), education, courses, languages, driver licence, LinkedIn link and the contact details you choose per CV. Export to Word.
 - **Email**: SMTP and POP3 accounts (personal or shared system accounts), inbox with auto-refresh, reply, reply all, forward, drafts, sent mail, attachments and formatted HTML mail.
 - **Users and sign-in**: the first start creates the first user; users have a photo that shows in the sidebar and top bar.
@@ -76,9 +77,7 @@ One process, strict module boundaries. Each module owns its views, view models, 
 | Schedule | A teacher's recurring weekly lessons | `schedule.db` |
 | Grades | Grade scales per country, students' grades, tests and their results | `grades.db` |
 | Users | Users and sign-in | `users.db` |
-| Addresses | Addresses for any object, with address types | `addresses.db` |
-| EmailAddresses | Email addresses for any object, with types | `emailaddresses.db` |
-| PhoneNumbers | Phone numbers for any object, with types | `phonenumbers.db` |
+| Contact | Addresses, email addresses and phone numbers for any object, with their types | `contact.db` |
 | TimeReports | Time reports, expenses, work time types, exports | `timereports.db` |
 | Products | Hardware, software and consulting products with categories, suppliers, supplier prices and stock with inventory counts | `products.db` |
 | Sales | Customers, offers, orders, pick lists, invoices and payments | `salesdocuments.db` |

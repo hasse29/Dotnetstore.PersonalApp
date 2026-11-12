@@ -3,12 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:loc="using:Dotnetstore.PersonalApp.Shared.Localization"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:photos="using:Dotnetstore.PersonalApp.Shared.Photos"
              xmlns:customers="using:Dotnetstore.PersonalApp.Modules.Sales.Features.Customers"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="620"
              x:Class="Dotnetstore.PersonalApp.Modules.Sales.Features.Customers.CustomersView"
              x:DataType="customers:CustomersViewModel">
 
-    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20">
+    <Panel>
+    <Grid RowDefinitions="Auto,*" Margin="28" RowSpacing="20"
+          IsVisible="{Binding Detail, Converter={x:Static ObjectConverters.IsNull}}">
 
         <Grid ColumnDefinitions="*,Auto">
             <StackPanel Spacing="4">
@@ -40,23 +43,24 @@
 
                     <Border Grid.Row="1" Background="{DynamicResource SurfaceMutedBrush}" Padding="16,10"
                             BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1">
-                        <Grid ColumnDefinitions="2*,1.5*,1.5*,1*">
+                        <Grid ColumnDefinitions="2*,1.5*,1*">
                             <TextBlock Text="{loc:Tr Customers_ColName}" Classes="column"/>
-                            <TextBlock Grid.Column="1" Text="{loc:Tr Customers_ColEmail}" Classes="column"/>
-                            <TextBlock Grid.Column="2" Text="{loc:Tr Customers_ColCity}" Classes="column"/>
-                            <TextBlock Grid.Column="3" Text="{loc:Tr Customers_ColStatus}" Classes="column"/>
+                            <TextBlock Grid.Column="1" Text="{loc:Tr CustomerField_OrganizationNumber}" Classes="column"/>
+                            <TextBlock Grid.Column="2" Text="{loc:Tr Customers_ColStatus}" Classes="column"/>
                         </Grid>
                     </Border>
 
                     <ListBox Grid.Row="2" Classes="table" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="customers:CustomerRow">
-                                <Grid ColumnDefinitions="2*,1.5*,1.5*,1*">
-                                    <TextBlock Text="{Binding Customer.Name}" FontWeight="SemiBold"
-                                               Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Customer.Email}" Classes="muted" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding Customer.City}" Classes="muted" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Grid.Column="3" Text="{Binding StatusText}" Classes="muted"/>
+                                <Grid ColumnDefinitions="2*,1.5*,1*">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <photos:AvatarView Size="28" Initials="{Binding Customer.Initials}" Photo="{Binding Customer.Thumbnail}"/>
+                                        <TextBlock Text="{Binding Customer.Name}" VerticalAlignment="Center" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding Customer.OrganizationNumber}" Classes="muted" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding StatusText}" Classes="muted"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -67,6 +71,8 @@
                             <TextBlock Text="{Binding StatusMessage}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap"/>
 
                             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                <Button Content="{loc:Tr Customers_Details}" Classes="subtle" Command="{Binding OpenDetailCommand}"
+                                        IsVisible="{Binding !IsConfirmingDelete}"/>
                                 <Button Content="{loc:Tr Customers_Delete}" Classes="link-danger" Command="{Binding RequestDeleteCommand}"
                                         IsVisible="{Binding !IsConfirmingDelete}"/>
                                 <TextBlock Text="{loc:Tr Customers_ConfirmDelete}" VerticalAlignment="Center" Classes="muted"
@@ -101,5 +107,8 @@
             </ScrollViewer>
         </Grid>
     </Grid>
+
+    <ContentControl Content="{Binding Detail}"/>
+    </Panel>
 
 </UserControl>

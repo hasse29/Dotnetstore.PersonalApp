@@ -1,8 +1,11 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Dotnetstore.PersonalApp.Shared.Addresses;
+using Dotnetstore.PersonalApp.Shared.EmailAddresses;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
+using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 
 namespace Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 
@@ -11,17 +14,25 @@ internal sealed partial class CustomersViewModel(
     CreateCustomer.Handler create,
     UpdateCustomer.Handler update,
     DeleteCustomer.Handler delete,
-    ILocalizationService localization) : ViewModelBase
+    ILocalizationService localization,
+    IObjectAddressesPanelFactory? addressesFactory = null,
+    IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
+    IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
+    CustomerPhotoPanelFactory? photoFactory = null) : ViewModelBase
 {
     public ObservableCollection<CustomerRow> Customers { get; } = [];
 
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenDetailCommand))]
     [NotifyCanExecuteChangedFor(nameof(RequestDeleteCommand))]
     [NotifyCanExecuteChangedFor(nameof(ConfirmDeleteCommand))]
     public partial CustomerRow? SelectedCustomer { get; set; }
 
     [ObservableProperty]
     public partial CustomerEditorViewModel? Editor { get; set; }
+
+    [ObservableProperty]
+    public partial CustomerDetailViewModel? Detail { get; set; }
 
     [ObservableProperty]
     public partial string Search { get; set; } = string.Empty;
@@ -62,6 +73,37 @@ internal sealed partial class CustomersViewModel(
     {
         SelectedCustomer = null;
         OpenEditor(new CustomerEditorViewModel(null, create, update, localization));
+    }
+
+    [RelayCommand(CanExecute = nameof(HasSelection))]
+    private void OpenDetail()
+    {
+        if (SelectedCustomer is not { } row)
+        {
+            return;
+        }
+
+        var customer = row.Customer;
+        var detail = new CustomerDetailViewModel(customer, row.StatusText, addressesFactory, emailAddressesFactory, phoneNumbersFactory,
+            photoFactory is null ? null : initials => photoFactory.Create(customer.Id, initials));
+        detail.Closed += OnDetailClosed;
+        detail.EditRequested += OnDetailClosed;
+        Detail = detail;
+    }
+
+    // Both Back and Edit return to the list; the selected customer's editor is already open there.
+    private void OnDetailClosed(object? sender, EventArgs e)
+    {
+        if (Detail is { } detail)
+        {
+            detail.Closed -= OnDetailClosed;
+            detail.EditRequested -= OnDetailClosed;
+        }
+
+        Detail = null;
+
+        // The photo may have changed, and the list shows its thumbnail.
+        LoadCommand.Execute(null);
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]

@@ -10,10 +10,8 @@
   <data name="Customers_Subtitle" xml:space="preserve"><value>您的销售对象（公司和个人）。</value></data>
   <data name="Customers_New" xml:space="preserve"><value>新建客户</value></data>
   <data name="Customers_Search" xml:space="preserve"><value>搜索</value></data>
-  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>名称、组织号、邮箱或城市</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>名称或组织号</value></data>
   <data name="Customers_ColName" xml:space="preserve"><value>名称</value></data>
-  <data name="Customers_ColEmail" xml:space="preserve"><value>邮箱</value></data>
-  <data name="Customers_ColCity" xml:space="preserve"><value>城市</value></data>
   <data name="Customers_ColStatus" xml:space="preserve"><value>状态</value></data>
   <data name="Customers_Active" xml:space="preserve"><value>启用</value></data>
   <data name="Customers_Inactive" xml:space="preserve"><value>停用</value></data>
@@ -30,13 +28,15 @@
   <data name="CustomerEditor_Save" xml:space="preserve"><value>保存</value></data>
   <data name="CustomerField_Name" xml:space="preserve"><value>名称</value></data>
   <data name="CustomerField_OrganizationNumber" xml:space="preserve"><value>组织号</value></data>
-  <data name="CustomerField_Email" xml:space="preserve"><value>邮箱</value></data>
-  <data name="CustomerField_Phone" xml:space="preserve"><value>电话</value></data>
-  <data name="CustomerField_Street" xml:space="preserve"><value>街道</value></data>
-  <data name="CustomerField_PostalCode" xml:space="preserve"><value>邮编</value></data>
-  <data name="CustomerField_City" xml:space="preserve"><value>城市</value></data>
   <data name="CustomerField_Notes" xml:space="preserve"><value>备注</value></data>
   <data name="CustomerField_Active" xml:space="preserve"><value>启用</value></data>
+  <data name="Customers_Details" xml:space="preserve"><value>详情</value></data>
+  <data name="CustomerDetail_Back" xml:space="preserve"><value>返回客户列表</value></data>
+  <data name="CustomerDetail_Edit" xml:space="preserve"><value>编辑</value></data>
+  <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>信息</value></data>
+  <data name="CustomerDetail_TabAddresses" xml:space="preserve"><value>地址</value></data>
+  <data name="CustomerDetail_TabEmailAddresses" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="CustomerDetail_TabPhoneNumbers" xml:space="preserve"><value>电话号码</value></data>
   <data name="OfferStatus_Draft" xml:space="preserve"><value>草稿</value></data>
   <data name="OfferStatus_Sent" xml:space="preserve"><value>已发送</value></data>
   <data name="OfferStatus_Accepted" xml:space="preserve"><value>已接受</value></data>
@@ -91,12 +91,6 @@
   <data name="Error_customer_name_too_long" xml:space="preserve"><value>名称过长（最多 200 个字符）。</value></data>
   <data name="Error_customer_name_conflict" xml:space="preserve"><value>已存在同名客户。</value></data>
   <data name="Error_customer_organization_number_too_long" xml:space="preserve"><value>组织号过长（最多 30 个字符）。</value></data>
-  <data name="Error_customer_email_too_long" xml:space="preserve"><value>邮箱过长（最多 200 个字符）。</value></data>
-  <data name="Error_customer_email_invalid" xml:space="preserve"><value>请输入有效的邮箱地址。</value></data>
-  <data name="Error_customer_phone_too_long" xml:space="preserve"><value>电话号码过长（最多 50 个字符）。</value></data>
-  <data name="Error_customer_street_too_long" xml:space="preserve"><value>街道过长（最多 200 个字符）。</value></data>
-  <data name="Error_customer_postal_code_too_long" xml:space="preserve"><value>邮编过长（最多 20 个字符）。</value></data>
-  <data name="Error_customer_city_too_long" xml:space="preserve"><value>城市过长（最多 100 个字符）。</value></data>
   <data name="Error_customer_notes_too_long" xml:space="preserve"><value>备注过长（最多 2000 个字符）。</value></data>
   <data name="Error_customer_not_found" xml:space="preserve"><value>该客户已不存在。</value></data>
   <data name="Error_customer_in_use" xml:space="preserve"><value>该客户有报价单，请改为停用。</value></data>
@@ -274,4 +268,36 @@
   <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>发票已取消。</value></data>
   <data name="Error_invoice_has_payments" xml:space="preserve"><value>发票已有付款。请先删除付款再取消。</value></data>
   <data name="Error_credit_insufficient" xml:space="preserve"><value>客户余额不足，或此付款产生的余额已被使用或退还。</value></data>
+  <data name="SalesPdf_Export" xml:space="preserve"><value>导出 PDF</value></data>
+  <data name="SalesPdf_DialogTitle" xml:space="preserve"><value>保存 PDF</value></data>
+  <data name="SalesPdf_Saved" xml:space="preserve"><value>已保存到 {0}。</value></data>
+  <data name="SalesPdf_Offer" xml:space="preserve"><value>报价单</value></data>
+  <data name="SalesPdf_Order" xml:space="preserve"><value>订单</value></data>
+  <data name="SalesPdf_PickList" xml:space="preserve"><value>拣货单</value></data>
+  <data name="SalesPdf_Invoice" xml:space="preserve"><value>发票</value></data>
+  <data name="SalesPdf_Customer" xml:space="preserve"><value>客户</value></data>
+  <data name="SalesPdf_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="SalesPdf_ValidUntil" xml:space="preserve"><value>有效期至</value></data>
+  <data name="SalesPdf_DueDate" xml:space="preserve"><value>到期日</value></data>
+  <data name="SalesPdf_FromOffer" xml:space="preserve"><value>报价单</value></data>
+  <data name="SalesPdf_FromOrder" xml:space="preserve"><value>订单</value></data>
+  <data name="SalesPdf_Reference" xml:space="preserve"><value>参考</value></data>
+  <data name="SalesPdf_Notes" xml:space="preserve"><value>备注</value></data>
+  <data name="SalesPdf_Page" xml:space="preserve"><value>页码</value></data>
+  <data name="SalesPdf_ColDescription" xml:space="preserve"><value>说明</value></data>
+  <data name="SalesPdf_ColQuantity" xml:space="preserve"><value>数量</value></data>
+  <data name="SalesPdf_ColOrdered" xml:space="preserve"><value>订购</value></data>
+  <data name="SalesPdf_ColPicked" xml:space="preserve"><value>已拣</value></data>
+  <data name="SalesPdf_ColUnitPrice" xml:space="preserve"><value>单价</value></data>
+  <data name="SalesPdf_ColDiscount" xml:space="preserve"><value>折扣</value></data>
+  <data name="SalesPdf_ColVat" xml:space="preserve"><value>增值税</value></data>
+  <data name="SalesPdf_ColAmount" xml:space="preserve"><value>金额</value></data>
+  <data name="SalesPdf_ColPayment" xml:space="preserve"><value>付款</value></data>
+  <data name="SalesPdf_Net" xml:space="preserve"><value>不含税合计</value></data>
+  <data name="SalesPdf_Vat" xml:space="preserve"><value>增值税</value></data>
+  <data name="SalesPdf_Total" xml:space="preserve"><value>合计</value></data>
+  <data name="SalesPdf_Paid" xml:space="preserve"><value>已付</value></data>
+  <data name="SalesPdf_Outstanding" xml:space="preserve"><value>待付</value></data>
+  <data name="SalesPdf_Payments" xml:space="preserve"><value>付款记录</value></data>
+  <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>无法导出该文档。</value></data>
 </root>

@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
@@ -22,15 +23,17 @@ internal sealed partial class OrdersViewModel : ViewModelBase
     private readonly CancelOrder.Handler _cancel;
     private readonly CreateInvoiceFromOrder.Handler _createInvoice;
     private readonly ILocalizationService _localization;
+    private readonly SalesPdfSaver _pdf;
     private readonly bool _ready;
 
-    public OrdersViewModel(ListOrders.Handler list, GetOrder.Handler get, CancelOrder.Handler cancel, CreateInvoiceFromOrder.Handler createInvoice, ILocalizationService localization)
+    public OrdersViewModel(ListOrders.Handler list, GetOrder.Handler get, CancelOrder.Handler cancel, CreateInvoiceFromOrder.Handler createInvoice, ILocalizationService localization, SalesPdfSaver pdf)
     {
         _list = list;
         _get = get;
         _cancel = cancel;
         _createInvoice = createInvoice;
         _localization = localization;
+        _pdf = pdf;
 
         StatusOptions =
         [
@@ -70,7 +73,7 @@ internal sealed partial class OrdersViewModel : ViewModelBase
             return;
         }
 
-        var screen = new OrderScreenViewModel(value.Order.Id, _get, _cancel, _createInvoice, _localization);
+        var screen = new OrderScreenViewModel(value.Order.Id, _get, _cancel, _createInvoice, _localization, _pdf);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);

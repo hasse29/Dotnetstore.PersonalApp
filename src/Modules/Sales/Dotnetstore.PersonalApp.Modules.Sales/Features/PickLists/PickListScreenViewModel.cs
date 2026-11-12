@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
@@ -32,7 +33,8 @@ internal sealed partial class PickListScreenViewModel(
     Guid pickListId,
     GetPickList.Handler get,
     SavePickedQuantities.Handler save,
-    ILocalizationService localization) : ViewModelBase
+    ILocalizationService localization,
+    SalesPdfSaver pdf) : ViewModelBase
 {
     private PickListDto? _pickList;
 
@@ -93,6 +95,15 @@ internal sealed partial class PickListScreenViewModel(
 
     [RelayCommand]
     private void Back() => Closed?.Invoke(this, EventArgs.Empty);
+
+    [RelayCommand]
+    private async Task ExportPdfAsync(CancellationToken cancellationToken)
+    {
+        if (await pdf.SaveAsync(SalesDocumentKind.PickList, pickListId, cancellationToken) is { } message)
+        {
+            StatusMessage = message;
+        }
+    }
 
     private void Apply(PickListDetailDto detail)
     {

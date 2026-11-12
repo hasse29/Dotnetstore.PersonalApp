@@ -16,11 +16,6 @@ internal static class CreateCustomer
         {
             RuleFor(c => c.Fields.Name).NameRules();
             RuleFor(c => c.Fields.OrganizationNumber).OrganizationNumberRules();
-            RuleFor(c => c.Fields.Email).EmailRules();
-            RuleFor(c => c.Fields.Phone).PhoneRules();
-            RuleFor(c => c.Fields.Street).StreetRules();
-            RuleFor(c => c.Fields.PostalCode).PostalCodeRules();
-            RuleFor(c => c.Fields.City).CityRules();
             RuleFor(c => c.Fields.Notes).NotesRules();
         }
     }

@@ -10,10 +10,8 @@
   <data name="Customers_Subtitle" xml:space="preserve"><value>Companies and people you sell to.</value></data>
   <data name="Customers_New" xml:space="preserve"><value>New customer</value></data>
   <data name="Customers_Search" xml:space="preserve"><value>Search</value></data>
-  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Name, organization number, email or city</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Name or organization number</value></data>
   <data name="Customers_ColName" xml:space="preserve"><value>Name</value></data>
-  <data name="Customers_ColEmail" xml:space="preserve"><value>Email</value></data>
-  <data name="Customers_ColCity" xml:space="preserve"><value>City</value></data>
   <data name="Customers_ColStatus" xml:space="preserve"><value>Status</value></data>
   <data name="Customers_Active" xml:space="preserve"><value>Active</value></data>
   <data name="Customers_Inactive" xml:space="preserve"><value>Inactive</value></data>
@@ -30,13 +28,15 @@
   <data name="CustomerEditor_Save" xml:space="preserve"><value>Save</value></data>
   <data name="CustomerField_Name" xml:space="preserve"><value>Name</value></data>
   <data name="CustomerField_OrganizationNumber" xml:space="preserve"><value>Organization number</value></data>
-  <data name="CustomerField_Email" xml:space="preserve"><value>Email</value></data>
-  <data name="CustomerField_Phone" xml:space="preserve"><value>Phone</value></data>
-  <data name="CustomerField_Street" xml:space="preserve"><value>Street</value></data>
-  <data name="CustomerField_PostalCode" xml:space="preserve"><value>Postal code</value></data>
-  <data name="CustomerField_City" xml:space="preserve"><value>City</value></data>
   <data name="CustomerField_Notes" xml:space="preserve"><value>Notes</value></data>
   <data name="CustomerField_Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Customers_Details" xml:space="preserve"><value>Details</value></data>
+  <data name="CustomerDetail_Back" xml:space="preserve"><value>Back to customers</value></data>
+  <data name="CustomerDetail_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="CustomerDetail_TabAddresses" xml:space="preserve"><value>Addresses</value></data>
+  <data name="CustomerDetail_TabEmailAddresses" xml:space="preserve"><value>Email addresses</value></data>
+  <data name="CustomerDetail_TabPhoneNumbers" xml:space="preserve"><value>Phone numbers</value></data>
   <data name="OfferStatus_Draft" xml:space="preserve"><value>Draft</value></data>
   <data name="OfferStatus_Sent" xml:space="preserve"><value>Sent</value></data>
   <data name="OfferStatus_Accepted" xml:space="preserve"><value>Accepted</value></data>
@@ -91,12 +91,6 @@
   <data name="Error_customer_name_too_long" xml:space="preserve"><value>The name is too long (max 200 characters).</value></data>
   <data name="Error_customer_name_conflict" xml:space="preserve"><value>A customer with that name already exists.</value></data>
   <data name="Error_customer_organization_number_too_long" xml:space="preserve"><value>The organization number is too long (max 30 characters).</value></data>
-  <data name="Error_customer_email_too_long" xml:space="preserve"><value>The email is too long (max 200 characters).</value></data>
-  <data name="Error_customer_email_invalid" xml:space="preserve"><value>Enter a valid email address.</value></data>
-  <data name="Error_customer_phone_too_long" xml:space="preserve"><value>The phone number is too long (max 50 characters).</value></data>
-  <data name="Error_customer_street_too_long" xml:space="preserve"><value>The street is too long (max 200 characters).</value></data>
-  <data name="Error_customer_postal_code_too_long" xml:space="preserve"><value>The postal code is too long (max 20 characters).</value></data>
-  <data name="Error_customer_city_too_long" xml:space="preserve"><value>The city is too long (max 100 characters).</value></data>
   <data name="Error_customer_notes_too_long" xml:space="preserve"><value>The notes are too long (max 2000 characters).</value></data>
   <data name="Error_customer_not_found" xml:space="preserve"><value>The customer no longer exists.</value></data>
   <data name="Error_customer_in_use" xml:space="preserve"><value>The customer has offers. Make the customer inactive instead.</value></data>
@@ -274,4 +268,36 @@
   <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>The invoice is already cancelled.</value></data>
   <data name="Error_invoice_has_payments" xml:space="preserve"><value>The invoice has payments. Remove them before cancelling it.</value></data>
   <data name="Error_credit_insufficient" xml:space="preserve"><value>The customer does not have that much credit, or the credit from this payment has already been used or paid back.</value></data>
+  <data name="SalesPdf_Export" xml:space="preserve"><value>Export PDF</value></data>
+  <data name="SalesPdf_DialogTitle" xml:space="preserve"><value>Save PDF</value></data>
+  <data name="SalesPdf_Saved" xml:space="preserve"><value>Saved to {0}.</value></data>
+  <data name="SalesPdf_Offer" xml:space="preserve"><value>Offer</value></data>
+  <data name="SalesPdf_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesPdf_PickList" xml:space="preserve"><value>Pick list</value></data>
+  <data name="SalesPdf_Invoice" xml:space="preserve"><value>Invoice</value></data>
+  <data name="SalesPdf_Customer" xml:space="preserve"><value>Customer</value></data>
+  <data name="SalesPdf_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="SalesPdf_ValidUntil" xml:space="preserve"><value>Valid until</value></data>
+  <data name="SalesPdf_DueDate" xml:space="preserve"><value>Due date</value></data>
+  <data name="SalesPdf_FromOffer" xml:space="preserve"><value>Offer</value></data>
+  <data name="SalesPdf_FromOrder" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesPdf_Reference" xml:space="preserve"><value>Reference</value></data>
+  <data name="SalesPdf_Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="SalesPdf_Page" xml:space="preserve"><value>Page</value></data>
+  <data name="SalesPdf_ColDescription" xml:space="preserve"><value>DESCRIPTION</value></data>
+  <data name="SalesPdf_ColQuantity" xml:space="preserve"><value>QTY</value></data>
+  <data name="SalesPdf_ColOrdered" xml:space="preserve"><value>ORDERED</value></data>
+  <data name="SalesPdf_ColPicked" xml:space="preserve"><value>PICKED</value></data>
+  <data name="SalesPdf_ColUnitPrice" xml:space="preserve"><value>PRICE</value></data>
+  <data name="SalesPdf_ColDiscount" xml:space="preserve"><value>DISCOUNT</value></data>
+  <data name="SalesPdf_ColVat" xml:space="preserve"><value>VAT</value></data>
+  <data name="SalesPdf_ColAmount" xml:space="preserve"><value>AMOUNT</value></data>
+  <data name="SalesPdf_ColPayment" xml:space="preserve"><value>PAYMENT</value></data>
+  <data name="SalesPdf_Net" xml:space="preserve"><value>Total excl. VAT</value></data>
+  <data name="SalesPdf_Vat" xml:space="preserve"><value>VAT</value></data>
+  <data name="SalesPdf_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="SalesPdf_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="SalesPdf_Outstanding" xml:space="preserve"><value>To pay</value></data>
+  <data name="SalesPdf_Payments" xml:space="preserve"><value>Payments</value></data>
+  <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>That document cannot be exported.</value></data>
 </root>

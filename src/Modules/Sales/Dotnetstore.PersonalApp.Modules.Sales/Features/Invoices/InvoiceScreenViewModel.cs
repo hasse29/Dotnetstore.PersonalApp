@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 
@@ -22,7 +23,8 @@ internal sealed partial class InvoiceScreenViewModel(
     ApplyCredit.Handler applyCredit,
     DeletePayment.Handler deletePayment,
     CancelInvoice.Handler cancel,
-    ILocalizationService localization) : ViewModelBase
+    ILocalizationService localization,
+    SalesPdfSaver pdf) : ViewModelBase
 {
     private InvoiceDetailDto? _detail;
 
@@ -199,6 +201,15 @@ internal sealed partial class InvoiceScreenViewModel(
 
     [RelayCommand]
     private void Back() => Closed?.Invoke(this, EventArgs.Empty);
+
+    [RelayCommand]
+    private async Task ExportPdfAsync(CancellationToken cancellationToken)
+    {
+        if (await pdf.SaveAsync(SalesDocumentKind.Invoice, invoiceId, cancellationToken) is { } message)
+        {
+            StatusMessage = message;
+        }
+    }
 
     private static string Date(DateOnly date) => date.ToString("d", CultureInfo.CurrentCulture);
 

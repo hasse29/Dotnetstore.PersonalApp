@@ -23,6 +23,7 @@
                     <TextBlock Text="{Binding Heading}" Classes="h2"/>
                     <TextBlock Text="{Binding StatusText}" Classes="muted"/>
                 </StackPanel>
+                <Button Grid.Column="1" Content="{loc:Tr SalesPdf_Export}" Classes="subtle" Command="{Binding ExportPdfCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" IsVisible="{Binding Exists}"/>
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                     <Button Content="{loc:Tr OfferScreen_Save}" Classes="subtle" Command="{Binding SaveCommand}" IsVisible="{Binding IsEditable}"/>
                     <Button Content="{loc:Tr OfferScreen_Send}" Classes="primary" Command="{Binding SendCommand}" IsVisible="{Binding ShowSend}"/>

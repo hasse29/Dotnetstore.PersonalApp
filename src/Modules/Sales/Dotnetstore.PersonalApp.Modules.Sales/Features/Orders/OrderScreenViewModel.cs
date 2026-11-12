@@ -3,6 +3,7 @@ using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
@@ -18,7 +19,8 @@ internal sealed partial class OrderScreenViewModel(
     GetOrder.Handler get,
     CancelOrder.Handler cancel,
     CreateInvoiceFromOrder.Handler createInvoice,
-    ILocalizationService localization) : ViewModelBase
+    ILocalizationService localization,
+    SalesPdfSaver pdf) : ViewModelBase
 {
     private OrderDetailDto? _detail;
 
@@ -123,6 +125,15 @@ internal sealed partial class OrderScreenViewModel(
 
     [RelayCommand]
     private void Back() => Closed?.Invoke(this, true);
+
+    [RelayCommand]
+    private async Task ExportPdfAsync(CancellationToken cancellationToken)
+    {
+        if (await pdf.SaveAsync(SalesDocumentKind.Order, orderId, cancellationToken) is { } message)
+        {
+            StatusMessage = message;
+        }
+    }
 
     private static string Format(decimal? amount) => (amount ?? 0).ToString("N2", CultureInfo.CurrentCulture);
 

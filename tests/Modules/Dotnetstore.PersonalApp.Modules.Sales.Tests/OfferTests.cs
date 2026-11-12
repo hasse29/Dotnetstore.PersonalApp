@@ -10,6 +10,7 @@ public sealed class OfferTests
     {
         using var fixture = new SalesFixture();
         var customer = await fixture.NewCustomerAsync();
+        fixture.Contacts.SetAddress(customer.Id, "Main Street 1, 111 22 Stockholm");
 
         var first = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
         var second = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
@@ -223,5 +224,45 @@ public sealed class OfferTests
             CancellationToken.None);
 
         (await fixture.GetOffer.HandleAsync(new GetOffer.Query(offer.Offer.Id), CancellationToken.None)).Value.Offer.CustomerName.ShouldBe("Acme School");
+    }
+
+    [Fact]
+    public async Task AnOfferForACustomerWithoutAnAddressHasNone()
+    {
+        using var fixture = new SalesFixture();
+        var customer = await fixture.NewCustomerAsync();
+
+        var offer = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
+
+        offer.CustomerAddress.ShouldBeNull();
+    }
+
+    [Fact]
+    public async Task ADraftOfferPicksUpAnAddressAddedLater()
+    {
+        using var fixture = new SalesFixture();
+        var customer = await fixture.NewCustomerAsync();
+        var offer = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
+        fixture.Contacts.SetAddress(customer.Id, "Main Street 1, 111 22 Stockholm");
+
+        var result = await fixture.UpdateOffer.HandleAsync(
+            new UpdateOffer.Command(offer.Offer.Id, SalesFixture.Offer(customer.Id, SalesFixture.Line())), CancellationToken.None);
+
+        result.Value.CustomerAddress.ShouldBe("Main Street 1\n111 22 Stockholm");
+    }
+
+    [Fact]
+    public async Task ADraftKeepsItsAddressWhenTheCustomerNoLongerHasOne()
+    {
+        using var fixture = new SalesFixture();
+        var customer = await fixture.NewCustomerAsync();
+        fixture.Contacts.SetAddress(customer.Id, "Main Street 1, 111 22 Stockholm");
+        var offer = await fixture.NewOfferAsync(customer.Id, SalesFixture.Line());
+        fixture.Contacts.RemoveAddress(customer.Id);
+
+        var result = await fixture.UpdateOffer.HandleAsync(
+            new UpdateOffer.Command(offer.Offer.Id, SalesFixture.Offer(customer.Id, SalesFixture.Line("Another line"))), CancellationToken.None);
+
+        result.Value.CustomerAddress.ShouldBe("Main Street 1\n111 22 Stockholm");
     }
 }

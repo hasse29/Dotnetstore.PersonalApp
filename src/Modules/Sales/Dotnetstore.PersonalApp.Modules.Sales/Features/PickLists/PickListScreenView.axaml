@@ -25,6 +25,7 @@
                     <Run Text="{Binding StatusText}"/>
                 </TextBlock>
             </StackPanel>
+            <Button Grid.Column="1" Content="{loc:Tr SalesPdf_Export}" Classes="subtle" Command="{Binding ExportPdfCommand}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <Button Grid.Column="2" Content="{loc:Tr PickListScreen_PickAll}" Classes="subtle" Command="{Binding PickAllCommand}"
                     IsVisible="{Binding IsEditable}" VerticalAlignment="Center"/>
         </Grid>

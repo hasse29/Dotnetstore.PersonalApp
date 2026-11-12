@@ -10,10 +10,8 @@
   <data name="Customers_Subtitle" xml:space="preserve"><value>Företag och personer du säljer till.</value></data>
   <data name="Customers_New" xml:space="preserve"><value>Ny kund</value></data>
   <data name="Customers_Search" xml:space="preserve"><value>Sök</value></data>
-  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Namn, organisationsnummer, e-post eller ort</value></data>
+  <data name="Customers_SearchPlaceholder" xml:space="preserve"><value>Namn eller organisationsnummer</value></data>
   <data name="Customers_ColName" xml:space="preserve"><value>Namn</value></data>
-  <data name="Customers_ColEmail" xml:space="preserve"><value>E-post</value></data>
-  <data name="Customers_ColCity" xml:space="preserve"><value>Ort</value></data>
   <data name="Customers_ColStatus" xml:space="preserve"><value>Status</value></data>
   <data name="Customers_Active" xml:space="preserve"><value>Aktiv</value></data>
   <data name="Customers_Inactive" xml:space="preserve"><value>Inaktiv</value></data>
@@ -30,13 +28,15 @@
   <data name="CustomerEditor_Save" xml:space="preserve"><value>Spara</value></data>
   <data name="CustomerField_Name" xml:space="preserve"><value>Namn</value></data>
   <data name="CustomerField_OrganizationNumber" xml:space="preserve"><value>Organisationsnummer</value></data>
-  <data name="CustomerField_Email" xml:space="preserve"><value>E-post</value></data>
-  <data name="CustomerField_Phone" xml:space="preserve"><value>Telefon</value></data>
-  <data name="CustomerField_Street" xml:space="preserve"><value>Gata</value></data>
-  <data name="CustomerField_PostalCode" xml:space="preserve"><value>Postnummer</value></data>
-  <data name="CustomerField_City" xml:space="preserve"><value>Ort</value></data>
   <data name="CustomerField_Notes" xml:space="preserve"><value>Anteckningar</value></data>
   <data name="CustomerField_Active" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="Customers_Details" xml:space="preserve"><value>Detaljer</value></data>
+  <data name="CustomerDetail_Back" xml:space="preserve"><value>Tillbaka till kunder</value></data>
+  <data name="CustomerDetail_Edit" xml:space="preserve"><value>Redigera</value></data>
+  <data name="CustomerDetail_TabInformation" xml:space="preserve"><value>Information</value></data>
+  <data name="CustomerDetail_TabAddresses" xml:space="preserve"><value>Adresser</value></data>
+  <data name="CustomerDetail_TabEmailAddresses" xml:space="preserve"><value>E-postadresser</value></data>
+  <data name="CustomerDetail_TabPhoneNumbers" xml:space="preserve"><value>Telefonnummer</value></data>
   <data name="OfferStatus_Draft" xml:space="preserve"><value>Utkast</value></data>
   <data name="OfferStatus_Sent" xml:space="preserve"><value>Skickad</value></data>
   <data name="OfferStatus_Accepted" xml:space="preserve"><value>Accepterad</value></data>
@@ -91,12 +91,6 @@
   <data name="Error_customer_name_too_long" xml:space="preserve"><value>Namnet är för långt (max 200 tecken).</value></data>
   <data name="Error_customer_name_conflict" xml:space="preserve"><value>Det finns redan en kund med det namnet.</value></data>
   <data name="Error_customer_organization_number_too_long" xml:space="preserve"><value>Organisationsnumret är för långt (max 30 tecken).</value></data>
-  <data name="Error_customer_email_too_long" xml:space="preserve"><value>E-postadressen är för lång (max 200 tecken).</value></data>
-  <data name="Error_customer_email_invalid" xml:space="preserve"><value>Ange en giltig e-postadress.</value></data>
-  <data name="Error_customer_phone_too_long" xml:space="preserve"><value>Telefonnumret är för långt (max 50 tecken).</value></data>
-  <data name="Error_customer_street_too_long" xml:space="preserve"><value>Gatan är för lång (max 200 tecken).</value></data>
-  <data name="Error_customer_postal_code_too_long" xml:space="preserve"><value>Postnumret är för långt (max 20 tecken).</value></data>
-  <data name="Error_customer_city_too_long" xml:space="preserve"><value>Orten är för lång (max 100 tecken).</value></data>
   <data name="Error_customer_notes_too_long" xml:space="preserve"><value>Anteckningarna är för långa (max 2000 tecken).</value></data>
   <data name="Error_customer_not_found" xml:space="preserve"><value>Kunden finns inte längre.</value></data>
   <data name="Error_customer_in_use" xml:space="preserve"><value>Kunden har offerter. Gör kunden inaktiv i stället.</value></data>
@@ -274,4 +268,36 @@
   <data name="Error_invoice_already_cancelled" xml:space="preserve"><value>Fakturan är redan annullerad.</value></data>
   <data name="Error_invoice_has_payments" xml:space="preserve"><value>Fakturan har betalningar. Ta bort dem innan du annullerar den.</value></data>
   <data name="Error_credit_insufficient" xml:space="preserve"><value>Kunden har inte så mycket tillgodohavande, eller så har tillgodohavandet från betalningen redan använts eller betalats tillbaka.</value></data>
+  <data name="SalesPdf_Export" xml:space="preserve"><value>Exportera PDF</value></data>
+  <data name="SalesPdf_DialogTitle" xml:space="preserve"><value>Spara PDF</value></data>
+  <data name="SalesPdf_Saved" xml:space="preserve"><value>Sparad i {0}.</value></data>
+  <data name="SalesPdf_Offer" xml:space="preserve"><value>Offert</value></data>
+  <data name="SalesPdf_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesPdf_PickList" xml:space="preserve"><value>Plocklista</value></data>
+  <data name="SalesPdf_Invoice" xml:space="preserve"><value>Faktura</value></data>
+  <data name="SalesPdf_Customer" xml:space="preserve"><value>Kund</value></data>
+  <data name="SalesPdf_Date" xml:space="preserve"><value>Datum</value></data>
+  <data name="SalesPdf_ValidUntil" xml:space="preserve"><value>Giltig till</value></data>
+  <data name="SalesPdf_DueDate" xml:space="preserve"><value>Förfallodatum</value></data>
+  <data name="SalesPdf_FromOffer" xml:space="preserve"><value>Offert</value></data>
+  <data name="SalesPdf_FromOrder" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesPdf_Reference" xml:space="preserve"><value>Referens</value></data>
+  <data name="SalesPdf_Notes" xml:space="preserve"><value>Anteckningar</value></data>
+  <data name="SalesPdf_Page" xml:space="preserve"><value>Sida</value></data>
+  <data name="SalesPdf_ColDescription" xml:space="preserve"><value>BESKRIVNING</value></data>
+  <data name="SalesPdf_ColQuantity" xml:space="preserve"><value>ANTAL</value></data>
+  <data name="SalesPdf_ColOrdered" xml:space="preserve"><value>BESTÄLLT</value></data>
+  <data name="SalesPdf_ColPicked" xml:space="preserve"><value>PLOCKAT</value></data>
+  <data name="SalesPdf_ColUnitPrice" xml:space="preserve"><value>PRIS</value></data>
+  <data name="SalesPdf_ColDiscount" xml:space="preserve"><value>RABATT</value></data>
+  <data name="SalesPdf_ColVat" xml:space="preserve"><value>MOMS</value></data>
+  <data name="SalesPdf_ColAmount" xml:space="preserve"><value>BELOPP</value></data>
+  <data name="SalesPdf_ColPayment" xml:space="preserve"><value>BETALNING</value></data>
+  <data name="SalesPdf_Net" xml:space="preserve"><value>Summa exkl. moms</value></data>
+  <data name="SalesPdf_Vat" xml:space="preserve"><value>Moms</value></data>
+  <data name="SalesPdf_Total" xml:space="preserve"><value>Totalt</value></data>
+  <data name="SalesPdf_Paid" xml:space="preserve"><value>Betalt</value></data>
+  <data name="SalesPdf_Outstanding" xml:space="preserve"><value>Att betala</value></data>
+  <data name="SalesPdf_Payments" xml:space="preserve"><value>Betalningar</value></data>
+  <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>Det dokumentet kan inte exporteras.</value></data>
 </root>

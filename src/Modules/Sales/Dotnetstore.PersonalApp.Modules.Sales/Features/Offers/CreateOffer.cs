@@ -2,6 +2,7 @@ using System.Globalization;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Persistence;
+using Dotnetstore.PersonalApp.Shared.Contacts;
 using Dotnetstore.PersonalApp.Shared.Results;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ internal static class CreateOffer
         }
     }
 
-    public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock)
+    public sealed class Handler(IDbContextFactory<SalesDbContext> dbFactory, IValidator<Command> validator, TimeProvider clock, IEnumerable<IContactInfoSource> contactSources)
     {
         public async Task<Result<OfferDetailDto>> HandleAsync(Command command, CancellationToken cancellationToken)
         {
@@ -51,7 +52,7 @@ internal static class CreateOffer
                 Number = await NextNumberAsync(db, fields.Date.Year, cancellationToken).ConfigureAwait(false),
                 CustomerId = customer.Id,
                 CustomerName = customer.Name,
-                CustomerAddress = CustomerRules.FormatAddress(customer),
+                CustomerAddress = await CustomerAddressBlock.ResolveAsync(contactSources, customer.Id, cancellationToken).ConfigureAwait(false),
                 Status = OfferStatus.Draft,
                 CreatedAt = clock.GetUtcNow(),
             };

@@ -1,6 +1,7 @@
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Credits;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Invoices;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Offers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.PickLists;
@@ -30,6 +31,9 @@ public static class SalesModule
         services.AddSingleton<UpdateCustomer.Handler>();
         services.AddSingleton<DeleteCustomer.Handler>();
         services.AddSingleton<ListCustomers.Handler>();
+        services.AddSingleton<GetCustomerPhoto.Handler>();
+        services.AddSingleton<SetCustomerPhoto.Handler>();
+        services.AddSingleton<CustomerPhotoPanelFactory>();
 
         services.AddSingleton<IValidator<CreateOffer.Command>, CreateOffer.Validator>();
         services.AddSingleton<IValidator<UpdateOffer.Command>, UpdateOffer.Validator>();
@@ -59,6 +63,8 @@ public static class SalesModule
         services.AddSingleton<GetCustomerCredit.Handler>();
         services.AddSingleton<RefundCredit.Handler>();
         services.AddSingleton<CancelInvoice.Handler>();
+        services.AddSingleton<ExportSalesPdf.Handler>();
+        services.AddSingleton<SalesPdfSaver>();
 
         services.AddTransient<OffersViewModel>();
         services.AddTransient<OrdersViewModel>();

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Products;
@@ -29,6 +30,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
     private readonly ListCustomers.Handler _customers;
     private readonly IProductCatalog _catalog;
     private readonly ILocalizationService _localization;
+    private readonly SalesPdfSaver _pdf;
     private readonly TimeProvider _clock;
     private readonly bool _ready;
 
@@ -43,7 +45,8 @@ internal sealed partial class OffersViewModel : ViewModelBase
         ListCustomers.Handler customers,
         IProductCatalog catalog,
         ILocalizationService localization,
-        TimeProvider clock)
+        TimeProvider clock,
+        SalesPdfSaver pdf)
     {
         _list = list;
         _create = create;
@@ -55,6 +58,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
         _customers = customers;
         _catalog = catalog;
         _localization = localization;
+        _pdf = pdf;
         _clock = clock;
 
         StatusOptions =
@@ -130,7 +134,7 @@ internal sealed partial class OffersViewModel : ViewModelBase
 
     private void OpenScreen(Guid? offerId)
     {
-        var screen = new OfferScreenViewModel(offerId, _create, _update, _get, _changeStatus, _delete, _createOrder, _customers, _catalog, _localization, _clock);
+        var screen = new OfferScreenViewModel(offerId, _create, _update, _get, _changeStatus, _delete, _createOrder, _customers, _catalog, _localization, _clock, _pdf);
         screen.Closed += OnScreenClosed;
         Screen = screen;
         screen.LoadCommand.Execute(null);

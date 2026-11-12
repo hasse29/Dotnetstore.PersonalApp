@@ -30,17 +30,6 @@ public sealed class CustomerTests
     }
 
     [Fact]
-    public async Task RejectsAnInvalidEmail()
-    {
-        using var fixture = new SalesFixture();
-
-        var result = await fixture.CreateCustomer.HandleAsync(
-            new CreateCustomer.Command(SalesFixture.Customer() with { Email = "not-an-email" }), CancellationToken.None);
-
-        result.Error.Code.ShouldBe("customer_email_invalid");
-    }
-
-    [Fact]
     public async Task DeletesACustomerWithoutOffers()
     {
         using var fixture = new SalesFixture();
@@ -62,5 +51,24 @@ public sealed class CustomerTests
         var result = await fixture.DeleteCustomer.HandleAsync(new DeleteCustomer.Command(customer.Id), CancellationToken.None);
 
         result.Error.Code.ShouldBe("customer_in_use");
+    }
+
+    [Fact]
+    public async Task ACustomerIsKeptWhenAnotherModuleFailsToCleanUpAfterIt()
+    {
+        using var fixture = new SalesFixture();
+        var customer = await fixture.NewCustomerAsync();
+        var handler = new DeleteCustomer.Handler(fixture.DbFactory, new FailingPublisher());
+
+        await Should.ThrowAsync<InvalidOperationException>(() => handler.HandleAsync(new DeleteCustomer.Command(customer.Id), CancellationToken.None));
+
+        var customers = await fixture.ListCustomers.HandleAsync(new ListCustomers.Query(), CancellationToken.None);
+        customers.Items.ShouldContain(c => c.Id == customer.Id);
+    }
+
+    private sealed class FailingPublisher : Dotnetstore.PersonalApp.Shared.Events.IEventPublisher
+    {
+        public Task PublishAsync<TEvent>(TEvent integrationEvent, CancellationToken cancellationToken)
+            where TEvent : notnull => throw new InvalidOperationException("A consumer failed.");
     }
 }

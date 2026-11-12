@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Modules.Sales.Domain;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Customers;
 using Dotnetstore.PersonalApp.Modules.Sales.Features.Orders;
+using Dotnetstore.PersonalApp.Modules.Sales.Features.Pdf;
 using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.Products;
@@ -82,6 +83,7 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
     private readonly TimeProvider _clock;
     private readonly List<UnitOption> _units;
     private Guid? _offerId;
+    private readonly SalesPdfSaver _pdf;
 
     public OfferScreenViewModel(
         Guid? offerId,
@@ -94,10 +96,12 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
         ListCustomers.Handler customers,
         IProductCatalog catalog,
         ILocalizationService localization,
-        TimeProvider clock)
+        TimeProvider clock,
+        SalesPdfSaver pdf)
     {
         _createOrder = createOrder;
         _offerId = offerId;
+        _pdf = pdf;
         _create = create;
         _update = update;
         _get = get;
@@ -337,6 +341,15 @@ internal sealed partial class OfferScreenViewModel : ViewModelBase
 
     [RelayCommand]
     private void Back() => Closed?.Invoke(this, _offerId is not null);
+
+    [RelayCommand]
+    private async Task ExportPdfAsync(CancellationToken cancellationToken)
+    {
+        if (_offerId is { } id && await _pdf.SaveAsync(SalesDocumentKind.Offer, id, cancellationToken) is { } message)
+        {
+            StatusMessage = message;
+        }
+    }
 
     [RelayCommand]
     private void AddFreeLine() => AddLine(new OfferLineRow(_units, _units[0], IsEditable));
