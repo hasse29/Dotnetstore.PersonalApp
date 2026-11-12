@@ -18,7 +18,8 @@ internal sealed partial class CustomersViewModel(
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
-    CustomerPhotoPanelFactory? photoFactory = null) : ViewModelBase
+    CustomerPhotoPanelFactory? photoFactory = null,
+    GetCustomerSalesHistory.Handler? salesHistory = null) : ViewModelBase
 {
     public ObservableCollection<CustomerRow> Customers { get; } = [];
 
@@ -85,7 +86,7 @@ internal sealed partial class CustomersViewModel(
 
         var customer = row.Customer;
         var detail = new CustomerDetailViewModel(customer, row.StatusText, addressesFactory, emailAddressesFactory, phoneNumbersFactory,
-            photoFactory is null ? null : initials => photoFactory.Create(customer.Id, initials));
+            photoFactory is null ? null : initials => photoFactory.Create(customer.Id, initials), salesHistory, localization);
         detail.Closed += OnDetailClosed;
         detail.EditRequested += OnDetailClosed;
         Detail = detail;

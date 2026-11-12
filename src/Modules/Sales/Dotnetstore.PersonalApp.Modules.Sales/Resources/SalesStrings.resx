@@ -300,4 +300,19 @@
   <data name="SalesPdf_Outstanding" xml:space="preserve"><value>To pay</value></data>
   <data name="SalesPdf_Payments" xml:space="preserve"><value>Payments</value></data>
   <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>That document cannot be exported.</value></data>
+  <data name="CustomerDetail_TabSalesHistory" xml:space="preserve"><value>Sales history</value></data>
+  <data name="SalesHistory_Invoiced" xml:space="preserve"><value>Invoiced</value></data>
+  <data name="SalesHistory_Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="SalesHistory_Outstanding" xml:space="preserve"><value>Outstanding</value></data>
+  <data name="SalesHistory_ColType" xml:space="preserve"><value>Type</value></data>
+  <data name="SalesHistory_ColNumber" xml:space="preserve"><value>Number</value></data>
+  <data name="SalesHistory_ColFrom" xml:space="preserve"><value>From</value></data>
+  <data name="SalesHistory_ColDate" xml:space="preserve"><value>Date</value></data>
+  <data name="SalesHistory_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="SalesHistory_ColTotal" xml:space="preserve"><value>Total (incl. VAT)</value></data>
+  <data name="SalesHistory_Kind_Offer" xml:space="preserve"><value>Offer</value></data>
+  <data name="SalesHistory_Kind_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesHistory_Kind_Invoice" xml:space="preserve"><value>Invoice</value></data>
+  <data name="SalesHistory_Empty" xml:space="preserve"><value>Nothing has been offered, ordered or invoiced to this customer yet.</value></data>
+  <data name="SalesHistory_Count" xml:space="preserve"><value>{0} offers, {1} orders, {2} invoices</value></data>
 </root>

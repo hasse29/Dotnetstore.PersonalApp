@@ -26,6 +26,7 @@ internal sealed class SalesFixture : IDisposable
         UpdateCustomer = new UpdateCustomer.Handler(DbFactory, new UpdateCustomer.Validator());
         DeleteCustomer = new DeleteCustomer.Handler(DbFactory, Events);
         ListCustomers = new ListCustomers.Handler(DbFactory);
+        GetSalesHistory = new GetCustomerSalesHistory.Handler(DbFactory);
         CreateOffer = new CreateOffer.Handler(DbFactory, new CreateOffer.Validator(), Clock, [Contacts]);
         UpdateOffer = new UpdateOffer.Handler(DbFactory, new UpdateOffer.Validator(), Clock, [Contacts]);
         ChangeStatus = new ChangeOfferStatus.Handler(DbFactory, Clock);
@@ -68,6 +69,8 @@ internal sealed class SalesFixture : IDisposable
     public DeleteCustomer.Handler DeleteCustomer { get; }
 
     public ListCustomers.Handler ListCustomers { get; }
+
+    public GetCustomerSalesHistory.Handler GetSalesHistory { get; }
 
     public CreateOffer.Handler CreateOffer { get; }
 

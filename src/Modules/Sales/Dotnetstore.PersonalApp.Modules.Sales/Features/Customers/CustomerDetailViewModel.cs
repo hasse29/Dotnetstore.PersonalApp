@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Dotnetstore.PersonalApp.Shared.Addresses;
 using Dotnetstore.PersonalApp.Shared.EmailAddresses;
+using Dotnetstore.PersonalApp.Shared.Localization;
 using Dotnetstore.PersonalApp.Shared.Mvvm;
 using Dotnetstore.PersonalApp.Shared.PhoneNumbers;
 using Dotnetstore.PersonalApp.Shared.Photos;
@@ -13,9 +14,16 @@ internal sealed partial class CustomerDetailViewModel(
     IObjectAddressesPanelFactory? addressesFactory = null,
     IObjectEmailAddressesPanelFactory? emailAddressesFactory = null,
     IObjectPhoneNumbersPanelFactory? phoneNumbersFactory = null,
-    Func<string, PhotoPanelViewModel?>? photoFactory = null) : ViewModelBase
+    Func<string, PhotoPanelViewModel?>? photoFactory = null,
+    GetCustomerSalesHistory.Handler? salesHistory = null,
+    ILocalizationService? localization = null) : ViewModelBase
 {
     public CustomerDto Customer { get; } = customer;
+
+    /// <summary>The sales history tab: offers, orders and invoices of the customer; null when no handler is supplied.</summary>
+    public CustomerSalesHistoryViewModel? SalesHistory { get; } = salesHistory is null || localization is null
+        ? null
+        : new CustomerSalesHistoryViewModel(customer.Id, salesHistory, localization);
 
     public string StatusText { get; } = statusText;
 
