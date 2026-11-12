@@ -300,4 +300,19 @@
   <data name="SalesPdf_Outstanding" xml:space="preserve"><value>待付</value></data>
   <data name="SalesPdf_Payments" xml:space="preserve"><value>付款记录</value></data>
   <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>无法导出该文档。</value></data>
+  <data name="CustomerDetail_TabSalesHistory" xml:space="preserve"><value>销售历史</value></data>
+  <data name="SalesHistory_Invoiced" xml:space="preserve"><value>已开票</value></data>
+  <data name="SalesHistory_Paid" xml:space="preserve"><value>已付款</value></data>
+  <data name="SalesHistory_Outstanding" xml:space="preserve"><value>未付款</value></data>
+  <data name="SalesHistory_ColType" xml:space="preserve"><value>类型</value></data>
+  <data name="SalesHistory_ColNumber" xml:space="preserve"><value>编号</value></data>
+  <data name="SalesHistory_ColFrom" xml:space="preserve"><value>来源</value></data>
+  <data name="SalesHistory_ColDate" xml:space="preserve"><value>日期</value></data>
+  <data name="SalesHistory_ColStatus" xml:space="preserve"><value>状态</value></data>
+  <data name="SalesHistory_ColTotal" xml:space="preserve"><value>合计（含增值税）</value></data>
+  <data name="SalesHistory_Kind_Offer" xml:space="preserve"><value>报价</value></data>
+  <data name="SalesHistory_Kind_Order" xml:space="preserve"><value>订单</value></data>
+  <data name="SalesHistory_Kind_Invoice" xml:space="preserve"><value>发票</value></data>
+  <data name="SalesHistory_Empty" xml:space="preserve"><value>尚未向该客户报价、下单或开具发票。</value></data>
+  <data name="SalesHistory_Count" xml:space="preserve"><value>{0} 份报价，{1} 个订单，{2} 张发票</value></data>
 </root>

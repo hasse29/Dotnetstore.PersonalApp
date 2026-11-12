@@ -31,6 +31,7 @@ public static class SalesModule
         services.AddSingleton<UpdateCustomer.Handler>();
         services.AddSingleton<DeleteCustomer.Handler>();
         services.AddSingleton<ListCustomers.Handler>();
+        services.AddSingleton<GetCustomerSalesHistory.Handler>();
         services.AddSingleton<GetCustomerPhoto.Handler>();
         services.AddSingleton<SetCustomerPhoto.Handler>();
         services.AddSingleton<CustomerPhotoPanelFactory>();

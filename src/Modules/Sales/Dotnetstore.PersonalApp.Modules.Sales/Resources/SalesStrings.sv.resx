@@ -300,4 +300,19 @@
   <data name="SalesPdf_Outstanding" xml:space="preserve"><value>Att betala</value></data>
   <data name="SalesPdf_Payments" xml:space="preserve"><value>Betalningar</value></data>
   <data name="Error_sales_pdf_kind_invalid" xml:space="preserve"><value>Det dokumentet kan inte exporteras.</value></data>
+  <data name="CustomerDetail_TabSalesHistory" xml:space="preserve"><value>Försäljningshistorik</value></data>
+  <data name="SalesHistory_Invoiced" xml:space="preserve"><value>Fakturerat</value></data>
+  <data name="SalesHistory_Paid" xml:space="preserve"><value>Betalt</value></data>
+  <data name="SalesHistory_Outstanding" xml:space="preserve"><value>Utestående</value></data>
+  <data name="SalesHistory_ColType" xml:space="preserve"><value>Typ</value></data>
+  <data name="SalesHistory_ColNumber" xml:space="preserve"><value>Nummer</value></data>
+  <data name="SalesHistory_ColFrom" xml:space="preserve"><value>Från</value></data>
+  <data name="SalesHistory_ColDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="SalesHistory_ColStatus" xml:space="preserve"><value>Status</value></data>
+  <data name="SalesHistory_ColTotal" xml:space="preserve"><value>Totalt (inkl. moms)</value></data>
+  <data name="SalesHistory_Kind_Offer" xml:space="preserve"><value>Offert</value></data>
+  <data name="SalesHistory_Kind_Order" xml:space="preserve"><value>Order</value></data>
+  <data name="SalesHistory_Kind_Invoice" xml:space="preserve"><value>Faktura</value></data>
+  <data name="SalesHistory_Empty" xml:space="preserve"><value>Inget har offererats, beställts eller fakturerats till den här kunden ännu.</value></data>
+  <data name="SalesHistory_Count" xml:space="preserve"><value>{0} offerter, {1} order, {2} fakturor</value></data>
 </root>

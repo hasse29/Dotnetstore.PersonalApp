@@ -60,6 +60,10 @@
                      IsVisible="{Binding PhoneNumbers, Converter={x:Static ObjectConverters.IsNotNull}}">
                 <ContentControl Content="{Binding PhoneNumbers}" Margin="0,20,0,0"/>
             </TabItem>
+            <TabItem Header="{loc:Tr CustomerDetail_TabSalesHistory}"
+                     IsVisible="{Binding SalesHistory, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ContentControl Content="{Binding SalesHistory}" Margin="0,20,0,0"/>
+            </TabItem>
         </TabControl>
     </Grid>
 
